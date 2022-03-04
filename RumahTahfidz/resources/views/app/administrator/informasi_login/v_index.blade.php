@@ -56,3 +56,13 @@
 </section>
 
 @endsection
+
+@section("app_scripts")
+
+<script>
+    $(document).ready(function() {
+        $("#table-1").dataTable();
+    })
+</script>
+
+@endsection

@@ -7,6 +7,7 @@
     <title>Rumah Tahfidz Quran | @yield("app_title") </title>
 
     @include("app.administrator.layouts.partials.css.style")
+    @include("app.administrator.layouts.partials.js.style")
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
@@ -36,8 +37,6 @@
             @include("app.administrator.layouts.partials.footer.main-footer")
         </div>
     </div>
-
-    @include("app.administrator.layouts.partials.js.style")
 
     @yield("app_scripts")
 
