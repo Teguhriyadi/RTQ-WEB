@@ -70,7 +70,9 @@ class SiswaController extends Controller
             "password" => bcrypt("password"),
             "alamat" => $request->alamat,
             "id_role" => 3,
-            "no_hp" => $request->no_hp
+            "no_hp" => $request->no_hp,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir
         ]);
 
         if ($cek) {
@@ -170,12 +172,14 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($no_hp)
     {
-        $role = Siswa::findOrfail($id);
+        $data_siswa = Siswa::findOrfail($no_hp);
 
-        if ($role) {
-            $cek = $role->delete();
+        User::where("no_hp", $data_siswa->no_hp)->delete();
+
+        if ($data_siswa) {
+            $cek = $data_siswa->delete();
 
             if ($cek) {
                 $data = [

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -44,6 +45,8 @@ Route::prefix("app")->group(function() {
                 Route::get("/informasi_login", [LastLoginController::class, "index"]);
 
                 Route::get("/role", [RoleController::class, "index"]);
+
+                Route::get("/siswa", [SiswaController::class, "index"]);
             });
 
         });

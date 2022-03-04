@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::resource('role', RoleController::class);
 
 // Siswa
+Route::get("siswa/{no_hp}", [SiswaController::class, "destroy"]);
 Route::resource('siswa', SiswaController::class);
 
 // Pengajar
