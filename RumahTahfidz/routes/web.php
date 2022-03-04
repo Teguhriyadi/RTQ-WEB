@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix("app")->group(function() {
+    Route::prefix("admin")->group(function() {
+        Route::get("/layouts", [AppController::class, "layouts"]);
+    });
 });
