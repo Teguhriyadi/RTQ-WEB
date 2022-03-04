@@ -4,6 +4,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PengajarController;
@@ -22,9 +23,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get("/layouts", [LandingPageController::class, "layouts"]);
+Route::get("/home", [LandingPageController::class, "home"]);
 
 Route::prefix("app")->group(function() {
 
