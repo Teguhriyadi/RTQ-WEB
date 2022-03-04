@@ -66,7 +66,9 @@ class PengajarController extends Controller
             "password" => bcrypt("password"),
             "alamat" => $request->alamat,
             "id_role" => 2,
-            "no_hp" => $request->telepon
+            "no_hp" => $request->telepon,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir
         ]);
 
         if ($cek) {
@@ -164,10 +166,12 @@ class PengajarController extends Controller
      */
     public function destroy($id)
     {
-        $role = Pengajar::findOrfail($id);
+        $data_pengajar = Pengajar::findOrfail($id);
 
-        if ($role) {
-            $cek = $role->delete();
+        User::where("no_hp", $data_pengajar->telepon)->delete();
+
+        if ($data_pengajar) {
+            $cek = $data_pengajar->delete();
 
             if ($cek) {
                 $data = [

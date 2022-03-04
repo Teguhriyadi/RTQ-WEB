@@ -6,6 +6,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PengajarController;
 use App\Models\Role;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,8 @@ Route::prefix("app")->group(function() {
                 Route::get("/role", [RoleController::class, "index"]);
 
                 Route::get("/siswa", [SiswaController::class, "index"]);
+
+                Route::get("/pengajar", [PengajarController::class, "index"]);
             });
 
         });
