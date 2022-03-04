@@ -21,5 +21,6 @@ Route::get('/', function () {
 Route::prefix("app")->group(function() {
     Route::prefix("admin")->group(function() {
         Route::get("/layouts", [AppController::class, "layouts"]);
+        Route::get("/home", [AppController::class, "home"]);
     });
 });

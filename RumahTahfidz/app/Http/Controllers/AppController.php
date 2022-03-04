@@ -10,4 +10,9 @@ class AppController extends Controller
     {
         return view("app.administrator.layouts.template");
     }
+
+    public function home()
+    {
+        return view("app.administrator.v_home");
+    }
 }

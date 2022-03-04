@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>General Dashboard &mdash; Stisla</title>
+    <title>Rumah Tahfidz Quran | @yield("app_title") </title>
 
     @include("app.administrator.layouts.partials.css.style")
     <!-- Start GA -->
@@ -26,6 +26,11 @@
                 @include("app.administrator.layouts.partials.navbar.main-navbar")
 
                 @include("app.administrator.layouts.partials.sidebar.main-sidebar")
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    @yield("app_content")
+                </div>
 
                 @include("app.administrator.layouts.partials.footer.main-footer")
             </div>
