@@ -42,6 +42,8 @@ class ProfilController extends Controller
                 "no_hp" => $data->no_hp,
                 "alamat" => $data->alamat,
                 "keterangan" => $data->getRole->keterangan,
+                "tempat_lahir" => $data->tempat_lahir,
+                "tanggal_lahir" => $data->tanggal_lahir
             ];
         }
 
