@@ -33,9 +33,17 @@ Route::prefix("app")->group(function() {
     Route::prefix("admin")->group(function() {
 
         Route::group(["middleware" => "autentikasi"], function() {
-            Route::get("/layouts", [AppController::class, "layouts"]);
-            Route::get("/", [AppController::class, "home"]);
-            Route::get("/home", [AppController::class, "home"]);
+
+            Route::group(["middleware" => ["can:admin"]], function() {
+                Route::get("/layouts", [AppController::class, "layouts"]);
+                Route::get("/", [AppController::class, "home"]);
+                Route::get("/home", [AppController::class, "home"]);
+            });
+
         });
+    });
+
+    Route::group(["middleware" => "autentikasi"], function() {
+        Route::get("/logout", [LoginController::class, "logout"]);
     });
 });
