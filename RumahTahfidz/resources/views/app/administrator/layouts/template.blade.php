@@ -39,5 +39,7 @@
 
     @include("app.administrator.layouts.partials.js.style")
 
+    @yield("app_scripts")
+
 </body>
 </html>

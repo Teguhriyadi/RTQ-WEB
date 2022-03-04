@@ -21,3 +21,4 @@
 <!-- Template JS File -->
 <script src="{{ url('/template') }}/dist/assets/js/scripts.js"></script>
 <script src="{{ url('/template') }}/dist/assets/js/custom.js"></script>
+<script src="{{ url('sweetalert/dist/sweetalert2.all.min.js') }}"></script>

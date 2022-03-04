@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
@@ -38,6 +39,8 @@ Route::prefix("app")->group(function() {
                 Route::get("/layouts", [AppController::class, "layouts"]);
                 Route::get("/", [AppController::class, "home"]);
                 Route::get("/home", [AppController::class, "home"]);
+
+                Route::get("/role", [RoleController::class, "index"]);
             });
 
         });
