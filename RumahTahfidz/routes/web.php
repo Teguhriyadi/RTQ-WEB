@@ -22,9 +22,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get("/layouts", [LandingPageController::class, "layouts"]);
+Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
+Route::get("/kontak", [LandingPageController::class, "kontak"]);
 
 Route::prefix("app")->group(function() {
 

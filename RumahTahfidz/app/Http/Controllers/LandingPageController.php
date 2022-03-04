@@ -15,4 +15,9 @@ class LandingPageController extends Controller
     {
         return view("app.landing.v_home");
     }
+
+    public function kontak()
+    {
+        return view("app.landing.kontak.v_index");
+    }
 }
