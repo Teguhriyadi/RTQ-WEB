@@ -3,6 +3,7 @@
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Models\Role;
 use Illuminate\Auth\Events\Login;
@@ -36,9 +37,11 @@ Route::prefix("app")->group(function() {
         Route::group(["middleware" => "autentikasi"], function() {
 
             Route::group(["middleware" => ["can:admin"]], function() {
-                Route::get("/layouts", [AppController::class, "layouts"]);
+
                 Route::get("/", [AppController::class, "home"]);
                 Route::get("/home", [AppController::class, "home"]);
+
+                Route::get("/informasi_login", [LastLoginController::class, "index"]);
 
                 Route::get("/role", [RoleController::class, "index"]);
             });
