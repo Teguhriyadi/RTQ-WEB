@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
+use App\Models\LastLogin;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -27,6 +29,13 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($validated)) {
+            $data = [
+                'nama' => Auth::user()->nama,
+                'alamat' => Auth::user()->alamat,
+                'email' => Auth::user()->email,
+                'no_hp' => Auth::user()->no_hp,
+                'keterangan' => Auth::user()->getRole->keterangan,
+            ];
 
             $user = User::where('no_hp', $request->no_hp)->first();
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -36,7 +45,7 @@ class AuthController extends Controller
                 'status' => true,
                 'access_token' => $token,
                 'token_type' => 'Bearer',
-                'data' => $user
+                'data' => $data
             ], 200);
         } else {
             return response()->json(['status' => false, 'message' => 'Login Failed!'], 200);

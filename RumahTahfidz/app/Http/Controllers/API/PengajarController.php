@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\StatusAbsen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Pengajar;
+use App\Models\User;
 
-class StatusAbsenController extends Controller
+class PengajarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class StatusAbsenController extends Controller
      */
     public function index()
     {
-        $data = StatusAbsen::all();
+        $data = Pengajar::all();
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -40,15 +41,32 @@ class StatusAbsenController extends Controller
     public function store(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            "nama" => "required",
+            "jenis_kelamin" => "required",
+            "alamat" => "required",
+            "telepon" => "required"
         ]);
 
         if ($validasi->fails()) {
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = StatusAbsen::create([
-            'keterangan' => $request->keterangan
+        $cek1 = Pengajar::create([
+            'id' => time(),
+            "nama" => $request->nama,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "alamat" => $request->alamat,
+            "telepon" => $request->telepon
+        ]);
+
+        $cek = User::create([
+            "id" => time(),
+            "nama" => $request->nama,
+            "email" => "data@gmail.com",
+            "password" => bcrypt("password"),
+            "alamat" => $request->alamat,
+            "id_role" => 2,
+            "no_hp" => $request->telepon
         ]);
 
         if ($cek) {
@@ -74,7 +92,7 @@ class StatusAbsenController extends Controller
      */
     public function show($id)
     {
-        $data = StatusAbsen::findOrfail($id);
+        $data = Pengajar::findOrfail($id);
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -100,18 +118,30 @@ class StatusAbsenController extends Controller
     public function update(Request $request, $id)
     {
         $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            "nama" => "required",
+            "jenis_kelamin" => "required",
+            "alamat" => "required",
+            "telepon" => "required"
         ]);
 
         if ($validasi->fails()) {
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = StatusAbsen::where('id', $id)->update([
-            'keterangan' => $request->keterangan
+        $cek_pengajar = Pengajar::where('id', $id)->update([
+            "nama" => $request->nama,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "alamat" => $request->alamat,
+            "telepon" => $request->telepon
         ]);
 
-        if ($cek) {
+        $cek_user = User::where('no_hp', $request->oldNoHp)->update([
+            "nama" => $request->nama,
+            "alamat" => $request->alamat,
+            "no_hp" => $request->telepon
+        ]);
+
+        if ($cek_pengajar) {
             $data = [
                 'message' => 'Update Success!',
                 'status' => true
@@ -134,7 +164,7 @@ class StatusAbsenController extends Controller
      */
     public function destroy($id)
     {
-        $role = StatusAbsen::findOrfail($id);
+        $role = Pengajar::findOrfail($id);
 
         if ($role) {
             $cek = $role->delete();
