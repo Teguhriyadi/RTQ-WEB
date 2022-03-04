@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tb_absensi', function (Blueprint $table) {
             $table->integer("id")->primary();
-            $table->string("nama", 100);
-            $table->string("email", 100);
-            $table->string("password", 100);
-            $table->text("alamat")->nullable();
-            $table->integer("id_role");
-            $table->string("no_hp", 30)->nullable();
-            $table->string("gambar")->nullable();
+            $table->foreignId("id_siswa");
+            $table->text("keterangan")->nullable();
+            $table->tinyInteger("status_absen");
+            $table->integer("id_pengajar");
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tb_absensi');
     }
 };

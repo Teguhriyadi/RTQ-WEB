@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->integer("id")->primary();
-            $table->string("nama", 100);
-            $table->string("email", 100);
-            $table->string("password", 100);
-            $table->text("alamat")->nullable();
-            $table->integer("id_role");
-            $table->string("no_hp", 30)->nullable();
+        Schema::create('tb_siswa', function (Blueprint $table) {
+            $table->id();
+            $table->string("nama", 100)->nullable();
+            $table->enum("jenis_kelamin", ["L", "P"]);
+            $table->text("alamat");
             $table->string("gambar")->nullable();
+            $table->string("nama_ayah", 100)->nullable();
+            $table->string("nama_ibu", 100)->nullable();
+            $table->string("no_hp", 30);
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tb_siswa');
     }
 };

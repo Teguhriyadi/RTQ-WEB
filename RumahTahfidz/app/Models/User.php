@@ -17,10 +17,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -41,4 +40,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public $telepon;
+
+    public function getToken()
+    {
+        return $this->hasOne(Token::class, "tokenable_id", "id");
+    }
+
+    public function getRole()
+    {
+        return $this->belongsTo("App\Models\Role", "id_role", "id");
+    }
 }
