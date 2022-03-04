@@ -17,7 +17,14 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = Siswa::all();
+        $user = Siswa::all();
+        $data = [];
+        foreach ($user as $u) {
+            $data[] = [
+                "id" => $u->id,
+                "nama" => $u->nama
+            ];
+        }
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }

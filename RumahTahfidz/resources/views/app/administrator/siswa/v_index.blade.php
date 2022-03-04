@@ -230,7 +230,7 @@
                         nomer.innerHTML = no++;
                         namaCell.innerHTML = val['nama'];
                         noHpCell.innerHTML = val['no_hp'];
-                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-tempat_lahir="'+val['tempat_lahir']+'" data-tanggal_lahir="'+val['tanggal_lahir']+'" data-nama_ayah="'+val["nama_ayah"]+'" data-nama_ibu="'+val["nama_ibu"]+'" data-no_hp="'+val["no_hp"]+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
+                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
                         aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
                 }
@@ -241,27 +241,30 @@
     $(document).ready(function() {
         $("body").on('click', '#btnEdit', function() {
             let id = $(this).data('id');
-            let nama = $(this).data('nama');
-            let jenis_kelamin = $(this).data('jenis_kelamin');
-            let alamat = $(this).data('alamat');
-            let nama_ayah = $(this).data('nama_ayah');
-            let nama_ibu = $(this).data('nama_ibu');
-            let no_hp = $(this).data('no_hp');
-            let tempat_lahir = $(this).data('tempat_lahir');
-            let tanggal_lahir = $(this).data('tanggal_lahir');
+            $.get('{{ url("app/admin/siswa/") }}/' + id, function (response) {
+                console.log(response.data);
+                $("#id").val(id);
+                $("#nm").val(response.data.nama);
+            })
+            // let nama = $(this).data('nama');
+            // let jenis_kelamin = $(this).data('jenis_kelamin');
+            // let alamat = $(this).data('alamat');
+            // let nama_ayah = $(this).data('nama_ayah');
+            // let nama_ibu = $(this).data('nama_ibu');
+            // let no_hp = $(this).data('no_hp');
+            // let tempat_lahir = $(this).data('tempat_lahir');
+            // let tanggal_lahir = $(this).data('tanggal_lahir');
 
-            console.log($(this).data())
-
-            $("#id").val(id)
-            $("#nm").val(nama)
-            $("#jk").val(jenis_kelamin)
-            $("#address").val(alamat)
-            $("#ayah").val(nama_ayah)
-            $("#ibu").val(nama_ibu)
-            $("#hp").val(no_hp)
-            $("#oldNoHp").val(no_hp)
-            $("#tmpt_lahir").val(tempat_lahir)
-            $("#tgl_lahir").val(tanggal_lahir)
+            // $("#id").val(id)
+            // $("#nm").val(nama)
+            // $("#jk").val(jenis_kelamin)
+            // $("#address").val(alamat)
+            // $("#ayah").val(nama_ayah)
+            // $("#ibu").val(nama_ibu)
+            // $("#hp").val(no_hp)
+            // $("#oldNoHp").val(no_hp)
+            // $("#tmpt_lahir").val(tempat_lahir)
+            // $("#tgl_lahir").val(tanggal_lahir)
 
         });
 
