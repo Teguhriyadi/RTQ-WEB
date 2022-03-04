@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::prefix("app")->group(function() {
 
-    Route::get("/login", [LoginController::class, "login"]);
+    Route::get("/login", [LoginController::class, "login"])->middleware("guest");
     Route::post("/login", [LoginController::class, "loginProses"]);
 
     Route::get("/forgot-password", [ForgotPasswordController::class, "index"]);
@@ -32,8 +32,10 @@ Route::prefix("app")->group(function() {
 
     Route::prefix("admin")->group(function() {
 
-
-        Route::get("/layouts", [AppController::class, "layouts"]);
-        Route::get("/home", [AppController::class, "home"]);
+        Route::group(["middleware" => "autentikasi"], function() {
+            Route::get("/layouts", [AppController::class, "layouts"]);
+            Route::get("/", [AppController::class, "home"]);
+            Route::get("/home", [AppController::class, "home"]);
+        });
     });
 });

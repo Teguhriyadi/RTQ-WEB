@@ -16,27 +16,28 @@
 
         gtag('config', 'UA-94034622-3');
     </script>
-    <!-- /END GA --></head>
+    <!-- /END GA -->
+</head>
 
-    <body>
-        <div id="app">
-            <div class="main-wrapper main-wrapper-1">
-                <div class="navbar-bg"></div>
+<body>
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
 
-                @include("app.administrator.layouts.partials.navbar.main-navbar")
+            @include("app.administrator.layouts.partials.navbar.main-navbar")
 
-                @include("app.administrator.layouts.partials.sidebar.main-sidebar")
+            @include("app.administrator.layouts.partials.sidebar.main-sidebar")
 
-                <!-- Main Content -->
-                <div class="main-content">
-                    @yield("app_content")
-                </div>
-
-                @include("app.administrator.layouts.partials.footer.main-footer")
+            <!-- Main Content -->
+            <div class="main-content">
+                @yield("app_content")
             </div>
+
+            @include("app.administrator.layouts.partials.footer.main-footer")
         </div>
+    </div>
 
-        @include("app.administrator.layouts.partials.js.style")
+    @include("app.administrator.layouts.partials.js.style")
 
-    </body>
-    </html>
+</body>
+</html>
