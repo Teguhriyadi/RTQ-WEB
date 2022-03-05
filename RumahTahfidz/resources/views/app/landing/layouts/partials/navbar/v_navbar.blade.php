@@ -22,7 +22,13 @@
                 </div>
             </div>
             <a href="{{ url('/kontak') }}" class="nav-item nav-link {{ Request::segment(1)=="kontak" ? "active" : "" }}">Kontak</a>
+
+            @if (Auth::user())
+            <a href="{{ url('/app/admin/home') }}" class="nav-item nav-link">
+                Dashboard
+            </a>
+            @endif
         </div>
-        <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>+012 345 6789</h4>
+        <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>+0812 1470 7143</h4>
     </div>
 </nav>
