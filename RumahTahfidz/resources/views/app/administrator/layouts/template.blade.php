@@ -7,8 +7,9 @@
     <title>Rumah Tahfidz Quran | @yield("app_title") </title>
 
     @include("app.administrator.layouts.partials.css.style")
+
     @include("app.administrator.layouts.partials.js.style")
-    <!-- Start GA -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -17,7 +18,6 @@
 
         gtag('config', 'UA-94034622-3');
     </script>
-    <!-- /END GA -->
 </head>
 
 <body>
@@ -43,6 +43,11 @@
     <script>
         $(document).ready(function() {
             $("#table-1").dataTable();
+
+            $('.custom-file-input').on('change', function() {
+                let fileName = $(this).val().split('\\').pop();
+                $(this).next('.custom-file-label').addClass("selected").html(fileName);
+            });
         })
     </script>
     <script>
