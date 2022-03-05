@@ -43,7 +43,11 @@ class ProfilController extends Controller
     public function store(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            "nama" => "required",
+            "singkatan" => "required",
+            "no_hp" => "required",
+            "email" => "required",
+            "alamat" => "required"
         ]);
 
         if ($validasi->fails()) {
@@ -51,8 +55,11 @@ class ProfilController extends Controller
         }
 
         $cek = Profil::create([
-
-            'keterangan' => $request->keterangan
+            "nama" => $request->nama,
+            "singkatan" => $request->singkatan,
+            "no_hp" => $request->no_hp,
+            "email" => $request->email,
+            "alamat" => $request->alamat
         ]);
 
         if ($cek) {
@@ -104,7 +111,11 @@ class ProfilController extends Controller
     public function update(Request $request, $id)
     {
         $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            "nama" => "required",
+            "singkatan" => "required",
+            "no_hp" => "required",
+            "email" => "required",
+            "alamat" => "required"
         ]);
 
         if ($validasi->fails()) {
@@ -112,7 +123,11 @@ class ProfilController extends Controller
         }
 
         $cek = Profil::where('id', $id)->update([
-            'keterangan' => $request->keterangan
+            "nama" => $request->nama,
+            "singkatan" => $request->singkatan,
+            "no_hp" => $request->no_hp,
+            "email" => $request->email,
+            "alamat" => $request->alamat
         ]);
 
         if ($cek) {
@@ -194,6 +209,8 @@ class ProfilController extends Controller
                 "gambar" => $data->gambar
             ];
         }
+
+
 
         return response()->json(['message' => 'Request Success!', 'data' => $profil], 200);
     }
