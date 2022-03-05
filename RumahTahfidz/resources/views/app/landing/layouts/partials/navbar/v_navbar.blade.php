@@ -5,9 +5,12 @@
                 use App\Models\Profil;
 
                 $data = Profil::select("singkatan")->first();
-
-                echo $data->singkatan;
             ?>
+            @if(empty($data))
+
+            @else
+                {{ $data->singkatan }}
+            @endif
         </h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -37,6 +40,16 @@
             </a>
             @endif
         </div>
-        <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>+0812 1470 7143</h4>
+        <h4 class="m-0 pe-lg-5 d-none d-lg-block">
+            <i class="fa fa-headphones text-primary me-3"></i>
+            <?php
+                $data = Profil::select("no_hp")->first();
+            ?>
+            @if (empty($data->no_hp))
+                12345
+            @else
+                {{  $data->no_hp  }}
+            @endif
+        </h4>
     </div>
 </nav>

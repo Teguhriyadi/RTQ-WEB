@@ -11,15 +11,27 @@
                 ?>
                     <p class="mb-2">
                         <i class="fa fa-map-marker-alt me-3"></i>
-                        {{ $data->alamat }}
+                        @if (empty($data->alamat))
+
+                        @else
+                        {{ $data->alamat  }}
+                        @endif
                     </p>
                     <p class="mb-2">
                         <i class="fa fa-phone-alt me-3"></i>
-                        {{ $data->no_hp }}
+                        @if (empty($data->no_hp))
+
+                        @else
+                            {{  $data->no_hp  }}
+                        @endif
                     </p>
                     <p class="mb-2">
                         <i class="fa fa-envelope me-3"></i>
+                        @if(empty($data->email))
+
+                        @else
                         {{ $data->email }}
+                        @endif
                     </p>
                 <?php
 
