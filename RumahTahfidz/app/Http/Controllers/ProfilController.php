@@ -47,8 +47,11 @@ class ProfilController extends Controller
             ];
         }
 
-
-
         return response()->json(['message' => 'Request Success!', 'data' => $profil], 200);
+    }
+
+    public function web_profil()
+    {
+        return view("app.administrator.web_profil.v_index");
     }
 }

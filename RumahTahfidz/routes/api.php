@@ -7,7 +7,7 @@ use App\Http\Controllers\API\PengajarController;
 use App\Http\Controllers\API\AbsensiController;
 use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\StatusAbsenController;
-use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\API\ProfilController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,3 +68,5 @@ Route::resource('status_absen', StatusAbsenController::class);
 Route::resource('users', UsersController::class);
 
 Route::get('info_profil/{no_hp}', [ProfilController::class, 'info_profil']);
+
+Route::resource("/profil", ProfilController::class);

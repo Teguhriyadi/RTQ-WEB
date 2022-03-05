@@ -8,6 +8,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PengajarController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Models\Role;
 use Illuminate\Auth\Events\Login;
@@ -54,6 +55,7 @@ Route::prefix("app")->group(function() {
 
                 Route::get("/status_absen", [StatusAbsenController::class, "index"]);
 
+                Route::get("/profil", [ProfilController::class, "web_profil"]);
             });
 
         });

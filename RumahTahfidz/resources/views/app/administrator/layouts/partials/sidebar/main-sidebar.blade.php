@@ -57,6 +57,13 @@
                 </a>
             </li>
             @endcan
+            <li class="menu-header"> Web </li>
+            <li class="{{ Request::segment(3) == "profil" ? "active" : "" }}">
+                <a class="nav-link" href="{{ url('/app/admin/profil') }}">
+                    <i class="fa fa-search"></i>
+                    <span>Profil</span>
+                </a>
+            </li>
             <li class="menu-header">Settings</li>
             <li class="{{ Request::segment(3)=='pesan' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/pesan') }}">
