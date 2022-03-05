@@ -12,7 +12,7 @@
                     <p class="mb-2">
                         <i class="fa fa-map-marker-alt me-3"></i>
                         @if (empty($data->alamat))
-
+                        Losarang
                         @else
                         {{ $data->alamat  }}
                         @endif
@@ -20,7 +20,7 @@
                     <p class="mb-2">
                         <i class="fa fa-phone-alt me-3"></i>
                         @if (empty($data->no_hp))
-
+                        12345
                         @else
                             {{  $data->no_hp  }}
                         @endif
@@ -28,7 +28,7 @@
                     <p class="mb-2">
                         <i class="fa fa-envelope me-3"></i>
                         @if(empty($data->email))
-
+                        admin@gmail.com
                         @else
                         {{ $data->email }}
                         @endif

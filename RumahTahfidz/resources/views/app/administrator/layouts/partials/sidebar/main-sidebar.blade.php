@@ -1,10 +1,26 @@
+<?php
+    use App\Models\Profil;
+    $data = Profil::select("nama", "singkatan")->first();
+?>
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ url('/app/admin/') }}">Rumah Tahfidz</a>
+            <a href="{{ url('/app/admin/') }}">
+                @if(empty($data->nama))
+                    Anonymus
+                @else
+                    {{ $data->nama }}
+                @endif
+            </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ url('/app/admin') }}">RTQ</a>
+            <a href="{{ url('/app/admin') }}">
+                @if(empty($data->singkatan))
+                    HIN
+                @else
+                    {{ $data->singkatan }}
+                @endif
+            </a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Home</li>

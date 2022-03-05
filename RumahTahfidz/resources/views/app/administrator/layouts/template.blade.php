@@ -4,7 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Rumah Tahfidz Quran | @yield("app_title") </title>
+    <title>
+        <?php
+            use App\Models\Profil;
+            $data = Profil::select("nama")->first();
+        ?>
+        @if (empty($data->nama))
+            Anonymus
+        @else
+            {{ $data->nama }}
+        @endif
+        | @yield("app_title")
+    </title>
 
     @include("app.administrator.layouts.partials.css.style")
 
