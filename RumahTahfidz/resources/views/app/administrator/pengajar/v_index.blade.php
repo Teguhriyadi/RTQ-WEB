@@ -165,6 +165,12 @@
                         <label for="alamat"> Alamat </label>
                         <textarea name="alamat" id="address" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
                     </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                            <label class="custom-file-label" for="gambar">Upload Gambar</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
@@ -219,6 +225,7 @@
             $("#editPengajar").attr('action', "{{ url('/api/pengajar/') }}/"+id);
 
             $.get('{{ url("app/admin/pengajar/") }}/' + id, function (response) {
+                console.log(response);
 
                 $("#id").val(id)
                 $("#nm").val(response.data.nama)
