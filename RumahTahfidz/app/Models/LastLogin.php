@@ -11,5 +11,5 @@ class LastLogin extends Model
 
     protected $table = "tb_last_Login";
 
-    protected $guarded = ["created_at", "updated_at"];
+    protected $guarded = [''];
 }
