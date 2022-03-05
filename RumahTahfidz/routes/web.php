@@ -38,10 +38,10 @@ Route::prefix("app")->group(function() {
 
         Route::group(["middleware" => "autentikasi"], function() {
 
+            Route::get("/home", [AppController::class, "home"]);
             Route::group(["middleware" => ["can:admin"]], function() {
 
                 Route::get("/", [AppController::class, "home"]);
-                Route::get("/home", [AppController::class, "home"]);
 
                 Route::get("/informasi_login", [LastLoginController::class, "index"]);
 

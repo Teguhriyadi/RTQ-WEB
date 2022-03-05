@@ -40,5 +40,42 @@
 
     @yield("app_scripts")
 
+    <script>
+        $(document).ready(function() {
+            $("#table-1").dataTable();
+        })
+    </script>
+    <script>
+        function logout() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan mengakhiri sesi login ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '{{ url("app/logout") }}',
+                        type: 'get',
+                        success: function (response) {
+                            if (response.status == true) {
+                                Swal.fire({
+                                    title: 'Selamat!',
+                                    text: 'Anda berhasil logout',
+                                    icon: 'success'
+                                }).then((result) => {
+                                    location.href = '{{ url("/app/login") }}'
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        }
+    </script>
+
 </body>
 </html>
