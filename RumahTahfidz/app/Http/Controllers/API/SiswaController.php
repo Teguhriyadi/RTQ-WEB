@@ -23,7 +23,8 @@ class SiswaController extends Controller
             $data[] = [
                 "id" => $u->id,
                 "nama" => $u->nama,
-                "telepon" => $u->no_hp
+                "telepon" => $u->no_hp,
+                "gambar" => $u->getUser->gambar
             ];
         }
 
@@ -80,8 +81,10 @@ class SiswaController extends Controller
             "id_role" => 3,
             "no_hp" => $request->no_hp,
             "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tanggal_lahir
+            "tanggal_lahir" => $request->tanggal_lahir,
+            "gambar" => "http://rtq-freelance.my.id/".$request->gambar
         ]);
+
 
         if ($cek) {
             $data = [

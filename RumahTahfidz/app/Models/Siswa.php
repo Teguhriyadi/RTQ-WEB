@@ -12,4 +12,9 @@ class Siswa extends Model
     protected $table = "tb_siswa";
 
     protected $guarded = ["created_at", "updated_at"];
+
+    public function getUser()
+    {
+        return $this->belongsTo("App\Models\User", "no_hp", "no_hp");
+    }
 }
