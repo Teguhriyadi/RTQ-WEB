@@ -8,7 +8,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PengajarController;
-use App\Http\Controllers\API\ProfilController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Models\Role;
 use Illuminate\Auth\Events\Login;
