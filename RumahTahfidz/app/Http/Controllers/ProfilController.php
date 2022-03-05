@@ -52,10 +52,6 @@ class ProfilController extends Controller
 
     public function web_profil()
     {
-<<<<<<< HEAD
-        return view("app.administrator.web_profil.v_index");
-=======
         return view("app.administrator.profil.v_index");
->>>>>>> e777cef5396fd5a5aeb3f2132c277f3b005df85b
     }
 }
