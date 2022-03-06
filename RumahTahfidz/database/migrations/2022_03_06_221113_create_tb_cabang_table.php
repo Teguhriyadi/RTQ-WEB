@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_pesan', function (Blueprint $table) {
-            $table->integer("id_pesan")->primary();
-            $table->string("nama", 100);
-            $table->string("email", 100)->unique();
-            $table->string("judul", 100);
-            $table->text("pesan");
+        Schema::create('tb_cabang', function (Blueprint $table) {
+            $table->integer("id_cabang")->primary();
+            $table->string("nama_cabang");
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_pesan');
+        Schema::dropIfExists('tb_cabang');
     }
 };
