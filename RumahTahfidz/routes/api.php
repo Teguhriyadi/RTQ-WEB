@@ -5,6 +5,7 @@ use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\SiswaController;
 use App\Http\Controllers\API\PengajarController;
 use App\Http\Controllers\API\AbsensiController;
+use App\Http\Controllers\API\CabangController;
 use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\StatusAbsenController;
 use App\Http\Controllers\API\ProfilController;
@@ -70,3 +71,5 @@ Route::resource('users', UsersController::class);
 Route::get('info_profil/{no_hp}', [ProfilController::class, 'info_profil']);
 
 Route::resource("/profil", ProfilController::class);
+
+Route::resource("/cabang", CabangController::class);
