@@ -16,7 +16,7 @@ class AppController extends Controller
     public function home()
     {
         $data = [
-            'user_login' => LastLogin::where('id_user', 1)->latest()->limit(4)->get()
+            'user_login' => LastLogin::all()
         ];
 
         return view("app.administrator.v_home", $data);
