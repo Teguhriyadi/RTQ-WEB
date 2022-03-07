@@ -10,6 +10,7 @@ use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\StatusAbsenController;
 use App\Http\Controllers\API\ProfilController;
 use App\Http\Controllers\API\JenjangController;
+use App\Http\Controllers\API\MenuController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,3 +77,5 @@ Route::resource("/profil", ProfilController::class);
 Route::resource("/cabang", CabangController::class);
 
 Route::resource("/jenjang", JenjangController::class);
+
+Route::resource("/menu", MenuController::class);
