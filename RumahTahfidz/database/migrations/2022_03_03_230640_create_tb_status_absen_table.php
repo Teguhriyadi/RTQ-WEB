@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_status_absen', function (Blueprint $table) {
             $table->id();
+            $table->string("keterangan", 20);
             $table->timestamps();
         });
     }
