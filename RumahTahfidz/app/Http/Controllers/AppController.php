@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LastLogin;
+use App\Models\TerakhirLogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +16,7 @@ class AppController extends Controller
     public function home()
     {
         $data = [
-            'user_login' => LastLogin::all()
+            'user_login' => TerakhirLogin::all()
         ];
 
         return view("app.administrator.v_home", $data);

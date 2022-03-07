@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Models\LastLogin;
+use App\Models\TerakhirLogin;
 
 class LoginController extends Controller
 {
@@ -31,7 +31,7 @@ class LoginController extends Controller
         ];
 
         if (Auth::attempt($validated)) {
-            LastLogin::create([
+            TerakhirLogin::create([
                 'nama' => Auth::user()->nama,
                 'id_user' => Auth::user()->id
             ]);
