@@ -9,6 +9,7 @@ use App\Http\Controllers\API\CabangController;
 use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\StatusAbsenController;
 use App\Http\Controllers\API\ProfilController;
+use App\Http\Controllers\API\JenjangController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,3 +74,5 @@ Route::get('info_profil/{no_hp}', [ProfilController::class, 'info_profil']);
 Route::resource("/profil", ProfilController::class);
 
 Route::resource("/cabang", CabangController::class);
+
+Route::resource("/jenjang", JenjangController::class);
