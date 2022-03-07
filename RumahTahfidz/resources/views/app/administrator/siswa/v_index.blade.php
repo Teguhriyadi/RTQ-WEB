@@ -56,7 +56,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <form action="{{ url('api/siswa') }}" method="post" id="tambahSiswa">
+                @csrf
+                <div class="modal-body">
                 <div class="form-group">
                     <label for="nama"> Nama </label>
                     <input type="text" name="nama" id="nama" class="form-control input-sm" placeholder="Masukkan Nama">
@@ -83,13 +85,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="tempat_lahir"> Tempat Lahir </label>
-                            <input type="text" class="form-control" id="tempat_lahir" placeholder="Masukkan Tempat Lahir">
+                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan Tempat Lahir">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="tanggal_lahir"> Tanggal Lahir </label>
-                            <input type="date" class="form-control" id="tanggal_lahir">
+                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
                         </div>
                     </div>
                 </div>
@@ -111,13 +113,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                        <label class="custom-file-label" for="gambar">Upload Gambar</label>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer bg-whitesmoke br">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
-                <button type="button" class="btn btn-primary" id="btn-tambah">
+                <button type="submit" class="btn btn-primary" id="btn-tambah">
                     <i class="fa fa-plus"></i> Tambah
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -229,7 +238,7 @@
 
                         nomer.innerHTML = no++;
                         namaCell.innerHTML = val['nama'];
-                        noHpCell.innerHTML = val['no_hp'];
+                        noHpCell.innerHTML = val['telepon'];
                         aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
                         aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
@@ -246,132 +255,113 @@
                 $("#id").val(id);
                 $("#nm").val(response.data.nama);
             })
-            // let nama = $(this).data('nama');
-            // let jenis_kelamin = $(this).data('jenis_kelamin');
-            // let alamat = $(this).data('alamat');
-            // let nama_ayah = $(this).data('nama_ayah');
-            // let nama_ibu = $(this).data('nama_ibu');
-            // let no_hp = $(this).data('no_hp');
-            // let tempat_lahir = $(this).data('tempat_lahir');
-            // let tanggal_lahir = $(this).data('tanggal_lahir');
-
-            // $("#id").val(id)
-            // $("#nm").val(nama)
-            // $("#jk").val(jenis_kelamin)
-            // $("#address").val(alamat)
-            // $("#ayah").val(nama_ayah)
-            // $("#ibu").val(nama_ibu)
-            // $("#hp").val(no_hp)
-            // $("#oldNoHp").val(no_hp)
-            // $("#tmpt_lahir").val(tempat_lahir)
-            // $("#tgl_lahir").val(tanggal_lahir)
 
         });
 
-        $("#btn-tambah").on('click', function() {
-            let nama = $("#nama").val().trim();
-            let jenis_kelamin = $("#jenis_kelamin").val().trim();
-            let alamat = $("#alamat").val().trim();
-            let nama_ayah = $("#nama_ayah").val().trim();
-            let nama_ibu = $("#nama_ibu").val().trim();
-            let no_hp = $("#no_hp").val().trim();
-            let tempat_lahir = $("#tempat_lahir").val().trim();
-            let tanggal_lahir = $("#tanggal_lahir").val().trim();
+        // $("#btn-tambah").on('click', function() {
+        //     let nama = $("#nama").val().trim();
+        //     let jenis_kelamin = $("#jenis_kelamin").val().trim();
+        //     let alamat = $("#alamat").val().trim();
+        //     let nama_ayah = $("#nama_ayah").val().trim();
+        //     let nama_ibu = $("#nama_ibu").val().trim();
+        //     let no_hp = $("#no_hp").val().trim();
+        //     let tempat_lahir = $("#tempat_lahir").val().trim();
+        //     let tanggal_lahir = $("#tanggal_lahir").val().trim();
 
-            if (nama == "" || jenis_kelamin == "" || alamat == "" || nama_ayah == "" || nama_ibu == "" || no_hp == "" || tempat_lahir == "" || tanggal_lahir == "") {
-                Swal.fire({
-                    title : "Oops",
-                    text : "Data Tidak Boleh Kosong",
-                    icon : "error"
-                })
-            } else {
-                $.ajax({
-                    url : "{{ url('/api/siswa') }}",
-                    type : "POST",
-                    data : { nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, tempat_lahir : tempat_lahir, tanggal_lahir : tanggal_lahir ,_token: "{{ csrf_token() }}" },
-                    success : function(response) {
-                        if (response.status == true) {
-                            $("#nama").val('');
-                            $("#jenis_kelamin").val('');
-                            $("#alamat").val('');
-                            $("#nama_ayah").val('');
-                            $("#nama_ibu").val('');
-                            $("#no_hp").val('');
-                            $("#tempat_lahir").val('');
-                            $("#tanggal_lahir").val('');
-                            tampilData()
-                            $("#modalTambah").modal('hide')
-                            Swal.fire({
-                                title : "Berhasil",
-                                text : "Berhasil di Tambahkan",
-                                icon : "success"
-                            })
-                        } else {
-                            Swal.fire({
-                                title : "Oops",
-                                text : "Data Gagal di Inputkan",
-                                icon : "error"
-                            })
-                        }
-                    }
-                })
-            }
-        })
+        //     if (nama == "" || jenis_kelamin == "" || alamat == "" || nama_ayah == "" || nama_ibu == "" || no_hp == "" || tempat_lahir == "" || tanggal_lahir == "") {
+        //         Swal.fire({
+        //             title : "Oops",
+        //             text : "Data Tidak Boleh Kosong",
+        //             icon : "error"
+        //         })
+        //     } else {
+        //         $.ajax({
+        //             url : "{{ url('/api/siswa') }}",
+        //             type : "POST",
+        //             data : { nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, tempat_lahir : tempat_lahir, tanggal_lahir : tanggal_lahir ,_token: "{{ csrf_token() }}" },
+        //             success : function(response) {
+        //                 if (response.status == true) {
+        //                     $("#nama").val('');
+        //                     $("#jenis_kelamin").val('');
+        //                     $("#alamat").val('');
+        //                     $("#nama_ayah").val('');
+        //                     $("#nama_ibu").val('');
+        //                     $("#no_hp").val('');
+        //                     $("#tempat_lahir").val('');
+        //                     $("#tanggal_lahir").val('');
+        //                     tampilData()
+        //                     $("#modalTambah").modal('hide')
+        //                     Swal.fire({
+        //                         title : "Berhasil",
+        //                         text : "Berhasil di Tambahkan",
+        //                         icon : "success"
+        //                     })
+        //                 } else {
+        //                     Swal.fire({
+        //                         title : "Oops",
+        //                         text : "Data Gagal di Inputkan",
+        //                         icon : "error"
+        //                     })
+        //                 }
+        //             }
+        //         })
+        //     }
+        // })
 
-        $("#btn-edit").on('click', function() {
-            let id = $("#id").val().trim();
-            let nama = $("#nm").val().trim();
-            let jenis_kelamin = $("#jk").val().trim();
-            let alamat = $("#address").val().trim();
-            let nama_ayah = $("#ayah").val().trim();
-            let nama_ibu = $("#ibu").val().trim();
-            let no_hp = $("#hp").val().trim();
-            let oldNoHp = $("#oldNoHp").val().trim();
-            let tempat_lahir = $("#tmpt_lahir").val().trim();
-            let tanggal_lahir = $("#tgl_lahir").val().trim();
+        // $("#btn-edit").on('click', function() {
+        //     let id = $("#id").val().trim();
+        //     let nama = $("#nm").val().trim();
+        //     let jenis_kelamin = $("#jk").val().trim();
+        //     let alamat = $("#address").val().trim();
+        //     let nama_ayah = $("#ayah").val().trim();
+        //     let nama_ibu = $("#ibu").val().trim();
+        //     let no_hp = $("#hp").val().trim();
+        //     let oldNoHp = $("#oldNoHp").val().trim();
+        //     let tempat_lahir = $("#tmpt_lahir").val().trim();
+        //     let tanggal_lahir = $("#tgl_lahir").val().trim();
 
-            if (nama == "" || jenis_kelamin == "" || alamat == "" || nama_ayah == "" || nama_ibu == "" || no_hp == "" || tempat_lahir == "" || tanggal_lahir == "") {
-                Swal.fire({
-                    title : "Oops",
-                    text : "Data tidak boleh kosong",
-                    icon : "error"
-                })
-            } else {
-                $.ajax({
-                    url : "{{ url('/api/siswa/') }}/" + id,
-                    type : "POST",
-                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, oldNoHp : oldNoHp , tempat_lahir : tempat_lahir, tanggal_lahir : tanggal_lahir , _token: "{{ csrf_token() }}", _method : "PUT" },
-                    success : function(response) {
-                        console.log(response)
-                        if (response.status == true) {
-                            $("#id").val('')
-                            $("#nm").val('')
-                            $("#jk").val()
-                            $("#address").val()
-                            $("#ayah").val()
-                            $("#ibu").val()
-                            $("#hp").val()
-                            $("#oldNoHp").val()
-                            $("#tmpt_lahir").val()
-                            $("#tgl_lahir").val()
-                            tampilData()
-                            $("#modalEdit").modal('hide')
-                            Swal.fire({
-                                title : "Berhasil",
-                                text : "Berhasil di Simpan",
-                                icon : "success"
-                            })
-                        } else {
-                            Swal.fire({
-                                title : "Oops",
-                                text : "Data Gagal di Simpan",
-                                icon : "error"
-                            })
-                        }
-                    }
-                })
-            }
-        })
+        //     if (nama == "" || jenis_kelamin == "" || alamat == "" || nama_ayah == "" || nama_ibu == "" || no_hp == "" || tempat_lahir == "" || tanggal_lahir == "") {
+        //         Swal.fire({
+        //             title : "Oops",
+        //             text : "Data tidak boleh kosong",
+        //             icon : "error"
+        //         })
+        //     } else {
+        //         $.ajax({
+        //             url : "{{ url('/api/siswa/') }}/" + id,
+        //             type : "POST",
+        //             data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, oldNoHp : oldNoHp , tempat_lahir : tempat_lahir, tanggal_lahir : tanggal_lahir , _token: "{{ csrf_token() }}", _method : "PUT" },
+        //             success : function(response) {
+        //                 console.log(response)
+        //                 if (response.status == true) {
+        //                     $("#id").val('')
+        //                     $("#nm").val('')
+        //                     $("#jk").val()
+        //                     $("#address").val()
+        //                     $("#ayah").val()
+        //                     $("#ibu").val()
+        //                     $("#hp").val()
+        //                     $("#oldNoHp").val()
+        //                     $("#tmpt_lahir").val()
+        //                     $("#tgl_lahir").val()
+        //                     tampilData()
+        //                     $("#modalEdit").modal('hide')
+        //                     Swal.fire({
+        //                         title : "Berhasil",
+        //                         text : "Berhasil di Simpan",
+        //                         icon : "success"
+        //                     })
+        //                 } else {
+        //                     Swal.fire({
+        //                         title : "Oops",
+        //                         text : "Data Gagal di Simpan",
+        //                         icon : "error"
+        //                     })
+        //                 }
+        //             }
+        //         })
+        //     }
+        // })
     })
 
     function hapusData(id)
@@ -414,6 +404,104 @@
         })
     }
 
+    ! function(a, i, r) {
+        var e = {};
+        e.UTIL = {
+            setupFormValidation: function() {
+                a("#tambahSiswa").validate({
+                    ignore: "",
+                    rules: {
+                        nama: {
+                            required: !0
+                        },
+                        jenis_kelamin: {
+                            required: !0
+                        },
+                        no_hp: {
+                            required: !0
+                        },
+                        tempat_lahir: {
+                            required: !0
+                        },
+                        tanggal_lahir: {
+                            required: !0
+                        },
+                        nama_ayah: {
+                            required: !0
+                        },
+                        nama_ibu: {
+                            required: !0
+                        },
+                        alamat: {
+                            required: !0
+                        },
+                        gambar: {
+                            required: !0,
+                            accept: "image/*"
+                        },
+                    },
+                    messages: {
+                        nama: {
+                            required: "Nama harap diisi!"
+                        },
+                        jenis_kelamin: {
+                            required: "Jenis kelamin harap diisi!"
+                        },
+                        no_hp: {
+                            required: "No hp harap diisi!"
+                        },
+                        tempat_lahir: {
+                            required: "Tempat lahir harap diisi!"
+                        },
+                        tanggal_lahir: {
+                            required: "Tanggal lahir harap diisi!"
+                        },
+                        nama_ayah: {
+                            required: "Alamat harap diisi!"
+                        },
+                        nama_ibu: {
+                            required: "Alamat harap diisi!"
+                        },
+                        alamat: {
+                            required: "Alamat harap diisi!"
+                        },
+                        gambar: {
+                            required: "Gambar harap diisi!",
+                            accept: "Masukan file tipe gambar!"
+                        },
+                    },
+                    submitHandler: function(a) {
+                        $.ajax({
+                            url: a.action,
+                            type: a.method,
+                            data: $(a).serialize(),
+                            success: function (response) {
+                                if (response.status == true) {
+                                    $("#nama, #jenis_kelamin, #alamat, #no_hp, #tempat_lahir, #tanggal_lahir, #nama_ayah, #nama_ibu").val('');
+                                    $("#gambar").next('.custom-file-label').removeClass("selected").html("Upload Gambar");
+                                    tampilData()
+                                    $("#modalTambah").modal('hide')
+                                    Swal.fire({
+                                        title : "Berhasil",
+                                        text : "Berhasil di Tambahkan",
+                                        icon : "success"
+                                    })
+                                } else {
+                                    Swal.fire({
+                                        title : "Oops",
+                                        text : "Data Gagal di Inputkan",
+                                        icon : "error"
+                                    })
+                                }
+                            }
+                        })
+                    }
+                })
+            }
+        }, a(r).ready(function(a) {
+            e.UTIL.setupFormValidation()
+        })
+    }(jQuery, window, document);
 
     tampilData();
 </script>

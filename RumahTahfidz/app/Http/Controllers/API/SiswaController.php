@@ -22,7 +22,8 @@ class SiswaController extends Controller
         foreach ($user as $u) {
             $data[] = [
                 "id" => $u->id,
-                "nama" => $u->nama
+                "nama" => $u->nama,
+                "telepon" => $u->no_hp
             ];
         }
 
