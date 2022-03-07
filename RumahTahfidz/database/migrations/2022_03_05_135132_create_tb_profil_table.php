@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("no_hp", 20);
             $table->string("email", 100);
             $table->text("alamat");
+            $table->string("logo");
             $table->timestamps();
         });
     }
