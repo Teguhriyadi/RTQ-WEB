@@ -27,3 +27,5 @@
 <script src="{{ url('/template') }}/dist/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ url('/template') }}/dist/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
 <script src="{{ url('/template') }}/dist/assets/js/page/modules-datatables.js"></script>
+<script src="{{ url('jquery-validation/dist/jquery.validate.js') }}"></script>
+<script src="{{ url('jquery-validation/dist/additional-methods.js') }}"></script>
