@@ -9,14 +9,15 @@
         <h1>
             @yield("app_title")
         </h1>
-    </div>
-    <div class="section-header-breadcrumb">
+            <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active">
             <a href="{{ url('/app/admin/home') }}">Home</a>
         </div>
         <div class="breadcrumb-item">
             @yield("app_title")
         </div>
+    </div>
+
     </div>
 
     <div class="row">
