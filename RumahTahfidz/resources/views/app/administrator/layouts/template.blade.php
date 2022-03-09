@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Blank Page &mdash; Stisla</title>
+    <title> Rumah Tahfidz Quran &mdash; @yield("app_title")</title>
 
     <!-- General CSS Files -->
     @include("app.administrator.layouts.partials.css.style")
@@ -41,6 +41,7 @@
         </div>
     </div>
 
+    @yield("app_scripts")
 
 </body>
 </html>
