@@ -72,6 +72,10 @@ class SiswaController extends Controller
             'no_hp' => $request->no_hp
         ]);
 
+        if ($request->file('gambar')) {
+            $request->file('gambar')->store('siswa');
+        }
+
         $cek = User::create([
             "id" => time(),
             "nama" => $request->nama,
