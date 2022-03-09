@@ -10,6 +10,14 @@
             @yield("app_title")
         </h1>
     </div>
+    <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active">
+            <a href="{{ url('/app/admin/home') }}">Home</a>
+        </div>
+        <div class="breadcrumb-item">
+            @yield("app_title")
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -234,15 +242,15 @@
                         if (response.status == true) {
                             tampilData()
                             Swal.fire(
-                                'Berhasil!',
-                                'Data Berhasil di Hapus',
-                                'success'
+                            'Berhasil!',
+                            'Data Berhasil di Hapus',
+                            'success'
                             )
                         } else {
                             Swal.fire(
-                                'Gagal!',
-                                'Data Gagal di Hapus',
-                                'error'
+                            'Gagal!',
+                            'Data Gagal di Hapus',
+                            'error'
                             )
                         }
                     }

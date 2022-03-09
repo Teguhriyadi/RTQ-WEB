@@ -1,6 +1,6 @@
 @extends("app.administrator.layouts.template")
 
-@section("app_title", "Role")
+@section("app_title", "Data Profil")
 
 @section("app_content")
 
@@ -9,6 +9,14 @@
         <h1>
             @yield("app_title")
         </h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active">
+                <a href="{{ url('/app/admin/home') }}">Home</a>
+            </div>
+            <div class="breadcrumb-item">
+                @yield("app_title")
+            </div>
+        </div>
     </div>
 
     <div class="row">
