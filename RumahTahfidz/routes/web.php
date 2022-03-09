@@ -30,6 +30,10 @@ Route::get("/kontak", [LandingPageController::class, "kontak"]);
 
 Route::prefix("app")->group(function() {
 
+    Route::get("/theme", function() {
+        return view("app.administrator.layouts.template");
+    });
+
     Route::get("/login", [LoginController::class, "login"])->middleware("guest");
     Route::post("/login", [LoginController::class, "loginProses"]);
 

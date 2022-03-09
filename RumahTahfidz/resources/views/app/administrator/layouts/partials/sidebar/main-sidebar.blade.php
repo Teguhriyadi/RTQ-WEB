@@ -1,24 +1,24 @@
 <?php
-    use App\Models\Profil;
-    $data = Profil::select("nama", "singkatan")->first();
+use App\Models\Profil;
+$data = Profil::select("nama", "singkatan")->first();
 ?>
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="{{ url('/app/admin/') }}">
                 @if(empty($data->nama))
-                    Anonymus
+                Anonymus
                 @else
-                    {{ $data->nama }}
+                {{ $data->nama }}
                 @endif
             </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ url('/app/admin') }}">
                 @if(empty($data->singkatan))
-                    HIN
+                HIN
                 @else
-                    {{ $data->singkatan }}
+                {{ $data->singkatan }}
                 @endif
             </a>
         </div>
@@ -121,8 +121,4 @@
             </a>
         </div>
     </aside>
-</div>
-
-
-</section>
 </div>
