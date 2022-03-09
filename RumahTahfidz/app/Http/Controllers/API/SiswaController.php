@@ -49,6 +49,7 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->file('gambar'));
         $validasi = Validator::make($request->all(), [
             "nama" => "required",
             "jenis_kelamin" => "required",
@@ -71,9 +72,9 @@ class SiswaController extends Controller
             'nama_ibu' => $request->nama_ibu,
             'no_hp' => $request->no_hp
         ]);
-
+        $gambar = '';
         if ($request->file('gambar')) {
-            $request->file('gambar')->store('siswa');
+            $gambar = $request->file('gambar')->store('siswa');
         }
 
         $cek = User::create([
@@ -86,7 +87,8 @@ class SiswaController extends Controller
             "no_hp" => $request->no_hp,
             "tempat_lahir" => $request->tempat_lahir,
             "tanggal_lahir" => $request->tanggal_lahir,
-            "gambar" => "http://rtq-freelance.my.id/".$request->gambar
+            // "gambar" => "http://rtq-freelance.my.id/storage/".$gambar
+            "gambar" => url('storage').'/'.$gambar
         ]);
 
 
