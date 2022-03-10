@@ -56,7 +56,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('api/siswa') }}" method="post" id="tambahSiswa">
+            <form action="{{ url('api/siswa') }}" method="post" id="tambahSiswa" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                 <div class="form-group">
