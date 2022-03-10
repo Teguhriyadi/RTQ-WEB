@@ -4,23 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>
-        <?php
-            use App\Models\Profil;
-            $data = Profil::select("nama")->first();
-        ?>
-        @if (empty($data->nama))
-            Anonymus
-        @else
-            {{ $data->nama }}
-        @endif
-        | @yield("app_title")
-    </title>
+    <title> Rumah Tahfidz Quran &mdash; @yield("app_title")</title>
 
+    <!-- General CSS Files -->
     @include("app.administrator.layouts.partials.css.style")
 
     @include("app.administrator.layouts.partials.js.style")
-
+    <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -29,6 +19,7 @@
 
         gtag('config', 'UA-94034622-3');
     </script>
+    <!-- /END GA -->
 </head>
 
 <body>
@@ -46,52 +37,11 @@
             </div>
 
             @include("app.administrator.layouts.partials.footer.main-footer")
+
         </div>
     </div>
 
     @yield("app_scripts")
-
-    <script>
-        $(document).ready(function() {
-            $("#table-1").dataTable();
-
-            $('.custom-file-input').on('change', function() {
-                let fileName = $(this).val().split('\\').pop();
-                $(this).next('.custom-file-label').addClass("selected").html(fileName);
-            });
-        })
-    </script>
-    <script>
-        function logout() {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Anda akan mengakhiri sesi login ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Logout'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '{{ url("app/logout") }}',
-                        type: 'get',
-                        success: function (response) {
-                            if (response.status == true) {
-                                Swal.fire({
-                                    title: 'Selamat!',
-                                    text: 'Anda berhasil logout',
-                                    icon: 'success'
-                                }).then((result) => {
-                                    location.href = '{{ url("/app/login") }}'
-                                })
-                            }
-                        }
-                    })
-                }
-            })
-        }
-    </script>
 
 </body>
 </html>

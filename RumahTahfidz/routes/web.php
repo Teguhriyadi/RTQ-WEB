@@ -8,6 +8,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PengajarController;
+use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Models\Role;
@@ -27,8 +28,13 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
+Route::post("/kirim_pesan", [LandingPageController::class, "kirim_pesan"]);
 
 Route::prefix("app")->group(function() {
+
+    Route::get("/theme", function() {
+        return view("app.administrator.layouts.template");
+    });
 
     Route::get("/login", [LoginController::class, "login"])->middleware("guest");
     Route::post("/login", [LoginController::class, "loginProses"]);
@@ -56,6 +62,8 @@ Route::prefix("app")->group(function() {
                 Route::get("/status_absen", [StatusAbsenController::class, "index"]);
 
                 Route::get("/profil", [ProfilController::class, "web_profil"]);
+
+                Route::get("/pesan", [PesanController::class, "index"]);
             });
 
         });

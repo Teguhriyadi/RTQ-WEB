@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Siswa;
-use App\Models\User;
+use App\Models\Cabang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class SiswaController extends Controller
+class CabangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +16,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $user = Siswa::all();
-        $data = [];
-        foreach ($user as $u) {
-            $data[] = [
-                "id" => $u->id,
-                "nama" => $u->nama,
-                "telepon" => $u->no_hp,
-                "gambar" => $u->getUser->gambar
-            ];
-        }
+        $data = Cabang::all();
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -49,48 +39,18 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->file('gambar'));
         $validasi = Validator::make($request->all(), [
-            "nama" => "required",
-            "jenis_kelamin" => "required",
-            "alamat" => "required",
-            "nama_ayah" => "required",
-            "nama_ibu" => "required",
-            "no_hp" => "required"
+            "nama_cabang" => "required"
         ]);
 
         if ($validasi->fails()) {
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek1 = Siswa::create([
-            'id' => time(),
-            'nama' => $request->nama,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'nama_ayah' => $request->nama_ayah,
-            'nama_ibu' => $request->nama_ibu,
-            'no_hp' => $request->no_hp
+        $cek = Cabang::create([
+            "id_cabang" => time(),
+            "nama_cabang" => $request->nama_cabang
         ]);
-        $gambar = '';
-        if ($request->file('gambar')) {
-            $gambar = $request->file('gambar')->store('siswa');
-        }
-
-        $cek = User::create([
-            "id" => time(),
-            "nama" => $request->nama,
-            "email" => "siswa@gmail.com",
-            "password" => bcrypt("password"),
-            "alamat" => $request->alamat,
-            "id_role" => 3,
-            "no_hp" => $request->no_hp,
-            "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tanggal_lahir,
-            // "gambar" => "http://rtq-freelance.my.id/storage/".$gambar
-            "gambar" => url('storage').'/'.$gambar
-        ]);
-
 
         if ($cek) {
             $data = [
@@ -115,7 +75,7 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $data = Siswa::findOrfail($id);
+        $data = Cabang::findOrfail($id);
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -141,31 +101,15 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         $validasi = Validator::make($request->all(), [
-            'nama' => 'required',
-            'jenis_kelamin' => 'required',
-            'alamat' => 'required',
-            'nama_ayah' => 'required',
-            'nama_ibu' => 'required',
-            'no_hp' => 'required'
+            "nama_cabang" => "required"
         ]);
 
         if ($validasi->fails()) {
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek_siswa = Siswa::where('id', $id)->update([
-            "nama" => $request->nama,
-            "jenis_kelamin" => $request->jenis_kelamin,
-            "alamat" => $request->alamat,
-            "nama_ayah" => $request->nama_ayah,
-            "nama_ibu" => $request->nama_ibu,
-            "no_hp" => $request->no_hp,
-        ]);
-
-        $cek = User::where("no_hp", $request->oldNoHp)->update([
-            "nama" => $request->nama,
-            "alamat" => $request->alamat,
-            "no_hp" => $request->oldNoHp
+        $cek = Cabang::where("id_cabang", $id)->update([
+            "nama_cabang" => $request->nama_cabang
         ]);
 
         if ($cek) {
@@ -189,14 +133,12 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($no_hp)
+    public function destroy($id_cabang)
     {
-        $data_siswa = Siswa::findOrfail($no_hp);
+        $cabang = Cabang::where("id_cabang", $id_cabang)->first();
 
-        User::where("no_hp", $data_siswa->no_hp)->delete();
-
-        if ($data_siswa) {
-            $cek = $data_siswa->delete();
+        if ($cabang) {
+            $cek = $cabang->delete();
 
             if ($cek) {
                 $data = [
