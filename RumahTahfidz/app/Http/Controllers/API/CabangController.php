@@ -138,7 +138,7 @@ class CabangController extends Controller
         $cabang = Cabang::where("id_cabang", $id_cabang)->first();
 
         if ($cabang) {
-            $cek = $cabang->delete();
+            $cek = Cabang::where("id_cabang", $cabang->id_cabang)->delete();
 
             if ($cek) {
                 $data = [
