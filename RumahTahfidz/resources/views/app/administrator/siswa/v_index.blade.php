@@ -118,8 +118,9 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <img class="gambar-preview img-fluid" id="tampilGambar">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                        <input type="file" class="custom-file-input" id="gambar" name="gambar" onchange="previewImage()">
                         <label class="custom-file-label" for="gambar">Upload Gambar</label>
                     </div>
                 </div>
@@ -220,6 +221,25 @@
 @endsection
 
 @section("app_scripts")
+
+<script>
+    function previewImage() {
+        const image = document.querySelector("#gambar");
+        const imgPreview = document.querySelector(".gambar-preview");
+
+        imgPreview.style.display = "block";
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+            $("#tampilGambar").addClass('mb-3');
+            $("#tampilGambar").width("100%");
+            $("#tampilGambar").height("300");
+        }
+    }
+</script>
 
 <script type="text/javascript">
 
