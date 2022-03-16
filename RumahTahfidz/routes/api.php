@@ -28,17 +28,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route Percobaan
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:admin_api')->get('/user', function (Request $request) {
     return Auth::user();
-});
-
-Route::get('users', function () {
-    $user = User::all();
-
-    return response()->json([
-        'message' => 'Response Successful',
-        'data' => $user
-    ]);
 });
 
 // Authentication
