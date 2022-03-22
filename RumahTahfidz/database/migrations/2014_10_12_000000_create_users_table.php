@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("gambar")->nullable();
             $table->string("tempat_lahir");
             $table->date("tanggal_lahir");
+            $table->string("token")->nullable();
             $table->timestamps();
         });
     }
