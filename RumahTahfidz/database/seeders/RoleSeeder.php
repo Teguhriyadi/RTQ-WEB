@@ -16,11 +16,19 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::create([
+            "keterangan" => "Super Admin"
+        ]);
+
+        Role::create([
             "keterangan" => "Admin"
         ]);
 
         Role::create([
-            "keterangan" => "Pengajar"
+            "keterangan" => "Asatidz"
+        ]);
+
+        Role::create([
+            "keterangan" => "Santri"
         ]);
     }
 }

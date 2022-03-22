@@ -31,7 +31,6 @@ $data = Profil::select("nama", "singkatan")->first();
                 </a>
             </li>
             <li class="menu-header">Starter</li>
-            @can("admin")
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
                 <ul class="dropdown-menu">
@@ -58,21 +57,18 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Status Absen</span>
                 </a>
             </li>
-            @endcan
             <li class="{{ Request::segment(3)=='absensi' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/absensi') }}">
                     <i class="fa fa-book"></i>
                     <span>Absensi</span>
                 </a>
             </li>
-            @can("pengajar")
             <li class="{{ Request::segment(3)=='penilaian' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/penilaian') }}">
                     <i class="fa fa-book"></i>
                     <span>Penilaian</span>
                 </a>
             </li>
-            @endcan
             <li class="menu-header"> Web </li>
             <li class="{{ Request::segment(3) == "profil" ? "active" : "" }}">
                 <a class="nav-link" href="{{ url('/app/admin/profil') }}">
@@ -81,6 +77,12 @@ $data = Profil::select("nama", "singkatan")->first();
                 </a>
             </li>
             <li class="menu-header">Settings</li>
+            <li class="{{ Request::segment(3) == 'cabang' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/app/admin/cabang') }}">
+                    <i class="fa fa-search"></i>
+                    <span>Cabang</span>
+                </a>
+            </li>
             <li class="{{ Request::segment(3)=='pesan' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/pesan') }}">
                     <i class="fa fa-book"></i>
@@ -93,7 +95,6 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Profil</span>
                 </a>
             </li>
-            @can("admin")
             <li class="{{ Request::segment(3)=='users' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/users/') }}">
                     <i class="far fa-user"></i>
@@ -112,7 +113,6 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Informasi Login</span>
                 </a>
             </li>
-            @endcan
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

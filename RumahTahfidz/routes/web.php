@@ -42,7 +42,7 @@ Route::prefix("app")->group(function() {
     Route::get("/forgot-password", [ForgotPasswordController::class, "index"]);
     Route::post("/forgot-password", [ForgotPasswordController::class, "store"]);
 
-    Route::prefix("admin")->group(function() {
+    Route::prefix("sistem")->group(function() {
 
         Route::group(["middleware" => "autentikasi"], function() {
 

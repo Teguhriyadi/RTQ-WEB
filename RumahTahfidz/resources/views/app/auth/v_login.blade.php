@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="no_hp" class="control-label">Telepon</label>
-                                        <input id="no_hp" type="number" class="form-control" name="no_hp" tabindex="1" required autofocus>
+                                        <input id="no_hp" type="number" class="form-control" name="no_hp" tabindex="1" required autofocus min="0">
                                         <div class="invalid-feedback" id="error-no_hp">
                                             Please fill in your Telepon
                                         </div>
@@ -191,7 +191,20 @@
                             validasi();
                         }
                     });
+
+
                 })
+
+                function cek() {
+                    $.ajax({
+                        url: 'http://127.0.0.1:8000/contoh',
+                        type: 'get',
+                        success: function (coba) {
+                            console.log(coba);
+                        }
+                    })
+                }
+                cek()
             </script>
 
         </body>
