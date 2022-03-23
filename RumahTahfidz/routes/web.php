@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\JenjangController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
@@ -47,7 +48,7 @@ Route::prefix("app")->group(function() {
         Route::group(["middleware" => "autentikasi"], function() {
 
             Route::get("/home", [AppController::class, "home"]);
-            Route::group(["middleware" => ["can:admin"]], function() {
+            Route::group(["middleware" => ["can:super_admin"]], function() {
 
                 Route::get("/", [AppController::class, "home"]);
 
@@ -64,6 +65,12 @@ Route::prefix("app")->group(function() {
                 Route::get("/profil", [ProfilController::class, "web_profil"]);
 
                 Route::get("/pesan", [PesanController::class, "index"]);
+
+                Route::get("/jenjang", [JenjangController::class, "index"]);
+                Route::post("/jenjang", [JenjangController::class, "store"]);
+                Route::put("/jenjang", [JenjangController::class, "update"]);
+                Route::get("/jenjang/edit", [JenjangController::class, "edit"]);
+                Route::delete("/jenjang/hapus/", [JenjangController::class, "destroy"]);
             });
 
         });

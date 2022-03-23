@@ -40,31 +40,31 @@ $data = Profil::select("nama", "singkatan")->first();
                 </ul>
             </li>
             <li class="{{ Request::segment(3) == "siswa" ? "active" : "" }}">
-                <a class="nav-link" href="{{ url('/app/admin/siswa') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/siswa') }}">
                     <i class="fa fa-user"></i>
                     <span>Siswa</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3) == "pengajar" ? "active" : "" }}">
-                <a class="nav-link" href="{{ url('/app/admin/pengajar') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/pengajar') }}">
                     <i class="fa fa-user"></i>
                     <span>Pengajar</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3) == "status_absen" ? "active" : "" }}">
-                <a class="nav-link" href="{{ url('/app/admin/status_absen') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/status_absen') }}">
                     <i class="fa fa-book"></i>
                     <span>Status Absen</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3)=='absensi' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('/app/admin/absensi') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/absensi') }}">
                     <i class="fa fa-book"></i>
                     <span>Absensi</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3)=='penilaian' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('/app/admin/penilaian') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/penilaian') }}">
                     <i class="fa fa-book"></i>
                     <span>Penilaian</span>
                 </a>
@@ -78,37 +78,43 @@ $data = Profil::select("nama", "singkatan")->first();
             </li>
             <li class="menu-header">Settings</li>
             <li class="{{ Request::segment(3) == 'cabang' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('/app/admin/cabang') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/cabang') }}">
                     <i class="fa fa-search"></i>
                     <span>Cabang</span>
                 </a>
             </li>
+            <li class="{{ Request::segment(3) == 'jenjang' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/app/sistem/jenjang') }}">
+                    <i class="fa fa-search"></i>
+                    <span>Jenjang</span>
+                </a>
+            </li>
             <li class="{{ Request::segment(3)=='pesan' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('/app/admin/pesan') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/pesan') }}">
                     <i class="fa fa-book"></i>
                     <span>Pesan</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3)=='profile' ? 'active' : ''}}">
-                <a class="nav-link" href="{{ url('/app/admin/profil') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/profil') }}">
                     <i class="far fa-user"></i>
                     <span>Profil</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3)=='users' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('/app/admin/users/') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/users/') }}">
                     <i class="far fa-user"></i>
                     <span>Users</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3)=='role' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('/app/admin/role') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/role') }}">
                     <i class="far fa-user"></i>
                     <span>Role</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3)=='informasi_login' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('/app/admin/informasi_login') }}">
+                <a class="nav-link" href="{{ url('/app/sistem/informasi_login') }}">
                     <i class="fa fa-key"></i>
                     <span>Informasi Login</span>
                 </a>

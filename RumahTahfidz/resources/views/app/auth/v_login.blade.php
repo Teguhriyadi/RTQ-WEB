@@ -152,7 +152,7 @@
                                             text: 'Anda berhasil login',
                                             icon: 'success'
                                         }).then((result2) => {
-                                            location.href = '{{ url("app/admin/home") }}';
+                                            location.href = '{{ url("app/sistem/home") }}';
                                         })
                                     } else {
                                         $("#error-login").css('display', 'block');
@@ -167,7 +167,7 @@
                                             text: 'Anda berhasil login',
                                             icon: 'success'
                                         }).then((result2) => {
-                                            location.href = '{{ url("app/admin/home") }}';
+                                            location.href = '{{ url("app/sistem/home") }}';
                                         })
                                     } else {
                                         $("#error-login").css('display', 'block');

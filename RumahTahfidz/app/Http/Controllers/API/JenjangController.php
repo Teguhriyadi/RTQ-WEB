@@ -9,70 +9,27 @@ use Illuminate\Support\Facades\Validator;
 
 class JenjangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data = Jenjang::all();
+        $data = [
+            "data_jenjang" => Jenjang::all()
+        ];
 
-        return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
+        return view("app.administrator.jenjang.index", $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return response()->json(['message' => 'Not Found!'], 404);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $validasi = Validator::make($request->all(), [
-            "jenjang" => "required"
-        ]);
+        Jenjang::create($request->all());
 
-        if ($validasi->fails()) {
-            return response()->json($validasi->errors(), 400);
-        }
-
-        $cek = Jenjang::create([
-            "id_jenjang" => time(),
-            "jenjang" => $request->jenjang
-        ]);
-
-        if ($cek) {
-            $data = [
-                'message' => 'Create Success!',
-                'status' => true
-            ];
-        } else {
-            $data = [
-                'message' => 'Create Failed!',
-                'status' => false
-            ];
-        }
-
-        return response()->json($data, 200);
+        return redirect("/app/sistem/jenjang")->with("message", "");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $data = Jenjang::findOrfail($id);
@@ -80,81 +37,26 @@ class JenjangController extends Controller
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        return response()->json(['message' => 'Not Found!'], 404);
+        $data = [
+            "data_jenjang" => Jenjang::where("id_jenjang", $request->id_jenjang)->first()
+        ];
+
+        return view("app.administrator.jenjang.edit", $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validasi = Validator::make($request->all(), [
-            "jenjang" => "required"
-        ]);
-
-        if ($validasi->fails()) {
-            return response()->json($validasi->errors(), 400);
-        }
-
-        $cek = Jenjang::where("id_jenjang", $id)->update([
+        Jenjang::where("id_jenjang", $request->id_jenjang)->update([
             "jenjang" => $request->jenjang
         ]);
 
-        if ($cek) {
-            $data = [
-                'message' => 'Update Success!',
-                'status' => true
-            ];
-        } else {
-            $data = [
-                'message' => 'Update Failed!',
-                'status' => false
-            ];
-        }
-
-        return response()->json($data, 200);
+        return redirect("/app/sistem/jenjang");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id_jenjang)
     {
-        $jenjang = Jenjang::where("id_jenjang", $id_jenjang);
-
-        if ($jenjang) {
-            $cek = $jenjang->where("id_jenjang", $id_jenjang)->delete();
-
-            if ($cek) {
-                $data = [
-                    'message' => 'Delete Success!',
-                    'status' => true
-                ];
-            } else {
-                $data = [
-                    'message' => 'Delete Failed!',
-                    'status' => false
-                ];
-            }
-
-            return response()->json($data, 200);
-        }
-
-        return response()->json(['message' => 'Not Found!'], 404);
+        echo "Mohammad";
     }
 }
