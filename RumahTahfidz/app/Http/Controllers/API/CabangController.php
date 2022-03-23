@@ -48,7 +48,6 @@ class CabangController extends Controller
         }
 
         $cek = Cabang::create([
-            "id_cabang" => time(),
             "nama_cabang" => $request->nama_cabang
         ]);
 
@@ -108,7 +107,7 @@ class CabangController extends Controller
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = Cabang::where("id_cabang", $id)->update([
+        $cek = Cabang::where("id", $id)->update([
             "nama_cabang" => $request->nama_cabang
         ]);
 
@@ -133,12 +132,12 @@ class CabangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_cabang)
+    public function destroy($id)
     {
-        $cabang = Cabang::where("id_cabang", $id_cabang)->first();
+        $cabang = Cabang::findOrfail($id);
 
         if ($cabang) {
-            $cek = Cabang::where("id_cabang", $cabang->id_cabang)->delete();
+            $cek = $cabang->delete();
 
             if ($cek) {
                 $data = [

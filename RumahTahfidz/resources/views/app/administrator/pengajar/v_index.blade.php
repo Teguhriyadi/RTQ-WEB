@@ -226,7 +226,6 @@
     $(document).ready(function() {
         $("body").on('click', '#btnEdit', function() {
             let id = $(this).data('id');
-            $("#editPengajar").attr('action', "{{ url('/api/pengajar/') }}/"+id);
 
             $.get('{{ url("app/admin/pengajar/") }}/' + id, function (response) {
                 console.log(response);

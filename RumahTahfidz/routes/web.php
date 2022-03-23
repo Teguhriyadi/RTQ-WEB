@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\API\JenjangController;
+use App\Http\Controllers\CabangController;
+use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
@@ -67,10 +68,8 @@ Route::prefix("app")->group(function() {
                 Route::get("/pesan", [PesanController::class, "index"]);
 
                 Route::get("/jenjang", [JenjangController::class, "index"]);
-                Route::post("/jenjang", [JenjangController::class, "store"]);
-                Route::put("/jenjang", [JenjangController::class, "update"]);
-                Route::get("/jenjang/edit", [JenjangController::class, "edit"]);
-                Route::delete("/jenjang/hapus/", [JenjangController::class, "destroy"]);
+
+                Route::get("/cabang", [CabangController::class, "index"]);
             });
 
         });
