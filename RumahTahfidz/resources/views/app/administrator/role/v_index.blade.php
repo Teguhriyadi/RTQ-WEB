@@ -20,20 +20,23 @@
                         <span>Tambah Form Role</span>
                     </h4>
                 </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="keterangan"> Keterangan </label>
-                        <input type="text" name="keterangan" class="form-control input-sm" id="keterangan" placeholder="Masukkan Keterangan">
+                <form method="POST" action="{{ url('/app/sistem/role') }}">
+                    @csrf
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="keterangan"> Keterangan </label>
+                            <input type="text" name="keterangan" class="form-control input-sm" id="keterangan" placeholder="Masukkan Keterangan">
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <button name="btn-tambah" class="btn btn-primary" id="btn-tambah">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
-                    <button name="btn-reset" class="btn btn-danger" id="btn-reset">
-                        <i class="fa fa-times"></i> Batal
-                    </button>
-                </div>
+                    <div class="card-footer">
+                        <button name="btn-tambah" class="btn btn-primary" type="submit">
+                            <i class="fa fa-plus"></i> Tambah
+                        </button>
+                        <button name="btn-reset" class="btn btn-danger" type="reset">
+                            <i class="fa fa-times"></i> Batal
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="col-lg-8 col-md-6 col-sm-6 col-12">
@@ -237,13 +240,13 @@
                                 'Berhasil!',
                                 'Data Berhasil di Hapus',
                                 'success'
-                            )
+                                )
                         } else {
                             Swal.fire(
                                 'Gagal!',
                                 'Data Gagal di Hapus',
                                 'error'
-                            )
+                                )
                         }
                     }
                 })

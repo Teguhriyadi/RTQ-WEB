@@ -1,6 +1,6 @@
 @extends("app.administrator.layouts.template")
 
-@section("app_title", "Role")
+@section("app_title", "Jenjang")
 
 @section("app_content")
 
@@ -9,6 +9,14 @@
         <h1>
             @yield("app_title")
         </h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active">
+                <a href="{{ url('/app/sistem/home') }}">Home</a>
+            </div>
+            <div class="breadcrumb-item">
+                @yield("app_title")
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -77,21 +85,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <input type="hidden" id="id">
-                <div class="form-group">
-                    <label for="jenjang"> Jenjang </label>
-                    <input type="text" name="jenjang" class="form-control input-sm" id="jnjng" placeholder="Masukkan Jenjang">
+            <form method="POST" id="editJenjang">
+                <div class="modal-body">
+                    <input type="hidden" id="id">
+                    <div class="form-group">
+                        <label for="e_jenjang"> Jenjang </label>
+                        <input type="text" name="e_jenjang" class="form-control input-sm" id="e_jenjang" placeholder="Masukkan Jenjang">
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer bg-whitesmoke br">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">
-                    <i class="fa fa-times"></i> Kembali
-                </button>
-                <button type="button" class="btn btn-success" id="btn-edit">
-                    <i class="fa fa-save"></i> Simpan
-                </button>
-            </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Kembali
+                    </button>
+                    <button type="button" class="btn btn-success" id="btn-edit">
+                        <i class="fa fa-save"></i> Simpan
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -133,17 +143,9 @@
         $("body").on('click', '#btnEdit', function() {
             let id = $(this).data('id');
 
-            $("#editPengajar").attr('action', "{{ url('/api/pengajar/') }}/"+id);
-
-            $.get('{{ url("app/admin/pengajar/") }}/' + id, function (response) {
-                console.log(response);
-
+            $.get('{{ url("api/jenjang/") }}/' + id, function (response) {
                 $("#id").val(id)
-                $("#nm").val(response.data.nama)
-                $("#jk").val(response.data.jenis_kelamin)
-                // $("#address").val(alamat)
-                $("#tlp").val(response.data.telepon)
-                // $("#oldNoHp").val(response.data.telepon)
+                $("#e_jenjang").val(response.data.jenjang)
             })
         });
 
@@ -182,44 +184,44 @@
             }
         })
 
-        $("#btn-edit").on('click', function() {
-            let id = $("#id").val().trim();
-            let keterangan = $("#ket").val().trim();
+        // $("#btn-edit").on('click', function() {
+        //     let id = $("#id").val().trim();
+        //     let jenjang = $("#e_jenjang").val().trim();
 
-            if (keterangan == "") {
-                Swal.fire({
-                    title : "Oops",
-                    text : "Data tidak boleh kosong",
-                    icon : "error"
-                })
-            } else {
-                $.ajax({
-                    url : "{{ url('/api/role/') }}/" + id,
-                    type : "POST",
-                    data : { id : id, keterangan : keterangan, _token: "{{ csrf_token() }}", _method : "PUT" },
-                    success : function(response) {
-                        console.log(response)
-                        if (response.status == true) {
-                            $("#id").val('')
-                            $("#ket").val('')
-                            tampilData()
-                            $("#modalEdit").modal('hide')
-                            Swal.fire({
-                                title : "Berhasil",
-                                text : "Berhasil di Simpan",
-                                icon : "success"
-                            })
-                        } else {
-                            Swal.fire({
-                                title : "Oops",
-                                text : "Data Gagal di Simpan",
-                                icon : "error"
-                            })
-                        }
-                    }
-                })
-            }
-        })
+        //     if (jenjang == "") {
+        //         Swal.fire({
+        //             title : "Oops",
+        //             text : "Data tidak boleh kosong",
+        //             icon : "error"
+        //         })
+        //     } else {
+        //         $.ajax({
+        //             url : "{{ url('/api/jenjang/') }}/" + id,
+        //             type : "POST",
+        //             data : { id : id, jenjang : jenjang, _token: "{{ csrf_token() }}", _method : "PUT" },
+        //             success : function(response) {
+        //                 console.log(response)
+        //                 if (response.status == true) {
+        //                     $("#id").val('')
+        //                     $("#e_jenjang").val('')
+        //                     tampilData()
+        //                     $("#modalEdit").modal('hide')
+        //                     Swal.fire({
+        //                         title : "Berhasil",
+        //                         text : "Berhasil di Simpan",
+        //                         icon : "success"
+        //                     })
+        //                 } else {
+        //                     Swal.fire({
+        //                         title : "Oops",
+        //                         text : "Data Gagal di Simpan",
+        //                         icon : "error"
+        //                     })
+        //                 }
+        //             }
+        //         })
+        //     }
+        // })
     })
 
     function hapusData(id)
@@ -246,13 +248,13 @@
                                 'Berhasil!',
                                 'Data Berhasil di Hapus',
                                 'success'
-                            )
+                                )
                         } else {
                             Swal.fire(
                                 'Gagal!',
                                 'Data Gagal di Hapus',
                                 'error'
-                            )
+                                )
                         }
                     }
                 })

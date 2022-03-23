@@ -14,7 +14,6 @@ use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Models\Role;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,7 +54,9 @@ Route::prefix("app")->group(function() {
 
                 Route::get("/informasi_login", [LastLoginController::class, "index"]);
 
-                Route::get("/role", [RoleController::class, "index"]);
+                Route::get("/role/edit", [RoleController::class, "edit"]);
+                Route::put("/role/simpan", [RoleController::class, "update"]);
+                Route::resource("/role", RoleController::class);
 
                 Route::get("/siswa", [SiswaController::class, "index"]);
 
