@@ -70,7 +70,9 @@ Route::prefix("app")->group(function() {
 
                 Route::get("/jenjang", [JenjangController::class, "index"]);
 
-                Route::get("/cabang", [CabangController::class, "index"]);
+                Route::get("/cabang/edit", [CabangController::class, "edit"]);
+                Route::put("/cabang/simpan", [CabangController::class, "update"]);
+                Route::resource("/cabang", CabangController::class);
             });
 
         });
