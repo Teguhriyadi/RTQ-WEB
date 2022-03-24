@@ -53,12 +53,6 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Pengajar</span>
                 </a>
             </li>
-            <li class="{{ Request::segment(3) == "status_absen" ? "active" : "" }}">
-                <a class="nav-link" href="{{ url('/app/sistem/status_absen') }}">
-                    <i class="fa fa-book"></i>
-                    <span>Status Absen</span>
-                </a>
-            </li>
             <li class="{{ Request::segment(3)=='absensi' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/sistem/absensi') }}">
                     <i class="fa fa-book"></i>
@@ -87,6 +81,12 @@ $data = Profil::select("nama", "singkatan")->first();
             </li>
             <li class="menu-header">Settings</li>
             @can("super_admin")
+            <li class="{{ Request::segment(3) == "status_absen" ? "active" : "" }}">
+                <a class="nav-link" href="{{ url('/app/sistem/status_absen') }}">
+                    <i class="fa fa-book"></i>
+                    <span>Status Absen</span>
+                </a>
+            </li>
             <li class="{{ Request::segment(3) == 'cabang' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/sistem/cabang') }}">
                     <i class="fa fa-search"></i>
