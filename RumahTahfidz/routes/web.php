@@ -65,6 +65,8 @@ Route::prefix("app")->group(function() {
                 Route::resource("/cabang", CabangController::class);
 
                 // Data Admin Cabang
+                Route::get("/admin_cabang/edit", [AdminCabangController::class, "edit"]);
+                Route::put("/admin_cabang/simpan", [AdminCabangController::class, "update"]);
                 Route::resource("/admin_cabang", AdminCabangController::class);
 
                 // Data Status Absen

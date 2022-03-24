@@ -12,4 +12,9 @@ class AdminCabang extends Model
     protected $table = "tb_admin_cabang";
 
     protected $guarded = [''];
+
+    public function getCabang()
+    {
+        return $this->belongsTo("App\Models\Cabang", "id_cabang", "id");
+    }
 }

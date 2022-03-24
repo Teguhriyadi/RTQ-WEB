@@ -12,9 +12,47 @@ class AdminCabangController extends Controller
     {
         $data = [
             "data_admin_cabang" => AdminCabang::orderBy("id", "ASC")->get(),
-            "data_cabang" => Cabang::count()
+            "data_cabang" => Cabang::count(),
+            "cabang" => Cabang::orderBy("id", "ASC")->get()
         ];
 
         return view("app.super_admin.admin_cabang.v_index", $data);
+    }
+
+    public function store(Request $request)
+    {
+        AdminCabang::create($request->all());
+
+        return redirect()->back();
+    }
+
+    public function edit(Request $request)
+    {
+        $data = [
+            "edit" => AdminCabang::where("id", $request->id)->first(),
+            "cabang" => Cabang::orderBy("id", "ASC")->get()
+        ];
+
+        return view("app.super_admin.admin_cabang.v_edit", $data);
+    }
+
+    public function update(Request $request)
+    {
+        AdminCabang::where("id", $request->id)->update([
+            "nama" => $request->nama,
+            "email" => $request->email,
+            "no_hp" => $request->no_hp,
+            "pendidikan_terakhir" => $request->pendidikan_terakhir,
+            "id_cabang" => $request->id_cabang
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        AdminCabang::where("id", $id)->delete();
+
+        return redirect()->back();
     }
 }

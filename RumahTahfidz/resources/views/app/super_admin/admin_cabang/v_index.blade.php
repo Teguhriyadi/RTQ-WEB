@@ -34,12 +34,34 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th>Keterangan</th>
+                                    <th>Nama</th>
+                                    <th>Cabang</th>
+                                    <th>No. HP</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @php $no = 0 @endphp
+                                @foreach($data_admin_cabang as $admin_cabang)
+                                <tr>
+                                    <td class="text-center">{{ ++$no }}.</td>
+                                    <td>{{ $admin_cabang->nama }}</td>
+                                    <td>{{ $admin_cabang->getCabang->nama_cabang }}</td>
+                                    <td>{{ $admin_cabang->no_hp }}</td>
+                                    <td class="text-center">
+                                        <button onclick="editAdminCabang({{ $admin_cabang->id }})" type="button" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <form action="{{ url('/app/sistem/admin_cabang/'.$admin_cabang->id) }}" method="POST" style="display: inline;">
+                                            @method("DELETE")
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -90,6 +112,35 @@
                         <label for="nama"> Nama </label>
                         <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
                     </div>
+                    <div class="form-group">
+                        <label for="email"> Email </label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
+                        <input type="text" class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="no_hp"> No. HP </label>
+                                <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="id_cabang"> Cabang </label>
+                                <select name="id_cabang" class="form-control" id="id_cabang">
+                                    <option value="">- Pilih -</option>
+                                    @foreach ($cabang as $data)
+                                    <option value="{{ $data->id }}">
+                                        {{ $data->nama_cabang }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">
@@ -105,14 +156,47 @@
 </div>
 <!-- END -->
 
+<!-- Edit Data -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fa fa-edit"></i>
+                    <span>Edit Data</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('/app/sistem/admin_cabang/simpan') }}" method="POST">
+                @method("PUT")
+                @csrf
+                <div class="modal-body" id="modal-content-edit">
+
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Kembali
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i> Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END -->
+
 @endsection
 
 @section("app_scripts")
 
 <script>
-    function editRole(id) {
+    function editAdminCabang(id) {
         $.ajax({
-            url : "{{ url('/app/sistem/role/edit') }}",
+            url : "{{ url('/app/sistem/admin_cabang/edit') }}",
             type : "GET",
             data : { id : id },
             success : function(data) {
