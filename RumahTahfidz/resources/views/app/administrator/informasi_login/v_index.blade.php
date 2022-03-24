@@ -1,7 +1,7 @@
 @php
     use Carbon\Carbon;
 @endphp
-@extends("app/administrator/layouts/template")
+@extends(".app.layouts.template")
 
 @section("app_title", "Data Informasi Login")
 

@@ -1,4 +1,4 @@
-@extends("app.administrator.layouts.template")
+@extends(".app.layouts.template")
 
 @section("app_title", "Data Profil")
 

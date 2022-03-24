@@ -13,7 +13,6 @@ use App\Http\Controllers\PengajarController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StatusAbsenController;
-use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +33,7 @@ Route::post("/kirim_pesan", [LandingPageController::class, "kirim_pesan"]);
 Route::prefix("app")->group(function() {
 
     Route::get("/theme", function() {
-        return view("app.administrator.layouts.template");
+        return view("app.layouts.template");
     });
 
     Route::get("/login", [LoginController::class, "login"])->middleware("guest");
@@ -46,36 +45,43 @@ Route::prefix("app")->group(function() {
     Route::prefix("sistem")->group(function() {
 
         Route::group(["middleware" => "autentikasi"], function() {
-
-            Route::get("/home", [AppController::class, "home"]);
             Route::group(["middleware" => ["can:super_admin"]], function() {
 
-                Route::get("/", [AppController::class, "home"]);
-
-                Route::get("/informasi_login", [LastLoginController::class, "index"]);
-
+                // Data Role
                 Route::get("/role/edit", [RoleController::class, "edit"]);
                 Route::put("/role/simpan", [RoleController::class, "update"]);
                 Route::resource("/role", RoleController::class);
 
-                Route::get("/siswa", [SiswaController::class, "index"]);
-
-                Route::get("/pengajar", [PengajarController::class, "index"]);
-
-                Route::get("/status_absen", [StatusAbsenController::class, "index"]);
-
-                Route::get("/profil", [ProfilController::class, "web_profil"]);
-
-                Route::get("/pesan", [PesanController::class, "index"]);
-
+                // Data Jenjang
                 Route::get("/jenjang/edit", [JenjangController::class, "edit"]);
                 Route::put("jenjang/simpan", [JenjangController::class, "update"]);
                 Route::resource("/jenjang", JenjangController::class);
 
+                // Data Cabang
                 Route::get("/cabang/edit", [CabangController::class, "edit"]);
                 Route::put("/cabang/simpan", [CabangController::class, "update"]);
                 Route::resource("/cabang", CabangController::class);
             });
+
+            Route::group(["middleware" => ["can:admin"]], function() {
+
+                // Data Siswa
+                Route::get("/siswa", [SiswaController::class, "index"]);
+
+                // Data Pengajar
+                Route::get("/pengajar", [PengajarController::class, "index"]);
+
+                Route::get("/status_absen", [StatusAbsenController::class, "index"]);
+            });
+            Route::get("/home", [AppController::class, "home"]);
+
+            Route::get("/", [AppController::class, "home"]);
+
+            Route::get("/informasi_login", [LastLoginController::class, "index"]);
+
+            Route::get("/profil", [ProfilController::class, "web_profil"]);
+
+            Route::get("/pesan", [PesanController::class, "index"]);
 
         });
     });
