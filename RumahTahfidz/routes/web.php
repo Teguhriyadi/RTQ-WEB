@@ -68,7 +68,9 @@ Route::prefix("app")->group(function() {
 
                 Route::get("/pesan", [PesanController::class, "index"]);
 
-                Route::get("/jenjang", [JenjangController::class, "index"]);
+                Route::get("/jenjang/edit", [JenjangController::class, "edit"]);
+                Route::put("jenjang/simpan", [JenjangController::class, "update"]);
+                Route::resource("/jenjang", JenjangController::class);
 
                 Route::get("/cabang/edit", [CabangController::class, "edit"]);
                 Route::put("/cabang/simpan", [CabangController::class, "update"]);
