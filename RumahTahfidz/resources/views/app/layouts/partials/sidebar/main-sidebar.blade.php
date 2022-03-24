@@ -22,10 +22,11 @@ $data = Profil::select("nama", "singkatan")->first();
                 @endif
             </a>
         </div>
+
         <ul class="sidebar-menu">
             <li class="menu-header">Home</li>
             <li class="dropdown {{ Request::segment(3) == "home" ? "active" : "" }}">
-                <a href="{{ url('/app/admin/home') }}" class="nav-link">
+                <a href="{{ url('/app/sistem/home') }}" class="nav-link">
                     <i class="fa fa-home"></i>
                     <span>Home</span>
                 </a>
@@ -71,6 +72,12 @@ $data = Profil::select("nama", "singkatan")->first();
                 </a>
             </li>
             @endcan
+            <li class="{{ Request::segment(3)=="admin_cabang" ? "active" : "" }}">
+                <a class="nav-link" href="{{ url('/app/sistem/admin_cabang') }}">
+                    <i class="fa fa-users"></i>
+                    <span>Admin Cabang</span>
+                </a>
+            </li>
             <li class="menu-header"> Web </li>
             <li class="{{ Request::segment(3) == "profil" ? "active" : "" }}">
                 <a class="nav-link" href="{{ url('/app/sistem/profil') }}">
@@ -117,8 +124,6 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Profil</span>
                 </a>
             </li>
-
-
             <li class="{{ Request::segment(3)=='informasi_login' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/sistem/informasi_login') }}">
                     <i class="fa fa-key"></i>

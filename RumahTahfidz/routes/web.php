@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminCabangController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CabangController;
 use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\SiswaController;
@@ -61,6 +63,13 @@ Route::prefix("app")->group(function() {
                 Route::get("/cabang/edit", [CabangController::class, "edit"]);
                 Route::put("/cabang/simpan", [CabangController::class, "update"]);
                 Route::resource("/cabang", CabangController::class);
+
+                // Data Admin Cabang
+                Route::resource("/admin_cabang", AdminCabangController::class);
+                
+                Route::get("/status_absen", [StatusAbsenController::class, "index"]);
+                // Data Users
+                Route::resource("/users", UsersController::class);
             });
 
             Route::group(["middleware" => ["can:admin"]], function() {
@@ -71,7 +80,6 @@ Route::prefix("app")->group(function() {
                 // Data Pengajar
                 Route::get("/pengajar", [PengajarController::class, "index"]);
 
-                Route::get("/status_absen", [StatusAbsenController::class, "index"]);
             });
             Route::get("/home", [AppController::class, "home"]);
 
