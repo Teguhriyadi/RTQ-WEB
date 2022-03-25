@@ -16,7 +16,7 @@
 <script src="{{ url('/template') }}/dist/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
 
 <!-- Page Specific JS File -->
-<script src="{{ url('/template') }}/dist/assets/js/page/index-0.js"></script>
+<script src="{{ url('/template') }}/dist/assets/js/page/index.js"></script>
 
 <!-- Template JS File -->
 <script src="{{ url('/template') }}/dist/assets/js/scripts.js"></script>
