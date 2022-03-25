@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string("no_hp", 30)->nullable();
             $table->string("gambar")->nullable();
             $table->string("tempat_lahir");
-            $table->date("tanggal_lahir");
+            $table->date("tanggal_lahir")->nullable();
             $table->string("token")->nullable();
             $table->timestamps();
         });
