@@ -84,7 +84,8 @@ Route::prefix("app")->group(function() {
                 Route::get("/siswa", [SiswaController::class, "index"]);
 
                 // Data Pengajar
-                Route::get("/pengajar", [PengajarController::class, "index"]);
+                Route::get("/pengajar/edit", [PengajarController::class, "edit"]);
+                Route::resource("/pengajar", PengajarController::class);
 
             });
             Route::get("/home", [AppController::class, "home"]);

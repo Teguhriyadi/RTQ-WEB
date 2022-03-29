@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table table-responsive">
-                        <table class="table table-bordered table-hover" id="tampilData">
+                        <table class="table table-bordered table-hover" id="table-1">
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
@@ -38,7 +38,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @php $no = 0 @endphp
+                                @foreach ($data_asatidz as $asatidz)
+                                <tr>
+                                    <td class="text-center">{{ ++$no }}.</td>
+                                    <td>{{ $asatidz->nama }}</td>
+                                    <td class="text-center">{{ $asatidz->telepon }}</td>
+                                    <td class="text-center">
+                                        <button onclick="editDataAsatidz({{ $asatidz->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <form action="{{ url('/app/sistem/pengajar/'.$asatidz->id) }}" method="POST" style="display: inline;">
+                                            @method("DELETE")
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -60,10 +79,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/api/pengajar') }}" method="post" id="tambahPengajar" enctype="multipart/form-data">
+            <form action="{{ url('/app/sistem/pengajar') }}" method="post" id="tambahPengajar" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
-
                     <div class="form-group">
                         <label for="nama"> Nama </label>
                         <input type="text" name="nama" id="nama" class="form-control input-sm" placeholder="Masukkan Nama">
@@ -105,8 +123,9 @@
                         <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
                     </div>
                     <div class="form-group">
+                        <img class="gambar-preview img-fluid" id="tampilGambar">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                            <input type="file" class="custom-file-input" id="gambar" name="gambar" onchange="previewImage()">
                             <label class="custom-file-label" for="gambar">Upload Gambar</label>
                         </div>
                     </div>
@@ -129,56 +148,21 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <i class="fa fa-pencil"></i> Edit Data
+                    <i class="fa fa-edit"></i> Edit Data
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post" enctype="multipart/form-data" id="editPengajar">
-                <div class="modal-body">
-                    @csrf
-                    @method('put')
-                    <input type="hidden" id="id" name="id">
-                    <input type="hidden" id="oldNoHp" name="oldNoHp">
-                    <div class="form-group">
-                        <label for="nama"> Nama </label>
-                        <input type="text" name="nama" id="nm" class="form-control input-sm" placeholder="Masukkan Nama">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="jenis_kelamin"> Jenis Kelamin </label>
-                                <select name="jenis_kelamin" id="jk" class="form-control">
-                                    <option value="">- Pilih -</option>
-                                    <option value="L">Laki - Laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="no_hp"> No. HP </label>
-                                <input type="text" name="telepon" id="tlp" class="form-control" placeholder="Masukkan No. HP">
-                            </div>
-                        </div>
-                    </div>
+            <form action="{{ url('/app/sistem/pengajar/simpan') }}" method="post" enctype="multipart/form-data" id="editPengajar">
+                @method("PUT")
+                @csrf
+                <div class="modal-body" id="modal-content-edit">
 
-
-                    <div class="form-group">
-                        <label for="alamat"> Alamat </label>
-                        <textarea name="alamat" id="address" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="gambar" name="gambar">
-                            <label class="custom-file-label" for="gambar">Upload Gambar</label>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
-                    <button type="button" class="btn btn-success" id="btn-edit">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
+                    <button type="submit" class="btn btn-success" id="btn-edit">
                         <i class="fa fa-save"></i> Simpan
                     </button>
                 </div>
@@ -192,273 +176,41 @@
 
 @section("app_scripts")
 
-<script type="text/javascript">
+<script>
 
-    function tampilData() {
-        let empTable = document.getElementById("tampilData").getElementsByTagName("tbody")[0];
-        empTable.innerHTML = "";
+    function previewImage() {
+        const image = document.querySelector("#gambar");
+        const imgPreview = document.querySelector(".gambar-preview");
+
+        imgPreview.style.display = "block";
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+            $("#tampilGambar").addClass('mb-3');
+            $("#tampilGambar").width("100%");
+            $("#tampilGambar").height("300");
+        }
+    }
+
+    function editDataAsatidz(id)
+    {
         $.ajax({
-            url: "{{ url('') }}/api/pengajar",
-            type: "GET",
-            success: function (response) {
-                let no = 1;
-                for (let key in response.data) {
-                    if (response.data.hasOwnProperty(key)) {
-                        let val = response.data[key];
-                        let newRow = empTable.insertRow(-1);
-                        let nomer = newRow.insertCell(0);
-                        let namaCell = newRow.insertCell(1);
-                        let alamatCell = newRow.insertCell(2);
-                        let aksiCell = newRow.insertCell(3);
-
-                        nomer.innerHTML = no++;
-                        namaCell.innerHTML = val['nama'];
-                        alamatCell.innerHTML = val['telepon'];
-                        // aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-telepon="'+val["telepon"]+'" data-tempat_lahir="'+val['tempat_lahir']+'" data-tanggal_lahir="'+val['tanggal_lahir']+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
-                        aksiCell.innerHTML += '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'"><i class="fa fa-edit"></i> Edit</button>'
-                        aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
-                    }
-                }
+            url : "{{ url('/app/sistem/pengajar/edit') }}",
+            type : "GET",
+            data : { id : id },
+            success : function(data) {
+                $("#modal-content-edit").html(data);
+                return true;
             }
         });
     }
 
     $(document).ready(function() {
-        $("body").on('click', '#btnEdit', function() {
-            let id = $(this).data('id');
-
-            $.get('{{ url("app/admin/pengajar/") }}/' + id, function (response) {
-                console.log(response);
-
-                $("#id").val(id)
-                $("#nm").val(response.data.nama)
-                $("#jk").val(response.data.jenis_kelamin)
-                // $("#address").val(alamat)
-                $("#tlp").val(response.data.telepon)
-                // $("#oldNoHp").val(response.data.telepon)
-            })
-
-
-        });
-    });
-
-    ! function(a, i, r) {
-        var e = {};
-        e.UTIL = {
-            setupFormValidation: function() {
-                a("#tambahPengajar").validate({
-                    ignore: "",
-                    rules: {
-                        nama: {
-                            required: !0
-                        },
-                        jenis_kelamin: {
-                            required: !0
-                        },
-                        telepon: {
-                            required: !0
-                        },
-                        tempat_lahir: {
-                            required: !0
-                        },
-                        tanggal_lahir: {
-                            required: !0
-                        },
-                        alamat: {
-                            required: !0
-                        },
-                        gambar: {
-                            required: !0,
-                            accept: "image/*"
-                        },
-                    },
-                    messages: {
-                        nama: {
-                            required: "Nama harap diisi!"
-                        },
-                        jenis_kelamin: {
-                            required: "Jenis kelamin harap diisi!"
-                        },
-                        telepon: {
-                            required: "No hp harap diisi!"
-                        },
-                        tempat_lahir: {
-                            required: "Tempat lahir harap diisi!"
-                        },
-                        tanggal_lahir: {
-                            required: "Tanggal lahir harap diisi!"
-                        },
-                        alamat: {
-                            required: "Alamat harap diisi!"
-                        },
-                        gambar: {
-                            required: "Gambar harap diisi!",
-                            accept: "Masukan file tipe gambar!"
-                        },
-                    },
-                    submitHandler: function(a) {
-                        // a.submit()
-
-                        $.ajax({
-                            url: a.action,
-                            type: a.method,
-                            data: $(a).serialize(),
-                            success: function (response) {
-                                if (response.status == true) {
-                                    $("#nama, #jenis_kelamin, #alamat, #telepon, #tempat_lahir, #tanggal_lahir").val('');
-                                    $("#gambar").next('.custom-file-label').removeClass("selected").html("Upload Gambar");
-                                    tampilData()
-                                    $("#modalTambah").modal('hide')
-                                    Swal.fire({
-                                        title : "Berhasil",
-                                        text : "Berhasil di Tambahkan",
-                                        icon : "success"
-                                    })
-                                } else {
-                                    Swal.fire({
-                                        title : "Oops",
-                                        text : "Data Gagal di Inputkan",
-                                        icon : "error"
-                                    })
-                                }
-                            }
-                        })
-                    }
-                })
-            }
-        }, a(r).ready(function(a) {
-            e.UTIL.setupFormValidation()
-        })
-    }(jQuery, window, document);
-
-    ! function(a, i, r) {
-        var e = {};
-        e.UTIL = {
-            setupFormValidation: function() {
-                a("#editPengajar").validate({
-                    ignore: "",
-                    rules: {
-                        nama: {
-                            required: !0
-                        },
-                        jenis_kelamin: {
-                            required: !0
-                        },
-                        telepon: {
-                            required: !0
-                        },
-                        tempat_lahir: {
-                            required: !0
-                        },
-                        tanggal_lahir: {
-                            required: !0
-                        },
-                        alamat: {
-                            required: !0
-                        },
-                        gambar: {
-                            accept: "image/*"
-                        },
-                    },
-                    messages: {
-                        nama: {
-                            required: "Nama harap diisi!"
-                        },
-                        jenis_kelamin: {
-                            required: "Jenis kelamin harap diisi!"
-                        },
-                        telepon: {
-                            required: "No hp harap diisi!"
-                        },
-                        tempat_lahir: {
-                            required: "Tempat lahir harap diisi!"
-                        },
-                        tanggal_lahir: {
-                            required: "Tanggal lahir harap diisi!"
-                        },
-                        alamat: {
-                            required: "Alamat harap diisi!"
-                        },
-                        gambar: {
-                            accept: "Masukan file tipe gambar!"
-                        },
-                    },
-                    submitHandler: function(a) {
-                        // a.submit()
-
-                        $.ajax({
-                            url: a.action,
-                            type: a.method,
-                            data: $(a).serialize(),
-                            success: function (response) {
-                                if (response.status == true) {
-                                    $("#nama, #jenis_kelamin, #alamat, #telepon, #tempat_lahir, #tanggal_lahir").val('');
-                                    $("#gambar").next('.custom-file-label').removeClass("selected").html("Upload Gambar");
-                                    tampilData()
-                                    $("#modalTambah").modal('hide')
-                                    Swal.fire({
-                                        title : "Berhasil",
-                                        text : "Berhasil di Tambahkan",
-                                        icon : "success"
-                                    })
-                                } else {
-                                    Swal.fire({
-                                        title : "Oops",
-                                        text : "Data Gagal di Inputkan",
-                                        icon : "error"
-                                    })
-                                }
-                            }
-                        })
-                    }
-                })
-            }
-        }, a(r).ready(function(a) {
-            e.UTIL.setupFormValidation()
-        })
-    }(jQuery, window, document);
-
-    function hapusData(id)
-    {
-        Swal.fire({
-            title : "Apakah Yakin ?",
-            text : "Untuk Menghapus Data Ini",
-            icon : "warning",
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Hapus'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url : "{{ url('/api/pengajar/') }}/" + id,
-                    type : "POST",
-                    data : { _token: "{{ csrf_token() }}", _method : "DELETE" },
-                    success : function(response) {
-                        if (response.status == true) {
-                            tampilData()
-                            Swal.fire(
-                            'Berhasil!',
-                            'Data Berhasil di Hapus',
-                            'success'
-                            )
-                        } else {
-                            Swal.fire(
-                            'Gagal!',
-                            'Data Gagal di Hapus',
-                            'error'
-                            )
-                        }
-                    }
-                })
-            } else {
-
-            }
-        })
-    }
-
-
-    tampilData();
+        $("#table-1").dataTable();
+    })
 </script>
 
 @endsection
