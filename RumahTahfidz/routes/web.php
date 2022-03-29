@@ -7,6 +7,7 @@ use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
@@ -82,6 +83,7 @@ Route::prefix("app")->group(function() {
 
                 // Data Siswa
                 Route::get("/siswa", [SiswaController::class, "index"]);
+                Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
 
                 // Data Pengajar
                 Route::get("/pengajar", [PengajarController::class, "index"]);

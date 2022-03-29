@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12 col-md-6 col-12">
+        <div class="col">
             <div class="card">
                 <div class="card-header">
                     <button type="button" class="btn btn-primary" id="btnTambah" data-target="#modalTambah" data-toggle="modal">
@@ -233,17 +233,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('api/siswa') }}" method="post" id="tambahSiswa" enctype="multipart/form-data">
+            <form action="{{ url('app/sistem/siswa/import') }}" method="post" id="tambahSiswa" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Import Excel</label>
-                        <input type="file" class="form-control" >
+                        <input type="file" class="form-control" name="importSantri">
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
-                    <button type="submit" class="btn btn-primary" id="btn-tambah">
+                    <button type="submit" class="btn btn-primary">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
                 </div>
