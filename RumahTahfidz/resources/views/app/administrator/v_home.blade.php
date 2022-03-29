@@ -139,7 +139,7 @@
                         @endforeach
                     </ul>
                     <div class="text-center pt-1 pb-1">
-                        <a href="{{ url('/app/admin/informasi_login') }}" class="btn btn-primary btn-lg btn-round">
+                        <a href="{{ url('/app/sistem/informasi_login') }}" class="btn btn-primary btn-lg btn-round">
                             Selengkapnya
                         </a>
                     </div>

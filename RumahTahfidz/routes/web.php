@@ -86,7 +86,8 @@ Route::prefix("app")->group(function() {
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
 
                 // Data Pengajar
-                Route::get("/pengajar", [PengajarController::class, "index"]);
+                Route::get("/pengajar/edit", [PengajarController::class, "edit"]);
+                Route::resource("/pengajar", PengajarController::class);
 
             });
             Route::get("/home", [AppController::class, "home"]);
