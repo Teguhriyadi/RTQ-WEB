@@ -33,11 +33,10 @@ class SiswaController extends Controller
             "nama_ayah" => $request->nama_ayah,
             "nama_ibu" => $request->nama_ibu,
             "no_hp" => $request->no_hp,
-            "id_cabang" => Auth::user()->getAdminCabang()->id
+            "id_cabang" => Auth::user()->getAdminCabang->id
         ]);
 
         User::create([
-            "id" => time(),
             "nama" => $request->nama,
             "email" => "pengajar@gmail.com",
             "password" => bcrypt("hame29092002"),
