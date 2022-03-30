@@ -18,9 +18,15 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        Role::create($request->all());
+        $cek = Role::where("keterangan", $request->keterangan)->count();
 
-        return redirect()->back()->with('message', "<script>swal('Selamat!', 'Alamat Berhasil Ditambahkan', 'success')</script>");
+        if ($cek > 0) {
+            return redirect()->back();
+        } else {
+            Role::create($request->all());
+
+            return redirect()->back();
+        }
     }
 
     public function edit(Request $request)
@@ -34,11 +40,17 @@ class RoleController extends Controller
 
     public function update(Request $request)
     {
-        Role::where("id", $request->id)->update([
-            "keterangan" => $request->keterangan
-        ]);
+        $cek = Role::where("keterangan", $request->keterangan)->count();
 
-        return redirect()->back();
+        if ($cek > 0) {
+            return redirect()->back();
+        } else {
+            Role::where("id", $request->id)->update([
+                "keterangan" => $request->keterangan
+            ]);
+
+            return redirect()->back();
+        }
     }
 
     public function destroy($id)
