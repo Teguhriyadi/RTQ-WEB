@@ -25,7 +25,7 @@ class RoleController extends Controller
         } else {
             Role::create($request->all());
 
-            return redirect()->back();
+            return redirect()->back()->with('message', '<script>Swal.fire("Wooww", "Data anda berhasil ditambahkan!", "success")</script>');
         }
     }
 
