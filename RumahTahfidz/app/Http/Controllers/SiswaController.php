@@ -12,7 +12,7 @@ class SiswaController extends Controller
     public function index()
     {
         $data = [
-            "data_santri" => Siswa::orderBy("id")->get()
+            "data_santri" => Siswa::where("id_cabang", Auth::user()->getAdminCabang->id_cabang)->orderBy("id")->get()
         ];
 
         return view("app.administrator.siswa.v_index", $data);
@@ -41,7 +41,7 @@ class SiswaController extends Controller
             "email" => "pengajar@gmail.com",
             "password" => bcrypt("hame29092002"),
             "alamat" => $request->alamat,
-            "id_role" => 3,
+            "id_role" => 2,
             "no_hp" => $request->telepon,
             "gambar" => $data,
             "tempat_lahir" => $request->tempat_lahir,
