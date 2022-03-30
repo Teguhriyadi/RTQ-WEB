@@ -18,9 +18,15 @@ class StatusAbsenController extends Controller
 
     public function store(Request $request)
     {
-        StatusAbsen::create($request->all());
+        $cek = StatusAbsen::where("keterangan", $request->keterangan)->count();
 
-        return redirect()->back();
+        if ($cek > 0) {
+            return redirect()->back();
+        } else {
+            StatusAbsen::create($request->all());
+
+            return redirect()->back();
+        }
     }
 
     public function edit(Request $request)
@@ -34,11 +40,17 @@ class StatusAbsenController extends Controller
 
     public function update(Request $request)
     {
-        StatusAbsen::where("id", $request->id)->update([
-            "keterangan" => $request->keterangan
-        ]);
+        $cek = StatusAbsen::where("keterangan", $request->keterangan)->count();
 
-        return redirect()->back();
+        if ($cek > 0) {
+            return redirect()->back();
+        } else {
+            StatusAbsen::where("id", $request->id)->update([
+                "keterangan" => $request->keterangan
+            ]);
+
+            return redirect()->back();
+        }
     }
 
     public function destroy($id)
