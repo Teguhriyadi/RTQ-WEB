@@ -18,9 +18,16 @@ class CabangController extends Controller
 
     public function store(Request $request)
     {
-        Cabang::create($request->all());
+        $cek = Cabang::where("nama_cabang", $request->nama_cabang)->count();
 
-        return redirect()->back();
+        if ($cek > 0) {
+            return redirect()->back();
+        } else {
+            Cabang::create($request->all());
+
+            return redirect()->back();
+        }
+
     }
 
     public function edit(Request $request)
@@ -34,11 +41,18 @@ class CabangController extends Controller
 
     public function update(Request $request)
     {
-        Cabang::where("id", $request->id)->update([
-            "nama_cabang" => $request->nama_cabang
-        ]);
+        $cek = Cabang::where("nama_cabang", $request->nama_cabang)->count();
 
-        return redirect()->back();
+        if ($cek > 0) {
+            return redirect()->back();
+        } else {
+            Cabang::where("id", $request->id)->update([
+                "nama_cabang" => $request->nama_cabang
+            ]);
+
+            return redirect()->back();
+        }
+
     }
 
     public function destroy($id)
