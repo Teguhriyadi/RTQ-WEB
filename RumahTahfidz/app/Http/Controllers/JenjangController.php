@@ -18,9 +18,15 @@ class JenjangController extends Controller
 
     public function store(Request $request)
     {
-        Jenjang::create($request->all());
+        $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
-        return redirect()->back();
+        if ($cek > 0) {
+            return redirect()->back();
+        } else {
+            Jenjang::create($request->all());
+
+            return redirect()->back();
+        }
     }
 
     public function edit(Request $request)
@@ -34,11 +40,17 @@ class JenjangController extends Controller
 
     public function update(Request $request)
     {
-        Jenjang::where("id", $request->id)->update([
-            "jenjang" => $request->jenjang
-        ]);
+        $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
-        return redirect()->back();
+        if ($cek > 0 ) {
+            return redirect()->back();
+        } else {
+            Jenjang::where("id", $request->id)->update([
+                "jenjang" => $request->jenjang
+            ]);
+
+            return redirect()->back();
+        }
     }
 
     public function destroy($id)
