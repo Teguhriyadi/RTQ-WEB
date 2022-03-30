@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AdminCabang;
 use App\Models\Cabang;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminCabangController extends Controller
@@ -22,6 +23,15 @@ class AdminCabangController extends Controller
     public function store(Request $request)
     {
         AdminCabang::create($request->all());
+
+        User::create([
+            "nama" => $request->nama,
+            "email" => $request->email,
+            "password" => bcrypt("admincabang"),
+            "alamat" => "Bandung",
+            "id_role" => 2,
+            "tempat_lahir" => "NULL",
+        ]);
 
         return redirect()->back();
     }
