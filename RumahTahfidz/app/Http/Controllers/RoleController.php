@@ -20,7 +20,7 @@ class RoleController extends Controller
     {
         Role::create($request->all());
 
-        return redirect()->back();
+        return redirect()->back()->with('message', "<script>swal('Selamat!', 'Alamat Berhasil Ditambahkan', 'success')</script>");
     }
 
     public function edit(Request $request)

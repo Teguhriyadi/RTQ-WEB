@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table table-responsive">
-                        <table class="table table-bordered table-hover" id="tampilData">
+                        <table class="table table-bordered table-hover" id="table-1">
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
@@ -41,7 +41,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @php $no = 0 @endphp
+                                @foreach ($data_santri as $santri)
+                                    <tr>
+                                        <td class="text-center">{{ ++$no }}.</td>
+                                        <td>{{ $santri->nama }}</td>
+                                        <td class="text-center">{{ $santri->no_hp }}</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-warning">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <form action="" style="display: inline">
+                                                @method("DELETE")
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -563,6 +582,12 @@
                                                                                     }(jQuery, window, document);
 
                                                                                     tampilData();
+                                                                                </script>
+
+                                                                                <script>
+                                                                                    $(document).ready(function() {
+                                                                                        $("#table-1").dataTable();
+                                                                                    })
                                                                                 </script>
 
                                                                                 @endsection
