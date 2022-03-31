@@ -21,11 +21,11 @@ class CabangController extends Controller
         $cek = Cabang::where("nama_cabang", $request->nama_cabang)->count();
 
         if ($cek > 0) {
-            return redirect()->back();
+            return redirect()->back()->with('message', '<script>Swal.fire("Oops", "Tidak Boleh Ada Duplikasi Data", "error")</script>');
         } else {
             Cabang::create($request->all());
 
-            return redirect()->back();
+            return redirect()->back()->with('message', '<script>Swal.fire("Wooww", "Data anda berhasil ditambahkan!", "success")</script>');
         }
 
     }
