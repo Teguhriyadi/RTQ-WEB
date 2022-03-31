@@ -45,9 +45,9 @@
                                 @foreach($data_admin_cabang as $admin_cabang)
                                 <tr>
                                     <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $admin_cabang->nama }}</td>
+                                    <td>{{ $admin_cabang->getUser->nama }}</td>
                                     <td>{{ $admin_cabang->getCabang->nama_cabang }}</td>
-                                    <td>{{ $admin_cabang->no_hp }}</td>
+                                    <td>{{ $admin_cabang->getUser->no_hp }}</td>
                                     <td class="text-center">
                                         <button onclick="editAdminCabang({{ $admin_cabang->id }})" type="button" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
                                             <i class="fa fa-edit"></i>
@@ -116,9 +116,38 @@
                         <label for="email"> Email </label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                     </div>
-                    <div class="form-group">
-                        <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
-                        <input type="text" class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
+                                <input type="text" class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="jenis_kelamin"> Jenis Kelamin </label>
+                                <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+                                    <option value="">- Pilih -</option>
+                                    <option value="L">Laki - Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tempat_lahir"> Tempat Lahir </label>
+                                <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Masukkan Tempat Lahir">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tanggal_lahir"> Tanggal Lahir </label>
+                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -140,6 +169,14 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat"> Alamat </label>
+                        <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Alamat"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="gambar"> Gambar </label>
+                        <input type="file" class="form-control" name="gambar" id="gambar">
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">

@@ -17,4 +17,9 @@ class AdminCabang extends Model
     {
         return $this->belongsTo("App\Models\Cabang", "id_cabang", "id");
     }
+
+    public function getUser()
+    {
+        return $this->hasOne("App\Models\User", "id", "id");
+    }
 }
