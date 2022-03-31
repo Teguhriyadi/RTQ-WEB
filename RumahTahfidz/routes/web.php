@@ -15,6 +15,7 @@ use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
 use Illuminate\Support\Facades\Route;
@@ -92,6 +93,11 @@ Route::prefix("app")->group(function() {
                 Route::get("/asatidz/edit", [AsatidzController::class, "edit"]);
                 Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
                 Route::resource("/asatidz", AsatidzController::class);
+
+                // Data Profil User
+                Route::get("/profil_user", [ProfilUserController::class, "index"]);
+                Route::put("/profil_user/simpan_gambar_profil", [ProfilUserController::class, "simpan_gambar_profil"]);
+                Route::put("/profil_user/ganti_password", [ProfilUserController::class, "ganti_password"]);
 
             });
             Route::get("/home", [AppController::class, "home"]);

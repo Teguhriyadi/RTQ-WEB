@@ -22,6 +22,11 @@ class AdminCabangController extends Controller
 
     public function store(Request $request)
     {
+
+        if ($request->file("gambar")) {
+            $data = $request->file("gambar")->store("admin_cabang");
+        }
+
         $user = new User;
 
         $user->nama = $request->nama;
@@ -34,6 +39,7 @@ class AdminCabangController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
+        $user->gambar = $data;
         $user->save();
 
         $admin_cabang = new AdminCabang;

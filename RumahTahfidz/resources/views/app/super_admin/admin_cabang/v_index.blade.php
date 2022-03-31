@@ -105,7 +105,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/admin_cabang') }}" method="POST">
+            <form action="{{ url('/app/sistem/admin_cabang') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -176,7 +176,8 @@
                     </div>
                     <div class="form-group">
                         <label for="gambar"> Gambar </label>
-                        <input type="file" class="form-control" name="gambar" id="gambar">
+                        <img class="gambar-preview img-fluid">
+                        <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
@@ -231,6 +232,24 @@
 @section("app_scripts")
 
 <script>
+
+    function previewImage() {
+        const image = document.querySelector("#gambar");
+        const imgPreview = document.querySelector(".gambar-preview");
+
+        imgPreview.style.display = "block";
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+            $("#tampilGambar").addClass('mb-3');
+            $("#tampilGambar").width("100%");
+            $("#tampilGambar").height("300");
+        }
+    }
+
     function editAdminCabang(id) {
         $.ajax({
             url : "{{ url('/app/sistem/admin_cabang/edit') }}",
