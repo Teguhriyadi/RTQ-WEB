@@ -47,10 +47,10 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Siswa</span>
                 </a>
             </li>
-            <li class="{{ Request::segment(3) == "pengajar" ? "active" : "" }}">
-                <a class="nav-link" href="{{ url('/app/sistem/pengajar') }}">
+            <li class="{{ Request::segment(3) == "asatidz" ? "active" : "" }}">
+                <a class="nav-link" href="{{ url('/app/sistem/asatidz') }}">
                     <i class="fa fa-user"></i>
-                    <span>Pengajar</span>
+                    <span>Asatidz</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3)=='absensi' ? 'active' : '' }}">

@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminCabang;
-use App\Models\Cabang;
+use App\Models\Asatidz;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminCabangController extends Controller
+class AsatidzController extends Controller
 {
     public function index()
     {
         $data = [
-            "data_admin_cabang" => AdminCabang::orderBy("id", "ASC")->get(),
-            "data_cabang" => Cabang::count(),
-            "cabang" => Cabang::orderBy("id", "ASC")->get()
+            "data_asatidz" => Asatidz::orderBy("id", "DESC")->get()
         ];
 
-        return view("app.super_admin.admin_cabang.v_index", $data);
+        return view("app.administrator.asatidz.v_index", $data);
     }
 
     public function store(Request $request)
@@ -36,11 +33,10 @@ class AdminCabangController extends Controller
         $user->no_hp = $request->no_hp;
         $user->save();
 
-        $admin_cabang = new AdminCabang;
+        $admin_cabang = new Asatidz;
 
         $admin_cabang->id = $user->id;
         $admin_cabang->pendidikan_terakhir = $request->pendidikan_terakhir;
-        $admin_cabang->id_cabang = $request->id_cabang;
         $admin_cabang->save();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
@@ -49,18 +45,16 @@ class AdminCabangController extends Controller
     public function edit(Request $request)
     {
         $data = [
-            "edit" => AdminCabang::where("id", $request->id)->first(),
-            "cabang" => Cabang::orderBy("id", "ASC")->get()
+            "edit" => Asatidz::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.admin_cabang.v_edit", $data);
+        return view("app.administrator.asatidz.v_edit", $data);
     }
 
     public function update(Request $request)
     {
-        AdminCabang::where("id", $request->id)->update([
-            "pendidikan_terakhir" => $request->pendidikan_terakhir,
-            "id_cabang" => $request->id_cabang
+        Asatidz::where("id", $request->id)->update([
+            "pendidikan_terakhir" => $request->pendidikan_terakhir
         ]);
 
         User::where("id", $request->id)->update([
@@ -78,7 +72,7 @@ class AdminCabangController extends Controller
 
     public function destroy($id)
     {
-        AdminCabang::where("id", $id)->delete();
+        Asatidz::where("id", $id)->delete();
 
         User::where("id", $id)->delete();
 

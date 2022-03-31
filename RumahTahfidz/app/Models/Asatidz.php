@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pengajar extends Model
+class Asatidz extends Model
 {
     use HasFactory;
 
-    protected $table = "tb_pengajar";
+    protected $table = "tb_asatidz";
 
     protected $guarded = [''];
 
     public function getUser()
     {
-        return $this->hasOne("App\Models\User", "no_hp", "telepon");
+        return $this->hasOne("App\Models\User", "id", "id");
     }
+
 }

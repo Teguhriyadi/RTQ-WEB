@@ -7,12 +7,12 @@ use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PengajarController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StatusAbsenController;
@@ -86,8 +86,9 @@ Route::prefix("app")->group(function() {
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
 
                 // Data Pengajar
-                Route::get("/pengajar/edit", [PengajarController::class, "edit"]);
-                Route::resource("/pengajar", PengajarController::class);
+                Route::get("/asatidz/edit", [AsatidzController::class, "edit"]);
+                Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
+                Route::resource("/asatidz", AsatidzController::class);
 
             });
             Route::get("/home", [AppController::class, "home"]);
