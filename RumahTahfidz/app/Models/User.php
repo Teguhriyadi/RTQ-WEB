@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo("App\Models\Role", "id_role", "id");
     }
+
+    public function getAdminCabang()
+    {
+        return $this->hasOne(AdminCabang::class, "nama", "nama");
+    }
 }

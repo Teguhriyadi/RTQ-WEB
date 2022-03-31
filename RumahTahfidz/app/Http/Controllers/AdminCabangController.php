@@ -31,6 +31,7 @@ class AdminCabangController extends Controller
             "alamat" => "Bandung",
             "id_role" => 2,
             "tempat_lahir" => "NULL",
+            "no_hp" => $request->no_hp
         ]);
 
         return redirect()->back();

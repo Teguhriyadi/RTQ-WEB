@@ -82,7 +82,7 @@ Route::prefix("app")->group(function() {
             Route::group(["middleware" => ["can:admin"]], function() {
 
                 // Data Siswa
-                Route::get("/siswa", [SiswaController::class, "index"]);
+                Route::resource("/siswa", SiswaController::class);
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
 
                 // Data Pengajar
