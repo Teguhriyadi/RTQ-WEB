@@ -15,6 +15,7 @@ use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,7 +83,9 @@ Route::prefix("app")->group(function() {
             Route::group(["middleware" => ["can:admin"]], function() {
 
                 // Data Siswa
-                Route::resource("/siswa", SiswaController::class);
+                Route::get("/santri/edit", [SantriController::class, "edit"]);
+                Route::put("/santri/simpan", [SantriController::class, "update"]);
+                Route::resource("/santri", SantriController::class);
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
 
                 // Data Pengajar

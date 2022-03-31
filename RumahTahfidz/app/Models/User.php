@@ -55,6 +55,6 @@ class User extends Authenticatable
 
     public function getAdminCabang()
     {
-        return $this->hasOne(AdminCabang::class, "nama", "nama");
+        return $this->hasOne(AdminCabang::class, "id", "id");
     }
 }

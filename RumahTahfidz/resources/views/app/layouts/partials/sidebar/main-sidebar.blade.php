@@ -41,8 +41,8 @@ $data = Profil::select("nama", "singkatan")->first();
                 </ul>
             </li>
             @can("admin")
-            <li class="{{ Request::segment(3) == "siswa" ? "active" : "" }}">
-                <a class="nav-link" href="{{ url('/app/sistem/siswa') }}">
+            <li class="{{ Request::segment(3) == "santri" ? "active" : "" }}">
+                <a class="nav-link" href="{{ url('/app/sistem/santri') }}">
                     <i class="fa fa-user"></i>
                     <span>Siswa</span>
                 </a>
