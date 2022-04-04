@@ -15,9 +15,6 @@ return new class extends Migration
     {
         Schema::create('tb_admin_cabang', function (Blueprint $table) {
             $table->id();
-            $table->string("nama", 100);
-            $table->string("email", 100);
-            $table->string("no_hp", 50);
             $table->string("pendidikan_terakhir");
             $table->integer("id_cabang");
             $table->timestamps();

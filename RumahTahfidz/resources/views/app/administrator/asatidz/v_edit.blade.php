@@ -19,7 +19,7 @@
             <label for="jenis_kelamin"> Jenis Kelamin </label>
             <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                 <option value="">- Pilih -</option>
-                <option value="L" {{ $edit->getUser->jenis_kelamin == "L" ? "selected" : "" }} >Laki - Laki</option>
+                <option value="L" {{ $edit->getUser->jenis_kelamin == "L" ? "selected" : "" }}>Laki - Laki</option>
                 <option value="P" {{ $edit->getUser->jenis_kelamin == "P" ? "selected" : "" }}>Perempuan</option>
             </select>
         </div>
@@ -40,32 +40,9 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="no_hp"> No. HP </label>
-            <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP" value="{{ $edit->getUser->no_hp }}">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="id_cabang"> Cabang </label>
-            <select name="id_cabang" class="form-control" id="id_cabang">
-                <option value="">- Pilih -</option>
-                @foreach ($cabang as $data)
-                    @if ($edit->id_cabang == $data->id)
-                    <option value="{{ $data->id }}" selected>
-                        {{ $data->nama_cabang }}
-                    </option>
-                    @else
-                    <option value="{{ $data->id }}">
-                        {{ $data->nama_cabang }}
-                    </option>
-                    @endif
-                @endforeach
-            </select>
-        </div>
-    </div>
+<div class="form-group">
+    <label for="no_hp"> No. HP </label>
+    <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP" value="{{ $edit->getUser->no_hp }}">
 </div>
 <div class="form-group">
     <label for="alamat"> Alamat </label>

@@ -1,6 +1,6 @@
 @extends(".app.layouts.template")
 
-@section("app_title", "Data Pengajar")
+@section("app_title", "Data Asatidz")
 
 @section("app_content")
 
@@ -33,7 +33,9 @@
                                 <tr>
                                     <th class="text-center">No.</th>
                                     <th>Nama</th>
+                                    <th>Email</th>
                                     <th class="text-center">No. HP</th>
+                                    <th class="text-center">Jenis Kelamin</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -42,13 +44,21 @@
                                 @foreach ($data_asatidz as $asatidz)
                                 <tr>
                                     <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $asatidz->nama }}</td>
-                                    <td class="text-center">{{ $asatidz->telepon }}</td>
+                                    <td>{{ $asatidz->getUser->nama }}</td>
+                                    <td>{{ $asatidz->getUser->email }}</td>
+                                    <td class="text-center">{{ $asatidz->getUser->no_hp }}</td>
+                                    <td class="text-center">
+                                        @if ($asatidz->getUser->jenis_kelamin == "L")
+                                            Laki - Laki
+                                        @elseif ($asatidz->getUser->jenis_kelamin == "P")
+                                            Perempuan
+                                        @endif
+                                    </td>
                                     <td class="text-center">
                                         <button onclick="editDataAsatidz({{ $asatidz->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
                                             <i class="fa fa-edit"></i>
                                         </button>
-                                        <form action="{{ url('/app/sistem/pengajar/'.$asatidz->id) }}" method="POST" style="display: inline;">
+                                        <form action="{{ url('/app/sistem/asatidz/'.$asatidz->id) }}" method="POST" style="display: inline;">
                                             @method("DELETE")
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-danger">
@@ -79,55 +89,61 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/pengajar') }}" method="post" id="tambahPengajar" enctype="multipart/form-data">
+            <form action="{{ url('/app/sistem/asatidz') }}" method="post" id="tambahPengajar" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="modal-body">
-                    @csrf
                     <div class="form-group">
                         <label for="nama"> Nama </label>
-                        <input type="text" name="nama" id="nama" class="form-control input-sm" placeholder="Masukkan Nama">
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"> Email </label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
+                                <input type="text" class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="jenis_kelamin"> Jenis Kelamin </label>
-                                <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                                     <option value="">- Pilih -</option>
                                     <option value="L">Laki - Laki</option>
                                     <option value="P">Perempuan</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="no_hp"> No. HP </label>
-                                <input type="text" name="telepon" id="telepon" class="form-control" placeholder="Masukkan No. HP">
-                            </div>
-                        </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="tempat_lahir"> Tempat Lahir </label>
-                                <input type="text" class="form-control" id="tempat_lahir" placeholder="Masukkan Tempat Lahir" name="tempat_lahir">
+                                <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Masukkan Tempat Lahir">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="tanggal_lahir"> Tanggal Lahir </label>
-                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
+                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="alamat"> Alamat </label>
-                        <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
+                        <label for="no_hp"> No. HP </label>
+                        <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP">
                     </div>
                     <div class="form-group">
-                        <img class="gambar-preview img-fluid" id="tampilGambar">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="gambar" name="gambar" onchange="previewImage()">
-                            <label class="custom-file-label" for="gambar">Upload Gambar</label>
-                        </div>
+                        <label for="alamat"> Alamat </label>
+                        <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Alamat"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="gambar"> Gambar </label>
+                        <input type="file" class="form-control" name="gambar" id="gambar">
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
@@ -154,7 +170,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/pengajar/simpan') }}" method="post" enctype="multipart/form-data" id="editPengajar">
+            <form action="{{ url('/app/sistem/asatidz/simpan') }}" method="post" enctype="multipart/form-data" id="editPengajar">
                 @method("PUT")
                 @csrf
                 <div class="modal-body" id="modal-content-edit">
@@ -198,7 +214,7 @@
     function editDataAsatidz(id)
     {
         $.ajax({
-            url : "{{ url('/app/sistem/pengajar/edit') }}",
+            url : "{{ url('/app/sistem/asatidz/edit') }}",
             type : "GET",
             data : { id : id },
             success : function(data) {

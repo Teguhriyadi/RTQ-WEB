@@ -2,71 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminCabang;
-use App\Models\Cabang;
+use App\Models\Santri;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdminCabangController extends Controller
+class SantriController extends Controller
 {
     public function index()
     {
         $data = [
-            "data_admin_cabang" => AdminCabang::orderBy("id", "ASC")->get(),
-            "data_cabang" => Cabang::count(),
-            "cabang" => Cabang::orderBy("id", "ASC")->get()
+            "data_santri" => Santri::orderBy("id")->get()
         ];
 
-        return view("app.super_admin.admin_cabang.v_index", $data);
+        return view("app.administrator.santri.v_index", $data);
     }
 
     public function store(Request $request)
     {
-
-        if ($request->file("gambar")) {
-            $data = $request->file("gambar")->store("admin_cabang");
-        }
-
         $user = new User;
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("admincabang");
+        $user->password = bcrypt("santri_".$request->no_hp);
         $user->alamat = $request->alamat;
-        $user->id_role = 2;
+        $user->id_role = 4;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
-        $user->gambar = $data;
         $user->save();
 
-        $admin_cabang = new AdminCabang;
+        $santri = new Santri;
 
-        $admin_cabang->id = $user->id;
-        $admin_cabang->pendidikan_terakhir = $request->pendidikan_terakhir;
-        $admin_cabang->id_cabang = $request->id_cabang;
-        $admin_cabang->save();
+        $santri->id = $user->id;
+        $santri->nama_ayah = $request->nama_ayah;
+        $santri->nama_ibu = $request->nama_ibu;
+        $santri->id_cabang = Auth::user()->getAdminCabang->id;
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
+        $santri->save();
+
+        return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
     }
 
     public function edit(Request $request)
     {
         $data = [
-            "edit" => AdminCabang::where("id", $request->id)->first(),
-            "cabang" => Cabang::orderBy("id", "ASC")->get()
+            "edit" => Santri::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.admin_cabang.v_edit", $data);
+        return view("app.administrator.santri.v_edit", $data);
     }
 
     public function update(Request $request)
     {
-        AdminCabang::where("id", $request->id)->update([
-            "pendidikan_terakhir" => $request->pendidikan_terakhir,
-            "id_cabang" => $request->id_cabang
+        Santri::where("id", $request->id)->update([
+            "nama_ayah" => $request->nama_ayah,
+            "nama_ibu" => $request->nama_ibu
         ]);
 
         User::where("id", $request->id)->update([
@@ -84,7 +77,7 @@ class AdminCabangController extends Controller
 
     public function destroy($id)
     {
-        AdminCabang::where("id", $id)->delete();
+        Santri::where("id", $id)->delete();
 
         User::where("id", $id)->delete();
 

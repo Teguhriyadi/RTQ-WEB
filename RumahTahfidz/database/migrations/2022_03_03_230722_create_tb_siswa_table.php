@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_siswa', function (Blueprint $table) {
-            $table->id();
-            $table->string("nama", 100)->nullable();
-            $table->enum("jenis_kelamin", ["L", "P"]);
-            $table->text("alamat");
-            $table->string("gambar")->nullable();
+        Schema::create('tb_santri', function (Blueprint $table) {
+            $table->integer("id")->primary();
             $table->string("nama_ayah", 100)->nullable();
             $table->string("nama_ibu", 100)->nullable();
-            $table->string("no_hp", 30);
             $table->integer("id_cabang");
             $table->timestamps();
         });

@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_pengajar', function (Blueprint $table) {
-            $table->id();
-            $table->string("nama", 50);
-            $table->enum("jenis_kelamin", ["L", "P"]);
-            $table->text("alamat");
-            $table->string("telepon", 30);
+        Schema::create('tb_asatidz', function (Blueprint $table) {
+            $table->integer("id")->primary();
+            $table->string("pendidikan_terakhir", 100);
             $table->timestamps();
         });
     }

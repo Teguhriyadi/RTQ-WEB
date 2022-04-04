@@ -7,14 +7,16 @@ use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PengajarController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ProfilUserController;
+use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,12 +84,20 @@ Route::prefix("app")->group(function() {
             Route::group(["middleware" => ["can:admin"]], function() {
 
                 // Data Siswa
-                Route::resource("/siswa", SiswaController::class);
+                Route::get("/santri/edit", [SantriController::class, "edit"]);
+                Route::put("/santri/simpan", [SantriController::class, "update"]);
+                Route::resource("/santri", SantriController::class);
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
 
                 // Data Pengajar
-                Route::get("/pengajar/edit", [PengajarController::class, "edit"]);
-                Route::resource("/pengajar", PengajarController::class);
+                Route::get("/asatidz/edit", [AsatidzController::class, "edit"]);
+                Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
+                Route::resource("/asatidz", AsatidzController::class);
+
+                // Data Profil User
+                Route::get("/profil_user", [ProfilUserController::class, "index"]);
+                Route::put("/profil_user/simpan_gambar_profil", [ProfilUserController::class, "simpan_gambar_profil"]);
+                Route::put("/profil_user/ganti_password", [ProfilUserController::class, "ganti_password"]);
 
             });
             Route::get("/home", [AppController::class, "home"]);
