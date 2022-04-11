@@ -58,7 +58,7 @@ $data = Profil::select("nama", "singkatan")->first();
                     <i class="fa fa-book"></i>
                     <span>Absensi</span>
                 </a>
-            </li>   
+            </li>
             @endcan
             @can("super_admin")
             <li class="{{ Request::segment(3)=="admin_cabang" ? "active" : "" }}">
@@ -95,6 +95,12 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Jenjang</span>
                 </a>
             </li>
+            <li class="{{ Request::segment(3)=='profil_user' ? 'active' : ''}}">
+                <a class="nav-link" href="{{ url('/app/sistem/profil_user') }}">
+                    <i class="far fa-edit"></i>
+                    <span>Kategori Penilaian</span>
+                </a>
+            </li>
             <li class="{{ Request::segment(3)=='role' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/sistem/role') }}">
                     <i class="far fa-user"></i>
@@ -120,6 +126,7 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Profil User</span>
                 </a>
             </li>
+
             <li class="{{ Request::segment(3)=='informasi_login' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/sistem/informasi_login') }}">
                     <i class="fa fa-key"></i>

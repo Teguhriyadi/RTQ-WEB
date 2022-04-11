@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("nama_ayah", 100)->nullable();
             $table->string("nama_ibu", 100)->nullable();
             $table->integer("id_cabang");
+            $table->integer("id_jenjang");
             $table->timestamps();
         });
     }

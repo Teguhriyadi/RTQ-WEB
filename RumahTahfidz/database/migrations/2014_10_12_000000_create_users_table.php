@@ -26,6 +26,7 @@ return new class extends Migration
             $table->date("tanggal_lahir")->nullable();
             $table->string("jenis_kelamin")->enum("L", "P");
             $table->string("token")->nullable();
+            $table->string("status")->enum("1", "0")->default(1);
             $table->timestamps();
         });
     }
