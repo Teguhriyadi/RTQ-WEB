@@ -18,6 +18,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
+use App\Http\Controllers\WaliSantriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -93,6 +94,10 @@ Route::prefix("app")->group(function() {
                 Route::get("/asatidz/edit", [AsatidzController::class, "edit"]);
                 Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
                 Route::resource("/asatidz", AsatidzController::class);
+
+                Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
+                Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
+                Route::resource("/wali_santri", WaliSantriController::class);
 
                 // Data Profil User
                 Route::get("/profil_user", [ProfilUserController::class, "index"]);
