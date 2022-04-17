@@ -14,9 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_santri', function (Blueprint $table) {
-            $table->integer("id")->primary();
-            $table->string("nama_ayah", 100)->nullable();
-            $table->string("nama_ibu", 100)->nullable();
+            $table->integer("id");
+            $table->string("nama_lengkap", 100);
+            $table->string("nama_panggilan", 50);
+            $table->string("tempat_lahir", 50);
+            $table->date("tanggal_lahir");
+            $table->text("alamat");
+            $table->string("prestasi_anak", 100);
+            $table->string("sekolah", 50);
+            $table->integer("id_kelas");
             $table->integer("id_cabang");
             $table->integer("id_jenjang");
             $table->timestamps();
