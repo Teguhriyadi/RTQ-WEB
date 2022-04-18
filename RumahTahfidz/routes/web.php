@@ -10,6 +10,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\WaliSantriController;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Row;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +54,11 @@ Route::prefix("app")->group(function() {
 
         Route::group(["middleware" => "autentikasi"], function() {
             Route::group(["middleware" => ["can:super_admin"]], function() {
+
+                // Data Kelas
+                Route::get("/kelas/edit", [KelasController::class, "edit"]);
+                Route::put("/kelas/simpan", [KelasController::class, "update"]);
+                Route::resource("/kelas", KelasController::class);
 
                 // Data Role
                 Route::get("/role/edit", [RoleController::class, "edit"]);
@@ -87,7 +94,9 @@ Route::prefix("app")->group(function() {
                 // Data Siswa
                 Route::get("/santri/edit", [SantriController::class, "edit"]);
                 Route::put("/santri/simpan", [SantriController::class, "update"]);
+                Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
                 Route::resource("/santri", SantriController::class);
+
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
 
                 // Data Pengajar

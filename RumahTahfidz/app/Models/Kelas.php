@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     use HasFactory;
+
+    protected $table = "tb_kelas";
+
+    protected $guarded = [''];
+
+    public $timestamps = false;
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Santri;
 use App\Models\User;
+use App\Models\WaliSantri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,5 +83,14 @@ class SantriController extends Controller
         User::where("id", $id)->delete();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus!', 'success')</script>");
+    }
+
+    public function tambah_data_santri(Request $request)
+    {
+        $data = [
+            "data_wali" => WaliSantri::where("id", $request->id)->first()
+        ];
+
+        return view("app.administrator.wali_santri.v_tambah_santri", $data);
     }
 }

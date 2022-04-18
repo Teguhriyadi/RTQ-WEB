@@ -34,8 +34,8 @@
                                     <th class="text-center">No.</th>
                                     <th>NIK</th>
                                     <th>Nama</th>
-                                    <th class="text-center">No. HP</th>
                                     <th class="text-center">Jenis Kelamin</th>
+                                    <th class="text-center">No. HP</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -57,6 +57,9 @@
                                     </td>
                                     <td class="text-center">{{ $wali->getUser->no_hp }}</td>
                                     <td class="text-center">
+                                        <button onclick="tambahDataSantri({{ $wali->id }})" type="button" class="btn btn-success" id="btnTambahSantri" data-target="#modalTambahSantri" data-toggle="modal">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
                                         <button onclick="editDataWali({{ $wali->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">
                                             <i class="fa fa-edit"></i>
                                         </button>
@@ -202,6 +205,37 @@
 </div>
 <!-- END -->
 
+<!-- Tambah Data Santri -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modalTambahSantri">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fa fa-plus"></i> Tambah Data
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST">
+                {{ csrf_field() }}
+                <div class="modal-body" id="modal-content-tambah-santri">
+
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Kembali
+                    </button>
+                    <button type="submit" class="btn btn-success" id="btn-edit">
+                        <i class="fa fa-save"></i> Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END -->
+
 @endsection
 
 @section("app_scripts")
@@ -233,6 +267,19 @@
             data : { id : id },
             success : function(data) {
                 $("#modal-content-edit").html(data);
+                return true;
+            }
+        });
+    }
+
+    function tambahDataSantri(id)
+    {
+        $.ajax({
+            url : "{{ url('/app/sistem/santri/tambah_data_santri') }}",
+            type : "GET",
+            data : { id : id },
+            success : function(data) {
+                $("#modal-content-tambah-santri").html(data)
                 return true;
             }
         });

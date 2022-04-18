@@ -73,6 +73,12 @@ $data = Profil::select("nama", "singkatan")->first();
                     <span>Admin Cabang</span>
                 </a>
             </li>
+            <li class="{{ Request::segment(3)=="kelas" ? "active" : "" }}">
+                <a class="nav-link" href="{{ url('/app/sistem/kelas') }}">
+                    <i class="fa fa-bars"></i>
+                    <span>Kelas</span>
+                </a>
+            </li>
             @endcan
             <li class="menu-header"> Web </li>
             <li class="{{ Request::segment(3) == "profil" ? "active" : "" }}">
