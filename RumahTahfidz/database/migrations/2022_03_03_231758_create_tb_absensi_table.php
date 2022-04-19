@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer("id")->primary();
             $table->foreignId("id_siswa");
             $table->text("keterangan")->nullable();
-            $table->tinyInteger("status_absen");
-            $table->integer("id_pengajar");
+            $table->integer("id_status_absen");
+            $table->integer("id_asatidz");
             $table->timestamps();
         });
     }

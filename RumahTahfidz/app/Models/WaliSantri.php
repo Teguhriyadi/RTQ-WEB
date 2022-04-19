@@ -5,21 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Santri extends Model
+class WaliSantri extends Model
 {
     use HasFactory;
 
-    protected $table = "tb_santri";
+    protected $table = "tb_wali_santri";
 
     protected $guarded = [''];
+
+    public $timestamps = false;
 
     public function getUser()
     {
         return $this->belongsTo("App\Models\User", "id", "id");
-    }
-
-    public function getWali()
-    {
-        return $this->belongsTo("App\Models\WaliSantri", "id_wali", "id");
     }
 }

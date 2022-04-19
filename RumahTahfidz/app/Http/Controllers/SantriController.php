@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Santri;
 use App\Models\User;
+use App\Models\WaliSantri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,5 +84,33 @@ class SantriController extends Controller
         User::where("id", $id)->delete();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus!', 'success')</script>");
+    }
+
+    public function tambah_data_santri(Request $request)
+    {
+        $data = [
+            "data_wali" => WaliSantri::where("id", $request->id)->first(),
+            "data_kelas" => Kelas::all()
+        ];
+
+        return view("app.administrator.wali_santri.v_tambah_santri", $data);
+    }
+
+    public function tambah_santri_by_wali(Request $request)
+    {
+        Santri::create([
+            "nama_lengkap" => $request->nama_lengkap,
+            "nama_panggilan" => $request->nama_panggilan,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir,
+            "alamat" => $request->alamat,
+            "prestasi_anak" => $request->prestasi_anak,
+            "sekolah" => $request->sekolah,
+            "id_kelas" => $request->id_kelas,
+            "id_cabang" => Auth::user()->getAdminCabang->id,
+            "id_wali" => $request->id_wali
+        ]);
+
+        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>");
     }
 }

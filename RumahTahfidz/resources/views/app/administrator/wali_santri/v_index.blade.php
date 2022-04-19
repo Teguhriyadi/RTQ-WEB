@@ -1,6 +1,6 @@
 @extends(".app.layouts.template")
 
-@section("app_title", "Data Siswa")
+@section("app_title", "Data Wali Santri")
 
 @section("app_content")
 
@@ -25,9 +25,6 @@
                     <button type="button" class="btn btn-primary" id="btnTambah" data-target="#modalTambah" data-toggle="modal">
                         <i class="fa fa-plus"></i> Tambah Data
                     </button>
-                    <button type="button" class="btn btn-success" id="btnEsxcel" data-target="#modalExcel" data-toggle="modal">
-                        Import Excel
-                    </button>
                 </div>
                 <div class="card-body">
                     <div class="table table-responsive">
@@ -35,37 +32,48 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
+                                    <th>NIK</th>
                                     <th>Nama</th>
-                                    <th>Email</th>
-                                    <th class="text-center">No. HP</th>
                                     <th class="text-center">Jenis Kelamin</th>
-                                    <th>Nama Wali</th>
+                                    <th class="text-center">No. HP</th>
+                                    <th class="text-center">Jumlah Anak</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no = 0 @endphp
-                                @foreach ($data_santri as $santri)
+                                @foreach ($data_wali as $wali)
                                 <tr>
                                     <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $santri->getUser->nama }}</td>
-                                    <td>{{ $santri->getUser->email }}</td>
-                                    <td class="text-center">{{ $santri->getUser->no_hp }}</td>
+                                    <td>{{ $wali->nik }}</td>
+                                    <td>{{ $wali->getUser->nama }}</td>
                                     <td class="text-center">
-                                        @if ($santri->getUser->jenis_kelamin == "L")
-                                        Laki - Laki
-                                        @elseif($santri->getUser->jenis_kelamin == "P")
-                                        Perempuan
+                                        @if ($wali->getUser->jenis_kelamin == "L")
+                                            Laki - Laki
+                                        @elseif($wali->getUser->jenis_kelamin == "P")
+                                            Perempuan
+                                        @else
+                                            Tidak Ada
                                         @endif
                                     </td>
-                                    <td>{{ $santri->getWali->getUser->nama }}</td>
+                                    <td class="text-center">{{ $wali->getUser->no_hp }}</td>
                                     <td class="text-center">
-                                        <button onclick="editDataSantri({{ $santri->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">
+                                        @php
+                                            $count = $data_santri->where("id_wali", $wali->id)->count();
+                                            echo $count;
+                                        @endphp
+                                    </td>
+                                    <td class="text-center">
+                                        <button onclick="tambahDataSantri({{ $wali->id }})" type="button" class="btn btn-success" id="btnTambahSantri" data-target="#modalTambahSantri" data-toggle="modal">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                        <button onclick="editDataWali({{ $wali->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">
                                             <i class="fa fa-edit"></i>
                                         </button>
-                                        <form action="{{ url('/app/sistem/santri/'.$santri->id) }}" method="POST" style="display: inline">
+                                        <form action="{{ url('/app/sistem/wali_santri/'.$wali->id) }}" method="POST" style="display: inline;">
                                             @method("DELETE")
                                             @csrf
+                                            <input type="hidden" name="id" value="{{ $wali->id }}">
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -94,9 +102,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('app/sistem/santri') }}" method="post" id="tambahSiswa" enctype="multipart/form-data">
+            <form action="{{ url('app/sistem/wali_santri') }}" method="post" id="wali_santri" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nik"> NIK </label>
+                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Masukkan NIK">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nama"> No. KK </label>
+                                <input type="text" class="form-control" name="no_kk" id="no_kk" placeholder="Masukkan No. KK">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="nama"> Nama </label>
                         <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
@@ -137,20 +159,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nama_ayah"> Nama Ayah </label>
-                                <input type="text" class="form-control" name="nama_ayah" id="nama_ayah" placeholder="Masukkan Nama Ayah">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nama_ibu"> Nama Ibu </label>
-                                <input type="text" class="form-control" name="nama_ibu" id="nama_ibu" placeholder="Masukkan Nama Ibu">
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="alamat"> Alamat </label>
                         <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Alamat"></textarea>
@@ -184,7 +192,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/santri/simpan') }}" method="POST">
+            <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST">
                 @method("PUT")
                 {{ csrf_field() }}
                 <div class="modal-body" id="modal-content-edit">
@@ -204,8 +212,8 @@
 </div>
 <!-- END -->
 
-<!-- Excel Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalExcel">
+<!-- Tambah Data Santri -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modalTambahSantri">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -216,16 +224,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('app/sistem/siswa/import') }}" method="post" id="tambahSiswa" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="">Import Excel</label>
-                        <input type="file" class="form-control" name="importSantri">
-                    </div>
+            <form action="{{ url('/app/sistem/santri/tambah_santri_by_wali') }}" method="POST">
+                {{ csrf_field() }}
+                <div class="modal-body" id="modal-content-tambah-santri">
+
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Kembali
+                    </button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
@@ -259,14 +266,27 @@
         }
     }
 
-    function editDataSantri(id)
+    function editDataWali(id)
     {
         $.ajax({
-            url : "{{ url('/app/sistem/santri/edit') }}",
+            url : "{{ url('/app/sistem/wali_santri/edit') }}",
             type : "GET",
             data : { id : id },
             success : function(data) {
                 $("#modal-content-edit").html(data);
+                return true;
+            }
+        });
+    }
+
+    function tambahDataSantri(id)
+    {
+        $.ajax({
+            url : "{{ url('/app/sistem/santri/tambah_data_santri') }}",
+            type : "GET",
+            data : { id : id },
+            success : function(data) {
+                $("#modal-content-tambah-santri").html(data)
                 return true;
             }
         });

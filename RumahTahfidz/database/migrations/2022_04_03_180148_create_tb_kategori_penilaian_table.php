@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_status_absen', function (Blueprint $table) {
+        Schema::create('tb_kategori_penilaian', function (Blueprint $table) {
             $table->id();
-            $table->string("keterangan_absen", 20);
-            $table->timestamps();
+            $table->string("kategori_penilaian", 50);
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_status_absen');
+        Schema::dropIfExists('tb_kategori_penilaian');
     }
 };
