@@ -39,6 +39,7 @@
                                     <th>Email</th>
                                     <th class="text-center">No. HP</th>
                                     <th class="text-center">Jenis Kelamin</th>
+                                    <th>Nama Wali</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -57,6 +58,7 @@
                                         Perempuan
                                         @endif
                                     </td>
+                                    <td>{{ $santri->getWali->getUser->nama }}</td>
                                     <td class="text-center">
                                         <button onclick="editDataSantri({{ $santri->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">
                                             <i class="fa fa-edit"></i>

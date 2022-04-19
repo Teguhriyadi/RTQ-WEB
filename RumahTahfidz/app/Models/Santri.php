@@ -17,4 +17,9 @@ class Santri extends Model
     {
         return $this->belongsTo("App\Models\User", "id", "id");
     }
+
+    public function getWali()
+    {
+        return $this->belongsTo("App\Models\WaliSantri", "id_wali", "id");
+    }
 }
