@@ -24,22 +24,39 @@ $data = Profil::select("nama", "singkatan")->first();
         </div>
 
         <ul class="sidebar-menu">
-            <li class="menu-header">Home</li>
-            <li class="dropdown {{ Request::segment(3) == "home" ? "active" : "" }}">
+            <li class="{{ Request::segment(3) == "home" ? "active" : "" }}">
                 <a href="{{ url('/app/sistem/home') }}" class="nav-link">
                     <i class="fa fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
-            <li class="menu-header">Menu</li>
+            @can('santri')
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fa fa-list"></i>
+                    <span>Rekap Penilaian</span>
+                </a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+                    <li><a class="nav-link" href="">Tadribat</a></li>
+                    <li><a class="nav-link" href="">Hafalan</a></li>
+                    <li><a class="nav-link" href="">Imla</a></li>
+                    <li><a class="nav-link" href="">Iman Adab</a></li>
+                    <li><a class="nav-link" href="">Mulok</a></li>
                 </ul>
             </li>
+            <li class="{{ Request::segment(3)=='rekap_absensi' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/app/sistem/rekap_absensi') }}">
+                    <i class="fa fa-book"></i>
+                    <span>Rekap Absensi</span>
+                </a>
+            </li>
+            <li class="{{ Request::segment(3)=='rekap_iuran' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/app/sistem/rekap_iuran') }}">
+                    <i class="fa fa-money"></i>
+                    <span>Rekap Iuran</span>
+                </a>
+            </li>
+            @endcan
             @can("admin")
             <li class="{{ Request::segment(3) == "santri" ? "active" : "" }}">
                 <a class="nav-link" href="{{ url('/app/sistem/santri') }}">
@@ -58,7 +75,7 @@ $data = Profil::select("nama", "singkatan")->first();
                     <i class="fa fa-book"></i>
                     <span>Absensi</span>
                 </a>
-            </li>   
+            </li>
             @endcan
             @can("super_admin")
             <li class="{{ Request::segment(3)=="admin_cabang" ? "active" : "" }}">
@@ -68,14 +85,6 @@ $data = Profil::select("nama", "singkatan")->first();
                 </a>
             </li>
             @endcan
-            <li class="menu-header"> Web </li>
-            <li class="{{ Request::segment(3) == "profil" ? "active" : "" }}">
-                <a class="nav-link" href="{{ url('/app/sistem/profil') }}">
-                    <i class="fa fa-search"></i>
-                    <span>Profil</span>
-                </a>
-            </li>
-            <li class="menu-header">Settings</li>
             @can("super_admin")
             <li class="{{ Request::segment(3) == "status_absen" ? "active" : "" }}">
                 <a class="nav-link" href="{{ url('/app/sistem/status_absen') }}">
@@ -108,16 +117,24 @@ $data = Profil::select("nama", "singkatan")->first();
                 </a>
             </li>
             @endcan
+            @can('super_admin')
             <li class="{{ Request::segment(3)=='pesan' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/sistem/pesan') }}">
                     <i class="fa fa-book"></i>
                     <span>Pesan</span>
                 </a>
             </li>
-            <li class="{{ Request::segment(3)=='profil_user' ? 'active' : ''}}">
+            @endcan
+            {{-- <li class="{{ Request::segment(3)=='profil_user' ? 'active' : ''}}">
                 <a class="nav-link" href="{{ url('/app/sistem/profil_user') }}">
                     <i class="far fa-user"></i>
                     <span>Profil User</span>
+                </a>
+            </li> --}}
+            <li class="{{ Request::segment(3) == "profil" ? "active" : "" }}">
+                <a class="nav-link" href="{{ url('/app/sistem/profil') }}">
+                    <i class="fa fa-user"></i>
+                    <span>Profil</span>
                 </a>
             </li>
             <li class="{{ Request::segment(3)=='informasi_login' ? 'active' : '' }}">
@@ -128,10 +145,5 @@ $data = Profil::select("nama", "singkatan")->first();
             </li>
         </ul>
 
-        <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-            </a>
-        </div>
     </aside>
 </div>

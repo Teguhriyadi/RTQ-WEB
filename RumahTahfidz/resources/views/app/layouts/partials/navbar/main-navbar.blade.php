@@ -65,6 +65,7 @@
         </div>
     </form>
     <ul class="navbar-nav navbar-right">
+        @can('super_admin')
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
                 <div class="dropdown-header">
@@ -72,14 +73,12 @@
                 </div>
                 <div class="dropdown-list-content dropdown-list-message">
                     <?php
-                        use App\Models\Pesan;
-                        use Carbon\Carbon;
-                        $data_pesan = Pesan::paginate(3);
+                        $data_pesan = App\Models\Pesan::paginate(3);
                     ?>
 
                     @foreach($data_pesan as $data)
                     @php
-                        $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at);
+                        $dataTime = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at);
                     @endphp
                     <a href="#" class="dropdown-item dropdown-item-unread">
                         <div class="dropdown-item-avatar">
@@ -103,6 +102,7 @@
                 </div>
             </div>
         </li>
+        @endcan
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 @if (Auth::user()->gambar == NULL)
@@ -114,15 +114,12 @@
                 <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->nama }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
-                <a href="features-profile.html" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+                <div class="dropdown-title">{{ $dataTime->diffForHumans() }}</div>
+                <a href="{{ url('/app/sistem/profil') }}" class="dropdown-item has-icon">
+                    <i class="far fa-user"></i> Profil
                 </a>
-                <a href="features-activities.html" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> Activities
-                </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
+                <a href="{{ url('/app/sistem/informasi_login') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-bolt"></i> Informasi Login
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" onclick="logout()" class="dropdown-item has-icon text-danger">
