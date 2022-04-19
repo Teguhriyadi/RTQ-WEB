@@ -1,6 +1,6 @@
 @extends(".app.layouts.template")
 
-@section("app_title", "Data Siswa")
+@section("app_title", "Data Santri")
 
 @section("app_content")
 
@@ -22,12 +22,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <button type="button" class="btn btn-primary" id="btnTambah" data-target="#modalTambah" data-toggle="modal">
-                        <i class="fa fa-plus"></i> Tambah Data
-                    </button>
-                    <button type="button" class="btn btn-success" id="btnEsxcel" data-target="#modalExcel" data-toggle="modal">
-                        Import Excel
-                    </button>
+                    <i class="fa fa-users"></i>
                 </div>
                 <div class="card-body">
                     <div class="table table-responsive">
@@ -81,96 +76,6 @@
         </div>
     </div>
 </section>
-
-<!-- Tambah Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalTambah">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="fa fa-plus"></i> Tambah Data
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ url('app/sistem/santri') }}" method="post" id="tambahSiswa" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="nama"> Nama </label>
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
-                    </div>
-                    <div class="form-group">
-                        <label for="email"> Email </label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="no_hp"> No. HP </label>
-                                <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="jenis_kelamin"> Jenis Kelamin </label>
-                                <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
-                                    <option value="">- Pilih -</option>
-                                    <option value="L">Laki - Laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="tempat_lahir"> Tempat Lahir </label>
-                                <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Masukkan Tempat Lahir">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="tanggal_lahir"> Tanggal Lahir </label>
-                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nama_ayah"> Nama Ayah </label>
-                                <input type="text" class="form-control" name="nama_ayah" id="nama_ayah" placeholder="Masukkan Nama Ayah">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nama_ibu"> Nama Ibu </label>
-                                <input type="text" class="form-control" name="nama_ibu" id="nama_ibu" placeholder="Masukkan Nama Ibu">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat"> Alamat </label>
-                        <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Alamat"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="gambar"> Gambar </label>
-                        <input type="file" class="form-control" name="gambar" id="gambar">
-                    </div>
-                </div>
-                <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
-                    <button type="submit" class="btn btn-primary" id="btn-tambah">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- END -->
 
 <!-- Edit Data -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
