@@ -51,7 +51,8 @@ class SantriController extends Controller
     public function edit(Request $request)
     {
         $data = [
-            "edit" => Santri::where("id", $request->id)->first()
+            "edit" => Santri::where("id", $request->id)->first(),
+            "data_kelas" => Kelas::all()
         ];
 
         return view("app.administrator.santri.v_edit", $data);
@@ -60,18 +61,14 @@ class SantriController extends Controller
     public function update(Request $request)
     {
         Santri::where("id", $request->id)->update([
-            "nama_ayah" => $request->nama_ayah,
-            "nama_ibu" => $request->nama_ibu
-        ]);
-
-        User::where("id", $request->id)->update([
-            "nama" => $request->nama,
-            "email" => $request->email,
-            "alamat" => $request->alamat,
-            "no_hp" => $request->no_hp,
+            "nama_lengkap" => $request->nama_lengkap,
+            "nama_panggilan" => $request->nama_panggilan,
             "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tanggal_lahir,
-            "jenis_kelamin" => $request->jenis_kelamin
+            "tanggal_lahir" => $request->tempat_lahir,
+            "alamat" => $request->alamat,
+            "prestasi_anak" => $request->prestasi_anak,
+            "sekolah" => $request->sekolah,
+            "id_kelas" => $request->id_kelas
         ]);
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
