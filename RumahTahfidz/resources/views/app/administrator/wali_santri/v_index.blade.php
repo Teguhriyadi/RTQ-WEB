@@ -36,6 +36,7 @@
                                     <th>Nama</th>
                                     <th class="text-center">Jenis Kelamin</th>
                                     <th class="text-center">No. HP</th>
+                                    <th class="text-center">Jumlah Anak</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -56,6 +57,12 @@
                                         @endif
                                     </td>
                                     <td class="text-center">{{ $wali->getUser->no_hp }}</td>
+                                    <td class="text-center">
+                                        @php
+                                            $count = $data_santri->where("id_wali", $wali->id)->count();
+                                            echo $count;
+                                        @endphp
+                                    </td>
                                     <td class="text-center">
                                         <button onclick="tambahDataSantri({{ $wali->id }})" type="button" class="btn btn-success" id="btnTambahSantri" data-target="#modalTambahSantri" data-toggle="modal">
                                             <i class="fa fa-plus"></i>
@@ -217,7 +224,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST">
+            <form action="{{ url('/app/sistem/santri/tambah_santri_by_wali') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="modal-body" id="modal-content-tambah-santri">
 
@@ -226,8 +233,8 @@
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button type="submit" class="btn btn-success" id="btn-edit">
-                        <i class="fa fa-save"></i> Simpan
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> Tambah
                     </button>
                 </div>
             </form>

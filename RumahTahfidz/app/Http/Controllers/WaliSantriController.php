@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Santri;
 use App\Models\User;
 use App\Models\WaliSantri;
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ class WaliSantriController extends Controller
     public function index()
     {
         $data = [
-            "data_wali" => WaliSantri::orderBy("id")->get()
+            "data_wali" => WaliSantri::orderBy("id")->get(),
+            "data_santri" => Santri::get()
         ];
 
         return view("/app/administrator/wali_santri/v_index", $data);

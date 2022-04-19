@@ -95,6 +95,7 @@ Route::prefix("app")->group(function() {
                 Route::get("/santri/edit", [SantriController::class, "edit"]);
                 Route::put("/santri/simpan", [SantriController::class, "update"]);
                 Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
+                Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
                 Route::resource("/santri", SantriController::class);
 
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
