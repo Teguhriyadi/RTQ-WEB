@@ -1,3 +1,9 @@
+@php
+    $terakhirLogin = \App\Models\TerakhirLogin::where("id_user", auth()->user()->id)->get();
+    foreach ($terakhirLogin as $tl) {
+        $record = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $tl->created_at);
+    }
+@endphp
 <nav class="navbar navbar-expand-lg main-navbar">
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
@@ -114,7 +120,7 @@
                 <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->nama }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">{{ $dataTime->diffForHumans() }}</div>
+                <div class="dropdown-title">{{ $record->diffForHumans() }}</div>
                 <a href="{{ url('/app/sistem/profil') }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profil
                 </a>
