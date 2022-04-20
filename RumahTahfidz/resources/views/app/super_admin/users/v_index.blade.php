@@ -36,6 +36,7 @@
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th class="text-center">Hak Akses</th>
+                                    <th class="text-center">Status</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -48,12 +49,38 @@
                                     <td>{{ $user->email }}</td>
                                     <td class="text-center">{{ $user->getRole->keterangan }}</td>
                                     <td class="text-center">
+                                        @if (Auth::user()->id == $user->id)
+                                            Tidak memiliki akses
+                                        @else
+                                            @if ($user->status == 1)
+                                            <form action="{{ url('/app/sistem/users/non_aktifkan/') }}" method="POST" style="display: inline;">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-times"></i> Non - Aktifkan
+                                                </button>
+                                            </form>
+                                            @else
+                                            <form action="{{ url('/app/sistem/users/aktifkan/') }}" method="POST" style="display: inline;">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                                <button type="submit" class="btn btn-success btn-sm">
+                                                    <i class="fa fa-arrow-up"></i> Aktifkan
+                                                </button>
+                                            </form>
+                                            @endif
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
                                         <a href="" class="btn btn-primary btn-sm">
                                             <i class="fa fa-search"></i>
                                         </a>
                                         <button class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </button>
+                                        @if (Auth::user()->id == $user->id)
+
+                                        @else
                                         <form action="" method="POST" style="display: inline">
                                             @method("DELETE")
                                             {{ csrf_field() }}
@@ -61,6 +88,8 @@
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>
+
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

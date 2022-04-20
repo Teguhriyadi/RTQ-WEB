@@ -78,4 +78,13 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function non_aktifkan(Request $request)
+    {
+        User::where("id", $request->id)->update([
+            "status" => "0"
+        ]);
+
+        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Ubah', 'success')</script>");
+    }
 }

@@ -31,6 +31,7 @@ class LoginController extends Controller
         ];
 
         if (Auth::attempt($validated)) {
+            $ambilData = Auth::aa
             TerakhirLogin::create([
                 'nama' => Auth::user()->nama,
                 'id_user' => Auth::user()->id
