@@ -31,9 +31,9 @@
                                 <tr>
                                     <th class="text-center">No.</th>
                                     <th>Nama</th>
-                                    <th>Email</th>
-                                    <th class="text-center">No. HP</th>
-                                    <th class="text-center">Jenis Kelamin</th>
+                                    <th>Sekolah</th>
+                                    <th class="text-center">Kelas</th>
+                                    <th class="text-center">Prestasi</th>
                                     <th>Nama Wali</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -43,16 +43,10 @@
                                 @foreach ($data_santri as $santri)
                                 <tr>
                                     <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $santri->getUser->nama }}</td>
-                                    <td>{{ $santri->getUser->email }}</td>
-                                    <td class="text-center">{{ $santri->getUser->no_hp }}</td>
-                                    <td class="text-center">
-                                        @if ($santri->getUser->jenis_kelamin == "L")
-                                        Laki - Laki
-                                        @elseif($santri->getUser->jenis_kelamin == "P")
-                                        Perempuan
-                                        @endif
-                                    </td>
+                                    <td>{{ $santri->nama_lengkap }}</td>
+                                    <td>{{ $santri->sekolah }}</td>
+                                    <td class="text-center">{{ $santri->getKelas->nama_kelas }}</td>
+                                    <td class="text-center">{{ $santri->prestasi_anak }}</td>
                                     <td>{{ $santri->getWali->getUser->nama }}</td>
                                     <td class="text-center">
                                         <button onclick="editDataSantri({{ $santri->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">

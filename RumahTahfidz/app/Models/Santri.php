@@ -13,13 +13,13 @@ class Santri extends Model
 
     protected $guarded = [''];
 
-    public function getUser()
-    {
-        return $this->belongsTo("App\Models\User", "id", "id");
-    }
-
     public function getWali()
     {
         return $this->belongsTo("App\Models\WaliSantri", "id_wali", "id");
+    }
+
+    public function getKelas()
+    {
+        return $this->belongsTo("App\Models\Kelas", "id_kelas", "id");
     }
 }
