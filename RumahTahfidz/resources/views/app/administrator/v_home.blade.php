@@ -1,8 +1,8 @@
 @extends("app.layouts.template")
 
-@section("app_title", "Home")
+@section('app_title', 'Home')
 
-@section("app_content")
+@section('app_content')
 
 <div class="row tile_count">
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -118,7 +118,6 @@
             </div>
         </div>
     </div>
-</div>
 
 {{--
     <section class="section">
