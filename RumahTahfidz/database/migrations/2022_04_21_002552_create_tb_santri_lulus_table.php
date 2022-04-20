@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_tahun_lulus', function (Blueprint $table) {
+        Schema::create('tb_santri_lulus', function (Blueprint $table) {
             $table->id();
+            $table->integer("id_santri");
             $table->year("tahun_lulus");
-            $table->enum("status", [1, 0])->default(0);
+            $table->integer("id_users");
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_tahun_lulus');
+        Schema::dropIfExists('tb_santri_lulus');
     }
 };

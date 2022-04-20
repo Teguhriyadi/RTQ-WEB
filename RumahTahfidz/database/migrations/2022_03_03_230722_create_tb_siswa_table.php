@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer("id_kelas");
             $table->integer("id_cabang");
             $table->integer("id_wali");
+            $table->enum("status", ["1", "0"])->default(1);
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("nik", 50);
             $table->string("no_kk", 50);
+            $table->integer("id_cabang");
         });
     }
 
