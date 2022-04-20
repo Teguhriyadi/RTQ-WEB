@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\Cabang;
 use App\Models\Role;
 use App\Models\Siswa;
 use App\Models\User;
@@ -19,7 +20,9 @@ class SantriImport implements ToCollection, withHeadingRow
     {
         foreach ($collection as $col) {
             $unix_date = ($col['tanggal_lahir'] - 25569) * 86400;
+
             $role = Role::where('keterangan', Str::headline($col['role']))->first();
+            $cabang = Cabang::where('nama_cabang', Str::headline($col['cabang']))->first();
 
             Siswa::create([
                 'nama' => $col['nama'],
@@ -39,6 +42,7 @@ class SantriImport implements ToCollection, withHeadingRow
                 'alamat' => $col['alamat'],
                 'id_role' => $role->id,
                 'no_hp' => $col['no_hp'],
+                'id_cabang' => $cabang->id,
                 'gambar' => $col['gambar'],
                 'tempat_lahir' => $col['tempat_lahir'],
                 'tanggal_lahir' => gmdate("Y-m-d", $unix_date),

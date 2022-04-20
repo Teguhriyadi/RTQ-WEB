@@ -66,13 +66,17 @@
                                         <button onclick="editDataKelas({{ $kelas->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
                                             <i class="fa fa-edit"></i>
                                         </button>
-                                        <form action="{{ url('/app/sistem/kelas/'.$kelas->id) }}" method="POST" style="display: inline;">
+                                        {{-- <form id="delete-{{ $kelas->id }}" action="{{ url('/app/sistem/kelas/'.$kelas->id) }}" method="POST" style="display: inline;"> --}}
+                                        {{-- <form id="delete-kelas" action="{{ url('/app/sistem/kelas/'.$kelas->id) }}" method="POST" style="display: inline;">
                                             @method("DELETE")
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger">
+                                            {{ csrf_field() }} --}}
+                                            {{-- <button onclick="deleteKelas('data-{{ $kelas->id }}')" class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button> --}}
+                                            <button id="deleteKelas" data-id="{{ $kelas->id }}" class="btn btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        </form>
+                                        {{-- </form> --}}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -137,8 +141,31 @@
 
     $(document).ready(function() {
         $("#table-1").dataTable();
-    })
 
+        $('body').on('click', '#deleteKelas', function () {
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form_string = "<form method=\"POST\" action=\"{{ url('/app/sistem/kelas/') }}/"+id+"\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                    form = $(form_string)
+                    form.appendTo('body');
+                    form.submit();
+                } else {
+                    Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                }
+            })
+        })
+    })
 </script>
 
 @endsection
