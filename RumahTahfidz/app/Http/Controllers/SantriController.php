@@ -64,7 +64,7 @@ class SantriController extends Controller
             "nama_lengkap" => $request->nama_lengkap,
             "nama_panggilan" => $request->nama_panggilan,
             "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir,
             "alamat" => $request->alamat,
             "prestasi_anak" => $request->prestasi_anak,
             "sekolah" => $request->sekolah,
@@ -77,8 +77,6 @@ class SantriController extends Controller
     public function destroy($id)
     {
         Santri::where("id", $id)->delete();
-
-        User::where("id", $id)->delete();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus!', 'success')</script>");
     }
