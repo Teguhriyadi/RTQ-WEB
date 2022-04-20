@@ -292,9 +292,7 @@
                     </nav>
                 </div>
             </div>
-            <!-- /top navigation -->
 
-            <!-- page content -->
             <div class="right_col" role="main">
                 <!-- top tiles -->
                 <div class="row" style="display: inline-block;">

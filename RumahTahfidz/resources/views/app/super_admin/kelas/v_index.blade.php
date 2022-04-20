@@ -4,84 +4,84 @@
 
 @section("app_content")
 
-<section class="section">
-    <div class="section-header">
-        <h1>
-            @yield("app_title")
-        </h1>
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Admin Cabang</h3>
+        </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <i class="fa fa-plus"></i>
-                        <span>Tambah Form Kelas</span>
-                    </h4>
-                </div>
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-plus"></i> Tambah Data Kelas
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
                 <form method="POST" action="{{ url('/app/sistem/kelas') }}">
                     @csrf
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="nama_kelas"> Nama Kelas </label>
-                            <input type="text" name="nama_kelas" class="form-control input-sm" id="nama_kelas" placeholder="Masukkan Nama Kelas">
-                        </div>
+                    <div class="form-group">
+                        <label for="nama_kelas"> Nama Kelas </label>
+                    <input type="text" class="form-control" name="nama_kelas" id="nama_kelas" placeholder="Masukkan Nama Kelas">
                     </div>
-                    <div class="card-footer">
-                        <button name="btn-tambah" class="btn btn-primary" type="submit">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
-                        <button name="btn-reset" class="btn btn-danger" type="reset">
-                            <i class="fa fa-times"></i> Batal
-                        </button>
-                    </div>
+                    <div class="ln_solid"></div>
+                    <button class="btn btn-danger" type="reset">
+                        <i class="fa fa-times"></i> Kembali
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> Tambah
+                    </button>
                 </form>
             </div>
         </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <i class="fa fa-bars"></i>
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="table-1">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No.</th>
-                                    <th>Keterangan</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 0 @endphp
-                                @foreach($data_kelas as $kelas)
-                                <tr>
-                                    <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $kelas->nama_kelas }}</td>
-                                    <td class="text-center">
-                                        <button onclick="editDataKelas({{ $kelas->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        {{-- <form id="delete-{{ $kelas->id }}" action="{{ url('/app/sistem/kelas/'.$kelas->id) }}" method="POST" style="display: inline;"> --}}
-                                        {{-- <form id="delete-kelas" action="{{ url('/app/sistem/kelas/'.$kelas->id) }}" method="POST" style="display: inline;">
-                                            @method("DELETE")
-                                            {{ csrf_field() }} --}}
-                                            {{-- <button onclick="deleteKelas('data-{{ $kelas->id }}')" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button> --}}
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-bars"></i> Data Kelas
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No.</th>
+                                        <th class="text-center">Nama Kelas</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 0
+                                    @endphp
+                                    @foreach ($data_kelas as $kelas)
+                                    <tr>
+                                        <td class="text-center">{{ ++$no }}.</td>
+                                        <td class="text-center">{{ $kelas->nama_kelas }}</td>
+                                        <td class="text-center">
+                                            <button onclick="editDataKelas({{ $kelas->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
                                             <button id="deleteKelas" data-id="{{ $kelas->id }}" class="btn btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        {{-- </form> --}}
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
