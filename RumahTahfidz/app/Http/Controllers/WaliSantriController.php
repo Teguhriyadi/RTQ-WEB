@@ -41,6 +41,7 @@ class WaliSantriController extends Controller
         $walisantri->id = $user->id;
         $walisantri->nik = $request->nik;
         $walisantri->no_kk = $request->no_kk;
+        $walisantri->id_cabang = Auth::user()->getAdminCabang->id_cabang;
 
         $walisantri->save();
 
