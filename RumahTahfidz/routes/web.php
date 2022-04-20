@@ -133,3 +133,7 @@ Route::prefix("app")->group(function() {
         Route::get("/logout", [LoginController::class, "logout"]);
     });
 });
+
+Route::get('coba', function () {
+    return view('coba');
+});
