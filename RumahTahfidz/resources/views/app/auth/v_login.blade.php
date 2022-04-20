@@ -1,211 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Stisla</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- General CSS Files -->
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/fontawesome/css/all.min.css">
+	<title>Login | RTQ Ulil Albab</title>
+	<link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}"/>
 
-    <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/bootstrap-social/bootstrap-social.css">
+	<!-- Fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/css/style.css">
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/css/components.css">
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+	<!-- Styles -->
+	<link rel="stylesheet" href="{{ url('build/css/laravel.css') }}">
 
-        gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA --></head>
+	<!-- Scripts -->
+    <script src="{{ url('') }}/vendors/jquery/dist/jquery.min.js"></script>
+	<script src="{{ url('build/js/laravel.js') }}"></script>
+    <script src="{{ url('sweetalert/dist/sweetalert2.all.js') }}"></script>
+</head>
+<body>
+	@if (session('message'))
+	<?= session('message') ?>
+	@endif
+	<div id="pesan"></div>
+	<div class="font-sans text-gray-900 antialiased">
+		<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+			<div>
+				<img src="{{ url('gambar/logo_ulil.png') }}" width="200">
+			</div>
+			<div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+				<form method="POST" action="{{ url('app/login') }}" onsubmit="return false;" id="form">
+					@csrf
+					<div>
+						<label class="block font-medium text-sm text-gray-700" for="no_hp">
+							No Telepon
+						</label>
+						<input  class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" id="no_hp" type="text" name="no_hp" autofocus="autofocus" value="{{ old('no_hp') }}">
+					</div>
 
-    <body>
-        <div id="app">
-            <section class="section">
-                <div class="container mt-5 pt-5">
-                    <div class="row">
-                        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                            <div class="card card-primary">
-                                <div class="card-header"><h4>Login</h4></div>
+					<div class="mt-4">
+						<label class="block font-medium text-sm text-gray-700" for="password">
+							Password
+						</label>
+						<input  class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" id="password" type="password" name="password" autocomplete="current-password">
+					</div>
 
-                                <div class="card-body">
-                                    @if(session("message"))
-                                    <div class="alert alert-success">
-                                        {{  session("message") }}
-                                    </div>
-                                    @endif
-                                    <div class="alert alert-danger" id="error-login" style="display: none;">
-                                        Login Gagal, harap periksa kembali akun anda!
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="no_hp" class="control-label">Telepon</label>
-                                        <input id="no_hp" type="number" class="form-control" name="no_hp" tabindex="1" required autofocus min="0">
-                                        <div class="invalid-feedback" id="error-no_hp">
-                                            Please fill in your Telepon
-                                        </div>
-                                    </div>
+					<div class="mt-4">
+						<input type="checkbox" onclick="lookPass()" id="look" style="cursor: pointer;">
+						<label for="look" style="cursor: pointer;">Lihat password</label>
+					</div>
 
-                                    <div class="form-group">
-                                        <label for="password" class="control-label"> Passwod </label>
-                                        <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                                        <div class="invalid-feedback" id="error-password">
-                                            Please fill in your password
-                                        </div>
-                                    </div>
+					<div class="flex items-center justify-end mt-4">
+						<button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4" id="login">
+							Login
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-                                    <div class="form-group">
-                                        <button type="submit" id="btn-login" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-5 text-muted text-center">
-                                Lupa Password Anda ?
-                                <a href="{{ url('/app/forgot-password') }}">Lupa Password</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+	<script>
+		$(document).ready(function () {
+			$("#login").click(function () {
+				let no_hp = $("#no_hp").val().trim();
+				let password = $("#password").val().trim();
+				if (no_hp == "" && password == "") {
+					$("#pesan").html(Swal.fire('Ooops!', 'No telepon dan password tidak boleh kosong!', 'error'));
+				} else if (no_hp == "") {
+					$("#pesan").html(Swal.fire('Ooops!', 'No Telepon tidak boleh kosong!', 'error'));
+				} else if (password == "") {
+					$("#pesan").html(Swal.fire('Ooops!', 'Password tidak boleh kosong!', 'error'));
+				} else {
+					document.getElementById('form').onsubmit = false;
+				}
+			})
 
-        <!-- General JS Scripts -->
-        <script src="{{ url('/template') }}/dist/assets/modules/jquery.min.js"></script>
-        <script src="{{ url('/template') }}/dist/assets/modules/popper.js"></script>
-        <script src="{{ url('/template') }}/dist/assets/modules/tooltip.js"></script>
-        <script src="{{ url('/template') }}/dist/assets/modules/bootstrap/js/bootstrap.min.js"></script>
-        <script src="{{ url('/template') }}/dist/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-        <script src="{{ url('/template') }}/dist/assets/modules/moment.min.js"></script>
-        <script src="{{ url('/template') }}/dist/assets/js/stisla.js"></script>
+		});
 
-        <!-- JS Libraies -->
+		function lookPass() {
+			let pass = document.getElementById('password');
+			if (pass.type === "password") {
+				pass.type = "text";
+			} else {
+				pass.type = "password";
+			}
+		}
+	</script>
+</body>
+</html>
 
-        <!-- Page Specific JS File -->
-
-        <!-- Template JS File -->
-        <script src="{{ url('/template') }}/dist/assets/js/scripts.js"></script>
-        <script src="{{ url('/template') }}/dist/assets/js/custom.js"></script>
-        <script src="{{ url('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
-
-        <script type="text/javascript">
-            function validasi() {
-                let no_hp = $('#no_hp').val().trim();
-                let password = $('#password').val().trim();
-
-                if (no_hp == '' && password == '') {
-                    $('#no_hp, #password').addClass('is-invalid')
-                    $('.invalid-feedback').css('display', 'block')
-                } else if (no_hp == '') {
-                    $('#no_hp').addClass('is-invalid')
-                    $('#error-no_hp').css('display', 'block')
-                } else if (password == '') {
-                    $('#password').addClass('is-invalid')
-                    $('#error-password').css('display', 'block')
-                } else {
-                    proses(no_hp, password)
-                }
-
-                $('#no_hp').change(function () {
-                    $(this).removeClass('is-invalid')
-                    $('#error-no_hp').css('display', 'none')
-                    $("#error-login").css('display', 'none')
-                })
-
-                $('#password').change(function () {
-                    $(this).removeClass('is-invalid')
-                    $('#error-password').css('display', 'none')
-                    $("#error-login").css('display', 'none')
-                })
-            }
-
-            function proses(no_hp, password) {
-
-                $.ajax({
-                    url: '{{ url("app/login") }}',
-                    type: "POST",
-                    data: {no_hp: no_hp,
-                        password: password,
-                        _token: '{{ csrf_token() }}'},
-                        success: function (respon) {
-                            let timerInterval
-                            Swal.fire({
-                                title: 'Harap tunggu',
-                                html: 'Silahkan tunggu beberapa detik.',
-                                timer: 2000,
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading()
-                                },
-                                willClose: () => {
-                                    clearInterval(timerInterval)
-                                    if (respon.status == 1) {
-                                        Swal.fire({
-                                            title: 'Selamat!',
-                                            text: 'Anda berhasil login',
-                                            icon: 'success'
-                                        }).then((result2) => {
-                                            location.href = '{{ url("app/sistem/home") }}';
-                                        })
-                                    } else {
-                                        $("#error-login").css('display', 'block');
-                                        $("#password").val('')
-                                    }
-                                }
-                            }).then((result) => {
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    if (respon.status == 1) {
-                                        Swal.fire({
-                                            title: 'Selamat!',
-                                            text: 'Anda berhasil login',
-                                            icon: 'success'
-                                        }).then((result2) => {
-                                            location.href = '{{ url("app/sistem/home") }}';
-                                        })
-                                    } else {
-                                        $("#error-login").css('display', 'block');
-                                        $("#password").val('')
-                                    }
-                                }
-                            })
-
-                        }
-                    })
-                }
-
-                $(document).ready(function () {
-                    $("#btn-login").on('click', function() {
-                        validasi();
-                    });
-
-                    $("input").on('keypress', function (e) {
-                        if(e.keyCode == 13)
-                        {
-                            validasi();
-                        }
-                    });
-
-
-                })
-
-                function cek() {
-                    $.ajax({
-                        url: 'http://127.0.0.1:8000/contoh',
-                        type: 'get',
-                        success: function (coba) {
-                            console.log(coba);
-                        }
-                    })
-                }
-                cek()
-            </script>
-
-        </body>
-        </html>

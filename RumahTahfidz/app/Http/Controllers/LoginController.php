@@ -16,21 +16,12 @@ class LoginController extends Controller
 
     public function loginProses(Request $request)
     {
-        $validasi = Validator::make($request->all(), [
+        $validasi = $request->validate([
             'no_hp' => 'required',
             'password' => 'required'
         ]);
 
-        if ($validasi->fails()) {
-            return response()->json($validasi->errors(), 400);
-        }
-
-        $validated = [
-            'no_hp' => $request->no_hp,
-            'password' => $request->password
-        ];
-
-        if (Auth::attempt($validated)) {
+        if (Auth::attempt($validasi)) {
             TerakhirLogin::create([
                 'nama' => Auth::user()->nama,
                 'id_user' => Auth::user()->id
@@ -38,15 +29,9 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return response()->json([
-                'message' => 'Login Success',
-                'status' => 1
-            ], 200);
+            return redirect()->intended('app/sistem/home');
         } else {
-            return response()->json([
-                'message' => 'Login Failed!',
-                'status' => 0
-            ], 200);
+            return back()->with('message', "<script>Swal.fire('Ooops!', 'No telepon dan password tidak cocok, harap periksa kembali!', 'error');</script>")->withInput();
         }
     }
 
@@ -58,9 +43,6 @@ class LoginController extends Controller
 
         request()->session()->regenerateToken();
 
-        return response()->json([
-            'message' => 'Logout Successful',
-            'status' => true
-        ]);
+        return redirect('app/login');
     }
 }

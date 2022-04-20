@@ -1,17 +1,20 @@
-<!-- General CSS Files -->
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/fontawesome/css/all.min.css">
+<!-- Bootstrap -->
+<link href="{{ url('') }}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="{{ url('') }}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="{{ url('') }}/vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- iCheck -->
+<link href="{{ url('') }}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
-<!-- CSS Libraries -->
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/jqvmap/dist/jqvmap.min.css">
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/weather-icon/css/weather-icons.min.css">
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/weather-icon/css/weather-icons-wind.min.css">
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/summernote/summernote-bs4.css">
+<link rel="stylesheet" href="{{ url('') }}/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
 
-<!-- Template CSS -->
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/css/style.css">
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/css/components.css">
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/datatables/datatables.min.css">
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css">
-<link rel="stylesheet" href="{{ url('jquery-validation/demo/css/cmxform.css') }}">
+<!-- bootstrap-progressbar -->
+<link href="{{ url('') }}/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+<!-- JQVMap -->
+<link href="{{ url('') }}/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+<!-- bootstrap-daterangepicker -->
+<link href="{{ url('') }}/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+<!-- Custom Theme Style -->
+<link href="{{ url('') }}/build/css/custom.min.css" rel="stylesheet">

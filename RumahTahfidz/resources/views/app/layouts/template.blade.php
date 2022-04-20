@@ -1,52 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title> Rumah Tahfidz Quran &mdash; @yield("app_title")</title>
 
-    <!-- General CSS Files -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}"/>
+
+    <title>RTQ Ulil Albab</title>
+
     @include("app.layouts.partials.css.style")
 
-    @include("app.layouts.partials.js.style")
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA -->
 </head>
 
-<body>
-
-
-    <div id="app">
-        @if(session("message"))
-        {!! session("message") !!}
-        @endif
-        <div class="main-wrapper main-wrapper-1">
-            <div class="navbar-bg"></div>
-
-            @include("app.layouts.partials.navbar.main-navbar")
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
 
             @include("app.layouts.partials.sidebar.main-sidebar")
 
-            <!-- Main Content -->
-            <div class="main-content">
+            @include("app.layouts.partials.navbar.main-navbar")
+
+            <!-- page content -->
+            <div class="right_col" role="main">
                 @yield("app_content")
             </div>
+            <!-- /page content -->
 
             @include("app.layouts.partials.footer.main-footer")
-
         </div>
     </div>
 
-    @yield("app_scripts")
+    @include("app.layouts.partials.js.style")
+
+    @yield('app_scripts')
 
     <script>
         function logout() {
