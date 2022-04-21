@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="no_hp"> No. HP </label>
+                                <labeinl for="no_hp"> No. HP </labeinl>
                                 <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP">
                             </div>
                         </div>

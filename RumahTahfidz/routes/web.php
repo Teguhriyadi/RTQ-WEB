@@ -86,6 +86,7 @@ Route::prefix("app")->group(function() {
                 Route::resource("/status_absen", StatusAbsenController::class);
 
                 // Data Users
+                Route::post("/users/non_aktifkan/", [UsersController::class, "non_aktifkan"]);
                 Route::resource("/users", UsersController::class);
             });
 
