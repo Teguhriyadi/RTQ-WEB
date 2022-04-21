@@ -4,88 +4,87 @@
 
 @section("app_content")
 
-<section class="section">
-    <div class="section-header">
-        <h1>
-            @yield("app_title")
-        </h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
-                <a href="{{ url('/app/sistem/home') }}">Home</a>
-            </div>
-            <div class="breadcrumb-item">
-                @yield("app_title")
-            </div>
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@yield("app_title")</h3>
         </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <i class="fa fa-plus"></i>
-                        <span>Tambah Form Cabang</span>
-                    </h4>
-                </div>
-                <form action="{{ url('/app/sistem/cabang') }}" method="POST">
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-plus"></i> Tambah Data Cabang
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form method="POST" action="{{ url('/app/sistem/cabang') }}">
                     @csrf
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="nama_cabang"> Nama Cabang </label>
-                            <input type="text" name="nama_cabang" class="form-control input-sm" id="nama_cabang" placeholder="Masukkan Nama Cabang">
-                        </div>
+                    <div class="form-group">
+                        <label for="nama_cabang"> Nama Cabang</label>
+                        <input type="text" class="form-control" name="nama_cabang" id="nama_cabang" placeholder="Masukkan Nama Cabang">
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
-                        <button type="reset" class="btn btn-danger">
-                            <i class="fa fa-times"></i> Batal
-                        </button>
-                    </div>
+                    <div class="ln_solid"></div>
+                    <button class="btn btn-danger" type="reset">
+                        <i class="fa fa-times"></i> Kembali
+                    </button>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-plus"></i> Tambah
+                    </button>
                 </form>
             </div>
         </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <i class="fa fa-bars"></i>
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="table-1">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No.</th>
-                                    <th>Cabang</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 0 @endphp
-                                @foreach($data_cabang as $cabang)
-                                <tr>
-                                    <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $cabang->nama_cabang }}</td>
-                                    <td class="text-center">
-                                        <button onclick="editCabang({{ $cabang->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <form action="{{ url('/app/sistem/cabang/'.$cabang->id) }}" method="POST" style="display: inline;">
-                                            @method("DELETE")
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-bars"></i> Data Cabang
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No.</th>
+                                        <th class="text-center">Cabang</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $no = 0 @endphp
+                                    @foreach($data_cabang as $cabang)
+                                    <tr>
+                                        <td class="text-center">{{ ++$no }}.</td>
+                                        <td>{{ $cabang->nama_cabang }}</td>
+                                        <td class="text-center">
+                                            <button onclick="editCabang({{ $cabang->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                                <i class="fa fa-edit"></i>
                                             </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                            <form action="{{ url('/app/sistem/cabang/'.$cabang->id) }}" method="POST" style="display: inline;">
+                                                @method("DELETE")
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,7 +93,7 @@
 </div>
 
 <!-- Edit Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
+<div class="modal fade bs-example-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -112,7 +111,7 @@
                 <div class="modal-body" id="modal-content-edit">
 
                 </div>
-                <div class="modal-footer bg-whitesmoke br">
+                <div class="modal-footer">
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
