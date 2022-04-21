@@ -10,7 +10,7 @@ class StatusAbsenController extends Controller
     public function index()
     {
         $data = [
-            "data_status" => StatusAbsen::orderBy("keterangan", "DESC")->get()
+            "data_status" => StatusAbsen::orderBy("keterangan_absen", "DESC")->get()
         ];
 
         return view("app.super_admin.status_absen.v_index", $data);
@@ -18,7 +18,7 @@ class StatusAbsenController extends Controller
 
     public function store(Request $request)
     {
-        $cek = StatusAbsen::where("keterangan", $request->keterangan)->count();
+        $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
         if ($cek > 0) {
             return redirect()->back();

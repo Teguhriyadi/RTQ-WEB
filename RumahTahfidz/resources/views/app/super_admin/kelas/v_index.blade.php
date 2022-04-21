@@ -7,7 +7,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Admin Cabang</h3>
+            <h3>Kelas</h3>
         </div>
     </div>
 </div>
@@ -90,7 +90,7 @@
 </div>
 
 <!-- Edit Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -108,7 +108,7 @@
                 <div class="modal-body" id="modal-content-edit">
 
                 </div>
-                <div class="modal-footer bg-whitesmoke br">
+                <div class="modal-footer">
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
