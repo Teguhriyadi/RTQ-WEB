@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\WaliSantri;
+use App\Models\AdminCabang;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class WaliSantriSeeder extends Seeder
+class AdminCabangSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,15 @@ class WaliSantriSeeder extends Seeder
      */
     public function run()
     {
-        WaliSantri::create([
-            "nik" => "12345",
-            "no_kk" => "7755",
+        AdminCabang::create([
+            "id" => 6,
+            "pendidikan_terakhir" => "SMK",
             "id_cabang" => 1
         ]);
 
-        WaliSantri::create([
-            "nik" => "12346",
-            "no_kk" => "7756",
+        AdminCabang::create([
+            "id" => 7,
+            "pendidikan_terakhir" => "SMA",
             "id_cabang" => 2
         ]);
     }
