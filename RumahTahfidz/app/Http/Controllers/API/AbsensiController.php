@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AbsensiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $absensi = Absensi::all();
@@ -134,5 +129,15 @@ class AbsensiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function absensi_santri()
+    {
+        return view("app.asatidz.absensi_santri.index");
+    }
+
+    public function input_absensi_santri()
+    {
+        return view("app.asatidz.absensi_santri.tambah");
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminCabangController;
+use App\Http\Controllers\API\AbsensiController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CabangController;
 use App\Http\Controllers\JenjangController;
@@ -116,6 +117,14 @@ Route::prefix("app")->group(function() {
                 Route::put("/profil_user/ganti_password", [ProfilUserController::class, "ganti_password"]);
 
             });
+
+            Route::group(["middleware" => ["can:asatidz"]], function() {
+
+                // Data Absensi Santri
+                Route::get("/input_absensi_santri", [AbsensiController::class, "input_absensi_santri"]);
+                Route::get("/absensi_santri", [AbsensiController::class, "absensi_santri"]);
+            });
+
             Route::get("/home", [AppController::class, "home"]);
 
             Route::get("/", [AppController::class, "home"]);

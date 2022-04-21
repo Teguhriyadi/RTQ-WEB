@@ -25,7 +25,8 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
             "id_cabang" => 1,
-            "id_wali" => 1
+            "id_wali" => 1,
+            "id_jenjang" => 1
         ]);
 
         Santri::create([
@@ -38,7 +39,8 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
             "id_cabang" => 1,
-            "id_wali" => 1
+            "id_wali" => 1,
+            "id_jenjang" => 1
         ]);
 
         Santri::create([
@@ -51,7 +53,8 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 2,
             "id_cabang" => 2,
-            "id_wali" => 2
+            "id_wali" => 2,
+            "id_jenjang" => 1
         ]);
     }
 }

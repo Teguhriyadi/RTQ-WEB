@@ -112,5 +112,19 @@ class UserSeeder extends Seeder
             "jenis_kelamin" => "L"
         ]);
 
+        User::create([
+            "id" => 8,
+            "nama" => "Rahul",
+            "email" => "rahul@gmail.com",
+            "password" => bcrypt("asatidz"),
+            "alamat" => "Bandung",
+            "id_role" => 3,
+            "no_hp" => "1234567",
+            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
+            "tempat_lahir" => "Cirebon",
+            "tanggal_lahir" => "2020-02-02",
+            "jenis_kelamin" => "L"
+        ]);
+
     }
 }
