@@ -1,7 +1,7 @@
 <!-- footer content -->
 <footer>
     <div class="pull-right">
-        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+        Rumah Tahfidz Quran <a href="http://rtq-freelance.my.id">RTQ Ulil</a>
     </div>
     <div class="clearfix"></div>
 </footer>
