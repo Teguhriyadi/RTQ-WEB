@@ -4,72 +4,76 @@
 
 @section("app_content")
 
-<section class="section">
-    <div class="section-header">
-        <h1>
-            @yield("app_title")
-        </h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
-                <a href="{{ url('/app/admin/home') }}">Home</a>
-            </div>
-            <div class="breadcrumb-item">
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
                 @yield("app_title")
-            </div>
+            </h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-users"></i>
-                </div>
-                <div class="card-body">
-                    <div class="table table-responsive">
-                        <table class="table table-bordered table-hover" id="table-1">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No.</th>
-                                    <th>Nama</th>
-                                    <th>Sekolah</th>
-                                    <th class="text-center">Kelas</th>
-                                    <th class="text-center">Prestasi</th>
-                                    <th>Nama Wali</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 0 @endphp
-                                @foreach ($data_santri as $santri)
-                                <tr>
-                                    <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $santri->nama_lengkap }}</td>
-                                    <td>{{ $santri->sekolah }}</td>
-                                    <td class="text-center">{{ $santri->getKelas->nama_kelas }}</td>
-                                    <td class="text-center">{{ $santri->prestasi_anak }}</td>
-                                    <td>{{ $santri->getWali->getUser->nama }}</td>
-                                    <td class="text-center">
-                                        <button onclick="editDataSantri({{ $santri->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <form action="{{ url('/app/sistem/santri/'.$santri->id) }}" method="POST" style="display: inline">
-                                            @method("DELETE")
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-users"></i> Santri
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No.</th>
+                                        <th>Nama</th>
+                                        <th>Sekolah</th>
+                                        <th class="text-center">Kelas</th>
+                                        <th class="text-center">Prestasi</th>
+                                        <th>Nama Wali</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $no = 0 @endphp
+                                    @foreach ($data_santri as $santri)
+                                    <tr>
+                                        <td class="text-center">{{ ++$no }}.</td>
+                                        <td>{{ $santri->nama_lengkap }}</td>
+                                        <td>{{ $santri->sekolah }}</td>
+                                        <td class="text-center">{{ $santri->getKelas->nama_kelas }}</td>
+                                        <td class="text-center">{{ $santri->prestasi_anak }}</td>
+                                        <td>{{ $santri->getWali->getUser->nama }}</td>
+                                        <td class="text-center">
+                                            <button onclick="editDataSantri({{ $santri->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">
+                                                <i class="fa fa-edit"></i>
                                             </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                            <form action="{{ url('/app/sistem/santri/'.$santri->id) }}" method="POST" style="display: inline">
+                                                @method("DELETE")
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <!-- Edit Data -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">

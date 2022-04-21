@@ -4,81 +4,83 @@
 
 @section("app_content")
 
-<section class="section">
-    <div class="section-header">
-        <h1>
-            @yield("app_title")
-        </h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
-                <a href="{{ url('/app/admin/home') }}">Home</a>
-            </div>
-            <div class="breadcrumb-item">
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
                 @yield("app_title")
-            </div>
+            </h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-6 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <button type="button" class="btn btn-primary" id="btnTambah" data-target="#modalTambah" data-toggle="modal">
-                        <i class="fa fa-plus"></i> Tambah Data
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="table table-responsive">
-                        <table class="table table-bordered table-hover" id="table-1">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No.</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th class="text-center">No. HP</th>
-                                    <th class="text-center">Jenis Kelamin</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 0 @endphp
-                                @foreach ($data_asatidz as $asatidz)
-                                <tr>
-                                    <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $asatidz->getUser->nama }}</td>
-                                    <td>{{ $asatidz->getUser->email }}</td>
-                                    <td class="text-center">{{ $asatidz->getUser->no_hp }}</td>
-                                    <td class="text-center">
-                                        @if ($asatidz->getUser->jenis_kelamin == "L")
-                                            Laki - Laki
-                                        @elseif ($asatidz->getUser->jenis_kelamin == "P")
-                                            Perempuan
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        <button onclick="editDataAsatidz({{ $asatidz->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <form action="{{ url('/app/sistem/asatidz/'.$asatidz->id) }}" method="POST" style="display: inline;">
-                                            @method("DELETE")
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
+                    <i class="fa fa-plus"></i> Tambah Data
+                </button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No.</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th class="text-center">No. HP</th>
+                                        <th class="text-center">Jenis Kelamin</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $no = 0 @endphp
+                                    @foreach ($data_asatidz as $asatidz)
+                                    <tr>
+                                        <td class="text-center">{{ ++$no }}.</td>
+                                        <td>{{ $asatidz->getUser->nama }}</td>
+                                        <td>{{ $asatidz->getUser->email }}</td>
+                                        <td class="text-center">{{ $asatidz->getUser->no_hp }}</td>
+                                        <td class="text-center">
+                                            @if ($asatidz->getUser->jenis_kelamin == "L")
+                                                Laki - Laki
+                                            @elseif ($asatidz->getUser->jenis_kelamin == "P")
+                                                Perempuan
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <button onclick="editDataAsatidz({{ $asatidz->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                                <i class="fa fa-edit"></i>
                                             </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                            <form action="{{ url('/app/sistem/asatidz/'.$asatidz->id) }}" method="POST" style="display: inline;">
+                                                @method("DELETE")
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <!-- Tambah Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalTambah">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="modalTambah" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -139,15 +141,17 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat"> Alamat </label>
-                        <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Alamat"></textarea>
+                        <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="gambar"> Gambar </label>
                         <input type="file" class="form-control" name="gambar" id="gambar">
                     </div>
                 </div>
-                <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Kembali
+                    </button>
                     <button type="submit" class="btn btn-primary" id="btn-tambah">
                         <i class="fa fa-plus"></i> Tambah
                     </button>

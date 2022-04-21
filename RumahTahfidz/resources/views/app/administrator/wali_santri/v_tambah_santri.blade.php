@@ -54,5 +54,5 @@
 </div>
 <div class="form-group">
     <label for="alamat"> Alamat </label>
-    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Data Alamat"></textarea>
+    <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Data Alamat"></textarea>
 </div>

@@ -4,44 +4,44 @@
 
 @section("app_content")
 
-<section class="section">
-    <div class="section-header">
-        <h1>
-            @yield("app_title")
-        </h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
-                <a href="{{ url('/app/sistem/home') }}">Home</a>
-            </div>
-            <div class="breadcrumb-item">
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
                 @yield("app_title")
-            </div>
+            </h3>
         </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <button data-target="#modalTambah" data-toggle="modal" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="table-1">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No.</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th class="text-center">Hak Akses</th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 0 @endphp
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-users"></i> Data Users
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No.</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th class="text-center">Hak Akses</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $no = 0 @endphp
                                 @foreach($data_users as $user)
                                 <tr>
                                     <td class="text-center">{{ ++$no }}.</td>
@@ -93,8 +93,9 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,7 +104,7 @@
 </div>
 
 <!-- Tambah Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalTambah">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

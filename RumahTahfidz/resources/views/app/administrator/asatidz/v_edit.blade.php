@@ -46,7 +46,7 @@
 </div>
 <div class="form-group">
     <label for="alamat"> Alamat </label>
-    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Alamat">{{ $edit->getUser->alamat }}</textarea>
+    <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat">{{ $edit->getUser->alamat }}</textarea>
 </div>
 <div class="form-group">
     <label for="gambar"> Gambar </label>
