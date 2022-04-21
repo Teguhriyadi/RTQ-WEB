@@ -4,68 +4,69 @@
 
 @section("app_content")
 
-<section class="section">
-    <div class="section-header">
-        <h1>
-            @yield("app_title")
-        </h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
-                <a href="{{ url('/app/sistem/home') }}">Home</a>
-            </div>
-            <div class="breadcrumb-item">
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
                 @yield("app_title")
-            </div>
+            </h3>
         </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <i class="fa fa-plus"></i>
-                        <span>Tambah Form Jenjang</span>
-                    </h4>
-                </div>
-                <form action="{{ url('/app/sistem/jenjang') }}" method="POST">
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-plus"></i> Tambah Data Jenjang
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form method="POST" action="{{ url('/app/sistem/jenjang') }}">
                     @csrf
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="jenjang"> Jenjang </label>
-                            <input type="text" name="jenjang" class="form-control input-sm" id="jenjang" placeholder="Masukkan Jenjang">
-                        </div>
+                    <div class="form-group">
+                        <label for="jenjang"> Jenjang </label>
+                        <input type="text" class="form-control" name="jenjang" id="jenjang" placeholder="Masukkan Jenjang">
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-plus"></i> Tambah
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <button class="btn btn-danger" type="reset">
+                            <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="reset" class="btn btn-danger">
-                            <i class="fa fa-times"></i> Batal
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <i class="fa fa-bars"></i>
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="table-1">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No.</th>
-                                    <th>Keterangan</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 0 @endphp
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-bars"></i> Data Jenjang
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No.</th>
+                                        <th class="text-center">Jenjang</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $no = 0 @endphp
                                 @foreach($data_jenjang as $jenjang)
                                 <tr>
                                     <td class="text-center">{{ ++$no }}.</td>
@@ -84,8 +85,9 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,7 +96,7 @@
 </div>
 
 <!-- Edit Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -112,7 +114,7 @@
                 <div class="modal-body" id="modal-content-edit">
 
                 </div>
-                <div class="modal-footer bg-whitesmoke br">
+                <div class="modal-footer">
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
