@@ -113,7 +113,7 @@ Route::prefix("app")->group(function() {
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
 
                 // Data Pengajar
-                Route::get("/asatidz/edit", [AsatidzController::class, "edit"]);
+                Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
                 Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
                 Route::resource("/asatidz", AsatidzController::class);
 

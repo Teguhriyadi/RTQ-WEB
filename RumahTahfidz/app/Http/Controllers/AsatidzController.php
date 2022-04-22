@@ -17,15 +17,20 @@ class AsatidzController extends Controller
         return view("app.administrator.asatidz.v_index", $data);
     }
 
+    public function create()
+    {
+        return view("app.administrator.asatidz.v_tambah");
+    }
+
     public function store(Request $request)
     {
         $user = new User;
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("admincabang");
+        $user->password = bcrypt("asatidz");
         $user->alamat = $request->alamat;
-        $user->id_role = 2;
+        $user->id_role = 3;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
@@ -33,13 +38,17 @@ class AsatidzController extends Controller
         $user->no_hp = $request->no_hp;
         $user->save();
 
-        $admin_cabang = new Asatidz;
+        $asatidz = new Asatidz;
 
-        $admin_cabang->id = $user->id;
-        $admin_cabang->pendidikan_terakhir = $request->pendidikan_terakhir;
-        $admin_cabang->save();
+        $asatidz->id = $user->id;
+        $asatidz->nomor_induk = $request->nomor_induk;
+        $asatidz->no_ktp = $request->no_ktp;
+        $asatidz->pendidikan_terakhir = $request->pendidikan_terakhir;
+        $asatidz->aktivitas_utama = $request->aktivitas_utama;
+        $asatidz->motivasi_mengajar = $request->motivasi_mengajar;
+        $asatidz->save();
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
+        return redirect("/app/sistem/asatidz")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
     }
 
     public function edit(Request $request)
@@ -54,7 +63,11 @@ class AsatidzController extends Controller
     public function update(Request $request)
     {
         Asatidz::where("id", $request->id)->update([
-            "pendidikan_terakhir" => $request->pendidikan_terakhir
+            "nomor_induk" => $request->nomor_induk,
+            "no_ktp" => $request->no_ktp,
+            "pendidikan_terakhir" => $request->pendidikan_terakhir,
+            "aktivitas_utama" => $request->aktivitas_utama,
+            "motivasi_mengajar" => $request->motivasi_mengajar
         ]);
 
         User::where("id", $request->id)->update([
@@ -67,7 +80,7 @@ class AsatidzController extends Controller
             "jenis_kelamin" => $request->jenis_kelamin
         ]);
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
+        return redirect("/app/sistem/asatidz")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
     }
 
     public function destroy($id)

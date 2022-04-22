@@ -1,6 +1,6 @@
 @extends(".app.layouts.template")
 
-@section("app_title", "Edit Asatidz")
+@section("app_title", "Tambah Asatidz")
 
 @section("app_content")
 
@@ -21,26 +21,24 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-plus"></i> Tambah
                 </h2>
                 <div class="clearfix"></div>
             </div>
-            <form action="{{ url('/app/sistem/asatidz/simpan') }}" method="POST">
+            <form action="{{ url('/app/sistem/asatidz') }}" method="POST">
                 <div class="x_content">
-                    @method("PUT")
                     @csrf
-                    <input type="hidden" name="id" value="{{ $edit->id }}">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="nomor_induk"> Nomor Induk </label>
-                                <input type="text" class="form-control" name="nomor_induk" id="nomor_induk" placeholder="Masukkan Nomor Induk" value="{{ $edit->nomor_induk }}">
+                                <input type="text" class="form-control" name="nomor_induk" id="nomor_induk" placeholder="Masukkan Nomor Induk">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="no_ktp"> No. KTP </label>
-                                <input type="text" class="form-control" name="no_ktp" id="no_ktp" placeholder="Masukkan No. KTP" value="{{ $edit->no_ktp }}">
+                                <input type="text" class="form-control" name="no_ktp" id="no_ktp" placeholder="Masukkan No. KTP">
                             </div>
                         </div>
                     </div>
@@ -48,19 +46,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="nama"> Nama </label>
-                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama" value="{{ $edit->getUser->nama }}">
+                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="email"> Email </label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" value="{{ $edit->getUser->email }}">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
-                                <input type="text" class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir" value="{{ $edit->pendidikan_terakhir }}">
+                                <input type="text" class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
                             </div>
                         </div>
                     </div>
@@ -68,13 +66,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="tempat_lahir"> Tempat Lahir </label>
-                                <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Masukkan Tempat Lahir" value="{{ $edit->getUser->tempat_lahir }}">
+                                <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Masukkan Tempat Lahir">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="tanggal_lahir"> Tanggal Lahir </label>
-                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" value="{{ $edit->getUser->tanggal_lahir }}">
+                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -82,15 +80,15 @@
                                 <label for="jenis_kelamin"> Jenis Kelamin </label>
                                 <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                     <option value="">- Pilih -</option>
-                                    <option value="L" {{ $edit->getUser->jenis_kelamin == "L" ? "selected" : "" }} >Laki - Laki</option>
-                                    <option value="P" {{ $edit->getUser->jenis_kelamin == "P" ? "selected" : "" }} >Perempuan</option>
+                                    <option value="L">Laki - Laki</option>
+                                    <option value="P">Perempuan</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="no_hp"> No. Handphone </label>
-                                <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="0" value="{{ $edit->getUser->no_hp }}">
+                                <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="0">
                             </div>
                         </div>
                     </div>
@@ -98,19 +96,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="aktivitas_utama"> Aktivitas Utama </label>
-                                <textarea name="aktivitas_utama" id="aktivitas_utama" class="form-control" rows="5" placeholder="Masukkan Aktivitas Utama">{{ $edit->aktivitas_utama }}</textarea>
+                                <textarea name="aktivitas_utama" id="aktivitas_utama" class="form-control" rows="5" placeholder="Masukkan Aktivitas Utama"></textarea>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="motivasi_mengajar"> Motivasi Mengajar </label>
-                                <textarea name="motivasi_mengajar" id="motivasi_mengajar" class="form-control" rows="5" placeholder="Masukkan Motivasi Mengajar">{{ $edit->motivasi_mengajar }}</textarea>
+                                <textarea name="motivasi_mengajar" id="motivasi_mengajar" class="form-control" rows="5" placeholder="Masukkan Motivasi Mengajar"></textarea>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="alamat"> Alamat </label>
-                                <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat">{{ $edit->getUser->alamat }}</textarea>
+                                <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat"></textarea>
                             </div>
                         </div>
                     </div>
@@ -119,8 +117,8 @@
                         <button type="reset" class="btn btn-danger">
                             <i class="fa fa-times"></i> Batal
                         </button>
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-save"></i> Simpan
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-plus"></i> Tambah
                         </button>
                         <div class="pull-right">
                             <a href="{{ url('/app/sistem/asatidz') }}" class="btn btn-warning">
