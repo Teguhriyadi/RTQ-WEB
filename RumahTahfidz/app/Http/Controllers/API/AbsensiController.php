@@ -4,8 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
+use App\Models\Halaqah;
+use App\Models\Santri;
+use App\Models\StatusAbsen;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AbsensiController extends Controller
@@ -136,8 +141,50 @@ class AbsensiController extends Controller
         return view("app.asatidz.absensi_santri.index");
     }
 
-    public function input_absensi_santri()
+    public function input_absensi_santri(Request $request)
     {
-        return view("app.asatidz.absensi_santri.tambah");
+        $data = [
+            "data_halaqah" => Halaqah::get(),
+            "data_santri" => Santri::get(),
+            "data_status_absen" => StatusAbsen::get()
+        ];
+
+        return view("app.asatidz.absensi_santri.tambah", $data);
+    }
+
+    public function input_data(Request $request)
+    {
+        $data = [
+            "data_halaqah" => Halaqah::get(),
+            "data_status_absen" => StatusAbsen::get(),
+            "edit" => Halaqah::where("kode_halaqah", $request->kode_halaqah)->first(),
+            "get_data_santri" => Santri::where("kode_halaqah", $request->kode_halaqah)->get()
+
+        ];
+
+        return view("app.asatidz.absensi_santri.tambah", $data);
+    }
+
+    public function tambah_absensi(Request $request)
+    {
+        $id_santri = $request->id_santri;
+        $jumlah_dipilih = count($id_santri);
+
+        for ($x = 0; $x < $jumlah_dipilih; $x++) {
+            $absensi = new Absensi;
+            $absensi->id_santri = $request->id_santri[$x];
+            $absensi->id_status_absen = $request->status_absen[$x];
+
+            if ($absensi->id_status_absen == 1) {
+                $absensi->keterangan = "Hadir";
+            } else {
+                $absensi->keterangan = $request->keterangan[$x];
+            }
+            $absensi->id_asatidz = Auth::user()->id;
+
+            $absensi->save();
+        }
+
+        return redirect("/app/sistem/absensi_santri");
     }
 }
