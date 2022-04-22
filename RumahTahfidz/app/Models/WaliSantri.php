@@ -19,4 +19,9 @@ class WaliSantri extends Model
     {
         return $this->belongsTo("App\Models\User", "id", "id");
     }
+
+    public function getHalaqah()
+    {
+        return $this->belongsTo("App\Models\Halaqah", "kode_halaqah", "kode_halaqah");
+    }
 }
