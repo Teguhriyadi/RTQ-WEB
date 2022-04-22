@@ -4,92 +4,96 @@
 
 @section("app_content")
 
-<section class="section">
-    <div class="section-header">
-        <h1>
-            @yield("app_title")
-        </h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
-                <a href="{{ url('/app/sistem/home') }}">Home</a>
-            </div>
-            <div class="breadcrumb-item">
-                @yield("app_title")
-            </div>
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Admin Cabang</h3>
         </div>
     </div>
+</div>
 
-    @if ($data_cabang)
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <button type="button" data-target="#modalTambah" data-toggle="modal" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="table-1">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No.</th>
-                                    <th>Nama</th>
-                                    <th>Cabang</th>
-                                    <th>No. HP</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 0 @endphp
-                                @foreach($data_admin_cabang as $admin_cabang)
-                                <tr>
-                                    <td class="text-center">{{ ++$no }}.</td>
-                                    <td>{{ $admin_cabang->getUser->nama }}</td>
-                                    <td>{{ $admin_cabang->getCabang->nama_cabang }}</td>
-                                    <td>{{ $admin_cabang->getUser->no_hp }}</td>
-                                    <td class="text-center">
-                                        <button onclick="editAdminCabang({{ $admin_cabang->id }})" type="button" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <form action="{{ url('/app/sistem/admin_cabang/'.$admin_cabang->id) }}" method="POST" style="display: inline;">
-                                            @method("DELETE")
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>
+<div class="clearfix"></div>
+
+@if ($data_cabang)
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Informasi Login <small>Users</small>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No.</th>
+                                        <th>Nama</th>
+                                        <th>Cabang</th>
+                                        <th class="text-center">No. HP</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $no = 0 @endphp
+                                    @foreach($data_admin_cabang as $admin_cabang)
+                                    <tr>
+                                        <td class="text-center">{{ ++$no }}.</td>
+                                        <td>{{ $admin_cabang->getUser->nama }}</td>
+                                        <td>{{ $admin_cabang->getCabang->nama_cabang }}</td>
+                                        <td>{{ $admin_cabang->getUser->no_hp }}</td>
+                                        <td class="text-center">
+                                            <button onclick="editAdminCabang({{ $admin_cabang->id }})" type="button" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
+                                                <i class="fa fa-edit"></i>
                                             </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @else
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="alert alert-danger alert-has-icon">
-                        <div class="alert-icon">
-                            <i class="fa fa-times"></i>
-                        </div>
-                        <div class="alert-body">
-                            <div class="alert-title">
-                                Maaf, Data <b>Cabang</b> Kosong
-                            </div>
-                            Silahkan klik <a href="{{ url('/app/sistem/cabang') }}">ini</a> untuk beralih ke halaman Cabang
+                                            <form action="{{ url('/app/sistem/admin_cabang/'.$admin_cabang->id) }}" method="POST" style="display: inline;">
+                                                @method("DELETE")
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @endif
+</div>
+@else
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Informasi Login <small>Users</small>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="alert alert-danger alert-dismissible " role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>Maaf, Data Admin Cabang Kosong!</strong>. Silahkan ke halaman <strong><a href="{{ url('/app/sistem/admin_cabang') }}">Admin Cabang</a></strong> terlebih dahulu
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
+
+<section class="section">
+
 </div>
 
 <!-- Tambah Data -->
