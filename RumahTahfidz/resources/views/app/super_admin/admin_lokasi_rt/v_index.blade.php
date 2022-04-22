@@ -1,20 +1,22 @@
 @extends(".app.layouts.template")
 
-@section("app_title", "Admin Cabang")
+@section("app_title", "Admin Lokasi RT")
 
 @section("app_content")
 
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Admin Cabang</h3>
+            <h3>
+                @yield("app_title")
+            </h3>
         </div>
     </div>
 </div>
 
 <div class="clearfix"></div>
 
-@if ($data_cabang)
+@if ($data_lokasi_rt)
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -33,24 +35,24 @@
                                     <tr>
                                         <th class="text-center">No.</th>
                                         <th>Nama</th>
-                                        <th>Cabang</th>
+                                        <th>Lokasi RT</th>
                                         <th class="text-center">No. HP</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 0 @endphp
-                                    @foreach($data_admin_cabang as $admin_cabang)
+                                    @foreach($data_admin_lokasi_rt as $data)
                                     <tr>
                                         <td class="text-center">{{ ++$no }}.</td>
-                                        <td>{{ $admin_cabang->getUser->nama }}</td>
-                                        <td>{{ $admin_cabang->getCabang->nama_cabang }}</td>
-                                        <td>{{ $admin_cabang->getUser->no_hp }}</td>
+                                        <td>{{ $data->getUser->nama }}</td>
+                                        <td>{{ $data->getLokasiRt->lokasi_rt }}</td>
+                                        <td>{{ $data->getUser->no_hp }}</td>
                                         <td class="text-center">
-                                            <button onclick="editAdminCabang({{ $admin_cabang->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                            <button onclick="editAdminLokasiRt({{ $data->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i>
                                             </button>
-                                            <form action="{{ url('/app/sistem/admin_cabang/'.$admin_cabang->id) }}" method="POST" style="display: inline;">
+                                            <form action="{{ url('/app/sistem/admin_lokasi_rt/'.$data->id) }}" method="POST" style="display: inline;">
                                                 @method("DELETE")
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger">
@@ -83,7 +85,7 @@
                 <div class="alert alert-danger alert-dismissible " role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                     </button>
-                    <strong>Maaf, Data Admin Cabang Kosong!</strong>. Silahkan ke halaman <strong><a href="{{ url('/app/sistem/admin_cabang') }}">Admin Cabang</a></strong> terlebih dahulu
+                    <strong>Maaf, Data Admin Lokasi RT Kosong!</strong>. Silahkan ke halaman <strong><a href="{{ url('/app/sistem/admin_lokasi_rt') }}">Admin Cabang</a></strong> terlebih dahulu
                 </div>
             </div>
         </div>
@@ -104,7 +106,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/admin_cabang') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/app/sistem/admin_lokasi_rt') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -157,12 +159,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="id_cabang"> Cabang </label>
-                                <select name="id_cabang" class="form-control" id="id_cabang">
+                                <label for="kode_rt"> Kode RT </label>
+                                <select name="kode_rt" class="form-control" id="kode_rt">
                                     <option value="">- Pilih -</option>
-                                    @foreach ($cabang as $data)
-                                    <option value="{{ $data->id }}">
-                                        {{ $data->nama_cabang }}
+                                    @foreach ($lokasi_rt as $data)
+                                    <option value="{{ $data->kode_rt }}">
+                                        {{ $data->lokasi_rt }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -206,7 +208,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/admin_cabang/simpan') }}" method="POST">
+            <form action="{{ url('/app/sistem/admin_lokasi_rt/simpan') }}" method="POST">
                 @method("PUT")
                 @csrf
                 <div class="modal-body" id="modal-content-edit">
@@ -249,9 +251,9 @@
         }
     }
 
-    function editAdminCabang(id) {
+    function editAdminLokasiRt(id) {
         $.ajax({
-            url : "{{ url('/app/sistem/admin_cabang/edit') }}",
+            url : "{{ url('/app/sistem/admin_lokasi_rt/edit') }}",
             type : "GET",
             data : { id : id },
             success : function(data) {

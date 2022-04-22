@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminCabang;
-use App\Models\Cabang;
+use App\Models\AdminLokasiRt;
+use App\Models\LokasiRt;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminCabangController extends Controller
+class AdminLokasiRtController extends Controller
 {
     public function index()
     {
         $data = [
-            "data_admin_cabang" => AdminCabang::orderBy("id", "ASC")->get(),
-            "data_cabang" => Cabang::count(),
-            "cabang" => Cabang::orderBy("id", "ASC")->get()
+            "data_admin_lokasi_rt" => AdminLokasiRt::get(),
+            "data_lokasi_rt" => LokasiRt::count(),
+            "lokasi_rt" => LokasiRt::get()
         ];
 
-        return view("app.super_admin.admin_cabang.v_index", $data);
+        return view("app.super_admin.admin_lokasi_rt.v_index", $data);
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class AdminCabangController extends Controller
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("admincabang");
+        $user->password = bcrypt("adminlokasirt");
         $user->alamat = $request->alamat;
         $user->id_role = 2;
         $user->no_hp = $request->no_hp;
@@ -42,12 +42,12 @@ class AdminCabangController extends Controller
         $user->gambar = $data;
         $user->save();
 
-        $admin_cabang = new AdminCabang;
+        $admin_lokasi_rt = new AdminLokasiRt;
 
-        $admin_cabang->id = $user->id;
-        $admin_cabang->pendidikan_terakhir = $request->pendidikan_terakhir;
-        $admin_cabang->id_cabang = $request->id_cabang;
-        $admin_cabang->save();
+        $admin_lokasi_rt->id = $user->id;
+        $admin_lokasi_rt->pendidikan_terakhir = $request->pendidikan_terakhir;
+        $admin_lokasi_rt->kode_rt = $request->kode_rt;
+        $admin_lokasi_rt->save();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
     }
@@ -55,18 +55,18 @@ class AdminCabangController extends Controller
     public function edit(Request $request)
     {
         $data = [
-            "edit" => AdminCabang::where("id", $request->id)->first(),
-            "cabang" => Cabang::orderBy("id", "ASC")->get()
+            "edit" => AdminLokasiRt::where("id", $request->id)->first(),
+            "lokasi_rt" => LokasiRt::get()
         ];
 
-        return view("app.super_admin.admin_cabang.v_edit", $data);
+        return view("app.super_admin.admin_lokasi_rt.v_edit", $data);
     }
 
     public function update(Request $request)
     {
-        AdminCabang::where("id", $request->id)->update([
+        AdminLokasiRt::where("id", $request->id)->update([
             "pendidikan_terakhir" => $request->pendidikan_terakhir,
-            "id_cabang" => $request->id_cabang
+            "kode_rt" => $request->kode_rt
         ]);
 
         User::where("id", $request->id)->update([
@@ -84,7 +84,7 @@ class AdminCabangController extends Controller
 
     public function destroy($id)
     {
-        AdminCabang::where("id", $id)->delete();
+        AdminLokasiRt::where("id", $id)->delete();
 
         User::where("id", $id)->delete();
 

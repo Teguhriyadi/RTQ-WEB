@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminCabangController;
+use App\Http\Controllers\AdminLokasiRtController;
 use App\Http\Controllers\API\AbsensiController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CabangController;
@@ -86,9 +87,9 @@ Route::prefix("app")->group(function() {
                 Route::resource("/halaqah", HalaqahController::class);
 
                 // Data Admin Cabang
-                Route::get("/admin_cabang/edit", [AdminCabangController::class, "edit"]);
-                Route::put("/admin_cabang/simpan", [AdminCabangController::class, "update"]);
-                Route::resource("/admin_cabang", AdminCabangController::class);
+                Route::get("/admin_lokasi_rt/edit", [AdminLokasiRtController::class, "edit"]);
+                Route::put("/admin_lokasi_rt/simpan", [AdminLokasiRtController::class, "update"]);
+                Route::resource("/admin_lokasi_rt", AdminLokasiRtController::class);
 
                 // Data Status Absen
                 Route::get("/status_absen/edit", [StatusAbsenController::class, "edit"]);

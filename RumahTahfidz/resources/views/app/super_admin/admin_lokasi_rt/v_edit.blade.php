@@ -49,19 +49,13 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label for="id_cabang"> Cabang </label>
-            <select name="id_cabang" class="form-control" id="id_cabang">
+            <label for="kode_rt"> Lokasi RT </label>
+            <select name="kode_rt" class="form-control" id="kode_rt">
                 <option value="">- Pilih -</option>
-                @foreach ($cabang as $data)
-                    @if ($edit->id_cabang == $data->id)
-                    <option value="{{ $data->id }}" selected>
-                        {{ $data->nama_cabang }}
+                @foreach ($lokasi_rt as $data)
+                    <option value="{{ $data->kode_rt }}" {{ ($edit->kode_rt == $data->kode_rt) ? "selected" : "" }} >
+                        {{ $data->lokasi_rt }}
                     </option>
-                    @else
-                    <option value="{{ $data->id }}">
-                        {{ $data->nama_cabang }}
-                    </option>
-                    @endif
                 @endforeach
             </select>
         </div>

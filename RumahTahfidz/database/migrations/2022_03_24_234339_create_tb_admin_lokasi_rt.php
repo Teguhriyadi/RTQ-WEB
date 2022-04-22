@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_admin_cabang', function (Blueprint $table) {
+        Schema::create('tb_admin_lokasi_rt', function (Blueprint $table) {
             $table->id();
             $table->string("pendidikan_terakhir");
             $table->string("kode_rt");
