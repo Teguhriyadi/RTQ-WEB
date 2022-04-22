@@ -19,9 +19,9 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>
-                    Informasi Login <small>Users</small>
-                </h2>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
+                    <i class="fa fa-plus"></i> Tambah Data
+                </button>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -97,15 +97,15 @@
 </div>
 
 <!-- Tambah Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalTambah">
-    <div class="modal-dialog" role="document">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">
+                <h4 class="modal-title" id="myModalLabel">
                     <i class="fa fa-plus"></i>
                     <span>Tambah Data</span>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -176,7 +176,7 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat"> Alamat </label>
-                        <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Alamat"></textarea>
+                        <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="gambar"> Gambar </label>
@@ -184,7 +184,7 @@
                         <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
                     </div>
                 </div>
-                <div class="modal-footer bg-whitesmoke br">
+                <div class="modal-footer">
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
