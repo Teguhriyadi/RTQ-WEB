@@ -126,6 +126,11 @@
                             <i class="fa fa-search"></i>RTQ Cabang
                         </a>
                     </li>
+                    <li class="{{ Request::segment(3)=='halaqah' ? 'active' : '' }}">
+                        <a href="{{ url('/app/sistem/halaqah') }}">
+                            <i class="fa fa-search"></i>Halaqah
+                        </a>
+                    </li>
                     <li class="{{ Request::segment(3)=='jenjang' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/jenjang') }}">
                             <i class="fa fa-search"></i>Jenjang

@@ -13,6 +13,8 @@
 
     @include("app.layouts.partials.css.style")
 
+    @yield("app_css")
+
 </head>
 
 <body class="nav-md">

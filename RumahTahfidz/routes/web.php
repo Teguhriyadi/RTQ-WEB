@@ -11,6 +11,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
@@ -75,6 +76,12 @@ Route::prefix("app")->group(function() {
                 Route::get("/cabang/edit", [CabangController::class, "edit"]);
                 Route::put("/cabang/simpan", [CabangController::class, "update"]);
                 Route::resource("/cabang", CabangController::class);
+
+                // Data Halaqah
+                Route::get("/halaqah/edit", [HalaqahController::class, "edit"]);
+                Route::put("/halaqah/simpan", [HalaqahController::class, "update"]);
+                Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
+                Route::resource("/halaqah", HalaqahController::class);
 
                 // Data Admin Cabang
                 Route::get("/admin_cabang/edit", [AdminCabangController::class, "edit"]);

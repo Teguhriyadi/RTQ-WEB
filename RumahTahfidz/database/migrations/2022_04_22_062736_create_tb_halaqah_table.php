@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_halaqah', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string("kode_halaqah");
+            $table->string("nama_halaqah");
+            $table->string("id_cabang");
         });
     }
 
