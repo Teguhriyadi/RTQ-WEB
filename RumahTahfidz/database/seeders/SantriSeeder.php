@@ -16,6 +16,7 @@ class SantriSeeder extends Seeder
     public function run()
     {
         Santri::create([
+            "nis" => "29092002",
             "nama_lengkap" => "Mohammad Ilham",
             "nama_panggilan" => "Ilham",
             "tempat_lahir" => "Cirebon",
@@ -24,36 +25,23 @@ class SantriSeeder extends Seeder
             "prestasi_anak" => "Juara 1 Web Technology",
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
-            "id_cabang" => 1,
-            "id_wali" => 1,
+            "kode_halaqah" => "HLQSRJ001",
+            "id_wali" => 10,
             "id_jenjang" => 1
         ]);
 
         Santri::create([
-            "nama_lengkap" => "Mohammad Fauzi",
-            "nama_panggilan" => "Fauzi",
+            "nis" => "29092003",
+            "nama_lengkap" => "Ahmad Budi",
+            "nama_panggilan" => "Budi",
             "tempat_lahir" => "Cirebon",
-            "tanggal_lahir" => "2002-03-03",
-            "alamat" => "Cirebon",
-            "prestasi_anak" => "Juara 1 Web Design",
+            "tanggal_lahir" => "2003-03-03",
+            "alamat" => "Papua",
+            "prestasi_anak" => "Juara 3 Web Technology",
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
-            "id_cabang" => 1,
-            "id_wali" => 1,
-            "id_jenjang" => 1
-        ]);
-
-        Santri::create([
-            "nama_lengkap" => "Mohammad Ali",
-            "nama_panggilan" => "Ali",
-            "tempat_lahir" => "Jakarta",
-            "tanggal_lahir" => "2002-04-04",
-            "alamat" => "Bekasi",
-            "prestasi_anak" => "Juara 1 Lomba KKSI",
-            "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
-            "id_kelas" => 2,
-            "id_cabang" => 2,
-            "id_wali" => 2,
+            "kode_halaqah" => "HLQSRJ001",
+            "id_wali" => 10,
             "id_jenjang" => 1
         ]);
     }

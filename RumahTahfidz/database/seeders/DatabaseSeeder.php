@@ -19,10 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(LokasiRtSeeder::class);
         $this->call(HalaqahSeeder::class);
         $this->call(KelasSeeder::class);
-        // $this->call(KategoriPenilaianSeeder::class);
-        // $this->call(AdminCabangSeeder::class);
-        // $this->call(WaliSantriSeeder::class);
-        // $this->call(SantriSeeder::class);
-        // $this->call(AbsensiSeeder::class);
+        $this->call(JenjangSeeder::class);
+        $this->call(KategoriPenilaianSeeder::class);
+        $this->call(AdminLokasiRtSeeder::class);
+        $this->call(AsatidzSeeder::class);
+        $this->call(WaliSantriSeeder::class);
+        $this->call(SantriSeeder::class);
     }
 }

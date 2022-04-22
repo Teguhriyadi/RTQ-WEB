@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\AdminCabang;
+use App\Models\Asatidz;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AdminCabangSeeder extends Seeder
+class AsatidzSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,16 +15,13 @@ class AdminCabangSeeder extends Seeder
      */
     public function run()
     {
-        AdminCabang::create([
-            "id" => 6,
-            "pendidikan_terakhir" => "SMK",
-            "id_cabang" => 1
-        ]);
-
-        AdminCabang::create([
-            "id" => 7,
+        Asatidz::create([
+            "id" => 9,
+            "nomor_induk" => "12345678",
+            "no_ktp" => 123456,
             "pendidikan_terakhir" => "SMA",
-            "id_cabang" => 2
+            "aktivitas_utama" => "Mengajar",
+            "motivasi_mengajar" => "Mau Mengajar"
         ]);
     }
 }
