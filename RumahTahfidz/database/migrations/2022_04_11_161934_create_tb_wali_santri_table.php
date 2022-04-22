@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('tb_wali_santri', function (Blueprint $table) {
             $table->id();
-            $table->string("nik", 50);
+            $table->string("no_ktp", 50);
             $table->string("no_kk", 50);
-            $table->integer("id_cabang");
+            $table->string("kode_halaqah");
         });
     }
 

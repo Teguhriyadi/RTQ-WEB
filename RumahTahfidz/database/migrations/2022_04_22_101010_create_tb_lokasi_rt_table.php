@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_cabang', function (Blueprint $table) {
-            $table->id();
-            $table->string("nama_cabang");
-            $table->timestamps();
+        Schema::create('tb_lokasi_rt', function (Blueprint $table) {
+            $table->string("kode_rt", 50)->primary();
+            $table->string("lokasi_rt");
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_cabang');
+        Schema::dropIfExists('tb_lokasi_rt');
     }
 };

@@ -13,9 +13,9 @@ class AdminCabang extends Model
 
     protected $guarded = [''];
 
-    public function getCabang()
+    public function getLokasiRt()
     {
-        return $this->belongsTo("App\Models\Cabang", "id_cabang", "id");
+        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt");
     }
 
     public function getUser()

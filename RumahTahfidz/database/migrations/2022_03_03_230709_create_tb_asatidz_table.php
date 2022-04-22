@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_asatidz', function (Blueprint $table) {
-            $table->integer("id")->primary();
+            $table->id();
+            $table->string("nomor_induk", 100);
+            $table->integer("no_ktp");
             $table->string("pendidikan_terakhir", 100);
+            $table->string("aktivitas_utama", 100);
+            $table->text("motivasi_mengajar");
             $table->timestamps();
         });
     }

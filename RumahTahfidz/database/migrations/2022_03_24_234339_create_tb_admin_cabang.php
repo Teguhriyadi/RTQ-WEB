@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tb_admin_cabang', function (Blueprint $table) {
             $table->id();
             $table->string("pendidikan_terakhir");
-            $table->integer("id_cabang");
+            $table->string("kode_rt");
             $table->timestamps();
         });
     }

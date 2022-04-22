@@ -16,6 +16,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilUserController;
@@ -73,9 +74,10 @@ Route::prefix("app")->group(function() {
                 Route::resource("/jenjang", JenjangController::class);
 
                 // Data Cabang
-                Route::get("/cabang/edit", [CabangController::class, "edit"]);
-                Route::put("/cabang/simpan", [CabangController::class, "update"]);
-                Route::resource("/cabang", CabangController::class);
+                Route::get("/lokasi_rt/edit", [LokasiRtController::class, "edit"]);
+                Route::put("/lokasi_rt/simpan", [LokasiRtController::class, "update"]);
+                Route::delete("/lokasi_rt/{kode_rt}", [LokasiRtController::class, "destroy"]);
+                Route::resource("/lokasi_rt", LokasiRtController::class);
 
                 // Data Halaqah
                 Route::get("/halaqah/edit", [HalaqahController::class, "edit"]);
