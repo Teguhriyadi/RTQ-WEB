@@ -47,13 +47,13 @@
                                         <td>{{ $admin_cabang->getCabang->nama_cabang }}</td>
                                         <td>{{ $admin_cabang->getUser->no_hp }}</td>
                                         <td class="text-center">
-                                            <button onclick="editAdminCabang({{ $admin_cabang->id }})" type="button" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
+                                            <button onclick="editAdminCabang({{ $admin_cabang->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                             <form action="{{ url('/app/sistem/admin_cabang/'.$admin_cabang->id) }}" method="POST" style="display: inline;">
                                                 @method("DELETE")
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
@@ -90,11 +90,6 @@
     </div>
 </div>
 @endif
-
-
-<section class="section">
-
-</div>
 
 <!-- Tambah Data -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">
@@ -199,15 +194,15 @@
 <!-- END -->
 
 <!-- Edit Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
-    <div class="modal-dialog" role="document">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">
+                <h4 class="modal-title" id="myModalLabel">
                     <i class="fa fa-edit"></i>
                     <span>Edit Data</span>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -217,7 +212,7 @@
                 <div class="modal-body" id="modal-content-edit">
 
                 </div>
-                <div class="modal-footer bg-whitesmoke br">
+                <div class="modal-footer">
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
