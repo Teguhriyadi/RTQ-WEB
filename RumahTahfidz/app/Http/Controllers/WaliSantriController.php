@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Halaqah;
 use App\Models\Santri;
 use App\Models\User;
 use App\Models\WaliSantri;
@@ -14,7 +15,8 @@ class WaliSantriController extends Controller
     {
         $data = [
             "data_wali" => WaliSantri::orderBy("id")->get(),
-            "data_santri" => Santri::get()
+            "data_santri" => Santri::get(),
+            "data_halaqah" => Halaqah::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->get()
         ];
 
         return view("/app/administrator/wali_santri/v_index", $data);
@@ -28,7 +30,7 @@ class WaliSantriController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt("walisantri".$request->no_hp);
         $user->alamat = $request->alamat;
-        $user->id_role = 3;
+        $user->id_role = 4;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
@@ -39,9 +41,9 @@ class WaliSantriController extends Controller
         $walisantri = new WaliSantri;
 
         $walisantri->id = $user->id;
-        $walisantri->nik = $request->nik;
+        $walisantri->no_ktp = $request->no_ktp;
         $walisantri->no_kk = $request->no_kk;
-        $walisantri->id_cabang = Auth::user()->getAdminCabang->id_cabang;
+        $walisantri->kode_halaqah = $request->kode_halaqah;
 
         $walisantri->save();
 
@@ -51,7 +53,8 @@ class WaliSantriController extends Controller
     public function edit(Request $request)
     {
         $data = [
-            "edit" => WaliSantri::where("id", $request->id)->first()
+            "edit" => WaliSantri::where("id", $request->id)->first(),
+            "data_halaqah" => Halaqah::get()
         ];
 
         return view("app.administrator.wali_santri.v_edit", $data);
@@ -60,8 +63,9 @@ class WaliSantriController extends Controller
     public function update(Request $request)
     {
         WaliSantri::where("id", $request->id)->update([
-            "nik" => $request->nik,
-            "no_kk" => $request->no_kk
+            "no_ktp" => $request->no_ktp,
+            "no_kk" => $request->no_kk,
+            "kode_halaqah" => $request->kode_halaqah
         ]);
 
         User::where("id", $request->id)->update([

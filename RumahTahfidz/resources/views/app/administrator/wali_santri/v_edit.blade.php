@@ -2,8 +2,8 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="nik"> NIK </label>
-            <input type="text" class="form-control" name="nik" id="nik" placeholder="Masukkan NIK" value="{{ $edit->nik }}">
+            <label for="no_ktp"> No. KTP </label>
+            <input type="text" class="form-control" name="no_ktp" id="no_ktp" placeholder="Masukkan No. KTP" value="{{ $edit->no_ktp }}">
         </div>
     </div>
     <div class="col-md-6">
@@ -17,10 +17,28 @@
     <label for="nama"> Nama </label>
     <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama" value="{{ $edit->getUser->nama }}">
 </div>
-<div class="form-group">
-    <label for="email"> Email </label>
-    <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" value="{{ $edit->getUser->email }}">
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="email"> Email </label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" value="{{ $edit->getUser->email }}">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="kode_halaqah"> Kode Halaqah </label>
+            <select name="kode_halaqah" class="form-control" id="kode_halaqah">
+                <option value="">- Pilih -</option>
+                @foreach ($data_halaqah as $data)
+                <option value="{{ $data->kode_halaqah }}" {{ ($edit->kode_halaqah == $data->kode_halaqah) ? "selected" : "" }}>
+                    {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
+                </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
 </div>
+
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">

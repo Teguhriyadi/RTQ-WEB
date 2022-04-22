@@ -33,7 +33,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No.</th>
-                                        <th>NIK</th>
+                                        <th>No. KK</th>
                                         <th>Nama</th>
                                         <th class="text-center">Jenis Kelamin</th>
                                         <th class="text-center">No. HP</th>
@@ -46,7 +46,7 @@
                                     @foreach ($data_wali as $wali)
                                     <tr>
                                         <td class="text-center">{{ ++$no }}.</td>
-                                        <td>{{ $wali->nik }}</td>
+                                        <td>{{ $wali->no_kk }}</td>
                                         <td>{{ $wali->getUser->nama }}</td>
                                         <td class="text-center">
                                             @if ($wali->getUser->jenis_kelamin == "L")
@@ -110,8 +110,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="nik"> NIK </label>
-                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Masukkan NIK">
+                                <label for="no_ktp"> No. KTP </label>
+                                <input type="text" class="form-control" name="no_ktp" id="no_ktp" placeholder="Masukkan No. KTP">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -125,9 +125,26 @@
                         <label for="nama"> Nama </label>
                         <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
                     </div>
-                    <div class="form-group">
-                        <label for="email"> Email </label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email"> Email </label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="kode_halaqah">Halaqah</label>
+                                <select name="kode_halaqah" class="form-control" id="kode_halaqah">
+                                    <option value="">- Pilih -</option>
+                                    @foreach ($data_halaqah as $data)
+                                    <option value="{{ $data->kode_halaqah }}">
+                                        {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
