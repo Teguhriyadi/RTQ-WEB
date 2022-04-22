@@ -53,7 +53,7 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
                                         <td>{{ $halaqah->nama_halaqah }}</td>
-                                        <td>{{ $halaqah->getCabang->nama_cabang }}</td>
+                                        <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
                                         <td class="text-center">
                                             <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i> Edit
@@ -104,12 +104,12 @@
                         <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah" placeholder="Masukkan Nama Halaqah">
                     </div>
                     <div class="form-group">
-                        <label for="id_cabang"> Cabang </label>
-                        <select name="id_cabang" class="form-control" id="id_cabang" style="width: 100%">
+                        <label for="kode_rt"> Lokasi RT </label>
+                        <select name="kode_rt" class="form-control" id="kode_rt" style="width: 100%">
                             <option value="">- Pilih -</option>
-                            @foreach ($data_cabang as $cabang)
-                            <option value="{{ $cabang->id }}">
-                                {{ $cabang->nama_cabang }}
+                            @foreach ($data_lokasi_rt as $data)
+                            <option value="{{ $data->kode_rt }}">
+                                {{ $data->lokasi_rt }}
                             </option>
                             @endforeach
                         </select>
@@ -171,9 +171,9 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $("#id_cabang").select2({
+        $("#kode_rt").select2({
             theme: 'bootstrap4',
-            placeholder: "Please Select"
+            placeholder: "- Pilih -"
         });
     });
 

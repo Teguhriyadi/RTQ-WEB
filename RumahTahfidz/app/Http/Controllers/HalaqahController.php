@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cabang;
 use App\Models\Halaqah;
+use App\Models\LokasiRt;
 use Illuminate\Http\Request;
 
 class HalaqahController extends Controller
@@ -12,7 +12,7 @@ class HalaqahController extends Controller
     {
         $data = [
             "data_halaqah" => Halaqah::get(),
-            "data_cabang" => Cabang::get()
+            "data_lokasi_rt" => LokasiRt::get()
         ];
 
         return view("app.super_admin.halaqah.v_index", $data);
@@ -29,7 +29,7 @@ class HalaqahController extends Controller
     {
         $data = [
             "edit" => Halaqah::where("kode_halaqah", $request->kode_halaqah)->first(),
-            "data_cabang" => Cabang::get()
+            "data_lokasi_rt" => LokasiRt::get()
         ];
 
         return view("app.super_admin.halaqah.v_edit", $data);
@@ -39,7 +39,7 @@ class HalaqahController extends Controller
     {
         Halaqah::where("kode_halaqah", $request->kode_halaqah)->update([
             "nama_halaqah" => $request->nama_halaqah,
-            "id_cabang" => $request->id_cabang_new
+            "kode_rt" => $request->kode_rt_new
         ]);
 
         return redirect()->back();

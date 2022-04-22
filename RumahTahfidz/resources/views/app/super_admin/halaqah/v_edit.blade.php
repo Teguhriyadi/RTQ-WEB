@@ -7,12 +7,12 @@
     <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah" placeholder="Masukkan Nama Halaqah" value="{{ $edit->nama_halaqah }}">
 </div>
 <div class="form-group">
-    <label for="id_cabang_new"> Cabang </label>
-    <select name="id_cabang_new" class="form-control" id="id_cabang_new" style="width: 100%">
+    <label for="kode_rt_new"> Cabang </label>
+    <select name="kode_rt_new" class="form-control" id="kode_rt_new" style="width: 100%">
         <option value="">- Pilih -</option>
-        @foreach ($data_cabang as $cabang)
-        <option value="{{ $cabang->id }}" {{ ($edit->id_cabang == $cabang->id) ? "selected" : "" }}>
-            {{ $cabang->nama_cabang }}
+        @foreach ($data_lokasi_rt as $data)
+        <option value="{{ $data->kode_rt }}" {{ ($edit->kode_rt == $data->kode_rt) ? "selected" : "" }}>
+            {{ $data->lokasi_rt }}
         </option>
         @endforeach
     </select>
@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#id_cabang_new").select2({
+        $("#kode_rt_new").select2({
             theme: 'bootstrap4',
             placeholder: "Please Select"
         });

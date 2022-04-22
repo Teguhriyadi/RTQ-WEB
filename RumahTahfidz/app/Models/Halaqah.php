@@ -15,8 +15,8 @@ class Halaqah extends Model
 
     public $timestamps = false;
 
-    public function getCabang()
+    public function getLokasiRt()
     {
-        return $this->belongsTo("App\Models\Cabang", "id_cabang", "id");
+        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt");
     }
 }
