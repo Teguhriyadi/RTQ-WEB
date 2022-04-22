@@ -75,7 +75,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    Informasi Login <small>Users</small>
+                    Informasi Login
                 </h2>
                 <div class="clearfix"></div>
             </div>
