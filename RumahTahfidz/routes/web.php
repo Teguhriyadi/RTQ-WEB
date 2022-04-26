@@ -20,6 +20,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
@@ -37,14 +38,15 @@ use Maatwebsite\Excel\Row;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
 Route::post("/kirim_pesan", [LandingPageController::class, "kirim_pesan"]);
 
-Route::prefix("app")->group(function() {
+Route::prefix("app")->group(function () {
 
-    Route::get("/theme", function() {
+    Route::get("/theme", function () {
         return view("app.layouts.template");
     });
 
@@ -54,10 +56,10 @@ Route::prefix("app")->group(function() {
     Route::get("/forgot-password", [ForgotPasswordController::class, "index"]);
     Route::post("/forgot-password", [ForgotPasswordController::class, "store"]);
 
-    Route::prefix("sistem")->group(function() {
+    Route::prefix("sistem")->group(function () {
 
-        Route::group(["middleware" => "autentikasi"], function() {
-            Route::group(["middleware" => ["can:super_admin"]], function() {
+        Route::group(["middleware" => "autentikasi"], function () {
+            Route::group(["middleware" => ["can:super_admin"]], function () {
 
                 // Data Kelas
                 Route::get("/kelas/edit", [KelasController::class, "edit"]);
@@ -99,9 +101,13 @@ Route::prefix("app")->group(function() {
                 // Data Users
                 Route::post("/users/non_aktifkan/", [UsersController::class, "non_aktifkan"]);
                 Route::resource("/users", UsersController::class);
+
+                Route::get("/profil", [ProfilController::class, "web_profil"]);
+
+                Route::get("/pesan", [PesanController::class, "index"]);
             });
 
-            Route::group(["middleware" => ["can:admin"]], function() {
+            Route::group(["middleware" => ["can:admin"]], function () {
 
                 // Data Siswa
                 Route::get("/santri/edit", [SantriController::class, "edit"]);
@@ -120,15 +126,9 @@ Route::prefix("app")->group(function() {
                 Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
                 Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
                 Route::resource("/wali_santri", WaliSantriController::class);
-
-                // Data Profil User
-                Route::get("/profil_user", [ProfilUserController::class, "index"]);
-                Route::put("/profil_user/simpan_gambar_profil", [ProfilUserController::class, "simpan_gambar_profil"]);
-                Route::put("/profil_user/ganti_password", [ProfilUserController::class, "ganti_password"]);
-
             });
 
-            Route::group(["middleware" => ["can:asatidz"]], function() {
+            Route::group(["middleware" => ["can:asatidz"]], function () {
 
                 // Data Absensi Santri
                 Route::get("/input_absensi_santri", [AbsensiController::class, "input_absensi_santri"]);
@@ -141,14 +141,16 @@ Route::prefix("app")->group(function() {
 
             Route::get("/informasi_login", [LastLoginController::class, "index"]);
 
-            Route::get("/profil", [ProfilController::class, "web_profil"]);
+            // Data Profil User
+            Route::get("/profil_user", [ProfilUserController::class, "index"]);
+            Route::put("/profil_user/simpan_gambar_profil", [ProfilUserController::class, "simpan_gambar_profil"]);
+            Route::put("/profil_user/ganti_password", [ProfilUserController::class, "ganti_password"]);
 
-            Route::get("/pesan", [PesanController::class, "index"]);
-
+            Route::resource('profil_santri', ProfilSantriController::class);
         });
     });
 
-    Route::group(["middleware" => "autentikasi"], function() {
+    Route::group(["middleware" => "autentikasi"], function () {
         Route::get("/logout", [LoginController::class, "logout"]);
     });
 });

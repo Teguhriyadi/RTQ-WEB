@@ -29,7 +29,7 @@
                     <li class="{{ Request::segment(3) == 'home' ? 'active' : '' }}"><a href="{{ url('/app/sistem/home') }}"><i class="fa fa-home"></i>Home</a></li>
 
                     @can('santri')
-                    <li>
+                    <li class="">
                         <a>
                             <i class="fa fa-list"></i> Rekap Penilaian
                             <span class="fa fa-chevron-down"></span>
@@ -60,6 +60,11 @@
                     <li class="{{ Request::segment(3)=='rekap_iuran' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/rekap_iuran') }}">
                             <i class="fa fa-money"></i>Rekap Iuran
+                        </a>
+                    </li>
+                    <li class="{{ Request::segment(3)=='profil' ? 'active' : '' }}">
+                        <a href="{{ url('/app/sistem/profil_santri') }}">
+                            <i class="fa fa-users"></i>Profil Santri
                         </a>
                     </li>
                     @endcan
@@ -154,10 +159,11 @@
                     @endcan
 
                     <li class="{{ Request::segment(3)=='profil' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/profil') }}">
-                            <i class="fa fa-user"></i>Profil
+                        <a href="{{ url('/app/sistem/profil_user') }}">
+                            <i class="fa fa-user"></i>Profil Saya
                         </a>
                     </li>
+
                     <li class="{{ Request::segment(3)=='informasi_login' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/informasi_login') }}">
                             <i class="fa fa-key"></i>Informasi Login
