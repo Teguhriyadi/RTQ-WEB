@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AsatidzSeeder::class);
         $this->call(WaliSantriSeeder::class);
         $this->call(SantriSeeder::class);
+        $this->call(AbsensiSeeder::class);
     }
 }

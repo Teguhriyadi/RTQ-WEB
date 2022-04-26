@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer("id_status_absen");
             $table->text("keterangan")->nullable();
             $table->integer("id_asatidz");
+            $table->string("kode_halaqah");
             $table->timestamps();
         });
     }

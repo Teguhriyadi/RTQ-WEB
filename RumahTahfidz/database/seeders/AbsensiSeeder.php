@@ -19,21 +19,18 @@ class AbsensiSeeder extends Seeder
             "id_santri" => 1,
             "id_status_absen" => 1,
             "keterangan" => "Hadir",
-            "id_asatidz" => 1
+            "id_asatidz" => 9,
+            "created_at" => "2022-04-22 17:01:17",
+            "updated_at" => "2022-04-22 17:01:17"
         ]);
 
         Absensi::create([
             "id_santri" => 2,
             "id_status_absen" => 1,
             "keterangan" => "Hadir",
-            "id_asatidz" => 1
-        ]);
-
-        Absensi::create([
-            "id_santri" => 3,
-            "id_status_absen" => 1,
-            "keterangan" => "Hadir",
-            "id_asatidz" => 1
+            "id_asatidz" => 9,
+            "created_at" => "2022-04-22 17:01:17",
+            "updated_at" => "2022-04-22 17:01:17"
         ]);
     }
 }

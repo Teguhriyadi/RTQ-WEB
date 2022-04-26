@@ -132,6 +132,8 @@ Route::prefix("app")->group(function () {
 
                 // Data Absensi Santri
                 Route::get("/input_absensi_santri", [AbsensiController::class, "input_absensi_santri"]);
+                Route::put("/input_absensi_santri", [AbsensiController::class, "input_data"]);
+                Route::post("/tambah_absensi", [AbsensiController::class, "tambah_absensi"]);
                 Route::get("/absensi_santri", [AbsensiController::class, "absensi_santri"]);
             });
 
