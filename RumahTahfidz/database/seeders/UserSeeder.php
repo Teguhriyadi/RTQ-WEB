@@ -126,5 +126,33 @@ class UserSeeder extends Seeder
             "jenis_kelamin" => "L"
         ]);
 
+        User::create([
+            "id" => 9,
+            "nama" => "Ahmad Fauzi",
+            "email" => "fauzi@gmail.com",
+            "password" => bcrypt("asatidz"),
+            "alamat" => "Bandung",
+            "id_role" => 3,
+            "no_hp" => "123456",
+            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
+            "tempat_lahir" => "Jakarta",
+            "tanggal_lahir" => "2020-03-03",
+            "jenis_kelamin" => "L"
+        ]);
+
+        User::create([
+            "id" => 10,
+            "nama" => "Arif S",
+            "email" => "arif@gmail.com",
+            "password" => bcrypt("walisantri"),
+            "alamat" => "Bali",
+            "id_role" => 4,
+            "no_hp" => "29092002",
+            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
+            "tempat_lahir" => "Jakarta Raya",
+            "tanggal_lahir" => "2020-04-04",
+            "jenis_kelamin" => "L"
+        ]);
+
     }
 }

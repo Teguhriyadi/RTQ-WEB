@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string("prestasi_anak", 100);
             $table->string("sekolah", 50);
             $table->integer("id_kelas");
-            $table->integer("kode_halaqah");
+            $table->string("kode_halaqah", 50);
             $table->integer("id_wali");
             $table->integer("id_jenjang");
             $table->enum("status", ["1", "0"])->default(1);

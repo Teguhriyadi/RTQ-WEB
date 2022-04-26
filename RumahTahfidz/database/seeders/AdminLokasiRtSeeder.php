@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\WaliSantri;
+use App\Models\AdminLokasiRt;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class WaliSantriSeeder extends Seeder
+class AdminLokasiRtSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,10 @@ class WaliSantriSeeder extends Seeder
      */
     public function run()
     {
-        WaliSantri::create([
-            "id" => 10,
-            "no_ktp" => "29092002",
-            "no_kk" => "12345678910111213",
-            "kode_halaqah" => "HLQSRJ001"
+        AdminLokasiRt::create([
+            "id" => "7",
+            "pendidikan_terakhir" => "SMK",
+            "kode_rt" => "RTQ001"
         ]);
     }
 }

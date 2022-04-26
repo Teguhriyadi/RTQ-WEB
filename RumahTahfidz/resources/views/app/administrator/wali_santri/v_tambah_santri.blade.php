@@ -1,4 +1,19 @@
 <input type="hidden" name="id_wali" value="{{ $data_wali->id }}">
+<input type="hidden" name="kode_halaqah" value="{{ $data_wali->kode_halaqah }}">
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="nis"> NIS </label>
+            <input type="text" class="form-control" name="nis" id="nis" placeholder="Masukkan NIS">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="kode_halaqah"> Halaqah </label>
+            <input type="text" class="form-control" value="{{ $data_wali->getHalaqah->nama_halaqah }}" readonly>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
