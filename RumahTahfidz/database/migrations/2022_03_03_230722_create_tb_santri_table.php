@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_siswa');
+        Schema::dropIfExists('tb_santri');
     }
 };

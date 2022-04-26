@@ -22,4 +22,9 @@ class Santri extends Model
     {
         return $this->belongsTo("App\Models\Kelas", "id_kelas", "id");
     }
+
+    public function getJenjang()
+    {
+        return $this->belongsTo(Jenjang::class, "id_jenjang", "id");
+    }
 }
