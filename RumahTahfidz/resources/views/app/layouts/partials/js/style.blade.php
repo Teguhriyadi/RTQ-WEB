@@ -54,3 +54,4 @@
 <script src="{{ url('') }}/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 <script src="{{ url('') }}/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 <!-- END -->
+<script src="{{ url('sweetalert/dist/sweetalert2.all.min.js') }}"></script>

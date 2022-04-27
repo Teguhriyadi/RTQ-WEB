@@ -1,18 +1,22 @@
+@php
+use Illuminate\Support\Str;
+@endphp
 @extends(".app.layouts.template")
 
 @section("app_title", "Profil Santri")
 
 @section("app_content")
 
-<div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>
-                @yield("app_title")
-            </h3>
-        </div>
-    </div>
-</div>
+
+<h3>
+    @yield("app_title")
+</h3>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Profil Santri</li>
+    </ol>
+</nav>
 
 <div class="clearfix"></div>
 
@@ -26,10 +30,48 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+                <section>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="{{ $wali_santri->gambar == null ? url('gambar/gambar_user.png') : $wali_santri->gambar }}" alt="" height="100">
+                            <h3><strong>{{ $wali_santri->nama }}</strong></h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <table class="mt-4">
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td>:</td>
+                                    <td>{{ $wali_santri->alamat }}</td>
+                                </tr>
+                                <tr>
+                                    <td>No. Telepon</td>
+                                    <td>:</td>
+                                    <td>{{ $wali_santri->no_hp }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>:</td>
+                                    <td>{{ $wali_santri->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>No. KTP</td>
+                                    <td>:</td>
+                                    <td>{{ Str::limit($wali_santri->getWaliSantri->no_ktp, 5, '***') }}</td>
+                                </tr>
+                                <tr>
+                                    <td>No. KK</td>
+                                    <td>:</td>
+                                    <td>{{ Str::limit($wali_santri->getWaliSantri->no_kk, 5, '***') }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="card-box table-responsive">
-                            <table id="datatable" class="table table-hover table-bordered" style="width: 100%">
+                            <table class="table table-hover table-bordered" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No.</th>
@@ -42,17 +84,17 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($santri as $s)
-                                        <tr>
-                                            <th>{{ $loop->iteration }}</th>
-                                            <td>{{ $s->nis }}</td>
-                                            <td>{{ $s->nama_lengkap }}</td>
-                                            <td>{{ $s->getJenjang->jenjang }}</td>
-                                            <td>{{ $s->status == 1 ? 'Belum Lulus' : 'Lulus' }}</td>
-                                            <th>
-                                                <a href="{{ url('app/sistem/profil_santri/'.$s->id) }}" class="btn btn-info text-white" title="Detail"><i class="fa fa-eye"></i></a>
-                                                <a href="{{ url('app/sistem/profil_santri/'.$s->id.'/edit') }}" class="btn btn-warning text-white" title="Edit"><i class="fa fa-pencil"></i></a>
-                                            </th>
-                                        </tr>
+                                    <tr>
+                                        <th>{{ $loop->iteration }}</th>
+                                        <td>{{ $s->nis }}</td>
+                                        <td>{{ $s->nama_lengkap }}</td>
+                                        <td>{{ $s->getJenjang->jenjang }}</td>
+                                        <td>{{ $s->status == 1 ? 'Belum Lulus' : 'Lulus' }}</td>
+                                        <th>
+                                            <a href="{{ url('app/sistem/profil_santri/'.$s->id) }}" class="btn btn-info text-white" title="Detail"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ url('app/sistem/profil_santri/'.$s->id.'/edit') }}" class="btn btn-warning text-white" title="Edit"><i class="fa fa-pencil"></i></a>
+                                        </th>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>

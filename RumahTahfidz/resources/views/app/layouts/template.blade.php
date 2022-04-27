@@ -36,7 +36,9 @@
     </div>
 
     @include("app.layouts.partials.js.style")
-
+    @if (session('message'))
+    {!! session('message') !!}
+    @endif
     @yield('app_scripts')
 
     <script>

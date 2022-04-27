@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(AdminLokasiRt::class, "id", "id");
     }
+
+    public function getWaliSantri()
+    {
+        return $this->hasOne(WaliSantri::class, 'id', 'id');
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Santri;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +18,8 @@ class ProfilSantriController extends Controller
     public function index()
     {
         $data = [
-            'santri' => Santri::where('id_wali', Auth::user()->id)->get()
+            'santri' => Santri::where('id_wali', Auth::user()->id)->get(),
+            'wali_santri' => User::where('id', Auth::user()->id)->first()
         ];
         return view('app.wali_santri.profil.v_index', $data);
     }
@@ -50,7 +53,12 @@ class ProfilSantriController extends Controller
      */
     public function show($id)
     {
-        dd($id);
+        $data = [
+            'santri' => Santri::where('id', $id)->first(),
+            'data_kelas' => Kelas::all()
+        ];
+
+        return view('app.wali_santri.profil.v_detail', $data);
     }
 
     /**
@@ -61,7 +69,12 @@ class ProfilSantriController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'santri' => Santri::where('id', $id)->first(),
+            'data_kelas' => Kelas::all()
+        ];
+
+        return view('app.wali_santri.profil.v_edit', $data);
     }
 
     /**
@@ -73,7 +86,20 @@ class ProfilSantriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validasi = $request->validate([
+            "nis" => 'required',
+            "nama_lengkap" => 'required',
+            "nama_panggilan" => 'required',
+            "tempat_lahir" => 'required',
+            "tanggal_lahir" => 'required',
+            "alamat" => 'required',
+            "sekolah" => 'required',
+            "id_kelas" => 'required',
+        ]);
+
+        Santri::where("id", $id)->update($validasi);
+
+        return redirect('app/sistem/profil_santri')->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
     }
 
     /**
