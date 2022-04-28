@@ -22,6 +22,7 @@ use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
+use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\WaliSantriController;
@@ -149,6 +150,8 @@ Route::prefix("app")->group(function () {
             Route::put("/profil_user/ganti_password", [ProfilUserController::class, "ganti_password"]);
 
             Route::resource('profil_santri', ProfilSantriController::class);
+
+            Route::get('/rekap_absensi', [RekapAbsensiSantriController::class, 'index']);
         });
     });
 
