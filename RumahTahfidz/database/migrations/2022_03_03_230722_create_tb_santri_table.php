@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer("id_wali");
             $table->integer("id_jenjang");
             $table->enum("status", ["1", "0"])->default(1);
+            $table->string("foto")->nullable();
             $table->timestamps();
         });
     }
