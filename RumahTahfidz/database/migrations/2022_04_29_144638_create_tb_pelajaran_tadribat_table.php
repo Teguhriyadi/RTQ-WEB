@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_pelajaran_tadribat', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("pelajaran");
         });
     }
 
