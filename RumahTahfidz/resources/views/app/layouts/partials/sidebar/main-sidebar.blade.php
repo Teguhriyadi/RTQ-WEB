@@ -86,6 +86,20 @@
                     @endcan
 
                     @can('admin')
+                    <li>
+                        <a>
+                            <i class="fa fa-bars"></i> Level Tes Santri
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="{{ url('/app/sistem/tes/input') }}">Input Level Tes Santri</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/app/sistem/tes/data') }}">Data Level Tes Santri</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="{{ Request::segment(3)=='santri' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/santri') }}">
                             <i class="fa fa-user"></i>Santri
