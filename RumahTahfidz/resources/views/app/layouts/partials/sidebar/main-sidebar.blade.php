@@ -26,8 +26,11 @@
             <div class="menu_section">
                 <h3>Menu</h3>
                 <ul class="nav side-menu">
-                    <li class="{{ Request::segment(3) == 'home' ? 'active' : '' }}"><a href="{{ url('/app/sistem/home') }}"><i class="fa fa-home"></i>Home</a></li>
-
+                    <li class="{{ Request::segment(3) == 'home' ? 'active' : '' }}">
+                        <a href="{{ url('/app/sistem/home') }}">
+                            <i class="fa fa-home"></i>Home
+                        </a>
+                    </li>
                     @can('santri')
                     <li class="">
                         <a>
@@ -135,6 +138,15 @@
                         <a href="{{ url('/app/sistem/halaqah') }}">
                             <i class="fa fa-search"></i>Halaqah
                         </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="fa fa-home"></i> Pelajaran <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ url('/app/sistem/pelajaran/tadribat') }}">Tadribat</a></li>
+                            <li><a href="{{ url('/app/sistem/pelajaran/hafalan') }}">Hafalan</a></li>
+                        </ul>
                     </li>
                     <li class="{{ Request::segment(3)=='jenjang' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/jenjang') }}">

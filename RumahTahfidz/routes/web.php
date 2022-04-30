@@ -18,6 +18,8 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
+use App\Http\Controllers\PelajaranHafalanController;
+use App\Http\Controllers\PelajaranTadribatController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
@@ -88,6 +90,13 @@ Route::prefix("app")->group(function () {
                 Route::put("/halaqah/simpan", [HalaqahController::class, "update"]);
                 Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
                 Route::resource("/halaqah", HalaqahController::class);
+
+                Route::prefix("pelajaran")->group(function() {
+                    // Data Pelajaran Tadribat
+                    Route::get("/tadribat/{id}", [PelajaranTadribatController::class, "edit"]);
+                    Route::put("/tadribat/simpan", [PelajaranTadribatController::class, "update"]);
+                    Route::resource("/tadribat", PelajaranTadribatController::class);
+                });
 
                 // Data Admin Cabang
                 Route::get("/admin_lokasi_rt/edit", [AdminLokasiRtController::class, "edit"]);
