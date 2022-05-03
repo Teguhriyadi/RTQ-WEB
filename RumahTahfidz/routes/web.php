@@ -149,9 +149,12 @@ Route::prefix("app")->group(function () {
             Route::put("/profil_user/simpan_gambar_profil", [ProfilUserController::class, "simpan_gambar_profil"]);
             Route::put("/profil_user/ganti_password", [ProfilUserController::class, "ganti_password"]);
 
+            // Data Profil Santri
             Route::resource('profil_santri', ProfilSantriController::class);
 
+            // Data Rekap Absensi
             Route::get('/rekap_absensi', [RekapAbsensiSantriController::class, 'index']);
+            Route::get('/rekap_absensi/{id}', [RekapAbsensiSantriController::class, 'detail']);
         });
     });
 

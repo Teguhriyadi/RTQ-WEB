@@ -1,7 +1,7 @@
 @php
 use Illuminate\Support\Str;
 @endphp
-@extends(".app.layouts.template")
+@extends("app.layouts.template")
 
 @section("app_title", "Rekap Absensi")
 
@@ -24,9 +24,6 @@ use Illuminate\Support\Str;
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>
-                    <i class="fa fa-users"></i> @yield("app_title")
-                </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -40,21 +37,18 @@ use Illuminate\Support\Str;
                                         <th>NIS</th>
                                         <th>Nama</th>
                                         <th>Jenjang</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($santri as $s)
                                     <tr>
-                                        <th>{{ $loop->iteration }}</th>
+                                        <th class="text-center">{{ $loop->iteration }}</th>
                                         <td>{{ $s->nis }}</td>
                                         <td>{{ $s->nama_lengkap }}</td>
                                         <td>{{ $s->getJenjang->jenjang }}</td>
-                                        <td>{{ $s->status == 1 ? 'Belum Lulus' : 'Lulus' }}</td>
-                                        <th>
-                                            <a href="{{ url('app/sistem/profil_santri/'.$s->id) }}" class="btn btn-info text-white" title="Detail"><i class="fa fa-eye"></i></a>
-                                            <a href="{{ url('app/sistem/profil_santri/'.$s->id.'/edit') }}" class="btn btn-warning text-white" title="Edit"><i class="fa fa-pencil"></i></a>
+                                        <th class="text-center">
+                                            <a href="{{ url('app/sistem/rekap_absensi/'.$s->id) }}" class="btn btn-info text-white" title="Detail"><i class="fa fa-eye"></i></a>
                                         </th>
                                     </tr>
                                     @endforeach
