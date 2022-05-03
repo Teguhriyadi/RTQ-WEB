@@ -100,7 +100,13 @@ Route::prefix("app")->group(function () {
                     Route::get("/tadribat/{id}", [PelajaranTadribatController::class, "edit"]);
                     Route::put("/tadribat/simpan", [PelajaranTadribatController::class, "update"]);
                     Route::resource("/tadribat", PelajaranTadribatController::class);
+
+                    // Data Pelajaran Hafalan
+                    Route::get("/hafalan/{id}", [PelajaranHafalanController::class, "edit"]);
+                    Route::put("/hafalan/simpan", [PelajaranHafalanController::class, "update"]);
+                    Route::resource("/hafalan", PelajaranHafalanController::class);
                 });
+
 
                 // Data Admin Cabang
                 Route::get("/admin_lokasi_rt/edit", [AdminLokasiRtController::class, "edit"]);
