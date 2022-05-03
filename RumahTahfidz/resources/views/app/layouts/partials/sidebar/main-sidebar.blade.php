@@ -203,6 +203,7 @@
                         <ul class="nav child_menu">
                             <li><a href="{{ url('/app/sistem/pelajaran/tadribat') }}">Tadribat</a></li>
                             <li><a href="{{ url('/app/sistem/pelajaran/hafalan') }}">Hafalan</a></li>
+                            <li><a href="{{ url('/app/sistem/pelajaran/imla') }}">Imla</a></li>
                         </ul>
                     </li>
                     <li class="{{ Request::segment(3)=='jenjang' ? 'active' : '' }}">

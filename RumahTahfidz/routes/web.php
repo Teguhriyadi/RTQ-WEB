@@ -19,6 +19,7 @@ use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PelajaranHafalanController;
+use App\Http\Controllers\PelajaranImlaController;
 use App\Http\Controllers\PelajaranTadribatController;
 use App\Http\Controllers\PenilaianKategoriTadribatController;
 use App\Http\Controllers\PenilaianTadribatController;
@@ -105,6 +106,11 @@ Route::prefix("app")->group(function () {
                     Route::get("/hafalan/{id}", [PelajaranHafalanController::class, "edit"]);
                     Route::put("/hafalan/simpan", [PelajaranHafalanController::class, "update"]);
                     Route::resource("/hafalan", PelajaranHafalanController::class);
+
+                    // Data Pelajaran Imla
+                    Route::get("/imla/{id}", [PelajaranImlaController::class, "edit"]);
+                    Route::put("/imla/simpan", [PelajaranImlaController::class, "update"]);
+                    Route::resource("/imla", PelajaranImlaController::class);
                 });
 
 
