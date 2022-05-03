@@ -19,6 +19,7 @@ use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PelajaranHafalanController;
+use App\Http\Controllers\PelajaranImanAdabController;
 use App\Http\Controllers\PelajaranImlaController;
 use App\Http\Controllers\PelajaranTadribatController;
 use App\Http\Controllers\PenilaianKategoriTadribatController;
@@ -111,6 +112,11 @@ Route::prefix("app")->group(function () {
                     Route::get("/imla/{id}", [PelajaranImlaController::class, "edit"]);
                     Route::put("/imla/simpan", [PelajaranImlaController::class, "update"]);
                     Route::resource("/imla", PelajaranImlaController::class);
+
+                    // Data Pelajaran Iman & Adab
+                    Route::get("/iman_adab/{id}", [PelajaranImanAdabController::class, "edit"]);
+                    Route::put("/iman_adab/simpan", [PelajaranImanAdabController::class, "update"]);
+                    Route::resource("/iman_adab", PelajaranImanAdabController::class);
                 });
 
 
