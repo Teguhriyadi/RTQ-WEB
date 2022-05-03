@@ -75,18 +75,6 @@
                     @can("asatidz")
                     <li>
                         <a>
-                            <i class="fa fa-edit"></i> Penilaian
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ url('/app/sistem/nilai/tadribat') }}">Tadribat</a></li>
-                            <li><a href="{{ url('/app/sistem/nilai/hafalan') }}">Hafalan</a></li>
-                            <li><a href="{{ url('/app/sistem/nilai/imla') }}">Imla</a></li>
-                            <li><a href="{{ url('/app/sistem/nilai/mulok') }}">Mulok</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>
                             <i class="fa fa-edit"></i> Absensi Santri
                             <span class="fa fa-chevron-down"></span>
                         </a>

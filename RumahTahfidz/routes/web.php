@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminCabangController;
 use App\Http\Controllers\AdminLokasiRtController;
 use App\Http\Controllers\API\AbsensiController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\CabangController;
 use App\Http\Controllers\JenjangController;
-use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
@@ -24,7 +21,6 @@ use App\Http\Controllers\PelajaranImlaController;
 use App\Http\Controllers\PelajaranMulokController;
 use App\Http\Controllers\PelajaranTadribatController;
 use App\Http\Controllers\PenilaianKategoriTadribatController;
-use App\Http\Controllers\PenilaianTadribatController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
@@ -174,15 +170,6 @@ Route::prefix("app")->group(function () {
             });
 
             Route::group(["middleware" => ["can:asatidz"]], function () {
-
-                Route::prefix("nilai")->group(function() {
-
-                    // Penilaian Tadribat
-                    Route::get("/tadribat", [PenilaianTadribatController::class, "index"]);
-                    Route::get("/tadribat/create", [PenilaianTadribatController::class, "create"]);
-                    Route::put("/tadribat/create", [PenilaianTadribatController::class, "input"]);
-                    Route::post("/tadribat", [PenilaianTadribatController::class, "store"]);
-                });
 
                 Route::prefix("kategori")->group(function() {
                     Route::prefix("tadribat")->group(function() {
