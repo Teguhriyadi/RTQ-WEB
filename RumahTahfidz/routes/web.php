@@ -21,6 +21,7 @@ use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PelajaranHafalanController;
 use App\Http\Controllers\PelajaranImanAdabController;
 use App\Http\Controllers\PelajaranImlaController;
+use App\Http\Controllers\PelajaranMulokController;
 use App\Http\Controllers\PelajaranTadribatController;
 use App\Http\Controllers\PenilaianKategoriTadribatController;
 use App\Http\Controllers\PenilaianTadribatController;
@@ -117,6 +118,11 @@ Route::prefix("app")->group(function () {
                     Route::get("/iman_adab/{id}", [PelajaranImanAdabController::class, "edit"]);
                     Route::put("/iman_adab/simpan", [PelajaranImanAdabController::class, "update"]);
                     Route::resource("/iman_adab", PelajaranImanAdabController::class);
+
+                    // Data Mulok
+                    Route::get("/mulok/{id}", [PelajaranMulokController::class, "edit"]);
+                    Route::put("/mulok/simpan", [PelajaranMulokController::class, "update"]);
+                    Route::resource("/mulok", PelajaranMulokController::class);
                 });
 
 

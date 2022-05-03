@@ -205,6 +205,7 @@
                             <li><a href="{{ url('/app/sistem/pelajaran/hafalan') }}">Hafalan</a></li>
                             <li><a href="{{ url('/app/sistem/pelajaran/imla') }}">Imla</a></li>
                             <li><a href="{{ url('/app/sistem/pelajaran/iman_&_adab') }}">Iman & Adab</a></li>
+                            <li><a href="{{ url('/app/sistem/pelajaran/mulok') }}">Mulok</a></li>
                         </ul>
                     </li>
                     <li class="{{ Request::segment(3)=='jenjang' ? 'active' : '' }}">
