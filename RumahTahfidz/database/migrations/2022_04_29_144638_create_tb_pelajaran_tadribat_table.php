@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_absensi', function (Blueprint $table) {
+        Schema::create('tb_pelajaran_tadribat', function (Blueprint $table) {
             $table->id();
-            $table->integer("id_santri");
-            $table->integer("id_status_absen");
-            $table->text("keterangan")->nullable();
-            $table->integer("id_asatidz");
-            $table->timestamps();
+            $table->string("pelajaran");
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_absensi');
+        Schema::dropIfExists('tb_pelajaran_tadribat');
     }
 };

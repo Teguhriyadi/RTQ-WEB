@@ -18,6 +18,8 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
+use App\Http\Controllers\PelajaranHafalanController;
+use App\Http\Controllers\PelajaranTadribatController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
@@ -25,6 +27,7 @@ use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
+use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\WaliSantriController;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Row;
@@ -89,6 +92,13 @@ Route::prefix("app")->group(function () {
                 Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
                 Route::resource("/halaqah", HalaqahController::class);
 
+                Route::prefix("pelajaran")->group(function() {
+                    // Data Pelajaran Tadribat
+                    Route::get("/tadribat/{id}", [PelajaranTadribatController::class, "edit"]);
+                    Route::put("/tadribat/simpan", [PelajaranTadribatController::class, "update"]);
+                    Route::resource("/tadribat", PelajaranTadribatController::class);
+                });
+
                 // Data Admin Cabang
                 Route::get("/admin_lokasi_rt/edit", [AdminLokasiRtController::class, "edit"]);
                 Route::put("/admin_lokasi_rt/simpan", [AdminLokasiRtController::class, "update"]);
@@ -109,6 +119,13 @@ Route::prefix("app")->group(function () {
             });
 
             Route::group(["middleware" => ["can:admin"]], function () {
+
+                // Tes Santri
+                Route::get("/tes/data", [TesSantriController::class, "index"]);
+                Route::get("/tes/input", [TesSantriController::class, "create"]);
+                Route::put("/tes/simpan", [TesSantriController::class, "update"]);
+                Route::get("/tes/edit", [TesSantriController::class, "edit"]);
+                Route::put("/tes/simpan_data", [TesSantriController::class, "simpan"]);
 
                 // Data Siswa
                 Route::get("/santri/edit", [SantriController::class, "edit"]);

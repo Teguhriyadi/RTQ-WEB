@@ -16,19 +16,19 @@ class KategoriPenilaianSeeder extends Seeder
     public function run()
     {
         KategoriPenilaian::create([
-            "kategori_penilaian" => "Tilawah"
+            "kategori_penilaian" => "Tadribat"
         ]);
 
         KategoriPenilaian::create([
-            "kategori_penilaian" => "Qiraah 1"
+            "kategori_penilaian" => "Hafalan"
         ]);
 
         KategoriPenilaian::create([
-            "kategori_penilaian" => "Qiraah 2"
+            "kategori_penilaian" => "Imla"
         ]);
 
         KategoriPenilaian::create([
-            "kategori_penilaian" => "Qiraah 3"
+            "kategori_penilaian" => "Iman & Adab"
         ]);
     }
 }

@@ -26,8 +26,9 @@ return new class extends Migration
             $table->integer("id_kelas");
             $table->string("kode_halaqah", 50);
             $table->integer("id_wali");
-            $table->integer("id_jenjang");
+            $table->integer("id_jenjang")->nullable();
             $table->enum("status", ["1", "0"])->default(1);
+            $table->string("foto")->nullable();
             $table->timestamps();
         });
     }
