@@ -75,6 +75,18 @@
                     @can("asatidz")
                     <li>
                         <a>
+                            <i class="fa fa-edit"></i> Penilaian
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ url('/app/sistem/nilai/tadribat') }}">Tadribat</a></li>
+                            <li><a href="{{ url('/app/sistem/nilai/hafalan') }}">Hafalan</a></li>
+                            <li><a href="{{ url('/app/sistem/nilai/imla') }}">Imla</a></li>
+                            <li><a href="{{ url('/app/sistem/nilai/mulok') }}">Mulok</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
                             <i class="fa fa-edit"></i> Absensi Santri
                             <span class="fa fa-chevron-down"></span>
                         </a>
@@ -83,6 +95,37 @@
                             <li><a href="{{ url('/app/sistem/absensi_santri') }}">Data Absensi</a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a>
+                            <i class="fa fa-edit"></i> Penilaian Kategori
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ url('/app/sistem/kategori/tadribat/') }}">Tadribat</a></li>
+                            <li><a href="{{ url('/app/sistem/kategori/hafalan') }}">Hafalan</a></li>
+                            <li><a href="{{ url('/app/sistem/kategori/imla') }}">Imla</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a>
+                            <i class="fa fa-edit"></i> Data Penilaian
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ url('/app/sistem/data/tadribat/') }}">Tadribat</a></li>
+                            <li><a href="{{ url('/app/sistem/data/hafalan') }}">Hafalan</a></li>
+                            <li><a href="{{ url('/app/sistem/data/imla') }}">Imla</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/app/sistem/rekap/nilai') }}">
+                            <i class="fa fa-book"></i> Rekap Nilai
+                        </a>
+                    </li>
+
                     @endcan
 
                     @can('admin')

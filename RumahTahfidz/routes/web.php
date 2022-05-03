@@ -20,11 +20,14 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PelajaranHafalanController;
 use App\Http\Controllers\PelajaranTadribatController;
+use App\Http\Controllers\PenilaianKategoriTadribatController;
+use App\Http\Controllers\PenilaianTadribatController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\RekapAbsensiSantriController;
+use App\Http\Controllers\RekapPenilaianController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\TesSantriController;
@@ -147,6 +150,28 @@ Route::prefix("app")->group(function () {
             });
 
             Route::group(["middleware" => ["can:asatidz"]], function () {
+
+                Route::prefix("nilai")->group(function() {
+
+                    // Penilaian Tadribat
+                    Route::get("/tadribat", [PenilaianTadribatController::class, "index"]);
+                    Route::get("/tadribat/create", [PenilaianTadribatController::class, "create"]);
+                    Route::put("/tadribat/create", [PenilaianTadribatController::class, "input"]);
+                    Route::post("/tadribat", [PenilaianTadribatController::class, "store"]);
+                });
+
+                Route::prefix("kategori")->group(function() {
+                    Route::prefix("tadribat")->group(function() {
+                        Route::get("/", [PenilaianKategoriTadribatController::class, "index"]);
+                        Route::get("/create", [PenilaianKategoriTadribatController::class, "create"]);
+                        Route::post("/", [PenilaianKategoriTadribatController::class, "store"]);
+                    });
+                });
+
+                Route::prefix("rekap")->group(function() {
+                    Route::get("/nilai", [RekapPenilaianController::class, "rekap"]);
+                    Route::get("/nilai/{id}", [RekapPenilaianController::class, "print"]);
+                });
 
                 // Data Absensi Santri
                 Route::get("/input_absensi_santri", [AbsensiController::class, "input_absensi_santri"]);
