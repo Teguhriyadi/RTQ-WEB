@@ -17,7 +17,7 @@
 <div class="clearfix"></div>
 
 <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-4 col-sm-8 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
                 <h2>
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-8 col-sm-4 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
                 <h2>
@@ -73,10 +73,10 @@
                                         <td class="text-center">{{ $data->pelajaran }}</td>
                                         <td class="text-center">
                                             <button onclick="editDataPelajaranTadribat({{ $data->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-edit"></i> Edit
                                             </button>
                                             <button id="deletePelajaranTadribat" data-id="{{ $data->id }}" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
+                                                <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </td>
                                     </tr>
