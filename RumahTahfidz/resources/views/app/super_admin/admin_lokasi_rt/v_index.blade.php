@@ -4,15 +4,17 @@
 
 @section("app_content")
 
-<div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>
-                @yield("app_title")
-            </h3>
-        </div>
-    </div>
-</div>
+<section class="section">
+    <h3>
+        @yield("app_title")
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+        </ol>
+    </nav>
+</section>
 
 <div class="clearfix"></div>
 
@@ -50,13 +52,13 @@
                                         <td>{{ $data->getUser->no_hp }}</td>
                                         <td class="text-center">
                                             <button onclick="editAdminLokasiRt({{ $data->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-edit"></i> Edit
                                             </button>
                                             <form action="{{ url('/app/sistem/admin_lokasi_rt/'.$data->id) }}" method="POST" style="display: inline;">
                                                 @method("DELETE")
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
+                                                    <i class="fa fa-trash"></i> Hapus
                                                 </button>
                                             </form>
                                         </td>

@@ -4,15 +4,17 @@
 
 @section("app_content")
 
-<div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>
-                @yield("app_title")
-            </h3>
-        </div>
-    </div>
-</div>
+<section class="section">
+    <h3>
+        @yield("app_title")
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+        </ol>
+    </nav>
+</section>
 
 <div class="clearfix"></div>
 
@@ -36,7 +38,6 @@
                                         <th>Nama</th>
                                         <th>Sekolah</th>
                                         <th class="text-center">Kelas</th>
-                                        <th class="text-center">Prestasi</th>
                                         <th>Nama Wali</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
@@ -49,17 +50,16 @@
                                         <td>{{ $santri->nama_lengkap }}</td>
                                         <td>{{ $santri->sekolah }}</td>
                                         <td class="text-center">{{ $santri->getKelas->nama_kelas }}</td>
-                                        <td class="text-center">{{ $santri->prestasi_anak }}</td>
                                         <td>{{ $santri->getWali->getUser->nama }}</td>
                                         <td class="text-center">
                                             <button onclick="editDataSantri({{ $santri->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-edit"></i> Edit
                                             </button>
                                             <form action="{{ url('/app/sistem/santri/'.$santri->id) }}" method="POST" style="display: inline">
                                                 @method("DELETE")
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
+                                                    <i class="fa fa-trash"></i> Hapus
                                                 </button>
                                             </form>
                                         </td>

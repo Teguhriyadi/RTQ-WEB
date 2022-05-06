@@ -154,9 +154,9 @@
                     @endcan
 
                     @can('super_admin')
-                    <li class="{{ Request::segment(3)=='admin_cabang' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/admin_cabang') }}">
-                            <i class="fa fa-users"></i>Admin Cabang
+                    <li class="{{ Request::segment(3)=='admin_lokasi_rt' ? 'active' : '' }}">
+                        <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">
+                            <i class="fa fa-users"></i> Admin Lokasi RT
                         </a>
                     </li>
                     <li class="{{ Request::segment(3)=='kelas' ? 'active' : '' }}">
@@ -192,7 +192,7 @@
                             <li><a href="{{ url('/app/sistem/pelajaran/tadribat') }}">Tadribat</a></li>
                             <li><a href="{{ url('/app/sistem/pelajaran/hafalan') }}">Hafalan</a></li>
                             <li><a href="{{ url('/app/sistem/pelajaran/imla') }}">Imla</a></li>
-                            <li><a href="{{ url('/app/sistem/pelajaran/iman_&_adab') }}">Iman & Adab</a></li>
+                            <li><a href="{{ url('/app/sistem/pelajaran/iman_adab') }}">Iman & Adab</a></li>
                             <li><a href="{{ url('/app/sistem/pelajaran/mulok') }}">Mulok</a></li>
                         </ul>
                     </li>
