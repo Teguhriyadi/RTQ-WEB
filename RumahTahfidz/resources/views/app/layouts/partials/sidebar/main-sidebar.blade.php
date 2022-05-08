@@ -137,6 +137,49 @@
                         </ul>
                     </li>
                     @endcan
+                    @can("admin")
+                    <li>
+                        <a>
+                            <i class="fa fa-bars"></i> Data Master
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li class="{{ Request::segment(3)=='santri' ? 'active' : '' }}">
+                                <a href="{{ url('/app/sistem/santri') }}">
+                                    Santri
+                                </a>
+                            </li>
+                            <li class="{{ Request::segment(3)=='wali_santri' ? 'active' : '' }}">
+                                <a href="{{ url('/app/sistem/wali_santri') }}">
+                                    Wali Santri
+                                </a>
+                            </li>
+                            <li class="{{ Request::segment(3)=='asatidz' ? 'active' : '' }}">
+                                <a href="{{ url('/app/sistem/asatidz') }}">
+                                    Asatidz
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="fa fa-bar-chart"></i> Laporan
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="{{ url('/app/sistem/home') }}">
+                                    Iuran
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/app/sistem/home') }}">
+                                    Santri
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endcan
                     @can('santri')
                     <li class="">
                         <a>
@@ -237,21 +280,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ Request::segment(3)=='santri' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/santri') }}">
-                            <i class="fa fa-user"></i>Santri
-                        </a>
-                    </li>
-                    <li class="{{ Request::segment(3)=='wali_santri' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/wali_santri') }}">
-                            <i class="fa fa-user"></i>Wali Santri
-                        </a>
-                    </li>
-                    <li class="{{ Request::segment(3)=='asatidz' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/asatidz') }}">
-                            <i class="fa fa-user"></i>Asatidz
-                        </a>
-                    </li>
+
                     <li class="{{ Request::segment(3)=='absensi' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/absensi') }}">
                             <i class="fa fa-book"></i>Absensi
