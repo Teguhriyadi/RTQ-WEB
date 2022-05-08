@@ -55,7 +55,7 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
                                         <td>{{ $halaqah->nama_halaqah }}</td>
-                                        <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
+                                        <td>{!! $halaqah->getLokasiRt->lokasi_rt !!}</td>
                                         <td class="text-center">
                                             <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i> Edit

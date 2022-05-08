@@ -49,7 +49,7 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td>{{ $santri->nama_lengkap }}</td>
                                         <td>{{ $santri->sekolah }}</td>
-                                        <td class="text-center">{{ $santri->getKelas->nama_kelas }}</td>
+                                    <td class="text-center">{!! $santri->getKelas->nama_kelas !!}</td>
                                         <td>{{ $santri->getWali->getUser->nama }}</td>
                                         <td class="text-center">
                                             <button onclick="editDataSantri({{ $santri->id }})" type="button" class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal">

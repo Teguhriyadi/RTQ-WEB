@@ -17,7 +17,7 @@ class WaliSantri extends Model
 
     public function getUser()
     {
-        return $this->belongsTo("App\Models\User", "id", "id");
+        return $this->belongsTo("App\Models\User", "id", "id")->withDefault(["nama" => ""]);
     }
 
     public function getHalaqah()

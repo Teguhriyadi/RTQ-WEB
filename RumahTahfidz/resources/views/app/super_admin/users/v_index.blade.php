@@ -49,7 +49,7 @@
                                     <td class="text-center">{{ ++$no }}.</td>
                                     <td>{{ $user->nama }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td class="text-center">{{ $user->getRole->keterangan }}</td>
+                                    <td class="text-center">{!! $user->getRole->keterangan !!}</td>
                                     <td class="text-center">
                                         @if (Auth::user()->id == $user->id)
                                             Tidak memiliki akses
