@@ -5,7 +5,9 @@
                 <div class="col-lg-5 col-md-12 footer-info">
                     <a href="index.html" class="logo d-flex align-items-center">
                         <img src="{{ url('/gambar') }}/logo_ulil.png" alt="">
-                        <span>RTQ</span>
+                        <span>
+                            {{ (empty($data->singkatan)) ? "" : $data->singkatan }}
+                        </span>
                     </a>
                     <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
                     <div class="social-links mt-3">
@@ -17,18 +19,18 @@
                 </div>
 
                 <div class="col-lg-2 col-6 footer-links">
-                    <h4>Useful Links</h4>
+                    <h4>Tautan</h4>
                     <ul>
                         <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Tentang Kami</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Program</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Dokumentasi</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Struktur</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-6 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Layanan Kami</h4>
                     <ul>
                         <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
                         <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
@@ -39,13 +41,12 @@
                 </div>
 
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                    <h4>Contact Us</h4>
+                    <h4>Kontak Kami</h4>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        {{ (empty($data->alamat)) ? "" : $data->alamat }}
+                        <br><br>
+                        <strong>Phone:</strong> {{ (empty($data->no_hp)) ? "" : $data->no_hp }} <br>
+                        <strong>Email:</strong> {{ (empty($data->email)) ? "" : $data->email }} <br>
                     </p>
                 </div>
             </div>

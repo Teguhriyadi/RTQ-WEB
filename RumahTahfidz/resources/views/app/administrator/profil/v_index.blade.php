@@ -1,82 +1,152 @@
 @extends(".app.layouts.template")
 
-@section("app_title", "Data Profil")
+@section("app_title", "Profil")
 
 @section("app_content")
 
 <section class="section">
-    <div class="section-header">
-        <h1>
-            @yield("app_title")
-        </h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
-                <a href="{{ url('/app/admin/home') }}">Home</a>
-            </div>
-            <div class="breadcrumb-item">
-                @yield("app_title")
-            </div>
-        </div>
-    </div>
+    <h3>
+        @yield("app_title")
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+        </ol>
+    </nav>
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <i class="fa fa-plus"></i>
-                        <span>Tambah Data</span>
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label for="nama"> Nama </label>
-                                <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama">
-                            </div>
+    <div class="section-body">
+        <div class="mt-sm-4">
+            @if (empty($profil))
+            <form action="{{ url('app/sistem/profil/') }}" class="row" method="post" enctype="multipart/form-data">
+            @else
+            <form action="{{ url('app/sistem/profil/'.$profil->id) }}" class="row" method="post" enctype="multipart/form-data">
+            @method("PUT")
+            <input type="hidden" name="logo_lama" value="{{ (empty($profil)) ? "" : $profil->logo }}">
+            @endif
+                @csrf
+                <div class="col-12 col-md-12 col-lg-4 mb-3">
+                    <div class="card profile-widget">
+                        <div class="profile-widget-header">
+                            <center class="m-3">
+                                @if (empty($profil))
+                                <img src="{{ url('gambar/gambar_user.png') }}" class="rounded-circle profile-widget-picture gambar-preview " id="tampilGambar">
+                                @else
+                                <img src="{{ url('storage/'.$profil->logo) }}" class="rounded-circle profile-widget-picture gambar-preview " id="tampilGambar">
+                                @endif
+                                <div class="profile-widget-description">
+                                    <div class="m-3">
+                                        <input type="file" onchange="previewImage()" name="logo" id="image" class="form-control">
+                                    </div>
+                                </div>
+                            </center>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="singkatan"> Singkatan </label>
-                                <input type="text" class="form-control" id="singkatan" placeholder="Masukkan Singkatan">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="no_hp"> No. HP </label>
-                                <input type="number" class="form-control" id="no_hp" placeholder="0">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email"> Email </label>
-                                <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat"> Alamat </label>
-                        <textarea class="form-control" id="alamat" placeholder="Masukkan Alamat"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="logo"> Logo </label>
-                        <input type="file" class="form-control" id="logo">
                     </div>
                 </div>
-                <div class="card-footer">
-                    <button type="reset" class="btn btn-danger">
-                        <i class="fa fa-times"></i> Batal
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
+
+                <div class="col-12 col-md-12 col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5>
+                                    @if (empty($profil))
+                                    <i class="fa fa-plus"></i> Tambah Profil WEB
+                                    @else
+                                    <i class="fa fa-edit"></i> Edit Profil WEB
+                                    @endif
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <tr>
+                                    <td>Nama</td>
+                                    <td>:</td>
+                                    <td>
+                                        <div class="row">
+                                            <input type="text" class="form-control" value="{{ (empty($profil)) ? "" : $profil->nama }}" name="nama" placeholder="Masukkan Nama">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Singkatan</td>
+                                    <td>:</td>
+                                    <td>
+                                        <div class="row">
+                                            <input type="text" class="form-control" value="{{ (empty($profil)) ? "" : $profil->singkatan }}" name="singkatan" placeholder="Masukkan Singkatan Profil">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>:</td>
+                                    <td>
+                                        <div class="row">
+                                            <input type="email" class="form-control" value="{{ (empty($profil)) ? "" : $profil->email }}" name="email" placeholder="Masukkan Email">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>No. HP</td>
+                                    <td>:</td>
+                                    <td>
+                                        <div class="row">
+                                            <input type="number" class="form-control" value="{{ (empty($profil)) ? "" : $profil->no_hp }}" name="no_hp" placeholder="0" min="1">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td>:</td>
+                                    <td>
+                                        <div class="row">
+                                            <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat">{{ (empty($profil)) ? "" : $profil->alamat }}</textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <button type="reset" class="btn btn-danger">
+                                <i class="fa fa-times"></i> Batal
+                            </button>
+                            @if (empty($profil))
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-plus"></i> Tambah
+                            </button>
+                            @else
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-save"></i> Simpan
+                            </button>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </section>
+
+@endsection
+
+@section("app_scripts")
+
+<script type="text/javascript">
+    function previewImage() {
+        const image = document.querySelector("#image");
+        const imgPreview = document.querySelector(".gambar-preview");
+
+        imgPreview.style.display = "block";
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+            $("#tampilGambar").addClass('mb-3');
+            $("#tampilGambar").height("250");
+        }
+    }
+</script>
 
 @endsection

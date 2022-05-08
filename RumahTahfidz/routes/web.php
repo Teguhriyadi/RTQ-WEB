@@ -136,6 +136,8 @@ Route::prefix("app")->group(function () {
                 Route::resource("/users", UsersController::class);
 
                 Route::get("/profil", [ProfilController::class, "web_profil"]);
+                Route::post("/profil", [ProfilController::class, "store"]);
+                Route::put("/profil/{id}", [ProfilController::class, "update"]);
 
                 Route::get("/pesan", [PesanController::class, "index"]);
             });

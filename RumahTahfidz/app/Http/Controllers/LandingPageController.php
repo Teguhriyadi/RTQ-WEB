@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pesan;
+use App\Models\Profil;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -14,7 +15,9 @@ class LandingPageController extends Controller
 
     public function home()
     {
-        return view("app.landing.v_home");
+        $data = Profil::select("id", "nama", "email" ,"logo", "singkatan", "no_hp", "alamat")->first();
+
+        return view("app.landing.v_home", compact('data'));
     }
 
     public function kontak()

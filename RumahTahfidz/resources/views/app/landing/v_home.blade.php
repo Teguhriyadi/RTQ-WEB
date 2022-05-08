@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 d-flex flex-column justify-content-center">
-                <h1 data-aos="fade-up">Selamat Datang di RTQ Ulil Albab</h1>
+                <h1 data-aos="fade-up">Selamat Datang di {{ (empty($data->nama)) ? "" : $data->nama }}</h1>
                 <h2 data-aos="fade-up" data-aos-delay="400">
                     Silahkan pilih menu yang tersedia untuk memulai program
                 </h2>
@@ -972,37 +972,14 @@
             </div>
         </div>
     </section>
-    <section id="clients" class="clients">
-        <div class="container" data-aos="fade-up">
-            <header class="section-header">
-                <h2>Our Clients</h2>
-                <p>Temporibus omnis officia</p>
-            </header>
-            <div class="clients-slider swiper">
-                <div class="swiper-wrapper align-items-center">
-                    <div class="swiper-slide"><img src="{{ url('/landing') }}/assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ url('/landing') }}/assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ url('/landing') }}/assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ url('/landing') }}/assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ url('/landing') }}/assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ url('/landing') }}/assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ url('/landing') }}/assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ url('/landing') }}/assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
 
-    </section><!-- End Clients Section -->
-
-    <!-- ======= Recent Blog Posts Section ======= -->
     <section id="recent-blog-posts" class="recent-blog-posts">
 
         <div class="container" data-aos="fade-up">
 
             <header class="section-header">
                 <h2>Blog</h2>
-                <p>Recent posts form our Blog</p>
+                <p>Postingan Terbaru</p>
             </header>
 
             <div class="row">
@@ -1058,21 +1035,27 @@
                             <div class="info-box">
                                 <i class="bi bi-geo-alt"></i>
                                 <h3>Alamat</h3>
-                                <p>A108 Adam Street,<br>New York, NY 535022</p>
+                                <p>
+                                    {{ (empty($data->alamat)) ? "" : $data->alamat }}
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-telephone"></i>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                                <h3>No. Handphone</h3>
+                                <p>
+                                    {{ (empty($data->no_hp)) ? "" : $data->no_hp }}
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-envelope"></i>
-                                <h3>Email Us</h3>
-                                <p>info@example.com<br>contact@example.com</p>
+                                <h3>Email</h3>
+                                <p>
+                                    {{ (empty($data->email)) ? "" : $data->email }}
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-6">
