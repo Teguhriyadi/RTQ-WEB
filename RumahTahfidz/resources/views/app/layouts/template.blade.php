@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}"/>
 
-    <title>RTQ Ulil Albab</title>
+    <title>RTQ Ulil Albab | @yield("app_title")</title>
 
     @include("app.layouts.partials.css.style")
 
