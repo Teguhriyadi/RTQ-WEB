@@ -213,6 +213,6 @@ Route::prefix("app")->group(function () {
     });
 });
 
-Route::get('coba', function () {
-    return view('coba');
+Route::get("/v_error", function() {
+    return view("errors.401");
 });
