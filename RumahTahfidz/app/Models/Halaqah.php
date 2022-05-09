@@ -17,6 +17,6 @@ class Halaqah extends Model
 
     public function getLokasiRt()
     {
-        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt");
+        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt")->withDefault(["lokasi_rt" => "<i><b>NULL</b></i>" ]);
     }
 }

@@ -15,12 +15,12 @@ class Santri extends Model
 
     public function getWali()
     {
-        return $this->belongsTo("App\Models\WaliSantri", "id_wali", "id");
+        return $this->belongsTo("App\Models\WaliSantri", "id_wali", "id")->withDefault(["getUser" => ""]);
     }
 
     public function getKelas()
     {
-        return $this->belongsTo("App\Models\Kelas", "id_kelas", "id");
+        return $this->belongsTo("App\Models\Kelas", "id_kelas", "id")->withDefault(["nama_kelas" => "<i><b>NULL</b></i>"]);
     }
 
     public function getJenjang()

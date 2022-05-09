@@ -33,8 +33,7 @@ class SantriController extends Controller
             "sekolah" => $request->sekolah,
             "id_kelas" => $request->id_kelas,
             "kode_halaqah" => $request->kode_halaqah,
-            "id_wali" => $request->id_wali,
-            "id_jenjang" => 1
+            "id_wali" => $request->id_wali
         ]);
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
@@ -61,8 +60,7 @@ class SantriController extends Controller
             "alamat" => $request->alamat,
             "prestasi_anak" => $request->prestasi_anak,
             "sekolah" => $request->sekolah,
-            "id_kelas" => $request->id_kelas,
-            "id_jenjang" => 1
+            "id_kelas" => $request->id_kelas
         ]);
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");

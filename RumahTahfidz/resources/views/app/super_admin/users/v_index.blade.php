@@ -4,15 +4,17 @@
 
 @section("app_content")
 
-<div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>
-                @yield("app_title")
-            </h3>
-        </div>
-    </div>
-</div>
+<section class="section">
+    <h3>
+        @yield("app_title")
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+        </ol>
+    </nav>
+</section>
 
 <div class="clearfix"></div>
 
@@ -47,7 +49,7 @@
                                     <td class="text-center">{{ ++$no }}.</td>
                                     <td>{{ $user->nama }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td class="text-center">{{ $user->getRole->keterangan }}</td>
+                                    <td class="text-center">{!! $user->getRole->keterangan !!}</td>
                                     <td class="text-center">
                                         @if (Auth::user()->id == $user->id)
                                             Tidak memiliki akses
@@ -73,10 +75,10 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-search"></i>
+                                            <i class="fa fa-search"></i> Detail
                                         </a>
                                         <button class="btn btn-warning btn-sm">
-                                            <i class="fa fa-edit"></i>
+                                            <i class="fa fa-edit"></i> Edit
                                         </button>
                                         @if (Auth::user()->id == $user->id)
 
@@ -85,7 +87,7 @@
                                             @method("DELETE")
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>
+                                                <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </form>
 

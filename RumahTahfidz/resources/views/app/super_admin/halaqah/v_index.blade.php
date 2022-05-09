@@ -11,15 +11,17 @@
             href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 @endsection
 
-<div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>
-                @yield("app_title")
-            </h3>
-        </div>
-    </div>
-</div>
+<section class="section">
+    <h3>
+        @yield("app_title")
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+        </ol>
+    </nav>
+</section>
 
 <div class="clearfix"></div>
 
@@ -53,7 +55,7 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
                                         <td>{{ $halaqah->nama_halaqah }}</td>
-                                        <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
+                                        <td>{!! $halaqah->getLokasiRt->lokasi_rt !!}</td>
                                         <td class="text-center">
                                             <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i> Edit

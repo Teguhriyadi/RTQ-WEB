@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Siswa;
 use App\Models\Pengajar;
+use App\Models\Profil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
@@ -52,6 +54,53 @@ class ProfilController extends Controller
 
     public function web_profil()
     {
-        return view("app.administrator.profil.v_index");
+        $profil = Profil::select("id", "nama", "singkatan", "email", "no_hp", "alamat", "logo")->first();
+
+        return view("app.administrator.profil.v_index", compact('profil'));
+    }
+
+    public function store(Request $request)
+    {
+        if ($request->file("logo")) {
+            $data = $request->file("logo")->store("logo");
+        } else {
+            $data = NULL;
+        }
+
+        $profil = new Profil;
+
+        $profil->nama = $request->nama;
+        $profil->singkatan = $request->singkatan;
+        $profil->no_hp = $request->no_hp;
+        $profil->email = $request->email;
+        $profil->alamat = $request->alamat;
+        $profil->logo = $data;
+
+        $profil->save();
+
+        return redirect()->back();
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = "";
+        if ($request->file("logo")) {
+            if ($request->logo_lama) {
+                Storage::delete($request->logo_lama);
+            }
+
+            $data = $request->file("logo")->store("logo");
+        }
+
+        Profil::where("id", $id)->update([
+            "nama" => $request->nama,
+            "singkatan" => $request->singkatan,
+            "no_hp" => $request->no_hp,
+            "email" => $request->email,
+            "alamat" => $request->alamat,
+            "logo" => $data
+        ]);
+
+        return redirect()->back();
     }
 }

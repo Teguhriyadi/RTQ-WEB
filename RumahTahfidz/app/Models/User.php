@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function getRole()
     {
-        return $this->belongsTo("App\Models\Role", "id_role", "id");
+        return $this->belongsTo("App\Models\Role", "id_role", "id")->withDefault(["keterangan" => "<i><b>NULL</b></i>"]);
     }
 
     public function getAdminLokasiRt()

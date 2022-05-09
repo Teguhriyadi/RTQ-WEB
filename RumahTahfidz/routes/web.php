@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminCabangController;
 use App\Http\Controllers\AdminLokasiRtController;
 use App\Http\Controllers\API\AbsensiController;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\CabangController;
 use App\Http\Controllers\JenjangController;
-use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
@@ -14,12 +12,17 @@ use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PelajaranHafalanController;
+use App\Http\Controllers\PelajaranImanAdabController;
+use App\Http\Controllers\PelajaranImlaController;
+use App\Http\Controllers\PelajaranMulokController;
 use App\Http\Controllers\PelajaranTadribatController;
+use App\Http\Controllers\PenilaianKategoriTadribatController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
@@ -93,12 +96,38 @@ Route::prefix("app")->group(function () {
                 Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
                 Route::resource("/halaqah", HalaqahController::class);
 
-                Route::prefix("pelajaran")->group(function() {
+                // Data Kategori
+                Route::get("/kategori/edit", [KategoriController::class, "edit"]);
+                Route::get("/kategori/simpan", [KategoriController::class, "update"]);
+                Route::resource("/kategori", KategoriController::class);
+
+                Route::prefix("pelajaran")->group(function () {
                     // Data Pelajaran Tadribat
                     Route::get("/tadribat/{id}", [PelajaranTadribatController::class, "edit"]);
                     Route::put("/tadribat/simpan", [PelajaranTadribatController::class, "update"]);
                     Route::resource("/tadribat", PelajaranTadribatController::class);
+
+                    // Data Pelajaran Hafalan
+                    Route::get("/hafalan/{id}", [PelajaranHafalanController::class, "edit"]);
+                    Route::put("/hafalan/simpan", [PelajaranHafalanController::class, "update"]);
+                    Route::resource("/hafalan", PelajaranHafalanController::class);
+
+                    // Data Pelajaran Imla
+                    Route::get("/imla/{id}", [PelajaranImlaController::class, "edit"]);
+                    Route::put("/imla/simpan", [PelajaranImlaController::class, "update"]);
+                    Route::resource("/imla", PelajaranImlaController::class);
+
+                    // Data Pelajaran Iman & Adab
+                    Route::get("/iman_adab/{id}", [PelajaranImanAdabController::class, "edit"]);
+                    Route::put("/iman_adab/simpan", [PelajaranImanAdabController::class, "update"]);
+                    Route::resource("/iman_adab", PelajaranImanAdabController::class);
+
+                    // Data Mulok
+                    Route::get("/mulok/{id}", [PelajaranMulokController::class, "edit"]);
+                    Route::put("/mulok/simpan", [PelajaranMulokController::class, "update"]);
+                    Route::resource("/mulok", PelajaranMulokController::class);
                 });
+
 
                 // Data Admin Cabang
                 Route::get("/admin_lokasi_rt/edit", [AdminLokasiRtController::class, "edit"]);
@@ -115,6 +144,8 @@ Route::prefix("app")->group(function () {
                 Route::resource("/users", UsersController::class);
 
                 Route::get("/profil", [ProfilController::class, "web_profil"]);
+                Route::post("/profil", [ProfilController::class, "store"]);
+                Route::put("/profil/{id}", [ProfilController::class, "update"]);
 
                 Route::get("/pesan", [PesanController::class, "index"]);
             });
@@ -148,6 +179,19 @@ Route::prefix("app")->group(function () {
             });
 
             Route::group(["middleware" => ["can:asatidz"]], function () {
+
+                Route::prefix("kategori")->group(function () {
+                    Route::prefix("tadribat")->group(function () {
+                        Route::get("/", [PenilaianKategoriTadribatController::class, "index"]);
+                        Route::get("/create", [PenilaianKategoriTadribatController::class, "create"]);
+                        Route::post("/", [PenilaianKategoriTadribatController::class, "store"]);
+                    });
+                });
+
+                Route::prefix("rekap")->group(function () {
+                    Route::get("/nilai", [RekapPenilaianController::class, "rekap"]);
+                    Route::get("/nilai/{id}", [RekapPenilaianController::class, "print"]);
+                });
 
                 // Data Absensi Santri
                 Route::get("/input_absensi_santri", [AbsensiController::class, "input_absensi_santri"]);
@@ -188,6 +232,6 @@ Route::prefix("app")->group(function () {
     });
 });
 
-Route::get('coba', function () {
-    return view('coba');
+Route::get("/v_error", function () {
+    return view("errors.503");
 });
