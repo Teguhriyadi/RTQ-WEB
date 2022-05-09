@@ -16,4 +16,13 @@ class RekapAbsensiSantriController extends Controller
 
         return view('app.wali_santri.rekap_absensi.v_index', $data);
     }
+
+    public function detail($id)
+    {
+        $data = [
+            'santri' => Santri::where('id', $id)->first(),
+        ];
+
+        return view('app.wali_santri.rekap_absensi.v_detail', $data);
+    }
 }

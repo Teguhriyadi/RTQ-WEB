@@ -3,7 +3,7 @@ use Illuminate\Support\Str;
 @endphp
 @extends("app.layouts.template")
 
-@section("app_title", "Rekap Absensi")
+@section("app_title", "Rekap Penilaian Hafalan")
 
 @section("app_content")
 

@@ -3,7 +3,7 @@ use Illuminate\Support\Str;
 @endphp
 @extends("app.layouts.template")
 
-@section("app_title", "Rekap Absensi")
+@section("app_title", "Rekap Penilaian Tadribat")
 
 @section("app_content")
 
@@ -36,7 +36,6 @@ use Illuminate\Support\Str;
                                         <th class="text-center">No.</th>
                                         <th>NIS</th>
                                         <th>Nama</th>
-                                        <th>Jenjang</th>
                                         <th class="text-center">Opsi</th>
                                     </tr>
                                 </thead>
@@ -46,9 +45,17 @@ use Illuminate\Support\Str;
                                         <th class="text-center">{{ $loop->iteration }}</th>
                                         <td>{{ $s->nis }}</td>
                                         <td>{{ $s->nama_lengkap }}</td>
-                                        <td>{{ $s->getJenjang->jenjang }}</td>
                                         <th class="text-center">
-                                            <a href="{{ url('app/sistem/rekap_absensi/'.$s->id) }}" class="btn btn-info text-white" title="Detail"><i class="fa fa-eye"></i></a>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                                    Jenjang
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    @foreach ($jenjang as $j)
+                                                    <a class="dropdown-item" href="#">{{ $j->jenjang }}</a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </th>
                                     </tr>
                                     @endforeach
