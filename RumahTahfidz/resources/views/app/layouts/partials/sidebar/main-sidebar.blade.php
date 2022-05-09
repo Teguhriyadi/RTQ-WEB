@@ -88,6 +88,11 @@
                                     Profil WEB
                                 </a>
                             </li>
+                            <li class="{{ Request::segment(3)=="kategori" ? "active" : "" }}">
+                                <a href="{{ url('/app/sistem/kategori') }}">
+                                    Kategori
+                                </a>
+                            </li>
                             <li class="{{ Request::segment(3)=='pesan' ? 'active' : '' }}">
                                 <a href="{{ url('/app/sistem/pesan') }}">
                                     Pesan

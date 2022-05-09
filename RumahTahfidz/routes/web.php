@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminLokasiRtController;
 use App\Http\Controllers\API\AbsensiController;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\RoleController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
@@ -44,6 +46,7 @@ use Maatwebsite\Excel\Row;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
@@ -93,7 +96,12 @@ Route::prefix("app")->group(function () {
                 Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
                 Route::resource("/halaqah", HalaqahController::class);
 
-                Route::prefix("pelajaran")->group(function() {
+                // Data Kategori
+                Route::get("/kategori/edit", [KategoriController::class, "edit"]);
+                Route::get("/kategori/simpan", [KategoriController::class, "update"]);
+                Route::resource("/kategori", KategoriController::class);
+
+                Route::prefix("pelajaran")->group(function () {
                     // Data Pelajaran Tadribat
                     Route::get("/tadribat/{id}", [PelajaranTadribatController::class, "edit"]);
                     Route::put("/tadribat/simpan", [PelajaranTadribatController::class, "update"]);
@@ -172,15 +180,15 @@ Route::prefix("app")->group(function () {
 
             Route::group(["middleware" => ["can:asatidz"]], function () {
 
-                Route::prefix("kategori")->group(function() {
-                    Route::prefix("tadribat")->group(function() {
+                Route::prefix("kategori")->group(function () {
+                    Route::prefix("tadribat")->group(function () {
                         Route::get("/", [PenilaianKategoriTadribatController::class, "index"]);
                         Route::get("/create", [PenilaianKategoriTadribatController::class, "create"]);
                         Route::post("/", [PenilaianKategoriTadribatController::class, "store"]);
                     });
                 });
 
-                Route::prefix("rekap")->group(function() {
+                Route::prefix("rekap")->group(function () {
                     Route::get("/nilai", [RekapPenilaianController::class, "rekap"]);
                     Route::get("/nilai/{id}", [RekapPenilaianController::class, "print"]);
                 });
@@ -214,6 +222,6 @@ Route::prefix("app")->group(function () {
     });
 });
 
-Route::get("/v_error", function() {
-    return view("errors.401");
+Route::get("/v_error", function () {
+    return view("errors.503");
 });
