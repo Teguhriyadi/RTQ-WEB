@@ -98,7 +98,7 @@ Route::prefix("app")->group(function () {
 
                 // Data Kategori
                 Route::get("/kategori/edit", [KategoriController::class, "edit"]);
-                Route::get("/kategori/simpan", [KategoriController::class, "update"]);
+                Route::put("/kategori/simpan", [KategoriController::class, "update"]);
                 Route::resource("/kategori", KategoriController::class);
 
                 Route::prefix("pelajaran")->group(function () {
