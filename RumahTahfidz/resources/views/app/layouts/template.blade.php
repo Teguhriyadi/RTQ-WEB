@@ -41,6 +41,17 @@
     @endif
     @yield('app_scripts')
 
+    @can('santri')
+        @if (Request::segment(3) != 'rekap_penilaian')
+        <script>
+            $(document).ready(function () {
+                $("#penilaian").removeClass('active');
+                $("#penilaian ul").css('display', 'none')
+            })
+        </script>
+        @endif
+    @endcan
+
     <script>
         function logout() {
             Swal.fire({

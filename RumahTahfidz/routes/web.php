@@ -25,6 +25,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\RekapAbsensiSantriController;
+use App\Http\Controllers\RekapPenilaianController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\TesSantriController;
@@ -172,6 +173,13 @@ Route::prefix("app")->group(function () {
             // Data Rekap Absensi
             Route::get('/rekap_absensi', [RekapAbsensiSantriController::class, 'index']);
             Route::get('/rekap_absensi/{id}', [RekapAbsensiSantriController::class, 'detail']);
+
+            // Data Rekap Penilaian
+            Route::get('/rekap_penilaian/tadribat', [RekapPenilaianController::class, 'tadribat']);
+            Route::get('/rekap_penilaian/hafalan', [RekapPenilaianController::class, 'hafalan']);
+            Route::get('/rekap_penilaian/imla', [RekapPenilaianController::class, 'imla']);
+            Route::get('/rekap_penilaian/iman_adab', [RekapPenilaianController::class, 'iman_adab']);
+            Route::get('/rekap_penilaian/mulok', [RekapPenilaianController::class, 'mulok']);
         });
     });
 

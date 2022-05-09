@@ -32,26 +32,26 @@
                         </a>
                     </li>
                     @can('santri')
-                    <li class="">
+                    <li class="{{ Request::segment(3) == 'rekap_penilaian' ? 'active' : '' }}" id="penilaian">
                         <a>
                             <i class="fa fa-list"></i> Rekap Penilaian
                             <span class="fa fa-chevron-down"></span>
                         </a>
                         <ul class="nav child_menu">
                             <li>
-                                <a href="">Tadribat</a>
+                                <a href="{{ url('/app/sistem/rekap_penilaian/tadribat') }}">Tadribat</a>
                             </li>
                             <li>
-                                <a href="">Hafalan</a>
+                                <a href="{{ url('/app/sistem/rekap_penilaian/hafalan') }}">Hafalan</a>
                             </li>
                             <li>
-                                <a href="">Imla</a>
+                                <a href="{{ url('/app/sistem/rekap_penilaian/imla') }}">Imla</a>
                             </li>
                             <li>
-                                <a href="">Iman Adab</a>
+                                <a href="{{ url('/app/sistem/rekap_penilaian/iman_adab') }}">Iman Adab</a>
                             </li>
                             <li>
-                                <a href="">Mulok</a>
+                                <a href="{{ url('/app/sistem/rekap_penilaian/mulok') }}">Mulok</a>
                             </li>
                         </ul>
                     </li>
@@ -203,16 +203,7 @@
 
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('app/logout') }}">
+            <a data-toggle="tooltip" data-placement="top" title="Logout" style="width: 100%" href="{{ url('app/logout') }}">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
         </div>
