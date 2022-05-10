@@ -18,41 +18,79 @@
 
     <div class="clearfix"></div>
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <button class="btn btn-primary" data-target="#modalTambah" data-toggle="modal">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
-                    <div class="clearfix"></div>
+    @if ($j_kategori == 0)
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 m-0">
+                <div class="x_content bs-example-popovers">
+                    <div class="alert alert-danger alert-dismissible " role="alert">
+                        <strong>Oops!</strong> Data Kategori Masih Kosong. Silahkan Klik <a
+                            href="{{ url('/app/sistem/kategori') }}" style="color: white;">Disini</a>
+                    </div>
                 </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="card-box table-responsive">
-                                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">No.</th>
-                                            <th class="text-center">Nama Kategori</th>
-                                            <th class="text-center">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $no = 0;
-                                        @endphp
-
-                                    </tbody>
-                                </table>
+            </div>
+        </div>
+    @else
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <button class="btn btn-primary" data-target="#modalTambah" data-toggle="modal">
+                            <i class="fa fa-plus"></i> Tambah
+                        </button>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="card-box table-responsive">
+                                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No.</th>
+                                                <th class="text-center">Nama Kategori</th>
+                                                <th>Judul</th>
+                                                <th>Slug</th>
+                                                <th class="text-center">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $no = 0;
+                                            @endphp
+                                            @foreach ($data_blog as $data)
+                                                <tr>
+                                                    <td class="text-center">{{ ++$no }}.</td>
+                                                    <td class="text-center">{{ $data->getKategori->kategori }}</td>
+                                                    <td>{{ $data->judul }}</td>
+                                                    <td>{{ $data->slug }}</td>
+                                                    <td class="text-center">
+                                                        <button onclick="editDataBlog({{ $data->id }})"
+                                                            class="btn btn-warning" data-target="#modalEdit"
+                                                            data-toggle="modal">
+                                                            <i class="fa fa-edit"></i> Edit
+                                                        </button>
+                                                        <form action="{{ url('/app/sistem/blog/' . $data->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @method("DELETE")
+                                                            @csrf
+                                                            <input type="hidden" name="hapusGambar" value="{{ $data->foto }}">
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="fa fa-trash-o"></i> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <!-- Tambah Data -->
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">
@@ -67,7 +105,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/blog/') }}" method="POST">
+                <form action="{{ url('/app/sistem/blog/') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
@@ -94,7 +132,8 @@
                         </div>
                         <div class="form-group">
                             <label for="foto"> Foto </label>
-                            <input type="file" class="form-control" name="foto" id="foto">
+                            <img class="gambar-preview img-fluid">
+                            <input type="file" class="form-control" name="foto" id="foto" onchange="imagePreview()">
                         </div>
                         <div class="form-group">
                             <label for="deskripsi"> Deskripsi </label>
@@ -128,7 +167,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/kategori/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/blog/simpan') }}" method="POST" enctype="multipart/form-data">
                     @method("PUT")
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -153,9 +192,9 @@
 @section('app_scripts')
 
     <script>
-        function editDataKategori(id) {
+        function editDataBlog(id) {
             $.ajax({
-                url: "{{ url('/app/sistem/kategori/edit') }}",
+                url: "{{ url('/app/sistem/blog/edit') }}",
                 type: "GET",
                 data: {
                     id: id
@@ -165,6 +204,20 @@
                     return true;
                 }
             });
+        }
+
+        function imagePreview() {
+            const image = document.querySelector("#foto");
+            const imgPreview = document.querySelector(".gambar-preview");
+            imgPreview.style.display = "block";
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                $("#tampilGambar").addClass('mb-3');
+                $("#tampilGambar").width("100%");
+                $("#tampilGambar").height("300");
+            }
         }
 
         $(document).ready(function() {
