@@ -285,7 +285,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('app/sistem/wali_santri/import') }}" method="post" id="tambahSiswa"
+                <form action="{{ url('app/sistem/wali_santri/import') }}" method="post" id="tambahWaliSantriExcel"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
@@ -293,11 +293,17 @@
                             <label for="">Import Excel</label>
                             <input type="file" class="form-control" name="importWaliSantri">
                         </div>
+                        <div class="form-group" id="process" style="display: none">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
+                                    aria-valuemax="100" style=""></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
                             Kembali</button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" id="btn-tambah-excel">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
@@ -310,7 +316,7 @@
 @endsection
 
 @section('app_scripts')
-
+    <script src="{{ url('') }}/vendors/jquery/dist/jquery.form.min.js"></script>
     <script>
         function previewImage() {
             const image = document.querySelector("#gambar");
@@ -358,7 +364,97 @@
         }
 
         $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            });
+
             $("#table-1").dataTable();
+
+            $("#btn-tambah-excel").click(function() {
+                $("#tambahWaliSantriExcel").ajaxForm({
+                    url: "{{ url('app/sistem/wali_santri/import') }}",
+                    beforeSubmit: function() {
+                        $("input[name='importWaliSantri']").css("display", "none");
+                        $("#btn-tambah-excel").attr("disabled", "disabled");
+                        $('#process').css('display', 'block');
+                    },
+                    uploadProgress: function(event, position, total, percentComplete) {
+                        var percentValue = percentComplete + '%';
+                        $(".progress-bar").animate({
+                            width: '' + percentValue + ''
+                        }, {
+                            duration: 5000,
+                            easing: "linear",
+                            step: function(x) {
+                                percentText = Math.round(x * 100 / percentComplete);
+                                if (percentText == "100") {
+                                    $(".progress-bar").text("Harap tunggu!");
+                                    setTimeout(function() {
+                                        $('.progress-bar').html(
+                                            'Proses validasi data sedang berlangsung!'
+                                        );
+                                    }, 15000);
+                                }
+                            }
+                        });
+                    },
+                    error: function(response, status, e) {
+                        Swal.fire("Ooops", "Data gagal diupload!", "error")
+                    },
+                    complete: function(xhr) {
+                        if (xhr.status != 500) {
+                            $("#modalExcel").modal('hide');
+                            location.reload();
+                        }
+                        $('#tambahWaliSantriExcel')[0].reset();
+                        $('#process').css('display', 'none');
+                        $('.progress-bar').css('width', '0%');
+                        $(".progress-bar").stop();
+                        $('#btn-tambah-excel').attr('disabled', false);
+                        $("input[name='importWaliSantri']").css("display", "block");
+                    }
+                });
+            })
+            // $("#tambahWaliSantriExcel").on('submit', function(e) {
+            //     e.preventDefault();
+            //     let file = $("#importWaliSantri")[0].files;
+
+            //     let formData = new FormData();
+            //     formData.append('importWaliSantri', file[0]);
+
+            //     $.ajax({
+            //         xhr: function() {
+            //             var xhr = new window.XMLHttpRequest();
+            //             xhr.upload.addEventListener("progress", function(evt) {
+            //                 if (evt.lengthComputable) {
+            //                     var percentComplete = ((evt.loaded / evt.total) * 100);
+            //                     $(".progress-bar").width(percentComplete + '%');
+            //                     $(".progress-bar").html(percentComplete + '%');
+            //                 }
+            //             }, false);
+            //             return xhr;
+            //         },
+            //         url: "{{ url('app/sistem/wali_santri/import') }}",
+            //         method: 'POST',
+            //         data: formData,
+            //         contentType: false,
+            //         processData: false,
+            //         beforeSend: function() {
+            //             $("#btn-tambah-excel").attr("disabled", "disabled");
+            //             $('#process').css('display', 'block');
+            //         },
+            //         success: function(data) {
+            //             console.log(data);
+            //             $('#tambahWaliSantriExcel')[0].reset();
+            //             $('#process').css('display', 'none');
+            //             $('.progress-bar').css('width', '0%');
+            //             $('#btn-tambah-excel').attr('disabled', false);
+            //             $("#modalExcel").modal('hide');
+            //         }
+            //     })
+            // })
         })
     </script>
 

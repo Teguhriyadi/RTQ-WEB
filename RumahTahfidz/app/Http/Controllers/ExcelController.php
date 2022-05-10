@@ -20,8 +20,9 @@ class ExcelController extends Controller
 
     public function importWaliSantri(Request $request)
     {
+        // dd($request);
         Excel::import(new WaliSantriImport, $request->file('importWaliSantri'));
 
-        return back();
+        return response()->json(1, 201);
     }
 }
