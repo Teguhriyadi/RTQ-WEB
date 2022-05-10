@@ -168,12 +168,13 @@ Route::prefix("app")->group(function () {
 
                 // Data Siswa
                 Route::get("/santri/edit", [SantriController::class, "edit"]);
+                Route::get("/santri/datatables", [SantriController::class, "datatables"]);
                 Route::put("/santri/simpan", [SantriController::class, "update"]);
                 Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
                 Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
                 Route::resource("/santri", SantriController::class);
-
                 Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
+
 
                 // Data Pengajar
                 Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminLokasiRt;
+use App\Models\Halaqah;
 use App\Models\Kelas;
+use App\Models\LokasiRt;
 use App\Models\Santri;
 use App\Models\User;
 use App\Models\WaliSantri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\Datatables\Datatables;
 
 class SantriController extends Controller
 {
@@ -101,5 +105,27 @@ class SantriController extends Controller
         ]);
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>");
+    }
+
+    public function datatables()
+    {
+        $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
+        $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
+        $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
+        $santri = Santri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+
+        $data = array();
+        foreach ($santri as $s) {
+            $data[] = [
+                'nis' => $s->nis,
+                'nama_lengkap' => $s->nama_lengkap,
+                'jenjang' => $s->getJenjang->jenjang,
+                'nama_wali' => $s->getWali->getUser->nama,
+            ];
+        }
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->toJson();
     }
 }

@@ -17,80 +17,85 @@
     </section>
     <div class="clearfix"></div>
 
-    <div class="x_panel">
-        <div class="x_title">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <i class="fa fa-plus"></i> Tambah Data
-            </button>
-            <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel">
-                <i class="fa fa-file-excel-o"></i> Import Excel
-            </button>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="card-box table-responsive">
-                        <table id="datatable" class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No.</th>
-                                    <th>No. KK</th>
-                                    <th>Nama</th>
-                                    <th class="text-center">Jenis Kelamin</th>
-                                    <th class="text-center">No. HP</th>
-                                    <th class="text-center">Jumlah Anak</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $no = 0 @endphp
-                                @foreach ($data_wali as $wali)
-                                    <tr>
-                                        <td class="text-center">{{ ++$no }}.</td>
-                                        <td>{{ $wali->no_kk }}</td>
-                                        <td>{{ $wali->getUser->nama }}</td>
-                                        <td class="text-center">
-                                            @if ($wali->getUser->jenis_kelamin == 'L')
-                                                Laki - Laki
-                                            @elseif($wali->getUser->jenis_kelamin == 'P')
-                                                Perempuan
-                                            @else
-                                                Tidak Ada
-                                            @endif
-                                        </td>
-                                        <td class="text-center">{{ $wali->getUser->no_hp }}</td>
-                                        <td class="text-center">
-                                            @php
-                                                $count = $data_santri->where('id_wali', $wali->id)->count();
-                                                echo $count;
-                                            @endphp
-                                        </td>
-                                        <td class="text-center">
-                                            <button onclick="tambahDataSantri({{ $wali->id }})" type="button"
-                                                class="btn btn-success" id="btnTambahSantri"
-                                                data-target="#modalTambahSantri" data-toggle="modal">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                            <button onclick="editDataWali({{ $wali->id }})" type="button"
-                                                class="btn btn-warning" id="btnEdit" data-target="#modalEdit"
-                                                data-toggle="modal">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <form action="{{ url('/app/sistem/wali_santri/' . $wali->id) }}" method="POST"
-                                                style="display: inline;">
-                                                @method("DELETE")
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $wali->id }}">
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                        data-target=".bs-example-modal-lg">
+                        <i class="fa fa-plus"></i> Tambah Data
+                    </button>
+                    <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel">
+                        <i class="fa fa-file-excel-o"></i> Import Excel
+                    </button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-box table-responsive">
+                                <table id="datatable" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">No.</th>
+                                            <th>No. KK</th>
+                                            <th>Nama</th>
+                                            <th class="text-center">Jenis Kelamin</th>
+                                            <th class="text-center">No. HP</th>
+                                            <th class="text-center">Jumlah Anak</th>
+                                            <th class="text-center">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $no = 0 @endphp
+                                        @foreach ($data_wali as $wali)
+                                            <tr>
+                                                <td class="text-center">{{ ++$no }}.</td>
+                                                <td>{{ $wali->no_kk }}</td>
+                                                <td>{{ $wali->getUser->nama }}</td>
+                                                <td class="text-center">
+                                                    @if ($wali->getUser->jenis_kelamin == 'L')
+                                                        Laki - Laki
+                                                    @elseif($wali->getUser->jenis_kelamin == 'P')
+                                                        Perempuan
+                                                    @else
+                                                        Tidak Ada
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">{{ $wali->getUser->no_hp }}</td>
+                                                <td class="text-center">
+                                                    @php
+                                                        $count = $data_santri->where('id_wali', $wali->id)->count();
+                                                        echo $count;
+                                                    @endphp
+                                                </td>
+                                                <td class="text-center">
+                                                    <button onclick="tambahDataSantri({{ $wali->id }})" type="button"
+                                                        class="btn btn-success btn-sm" id="btnTambahSantri"
+                                                        data-target="#modalTambahSantri" data-toggle="modal">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                    <button onclick="editDataWali({{ $wali->id }})" type="button"
+                                                        class="btn btn-warning btn-sm text-white" id="btnEdit"
+                                                        data-target="#modalEdit" data-toggle="modal">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <form action="{{ url('/app/sistem/wali_santri/' . $wali->id) }}"
+                                                        method="POST" style="display: inline;">
+                                                        @method("DELETE")
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $wali->id }}">
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,10 +204,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-primary" id="btn-tambah">
+                        <button type="submit" class="btn btn-primary btn-sm" id="btn-tambah">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
@@ -231,10 +236,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>
@@ -262,10 +267,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
@@ -291,7 +296,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="">Import Excel</label>
-                            <input type="file" class="form-control" name="importWaliSantri">
+                            <input type="file" class="form-control " name="importWaliSantri">
                         </div>
                         <div class="form-group" id="process" style="display: none">
                             <div class="progress">
@@ -301,9 +306,10 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i
+                                class="fa fa-times"></i>
                             Kembali</button>
-                        <button type="submit" class="btn btn-primary" id="btn-tambah-excel">
+                        <button type="submit" class="btn btn-primary btn-sm" id="btn-tambah-excel">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
@@ -417,44 +423,6 @@
                     }
                 });
             })
-            // $("#tambahWaliSantriExcel").on('submit', function(e) {
-            //     e.preventDefault();
-            //     let file = $("#importWaliSantri")[0].files;
-
-            //     let formData = new FormData();
-            //     formData.append('importWaliSantri', file[0]);
-
-            //     $.ajax({
-            //         xhr: function() {
-            //             var xhr = new window.XMLHttpRequest();
-            //             xhr.upload.addEventListener("progress", function(evt) {
-            //                 if (evt.lengthComputable) {
-            //                     var percentComplete = ((evt.loaded / evt.total) * 100);
-            //                     $(".progress-bar").width(percentComplete + '%');
-            //                     $(".progress-bar").html(percentComplete + '%');
-            //                 }
-            //             }, false);
-            //             return xhr;
-            //         },
-            //         url: "{{ url('app/sistem/wali_santri/import') }}",
-            //         method: 'POST',
-            //         data: formData,
-            //         contentType: false,
-            //         processData: false,
-            //         beforeSend: function() {
-            //             $("#btn-tambah-excel").attr("disabled", "disabled");
-            //             $('#process').css('display', 'block');
-            //         },
-            //         success: function(data) {
-            //             console.log(data);
-            //             $('#tambahWaliSantriExcel')[0].reset();
-            //             $('#process').css('display', 'none');
-            //             $('.progress-bar').css('width', '0%');
-            //             $('#btn-tambah-excel').attr('disabled', false);
-            //             $("#modalExcel").modal('hide');
-            //         }
-            //     })
-            // })
         })
     </script>
 

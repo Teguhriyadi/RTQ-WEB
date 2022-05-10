@@ -25,8 +25,8 @@
                     <h2>
                         <i class="fa fa-users"></i> Santri
                     </h2>
-                    <button class="btn btn-primary pull-right btn-sm" data-toggle="modal"
-                        data-target="#modalExcel">Tambah</button>
+                    <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel"><i
+                            class="fa fa-file-excel-o"></i> Tambah</button>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -45,7 +45,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php $no = 0 @endphp
+                                        {{-- @php $no = 0 @endphp
                                         @foreach ($data_santri as $santri)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
@@ -55,21 +55,21 @@
                                                 <td>{{ $santri->getWali->getUser->nama }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editDataSantri({{ $santri->id }})" type="button"
-                                                        class="btn btn-warning" id="btnEdit" data-target="#modalEdit"
-                                                        data-toggle="modal">
-                                                        <i class="fa fa-edit"></i> Edit
+                                                        class="btn btn-warning btn-sm text-white" id="btnEdit"
+                                                        data-target="#modalEdit" data-toggle="modal">
+                                                        <i class="fa fa-edit"></i>
                                                     </button>
                                                     <form action="{{ url('/app/sistem/santri/' . $santri->id) }}"
                                                         method="POST" style="display: inline">
                                                         @method("DELETE")
                                                         @csrf
-                                                        <button type="submit" class="btn btn-danger">
-                                                            <i class="fa fa-trash"></i> Hapus
+                                                        <button type="submit" class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-trash"></i>
                                                         </button>
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -99,10 +99,10 @@
 
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>
@@ -140,9 +140,10 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i
+                                class="fa fa-times"></i>
                             Kembali</button>
-                        <button type="submit" class="btn btn-primary" id="btn-tambah-excel">
+                        <button type="submit" class="btn btn-primary btn-sm" id="btn-tambah-excel">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
@@ -195,7 +196,20 @@
                 }
             });
 
-            $("#table-1").dataTable();
+            $("#table-1").dataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ url('app/sistem/santri/datatables') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'nama_lengkap',
+                        name: 'nama_lengkap'
+                    }
+                ]
+            });
 
             $("#btn-tambah-excel").click(function() {
                 $("#tambahSiswaExcel").ajaxForm({
@@ -213,6 +227,7 @@
                             duration: 5000,
                             easing: "linear",
                             step: function(x) {
+                                console.log(x);
                                 percentText = Math.round(x * 100 / percentComplete);
                                 if (percentText == "100") {
                                     $(".progress-bar").text("Harap tunggu!");
