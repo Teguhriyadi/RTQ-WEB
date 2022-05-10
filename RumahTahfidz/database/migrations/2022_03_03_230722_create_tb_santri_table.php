@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("nama_panggilan", 50);
             $table->string("tempat_lahir", 50);
             $table->date("tanggal_lahir");
+            $table->enum("jenis_kelamin", ["L", "P"]);
             $table->text("alamat");
             $table->string("prestasi_anak", 100);
             $table->string("sekolah", 50);
