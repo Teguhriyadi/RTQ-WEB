@@ -52,6 +52,7 @@ Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
 Route::post("/kirim_pesan", [LandingPageController::class, "kirim_pesan"]);
+Route::get("/blog", [LandingPageController::class, "blog"]);
 
 Route::prefix("app")->group(function () {
 
