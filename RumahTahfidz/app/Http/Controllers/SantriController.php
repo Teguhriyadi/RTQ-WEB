@@ -17,11 +17,7 @@ class SantriController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_santri" => Santri::orderBy("id")->get()
-        ];
-
-        return view("app.administrator.santri.v_index", $data);
+        return view("app.administrator.santri.v_index");
     }
 
     public function store(Request $request)
@@ -117,6 +113,7 @@ class SantriController extends Controller
         $data = array();
         foreach ($santri as $s) {
             $data[] = [
+                'id' => $s->id,
                 'nis' => $s->nis,
                 'nama_lengkap' => $s->nama_lengkap,
                 'jenjang' => $s->getJenjang->jenjang,
@@ -126,6 +123,23 @@ class SantriController extends Controller
 
         return DataTables::of($data)
             ->addIndexColumn()
-            ->toJson();
+            ->addColumn('aksi', function ($row) {
+                $aksiBtn = '<button onclick="editDataSantri(' . $row["id"] . ')" type="button"
+                    class="btn btn-warning btn-sm text-white" id="btnEdit"
+                    data-target="#modalEdit" data-toggle="modal">
+                    <i class="fa fa-edit"></i>
+                </button>';
+                $aksiBtn .= '<form action="' . url("app/sistem/santri/" . $row["id"]) . '"
+                method="POST" style="display: inline">
+                ' . method_field('delete') . '
+                ' . csrf_field() . '
+                <button type="submit" class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </form>';
+                return $aksiBtn;
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 }

@@ -176,8 +176,9 @@ Route::prefix("app")->group(function () {
                 Route::put("/santri/simpan", [SantriController::class, "update"]);
                 Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
                 Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
+                Route::get("/santri/export", [ExcelController::class, "exportSantri"]);
                 Route::resource("/santri", SantriController::class);
-                Route::post("/siswa/import", [ExcelController::class, "importSantri"]);
+                Route::post("/santri/import", [ExcelController::class, "importSantri"]);
 
 
                 // Data Pengajar
@@ -187,6 +188,7 @@ Route::prefix("app")->group(function () {
 
                 // Data Wali Santri
                 Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
+                Route::get("/wali_santri/datatables", [WaliSantriController::class, "datatables"]);
                 Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
                 Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
                 Route::resource("/wali_santri", WaliSantriController::class);

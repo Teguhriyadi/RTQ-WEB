@@ -18,6 +18,11 @@ class ExcelController extends Controller
         return back();
     }
 
+    public function exportSantri()
+    {
+        return Excel::download(new SantriExport, date("Y_m_d") . '_' . time() . '_rekap_santri.xlsx');
+    }
+
     public function importWaliSantri(Request $request)
     {
         // dd($request);
