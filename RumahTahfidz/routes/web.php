@@ -103,7 +103,7 @@ Route::prefix("app")->group(function () {
                 Route::resource("/kategori", KategoriController::class);
 
                 // Data Blog
-                Route::get("/blog/edit", [BlogController::class,"edit"]);
+                Route::get("/blog/edit", [BlogController::class, "edit"]);
                 Route::put("/blog/simpan", [BlogController::class, "update"]);
                 Route::resource("/blog", BlogController::class);
 
@@ -181,6 +181,7 @@ Route::prefix("app")->group(function () {
 
                 Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
                 Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
+                Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
                 Route::resource("/wali_santri", WaliSantriController::class);
             });
 
