@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer("id_santri");
             $table->date("tanggal");
             $table->string("bukti");
-            $table->string("status", 20);
+            $table->integer("status_validasi");
             $table->integer("id_users");
             $table->timestamps();
         });

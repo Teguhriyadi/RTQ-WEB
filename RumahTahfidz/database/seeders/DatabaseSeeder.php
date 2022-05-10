@@ -32,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PelajaranImlaSeeder::class);
         $this->call(PelajaranImanAdabSeeder::class);
         $this->call(PelajaranMulokSeeder::class);
+        $this->call(IuranSeeder::class);
     }
 }

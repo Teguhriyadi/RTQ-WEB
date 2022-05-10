@@ -12,6 +12,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HalaqahController;
+use App\Http\Controllers\IuranController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LandingPageController;
@@ -67,7 +68,6 @@ Route::prefix("app")->group(function () {
     Route::post("/forgot-password", [ForgotPasswordController::class, "store"]);
 
     Route::prefix("sistem")->group(function () {
-
         Route::group(["middleware" => "autentikasi"], function () {
             Route::group(["middleware" => ["can:super_admin"]], function () {
 
@@ -159,6 +159,9 @@ Route::prefix("app")->group(function () {
 
             Route::group(["middleware" => ["can:admin"]], function () {
 
+                // Iuran Wali Santri
+                Route::get("/iuran", [IuranController::class, "validasi_admin_cabang"]);
+
                 // Tes Santri
                 Route::get("/tes/data", [TesSantriController::class, "index"]);
                 Route::get("/tes/input", [TesSantriController::class, "create"]);
@@ -180,6 +183,7 @@ Route::prefix("app")->group(function () {
                 Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
                 Route::resource("/asatidz", AsatidzController::class);
 
+                // Data Wali Santri
                 Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
                 Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
                 Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
