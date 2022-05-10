@@ -14,7 +14,7 @@
                 <li><a class="nav-link scrollto" href="#services">Program</a></li>
                 <li><a class="nav-link scrollto" href="#portfolio">Dokumentasi</a></li>
                 <li><a class="nav-link scrollto" href="#team">Struktur</a></li>
-                <li><a href="blog.html">Blog</a></li>
+                <li><a href="{{ url('/blog') }}">Blog</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
                 <li class="dropdown">
                     <a href="#">

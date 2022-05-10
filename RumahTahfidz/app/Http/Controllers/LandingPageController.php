@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Kategori;
 use App\Models\Pesan;
 use App\Models\Profil;
 use Illuminate\Http\Request;
@@ -15,9 +17,12 @@ class LandingPageController extends Controller
 
     public function home()
     {
-        $data = Profil::select("id", "nama", "email" ,"logo", "singkatan", "no_hp", "alamat")->first();
+        $data = Profil::select("id", "nama", "email", "logo", "singkatan", "no_hp", "alamat")->first();
+        $data2 = [
+            "data_blog" => Blog::get()
+        ];
 
-        return view("app.landing.v_home", compact('data'));
+        return view("app.landing.v_home", $data2, compact('data'));
     }
 
     public function kontak()
@@ -36,5 +41,15 @@ class LandingPageController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function blog()
+    {
+        $data = [
+            "data_blog" => Blog::latest()->paginate(1),
+            "data_kategori" => Kategori::get()
+        ];
+
+        return view("app.landing.v_blog", $data);
     }
 }
