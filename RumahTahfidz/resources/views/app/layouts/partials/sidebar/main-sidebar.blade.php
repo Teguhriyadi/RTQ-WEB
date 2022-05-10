@@ -2,15 +2,15 @@
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
             <a href="javascript:void(0)" class="site_title"><i class="fa fa-paw"></i> <span>RTQ Ulil
-                Albab</span>
+                    Albab</span>
             </a>
         </div>
 
         <div class="clearfix"></div>
         <div class="profile clearfix">
             <div class="profile_pic">
-                <img src="{{ auth()->user()->gambar == null? 'http://rtq-freelance.my.id/gambar/gambar_user.png': auth()->user()->gambar }}"
-                alt="{{ auth()->user()->nama }}" class="img-circle profile_img">
+                <img src="{{ auth()->user()->gambar == null ? 'http://rtq-freelance.my.id/gambar/gambar_user.png' : auth()->user()->gambar }}"
+                    alt="{{ auth()->user()->nama }}" class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Selamat Datang,</span>
@@ -31,280 +31,279 @@
                             <i class="fa fa-home"></i>Home
                         </a>
                     </li>
-                    @can("super_admin")
-                    <li>
-                        <a>
-                            <i class="fa fa-bars"></i> Data Master
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li class="{{ Request::segment(3)=='kelas' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/kelas') }}">
-                                    Kelas
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=='status_absen' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/status_absen') }}">
-                                    Status Absen
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=='jenjang' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/jenjang') }}">
-                                    Jenjang
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=='admin_lokasi_rt' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">
-                                    Admin Lokasi RT
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=='halaqah' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/halaqah') }}">
-                                    Halaqah
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Pelajaran <span class="fa fa-chevron-down"></span>
-                                </a>
-                                <ul class="nav child_menu">
-                                    <li><a href="{{ url('/app/sistem/pelajaran/tadribat') }}">Tadribat</a></li>
-                                    <li><a href="{{ url('/app/sistem/pelajaran/hafalan') }}">Hafalan</a></li>
-                                    <li><a href="{{ url('/app/sistem/pelajaran/imla') }}">Imla</a></li>
-                                    <li><a href="{{ url('/app/sistem/pelajaran/iman_adab') }}">Iman & Adab</a></li>
-                                    <li><a href="{{ url('/app/sistem/pelajaran/mulok') }}">Mulok</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>
-                            <i class="fa fa-bars"></i> Landing Page
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li class="{{ Request::segment(3)=='profil' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/profil') }}">
-                                    Profil WEB
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=="kategori" ? "active" : "" }}">
-                                <a href="{{ url('/app/sistem/kategori') }}">
-                                    Kategori
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=="kategori" ? "active" : "" }}">
-                                <a href="{{ url('/app/sistem/kategori') }}">
-                                    Blog
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=='pesan' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/pesan') }}">
-                                    Pesan
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>
-                            <i class="fa fa-bar-chart"></i> Laporan
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li>
-                                <a href="{{ url('/app/sistem/home') }}">
-                                    Iuran
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/app/sistem/home') }}">
-                                    Asatidz
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/app/sistem/home') }}">
-                                    Santri
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>
-                            <i class="fa fa-users"></i> Akun
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li class="{{ Request::segment(3)=='role' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/role') }}">
-                                    Role
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=='users' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/users') }}">
-                                    Users
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @can('super_admin')
+                        <li>
+                            <a>
+                                <i class="fa fa-bars"></i> Data Master
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li class="{{ Request::segment(3) == 'kelas' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/kelas') }}">
+                                        Kelas
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'status_absen' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/status_absen') }}">
+                                        Status Absen
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'jenjang' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/jenjang') }}">
+                                        Jenjang
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'admin_lokasi_rt' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">
+                                        Admin Lokasi RT
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'halaqah' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/halaqah') }}">
+                                        Halaqah
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        Pelajaran <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ url('/app/sistem/pelajaran/tadribat') }}">Tadribat</a></li>
+                                        <li><a href="{{ url('/app/sistem/pelajaran/hafalan') }}">Hafalan</a></li>
+                                        <li><a href="{{ url('/app/sistem/pelajaran/imla') }}">Imla</a></li>
+                                        <li><a href="{{ url('/app/sistem/pelajaran/iman_adab') }}">Iman & Adab</a></li>
+                                        <li><a href="{{ url('/app/sistem/pelajaran/mulok') }}">Mulok</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-bars"></i> Landing Page
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li class="{{ Request::segment(3) == 'profil' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/profil') }}">
+                                        Profil WEB
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'kategori' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/kategori') }}">
+                                        Kategori
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'kategori' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/kategori') }}">
+                                        Blog
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'pesan' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/pesan') }}">
+                                        Pesan
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="laporan">
+                            <a>
+                                <i class="fa fa-bar-chart"></i> Laporan
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/home') }}">
+                                        Iuran
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/home') }}">
+                                        Asatidz
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/home') }}">
+                                        Santri
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-users"></i> Akun
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li class="{{ Request::segment(3) == 'role' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/role') }}">
+                                        Role
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'users' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/users') }}">
+                                        Users
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     @endcan
-                    @can("admin")
-                    <li>
-                        <a>
-                            <i class="fa fa-bars"></i> Data Master
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li class="{{ Request::segment(3)=='santri' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/santri') }}">
-                                    Santri
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=='wali_santri' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/wali_santri') }}">
-                                    Wali Santri
-                                </a>
-                            </li>
-                            <li class="{{ Request::segment(3)=='asatidz' ? 'active' : '' }}">
-                                <a href="{{ url('/app/sistem/asatidz') }}">
-                                    Asatidz
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>
-                            <i class="fa fa-bar-chart"></i> Laporan
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li>
-                                <a href="{{ url('/app/sistem/home') }}">
-                                    Iuran
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/app/sistem/home') }}">
-                                    Santri
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @can('admin')
+                        <li>
+                            <a>
+                                <i class="fa fa-bars"></i> Data Master
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li class="{{ Request::segment(3) == 'santri' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/santri') }}">
+                                        Santri
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'wali_santri' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/wali_santri') }}">
+                                        Wali Santri
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'asatidz' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/asatidz') }}">
+                                        Asatidz
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="laporan">
+                            <a>
+                                <i class="fa fa-bar-chart"></i> Laporan
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/home') }}">
+                                        Iuran
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/home') }}">
+                                        Santri
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     @endcan
                     @can('santri')
-                    <li class="{{ Request::segment(3) == 'rekap_penilaian' ? 'active' : '' }}" id="penilaian">
-                        <a>
-                            <i class="fa fa-list"></i> Rekap Penilaian
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li>
-                                <a href="{{ url('/app/sistem/rekap_penilaian/tadribat') }}">Tadribat</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/app/sistem/rekap_penilaian/hafalan') }}">Hafalan</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/app/sistem/rekap_penilaian/imla') }}">Imla</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/app/sistem/rekap_penilaian/iman_adab') }}">Iman Adab</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/app/sistem/rekap_penilaian/mulok') }}">Mulok</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="{{ Request::segment(3)=='rekap_absensi' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/rekap_absensi') }}">
-                            <i class="fa fa-book"></i>Rekap Absensi
-                        </a>
-                    </li>
-                    <li class="{{ Request::segment(3)=='rekap_iuran' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/rekap_iuran') }}">
-                            <i class="fa fa-money"></i>Rekap Iuran
-                        </a>
-                    </li>
-                    <li class="{{ Request::segment(3)=='profil_santri' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/profil_santri') }}">
-                            <i class="fa fa-users"></i>Profil Santri
-                        </a>
-                    </li>
+                        <li class="{{ Request::segment(3) == 'rekap_penilaian' ? 'active' : '' }}" id="penilaian">
+                            <a>
+                                <i class="fa fa-list"></i> Rekap Penilaian
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/rekap_penilaian/tadribat') }}">Tadribat</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/rekap_penilaian/hafalan') }}">Hafalan</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/rekap_penilaian/imla') }}">Imla</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/rekap_penilaian/iman_adab') }}">Iman Adab</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/rekap_penilaian/mulok') }}">Mulok</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="{{ Request::segment(3) == 'rekap_absensi' ? 'active' : '' }}">
+                            <a href="{{ url('/app/sistem/rekap_absensi') }}">
+                                <i class="fa fa-book"></i>Rekap Absensi
+                            </a>
+                        </li>
+                        <li class="{{ Request::segment(3) == 'rekap_iuran' ? 'active' : '' }}">
+                            <a href="{{ url('/app/sistem/rekap_iuran') }}">
+                                <i class="fa fa-money"></i>Rekap Iuran
+                            </a>
+                        </li>
+                        <li class="{{ Request::segment(3) == 'profil_santri' ? 'active' : '' }}">
+                            <a href="{{ url('/app/sistem/profil_santri') }}">
+                                <i class="fa fa-users"></i>Profil Santri
+                            </a>
+                        </li>
                     @endcan
 
-                    @can("asatidz")
-                    <li>
-                        <a>
-                            <i class="fa fa-edit"></i> Absensi Santri
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ url('/app/sistem/input_absensi_santri') }}">Input Kehadiran</a></li>
-                            <li><a href="{{ url('/app/sistem/absensi_santri') }}">Data Absensi</a></li>
-                        </ul>
-                    </li>
+                    @can('asatidz')
+                        <li>
+                            <a>
+                                <i class="fa fa-edit"></i> Absensi Santri
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ url('/app/sistem/input_absensi_santri') }}">Input Kehadiran</a></li>
+                                <li><a href="{{ url('/app/sistem/absensi_santri') }}">Data Absensi</a></li>
+                            </ul>
+                        </li>
 
-                    <li>
-                        <a>
-                            <i class="fa fa-edit"></i> Penilaian Kategori
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ url('/app/sistem/kategori/tadribat/') }}">Tadribat</a></li>
-                            <li><a href="{{ url('/app/sistem/kategori/hafalan') }}">Hafalan</a></li>
-                            <li><a href="{{ url('/app/sistem/kategori/imla') }}">Imla</a></li>
-                        </ul>
-                    </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-edit"></i> Penilaian Kategori
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ url('/app/sistem/kategori/tadribat/') }}">Tadribat</a></li>
+                                <li><a href="{{ url('/app/sistem/kategori/hafalan') }}">Hafalan</a></li>
+                                <li><a href="{{ url('/app/sistem/kategori/imla') }}">Imla</a></li>
+                            </ul>
+                        </li>
 
-                    <li>
-                        <a>
-                            <i class="fa fa-edit"></i> Data Penilaian
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ url('/app/sistem/data/tadribat/') }}">Tadribat</a></li>
-                            <li><a href="{{ url('/app/sistem/data/hafalan') }}">Hafalan</a></li>
-                            <li><a href="{{ url('/app/sistem/data/imla') }}">Imla</a></li>
-                        </ul>
-                    </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-edit"></i> Data Penilaian
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ url('/app/sistem/data/tadribat/') }}">Tadribat</a></li>
+                                <li><a href="{{ url('/app/sistem/data/hafalan') }}">Hafalan</a></li>
+                                <li><a href="{{ url('/app/sistem/data/imla') }}">Imla</a></li>
+                            </ul>
+                        </li>
 
-                    <li>
-                        <a href="{{ url('/app/sistem/rekap/nilai') }}">
-                            <i class="fa fa-book"></i> Rekap Nilai
-                        </a>
-                    </li>
-
+                        <li>
+                            <a href="{{ url('/app/sistem/rekap/nilai') }}">
+                                <i class="fa fa-book"></i> Rekap Nilai
+                            </a>
+                        </li>
                     @endcan
 
                     @can('admin')
-                    <li>
-                        <a>
-                            <i class="fa fa-bars"></i> Level Tes Santri
-                            <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                            <li>
-                                <a href="{{ url('/app/sistem/tes/input') }}">Input Level Tes Santri</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/app/sistem/tes/data') }}">Data Level Tes Santri</a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-bars"></i> Level Tes Santri
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/tes/input') }}">Input Level Tes Santri</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/tes/data') }}">Data Level Tes Santri</a>
+                                </li>
+                            </ul>
+                        </li>
 
-                    <li class="{{ Request::segment(3)=='absensi' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/absensi') }}">
-                            <i class="fa fa-book"></i>Absensi
-                        </a>
-                    </li>
+                        <li class="{{ Request::segment(3) == 'absensi' ? 'active' : '' }}">
+                            <a href="{{ url('/app/sistem/absensi') }}">
+                                <i class="fa fa-book"></i>Absensi
+                            </a>
+                        </li>
                     @endcan
 
-                    <li class="{{ Request::segment(3)=='profil' ? 'active' : '' }}">
+                    <li class="{{ Request::segment(3) == 'profil' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/profil_user') }}">
                             <i class="fa fa-user"></i>Profil Saya
                         </a>
                     </li>
 
-                    <li class="{{ Request::segment(3)=='informasi_login' ? 'active' : '' }}">
+                    <li class="{{ Request::segment(3) == 'informasi_login' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/informasi_login') }}">
                             <i class="fa fa-key"></i>Informasi Login
                         </a>
@@ -317,7 +316,8 @@
 
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Logout" style="width: 100%" href="{{ url('app/logout') }}">
+            <a data-toggle="tooltip" data-placement="top" title="Logout" style="width: 100%"
+                href="{{ url('app/logout') }}">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
         </div>

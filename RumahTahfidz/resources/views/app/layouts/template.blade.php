@@ -7,11 +7,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}" />
 
     <title>RTQ Ulil Albab | @yield("app_title")</title>
 
-    @include("app.layouts.partials.css.style")
+    @include('app.layouts.partials.css.style')
 
     @yield("app_css")
 
@@ -21,9 +21,9 @@
     <div class="container body">
         <div class="main_container">
 
-            @include("app.layouts.partials.sidebar.main-sidebar")
+            @include('app.layouts.partials.sidebar.main-sidebar')
 
-            @include("app.layouts.partials.navbar.main-navbar")
+            @include('app.layouts.partials.navbar.main-navbar')
 
             <!-- page content -->
             <div class="right_col" role="main">
@@ -31,24 +31,44 @@
             </div>
             <!-- /page content -->
 
-            @include("app.layouts.partials.footer.main-footer")
+            @include('app.layouts.partials.footer.main-footer')
         </div>
     </div>
 
-    @include("app.layouts.partials.js.style")
+    @include('app.layouts.partials.js.style')
     @if (session('message'))
-    {!! session('message') !!}
+        {!! session('message') !!}
     @endif
     @yield('app_scripts')
 
     @can('santri')
         @if (Request::segment(3) != 'rekap_penilaian')
-        <script>
-            $(document).ready(function () {
-                $("#penilaian").removeClass('active');
-                $("#penilaian ul").css('display', 'none')
-            })
-        </script>
+            <script>
+                $(document).ready(function() {
+                    $("#penilaian").removeClass('active');
+                    $("#penilaian ul").css('display', 'none')
+                })
+            </script>
+        @endif
+    @endcan
+    @can('super_admin')
+        @if (Request::segment(3) != 'laporan')
+            <script>
+                $(document).ready(function() {
+                    $("#laporan").removeClass('active');
+                    $("#laporan ul").css('display', 'none')
+                })
+            </script>
+        @endif
+    @endcan
+    @can('admin')
+        @if (Request::segment(3) != 'laporan')
+            <script>
+                $(document).ready(function() {
+                    $("#laporan").removeClass('active');
+                    $("#laporan ul").css('display', 'none')
+                })
+            </script>
         @endif
     @endcan
 
@@ -65,16 +85,16 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: '{{ url("app/logout") }}',
+                        url: '{{ url('app/logout') }}',
                         type: 'get',
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == true) {
                                 Swal.fire({
                                     title: 'Selamat!',
                                     text: 'Anda berhasil logout',
                                     icon: 'success'
                                 }).then((result) => {
-                                    location.href = '{{ url("/app/login") }}'
+                                    location.href = '{{ url('/app/login') }}'
                                 })
                             }
                         }
@@ -85,4 +105,5 @@
     </script>
 
 </body>
+
 </html>
