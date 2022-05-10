@@ -34,38 +34,51 @@ use Carbon\Carbon;
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card-box table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">No.</th>
-                                            <th>Santri</th>
-                                            <th class="text-center">Tanggal</th>
-                                            <th class="text-center">Status Validasi</th>
-                                            <th class="text-center">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $no = 0;
-                                        @endphp
-                                        @foreach ($data_validasi as $data)
+                                <form action="{{ url('/app/sistem/iuran') }}" method="POST">
+                                    @method("PUT")
+                                    @csrf
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
                                             <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td>{{ $data->getSantri->nama_lengkap }}</td>
-                                                <td class="text-center">
-                                                    {{ Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->isoFormat('dddd, D MMMM Y H:mm:s') }}
-                                                </td>
-                                                <td class="text-center">
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="" class="btn btn-warning btn-sm">
-                                                        <i class="fa fa-edit"></i> Edit
-                                                    </a>
-                                                </td>
+                                                <th class="text-center">#</th>
+                                                <th>Santri</th>
+                                                <th class="text-center">Tanggal</th>
+                                                <th class="text-center">Status Validasi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $no = 0;
+                                            @endphp
+                                            @foreach ($data_validasi as $data)
+                                                <tr>
+                                                    <td class="text-center">
+                                                        @if ($data->status_validasi == 3)
+                                                        -
+                                                        @elseif ($data->status_validasi == 2)
+                                                        <input type="checkbox" name="id_santri[]" value="{{ $data->id_santri }}">
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $data->getSantri->nama_lengkap }}</td>
+                                                    <td class="text-center">
+                                                        {{ Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->isoFormat('dddd, D MMMM Y H:mm:s') }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($data->status_validasi == 2)
+                                                        Konfirmasi ke Super Admin
+                                                        @elseif($data->status_validasi == 3)
+                                                        Sudah di Validasi
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <div class="ln_solid"></div>
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fa fa-save"></i> Simpan
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -161,6 +161,7 @@ Route::prefix("app")->group(function () {
 
                 // Iuran Wali Santri
                 Route::get("/iuran", [IuranController::class, "validasi_admin_cabang"]);
+                Route::put("/iuran", [IuranController::class, "simpan_validasi"]);
 
                 // Tes Santri
                 Route::get("/tes/data", [TesSantriController::class, "index"]);
