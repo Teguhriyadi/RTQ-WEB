@@ -36,22 +36,13 @@
 <script src="{{ url('') }}/vendors/moment/min/moment.min.js"></script>
 <script src="{{ url('') }}/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<script src="{{ url('') }}/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ url('') }}/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js">
+</script>
 <!-- Custom Theme Scripts -->
 <script src="{{ url('') }}/build/js/custom.js"></script>
 
 <!-- DataTables -->
 <script src="{{ url('') }}/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ url('') }}/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="{{ url('') }}/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 <!-- END -->
 <script src="{{ url('sweetalert/dist/sweetalert2.all.min.js') }}"></script>

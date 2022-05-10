@@ -17,85 +17,80 @@
     </section>
     <div class="clearfix"></div>
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                        data-target=".bs-example-modal-lg">
-                        <i class="fa fa-plus"></i> Tambah Data
-                    </button>
-                    <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel">
-                        <i class="fa fa-file-excel-o"></i> Import Excel
-                    </button>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="card-box table-responsive">
-                                <table id="datatable" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">No.</th>
-                                            <th>No. KK</th>
-                                            <th>Nama</th>
-                                            <th class="text-center">Jenis Kelamin</th>
-                                            <th class="text-center">No. HP</th>
-                                            <th class="text-center">Jumlah Anak</th>
-                                            <th class="text-center">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $no = 0 @endphp
-                                        @foreach ($data_wali as $wali)
-                                            <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td>{{ $wali->no_kk }}</td>
-                                                <td>{{ $wali->getUser->nama }}</td>
-                                                <td class="text-center">
-                                                    @if ($wali->getUser->jenis_kelamin == 'L')
-                                                        Laki - Laki
-                                                    @elseif($wali->getUser->jenis_kelamin == 'P')
-                                                        Perempuan
-                                                    @else
-                                                        Tidak Ada
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">{{ $wali->getUser->no_hp }}</td>
-                                                <td class="text-center">
-                                                    @php
-                                                        $count = $data_santri->where('id_wali', $wali->id)->count();
-                                                        echo $count;
-                                                    @endphp
-                                                </td>
-                                                <td class="text-center">
-                                                    <button onclick="tambahDataSantri({{ $wali->id }})" type="button"
-                                                        class="btn btn-success" id="btnTambahSantri"
-                                                        data-target="#modalTambahSantri" data-toggle="modal">
-                                                        <i class="fa fa-plus"></i>
-                                                    </button>
-                                                    <button onclick="editDataWali({{ $wali->id }})" type="button"
-                                                        class="btn btn-warning" id="btnEdit" data-target="#modalEdit"
-                                                        data-toggle="modal">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <form action="{{ url('/app/sistem/wali_santri/' . $wali->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method("DELETE")
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{ $wali->id }}">
-                                                        <button type="submit" class="btn btn-danger">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+    <div class="x_panel">
+        <div class="x_title">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <i class="fa fa-plus"></i> Tambah Data
+            </button>
+            <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel">
+                <i class="fa fa-file-excel-o"></i> Import Excel
+            </button>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="card-box table-responsive">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">No.</th>
+                                    <th>No. KK</th>
+                                    <th>Nama</th>
+                                    <th class="text-center">Jenis Kelamin</th>
+                                    <th class="text-center">No. HP</th>
+                                    <th class="text-center">Jumlah Anak</th>
+                                    <th class="text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $no = 0 @endphp
+                                @foreach ($data_wali as $wali)
+                                    <tr>
+                                        <td class="text-center">{{ ++$no }}.</td>
+                                        <td>{{ $wali->no_kk }}</td>
+                                        <td>{{ $wali->getUser->nama }}</td>
+                                        <td class="text-center">
+                                            @if ($wali->getUser->jenis_kelamin == 'L')
+                                                Laki - Laki
+                                            @elseif($wali->getUser->jenis_kelamin == 'P')
+                                                Perempuan
+                                            @else
+                                                Tidak Ada
+                                            @endif
+                                        </td>
+                                        <td class="text-center">{{ $wali->getUser->no_hp }}</td>
+                                        <td class="text-center">
+                                            @php
+                                                $count = $data_santri->where('id_wali', $wali->id)->count();
+                                                echo $count;
+                                            @endphp
+                                        </td>
+                                        <td class="text-center">
+                                            <button onclick="tambahDataSantri({{ $wali->id }})" type="button"
+                                                class="btn btn-success" id="btnTambahSantri"
+                                                data-target="#modalTambahSantri" data-toggle="modal">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                            <button onclick="editDataWali({{ $wali->id }})" type="button"
+                                                class="btn btn-warning" id="btnEdit" data-target="#modalEdit"
+                                                data-toggle="modal">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <form action="{{ url('/app/sistem/wali_santri/' . $wali->id) }}" method="POST"
+                                                style="display: inline;">
+                                                @method("DELETE")
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $wali->id }}">
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
