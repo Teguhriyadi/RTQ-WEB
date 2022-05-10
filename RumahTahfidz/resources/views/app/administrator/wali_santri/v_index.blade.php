@@ -1,6 +1,6 @@
 @extends(".app.layouts.template")
 
-@section('app_title', 'Data Wali Santri')
+@section('app_title', 'Wali Santri')
 
 @section('app_content')
 
@@ -25,8 +25,9 @@
                         data-target=".bs-example-modal-lg">
                         <i class="fa fa-plus"></i> Tambah Data
                     </button>
-                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
-                            class="fa fa-file-excel-o"></i> Tambah</button>
+                    <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel">
+                        <i class="fa fa-file-excel-o"></i> Import Excel
+                    </button>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
