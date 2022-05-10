@@ -93,8 +93,8 @@
                                     Kategori
                                 </a>
                             </li>
-                            <li class="{{ Request::segment(3)=="kategori" ? "active" : "" }}">
-                                <a href="{{ url('/app/sistem/kategori') }}">
+                            <li class="{{ Request::segment(3)=="kategori" ? "blog" : "" }}">
+                                <a href="{{ url('/app/sistem/blog') }}">
                                     Blog
                                 </a>
                             </li>

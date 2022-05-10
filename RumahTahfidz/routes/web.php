@@ -8,6 +8,7 @@ use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HalaqahController;
@@ -100,6 +101,11 @@ Route::prefix("app")->group(function () {
                 Route::get("/kategori/edit", [KategoriController::class, "edit"]);
                 Route::put("/kategori/simpan", [KategoriController::class, "update"]);
                 Route::resource("/kategori", KategoriController::class);
+
+                // Data Blog
+                Route::get("/blog/edit", [BlogController::class,"edit"]);
+                Route::put("/blog/simpan", [BlogController::class, "update"]);
+                Route::resource("/blog", BlogController::class);
 
                 Route::prefix("pelajaran")->group(function () {
                     // Data Pelajaran Tadribat
