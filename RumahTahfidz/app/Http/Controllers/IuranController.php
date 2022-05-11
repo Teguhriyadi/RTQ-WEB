@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Iuran;
+use App\Models\Santri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,7 @@ class IuranController extends Controller
     public function validasi_admin_cabang()
     {
         $data = [
-            "data_validasi" => Iuran::get()
+            "data_santri" => Santri::get()
         ];
 
         return view("app.administrator.iuran.v_index", $data);

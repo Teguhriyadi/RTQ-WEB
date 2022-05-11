@@ -1,5 +1,6 @@
 @php
 use Carbon\Carbon;
+use App\Models\Iuran;
 @endphp
 @extends(".app.layouts.template")
 
@@ -33,53 +34,52 @@ use Carbon\Carbon;
                 <div class="x_content">
                     <div class="row">
                         <div class="col-md-12">
+                            <form action="{{ url('/app/sistem/iuran') }}" method="POST">
                             <div class="card-box table-responsive">
-                                <form action="{{ url('/app/sistem/iuran') }}" method="POST">
                                     @method("PUT")
                                     @csrf
-                                    <table class="table table-striped table-bordered">
+                                    <table id="datatable-iuran" class="table table-striped table-bordered" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
-                                                <th>Santri</th>
+                                                <th class="text-center">NIS</th>
+                                                <th>Nama</th>
                                                 <th class="text-center">Tanggal</th>
                                                 <th class="text-center">Status Validasi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php
-                                                $no = 0;
-                                            @endphp
-                                            @foreach ($data_validasi as $data)
+                                            @forelse ($data_santri as $data)
+
                                                 <tr>
                                                     <td class="text-center">
-                                                        @if ($data->status_validasi == 3)
-                                                        -
-                                                        @elseif ($data->status_validasi == 2)
-                                                        <input type="checkbox" name="id_santri[]" value="{{ $data->id_santri }}">
-                                                        @endif
+                                                        <input type="checkbox" name="id_santri[]"
+                                                            value="{{ $data->id_santri }}">
                                                     </td>
-                                                    <td>{{ $data->getSantri->nama_lengkap }}</td>
-                                                    <td class="text-center">
-                                                        {{ Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->isoFormat('dddd, D MMMM Y H:mm:s') }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @if ($data->status_validasi == 2)
-                                                        Konfirmasi ke Super Admin
-                                                        @elseif($data->status_validasi == 3)
-                                                        Sudah di Validasi
-                                                        @endif
-                                                    </td>
+                                                    <td class="text-center">{{ $data->nis }}</td>
+                                                    <td>{{ $data->nama_lengkap }}</td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center">d</td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                            <tr>
+                                                <td colspan="5">
+                                                    <i>
+                                                        <b>
+                                                            Data Kosong
+                                                        </b>
+                                                    </i>
+                                                </td>
+                                            </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                     <div class="ln_solid"></div>
                                     <button type="submit" class="btn btn-success btn-sm">
                                         <i class="fa fa-save"></i> Simpan
                                     </button>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
