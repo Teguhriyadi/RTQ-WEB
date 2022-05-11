@@ -34,11 +34,11 @@ use App\Models\Iuran;
                 <div class="x_content">
                     <div class="row">
                         <div class="col-md-12">
+                            <form action="{{ url('/app/sistem/iuran') }}" method="POST">
                             <div class="card-box table-responsive">
-                                <form action="{{ url('/app/sistem/iuran') }}" method="POST">
                                     @method("PUT")
                                     @csrf
-                                    <table class="table table-striped table-bordered">
+                                    <table id="datatable-iuran" class="table table-striped table-bordered" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
@@ -49,12 +49,8 @@ use App\Models\Iuran;
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($data_santri as $data)
-                                                <?php
-                                                $a = Iuran::get();
-                                                $b = date('d-m-Y H:i', strtotime($a->created_at));
-                                                echo $b->;
-                                                ?>
+                                            @forelse ($data_santri as $data)
+
                                                 <tr>
                                                     <td class="text-center">
                                                         <input type="checkbox" name="id_santri[]"
@@ -62,19 +58,28 @@ use App\Models\Iuran;
                                                     </td>
                                                     <td class="text-center">{{ $data->nis }}</td>
                                                     <td>{{ $data->nama_lengkap }}</td>
-                                                    <td class="text-center">{{ $validasi->created_at }} |
-                                                        {{ $ambil }}</td>
+                                                    <td class="text-center"></td>
                                                     <td class="text-center">d</td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                            <tr>
+                                                <td colspan="5">
+                                                    <i>
+                                                        <b>
+                                                            Data Kosong
+                                                        </b>
+                                                    </i>
+                                                </td>
+                                            </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                     <div class="ln_solid"></div>
                                     <button type="submit" class="btn btn-success btn-sm">
                                         <i class="fa fa-save"></i> Simpan
                                     </button>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
