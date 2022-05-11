@@ -20,8 +20,8 @@ class IuranController extends Controller
 
     public function simpan_validasi(Request $request)
     {
-        foreach($request->id_santri as $data => $value) {
-            Iuran::where("id_santri", $request->id_santri[$data])->update([
+        foreach ($request->id as $data => $value) {
+            Iuran::where("id", $request->id[$data])->update([
                 "status_validasi" => 3,
                 "id_users" => Auth::user()->id
             ]);

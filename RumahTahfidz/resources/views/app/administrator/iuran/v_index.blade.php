@@ -1,6 +1,8 @@
 @php
 use Carbon\Carbon;
 use App\Models\Iuran;
+use App\Models\SettingIuran;
+
 @endphp
 @extends(".app.layouts.template")
 
@@ -35,10 +37,11 @@ use App\Models\Iuran;
                     <div class="row">
                         <div class="col-md-12">
                             <form action="{{ url('/app/sistem/iuran') }}" method="POST">
-                            <div class="card-box table-responsive">
+                                <div class="card-box table-responsive">
                                     @method("PUT")
                                     @csrf
-                                    <table id="datatable-iuran" class="table table-striped table-bordered" style="width: 100%">
+                                    <table id="datatable-iuran" class="table table-striped table-bordered"
+                                        style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
@@ -51,12 +54,30 @@ use App\Models\Iuran;
                                         <tbody>
                                             @forelse ($data_santri as $data)
                                                 @php
-                                                    $validasi = Iuran::where("id_santri", $data->id)->first();
+                                                    $iuran = SettingIuran::first();
+                                                    $validasi = Iuran::where('id_santri', $data->id)->first();
                                                 @endphp
+                                                @php
+                                                    $tanggal = date('d', strtotime($validasi->tanggal));
+
+                                                    if ($tanggal >= $iuran->mulai && $tanggal <= $iuran->akhir) {
+                                                        $hidden = null;
+                                                    } else {
+                                                        $hidden = 'hidden';
+                                                    }
+                                                @endphp
+
                                                 <tr>
                                                     <td class="text-center">
-                                                        <input type="checkbox" name="id_santri[]"
-                                                            value="{{ $data->id_santri }}">
+                                                        @if ($hidden == null)
+                                                            @if ($validasi->status_validasi == 2)
+                                                                <input type="checkbox" name="id[]"
+                                                                    value="{{ $validasi->id }}">
+                                                            @endif
+                                                        @else
+                                                            <input type="checkbox" hidden name="id[]"
+                                                                value="{{ $validasi->id }}">
+                                                        @endif
                                                     </td>
                                                     <td class="text-center">{{ $data->nis }}</td>
                                                     <td>{{ $data->nama_lengkap }}</td>
@@ -64,15 +85,15 @@ use App\Models\Iuran;
                                                     <td class="text-center">d</td>
                                                 </tr>
                                             @empty
-                                            <tr>
-                                                <td colspan="5">
-                                                    <i>
-                                                        <b>
-                                                            Data Kosong
-                                                        </b>
-                                                    </i>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        <i>
+                                                            <b>
+                                                                Data Kosong
+                                                            </b>
+                                                        </i>
+                                                    </td>
+                                                </tr>
                                             @endforelse
                                         </tbody>
                                     </table>

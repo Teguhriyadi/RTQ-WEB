@@ -51,6 +51,7 @@ use Maatwebsite\Excel\Row;
 |
 */
 
+Route::get("/auto", [AppController::class, "auto"]);
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);

@@ -1,8 +1,20 @@
+@php
+use App\Models\Iuran;
+use App\Models\SettingIuran;
+@endphp
+
 @extends("app.layouts.template")
 
 @section('app_title', 'Home')
 
 @section('app_content')
+
+@foreach ($data_santri as $data)
+@php
+$iuran = SettingIuran::first();
+$validasi = Iuran::where('id_santri', $data->id)->first();
+@endphp
+@endforeach
 
 <div class="row top_tiles">
     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -66,7 +78,7 @@
             </div>
             <div class="x_content">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                <div id="mainb" style="height:350px;"></div>
+                    <div id="mainb" style="height:350px;"></div>
                 </div>
             </div>
         </div>
@@ -99,7 +111,7 @@
                                     @php $no = 0 @endphp
                                     @foreach($user_login as $data)
                                     @php
-                                        $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at);
+                                    $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at);
                                     @endphp
                                     <tr>
                                         <td class="text-center">.{{ ++$no }}.</td>
