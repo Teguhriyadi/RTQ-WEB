@@ -1,5 +1,6 @@
 @php
 use Carbon\Carbon;
+use App\Models\Iuran;
 @endphp
 @extends(".app.layouts.template")
 
@@ -41,35 +42,29 @@ use Carbon\Carbon;
                                         <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
-                                                <th>Santri</th>
+                                                <th class="text-center">NIS</th>
+                                                <th>Nama</th>
                                                 <th class="text-center">Tanggal</th>
                                                 <th class="text-center">Status Validasi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php
-                                                $no = 0;
-                                            @endphp
-                                            @foreach ($data_validasi as $data)
+                                            @foreach ($data_santri as $data)
+                                                <?php
+                                                $a = Iuran::get();
+                                                $b = date('d-m-Y H:i', strtotime($a->created_at));
+                                                echo $b->;
+                                                ?>
                                                 <tr>
                                                     <td class="text-center">
-                                                        @if ($data->status_validasi == 3)
-                                                        -
-                                                        @elseif ($data->status_validasi == 2)
-                                                        <input type="checkbox" name="id_santri[]" value="{{ $data->id_santri }}">
-                                                        @endif
+                                                        <input type="checkbox" name="id_santri[]"
+                                                            value="{{ $data->id_santri }}">
                                                     </td>
-                                                    <td>{{ $data->getSantri->nama_lengkap }}</td>
-                                                    <td class="text-center">
-                                                        {{ Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->isoFormat('dddd, D MMMM Y H:mm:s') }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @if ($data->status_validasi == 2)
-                                                        Konfirmasi ke Super Admin
-                                                        @elseif($data->status_validasi == 3)
-                                                        Sudah di Validasi
-                                                        @endif
-                                                    </td>
+                                                    <td class="text-center">{{ $data->nis }}</td>
+                                                    <td>{{ $data->nama_lengkap }}</td>
+                                                    <td class="text-center">{{ $validasi->created_at }} |
+                                                        {{ $ambil }}</td>
+                                                    <td class="text-center">d</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
