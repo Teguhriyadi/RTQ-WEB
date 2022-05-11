@@ -122,19 +122,25 @@ class WaliSantriController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('aksi', function ($row) {
-                $aksiBtn = '<button onclick="editDataSantri(' . $row["id"] . ')" type="button"
-                    class="btn btn-warning btn-sm text-white" id="btnEdit"
-                    data-target="#modalEdit" data-toggle="modal">
-                    <i class="fa fa-edit"></i>
-                </button>';
-                //     $aksiBtn .= '<form action="' . url("app/sistem/santri/" . $row["id"]) . '"
-                //     method="POST" style="display: inline">
-                //     ' . method_field('delete') . '
-                //     ' . csrf_field() . '
-                //     <button type="submit" class="btn btn-sm btn-danger">
-                //         <i class="fa fa-trash"></i>
-                //     </button>
-                // </form>';
+                $aksiBtn = '<button onclick="tambahDataSantri(' . $row["id"] . ')" type="button"
+                                class="btn btn-success btn-sm" id="btnTambahSantri"
+                                data-target="#modalTambahSantri" data-toggle="modal">
+                                <i class="fa fa-plus"></i>
+                            </button>';
+                $aksiBtn .= '<button onclick="editDataWali(' . $row["id"] . ')" type="button"
+                                class="btn btn-warning btn-sm text-white" id="btnEdit"
+                                data-target="#modalEdit" data-toggle="modal">
+                                <i class="fa fa-edit"></i>
+                            </button>';
+                $aksiBtn .= '<form action="' . url("/app/sistem/wali_santri/" . $row["id"]) . '"
+                            method="POST" style="display: inline;">
+                            ' . method_field('delete') . '
+                            ' . csrf_field() . '
+                            <input type="hidden" name="id" value="' . $row["id"] . '">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>';
                 return $aksiBtn;
             })
             ->rawColumns(['aksi'])
