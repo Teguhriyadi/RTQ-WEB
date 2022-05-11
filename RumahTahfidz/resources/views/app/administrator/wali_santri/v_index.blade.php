@@ -34,7 +34,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="card-box table-responsive">
-                                <table id="datatable" class="table table-striped table-bordered">
+                                <table id="datatable-walisantri" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
@@ -47,7 +47,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php $no = 0 @endphp
+                                        {{-- @php $no = 0 @endphp
                                         @foreach ($data_wali as $wali)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
@@ -91,7 +91,7 @@
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -376,7 +376,42 @@
                 }
             });
 
-            $("#table-1").dataTable();
+            $("#datatable-walisantri").dataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ url('app/sistem/wali_santri/datatables') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'no_kk',
+                        name: 'no_kk'
+                    },
+                    {
+                        data: 'nama_lengkap',
+                        name: 'nama_lengkap'
+                    },
+                    {
+                        data: 'jenis_kelamin',
+                        name: 'jenis_kelamin'
+                    },
+                    {
+                        data: 'no_hp',
+                        name: 'no_hp'
+                    },
+                    {
+                        data: 'jumlah_anak',
+                        name: 'jumlah_anak'
+                    },
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
 
             $("#btn-tambah-excel").click(function() {
                 $("#tambahWaliSantriExcel").ajaxForm({

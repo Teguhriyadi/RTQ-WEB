@@ -25,52 +25,30 @@
                     <h2>
                         <i class="fa fa-users"></i> Santri
                     </h2>
-                    <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel"><i
-                            class="fa fa-file-excel-o"></i> Tambah</button>
+                    <div class="pull-right">
+                        <a href="{{ url('app/sistem/santri/export') }}" class="btn btn-success btn-sm"><i
+                                class="fa fa-download"></i> Export Data</a>
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
+                                class="fa fa-upload"></i> Import Data</button>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="card-box table-responsive">
-                                <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
+                                <table id="datatable-santri" class="table table-striped table-bordered" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
+                                            <th>NIS</th>
                                             <th>Nama</th>
-                                            <th>Sekolah</th>
-                                            <th class="text-center">Kelas</th>
+                                            <th class="text-center">Jenjang</th>
                                             <th>Nama Wali</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        {{-- @php $no = 0 @endphp
-                                        @foreach ($data_santri as $santri)
-                                            <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td>{{ $santri->nama_lengkap }}</td>
-                                                <td>{{ $santri->sekolah }}</td>
-                                                <td class="text-center">{!! $santri->getKelas->nama_kelas !!}</td>
-                                                <td>{{ $santri->getWali->getUser->nama }}</td>
-                                                <td class="text-center">
-                                                    <button onclick="editDataSantri({{ $santri->id }})" type="button"
-                                                        class="btn btn-warning btn-sm text-white" id="btnEdit"
-                                                        data-target="#modalEdit" data-toggle="modal">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <form action="{{ url('/app/sistem/santri/' . $santri->id) }}"
-                                                        method="POST" style="display: inline">
-                                                        @method("DELETE")
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-sm btn-danger">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach --}}
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>
@@ -124,7 +102,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('app/sistem/siswa/import') }}" method="post" id="tambahSiswaExcel"
+                <form action="{{ url('app/sistem/santri/import') }}" method="post" id="tambahSiswaExcel"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
@@ -196,7 +174,7 @@
                 }
             });
 
-            $("#table-1").dataTable({
+            $("#datatable-santri").dataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('app/sistem/santri/datatables') }}",
@@ -205,15 +183,33 @@
                         name: 'DT_RowIndex'
                     },
                     {
+                        data: 'nis',
+                        name: 'nis'
+                    },
+                    {
                         data: 'nama_lengkap',
                         name: 'nama_lengkap'
-                    }
+                    },
+                    {
+                        data: 'jenjang',
+                        name: 'jenjang'
+                    },
+                    {
+                        data: 'nama_wali',
+                        name: 'nama_wali'
+                    },
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        orderable: true,
+                        searchable: true
+                    },
                 ]
             });
 
             $("#btn-tambah-excel").click(function() {
                 $("#tambahSiswaExcel").ajaxForm({
-                    url: "{{ url('app/sistem/siswa/import') }}",
+                    url: "{{ url('app/sistem/santri/import') }}",
                     beforeSubmit: function() {
                         $("input[name='importSantri']").css("display", "none");
                         $("#btn-tambah-excel").attr("disabled", "disabled");

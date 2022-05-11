@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminLokasiRt;
 use App\Models\Halaqah;
+use App\Models\LokasiRt;
 use App\Models\Santri;
 use App\Models\User;
 use App\Models\WaliSantri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class WaliSantriController extends Controller
 {
@@ -28,7 +31,7 @@ class WaliSantriController extends Controller
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("walisantri".$request->no_hp);
+        $user->password = bcrypt("walisantri" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->id_role = 4;
         $user->no_hp = $request->no_hp;
@@ -88,5 +91,53 @@ class WaliSantriController extends Controller
         WaliSantri::where("id", $id)->delete();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Hapus", "success");</script>');
+    }
+
+    public function datatables()
+    {
+        $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
+        $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
+        $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
+        $santri = Santri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+        $walisantri = WaliSantri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+
+        $data = array();
+        foreach ($walisantri as $user) {
+            if ($user->getUser->jenis_kelamin == "L") {
+                $jk = 'Laki-laki';
+            } else {
+                $jk = 'Perempuan';
+            }
+
+            $data[] = [
+                'id' => $user->id,
+                'no_kk' => $user->no_kk,
+                'nama_lengkap' => $user->getUser->nama,
+                'jenis_kelamin' => $jk,
+                'no_hp' => $user->getUser->no_hp,
+                'jumlah_anak' => $santri->where('id_wali', $user->id)->count(),
+            ];
+        }
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($row) {
+                $aksiBtn = '<button onclick="editDataSantri(' . $row["id"] . ')" type="button"
+                    class="btn btn-warning btn-sm text-white" id="btnEdit"
+                    data-target="#modalEdit" data-toggle="modal">
+                    <i class="fa fa-edit"></i>
+                </button>';
+                //     $aksiBtn .= '<form action="' . url("app/sistem/santri/" . $row["id"]) . '"
+                //     method="POST" style="display: inline">
+                //     ' . method_field('delete') . '
+                //     ' . csrf_field() . '
+                //     <button type="submit" class="btn btn-sm btn-danger">
+                //         <i class="fa fa-trash"></i>
+                //     </button>
+                // </form>';
+                return $aksiBtn;
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 }
