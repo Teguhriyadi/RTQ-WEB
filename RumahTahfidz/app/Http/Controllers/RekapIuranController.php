@@ -24,6 +24,6 @@ class RekapIuranController extends Controller
             'santri' => Iuran::where('id_santri', $id)->get()
         ];
 
-        dd($data['santri']);
+        return view('app.wali_santri.rekap_iuran.v_detail', $data);
     }
 }
