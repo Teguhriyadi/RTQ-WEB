@@ -35,6 +35,7 @@ use App\Http\Controllers\RekapPenilaianController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\SettingIuranController;
 use App\Http\Controllers\StatusAbsenController;
+use App\Http\Controllers\StatusValidasiController;
 use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\WaliSantriController;
 use Illuminate\Support\Facades\Route;
@@ -154,9 +155,19 @@ Route::prefix("app")->group(function () {
                 Route::resource("/users", UsersController::class);
 
                 Route::prefix("/setting")->group(function() {
+
+                    // Iuran
                     Route::prefix("/iuran")->group(function() {
                         Route::put("/{id}", [SettingIuranController::class, "update"]);
                         Route::resource("/", SettingIuranController::class);
+                    });
+
+                    // Status Validasi
+                    Route::prefix("/validasi")->group(function() {
+                        Route::get("/edit", [StatusValidasiController::class, "edit"]);
+                        Route::put("/simpan", [StatusValidasiController::class, "update"]);
+                        Route::delete("/{id}", [StatusValidasiController::class, "destroy"]);
+                        Route::resource("/", StatusValidasiController::class);
                     });
                 });
 

@@ -147,9 +147,22 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ url('/app/sistem/setting/iuran') }}">
+                            <a>
                                 <i class="fa fa-gears"></i> Setting
+                                <span class="fa fa-chevron-down"></span>
                             </a>
+                            <ul class="nav child_menu">
+                                <li class="{{ Request::segment(3) == "iuran" ? "active" : "" }}">
+                                    <a href="{{ url('/app/sistem/setting/iuran') }}">
+                                        Iuran
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == "status" ? "active" : "" }}">
+                                    <a href="{{ url('/app/sistem/setting/validasi') }}">
+                                        Status Validasi
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     @endcan
                     @can('admin')
