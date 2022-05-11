@@ -30,6 +30,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\RekapAbsensiSantriController;
+use App\Http\Controllers\RekapIuranController;
 use App\Http\Controllers\RekapPenilaianController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\SettingIuranController;
@@ -248,6 +249,10 @@ Route::prefix("app")->group(function () {
             Route::get('/rekap_penilaian/imla', [RekapPenilaianController::class, 'imla']);
             Route::get('/rekap_penilaian/iman_adab', [RekapPenilaianController::class, 'iman_adab']);
             Route::get('/rekap_penilaian/mulok', [RekapPenilaianController::class, 'mulok']);
+
+            // Data Rekap Iuran
+            Route::get('/rekap_iuran', [RekapIuranController::class, 'index']);
+            Route::get('/rekap_iuran/{id}', [RekapIuranController::class, 'detail']);
         });
     });
 
