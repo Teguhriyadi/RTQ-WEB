@@ -50,7 +50,9 @@ use App\Models\Iuran;
                                         </thead>
                                         <tbody>
                                             @forelse ($data_santri as $data)
-
+                                                @php
+                                                    $validasi = Iuran::where("id_santri", $data->id)->first();
+                                                @endphp
                                                 <tr>
                                                     <td class="text-center">
                                                         <input type="checkbox" name="id_santri[]"
@@ -58,7 +60,7 @@ use App\Models\Iuran;
                                                     </td>
                                                     <td class="text-center">{{ $data->nis }}</td>
                                                     <td>{{ $data->nama_lengkap }}</td>
-                                                    <td class="text-center"></td>
+                                                    <td class="text-center">{{ $validasi->created_at }}</td>
                                                     <td class="text-center">d</td>
                                                 </tr>
                                             @empty

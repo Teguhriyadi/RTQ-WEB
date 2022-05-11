@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tb_setting_iuran', function (Blueprint $table) {
             $table->id();
-            $table->timestamp("mulai")->nullable();
-            $table->timestamp("akhir")->nullable();
+            $table->string("mulai")->nullable();
+            $table->string("akhir")->nullable();
         });
     }
 

@@ -32,6 +32,7 @@ use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\RekapPenilaianController;
 use App\Http\Controllers\SantriController;
+use App\Http\Controllers\SettingIuranController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\WaliSantriController;
@@ -149,6 +150,13 @@ Route::prefix("app")->group(function () {
                 // Data Users
                 Route::post("/users/non_aktifkan/", [UsersController::class, "non_aktifkan"]);
                 Route::resource("/users", UsersController::class);
+
+                Route::prefix("/setting")->group(function() {
+                    Route::prefix("/iuran")->group(function() {
+                        Route::put("/{id}", [SettingIuranController::class, "update"]);
+                        Route::resource("/", SettingIuranController::class);
+                    });
+                });
 
                 Route::get("/profil", [ProfilController::class, "web_profil"]);
                 Route::post("/profil", [ProfilController::class, "store"]);

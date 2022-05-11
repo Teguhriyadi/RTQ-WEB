@@ -112,17 +112,17 @@
                             </a>
                             <ul class="nav child_menu">
                                 <li>
-                                    <a href="{{ url('/app/sistem/home') }}">
+                                    <a href="{{ url('/app/sistem/data') }}">
                                         Iuran
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/app/sistem/home') }}">
+                                    <a href="{{ url('/app/sistem/data') }}">
                                         Asatidz
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/app/sistem/home') }}">
+                                    <a href="{{ url('/app/sistem/data') }}">
                                         Santri
                                     </a>
                                 </li>
@@ -145,6 +145,11 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ url('/app/sistem/setting/iuran') }}">
+                                <i class="fa fa-gears"></i> Setting
+                            </a>
                         </li>
                     @endcan
                     @can('admin')
