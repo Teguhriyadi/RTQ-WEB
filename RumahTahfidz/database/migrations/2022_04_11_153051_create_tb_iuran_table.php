@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('tb_iuran', function (Blueprint $table) {
             $table->id();
             $table->integer("id_santri");
+            $table->double("nominal");
             $table->date("tanggal");
             $table->string("bukti");
-            $table->integer("status_validasi");
+            $table->integer("id_status_validasi");
             $table->integer("id_users");
             $table->timestamps();
         });

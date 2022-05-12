@@ -38,6 +38,7 @@ use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\StatusValidasiController;
 use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\WaliSantriController;
+use App\Models\LastLogin;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Row;
 
@@ -154,16 +155,16 @@ Route::prefix("app")->group(function () {
                 Route::post("/users/non_aktifkan/", [UsersController::class, "non_aktifkan"]);
                 Route::resource("/users", UsersController::class);
 
-                Route::prefix("/setting")->group(function() {
+                Route::prefix("/setting")->group(function () {
 
                     // Iuran
-                    Route::prefix("/iuran")->group(function() {
+                    Route::prefix("/iuran")->group(function () {
                         Route::put("/{id}", [SettingIuranController::class, "update"]);
                         Route::resource("/", SettingIuranController::class);
                     });
 
                     // Status Validasi
-                    Route::prefix("/validasi")->group(function() {
+                    Route::prefix("/validasi")->group(function () {
                         Route::get("/edit", [StatusValidasiController::class, "edit"]);
                         Route::put("/simpan", [StatusValidasiController::class, "update"]);
                         Route::delete("/{id}", [StatusValidasiController::class, "destroy"]);
@@ -275,4 +276,12 @@ Route::prefix("app")->group(function () {
 
 Route::get("/v_error", function () {
     return view("errors.503");
+});
+
+Route::get("/coba-clockwork", function () {
+    $data = [
+        "last_login" => LastLogin::latest()->get()
+    ];
+
+    return view("clockwork", $data);
 });

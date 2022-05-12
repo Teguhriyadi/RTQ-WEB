@@ -12,4 +12,11 @@ class LastLogin extends Model
     protected $table = "tb_last_Login";
 
     protected $guarded = [''];
+
+    protected $with = "getUser";
+
+    public function getUser()
+    {
+        return $this->belongsTo("App\Models\User", "id_user", "id");
+    }
 }

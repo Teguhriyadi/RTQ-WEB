@@ -27,4 +27,9 @@ class Santri extends Model
     {
         return $this->belongsTo(Jenjang::class, "id_jenjang", "id");
     }
+
+    public function getIuran()
+    {
+        return $this->belongsTo("App\Models\Iuran", "id", "id_santri");
+    }
 }

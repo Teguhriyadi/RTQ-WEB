@@ -17,7 +17,7 @@ class WaliSantriController extends Controller
     public function index()
     {
         $data = [
-            "data_wali" => WaliSantri::orderBy("id")->get(),
+            "data_wali" => WaliSantri::get(),
             "data_santri" => Santri::get(),
             "data_halaqah" => Halaqah::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->get()
         ];

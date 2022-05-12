@@ -50,7 +50,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-bars"></i> Data Role
+                        <i class="fa fa-bars"></i> Data @yield("app_title")
                     </h2>
                     <div class="clearfix"></div>
                 </div>

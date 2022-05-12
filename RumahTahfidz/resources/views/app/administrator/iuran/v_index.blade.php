@@ -2,8 +2,8 @@
 use Carbon\Carbon;
 use App\Models\Iuran;
 use App\Models\SettingIuran;
-
 @endphp
+
 @extends(".app.layouts.template")
 
 @section('app_title', 'Validasi Iuran')
