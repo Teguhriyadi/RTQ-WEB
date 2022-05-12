@@ -78,7 +78,7 @@ use App\Models\SettingIuran;
                 </div>
                 <div class="x_content">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <canvas id="line" height="100"></canvas>
+                        <div id="mainb" style="height:350px;"></div>
                     </div>
                 </div>
             </div>
@@ -131,5 +131,5 @@ use App\Models\SettingIuran;
 @endsection
 
 @section('app_scripts')
-
+<script src="{{ url('') }}/vendors/echarts/dist/echarts.min.js"></script>
 @endsection
