@@ -13,11 +13,13 @@ class Halaqah extends Model
 
     protected $guarded = [''];
 
+    protected $with = ["getLokasiRt"];
+
     public $timestamps = false;
 
     public function getLokasiRt()
     {
-        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt")->withDefault(["lokasi_rt" => "<i><b>NULL</b></i>"]);
+        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt")->withDefault(["lokasi_rt" => "NULL"]);
     }
 
     public function getSantri()

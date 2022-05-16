@@ -23,8 +23,8 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
-                    <i class="fa fa-plus"></i> Tambah Data
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg">
+                    <i class="fa fa-plus"></i> Tambah
                 </button>
                 <div class="clearfix"></div>
             </div>
@@ -39,6 +39,7 @@
                                         <th>Nama</th>
                                         <th>Lokasi RT</th>
                                         <th class="text-center">No. HP</th>
+                                        <th>Pendidikan Terakhir</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -49,15 +50,16 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td>{{ $data->getUser->nama }}</td>
                                         <td>{{ $data->getLokasiRt->lokasi_rt }}</td>
-                                        <td>{{ $data->getUser->no_hp }}</td>
+                                        <td class="text-center">{{ $data->getUser->no_hp }}</td>
+                                        <td>{{ $data->pendidikan_terakhir }}</td>
                                         <td class="text-center">
-                                            <button onclick="editAdminLokasiRt({{ $data->id }})" type="button" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                            <button onclick="editAdminLokasiRt({{ $data->id }})" type="button" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i> Edit
                                             </button>
                                             <form action="{{ url('/app/sistem/admin_lokasi_rt/'.$data->id) }}" method="POST" style="display: inline;">
                                                 @method("DELETE")
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger">
+                                                <button type="submit" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i> Hapus
                                                 </button>
                                             </form>

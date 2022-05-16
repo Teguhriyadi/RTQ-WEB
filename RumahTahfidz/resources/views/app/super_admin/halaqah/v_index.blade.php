@@ -29,7 +29,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <button class="btn btn-primary" data-target="#modalTambah" data-toggle="modal">
+                <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
                     <i class="fa fa-plus"></i> Tambah
                 </button>
                 <div class="clearfix"></div>
@@ -55,16 +55,16 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
                                         <td>{{ $halaqah->nama_halaqah }}</td>
-                                        <td>{!! $halaqah->getLokasiRt->lokasi_rt !!}</td>
+                                        <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
                                         <td class="text-center">
-                                            <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                            <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i> Edit
                                             </button>
                                             <form action="{{ url('/app/sistem/halaqah/'.$halaqah->kode_halaqah) }}" method="POST" style="display: inline;">
                                                 @method("DELETE")
                                                 @csrf
                                                 <input type="hidden" name="kode" value="{{ $halaqah->kode_halaqah }}">
-                                                <button type="submit" class="btn btn-danger">
+                                                <button type="submit" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i> Hapus
                                                 </button>
                                             </form>
@@ -118,10 +118,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                    <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
                 </div>
@@ -151,10 +151,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                    <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success btn-sm">
                         <i class="fa fa-save"></i> Simpan
                     </button>
                 </div>

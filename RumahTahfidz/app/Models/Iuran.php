@@ -18,4 +18,8 @@ class Iuran extends Model
         return $this->belongsTo("App\Models\Santri", "id_santri", "id");
     }
 
+    public function getStatusValidasi()
+    {
+        return $this->belongsTo("App\Models\StatusValidasi", "id_status_validasi", "id");
+    }
 }

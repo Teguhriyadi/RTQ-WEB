@@ -31,6 +31,8 @@ class AppController extends Controller
             "data_santri" => Santri::get()
         ];
 
+        $this->auto();
+
         return view("app.administrator.v_home", $data);
     }
 
@@ -57,8 +59,6 @@ class AppController extends Controller
                             "updated_at" => "2022-05-10 15:15:15"
                         ]);
                     } else {
-                        echo "Ada";
-                        echo "<br>";
                     }
                 }
             } else {
@@ -77,8 +77,6 @@ class AppController extends Controller
                             "updated_at" => "2022-05-10 15:15:15"
                         ]);
                     } else {
-                        echo "Ada Data";
-                        echo "<br>";
                     }
                 }
             }

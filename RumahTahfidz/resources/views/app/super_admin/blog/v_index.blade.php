@@ -34,7 +34,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <button class="btn btn-primary" data-target="#modalTambah" data-toggle="modal">
+                        <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                         <div class="clearfix"></div>
@@ -65,7 +65,7 @@
                                                     <td>{{ $data->slug }}</td>
                                                     <td class="text-center">
                                                         <button onclick="editDataBlog({{ $data->id }})"
-                                                            class="btn btn-warning" data-target="#modalEdit"
+                                                            class="btn btn-warning btn-sm" data-target="#modalEdit"
                                                             data-toggle="modal">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </button>
@@ -74,7 +74,7 @@
                                                             @method("DELETE")
                                                             @csrf
                                                             <input type="hidden" name="hapusGambar" value="{{ $data->foto }}">
-                                                            <button type="submit" class="btn btn-danger">
+                                                            <button type="submit" class="btn btn-danger btn-sm">
                                                                 <i class="fa fa-trash-o"></i> Hapus
                                                             </button>
                                                         </form>
@@ -98,8 +98,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <i class="fa fa-edit"></i>
-                        <span>Edit Data</span>
+                        <i class="fa fa-plus"></i>
+                        <span>Tambah Data</span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -141,10 +141,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <i class="fa fa-save"></i> Tambah
                         </button>
                     </div>
@@ -174,10 +174,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>

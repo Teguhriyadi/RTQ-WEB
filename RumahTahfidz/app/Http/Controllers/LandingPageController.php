@@ -30,7 +30,7 @@ class LandingPageController extends Controller
         return view("app.landing.kontak.v_index");
     }
 
-    public function kirim_pesan(Request $request)
+    public function pesan(Request $request)
     {
         Pesan::create([
             "id_pesan" => time(),
@@ -40,7 +40,8 @@ class LandingPageController extends Controller
             "pesan" => $request->pesan
         ]);
 
-        return redirect()->back();
+        return redirect("/");
+
     }
 
     public function blog()

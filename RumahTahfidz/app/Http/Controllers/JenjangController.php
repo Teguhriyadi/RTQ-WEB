@@ -21,11 +21,11 @@ class JenjangController extends Controller
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
         if ($cek > 0) {
-            return redirect()->back();
+            return redirect()->back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>");
         } else {
             Jenjang::create($request->all());
 
-            return redirect()->back();
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'successs');</script>");
         }
     }
 
@@ -42,7 +42,7 @@ class JenjangController extends Controller
     {
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
-        if ($cek > 0 ) {
+        if ($cek > 0) {
             return redirect()->back();
         } else {
             Jenjang::where("id", $request->id)->update([

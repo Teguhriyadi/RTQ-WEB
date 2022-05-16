@@ -35,10 +35,10 @@
                         <input type="text" class="form-control" name="keterangan_absen" id="keterangan_absen" placeholder="Masukkan Keterangan Absen">
                     </div>
                     <div class="ln_solid"></div>
-                    <button class="btn btn-danger" type="reset">
+                    <button class="btn btn-danger btn-sm" type="reset">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary btn-sm" type="submit">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
                 </form>
@@ -75,13 +75,13 @@
                                         <td>{{ $status->keterangan_absen }}</td>
                                         <td class="text-center">
                                             <button onclick="editStatusAbsen({{ $status->id }})" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-edit"></i> Edit
                                             </button>
                                             <form action="{{ url('/app/sistem/status_absen/'.$status->id) }}" method="POST" style="display: inline;">
                                                 @method("DELETE")
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i>
+                                                    <i class="fa fa-trash"></i> Haous
                                                 </button>
                                             </form>
                                         </td>

@@ -22,7 +22,7 @@ class HalaqahController extends Controller
     {
         Halaqah::create($request->all());
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }
 
     public function edit(Request $request)
@@ -42,7 +42,7 @@ class HalaqahController extends Controller
             "kode_rt" => $request->kode_rt_new
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
     }
 
     public function destroy($kode_halaqah)

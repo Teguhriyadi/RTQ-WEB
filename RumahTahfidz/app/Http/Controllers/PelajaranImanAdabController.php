@@ -18,9 +18,15 @@ class PelajaranImanAdabController extends Controller
 
     public function store(Request $request)
     {
-        PelajaranImanAdab::create($request->all());
+        $cek = PelajaranImanAdab::where("pelajaran", $request->pelajaran)->count();
 
-        return redirect()->back();
+        if ($cek > 0) {
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            PelajaranImanAdab::create($request->all());
+
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+        }
     }
 
     public function edit(Request $request)
@@ -38,13 +44,13 @@ class PelajaranImanAdabController extends Controller
             "pelajaran" => $request->pelajaran
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
     }
 
     public function destroy($id)
     {
         PelajaranImanAdab::where("id", $id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }

@@ -11,15 +11,17 @@ class AdminLokasiRt extends Model
 
     protected $table = "tb_admin_lokasi_rt";
 
+    protected $with = ["getLokasiRt", "getUser"];
+
     protected $guarded = [''];
 
     public function getLokasiRt()
     {
-        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt");
+        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt")->withDefault(["lokasi_rt" => "NULL"]);
     }
 
     public function getUser()
     {
-        return $this->hasOne("App\Models\User", "id", "id");
+        return $this->hasOne("App\Models\User", "id", "id")->withDefault(["no_hp" => "NULL"]);
     }
 }

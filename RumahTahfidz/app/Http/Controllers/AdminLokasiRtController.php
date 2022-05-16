@@ -12,7 +12,7 @@ class AdminLokasiRtController extends Controller
     public function index()
     {
         $data = [
-            "data_admin_lokasi_rt" => AdminLokasiRt::get(),
+            "data_admin_lokasi_rt" => AdminLokasiRt::latest()->get(),
             "data_lokasi_rt" => LokasiRt::count(),
             "lokasi_rt" => LokasiRt::get()
         ];

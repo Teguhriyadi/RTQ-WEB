@@ -35,10 +35,10 @@
                     <input type="text" class="form-control" name="pelajaran" id="pelajaran" placeholder="Masukkan Pelajaran">
                     </div>
                     <div class="ln_solid"></div>
-                    <button class="btn btn-danger" type="reset">
+                    <button class="btn btn-danger btn-sm" type="reset">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
                 </form>
@@ -74,10 +74,10 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td class="text-center">{{ $data->pelajaran }}</td>
                                         <td class="text-center">
-                                            <button onclick="editPelajaranImanAdab({{ $data->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                            <button onclick="editPelajaranImanAdab({{ $data->id }})" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i> Edit
                                             </button>
-                                            <button id="deletePelajaranImanAdab" data-id="{{ $data->id }}" class="btn btn-danger">
+                                            <button id="deletePelajaranImanAdab" data-id="{{ $data->id }}" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </td>
@@ -113,10 +113,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                    <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button type="submit" class="btn btn-success" id="btn-edit">
+                    <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                         <i class="fa fa-save"></i> Simpan
                     </button>
                 </div>

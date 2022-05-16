@@ -12,7 +12,8 @@ class IuranController extends Controller
     public function validasi_admin_cabang()
     {
         $data = [
-            "data_santri" => Santri::get()
+            "data_santri" => Santri::get(),
+            "data_iuran" => Iuran::where("id_status_validasi", 2)->get()
         ];
 
         return view("app.administrator.iuran.v_index", $data);
@@ -22,7 +23,7 @@ class IuranController extends Controller
     {
         foreach ($request->id as $data => $value) {
             Iuran::where("id", $request->id[$data])->update([
-                "status_validasi" => 3,
+                "id_status_validasi" => 3,
                 "id_users" => Auth::user()->id
             ]);
         }

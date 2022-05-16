@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HalaqahController;
@@ -52,13 +53,12 @@ use Maatwebsite\Excel\Row;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get("/auto", [AppController::class, "auto"]);
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
-Route::post("/kirim_pesan", [LandingPageController::class, "kirim_pesan"]);
 Route::get("/blog", [LandingPageController::class, "blog"]);
+Route::post("/pesan", [LandingPageController::class, "pesan"]);
 
 Route::prefix("app")->group(function () {
 
@@ -181,10 +181,6 @@ Route::prefix("app")->group(function () {
 
             Route::group(["middleware" => ["can:admin"]], function () {
 
-                // Iuran Wali Santri
-                Route::get("/iuran", [IuranController::class, "validasi_admin_cabang"]);
-                Route::put("/iuran", [IuranController::class, "simpan_validasi"]);
-
                 // Tes Santri
                 Route::get("/tes/data", [TesSantriController::class, "index"]);
                 Route::get("/tes/input", [TesSantriController::class, "create"]);
@@ -237,6 +233,10 @@ Route::prefix("app")->group(function () {
                 Route::post("/tambah_absensi", [AbsensiController::class, "tambah_absensi"]);
                 Route::get("/absensi_santri", [AbsensiController::class, "absensi_santri"]);
             });
+
+            // Iuran Wali Santri
+            Route::get("/iuran", [IuranController::class, "validasi_admin_cabang"]);
+            Route::put("/iuran", [IuranController::class, "simpan_validasi"]);
 
             Route::get("/home", [AppController::class, "home"]);
 

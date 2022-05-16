@@ -112,7 +112,7 @@
                             </a>
                             <ul class="nav child_menu">
                                 <li>
-                                    <a href="{{ url('/app/sistem/data') }}">
+                                    <a href="{{ url('/app/sistem/iuran') }}">
                                         Iuran
                                     </a>
                                 </li>

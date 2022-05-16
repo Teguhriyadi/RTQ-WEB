@@ -35,10 +35,10 @@
                         <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan">
                     </div>
                     <div class="ln_solid"></div>
-                    <button class="btn btn-danger" type="reset">
+                    <button class="btn btn-danger btn-sm" type="reset">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary btn-sm" type="submit">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
                 </form>
@@ -49,7 +49,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    <i class="fa fa-bars"></i> Data Role
+                    <i class="fa fa-bars"></i> Data @yield("app_title")
                 </h2>
                 <div class="clearfix"></div>
             </div>
@@ -73,14 +73,14 @@
                                     <td class="text-center">{{ ++$no }}.</td>
                                     <td>{{ $role->keterangan }}</td>
                                     <td class="text-center">
-                                        <button onclick="editRole({{ $role->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
-                                            <i class="fa fa-edit"></i>
+                                        <button onclick="editRole({{ $role->id }})" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
+                                            <i class="fa fa-edit"></i> Edit
                                         </button>
                                         <form action="{{ url('/app/sistem/role/'.$role->id) }}" method="POST" style="display: inline;">
                                             @method("DELETE")
                                             @csrf
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </form>
                                     </td>

@@ -21,11 +21,11 @@ class StatusAbsenController extends Controller
         $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
         if ($cek > 0) {
-            return redirect()->back();
+            return redirect()->back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>");
         } else {
             StatusAbsen::create($request->all());
 
-            return redirect()->back();
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>");
         }
     }
 

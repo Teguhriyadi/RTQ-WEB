@@ -27,9 +27,14 @@ class KelasController extends Controller
 
     public function store(Request $request)
     {
-        Kelas::create($request->all());
+        $cek = Kelas::where("nama_kelas", $request->nama_kelas)->count();
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success')</script>");
+        if ($cek > 0) {
+            return redirect()->back()->with("message", "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>");
+        } else {
+            Kelas::create($request->all());
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success')</script>");
+        }
     }
 
     public function update(Request $request)

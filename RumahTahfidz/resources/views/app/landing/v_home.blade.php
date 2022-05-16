@@ -98,14 +98,10 @@
                             <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
                         </div>
                     </div>
-
                 </div>
-
             </div>
+        </section>
 
-        </section><!-- End Values Section -->
-
-        <!-- ======= Counts Section ======= -->
         <section id="counts" class="counts">
             <div class="container" data-aos="fade-up">
 
@@ -154,13 +150,10 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-        </section><!-- End Counts Section -->
+        </section>
 
-        <!-- ======= Features Section ======= -->
         <section id="features" class="features">
 
             <div class="container" data-aos="fade-up">
@@ -374,19 +367,13 @@
                                         <p>Est autem dicta beatae suscipit. Sint veritatis et sit quasi ab aut inventore</p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
-
-                </div><!-- End Feature Icons -->
-
+                </div>
             </div>
+        </section>
 
-        </section><!-- End Features Section -->
-
-        <!-- ======= Services Section ======= -->
         <section id="services" class="services">
 
             <div class="container" data-aos="fade-up">
@@ -872,14 +859,10 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
+        </section>
 
-        </section><!-- End Portfolio Section -->
-
-        <!-- ======= Testimonials Section ======= -->
         <section id="testimonials" class="testimonials">
 
             <div class="container" data-aos="fade-up">
@@ -1115,7 +1098,7 @@
                     @php
                         use Carbon\Carbon;
                     @endphp
-                    @foreach ($data_blog as $data)
+                    @forelse ($data_blog as $data)
                         <div class="col-lg-4">
                             <div class="post-box">
                                 <div class="post-img">
@@ -1133,7 +1116,13 @@
                                 </a>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="col-md-12">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Maaf</strong>, Data Blog saat ini masih kosong
+                            </div>
+                        </div>
+                    @endforelse
                 </div>
 
             </div>
@@ -1192,26 +1181,25 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <form action="forms/contact.php" method="post" class="php-email-form">
+                        <form action="{{ url('/pesan') }}" method="POST" class="php-email-form">
+                            @csrf
                             <div class="row gy-4">
                                 <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                                    <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama"
+                                        required>
                                 </div>
                                 <div class="col-md-6 ">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                    <input type="email" class="form-control" name="email" placeholder="Masukkan Email"
                                         required>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                    <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul"
                                         required>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                    <textarea class="form-control" name="pesan" rows="6" placeholder="Masukkan Pesan" required></textarea>
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
                                     <button type="submit">Send Message</button>
                                 </div>
                             </div>

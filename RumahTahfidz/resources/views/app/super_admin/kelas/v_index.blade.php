@@ -35,10 +35,10 @@
                     <input type="text" class="form-control" name="nama_kelas" id="nama_kelas" placeholder="Masukkan Nama Kelas">
                     </div>
                     <div class="ln_solid"></div>
-                    <button class="btn btn-danger" type="reset">
+                    <button class="btn btn-danger btn-sm" type="reset">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
                 </form>
@@ -74,10 +74,10 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td class="text-center">{{ $kelas->nama_kelas }}</td>
                                         <td class="text-center">
-                                            <button onclick="editDataKelas({{ $kelas->id }})" class="btn btn-warning" data-target="#modalEdit" data-toggle="modal">
+                                            <button onclick="editDataKelas({{ $kelas->id }})" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
                                                 <i class="fa fa-edit"></i> Edit
                                             </button>
-                                            <button id="deleteKelas" data-id="{{ $kelas->id }}" class="btn btn-danger">
+                                            <button id="deleteKelas" data-id="{{ $kelas->id }}" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </td>
