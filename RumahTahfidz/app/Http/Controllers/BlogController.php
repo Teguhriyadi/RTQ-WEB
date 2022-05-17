@@ -16,7 +16,7 @@ class BlogController extends Controller
         $data = [
             "j_kategori" => Kategori::count(),
             "data_kategori" => Kategori::get(),
-            "data_blog" => Blog::get()
+            "data_blog" => Blog::latest()->get()
         ];
 
         return view("app.super_admin.blog.v_index", $data);
@@ -37,7 +37,7 @@ class BlogController extends Controller
             "deskripsi" => $request->deskripsi
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }
 
     public function edit(Request $request)
@@ -68,7 +68,7 @@ class BlogController extends Controller
             "foto" => $data
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
     }
 
     public function destroy(Request $request, $id)
@@ -79,6 +79,6 @@ class BlogController extends Controller
 
         Blog::where("id", $id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }

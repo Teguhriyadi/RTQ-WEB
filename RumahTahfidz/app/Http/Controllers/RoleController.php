@@ -21,11 +21,11 @@ class RoleController extends Controller
         $cek = Role::where("keterangan", $request->keterangan)->count();
 
         if ($cek > 0) {
-            return redirect()->back();
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
         } else {
             Role::create($request->all());
 
-            return redirect()->back();
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
         }
     }
 
@@ -49,7 +49,7 @@ class RoleController extends Controller
                 "keterangan" => $request->keterangan
             ]);
 
-            return redirect()->back();
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
         }
     }
 
@@ -57,6 +57,6 @@ class RoleController extends Controller
     {
         Role::where("id", $id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }

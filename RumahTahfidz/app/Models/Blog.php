@@ -13,6 +13,8 @@ class Blog extends Model
 
     protected $guarded = [''];
 
+    protected $with = ["getKategori"];
+
     public function getKategori()
     {
         return $this->belongsTo("App\Models\Kategori", "id_kategori", "id")->withDefault(["kategori" => "<i><b>NULL</b></i>"]);
