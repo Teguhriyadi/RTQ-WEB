@@ -12,6 +12,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\GenerateIuranController;
 use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\IuranController;
 use App\Http\Controllers\KelasController;
@@ -53,6 +54,10 @@ use Maatwebsite\Excel\Row;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get("/coba_rekap", [CobaController::class, "coba_rekap"]);
+Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);
+
 Route::get("/auto", [AppController::class, "auto"]);
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
@@ -170,6 +175,14 @@ Route::prefix("app")->group(function () {
                         Route::delete("/{id}", [StatusValidasiController::class, "destroy"]);
                         Route::resource("/", StatusValidasiController::class);
                     });
+                });
+
+                Route::prefix("generate")->group(function() {
+
+                    // Iuran
+                    Route::put("/iuran", [GenerateIuranController::class, "show"]);
+                    Route::resource("/iuran", GenerateIuranController::class);
+
                 });
 
                 Route::get("/profil", [ProfilController::class, "web_profil"]);

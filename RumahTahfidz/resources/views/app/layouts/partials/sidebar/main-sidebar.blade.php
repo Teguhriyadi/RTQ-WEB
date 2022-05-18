@@ -164,6 +164,19 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-download"></i> Generate
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/generate/iuran') }}">
+                                        Iuran
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     @endcan
                     @can('admin')
                         <li>
