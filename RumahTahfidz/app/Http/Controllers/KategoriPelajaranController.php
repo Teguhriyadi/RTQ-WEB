@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jenjang;
 use App\Models\KategoriPelajaran;
+use App\Models\Pelajaran;
 use Illuminate\Http\Request;
 
 class KategoriPelajaranController extends Controller
@@ -10,9 +12,46 @@ class KategoriPelajaranController extends Controller
     public function index()
     {
         $data = [
+            "data_jenjang" => Jenjang::get(),
+            "data_pelajaran" => Pelajaran::get(),
             "data_kategori" => KategoriPelajaran::get()
         ];
 
-        return view("app.super_admin.settings.kategori_pelajaran.v_index", $data);
+        return view("app.super_admin.settings.kategori.pelajaran.v_index", $data);
+    }
+
+    public function store(Request $request)
+    {
+        KategoriPelajaran::create($request->all());
+
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+    }
+
+    public function edit(Request $request)
+    {
+        $data = [
+            "data_jenjang" => Jenjang::get(),
+            "data_pelajaran" => Pelajaran::get(),
+            "edit" => KategoriPelajaran::where("id", $request->id)->first()
+        ];
+
+        return view("app.super_admin.settings.kategori.pelajaran.v_edit", $data);
+    }
+
+    public function update(Request $request)
+    {
+        KategoriPelajaran::where("id", $request->id)->update([
+            "id_jenjang" => $request->id_jenjang,
+            "id_pelajaran" => $request->id_pelajaran
+        ]);
+
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+    }
+
+    public function destroy($id)
+    {
+        KategoriPelajaran::where("id", $id)->delete();
+
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }

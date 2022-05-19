@@ -146,8 +146,9 @@ Route::prefix("app")->group(function () {
 
                     Route::prefix("/kategori")->group(function () {
 
-                        // Data Tadribat
-                        Route::resource("/tadribat", SettingKategoriTadribatController::class);
+                        Route::get("/pelajaran/edit", [KategoriPelajaranController::class, "edit"]);
+                        Route::put("/pelajaran/simpan", [KategoriPelajaranController::class, "update"]);
+                        Route::resource("/pelajaran", KategoriPelajaranController::class);
                     });
 
                     // Iuran

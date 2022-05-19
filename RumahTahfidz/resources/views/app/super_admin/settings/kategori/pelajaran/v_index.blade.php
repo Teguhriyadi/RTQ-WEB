@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Setting Tadribat')
+@section('app_title', 'Kategori Pelajaran')
 
 @section('app_content')
 
@@ -28,14 +28,14 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/setting/kategori/tadribat/') }}">
+                    <form method="POST" action="{{ url('/app/sistem/setting/kategori/pelajaran/') }}">
                         @csrf
                         <div class="form-group">
                             <label for="id_jenjang"> Jenjang </label>
-                            <select name="id_jenjang" class="form-control" name="id_jenjang" id="id_jenjang">
+                            <select name="id_jenjang" class="form-control" id="id_jenjang">
                                 <option value="">- Pilih -</option>
                                 @foreach ($data_jenjang as $data)
-                                    <option value="">
+                                    <option value="{{ $data->id }}">
                                         {{ $data->jenjang }}
                                     </option>
                                 @endforeach
@@ -43,12 +43,11 @@
                         </div>
                         <div class="form-group">
                             <label for="id_pelajaran"> Pelajaran </label>
-                            <select name="id_pelajaran_tadribat" class="form-control" name="id_pelajaran_tadribat"
-                                id="id_pelajaran_tadribat">
+                            <select name="id_pelajaran" class="form-control" id="id_pelajaran">
                                 <option value="">- Pilih -</option>
-                                @foreach ($data_pelajaran_tadribat as $data)
+                                @foreach ($data_pelajaran as $data)
                                     <option value="{{ $data->id }}">
-                                        {{ $data->pelajaran }}
+                                        {{ $data->nama_pelajaran }}
                                     </option>
                                 @endforeach
                             </select>
@@ -80,12 +79,38 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
-                                            <th class="text-center">Keterangan</th>
+                                            <th class="text-center">Jenjang</th>
+                                            <th>Pelajaran</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @php
+                                            $no = 0;
+                                        @endphp
+                                        @foreach ($data_kategori as $data)
+                                            <tr>
+                                                <td class="text-center">{{ ++$no }}.</td>
+                                                <td class="text-center">{{ $data->getJenjang->jenjang }}</td>
+                                                <td>{{ $data->getPelajaran->nama_pelajaran }}</td>
+                                                <td class="text-center">
+                                                    <button onclick="editKategoriPelajaran({{ $data->id }})"
+                                                        class="btn btn-warning btn-sm" data-target="#modalEdit"
+                                                        data-toggle="modal">
+                                                        <i class="fa fa-edit"></i> Edit
+                                                    </button>
+                                                    <form
+                                                        action="{{ url('/app/sistem/setting/kategori/pelajaran/' . $data->id) }}"
+                                                        method="POST" style="display: inline;">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash-o"></i> Hapus
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -109,17 +134,17 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/role/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/setting/kategori/pelajaran/simpan') }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>
@@ -134,9 +159,9 @@
 @section('app_scripts')
 
     <script>
-        function editRole(id) {
+        function editKategoriPelajaran(id) {
             $.ajax({
-                url: "{{ url('/app/sistem/role/edit') }}",
+                url: "{{ url('/app/sistem/setting/kategori/pelajaran/edit') }}",
                 type: "GET",
                 data: {
                     id: id
