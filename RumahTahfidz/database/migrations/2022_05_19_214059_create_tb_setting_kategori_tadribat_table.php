@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_kategori_pelajaran_tadribat', function (Blueprint $table) {
+        Schema::create('tb_setting_kategori_tadribat', function (Blueprint $table) {
             $table->id();
             $table->integer("id_jenjang");
-            $table->integer("id_pelajaran");
+            $table->integer("id_pelajaran_tadribat");
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_kategori_pelajaran_tadribat');
+        Schema::dropIfExists('tb_setting_kategori_tadribat');
     }
 };

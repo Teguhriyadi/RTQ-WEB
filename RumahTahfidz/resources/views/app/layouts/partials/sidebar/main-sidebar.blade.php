@@ -63,17 +63,10 @@
                                         Halaqah
                                     </a>
                                 </li>
-                                <li>
-                                    <a>
-                                        Pelajaran <span class="fa fa-chevron-down"></span>
+                                <li class="{{ Request::segment(3) == 'pelajaran' }}">
+                                    <a href="{{ url('/app/sistem/pelajaran') }}">
+                                        Pelajaran
                                     </a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{ url('/app/sistem/pelajaran/tadribat') }}">Tadribat</a></li>
-                                        <li><a href="{{ url('/app/sistem/pelajaran/hafalan') }}">Hafalan</a></li>
-                                        <li><a href="{{ url('/app/sistem/pelajaran/imla') }}">Imla</a></li>
-                                        <li><a href="{{ url('/app/sistem/pelajaran/iman_adab') }}">Iman & Adab</a></li>
-                                        <li><a href="{{ url('/app/sistem/pelajaran/mulok') }}">Mulok</a></li>
-                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -161,6 +154,20 @@
                                     <a href="{{ url('/app/sistem/setting/validasi') }}">
                                         Status Validasi
                                     </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        Kategori Pelajaran <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ url('/app/sistem/setting/kategori/tadribat') }}">Tadribat</a>
+                                        </li>
+                                        <li><a href="{{ url('/app/sistem/setting/kategori/hafalan/') }}">Hafalan</a></li>
+                                        <li><a href="{{ url('/app/sistem/setting/kategori/imla') }}">Imla</a></li>
+                                        <li><a href="{{ url('/app/sistem/setting/kategori/iman_adab') }}">Iman & Adab</a>
+                                        </li>
+                                        <li><a href="{{ url('/app/sistem/pelajaran/mulok') }}">Mulok</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
