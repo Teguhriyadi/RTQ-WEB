@@ -33,39 +33,29 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <select name="id_cabang" id="id_cabang" class="form-control">
+                                <option value="">Pilih Cabang</option>
+                                @foreach ($data_cabang as $cabang)
+                                    <option value="{{ $cabang->getHalaqah->kode_halaqah }}">{{ $cabang->lokasi_rt }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card-box table-responsive">
-                                <table id="datatable" class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">No.</th>
-                                            <th class="text-center">NIS</th>
-                                            <th>Nama</th>
-                                            <th class="text-center">Kelas</th>
-                                            <th>Sekolah</th>
-                                            <th class="text-center">Aksi</th>
+                                        <tr class="text-center">
+                                            <th style="width: 50px">No.</th>
+                                            <th>Jenjang</th>
+                                            <th>Opsi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @php $no = 0 @endphp
-                                        @foreach ($data_santri as $data)
-                                            <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $data->nis }}</td>
-                                                <td>{{ $data->nama_lengkap }}</td>
-                                                <td class="text-center">{{ $data->getKelas->nama_kelas }}</td>
-                                                <td>{{ $data->sekolah }}</td>
-                                                <td class="text-center">
-                                                    <button onclick="tambahNilaiTadribat({{ $data->id }})"
-                                                        class="btn btn-primary" data-target="#modalEdit"
-                                                        data-toggle="modal">
-                                                        <i class="fa fa-book"></i> Nilai
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>
@@ -112,22 +102,17 @@
 @section('app_scripts')
 
     <script>
-        function tambahNilaiTadribat(id) {
-            $.ajax({
-                url: "{{ url('/app/sistem/kategori/tadribat/create') }}",
-                type: "GET",
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    $("#modal-content").html(data);
-                    return true;
-                }
-            });
-        }
-
         $(document).ready(function() {
-            $("#table-1").dataTable();
+            $("#id_cabang").on('change', function() {
+                console.log($(this).val());
+                $.ajax({
+                    url: "{{ url('app/sistem/penilaian/jenjang/' . Request::segment(4)) }}",
+                    type: 'GET',
+                    success: function(response) {
+                        $('tbody').html(response);
+                    }
+                });
+            })
         })
     </script>
 

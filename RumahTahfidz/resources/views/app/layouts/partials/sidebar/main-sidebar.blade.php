@@ -152,12 +152,12 @@
                                 <span class="fa fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
-                                <li class="{{ Request::segment(3) == "iuran" ? "active" : "" }}">
+                                <li class="{{ Request::segment(3) == 'iuran' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/setting/iuran') }}">
                                         Iuran
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == "status" ? "active" : "" }}">
+                                <li class="{{ Request::segment(3) == 'status' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/setting/validasi') }}">
                                         Status Validasi
                                     </a>
@@ -276,17 +276,19 @@
 
                         <li>
                             <a>
-                                <i class="fa fa-edit"></i> Penilaian Kategori
+                                <i class="fa fa-edit"></i> Penilaian
                                 <span class="fa fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
-                                <li><a href="{{ url('/app/sistem/kategori/tadribat/') }}">Tadribat</a></li>
-                                <li><a href="{{ url('/app/sistem/kategori/hafalan') }}">Hafalan</a></li>
-                                <li><a href="{{ url('/app/sistem/kategori/imla') }}">Imla</a></li>
+                                <li><a href="{{ url('/app/sistem/penilaian/tadribat') }}">Tadribat</a></li>
+                                <li><a href="{{ url('/app/sistem/penilaian/hafalan') }}">Hafalan</a></li>
+                                <li><a href="{{ url('/app/sistem/penilaian/imla') }}">Imla</a></li>
+                                <li><a href="{{ url('/app/sistem/penilaian/iman_adab') }}">Iman dan Adab</a></li>
+                                <li><a href="{{ url('/app/sistem/penilaian/mulok') }}">Mulok</a></li>
                             </ul>
                         </li>
 
-                        <li>
+                        {{-- <li>
                             <a>
                                 <i class="fa fa-edit"></i> Data Penilaian
                                 <span class="fa fa-chevron-down"></span>
@@ -296,11 +298,11 @@
                                 <li><a href="{{ url('/app/sistem/data/hafalan') }}">Hafalan</a></li>
                                 <li><a href="{{ url('/app/sistem/data/imla') }}">Imla</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
 
                         <li>
-                            <a href="{{ url('/app/sistem/rekap/nilai') }}">
-                                <i class="fa fa-book"></i> Rekap Nilai
+                            <a href="{{ url('/app/sistem/rekap/absensi/asatidz/' . auth()->user()->id) }}">
+                                <i class="fa fa-book"></i> Rekap Absensi
                             </a>
                         </li>
                     @endcan

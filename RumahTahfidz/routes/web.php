@@ -31,6 +31,7 @@ use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
+use App\Http\Controllers\RekapAbsensiController;
 use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\RekapIuranController;
 use App\Http\Controllers\RekapPenilaianController;
@@ -40,6 +41,7 @@ use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\StatusValidasiController;
 use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\WaliSantriController;
+use App\Models\Jenjang;
 use App\Models\LastLogin;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Row;
@@ -177,12 +179,11 @@ Route::prefix("app")->group(function () {
                     });
                 });
 
-                Route::prefix("generate")->group(function() {
+                Route::prefix("generate")->group(function () {
 
                     // Iuran
                     Route::put("/iuran", [GenerateIuranController::class, "show"]);
                     Route::resource("/iuran", GenerateIuranController::class);
-
                 });
 
                 Route::get("/profil", [ProfilController::class, "web_profil"]);
@@ -227,7 +228,14 @@ Route::prefix("app")->group(function () {
 
             Route::group(["middleware" => ["can:asatidz"]], function () {
 
-                Route::prefix("kategori")->group(function () {
+                Route::prefix("penilaian")->group(function () {
+                    Route::get("/jenjang", function () {
+                        $data = [
+                            'data_jenjang' => Jenjang::all()
+                        ];
+
+                        return view('app.asatidz.penilaian_per_kategori.v_jenjang', $data);
+                    });
                     Route::prefix("tadribat")->group(function () {
                         Route::get("/", [PenilaianKategoriTadribatController::class, "index"]);
                         Route::get("/create", [PenilaianKategoriTadribatController::class, "create"]);
@@ -238,6 +246,8 @@ Route::prefix("app")->group(function () {
                 Route::prefix("rekap")->group(function () {
                     Route::get("/nilai", [RekapPenilaianController::class, "rekap"]);
                     Route::get("/nilai/{id}", [RekapPenilaianController::class, "print"]);
+
+                    Route::get("/absensi/asatidz/{id}", [RekapAbsensiController::class, "rekapAsatidz"]);
                 });
 
                 // Data Absensi Santri

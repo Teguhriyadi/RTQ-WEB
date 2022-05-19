@@ -15,5 +15,8 @@ class LokasiRt extends Model
 
     public $timestamps = false;
 
-    
+    public function getHalaqah()
+    {
+        return $this->hasOne(Halaqah::class, 'kode_rt', 'kode_rt');
+    }
 }

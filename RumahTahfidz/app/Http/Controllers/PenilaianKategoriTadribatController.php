@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jenjang;
 use App\Models\KategoriPelajaranTadribat;
+use App\Models\LokasiRt;
 use App\Models\NilaiTadribat;
 use App\Models\Santri;
 use Illuminate\Http\Request;
@@ -13,10 +15,11 @@ class PenilaianKategoriTadribatController extends Controller
     public function index()
     {
         $data = [
-            "data_santri" => Santri::get()
+            "data_cabang" => LokasiRt::all(),
+            "data_jenjang" => Jenjang::all(),
         ];
 
-        return view("app.asatidz.penilaian_per_kategori.tadribat.v_index", $data);
+        return view("app.asatidz.penilaian_per_kategori.v_index", $data);
     }
 
     public function create(Request $request)
@@ -33,7 +36,7 @@ class PenilaianKategoriTadribatController extends Controller
 
     public function store(Request $request)
     {
-        foreach($request->id_pelajaran_tadribat as $data => $value) {
+        foreach ($request->id_pelajaran_tadribat as $data => $value) {
             NilaiTadribat::create([
                 "id_asatidz" => Auth::user()->id,
                 "id_santri" => $request->id_santri[0],
