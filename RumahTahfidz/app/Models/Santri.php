@@ -32,4 +32,9 @@ class Santri extends Model
     {
         return $this->belongsTo("App\Models\Iuran", "id", "id_santri");
     }
+
+    public function getHalaqah()
+    {
+        return $this->hasOne(Halaqah::class, 'kode_halaqah', 'kode_halaqah');
+    }
 }

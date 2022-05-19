@@ -229,15 +229,20 @@ Route::prefix("app")->group(function () {
             Route::group(["middleware" => ["can:asatidz"]], function () {
 
                 Route::prefix("penilaian")->group(function () {
-                    Route::get("/jenjang", function () {
+                    // Ini digunain di semua kategori
+                    Route::get("/jenjang/{kategori}/{kode}", function ($kategori, $kode) {
                         $data = [
-                            'data_jenjang' => Jenjang::all()
+                            'data_jenjang' => Jenjang::all(),
+                            'kategori' => $kategori,
+                            'kode' => $kode,
                         ];
 
                         return view('app.asatidz.penilaian_per_kategori.v_jenjang', $data);
                     });
+
                     Route::prefix("tadribat")->group(function () {
                         Route::get("/", [PenilaianKategoriTadribatController::class, "index"]);
+                        Route::get("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "home"]);
                         Route::get("/create", [PenilaianKategoriTadribatController::class, "create"]);
                         Route::post("/", [PenilaianKategoriTadribatController::class, "store"]);
                     });

@@ -1,6 +1,6 @@
 @extends('app.layouts.template')
 
-@section('app_title', 'Penilaian Tadribat')
+@section('app_title', 'Cabang ' . $data_santri[0]->getHalaqah->getLokasiRt->lokasi_rt)
 
 @section('app_content')
 
@@ -16,7 +16,8 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/app/sistem/home">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('app/sistem/penilaian/tadribat') }}">Penilaian Tadribat</a></li>
             <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
         </ol>
     </nav>

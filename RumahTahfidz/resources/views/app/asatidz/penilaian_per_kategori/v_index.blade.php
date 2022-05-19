@@ -104,9 +104,10 @@
     <script>
         $(document).ready(function() {
             $("#id_cabang").on('change', function() {
-                console.log($(this).val());
+                let kode_halaqah = $(this).val()
                 $.ajax({
-                    url: "{{ url('app/sistem/penilaian/jenjang/' . Request::segment(4)) }}",
+                    url: "{{ url('app/sistem/penilaian/jenjang/' . Request::segment(4)) }}/" +
+                        kode_halaqah,
                     type: 'GET',
                     success: function(response) {
                         $('tbody').html(response);

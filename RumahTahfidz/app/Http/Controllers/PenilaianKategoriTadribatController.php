@@ -22,6 +22,14 @@ class PenilaianKategoriTadribatController extends Controller
         return view("app.asatidz.penilaian_per_kategori.v_index", $data);
     }
 
+    public function home($halaqah, $id_jenjang)
+    {
+        $data = [
+            'data_santri' => Santri::where('kode_halaqah', $halaqah)->where('id_jenjang', $id_jenjang)->get()
+        ];
+        return view('app.asatidz.penilaian_per_kategori.tadribat.v_index', $data);
+    }
+
     public function create(Request $request)
     {
         $id_jenjang = Santri::where("id", $request->id)->first();
