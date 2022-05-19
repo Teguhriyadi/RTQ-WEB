@@ -31,68 +31,66 @@ class AppController extends Controller
             "data_santri" => Santri::get()
         ];
 
-        $this->auto();
-
         return view("app.administrator.v_home", $data);
     }
 
-    public function auto()
-    {
-        $iuran = SettingIuran::first();
-        $bulan = date("m");
-        $data_iuran = Iuran::whereMonth("tanggal", $bulan)->first();
-        $data_santri = Santri::get();
+    // public function auto()
+    // {
+    //     $iuran = SettingIuran::first();
+    //     $bulan = date("m");
+    //     $data_iuran = Iuran::whereMonth("tanggal", $bulan)->first();
+    //     $data_santri = Santri::get();
 
-        if (date("d") >= $iuran->mulai && date("d") <= $iuran->akhir) {
-            if (empty($data_iuran)) {
-                foreach ($data_santri as $d) {
-                    $iuran = Iuran::whereMonth("tanggal", $bulan)->where("id_santri", $d->id)->first();
-                    if (empty($iuran)) {
-                        Iuran::create([
-                            "id_santri" => $d->id,
-                            "nominal" => 0,
-                            "tanggal" => date(now()),
-                            "bukti" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-                            "id_status_validasi" => 2,
-                            "id_users" => 7,
-                            "created_at" => "2022-05-10 15:15:15",
-                            "updated_at" => "2022-05-10 15:15:15"
-                        ]);
-                    } else {
-                    }
-                }
-            } else {
-                foreach ($data_santri as $d) {
-                    $iuran = Iuran::where("id_santri", $d->id)->first();
+    //     if (date("d") >= $iuran->mulai && date("d") <= $iuran->akhir) {
+    //         if (empty($data_iuran)) {
+    //             foreach ($data_santri as $d) {
+    //                 $iuran = Iuran::whereMonth("tanggal", $bulan)->where("id_santri", $d->id)->first();
+    //                 if (empty($iuran)) {
+    //                     Iuran::create([
+    //                         "id_santri" => $d->id,
+    //                         "nominal" => 0,
+    //                         "tanggal" => date(now()),
+    //                         "bukti" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
+    //                         "id_status_validasi" => 2,
+    //                         "id_users" => 7,
+    //                         "created_at" => "2022-05-10 15:15:15",
+    //                         "updated_at" => "2022-05-10 15:15:15"
+    //                     ]);
+    //                 } else {
+    //                 }
+    //             }
+    //         } else {
+    //             foreach ($data_santri as $d) {
+    //                 $iuran = Iuran::where("id_santri", $d->id)->first();
 
-                    if (empty($iuran)) {
-                        Iuran::create([
-                            "id_santri" => $d->id,
-                            "nominal" => 0,
-                            "tanggal" => date(now()),
-                            "bukti" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-                            "id_status_validasi" => 2,
-                            "id_users" => 7,
-                            "created_at" => "2022-05-10 15:15:15",
-                            "updated_at" => "2022-05-10 15:15:15"
-                        ]);
-                    } else {
-                    }
-                }
-            }
-        } else {
-            foreach ($data_santri as $d) {
-                Iuran::create([
-                    "id_santri" => $d->id,
-                    "nominal" => 0,
-                    "tanggal" => date(now()),
-                    "bukti" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-                    "id_status_validasi" => 2,
-                    "id_users" => 7,
-                    "created_at" => "2022-05-10 15:15:15",
-                    "updated_at" => "2022-05-10 15:15:15"
-                ]);
-            }
-        }
-    }
+    //                 if (empty($iuran)) {
+    //                     Iuran::create([
+    //                         "id_santri" => $d->id,
+    //                         "nominal" => 0,
+    //                         "tanggal" => date(now()),
+    //                         "bukti" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
+    //                         "id_status_validasi" => 2,
+    //                         "id_users" => 7,
+    //                         "created_at" => "2022-05-10 15:15:15",
+    //                         "updated_at" => "2022-05-10 15:15:15"
+    //                     ]);
+    //                 } else {
+    //                 }
+    //             }
+    //         }
+    //     } else {
+    //         foreach ($data_santri as $d) {
+    //             Iuran::create([
+    //                 "id_santri" => $d->id,
+    //                 "nominal" => 0,
+    //                 "tanggal" => date(now()),
+    //                 "bukti" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
+    //                 "id_status_validasi" => 2,
+    //                 "id_users" => 7,
+    //                 "created_at" => "2022-05-10 15:15:15",
+    //                 "updated_at" => "2022-05-10 15:15:15"
+    //             ]);
+    //         }
+    //     }
+    // }
 }

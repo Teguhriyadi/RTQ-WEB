@@ -24,4 +24,9 @@ class KategoriPelajaran extends Model
     {
         return $this->belongsTo("App\Models\Pelajaran", "id_pelajaran", "id");
     }
+
+    public function getKategoriPenilaian()
+    {
+        return $this->belongsTo("App\Models\KategoriPenilaian", "id_kategori_penilaian", "id");
+    }
 }

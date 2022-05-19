@@ -104,11 +104,11 @@
                                 <span class="fa fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
-                                <li>
+                                {{-- <li>
                                     <a href="{{ url('/app/sistem/iuran') }}">
                                         Iuran
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a href="{{ url('/app/sistem/data') }}">
                                         Asatidz
@@ -158,6 +158,11 @@
                                 <li class="{{ Request::segment(3) == 'kategori_pelajaran' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/setting/kategori/pelajaran') }}">
                                         Kategori Pelajaran
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'kategori_penilaian' }}">
+                                    <a href="{{ url('/app/sistem/setting/kategori/penilaian') }}">
+                                        Kategori Penilaian
                                     </a>
                                 </li>
                             </ul>

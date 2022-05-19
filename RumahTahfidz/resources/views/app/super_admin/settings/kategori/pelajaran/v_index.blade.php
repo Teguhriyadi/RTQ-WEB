@@ -31,6 +31,17 @@
                     <form method="POST" action="{{ url('/app/sistem/setting/kategori/pelajaran/') }}">
                         @csrf
                         <div class="form-group">
+                            <label for="id_kategori_penilaian"> Penilaian </label>
+                            <select name="id_kategori_penilaian" class="form-control" id="id_kategori_penilaian">
+                                <option value="">- Pilih -</option>
+                                @foreach ($data_kategori_penilaian as $data)
+                                    <option value="{{ $data->id }}">
+                                        {{ $data->kategori_penilaian }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="id_jenjang"> Jenjang </label>
                             <select name="id_jenjang" class="form-control" id="id_jenjang">
                                 <option value="">- Pilih -</option>
@@ -79,6 +90,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
+                                            <th>Penilaian</th>
                                             <th class="text-center">Jenjang</th>
                                             <th>Pelajaran</th>
                                             <th class="text-center">Aksi</th>
@@ -91,6 +103,7 @@
                                         @foreach ($data_kategori as $data)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
+                                                <td>{{ $data->getKategoriPenilaian->kategori_penilaian }}</td>
                                                 <td class="text-center">{{ $data->getJenjang->jenjang }}</td>
                                                 <td>{{ $data->getPelajaran->nama_pelajaran }}</td>
                                                 <td class="text-center">

@@ -18,6 +18,7 @@ use App\Http\Controllers\IuranController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KategoriPelajaranController;
+use App\Http\Controllers\KategoriPenilaianController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
@@ -149,6 +150,10 @@ Route::prefix("app")->group(function () {
                         Route::get("/pelajaran/edit", [KategoriPelajaranController::class, "edit"]);
                         Route::put("/pelajaran/simpan", [KategoriPelajaranController::class, "update"]);
                         Route::resource("/pelajaran", KategoriPelajaranController::class);
+
+                        Route::get("/penilaian/edit", [KategoriPenilaianController::class, "edit"]);
+                        Route::put("/penilaian/simpan", [KategoriPenilaianController::class, "update"]);
+                        Route::resource("penilaian", KategoriPenilaianController::class);
                     });
 
                     // Iuran
