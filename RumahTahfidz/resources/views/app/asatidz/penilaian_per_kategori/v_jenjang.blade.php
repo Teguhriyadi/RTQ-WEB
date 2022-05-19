@@ -3,7 +3,8 @@
         <th>{{ $loop->iteration }}</th>
         <td>{{ $jenjang->jenjang }}</td>
         <td>
-            <span>{{ url('app/sistem/penilaian/') }}</span>
+            <a href="{{ url('app/sistem/penilaian/' . $kategori . '/' . $kode . '/' . $jenjang->id) }}"
+                class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
         </td>
     </tr>
 @endforeach
