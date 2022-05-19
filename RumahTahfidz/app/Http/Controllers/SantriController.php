@@ -96,8 +96,7 @@ class SantriController extends Controller
             "sekolah" => $request->sekolah,
             "id_kelas" => $request->id_kelas,
             "kode_halaqah" => $request->kode_halaqah,
-            "id_wali" => $request->id_wali,
-            "id_jenjang" => 1
+            "id_wali" => $request->id_wali
         ]);
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>");
