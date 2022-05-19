@@ -1,4 +1,5 @@
 @php
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 @endphp
 @extends("app.layouts.template")
@@ -49,7 +50,8 @@ use Illuminate\Support\Str;
                                                 <td>{{ $s->getSantri->nis }}</td>
                                                 <td>{{ $s->getSantri->nama_lengkap }}</td>
                                                 <td>{{ 'Rp. 20.000' }}</td>
-                                                <td>{{ date('d F Y', strtotime($s->tanggal)) }}</td>
+                                                <td>{{ Carbon::createFromFormat('Y-m-d', $s->tanggal)->isoFormat('D MMMM Y') }}
+                                                </td>
                                                 <th class="text-center">
                                                     <div class="badge badge-success"><i class="fa fa-check"></i> Diterima
                                                     </div>

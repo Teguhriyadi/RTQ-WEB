@@ -12,5 +12,9 @@ class AbsensiAsatidz extends Model
     protected $table = "tb_absensi_asatidz";
 
     protected $guarded = [''];
-    
+
+    public function getUser()
+    {
+        return $this->hasOne(User::class, 'id', 'id_asatidz');
+    }
 }
