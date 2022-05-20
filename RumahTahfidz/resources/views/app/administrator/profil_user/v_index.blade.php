@@ -24,30 +24,30 @@
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-5">
                     <div class="card profile-widget">
-                        <div class="profile-widget-header">
-                            <img src="{{ url('/storage/' . Auth::user()->gambar) }}"
-                                class="rounded-circle profile-widget-picture">
-                            <div class="profile-widget-description">
-                                <div class="profile-widget-name">{{ Auth::user()->nama }}
+                        <div class="profile-widget-header card-body">
+                            <center>
+                                <img src="{{ url('/storage/' . Auth::user()->gambar) }}"
+                                    class="rounded-circle profile-widget-picture shadow-lg" height="250" width="250">
+                            </center>
+                            <div class="profile-widget-description mt-3">
+                                <div class="profile-widget-name text-center">
+                                    <h3>{{ Auth::user()->nama }}</h3>
                                     <div class="text-muted d-inline font-weight-normal">
-                                        <div class="slash"></div> {{ Auth::user()->getRole->keterangan }}
+                                        <div class="slash"></div>
+                                        {{ Auth::user()->getRole->keterangan == 'Santri' ? 'Wali Santri' : Auth::user()->getRole->keterangan }}
                                     </div>
                                 </div>
-                                Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a
-                                fictional character but an original hero in my family, a hero for his children and for his
-                                wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with
-                                <b>'John Doe'</b>.
                                 <div class="row pt-3">
                                     <div class="col-md-12 pb-2">
                                         <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                                             data-target="#modalGambarProfil">
-                                            <i class="far fa-edit"></i> Edit Gambar Profil
+                                            <i class="fa fa-edit"></i> Edit Gambar Profil
                                         </button>
                                     </div>
                                     <div class="col-md-12">
                                         <button type="button" class="btn btn-success btn-block" data-toggle="modal"
                                             data-target="#modalGantiPassword">
-                                            <i class="far fa-edit"></i> Edit Password
+                                            <i class="fa fa-edit"></i> Edit Password
                                         </button>
                                     </div>
                                 </div>

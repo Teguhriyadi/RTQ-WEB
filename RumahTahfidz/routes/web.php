@@ -282,11 +282,8 @@ Route::prefix("app")->group(function () {
             Route::get('/rekap_absensi/{id}', [RekapAbsensiSantriController::class, 'detail']);
 
             // Data Rekap Penilaian
-            Route::get('/rekap_penilaian/tadribat', [RekapPenilaianController::class, 'tadribat']);
-            Route::get('/rekap_penilaian/hafalan', [RekapPenilaianController::class, 'hafalan']);
-            Route::get('/rekap_penilaian/imla', [RekapPenilaianController::class, 'imla']);
-            Route::get('/rekap_penilaian/iman_adab', [RekapPenilaianController::class, 'iman_adab']);
-            Route::get('/rekap_penilaian/mulok', [RekapPenilaianController::class, 'mulok']);
+            Route::get('/rekap_penilaian/{slug}', [RekapPenilaianController::class, 'index']);
+            Route::get('/rekap_penilaian/{slug}/{id}', [RekapPenilaianController::class, 'detail']);
 
             // Data Rekap Iuran
             Route::get('/rekap_iuran', [RekapIuranController::class, 'index']);

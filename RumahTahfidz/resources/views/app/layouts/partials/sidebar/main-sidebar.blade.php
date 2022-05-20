@@ -12,12 +12,12 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
         <div class="clearfix"></div>
         <div class="profile clearfix">
             <div class="profile_pic">
-                <img src="{{ auth()->user()->gambar == null ? 'http://rtq-freelance.my.id/gambar/gambar_user.png' : auth()->user()->gambar }}"
-                    alt="{{ auth()->user()->nama }}" class="img-circle profile_img">
+                <img src="{{ $user->gambar == null ? 'http://rtq-freelance.my.id/gambar/gambar_user.png' : url('storage/' . $user->gambar) }}"
+                    alt="{{ $user->nama }}" class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Selamat Datang,</span>
-                <h2>{{ auth()->user()->nama }}</h2>
+                <h2>{{ $user->nama }}</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -233,11 +233,11 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 <i class="fa fa-list"></i> Rekap Penilaian
                                 <span class="fa fa-chevron-down"></span>
                             </a>
-                            <ul class="nav child_menu">
+                            <ul class="nav child_menu" {!! Request::segment(3) == 'rekap_penilaian' ? 'style="display: block;"' : 'style="display: none";' !!}>
                                 @foreach ($kategori_penilaian as $item)
                                     <li>
                                         <a
-                                            href="{{ url('/app/sistem/rekap_penilaian/' . $item->kategori_penilaian) }}">{{ $item->kategori_penilaian }}</a>
+                                            href="{{ url('/app/sistem/rekap_penilaian/' . $item->slug) }}">{{ $item->kategori_penilaian }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -284,18 +284,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 <li><a href="{{ url('/app/sistem/penilaian/mulok') }}">Mulok</a></li>
                             </ul>
                         </li>
-
-                        {{-- <li>
-                            <a>
-                                <i class="fa fa-edit"></i> Data Penilaian
-                                <span class="fa fa-chevron-down"></span>
-                            </a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{ url('/app/sistem/data/tadribat/') }}">Tadribat</a></li>
-                                <li><a href="{{ url('/app/sistem/data/hafalan') }}">Hafalan</a></li>
-                                <li><a href="{{ url('/app/sistem/data/imla') }}">Imla</a></li>
-                            </ul>
-                        </li> --}}
 
                         <li>
                             <a href="{{ url('/app/sistem/rekap/absensi/asatidz/' . auth()->user()->id) }}">

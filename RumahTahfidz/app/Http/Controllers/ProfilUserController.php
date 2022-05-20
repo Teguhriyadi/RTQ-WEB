@@ -17,10 +17,8 @@ class ProfilUserController extends Controller
     {
         $user = User::where("id", $request->id)->first();
 
-        if ($request->file("gambar"))
-        {
-            if ($request->oldGambarProfil)
-            {
+        if ($request->file("gambar")) {
+            if ($request->oldGambarProfil) {
                 Storage::delete($request->oldGambarProfil);
             }
 
@@ -36,14 +34,19 @@ class ProfilUserController extends Controller
 
     public function ganti_password(Request $request)
     {
-        if ($request->password_baru != $request->konfirmasi_password) {
-            return redirect()->back()->with("message", "<script>Swal.fire('Oops', 'Konfirmasi Password Tidak Sesuai', 'error')</script>");
-        } else {
-            User::where("id", $request->id)->update([
-                "password" => bcrypt($request->password_baru)
-            ]);
+        $user = User::findOrFail($request->id);
+        if (password_verify($request->password_lama, $user->password)) {
+            if ($request->password_baru != $request->konfirmasi_password) {
+                return redirect()->back()->with("message", "<script>Swal.fire('Oops', 'Konfirmasi Password Tidak Sesuai', 'error')</script>");
+            } else {
+                User::where("id", $request->id)->update([
+                    "password" => bcrypt($request->password_baru)
+                ]);
 
-            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Password Berhasil di Ubah!', 'success')</script>");
+                return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Password Berhasil di Ubah!', 'success')</script>");
+            }
+        } else {
+            return redirect()->back()->with("message", "<script>Swal.fire('Ooops', 'Password Gagal di Ubah!', 'error')</script>");
         }
     }
 }

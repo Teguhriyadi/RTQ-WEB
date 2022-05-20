@@ -3,7 +3,7 @@ use Illuminate\Support\Str;
 @endphp
 @extends('app.layouts.template')
 
-@section('app_title', 'Rekap Penilaian Tadribat')
+@section('app_title', 'Rekap Penilaian ' . $penilaian->kategori_penilaian)
 
 @section('app_content')
 
@@ -48,7 +48,7 @@ use Illuminate\Support\Str;
                                                 <td>{{ $s->nama_lengkap }}</td>
                                                 <td>{{ $s->getJenjang->jenjang }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ url('app/sistem/rekap_penilaian/tadribat/' . $s->id) }}"
+                                                    <a href="{{ url('app/sistem/rekap_penilaian/' . $penilaian->slug . '/' . $s->id) }}"
                                                         class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>

@@ -1,3 +1,6 @@
+@php
+$user = \App\Models\User::where('id', auth()->user()->id)->first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,11 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}" />
 
-    <title>RTQ Ulil Albab | @yield("app_title")</title>
+    <title>RTQ Ulil Albab | @yield('app_title')</title>
 
     @include('app.layouts.partials.css.style')
 
-    @yield("app_css")
+    @yield('app_css')
 
 </head>
 
@@ -27,7 +30,7 @@
 
             <!-- page content -->
             <div class="right_col" role="main">
-                @yield("app_content")
+                @yield('app_content')
             </div>
             <!-- /page content -->
 
@@ -41,16 +44,6 @@
     @endif
     @yield('app_scripts')
 
-    @can('santri')
-        @if (Request::segment(3) != 'rekap_penilaian')
-            <script>
-                $(document).ready(function() {
-                    $("#penilaian").removeClass('active');
-                    $("#penilaian ul").css('display', 'none')
-                })
-            </script>
-        @endif
-    @endcan
     @can('super_admin')
         @if (Request::segment(3) != 'laporan')
             <script>
