@@ -104,11 +104,11 @@
                                 <span class="fa fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
-                                {{-- <li>
+                                <li>
                                     <a href="{{ url('/app/sistem/iuran') }}">
                                         Iuran
                                     </a>
-                                </li> --}}
+                                </li>
                                 <li>
                                     <a href="{{ url('/app/sistem/data') }}">
                                         Asatidz
