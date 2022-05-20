@@ -38,7 +38,7 @@ class IuranSeeder extends Seeder
         ]);
 
         Iuran::create([
-            "id_santri" => 3,
+            "id_santri" => 2,
             "nominal" => 150000,
             "tanggal" => date(now()),
             "bukti" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
