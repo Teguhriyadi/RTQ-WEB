@@ -145,21 +145,21 @@
                                 <span class="fa fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
-                                <li class="{{ Request::segment(3) == 'iuran' ? 'active' : '' }}">
+                                {{-- <li class="{{ Request::segment(3) == 'iuran' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/setting/iuran') }}">
                                         Iuran
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="{{ Request::segment(3) == 'status' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/setting/validasi') }}">
                                         Status Validasi
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == 'kategori_pelajaran' ? 'active' : '' }}">
+                                {{-- <li class="{{ Request::segment(3) == 'kategori_pelajaran' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/setting/kategori/pelajaran') }}">
                                         Kategori Pelajaran
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="{{ Request::segment(3) == 'kategori_penilaian' }}">
                                     <a href="{{ url('/app/sistem/setting/kategori/penilaian') }}">
                                         Kategori Penilaian
