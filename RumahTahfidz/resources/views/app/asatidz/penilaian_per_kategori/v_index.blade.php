@@ -50,48 +50,21 @@
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="text-center">
-                                            <th style="width: 50px">No.</th>
+                                            <th>No.</th>
                                             <th>Jenjang</th>
                                             <th>Opsi</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody>
+                                        <tr>
+                                            <th colspan="3">Harap pilih cabang</th>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tambah Nilai Tadribat -->
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="fa fa-plus"></i>
-                        <span>Tambah Nilai Tadribat</span>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ url('/app/sistem/kategori/tadribat') }}" method="POST">
-                    @csrf
-                    <div class="modal-body" id="modal-content">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-save"></i> Tambah
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -104,6 +77,7 @@
     <script>
         $(document).ready(function() {
             $("#id_cabang").on('change', function() {
+                $('tbody').empty()
                 let kode_halaqah = $(this).val()
                 $.ajax({
                     url: "{{ url('app/sistem/penilaian/jenjang/' . Request::segment(4)) }}/" +

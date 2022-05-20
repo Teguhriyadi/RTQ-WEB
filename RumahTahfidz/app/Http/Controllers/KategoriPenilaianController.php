@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KategoriPenilaian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class KategoriPenilaianController extends Controller
 {
@@ -18,7 +19,13 @@ class KategoriPenilaianController extends Controller
 
     public function store(Request $request)
     {
-        KategoriPenilaian::create($request->all());
+        $validasi = $request->validate([
+            'kategori_penilaian' => 'required',
+        ]);
+
+        $validasi['slug'] = Str::slug($request->kategori_penilaian);
+
+        KategoriPenilaian::create($validasi);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }
@@ -35,7 +42,8 @@ class KategoriPenilaianController extends Controller
     public function update(Request $request)
     {
         KategoriPenilaian::where("id", $request->id)->update([
-            "kategori_penilaian" => $request->kategori_penilaian
+            "kategori_penilaian" => $request->kategori_penilaian,
+            "slug" => Str::slug($request->kategori_penilaian)
         ]);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);

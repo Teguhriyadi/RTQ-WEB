@@ -1,3 +1,6 @@
+@php
+$kategori_penilaian = \App\Models\KategoriPenilaian::all();
+@endphp
 <div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
@@ -231,21 +234,12 @@
                                 <span class="fa fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
-                                <li>
-                                    <a href="{{ url('/app/sistem/rekap_penilaian/tadribat') }}">Tadribat</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/rekap_penilaian/hafalan') }}">Hafalan</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/rekap_penilaian/imla') }}">Imla</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/rekap_penilaian/iman_adab') }}">Iman Adab</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/rekap_penilaian/mulok') }}">Mulok</a>
-                                </li>
+                                @foreach ($kategori_penilaian as $item)
+                                    <li>
+                                        <a
+                                            href="{{ url('/app/sistem/rekap_penilaian/' . $item->kategori_penilaian) }}">{{ $item->kategori_penilaian }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="{{ Request::segment(3) == 'rekap_absensi' ? 'active' : '' }}">

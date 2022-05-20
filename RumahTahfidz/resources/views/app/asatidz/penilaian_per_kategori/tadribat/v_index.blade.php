@@ -19,6 +19,7 @@
             <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ url('app/sistem/penilaian/tadribat') }}">Penilaian Tadribat</a></li>
             <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+            <li class="breadcrumb-item active" aria-current="page">Jenjang {{ $data_santri[0]->getJenjang->jenjang }}</li>
         </ol>
     </nav>
 
@@ -43,8 +44,8 @@
                                             <th class="text-center">No.</th>
                                             <th class="text-center">NIS</th>
                                             <th>Nama</th>
-                                            <th class="text-center">Kelas</th>
-                                            <th>Sekolah</th>
+                                            <th class="text-center">Jenjang</th>
+                                            <th>Cabang</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
@@ -55,8 +56,8 @@
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $data->nis }}</td>
                                                 <td>{{ $data->nama_lengkap }}</td>
-                                                <td class="text-center">{{ $data->getKelas->nama_kelas }}</td>
-                                                <td>{{ $data->sekolah }}</td>
+                                                <td class="text-center">{{ $data->getJenjang->jenjang }}</td>
+                                                <td>{{ $data->getHalaqah->getLokasiRt->lokasi_rt }}</td>
                                                 <td class="text-center">
                                                     <button onclick="tambahNilaiTadribat({{ $data->id }})"
                                                         class="btn btn-primary" data-target="#modalEdit"
@@ -115,7 +116,7 @@
     <script>
         function tambahNilaiTadribat(id) {
             $.ajax({
-                url: "{{ url('/app/sistem/kategori/tadribat/create') }}",
+                url: "{{ url('/app/sistem/penilaian/tadribat/create') }}",
                 type: "GET",
                 data: {
                     id: id
