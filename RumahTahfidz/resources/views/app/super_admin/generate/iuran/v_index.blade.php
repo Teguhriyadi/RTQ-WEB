@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Generate Iuran')
+@section('app_title', 'Rekap Iuran')
 
 @section('app_content')
 
@@ -27,10 +27,12 @@
         @csrf
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
-                <input type="date" class="form-control" name="tanggal_awal" value="{{ empty($tanggal_awal) ? "" : $tanggal_awal }}">
+                <input type="date" class="form-control" name="tanggal_awal"
+                    value="{{ empty($tanggal_awal) ? '' : $tanggal_awal }}">
             </div>
             <div class="col-md-5 col-sm-12 col-xs-12">
-                <input type="date" class="form-control" name="tanggal_akhir" value="{{ empty($tanggal_akhir) ? "" : $tanggal_akhir }}">
+                <input type="date" class="form-control" name="tanggal_akhir"
+                    value="{{ empty($tanggal_akhir) ? '' : $tanggal_akhir }}">
             </div>
             <div class="col-md-2 col-sm-12 col-xs-12">
                 <button type="submit" class="btn btn-primary btn-block">
@@ -47,7 +49,8 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        Data @yield('app_title') | <b>{{ empty($tanggal_awal) ? "" : $tanggal_awal }}</b> - <b>{{ empty($tanggal_akhir) ? "" : $tanggal_akhir }}</b>
+                        Data @yield('app_title') | <b>{{ empty($tanggal_awal) ? '' : $tanggal_awal }}</b> -
+                        <b>{{ empty($tanggal_akhir) ? '' : $tanggal_akhir }}</b>
                     </h2>
                     <div class="pull-right">
                         <button class="btn btn-danger btn-sm">
@@ -58,7 +61,7 @@
                 </div>
                 <div class="x_content">
                     <div class="card-box table-responsive">
-                        <table id="datatable" class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
@@ -73,7 +76,7 @@
                                 @endphp
                                 @if (empty($data_iuran))
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="4" class="text-center">
                                             <i>
                                                 <b>Data Kosong</b>
                                             </i>
@@ -95,6 +98,7 @@
                                                     $jumlah += $c->nominal;
                                                 }
                                             }
+                                            $total += $jumlah;
                                         @endphp
                                         <tr>
                                             <td class="text-center">{{ ++$no }}.</td>
@@ -105,6 +109,25 @@
                                     @endforeach
                                 @endif
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        <b>
+                                            Total
+                                        </b>
+                                    </td>
+                                    <td colspan="1" class="text-center">
+                                        <b>
+                                            @if (empty($total))
+                                                Rp. 0
+                                            @else
+                                                Rp. {{ number_format($total) }}
+                                            @endif
+
+                                        </b>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

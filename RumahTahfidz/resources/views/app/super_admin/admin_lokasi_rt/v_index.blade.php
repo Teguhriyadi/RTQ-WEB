@@ -186,10 +186,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                    <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
                 </div>
@@ -219,10 +219,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                    <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                         <i class="fa fa-times"></i> Kembali
                     </button>
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success btn-sm">
                         <i class="fa fa-save"></i> Simpan
                     </button>
                 </div>
