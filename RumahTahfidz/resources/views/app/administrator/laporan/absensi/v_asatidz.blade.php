@@ -45,37 +45,23 @@
                                             <th class="text-center">No.</th>
                                             <th class="text-center">NIS</th>
                                             <th>Nama</th>
-                                            <th class="text-center">Kelas</th>
                                             <th class="text-center">Hadir</th>
-                                            <th class="text-center">Sakit</th>
-                                            <th class="text-center">Izin</th>
-                                            <th class="text-center">Alfa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php
                                             $no = 0;
-                                            use App\Models\Absensi;
+                                            use App\Models\AbsensiAsatidz;
                                         @endphp
-                                        @foreach ($data_santri as $data)
+                                        @foreach ($data_asatidz as $data)
                                         @php
-                                            $jumlah_hadir = Absensi::where("id_status_absen", 1)->where("id_santri", $data->id)->count();
-
-                                            $jumlah_sakit = Absensi::where("id_status_absen", 2)->where("id_santri", $data->id)->count();
-
-                                            $jumlah_izin = Absensi::where("id_status_absen", 3)->where("id_santri", $data->id)->count();
-
-                                            $jumlah_alfa = Absensi::where("id_status_absen", 4)->where("id_santri", $data->id)->count();
+                                            $jumlah_hadir = AbsensiAsatidz::where("id_asatidz", $data->id)->count();
                                         @endphp
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $data->nis }}</td>
-                                                <td>{{ $data->nama_lengkap }}</td>
-                                                <td class="text-center">{{ $data->getKelas->nama_kelas }}</td>
+                                                <td class="text-center">{{ $data->nomor_induk }}</td>
+                                                <td>{{ $data->getUser->nama }}</td>
                                                 <td class="text-center">{{ $jumlah_hadir }}</td>
-                                                <td class="text-center">{{ $jumlah_sakit }}</td>
-                                                <td class="text-center">{{ $jumlah_izin }}</td>
-                                                <td class="text-center">{{ $jumlah_alfa }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

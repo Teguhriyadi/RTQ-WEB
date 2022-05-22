@@ -229,7 +229,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="{{ url('/app/sistem/laporan/absensi/asatidz') }}">
                                                 Asatidz
                                             </a>
                                         </li>

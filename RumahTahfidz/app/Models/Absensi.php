@@ -13,9 +13,9 @@ class Absensi extends Model
 
     protected $guarded = ['created_at', 'updated_at'];
 
-    public function getSiswa()
+    public function getSantri()
     {
-        return $this->hasOne(Siswa::class, "id", 'id_siswa');
+        return $this->belongsTo("App\Models\Santri", "id_santri", "id");
     }
 
     public function getPengajar()

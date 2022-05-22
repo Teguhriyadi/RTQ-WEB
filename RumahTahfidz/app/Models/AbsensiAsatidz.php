@@ -13,8 +13,8 @@ class AbsensiAsatidz extends Model
 
     protected $guarded = [''];
 
-    public function getUser()
+    public function getAsatidz()
     {
-        return $this->hasOne(User::class, 'id', 'id_asatidz');
+        return $this->belongsTo("App\Models\Asatidz", 'id', 'id_asatidz');
     }
 }
