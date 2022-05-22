@@ -111,11 +111,17 @@ class SantriController extends Controller
 
         $data = array();
         foreach ($santri as $s) {
+            if ($s->id_jenjang == NULL) {
+                $jenjang = "Belum Ada Jenjang";
+            } else {
+                $jenjang = $s->getJenjang->jenjang;
+            }
             $data[] = [
                 'id' => $s->id,
                 'nis' => $s->nis,
                 'nama_lengkap' => $s->nama_lengkap,
-                'jenjang' => $s->getJenjang->jenjang,
+
+                'jenjang' => $jenjang,
                 'nama_wali' => $s->getWali->getUser->nama,
             ];
         }

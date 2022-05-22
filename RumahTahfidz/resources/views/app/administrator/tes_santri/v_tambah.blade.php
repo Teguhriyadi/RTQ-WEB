@@ -35,6 +35,7 @@
                                     <table class="table table-striped table-bordered" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th class="text-center">#</th>
                                                 <th>Nama</th>
                                                 <th>Sekolah</th>
                                                 <th class="text-center">Kelas</th>
@@ -44,8 +45,11 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($data_santri as $data)
-                                                <input type="hidden" name="id_santri[]" value="{{ $data->id }}">
                                                 <tr>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" name="id_santri[]"
+                                                            value="{{ $data->id }}">
+                                                    </td>
                                                     <td>{{ $data->nama_lengkap }}</td>
                                                     <td>{{ $data->sekolah }}</td>
                                                     <td class="text-center">{{ $data->getKelas->nama_kelas }}</td>
@@ -63,7 +67,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="5" class="text-center">
+                                                    <td colspan="6" class="text-center">
                                                         <b>
                                                             <i>Maaf, Data Santri Saat Ini Kosong</i>
                                                         </b>
@@ -78,7 +82,7 @@
                         <hr>
                         @if ($jumlah_santri > 0)
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus"></i> Tambah
                                 </button>
                             </div>

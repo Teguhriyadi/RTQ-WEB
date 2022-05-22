@@ -22,6 +22,7 @@ class IuranController extends Controller
             "data_iuran" => Iuran::where("id_status_validasi", $id_status_validasi)->get()
         ];
 
+
         return view("app.administrator.iuran.v_index", $data);
     }
 
