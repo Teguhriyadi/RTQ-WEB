@@ -4,8 +4,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
 <div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="javascript:void(0)" class="site_title"><i class="fa fa-paw"></i> <span>RTQ Ulil
-                    Albab</span>
+            <a href="javascript:void(0)" class="site_title"><i class="fa fa-paw"></i> <span>RTQ Ulil Albab</span>
             </a>
         </div>
 
@@ -220,9 +219,21 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/app/sistem/home') }}">
-                                        Santri
+                                    <a>
+                                        Absensi <span class="fa fa-chevron-down"></span>
                                     </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="{{ url('/app/sistem/laporan/absensi/santri/') }}">
+                                                Santri
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                Asatidz
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>

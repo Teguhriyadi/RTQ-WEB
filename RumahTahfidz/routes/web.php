@@ -20,6 +20,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KategoriPelajaranController;
 use App\Http\Controllers\KategoriPenilaianController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
@@ -221,6 +222,12 @@ Route::prefix("app")->group(function () {
                 Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
                 Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
                 Route::resource("/wali_santri", WaliSantriController::class);
+
+                Route::prefix("laporan")->group(function () {
+
+                    // Absensi
+                    Route::get("/absensi/santri", [LaporanController::class, "laporan_absensi"]);
+                });
             });
 
             Route::group(["middleware" => ["can:asatidz"]], function () {

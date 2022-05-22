@@ -21,7 +21,8 @@ class TesSantriController extends Controller
     {
         $data = [
             "data_santri" => Santri::where("id_jenjang", NULL)->get(),
-            "data_jenjang" => Jenjang::get()
+            "data_jenjang" => Jenjang::get(),
+            "jumlah_santri" => Santri::where("id_jenjang", NULL)->count()
         ];
 
         return view("app.administrator.tes_santri.v_tambah", $data);
