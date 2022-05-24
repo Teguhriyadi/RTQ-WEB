@@ -29,6 +29,8 @@ use App\Http\Controllers\PelajaranImanAdabController;
 use App\Http\Controllers\PelajaranImlaController;
 use App\Http\Controllers\PelajaranMulokController;
 use App\Http\Controllers\PelajaranTadribatController;
+use App\Http\Controllers\PenilaianKategoriHafalanController;
+use App\Http\Controllers\PenilaianKategoriImlaController;
 use App\Http\Controllers\PenilaianKategoriTadribatController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
@@ -249,6 +251,20 @@ Route::prefix("app")->group(function () {
                         Route::get("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "home"]);
                         Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriTadribatController::class, "create"]);
                         Route::post("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "store"]);
+                    });
+
+                    Route::prefix("hafalan")->group(function () {
+                        Route::get("/", [PenilaianKategoriHafalanController::class, "index"]);
+                        Route::get("/{halaqah}/{id}", [PenilaianKategoriHafalanController::class, "home"]);
+                        Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriHafalanController::class, "create"]);
+                        Route::post("/{halaqah}/{id}", [PenilaianKategoriHafalanController::class, "store"]);
+                    });
+
+                    Route::prefix("imla")->group(function () {
+                        Route::get("/", [PenilaianKategoriImlaController::class, "index"]);
+                        Route::get("/{halaqah}/{id}", [PenilaianKategoriImlaController::class, "home"]);
+                        Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriImlaController::class, "create"]);
+                        Route::post("/{halaqah}/{id}", [PenilaianKategoriImlaController::class, "store"]);
                     });
                 });
 
