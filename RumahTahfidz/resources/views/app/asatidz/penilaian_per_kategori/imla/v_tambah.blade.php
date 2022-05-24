@@ -1,7 +1,7 @@
 @foreach ($data_santri as $santri)
     <?php
-    $nilai = App\Models\NilaiTadribat::where('id_santri', $santri->id)
-        ->where('id_pelajaran_tadribat', $id_pelajaran)
+    $nilai = App\Models\NilaiImla::where('id_santri', $santri->id)
+        ->where('id_pelajaran_imla', $id_pelajaran)
         ->first();
     ?>
     <tr>

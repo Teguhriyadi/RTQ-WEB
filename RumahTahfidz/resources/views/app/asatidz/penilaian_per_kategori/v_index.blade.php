@@ -1,6 +1,6 @@
 @extends('app.layouts.template')
 
-@section('app_title', 'Penilaian Tadribat')
+@section('app_title', 'Penilaian ' . $data_kategori->kategori_penilaian)
 
 @section('app_content')
 

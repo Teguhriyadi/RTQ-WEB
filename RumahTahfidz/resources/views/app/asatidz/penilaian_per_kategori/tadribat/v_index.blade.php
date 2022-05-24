@@ -17,7 +17,8 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('app/sistem/penilaian/tadribat') }}">Penilaian Tadribat</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('app/sistem/penilaian/tadribat') }}">Penilaian
+                    {{ $data_kategori->kategori_penilaian }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
             <li class="breadcrumb-item active" aria-current="page">Jenjang {{ $data_santri[0]->getJenjang->jenjang }}</li>
         </ol>
@@ -38,37 +39,36 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card-box table-responsive">
-                                <table id="datatable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">No.</th>
-                                            <th class="text-center">NIS</th>
-                                            <th>Nama</th>
-                                            <th class="text-center">Jenjang</th>
-                                            <th>Cabang</th>
-                                            <th class="text-center">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $no = 0 @endphp
-                                        @foreach ($data_santri as $data)
+                                <form action="" method="POST">
+                                    @csrf
+
+                                    <div class="form-group">
+                                        <select class="form-control" name="id_pelajaran" id="id_pelajaran">
+                                            <option value="">Silahkan pilih pelajaran</option>
+                                            @foreach ($data_pelajaran as $pelajaran)
+                                                <option value="{{ $pelajaran->id_pelajaran }}">
+                                                    {{ $pelajaran->getPelajaran->nama_pelajaran }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
                                             <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $data->nis }}</td>
-                                                <td>{{ $data->nama_lengkap }}</td>
-                                                <td class="text-center">{{ $data->getJenjang->jenjang }}</td>
-                                                <td>{{ $data->getHalaqah->getLokasiRt->lokasi_rt }}</td>
-                                                <td class="text-center">
-                                                    <button onclick="tambahNilaiTadribat({{ $data->id }})"
-                                                        class="btn btn-primary" data-target="#modalEdit"
-                                                        data-toggle="modal">
-                                                        <i class="fa fa-book"></i> Nilai
-                                                    </button>
-                                                </td>
+                                                <th class="text-center">No.</th>
+                                                <th class="text-center">NIS</th>
+                                                <th>Nama</th>
+                                                <th class="text-center">Jenjang</th>
+                                                <th>Cabang</th>
+                                                <th class="text-center"></th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -77,36 +77,6 @@
         </div>
     </div>
 
-    <!-- Tambah Nilai Tadribat -->
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="fa fa-plus"></i>
-                        <span>Tambah Nilai Tadribat</span>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ url('/app/sistem/kategori/tadribat') }}" method="POST">
-                    @csrf
-                    <div class="modal-body" id="modal-content">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-save"></i> Tambah
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <!-- END -->
 
 @endsection
@@ -114,22 +84,18 @@
 @section('app_scripts')
 
     <script>
-        function tambahNilaiTadribat(id) {
-            $.ajax({
-                url: "{{ url('/app/sistem/penilaian/tadribat/create') }}",
-                type: "GET",
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    $("#modal-content").html(data);
-                    return true;
-                }
-            });
-        }
-
         $(document).ready(function() {
             $("#table-1").dataTable();
+
+            $('#id_pelajaran').on('change', function() {
+                $.ajax({
+                    url: '{{ Request::url() }}/' + $(this).val(),
+                    type: 'get',
+                    success: function(response) {
+                        $('tbody').html(response);
+                    }
+                })
+            })
         })
     </script>
 
