@@ -3,8 +3,8 @@
 
         <a href="index.html" class="logo d-flex align-items-center">
 
-            <img src="{{ url('/gambar') }}/logo_ulil.png" alt="">
-            <span>{{ (empty($data->singkatan)) ? "" : $data->singkatan }}</span>
+            <img src="{{ empty($data->logo) ? url('/gambar/logo_ulil.png') : url('/storage/' . $data->logo) }}" alt="">
+            <span>{{ empty($data->singkatan) ? 'RTQ' : $data->singkatan }}</span>
         </a>
 
         <nav id="navbar" class="navbar">

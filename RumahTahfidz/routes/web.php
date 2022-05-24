@@ -24,11 +24,6 @@ use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PelajaranController;
-use App\Http\Controllers\PelajaranHafalanController;
-use App\Http\Controllers\PelajaranImanAdabController;
-use App\Http\Controllers\PelajaranImlaController;
-use App\Http\Controllers\PelajaranMulokController;
-use App\Http\Controllers\PelajaranTadribatController;
 use App\Http\Controllers\PenilaianKategoriHafalanController;
 use App\Http\Controllers\PenilaianKategoriImlaController;
 use App\Http\Controllers\PenilaianKategoriTadribatController;
@@ -36,6 +31,7 @@ use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
+use App\Http\Controllers\ProfilWebController;
 use App\Http\Controllers\RekapAbsensiController;
 use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\RekapIuranController;
@@ -150,6 +146,9 @@ Route::prefix("app")->group(function () {
                 Route::resource("/users", UsersController::class);
 
                 Route::prefix("/setting")->group(function () {
+
+                    Route::put("web/{id}", [ProfilWebController::class, "update"]);
+                    Route::resource("/web", ProfilWebController::class);
 
                     Route::prefix("/kategori")->group(function () {
 

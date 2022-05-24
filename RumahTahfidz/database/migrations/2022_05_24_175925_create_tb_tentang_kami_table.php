@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_pelajaran_imla', function (Blueprint $table) {
+        Schema::create('tb_tentang_kami', function (Blueprint $table) {
             $table->id();
-            $table->string("pelajaran");
+            $table->string("foto");
+            $table->text("deskripsi");
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_pelajaran_imla');
+        Schema::dropIfExists('tb_tentang_kami');
     }
 };

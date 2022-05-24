@@ -1,11 +1,12 @@
-@extends("app.landing.layouts.template")
+@extends('app.landing.layouts.template')
 
 @section('app_content')
     <section id="hero" class="hero d-flex align-items-center">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up">Selamat Datang di {{ empty($data->nama) ? '' : $data->nama }}</h1>
+                    <h1 data-aos="fade-up">Selamat Datang di {{ empty($data->nama) ? 'RTQ Ulil Albab' : $data->nama }}
+                    </h1>
                     <h2 data-aos="fade-up" data-aos-delay="400">
                         Silahkan pilih menu yang tersedia untuk memulai program
                     </h2>

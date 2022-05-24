@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_pelajaran_hafalan', function (Blueprint $table) {
+        Schema::create('tb_profil_web', function (Blueprint $table) {
             $table->id();
-            $table->string("nama_surat");
+            $table->string("nama", 100);
+            $table->string("singkatan", 50);
+            $table->string("no_hp", 30);
+            $table->string("email", 100);
+            $table->text("alamat");
+            $table->string("logo");
+            $table->timestamps();
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_pelajaran_hafalan');
+        Schema::dropIfExists('tb_profil_web');
     }
 };

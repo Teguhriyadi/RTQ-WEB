@@ -89,6 +89,7 @@
                                     @endphp
                                     @foreach ($data_iuran as $data)
                                         @php
+                                            $total = 0;
                                             $count = Iuran::where('id_santri', $data->santri_id)->get();
                                             $jumlah = 0;
                                             foreach ($count as $c) {

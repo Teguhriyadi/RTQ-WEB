@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Kategori;
 use App\Models\Pesan;
-use App\Models\Profil;
+use App\Models\ProfilWeb;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -17,7 +17,7 @@ class LandingPageController extends Controller
 
     public function home()
     {
-        $data = Profil::select("id", "nama", "email", "logo", "singkatan", "no_hp", "alamat")->first();
+        $data = ProfilWeb::select("id", "nama", "email", "logo", "singkatan", "no_hp", "alamat")->first();
         $data2 = [
             "data_blog" => Blog::get()
         ];
