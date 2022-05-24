@@ -19,4 +19,9 @@ class Blog extends Model
     {
         return $this->belongsTo("App\Models\Kategori", "id_kategori", "id")->withDefault(["kategori" => "<i><b>NULL</b></i>"]);
     }
+
+    public function getUser()
+    {
+        return $this->belongsTo("App\Models\User", "id_user", "id");
+    }
 }
