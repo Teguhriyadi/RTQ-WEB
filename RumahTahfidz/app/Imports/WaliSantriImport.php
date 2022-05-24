@@ -17,6 +17,13 @@ class WaliSantriImport implements ToCollection, withHeadingRow
     public function collection(Collection $collection)
     {
         foreach ($collection as $data) {
+
+            $double = User::where("nama", $data["nama"])->count();
+
+            if ($double) {
+                
+            }
+
             $unix_date = ($data['tanggal_lahir'] - 25569) * 86400;
 
             $user = User::create([

@@ -151,9 +151,9 @@ Route::prefix("app")->group(function () {
                         Route::put("/pelajaran/simpan", [KategoriPelajaranController::class, "update"]);
                         Route::resource("/pelajaran", KategoriPelajaranController::class);
 
-                        Route::get("/penilaian/edit", [KategoriPenilaianController::class, "edit"]);
-                        Route::put("/penilaian/simpan", [KategoriPenilaianController::class, "update"]);
-                        Route::resource("penilaian", KategoriPenilaianController::class);
+                        Route::get("/nilai/edit", [KategoriPenilaianController::class, "edit"]);
+                        Route::put("/nilai/simpan", [KategoriPenilaianController::class, "update"]);
+                        Route::resource("nilai", KategoriPenilaianController::class);
                     });
 
                     // Iuran
