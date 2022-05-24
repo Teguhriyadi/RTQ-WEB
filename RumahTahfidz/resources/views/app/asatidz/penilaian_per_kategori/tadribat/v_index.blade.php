@@ -88,13 +88,15 @@
             $("#table-1").dataTable();
 
             $('#id_pelajaran').on('change', function() {
-                $.ajax({
-                    url: '{{ Request::url() }}/' + $(this).val(),
-                    type: 'get',
-                    success: function(response) {
-                        $('tbody').html(response);
-                    }
-                })
+                if ($(this).val() != '') {
+                    $.ajax({
+                        url: '{{ Request::url() }}/' + $(this).val(),
+                        type: 'get',
+                        success: function(response) {
+                            $('tbody').html(response);
+                        }
+                    })
+                }
             })
         })
     </script>
