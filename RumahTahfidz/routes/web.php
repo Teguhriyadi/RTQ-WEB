@@ -66,6 +66,10 @@ use Maatwebsite\Excel\Row;
 Route::get("/coba_rekap", [CobaController::class, "coba_rekap"]);
 Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);
 
+Route::get('coba', function () {
+    dd(storage_path());
+});
+
 Route::get("/auto", [AppController::class, "auto"]);
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
@@ -307,6 +311,7 @@ Route::prefix("app")->group(function () {
             // Data Rekap Penilaian
             Route::get('/rekap_penilaian/{slug}', [RekapPenilaianController::class, 'index']);
             Route::get('/rekap_penilaian/{slug}/{id}', [RekapPenilaianController::class, 'detail']);
+            Route::get('/rekap_penilaian/{slug}/{id}/{id_jenjang}', [RekapPenilaianController::class, 'detail']);
 
             // Data Rekap Iuran
             Route::get('/rekap_iuran', [RekapIuranController::class, 'index']);

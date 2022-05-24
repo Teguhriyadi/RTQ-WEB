@@ -46,13 +46,17 @@ use Illuminate\Support\Str;
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Jenjang</th>
-                                            <th class="text-center">Opsi</th>
+                                            <th>Pelajaran</th>
+                                            <th>Nilai</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($data_nilai as $nilai)
+                                            <tr class="text-center">
+                                                <th>{{ $loop->iteration }}</th>
+                                                <th>{{ $nilai->getPelajaranTadribat }}</th>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

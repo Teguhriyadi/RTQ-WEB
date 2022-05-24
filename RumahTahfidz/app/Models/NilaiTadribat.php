@@ -18,7 +18,7 @@ class NilaiTadribat extends Model
         return $this->belongsTo("App\Models\Santri", "id_santri", "id");
     }
 
-    public function getPelajaranTadribat()
+    public function getPelajaran()
     {
         return $this->belongsTo("App\Models\KategoriPelajaranTadribat", "id_pelajaran_tadribat", "id");
     }
