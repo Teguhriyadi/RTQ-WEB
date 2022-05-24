@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\TerakhirLogin;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -21,7 +22,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($validasi)) {
+        if (Auth::attempt(["no_hp" => $request->no_hp, "password" => $request->password])) {
             TerakhirLogin::create([
                 'nama' => Auth::user()->nama,
                 'id_user' => Auth::user()->id

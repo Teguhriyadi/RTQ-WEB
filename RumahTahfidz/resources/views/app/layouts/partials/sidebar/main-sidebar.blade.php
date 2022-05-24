@@ -65,11 +65,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Halaqah
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == 'pelajaran' }}">
-                                    <a href="{{ url('/app/sistem/pelajaran') }}">
-                                        Pelajaran
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <li>
@@ -157,14 +152,19 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Status Validasi
                                     </a>
                                 </li>
-                                {{-- <li class="{{ Request::segment(3) == 'kategori_pelajaran' ? 'active' : '' }}">
+                                <li class="{{ Request::segment(3) == 'kategori_nilai' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/setting/kategori/nilai') }}">
+                                        Kategori Penilaian
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'kategori_pelajaran' }}">
                                     <a href="{{ url('/app/sistem/setting/kategori/pelajaran') }}">
                                         Kategori Pelajaran
                                     </a>
-                                </li> --}}
-                                <li class="{{ Request::segment(3) == 'kategori_penilaian' }}">
-                                    <a href="{{ url('/app/sistem/setting/kategori/penilaian') }}">
-                                        Kategori Penilaian
+                                </li>
+                                <li class="{{ Request::segment(3) == 'pelajaran' }}">
+                                    <a href="{{ url('/app/sistem/pelajaran') }}">
+                                        Pelajaran
                                     </a>
                                 </li>
                             </ul>
