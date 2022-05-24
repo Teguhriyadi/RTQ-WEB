@@ -26,11 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(WaliSantriSeeder::class);
         $this->call(SantriSeeder::class);
         $this->call(AbsensiSeeder::class);
-        $this->call(PelajaranTadribatSeeder::class);
-        $this->call(PelajaranHafalanSeeder::class);
-        $this->call(PelajaranImlaSeeder::class);
-        $this->call(PelajaranImanAdabSeeder::class);
-        $this->call(PelajaranMulokSeeder::class);
         $this->call(IuranSeeder::class);
         $this->call(StatusValidasiSeeder::class);
         $this->call(SettingIuranSeeder::class);
