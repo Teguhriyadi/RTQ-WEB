@@ -55,6 +55,11 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Jenjang
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(3) == "jabatan" ? "active" : "" }}">
+                                    <a href="{{ url('/app/sistem/jabatan') }}">
+                                        Jabatan
+                                    </a>
+                                </li>
                                 <li class="{{ Request::segment(3) == 'admin_lokasi_rt' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">
                                         Admin Lokasi RT

@@ -14,6 +14,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateIuranController;
 use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\IuranController;
+use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KategoriPelajaranController;
@@ -116,6 +117,11 @@ Route::prefix("app")->group(function () {
                 Route::put("/halaqah/simpan", [HalaqahController::class, "update"]);
                 Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
                 Route::resource("/halaqah", HalaqahController::class);
+
+                // Data Jabatan
+                Route::get("/jabatan/edit", [JabatanController::class, "edit"]);
+                Route::put("/jabatan/simpan", [JabatanController::class, "update"]);
+                Route::resource("jabatan", JabatanController::class);
 
                 // Data Kategori
                 Route::get("/kategori/edit", [KategoriController::class, "edit"]);
