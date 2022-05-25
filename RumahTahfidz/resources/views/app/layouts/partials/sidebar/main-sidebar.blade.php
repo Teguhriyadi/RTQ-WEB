@@ -93,6 +93,11 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Pesan
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(3) == "tentang_kami" ? "active" : "" }}">
+                                    <a href="{{ url('/app/sistem/tentang_kami') }}">
+                                        Tentang Kami
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>

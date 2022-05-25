@@ -1,6 +1,10 @@
 @extends('app.landing.layouts.template')
 
 @section('app_content')
+    @php
+    use App\Models\TentangKami;
+    @endphp
+
     <section id="hero" class="hero d-flex align-items-center">
         <div class="container">
             <div class="row">
@@ -26,37 +30,34 @@
             </div>
         </div>
 
-    </section><!-- End Hero -->
+    </section>
 
     <main id="main">
-        <!-- ======= About Section ======= -->
         <section id="about" class="about">
 
             <div class="container" data-aos="fade-up">
                 <div class="row gx-0">
-
+                    @php
+                        $profil = TentangKami::select('id', 'foto', 'deskripsi')->first();
+                    @endphp
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="content">
-                            <h3>Who We Are</h3>
-                            <h2>Expedita voluptas omnis cupiditate totam eveniet nobis sint iste. Dolores est repellat
-                                corrupti reprehenderit.</h2>
+                            <h2>Profil Singkat {{ empty($data->nama) ? 'RTQ Ulil Albab' : $data->nama }}</h2>
                             <p>
-                                Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor
-                                consequatur itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam et
-                                est corrupti.
+                                {{ empty($profil->deskripsi) ? '' : $profil->deskripsi }}
                             </p>
                             <div class="text-center text-lg-start">
-                                <a href="#"
+                                {{-- <a href="#"
                                     class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                                    <span>Read More</span>
+                                    <span>Selengkapnya</span>
                                     <i class="bi bi-arrow-right"></i>
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                        <img src="{{ url('/landing') }}/assets/img/about.jpg" class="img-fluid" alt="">
+                        <img src="{{ url('/storage/' . $profil->foto) }}" class="img-fluid" alt="">
                     </div>
 
                 </div>
@@ -110,22 +111,22 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="count-box">
-                            <i class="bi bi-emoji-smile"></i>
+                            <i class="bi bi-people"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
-                                    class="purecounter"></span>
-                                <p>Happy Clients</p>
+                                <span data-purecounter-start="0" data-purecounter-end="{{ $jumlah_santri }}"
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Santri</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6">
                         <div class="count-box">
-                            <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
+                            <i class="bi bi-people" style="color: #ee6c20;"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
-                                    class="purecounter"></span>
-                                <p>Projects</p>
+                                <span data-purecounter-start="0" data-purecounter-end="{{ $jumlah_asatidz }}"
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Asatidz</p>
                             </div>
                         </div>
                     </div>
@@ -134,20 +135,20 @@
                         <div class="count-box">
                             <i class="bi bi-headset" style="color: #15be56;"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
-                                    class="purecounter"></span>
-                                <p>Hours Of Support</p>
+                                <span data-purecounter-start="0" data-purecounter-end="{{ $jumlah_cabang }}"
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Lokasi</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6">
                         <div class="count-box">
-                            <i class="bi bi-people" style="color: #bb0852;"></i>
+                            <i class="bi bi-book" style="color: #bb0852;"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
-                                    class="purecounter"></span>
-                                <p>Hard Workers</p>
+                                <span data-purecounter-start="0" data-purecounter-end="{{ $jumlah_program }}"
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Program</p>
                             </div>
                         </div>
                     </div>

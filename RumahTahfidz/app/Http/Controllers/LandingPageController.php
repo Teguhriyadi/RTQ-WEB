@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asatidz;
 use App\Models\Blog;
 use App\Models\Kategori;
+use App\Models\KategoriPenilaian;
+use App\Models\LokasiRt;
 use App\Models\Pesan;
 use App\Models\ProfilWeb;
+use App\Models\Santri;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -19,7 +23,11 @@ class LandingPageController extends Controller
     {
         $data = ProfilWeb::select("id", "nama", "email", "logo", "singkatan", "no_hp", "alamat")->first();
         $data2 = [
-            "data_blog" => Blog::get()
+            "data_blog" => Blog::get(),
+            "jumlah_santri" => Santri::where("status", 1)->count(),
+            "jumlah_asatidz" => Asatidz::count(),
+            "jumlah_cabang" => LokasiRt::count(),
+            "jumlah_program" => KategoriPenilaian::count()
         ];
 
         return view("app.landing.v_home", $data2, compact('data'));
@@ -41,7 +49,6 @@ class LandingPageController extends Controller
         ]);
 
         return redirect("/");
-
     }
 
     public function blog()

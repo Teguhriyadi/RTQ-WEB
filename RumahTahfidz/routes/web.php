@@ -41,6 +41,7 @@ use App\Http\Controllers\SettingIuranController;
 use App\Http\Controllers\SettingKategoriTadribatController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\StatusValidasiController;
+use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\WaliSantriController;
 use App\Models\Jenjang;
@@ -193,6 +194,9 @@ Route::prefix("app")->group(function () {
                 Route::put("/profil/{id}", [ProfilController::class, "update"]);
 
                 Route::get("/pesan", [PesanController::class, "index"]);
+
+                // Tentang Kami
+                Route::resource("/tentang_kami", TentangKamiController::class);
             });
 
             Route::group(["middleware" => ["can:admin"]], function () {
