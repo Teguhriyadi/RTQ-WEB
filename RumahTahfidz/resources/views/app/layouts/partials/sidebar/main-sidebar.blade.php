@@ -55,7 +55,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Jenjang
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == "jabatan" ? "active" : "" }}">
+                                <li class="{{ Request::segment(3) == 'jabatan' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/jabatan') }}">
                                         Jabatan
                                     </a>
@@ -98,9 +98,14 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Pesan
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == "tentang_kami" ? "active" : "" }}">
+                                <li class="{{ Request::segment(3) == 'tentang_kami' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/tentang_kami') }}">
                                         Tentang Kami
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'struktur_organisasi' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/struktur_organisasi') }}">
+                                        Struktur Organisasi
                                     </a>
                                 </li>
                             </ul>

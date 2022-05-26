@@ -42,6 +42,7 @@ use App\Http\Controllers\SettingIuranController;
 use App\Http\Controllers\SettingKategoriTadribatController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\StatusValidasiController;
+use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\WaliSantriController;
@@ -203,6 +204,11 @@ Route::prefix("app")->group(function () {
 
                 // Tentang Kami
                 Route::resource("/tentang_kami", TentangKamiController::class);
+
+                // Data Struktur Organisasi
+                Route::get("/struktur_organisasi/edit", [StrukturOrganisasiController::class, "edit"]);
+                Route::put("/struktur_organisasi/simpan", [StrukturOrganisasiController::class, "update"]);
+                Route::resource("/struktur_organisasi", StrukturOrganisasiController::class);
             });
 
             Route::group(["middleware" => ["can:admin"]], function () {
