@@ -55,7 +55,7 @@ class PenilaianKategoriHafalanController extends Controller
                 ->first();
 
             if ($cek) {
-                NilaiHafalan::where('id_santri', $request->id_santri[$index])->update([
+                NilaiHafalan::where('id_santri', $request->id_santri[$index])->where('id_pelajaran_hafalan', $request->id_pelajaran)->update([
                     "nilai" => $request->nilai[$index]
                 ]);
             } else {

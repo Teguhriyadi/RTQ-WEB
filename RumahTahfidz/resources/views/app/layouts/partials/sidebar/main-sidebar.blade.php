@@ -55,7 +55,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Jenjang
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == "jabatan" ? "active" : "" }}">
+                                <li class="{{ Request::segment(3) == 'jabatan' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/jabatan') }}">
                                         Jabatan
                                     </a>
@@ -98,7 +98,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Pesan
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == "tentang_kami" ? "active" : "" }}">
+                                <li class="{{ Request::segment(3) == 'tentang_kami' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/tentang_kami') }}">
                                         Tentang Kami
                                     </a>
@@ -302,12 +302,13 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 <i class="fa fa-edit"></i> Penilaian
                                 <span class="fa fa-chevron-down"></span>
                             </a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{ url('/app/sistem/penilaian/tadribat') }}">Tadribat</a></li>
-                                <li><a href="{{ url('/app/sistem/penilaian/hafalan') }}">Hafalan</a></li>
-                                <li><a href="{{ url('/app/sistem/penilaian/imla') }}">Imla</a></li>
-                                <li><a href="{{ url('/app/sistem/penilaian/iman_adab') }}">Iman dan Adab</a></li>
-                                <li><a href="{{ url('/app/sistem/penilaian/mulok') }}">Mulok</a></li>
+                            <ul class="nav child_menu" {!! Request::segment(3) == 'penilaian' ? 'style="display: block;"' : 'style="display: none";' !!}>
+                                @foreach ($kategori_penilaian as $item)
+                                    <li>
+                                        <a
+                                            href="{{ url('/app/sistem/penilaian/' . $item->slug) }}">{{ $item->kategori_penilaian }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
 

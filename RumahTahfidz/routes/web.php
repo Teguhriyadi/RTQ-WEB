@@ -259,26 +259,31 @@ Route::prefix("app")->group(function () {
                         return view('app.asatidz.penilaian_per_kategori.v_jenjang', $data);
                     });
 
-                    Route::prefix("tadribat")->group(function () {
-                        Route::get("/", [PenilaianKategoriTadribatController::class, "index"]);
-                        Route::get("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "home"]);
-                        Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriTadribatController::class, "create"]);
-                        Route::post("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "store"]);
-                    });
+                    Route::get('{kategori}/', [PenilaianKategoriTadribatController::class, "index"]);
+                    Route::get('{kategori}/{halaqah}/{id}', [PenilaianKategoriTadribatController::class, "home"]);
+                    Route::get('{kategori}/{halaqah}/{id_jenjang}/{id_pelajaran}', [PenilaianKategoriTadribatController::class, "create"]);
+                    Route::post("/{kategori}/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "store"]);
 
-                    Route::prefix("hafalan")->group(function () {
-                        Route::get("/", [PenilaianKategoriHafalanController::class, "index"]);
-                        Route::get("/{halaqah}/{id}", [PenilaianKategoriHafalanController::class, "home"]);
-                        Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriHafalanController::class, "create"]);
-                        Route::post("/{halaqah}/{id}", [PenilaianKategoriHafalanController::class, "store"]);
-                    });
+                    // Route::prefix("tadribat")->group(function () {
+                    //     Route::get("/", [PenilaianKategoriTadribatController::class, "index"]);
+                    //     Route::get("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "home"]);
+                    //     Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriTadribatController::class, "create"]);
+                    //     Route::post("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "store"]);
+                    // });
 
-                    Route::prefix("imla")->group(function () {
-                        Route::get("/", [PenilaianKategoriImlaController::class, "index"]);
-                        Route::get("/{halaqah}/{id}", [PenilaianKategoriImlaController::class, "home"]);
-                        Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriImlaController::class, "create"]);
-                        Route::post("/{halaqah}/{id}", [PenilaianKategoriImlaController::class, "store"]);
-                    });
+                    // Route::prefix("hafalan")->group(function () {
+                    //     Route::get("/", [PenilaianKategoriHafalanController::class, "index"]);
+                    //     Route::get("/{halaqah}/{id}", [PenilaianKategoriHafalanController::class, "home"]);
+                    //     Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriHafalanController::class, "create"]);
+                    //     Route::post("/{halaqah}/{id}", [PenilaianKategoriHafalanController::class, "store"]);
+                    // });
+
+                    // Route::prefix("imla")->group(function () {
+                    //     Route::get("/", [PenilaianKategoriImlaController::class, "index"]);
+                    //     Route::get("/{halaqah}/{id}", [PenilaianKategoriImlaController::class, "home"]);
+                    //     Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriImlaController::class, "create"]);
+                    //     Route::post("/{halaqah}/{id}", [PenilaianKategoriImlaController::class, "store"]);
+                    // });
                 });
 
                 Route::prefix("rekap")->group(function () {
