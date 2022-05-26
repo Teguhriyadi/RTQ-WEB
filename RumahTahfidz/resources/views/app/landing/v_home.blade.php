@@ -997,7 +997,7 @@
 
                 <header class="section-header">
                     <h2>Team</h2>
-                    <p>Tim Kerja RTQ</p>
+                    <p>Struktur Organisasi</p>
                 </header>
 
                 <div class="row gy-4">
@@ -1005,7 +1005,7 @@
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                             <div class="member">
                                 <div class="member-img">
-                                    <img src="{{ url('/landing') }}/assets/img/team/team-4.jpg" class="img-fluid"
+                                    <img src="{{ url('/storage/'.$data->foto) }}" class="img-fluid"
                                         alt="">
                                     <div class="social">
                                         <a href=""><i class="bi bi-twitter"></i></a>

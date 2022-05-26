@@ -66,10 +66,11 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form action="" method="POST" style="display: inline;">
+                                                    <form action="{{ url('/app/sistem/struktur_organisasi/'.$data->id) }}" method="POST" style="display: inline;">
                                                         @method('DELETE')
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $data->id }}">
+                                                        <input type="hidden" name="foto" value="{{ $data->foto }}">
                                                         <button type="submit" class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash"></i> Hapus
                                                         </button>

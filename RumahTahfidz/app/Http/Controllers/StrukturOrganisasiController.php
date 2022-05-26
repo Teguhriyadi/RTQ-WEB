@@ -49,13 +49,14 @@ class StrukturOrganisasiController extends Controller
 
     public function update(Request $request)
     {
-        $data = "";
         if ($request->file("gambar")) {
             if ($request->foto_lama) {
                 Storage::delete($request->foto_lama);
             }
 
             $data = $request->file("gambar")->store("struktur_organisasi");
+        } else {
+            $data = $request->foto_lama;
         }
 
         StrukturOrganisasi::where("id", $request->id)->update([
@@ -66,5 +67,16 @@ class StrukturOrganisasiController extends Controller
         ]);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        if ($request->foto) {
+            Storage::delete($request->foto);
+        }
+
+        StrukturOrganisasi::where("id", $id)->delete();
+
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }
