@@ -103,6 +103,11 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Tentang Kami
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(3) == 'struktur_organisasi' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/struktur_organisasi') }}">
+                                        Struktur Organisasi
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>
