@@ -26,9 +26,7 @@ use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\PelajaranController;
-use App\Http\Controllers\PenilaianKategoriHafalanController;
-use App\Http\Controllers\PenilaianKategoriImlaController;
-use App\Http\Controllers\PenilaianKategoriTadribatController;
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
@@ -41,7 +39,6 @@ use App\Http\Controllers\RekapNilaiController;
 use App\Http\Controllers\RekapPenilaianController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\SettingIuranController;
-use App\Http\Controllers\SettingKategoriTadribatController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\StatusValidasiController;
 use App\Http\Controllers\StrukturOrganisasiController;
@@ -268,34 +265,13 @@ Route::prefix("app")->group(function () {
                             'kode' => $kode,
                         ];
 
-                        return view('app.asatidz.penilaian_per_kategori.v_jenjang', $data);
+                        return view('app.asatidz.penilaian.v_jenjang', $data);
                     });
 
-                    Route::get('{kategori}/', [PenilaianKategoriTadribatController::class, "index"]);
-                    Route::get('{kategori}/{halaqah}/{id}', [PenilaianKategoriTadribatController::class, "home"]);
-                    Route::get('{kategori}/{halaqah}/{id_jenjang}/{id_pelajaran}', [PenilaianKategoriTadribatController::class, "create"]);
-                    Route::post("/{kategori}/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "store"]);
-
-                    // Route::prefix("tadribat")->group(function () {
-                    //     Route::get("/", [PenilaianKategoriTadribatController::class, "index"]);
-                    //     Route::get("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "home"]);
-                    //     Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriTadribatController::class, "create"]);
-                    //     Route::post("/{halaqah}/{id}", [PenilaianKategoriTadribatController::class, "store"]);
-                    // });
-
-                    // Route::prefix("hafalan")->group(function () {
-                    //     Route::get("/", [PenilaianKategoriHafalanController::class, "index"]);
-                    //     Route::get("/{halaqah}/{id}", [PenilaianKategoriHafalanController::class, "home"]);
-                    //     Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriHafalanController::class, "create"]);
-                    //     Route::post("/{halaqah}/{id}", [PenilaianKategoriHafalanController::class, "store"]);
-                    // });
-
-                    // Route::prefix("imla")->group(function () {
-                    //     Route::get("/", [PenilaianKategoriImlaController::class, "index"]);
-                    //     Route::get("/{halaqah}/{id}", [PenilaianKategoriImlaController::class, "home"]);
-                    //     Route::get("/{halaqah}/{id_jenjang}/{id_pelajaran}", [PenilaianKategoriImlaController::class, "create"]);
-                    //     Route::post("/{halaqah}/{id}", [PenilaianKategoriImlaController::class, "store"]);
-                    // });
+                    Route::get('{kategori}/', [PenilaianController::class, "index"]);
+                    Route::get('{kategori}/{halaqah}/{id}', [PenilaianController::class, "home"]);
+                    Route::get('{kategori}/{halaqah}/{id_jenjang}/{id_pelajaran}', [PenilaianController::class, "create"]);
+                    Route::post("/{kategori}/{halaqah}/{id}", [PenilaianController::class, "store"]);
                 });
 
                 Route::prefix("rekap")->group(function () {
@@ -306,10 +282,10 @@ Route::prefix("app")->group(function () {
                 });
 
                 // Data Absensi Santri
-                Route::get("/absensi_santri", [AbsensiSantriController::class, "index"]);
-                Route::put("/absensi_santri", [AbsensiSantriController::class, "input_data"]);
+                Route::get("/absensi/santri", [AbsensiSantriController::class, "index"]);
+                Route::put("/absensi/santri", [AbsensiSantriController::class, "input_data"]);
                 Route::post("/tambah_absensi", [AbsensiSantriController::class, "tambah_absensi"]);
-                Route::get("/absensi_santri", [AbsensiSantriController::class, "absensi_santri"]);
+                Route::get("/absensi/santri", [AbsensiSantriController::class, "absensi_santri"]);
             });
 
             // Iuran Wali Santri
@@ -346,6 +322,7 @@ Route::prefix("app")->group(function () {
             // Data Rekap Iuran
             Route::get('/rekap_iuran', [RekapIuranController::class, 'index']);
             Route::get('/rekap_iuran/{id}', [RekapIuranController::class, 'detail']);
+            Route::get('/rekap_iuran/datatables/{id}', [RekapIuranController::class, 'datatable']);
         });
     });
 

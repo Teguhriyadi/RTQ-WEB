@@ -14,7 +14,7 @@ use App\Models\Santri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PenilaianKategoriTadribatController extends Controller
+class PenilaianController extends Controller
 {
     public function index(Request $request)
     {
@@ -24,7 +24,7 @@ class PenilaianKategoriTadribatController extends Controller
             "data_kategori" => KategoriPenilaian::where('slug', $request->segment(4))->first()
         ];
 
-        return view("app.asatidz.penilaian_per_kategori.v_index", $data);
+        return view("app.asatidz.penilaian.v_index", $data);
     }
 
     public function home($tadribat, $halaqah, $id_jenjang, Request $request)
@@ -35,7 +35,7 @@ class PenilaianKategoriTadribatController extends Controller
             'data_santri' => Santri::where('kode_halaqah', $halaqah)->where('id_jenjang', $id_jenjang)->get(),
             'data_pelajaran' => KategoriPelajaran::where('id_jenjang', $id_jenjang)->where('id_kategori_penilaian', $kategori->id)->get(),
         ];
-        return view('app.asatidz.penilaian_per_kategori.tadribat.v_index', $data);
+        return view('app.asatidz.penilaian.v_santri', $data);
     }
 
     public function create($tadribat, $halaqah, $id_jenjang, $id_pelajaran)
@@ -45,7 +45,8 @@ class PenilaianKategoriTadribatController extends Controller
             'id_pelajaran' => $id_pelajaran
         ];
 
-        return view("app.asatidz.penilaian_per_kategori.tadribat.v_tambah", $data);
+
+        return view("app.asatidz.penilaian.v_nilai", $data);
     }
 
     public function store($tadribat, $halaqah, $id_jenjang, Request $request)

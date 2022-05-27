@@ -70,7 +70,6 @@ class ProfilSantriController extends Controller
     {
         $data = [
             'santri' => Santri::where('id', $id)->first(),
-            'data_kelas' => Kelas::all()
         ];
 
         return view('app.wali_santri.profil.v_edit', $data);

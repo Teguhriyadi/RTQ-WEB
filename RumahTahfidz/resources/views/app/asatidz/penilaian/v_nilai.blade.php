@@ -5,11 +5,8 @@
         ->first();
     ?>
     <tr>
-        <th>{{ $loop->iteration }}</th>
-        <td>{{ $santri->nis }}</td>
-        <td>{{ $santri->nama_lengkap }}</td>
-        <td>{{ $santri->getJenjang->jenjang }}</td>
-        <td>{{ $santri->getHalaqah->getLokasiRt->lokasi_rt }}</td>
+        <th class="text-center">{{ $santri->nis }}</th>
+        <th class="text-center">{{ $santri->nama_lengkap }}</th>
         <td>
             @if ($nilai)
                 @if ($nilai->id_asatidz == auth()->user()->id)

@@ -135,18 +135,24 @@ use App\Models\Jenjang;
 @section('app_scripts')
 
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#id_jenjang').change(function() {
+                $('#coba').val($(this).val());
+            })
+        })
+
         function cek_db(id) {
-            var id_jenjang = $("#id_jenjang").val();
-            $.ajax({
-                url: "{{ url('/app/sistem/ambil_data') }}",
-                data: {
-                    id: id
-                },
-            }).success(function(data) {
-                var json = data,
-                    obj = JSON.parse(json);
-                $("#coba").val(obj.id);
-            });
+            // var id_jenjang = $("#id_jenjang").val();
+            // $.ajax({
+            //     url: "{{ url('/app/sistem/ambil_data') }}",
+            //     data: {
+            //         id: id
+            //     },
+            // }).success(function(data) {
+            //     var json = data,
+            //         obj = JSON.parse(json);
+            //     $("#coba").val(obj.id);
+            // });
         }
     </script>
 

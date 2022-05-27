@@ -289,17 +289,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                     @can('asatidz')
                         <li>
                             <a>
-                                <i class="fa fa-edit"></i> Absensi Santri
-                                <span class="fa fa-chevron-down"></span>
-                            </a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{ url('/app/sistem/absensi_santri') }}">Input Kehadiran</a></li>
-                                <li><a href="{{ url('/app/sistem/absensi_santri') }}">Data Absensi</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a>
                                 <i class="fa fa-edit"></i> Penilaian
                                 <span class="fa fa-chevron-down"></span>
                             </a>
