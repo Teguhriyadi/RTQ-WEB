@@ -55,18 +55,15 @@
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">No.</th>
                                                 <th class="text-center">NIS</th>
-                                                <th>Nama</th>
-                                                <th class="text-center">Jenjang</th>
-                                                <th>Cabang</th>
+                                                <th class="text-center">Nama</th>
                                                 <th class="text-center"></th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
                                     </table>
                                     <div class="form-group">
-                                        <button class="btn btn-primary">Simpan</button>
+                                        <button class="btn btn-primary btn-simpan">Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -86,6 +83,7 @@
     <script>
         $(document).ready(function() {
             $("#table-1").dataTable();
+            $(".btn-simpan").hide();
 
             $('#id_pelajaran').on('change', function() {
                 if ($(this).val() != '') {
@@ -93,6 +91,7 @@
                         url: '{{ Request::url() }}/' + $(this).val(),
                         type: 'get',
                         success: function(response) {
+                            $(".btn-simpan").show();
                             $('tbody').html(response);
                         }
                     })

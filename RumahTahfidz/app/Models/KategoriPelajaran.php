@@ -29,4 +29,9 @@ class KategoriPelajaran extends Model
     {
         return $this->belongsTo("App\Models\KategoriPenilaian", "id_kategori_penilaian", "id");
     }
+
+    public function getNilai()
+    {
+        return $this->belongsTo(Nilai::class, 'id_pelajaran', 'id_kategori_pelajaran');
+    }
 }

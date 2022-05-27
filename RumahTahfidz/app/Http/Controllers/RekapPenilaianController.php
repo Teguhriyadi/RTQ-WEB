@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jenjang;
+use App\Models\KategoriPelajaran;
 use App\Models\KategoriPenilaian;
+use App\Models\Nilai;
 use App\Models\NilaiTadribat;
 use App\Models\Santri;
 use Illuminate\Http\Request;
@@ -26,12 +28,13 @@ class RekapPenilaianController extends Controller
         $data = [
             'jenjang' => Jenjang::all(),
             'penilaian' => KategoriPenilaian::where('slug', $slug)->first(),
-            'santri' => Santri::find($id)
+            'santri' => Santri::find($id),
         ];
 
         if ($id_jenjang == '') {
-            $data['data_nilai'] = NilaiTadribat::where('id_pelajaran_tadribat', $data['penilaian']->id)->get();
+            $data['data_nilai'] = Nilai::where('id_kategori_pelajaran', $data['penilaian']->id)->get();
         } else {
+            $data['data_pelajaran'] = KategoriPelajaran::where('id_jenjang', $id_jenjang)->where('id_kategori_penilaian', $data['penilaian']->id)->get();
         }
 
         return view('app.wali_santri.rekap_penilaian.v_detail', $data);

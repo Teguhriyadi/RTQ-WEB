@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfilUserController extends Controller
 {
     public function index()
     {
-        return view("app.administrator.profil_user.v_index");
+        $data = [
+            'user' => User::where('id', Auth::user()->id)->first()
+        ];
+
+        return view("app.administrator.profil_user.v_index", $data);
     }
 
     public function simpan_gambar_profil(Request $request)

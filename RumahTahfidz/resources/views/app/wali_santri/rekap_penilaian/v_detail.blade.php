@@ -45,16 +45,17 @@ use Illuminate\Support\Str;
                                 <table class="table table-hover table-bordered" style="width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">No.</th>
+                                            <th>No.</th>
                                             <th>Pelajaran</th>
                                             <th>Nilai</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data_nilai as $nilai)
-                                            <tr class="text-center">
+                                        @foreach ($data_pelajaran as $pelajaran)
+                                            <tr>
                                                 <th>{{ $loop->iteration }}</th>
-                                                <th>{{ $nilai->getPelajaranTadribat }}</th>
+                                                <td>{{ $pelajaran->getPelajaran->nama_pelajaran }}</td>
+                                                <td>{{ $pelajaran->getNilai->nilai }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
