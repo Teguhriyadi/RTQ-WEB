@@ -32,7 +32,6 @@ class RekapPenilaianController extends Controller
         ];
 
         if ($id_jenjang == '') {
-            $data['data_nilai'] = Nilai::where('id_kategori_pelajaran', $data['penilaian']->id)->get();
         } else {
             $data['data_pelajaran'] = KategoriPelajaran::where('id_jenjang', $id_jenjang)->where('id_kategori_penilaian', $data['penilaian']->id)->get();
         }

@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Iuran;
+use App\Models\KategoriPelajaran;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CobaController extends Controller
 {
+    public function json(Request $request)
+    {
+        $data = KategoriPelajaran::where("id", 2)->first();
+
+        $read = array('id' => $data["id"]);
+        echo json_encode($read);
+    }
+
     public function coba_rekap()
     {
         return view("app.coba_rekap");

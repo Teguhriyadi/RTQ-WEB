@@ -34,6 +34,7 @@ use App\Http\Controllers\ProfilWebController;
 use App\Http\Controllers\RekapAbsensiController;
 use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\RekapIuranController;
+use App\Http\Controllers\RekapNilaiController;
 use App\Http\Controllers\RekapPenilaianController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\SettingIuranController;
@@ -59,6 +60,7 @@ use Maatwebsite\Excel\Row;
 |
 */
 
+Route::get("/app/sistem/ambil_data", [CobaController::class, "json"]);
 Route::get("/coba_rekap", [CobaController::class, "coba_rekap"]);
 Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);
 
@@ -309,9 +311,14 @@ Route::prefix("app")->group(function () {
             Route::get('/rekap_penilaian/{slug}/{id}', [RekapPenilaianController::class, 'detail']);
             Route::get('/rekap_penilaian/{slug}/{id}/{id_jenjang}', [RekapPenilaianController::class, 'detail']);
 
+            // Data Rekap Nilai
+            Route::get("/rekap_nilai", [RekapNilaiController::class, "index"]);
+            Route::get("/rekap_nilai/{id_santri}", [RekapNilaiController::class, "detail"]);
+            Route::put("/rekap_nilai/{id_santri}", [RekapNilaiController::class, "detail_nilai"]);
             // Data Rekap Iuran
             Route::get('/rekap_iuran', [RekapIuranController::class, 'index']);
             Route::get('/rekap_iuran/{id}', [RekapIuranController::class, 'detail']);
+            Route::get('/rekap_iuran/datatables/{id}', [RekapIuranController::class, 'datatable']);
         });
     });
 
