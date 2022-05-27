@@ -259,19 +259,10 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                         </li>
                     @endcan
                     @can('santri')
-                        <li class="{{ Request::segment(3) == 'rekap_penilaian' ? 'active' : '' }}" id="penilaian">
-                            <a>
-                                <i class="fa fa-list"></i> Rekap Penilaian
-                                <span class="fa fa-chevron-down"></span>
+                        <li class="{{ Request::segment(3) == 'rekap_nilai' ? 'active' : '' }}">
+                            <a href="{{ url('/app/sistem/rekap_nilai') }}">
+                                <i class="fa fa-book"></i> Rekap Nilai
                             </a>
-                            <ul class="nav child_menu" {!! Request::segment(3) == 'rekap_penilaian' ? 'style="display: block;"' : 'style="display: none";' !!}>
-                                @foreach ($kategori_penilaian as $item)
-                                    <li>
-                                        <a
-                                            href="{{ url('/app/sistem/rekap_penilaian/' . $item->slug) }}">{{ $item->kategori_penilaian }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
                         </li>
                         <li class="{{ Request::segment(3) == 'rekap_absensi' ? 'active' : '' }}">
                             <a href="{{ url('/app/sistem/rekap_absensi') }}">

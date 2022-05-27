@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jenjang;
 use App\Models\KategoriPenilaian;
+use App\Models\Nilai;
 use App\Models\NilaiTadribat;
 use App\Models\Santri;
 use Illuminate\Http\Request;
@@ -30,7 +31,6 @@ class RekapPenilaianController extends Controller
         ];
 
         if ($id_jenjang == '') {
-            $data['data_nilai'] = NilaiTadribat::where('id_pelajaran_tadribat', $data['penilaian']->id)->get();
         } else {
         }
 
