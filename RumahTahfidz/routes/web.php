@@ -107,7 +107,6 @@ Route::prefix("app")->group(function () {
                 Route::put("jenjang/simpan", [JenjangController::class, "update"]);
                 Route::resource("/jenjang", JenjangController::class);
 
-                // Asatidz Jenjang
 
                 // Data Cabang
                 Route::get("/lokasi_rt/edit", [LokasiRtController::class, "edit"]);
