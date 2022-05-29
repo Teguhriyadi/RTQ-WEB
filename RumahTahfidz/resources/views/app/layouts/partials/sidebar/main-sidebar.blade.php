@@ -55,6 +55,11 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Jenjang
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(3) == "asatidz_jenjang" ? "active" : "" }}">
+                                    <a href="">
+                                        Asatidz Jenjang
+                                    </a>
+                                </li>
                                 <li class="{{ Request::segment(3) == 'jabatan' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/jabatan') }}">
                                         Jabatan
