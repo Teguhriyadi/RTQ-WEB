@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Asatidz;
+use App\Models\Halaqah;
+use App\Models\KelasHalaqah;
+use Illuminate\Http\Request;
+
+class KelasHalaqahController extends Controller
+{
+    public function index()
+    {
+        $data = [
+            "data_kelas_halaqah" => KelasHalaqah::get(),
+            "data_asatidz" => Asatidz::get(),
+            "data_halaqah" => Halaqah::get()
+        ];
+
+        return view("app.super_admin.kelas_halaqah.v_index", $data);
+    }
+
+    public function store(Request $request)
+    {
+        KelasHalaqah::create($request->all());
+
+        return redirect()->back(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+    }
+
+    public function edit(Request $request)
+    {
+        $data = [
+            "data_asatidz" => Asatidz::get(),
+            "data_halaqah" => Halaqah::get(),
+            "edit" => KelasHalaqah::where("id", $request->id)->first()
+        ];
+
+        return view("app.super_admin.kelas_halaqah.v_edit", $data);
+    }
+
+    public function update(Request $request)
+    {
+        KelasHalaqah::where("id", $request->id)->update([
+            "id_asatidz" => $request->id_asatidz,
+            "kode_halaqah" => $request->kode_halaqah
+        ]);
+
+        return redirect()->back(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+    }
+
+    public function destroy($id)
+    {
+        KelasHalaqah::where("id", $id)->destroy();
+
+        return redirect()->back(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
+    }
+}
