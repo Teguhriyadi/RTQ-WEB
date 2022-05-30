@@ -7,11 +7,11 @@ use App\Models\Halaqah;
 use App\Models\Kelas;
 use App\Models\LokasiRt;
 use App\Models\Santri;
-use App\Models\User;
 use App\Models\WaliSantri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Storage;
 
 class SantriController extends Controller
 {
@@ -51,6 +51,16 @@ class SantriController extends Controller
 
     public function update(Request $request)
     {
+        if ($request->file("foto")) {
+            if ($request->foto_lama) {
+                Storage::delete($request->foto_lama);
+            }
+
+            $data = $request->file("foto")->store("santri");
+        } else {
+            $data = $request->foto;
+        }
+
         Santri::where("id", $request->id)->update([
             "nis" => $request->nis,
             "nama_lengkap" => $request->nama_lengkap,
@@ -60,7 +70,8 @@ class SantriController extends Controller
             "alamat" => $request->alamat,
             "prestasi_anak" => $request->prestasi_anak,
             "sekolah" => $request->sekolah,
-            "id_kelas" => $request->id_kelas
+            "id_kelas" => $request->id_kelas,
+            "foto" => $data
         ]);
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
@@ -85,6 +96,10 @@ class SantriController extends Controller
 
     public function tambah_santri_by_wali(Request $request)
     {
+        if ($request->file("foto")) {
+            $data = $request->file("foto")->store("santri");
+        }
+
         Santri::create([
             "nis" => $request->nis,
             "nama_lengkap" => $request->nama_lengkap,
@@ -96,7 +111,8 @@ class SantriController extends Controller
             "sekolah" => $request->sekolah,
             "id_kelas" => $request->id_kelas,
             "kode_halaqah" => $request->kode_halaqah,
-            "id_wali" => $request->id_wali
+            "id_wali" => $request->id_wali,
+            "foto" => $data
         ]);
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>");
@@ -132,14 +148,14 @@ class SantriController extends Controller
                 $aksiBtn = '<button onclick="editDataSantri(' . $row["id"] . ')" type="button"
                     class="btn btn-warning btn-sm text-white" id="btnEdit"
                     data-target="#modalEdit" data-toggle="modal">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-edit"></i> Edit
                 </button>';
                 $aksiBtn .= '<form action="' . url("app/sistem/santri/" . $row["id"]) . '"
                 method="POST" style="display: inline">
                 ' . method_field('delete') . '
                 ' . csrf_field() . '
                 <button type="submit" class="btn btn-sm btn-danger">
-                    <i class="fa fa-trash"></i>
+                    <i class="fa fa-trash"></i> Hapus
                 </button>
             </form>';
                 return $aksiBtn;

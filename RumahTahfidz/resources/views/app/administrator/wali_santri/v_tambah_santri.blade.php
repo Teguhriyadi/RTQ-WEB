@@ -71,3 +71,24 @@
     <label for="alamat"> Alamat </label>
     <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Data Alamat"></textarea>
 </div>
+<div class="form-group">
+    <label for="foto"> Foto </label>
+    <img class="gambar-lihat" id="tampilGambar">
+    <input type="file" class="form-control" name="foto" id="foto" onchange="imagePreview()">
+</div>
+
+<script>
+    function imagePreview() {
+        const image = document.querySelector("#foto");
+        const imgPreview = document.querySelector(".gambar-lihat");
+        imgPreview.style.display = "block";
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+            $("#tampilGambar").addClass('mb-3');
+            $("#tampilGambar").width("100%");
+            $("#tampilGambar").height("300");
+        }
+    }
+</script>

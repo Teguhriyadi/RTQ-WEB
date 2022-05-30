@@ -125,12 +125,12 @@ class WaliSantriController extends Controller
                 $aksiBtn = '<button onclick="tambahDataSantri(' . $row["id"] . ')" type="button"
                                 class="btn btn-success btn-sm" id="btnTambahSantri"
                                 data-target="#modalTambahSantri" data-toggle="modal">
-                                <i class="fa fa-plus"></i>
+                                <i class="fa fa-plus"></i> Tambah
                             </button>';
                 $aksiBtn .= '<button onclick="editDataWali(' . $row["id"] . ')" type="button"
                                 class="btn btn-warning btn-sm text-white" id="btnEdit"
                                 data-target="#modalEdit" data-toggle="modal">
-                                <i class="fa fa-edit"></i>
+                                <i class="fa fa-edit"></i> Edit
                             </button>';
                 $aksiBtn .= '<form action="' . url("/app/sistem/wali_santri/" . $row["id"]) . '"
                             method="POST" style="display: inline;">
@@ -138,7 +138,7 @@ class WaliSantriController extends Controller
                             ' . csrf_field() . '
                             <input type="hidden" name="id" value="' . $row["id"] . '">
                             <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa fa-trash"></i> Hapus
                             </button>
                         </form>';
                 return $aksiBtn;

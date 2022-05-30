@@ -261,7 +261,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/santri/tambah_santri_by_wali') }}" method="POST">
+                <form action="{{ url('/app/sistem/santri/tambah_santri_by_wali') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-tambah-santri">
 
