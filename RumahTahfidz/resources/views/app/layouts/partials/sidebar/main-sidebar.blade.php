@@ -55,9 +55,9 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Jenjang
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == "asatidz_jenjang" ? "active" : "" }}">
-                                    <a href="">
-                                        Asatidz Jenjang
+                                <li class="{{ Request::segment(3) == 'kelas_halaqah' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/kelas_halaqah') }}">
+                                        Kelas Halaqah
                                     </a>
                                 </li>
                                 <li class="{{ Request::segment(3) == 'jabatan' ? 'active' : '' }}">
@@ -307,10 +307,35 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                             </ul>
                         </li>
 
-                        <li>
-                            <a href="{{ url('/app/sistem/rekap/absensi/asatidz/' . auth()->user()->id) }}">
-                                <i class="fa fa-book"></i> Rekap Absensi
+                        <li id="laporan">
+                            <a>
+                                <i class="fa fa-bar-chart"></i> Laporan
+                                <span class="fa fa-chevron-down"></span>
                             </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/iuran') }}">
+                                        Iuran
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        Absensi <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="{{ url('/app/sistem/laporan/absensi/santri/') }}">
+                                                Santri
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url('/app/sistem/laporan/absensi/asatidz') }}">
+                                                Asatidz
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </li>
                     @endcan
 

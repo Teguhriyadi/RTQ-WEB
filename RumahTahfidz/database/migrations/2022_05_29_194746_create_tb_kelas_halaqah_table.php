@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('tb_kelas_halaqah', function (Blueprint $table) {
             $table->id();
-            $table->string("id_asatidz");
+            $table->integer("id_asatidz");
             $table->string("kode_halaqah");
             $table->string("kelas_halaqah");
+            $table->string("status")->enum("1", "0")->default(0);
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@ class KelasHalaqahController extends Controller
     {
         KelasHalaqah::create($request->all());
 
-        return redirect()->back(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Inputkan', 'success')</script>"]);
     }
 
     public function edit(Request $request)
@@ -42,16 +42,17 @@ class KelasHalaqahController extends Controller
     {
         KelasHalaqah::where("id", $request->id)->update([
             "id_asatidz" => $request->id_asatidz,
-            "kode_halaqah" => $request->kode_halaqah
+            "kode_halaqah" => $request->kode_halaqah,
+            "kelas_halaqah" => $request->kelas_halaqah
         ]);
 
-        return redirect()->back(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success')</script>"]);
     }
 
     public function destroy($id)
     {
-        KelasHalaqah::where("id", $id)->destroy();
+        KelasHalaqah::where("id", $id)->delete();
 
-        return redirect()->back(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }
