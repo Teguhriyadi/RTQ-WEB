@@ -11,7 +11,7 @@ class UsersController extends Controller
     public function index()
     {
         $data = [
-            "data_users" => User::orderBy("id_role", "ASC")->get()
+            "data_users" => User::get()
         ];
 
         return view("app.super_admin.users.v_index", $data);

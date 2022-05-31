@@ -19,14 +19,14 @@ return new class extends Migration
             $table->string("email", 100);
             $table->string("password", 100);
             $table->text("alamat")->nullable();
-            $table->integer("id_role");
             $table->string("no_hp", 30)->nullable();
             $table->string("gambar")->nullable();
             $table->string("tempat_lahir");
             $table->date("tanggal_lahir")->nullable();
             $table->string("jenis_kelamin")->enum("L", "P");
             $table->string("token")->nullable();
-            $table->string("status")->enum("1", "0")->default(1);
+            $table->integer("id_hak_akses")->nullable();
+            $table->integer("status")->default(1);
             $table->timestamps();
         });
     }

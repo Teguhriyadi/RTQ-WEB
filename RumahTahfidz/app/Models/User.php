@@ -48,9 +48,9 @@ class User extends Authenticatable
         return $this->hasOne(Token::class, "tokenable_id", "id");
     }
 
-    public function getRole()
+    public function getHakAkses()
     {
-        return $this->belongsTo("App\Models\Role", "id_role", "id")->withDefault(["keterangan" => "<i><b>NULL</b></i>"]);
+        return $this->belongsTo(HakAkses::class, "id_hak_akses", "id");
     }
 
     public function getAdminLokasiRt()
