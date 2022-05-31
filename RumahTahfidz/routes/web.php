@@ -13,6 +13,7 @@ use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateIuranController;
+use App\Http\Controllers\HafalanAsatidzController;
 use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\IuranController;
@@ -231,6 +232,9 @@ Route::prefix("app")->group(function () {
                 Route::get("/struktur_organisasi/edit", [StrukturOrganisasiController::class, "edit"]);
                 Route::put("/struktur_organisasi/simpan", [StrukturOrganisasiController::class, "update"]);
                 Route::resource("/struktur_organisasi", StrukturOrganisasiController::class);
+
+                // Data Hafalan Asatidz
+                Route::resource("/hafalan/asatidz", HafalanAsatidzController::class);
             });
 
             Route::group(["middleware" => ["can:admin"]], function () {

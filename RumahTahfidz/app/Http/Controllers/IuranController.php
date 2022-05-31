@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class IuranController extends Controller
 {
     public function validasi_admin_cabang()
-    {
+    {]
         if (Auth::user()->id_role == 1) {
             $id_status_validasi = 3;
         } else if (Auth::user()->id_role == 2) {

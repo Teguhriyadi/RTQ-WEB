@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Siswa;
 use App\Models\Pengajar;
 use App\Models\Profil;
+use App\Models\ProfilWeb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -54,7 +55,7 @@ class ProfilController extends Controller
 
     public function web_profil()
     {
-        $profil = Profil::select("id", "nama", "singkatan", "email", "no_hp", "alamat", "logo")->first();
+        $profil = ProfilWeb::select("id", "nama", "singkatan", "email", "no_hp", "alamat", "logo")->first();
 
         return view("app.administrator.profil.v_index", compact('profil'));
     }
