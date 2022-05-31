@@ -22,7 +22,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <a href="{{ url('/app/sistem/asatidz/create') }}" class="btn btn-primary">
+                <a href="{{ url('/app/sistem/asatidz/create') }}" class="btn btn-primary btn-sm">
                     <i class="fa fa-plus"></i> Tambah
                 </a>
                 <div class="clearfix"></div>
@@ -58,13 +58,13 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ url('/app/sistem/asatidz/edit/'.$asatidz->id) }}" class="btn btn-warning">
+                                            <a href="{{ url('/app/sistem/asatidz/edit/'.$asatidz->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
                                             <form action="{{ url('/app/sistem/asatidz/'.$asatidz->id) }}" method="POST" style="display: inline;">
                                                 @method("DELETE")
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger">
+                                                <button type="submit" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i> Hapus
                                                 </button>
                                             </form>

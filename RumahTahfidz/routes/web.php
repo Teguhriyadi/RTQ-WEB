@@ -26,6 +26,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
+use App\Http\Controllers\NilaiKategoriController;
 use App\Http\Controllers\PelajaranController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PesanController;
@@ -167,6 +168,11 @@ Route::prefix("app")->group(function () {
 
                     Route::put("web/{id}", [ProfilWebController::class, "update"]);
                     Route::resource("/web", ProfilWebController::class);
+
+                    // Data Nilai Kategori
+                    Route::get("/nilai/kategori/edit", [NilaiKategoriController::class, "edit"]);
+                    Route::put("/nilai/kategori/simpan", [NilaiKategoriController::class, "update"]);
+                    Route::resource("nilai/kategori", NilaiKategoriController::class);
 
                     Route::prefix("/kategori")->group(function () {
 

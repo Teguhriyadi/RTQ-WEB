@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_wali_santri', function (Blueprint $table) {
+        Schema::create('tb_nilai_kategori', function (Blueprint $table) {
             $table->id();
-            $table->string("no_ktp", 50);
-            $table->string("no_kk", 50);
-            $table->string("kode_halaqah");
-            $table->string("pekerjaan");
+            $table->double("nilai_awal");
+            $table->double("nilai_akhir");
+            $table->string("nilai_kategori");
+            $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_wali_santri');
+        Schema::dropIfExists('tb_nilai_kategori');
     }
 };

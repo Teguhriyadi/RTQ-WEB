@@ -187,6 +187,11 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Kategori Pelajaran
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(3) == "nilai_kategori" }}">
+                                    <a href="{{ url('/app/sistem/setting/nilai/kategori') }}">
+                                        Nilai Kategori
+                                    </a>
+                                </li>
                                 <li class="{{ Request::segment(3) == 'pelajaran' }}">
                                     <a href="{{ url('/app/sistem/pelajaran') }}">
                                         Pelajaran
