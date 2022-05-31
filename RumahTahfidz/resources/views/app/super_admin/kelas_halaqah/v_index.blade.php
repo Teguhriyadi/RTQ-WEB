@@ -56,7 +56,7 @@
                                                 <td class="text-center">{{ $data->kelas_halaqah }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editKelasHalaqah({{ $data->id }})"
-                                                        class="btn btn-warning btn-sm" data-target="#modalEdit"
+                                                        class="btn btn-warning text-white btn-sm" data-target="#modalEdit"
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>

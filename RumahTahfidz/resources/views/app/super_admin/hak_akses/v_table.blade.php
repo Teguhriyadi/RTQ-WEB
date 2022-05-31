@@ -20,29 +20,44 @@
 @endforeach
 
 <script>
-    $('.form-check-input').on('click', function() {
+    $('.form-check-input').on('click', function(e) {
+        e.preventDefault();
+
         const userId = $(this).data('user');
         const roleId = $(this).data('role');
 
-        $.ajax({
-            url: "{{ url('app/sistem/users/hak_akses/update') }}",
-            type: 'post',
-            data: {
-                userId: userId,
-                roleId: roleId,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                if (response == 1) {
-                    loadData();
-                    $("#message").html(
-                        '<div class="alert alert-success">Hak akses berhasil diubah!</div>'
-                    )
-                } else {
-                    console.log(response);
-                }
-            }
-        });
+        Swal.fire({
+            title: '',
+            text: "Apakah anda yakin?",
+            icon: 'warning',
+            showDenyButton: true,
+            confirmButtonColor: '#d33',
+            denyButtonColor: '#3085d6',
+            confirmButtonText: 'Batal',
+            denyButtonText: 'Iya'
+        }).then((result) => {
+            if (result.isDenied) {
+                $.ajax({
+                    url: "{{ url('app/sistem/users/hak_akses/update') }}",
+                    type: 'post',
+                    data: {
+                        userId: userId,
+                        roleId: roleId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response == 1) {
+                            loadData();
+                            $("#message").html(
+                                '<div class="alert alert-success">Hak akses berhasil diubah!</div>'
+                            )
+                        } else {
+                            console.log(response);
+                        }
+                    }
+                });
+            } else {}
+        })
 
     });
 </script>

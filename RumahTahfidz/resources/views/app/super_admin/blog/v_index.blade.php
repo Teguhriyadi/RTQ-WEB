@@ -1,4 +1,4 @@
-@extends(".app.layouts.template")
+@extends('.app.layouts.template')
 
 @section('app_title', 'Blog')
 
@@ -6,7 +6,7 @@
 
     <section class="section">
         <h3>
-            @yield("app_title")
+            @yield('app_title')
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -65,15 +65,16 @@
                                                     <td>{{ $data->slug }}</td>
                                                     <td class="text-center">
                                                         <button onclick="editDataBlog({{ $data->id }})"
-                                                            class="btn btn-warning btn-sm" data-target="#modalEdit"
-                                                            data-toggle="modal">
+                                                            class="btn btn-warning btn-sm text-white"
+                                                            data-target="#modalEdit" data-toggle="modal">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </button>
                                                         <form action="{{ url('/app/sistem/blog/' . $data->id) }}"
                                                             method="POST" style="display: inline;">
-                                                            @method("DELETE")
+                                                            @method('DELETE')
                                                             @csrf
-                                                            <input type="hidden" name="hapusGambar" value="{{ $data->foto }}">
+                                                            <input type="hidden" name="hapusGambar"
+                                                                value="{{ $data->foto }}">
                                                             <button type="submit" class="btn btn-danger btn-sm">
                                                                 <i class="fa fa-trash-o"></i> Hapus
                                                             </button>
@@ -168,7 +169,7 @@
                     </button>
                 </div>
                 <form action="{{ url('/app/sistem/blog/simpan') }}" method="POST" enctype="multipart/form-data">
-                    @method("PUT")
+                    @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
 

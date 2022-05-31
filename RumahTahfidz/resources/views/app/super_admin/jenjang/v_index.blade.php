@@ -1,4 +1,4 @@
-@extends(".app.layouts.template")
+@extends('.app.layouts.template')
 
 @section('app_title', 'Jenjang')
 
@@ -6,7 +6,7 @@
 
     <section class="section">
         <h3>
-            @yield("app_title")
+            @yield('app_title')
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -76,13 +76,13 @@
                                                 <td>{{ $jenjang->jenjang }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editJenjang({{ $jenjang->id }})"
-                                                        class="btn btn-warning btn-sm" data-target="#modalEdit"
+                                                        class="btn btn-warning text-white btn-sm" data-target="#modalEdit"
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
                                                     <form action="{{ url('/app/sistem/jenjang/' . $jenjang->id) }}"
                                                         method="POST" style="display: inline;">
-                                                        @method("DELETE")
+                                                        @method('DELETE')
                                                         {{ csrf_field() }}
                                                         <button type="submit" class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash"></i> Hapus
@@ -115,7 +115,7 @@
                     </button>
                 </div>
                 <form action="{{ url('/app/sistem/jenjang/simpan') }}" method="POST">
-                    @method("PUT")
+                    @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
 
