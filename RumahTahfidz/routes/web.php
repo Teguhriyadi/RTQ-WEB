@@ -12,6 +12,7 @@ use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateIuranController;
+use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\IuranController;
 use App\Http\Controllers\JabatanController;
@@ -147,6 +148,11 @@ Route::prefix("app")->group(function () {
                 Route::get("/status_absen/edit", [StatusAbsenController::class, "edit"]);
                 Route::put("/status_absen/simpan", [StatusAbsenController::class, "update"]);
                 Route::resource("/status_absen", StatusAbsenController::class);
+
+                // Hak Akses Users
+                Route::get("/users/hak_akses/{id}", [HakAksesController::class, "index"]);
+                Route::post("/users/hak_akses/update", [HakAksesController::class, "store"]);
+                Route::get("/users/hak_akses/{id}/table", [HakAksesController::class, "table"]);
 
                 // Data Users
                 Route::post("/users/non_aktifkan/", [UsersController::class, "non_aktifkan"]);

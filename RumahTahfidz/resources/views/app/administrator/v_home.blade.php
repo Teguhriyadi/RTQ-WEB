@@ -18,8 +18,9 @@ use App\Models\SettingIuran;
 
     <div class="row top_tiles">
         <div class="col-sm-12">
-            <div class="alert alert-success ">
-                <p style="font-size: 20px; margin-bottom: 0">Selamat Datang {{ auth()->user()->nama }}</p>
+            <div class="alert bg-success text-white">
+                <p style="font-size: 20px; margin-bottom: 0">Selamat Datang <b>{{ auth()->user()->nama }}</b> <br> Anda
+                    login sebagai <b>{{ auth()->user()->getHakAkses->getRole->keterangan }}</b></p>
             </div>
         </div>
     </div>
