@@ -114,14 +114,14 @@
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
-                        <button type="reset" class="btn btn-danger">
+                        <button type="reset" class="btn btn-danger btn-sm">
                             <i class="fa fa-times"></i> Batal
                         </button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                         <div class="pull-right">
-                            <a href="{{ url('/app/sistem/asatidz') }}" class="btn btn-warning">
+                            <a href="{{ url('/app/sistem/asatidz') }}" class="btn btn-warning btn-sm">
                                 <i class="fa fa-sign-in"></i> Kembali ke Halaman Sebelumnya
                             </a>
                         </div>

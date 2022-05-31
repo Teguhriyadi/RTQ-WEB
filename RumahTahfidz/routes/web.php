@@ -9,6 +9,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
+use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateIuranController;
@@ -20,11 +21,13 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KategoriPelajaranController;
 use App\Http\Controllers\KategoriPenilaianController;
+use App\Http\Controllers\KelasHalaqahController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
+use App\Http\Controllers\NilaiKategoriController;
 use App\Http\Controllers\PelajaranController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PesanController;
@@ -97,6 +100,11 @@ Route::prefix("app")->group(function () {
                 Route::put("/kelas/simpan", [KelasController::class, "update"]);
                 Route::resource("/kelas", KelasController::class);
 
+                // Data Kelas Halaqah
+                Route::get("/kelas_halaqah/edit", [KelasHalaqahController::class, "edit"]);
+                Route::put("/kelas_halaqah/simpan", [KelasHalaqahController::class, "update"]);
+                Route::resource("/kelas_halaqah", KelasHalaqahController::class);
+
                 // Data Role
                 Route::get("/role/edit", [RoleController::class, "edit"]);
                 Route::put("/role/simpan", [RoleController::class, "update"]);
@@ -106,6 +114,7 @@ Route::prefix("app")->group(function () {
                 Route::get("/jenjang/edit", [JenjangController::class, "edit"]);
                 Route::put("jenjang/simpan", [JenjangController::class, "update"]);
                 Route::resource("/jenjang", JenjangController::class);
+
 
                 // Data Cabang
                 Route::get("/lokasi_rt/edit", [LokasiRtController::class, "edit"]);
@@ -128,6 +137,9 @@ Route::prefix("app")->group(function () {
                 Route::get("/kategori/edit", [KategoriController::class, "edit"]);
                 Route::put("/kategori/simpan", [KategoriController::class, "update"]);
                 Route::resource("/kategori", KategoriController::class);
+
+                // Data Dokumentasi
+                Route::resource("dokumentasi", DokumentasiController::class);
 
                 // Data Blog
                 Route::get("/blog/edit", [BlogController::class, "edit"]);
@@ -162,6 +174,11 @@ Route::prefix("app")->group(function () {
 
                     Route::put("web/{id}", [ProfilWebController::class, "update"]);
                     Route::resource("/web", ProfilWebController::class);
+
+                    // Data Nilai Kategori
+                    Route::get("/nilai/kategori/edit", [NilaiKategoriController::class, "edit"]);
+                    Route::put("/nilai/kategori/simpan", [NilaiKategoriController::class, "update"]);
+                    Route::resource("nilai/kategori", NilaiKategoriController::class);
 
                     Route::prefix("/kategori")->group(function () {
 
@@ -247,13 +264,6 @@ Route::prefix("app")->group(function () {
                 Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
                 Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
                 Route::resource("/wali_santri", WaliSantriController::class);
-
-                Route::prefix("laporan")->group(function () {
-
-                    // Absensi
-                    Route::get("/absensi/santri", [LaporanController::class, "laporan_absensi_santri"]);
-                    Route::get("/absensi/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
-                });
             });
 
             Route::group(["middleware" => ["can:asatidz"]], function () {
@@ -288,6 +298,13 @@ Route::prefix("app")->group(function () {
                 Route::put("/absensi/santri", [AbsensiSantriController::class, "input_data"]);
                 Route::post("/tambah_absensi", [AbsensiSantriController::class, "tambah_absensi"]);
                 Route::get("/absensi/santri", [AbsensiSantriController::class, "absensi_santri"]);
+            });
+
+            Route::prefix("laporan")->group(function () {
+
+                // Absensi
+                Route::get("/absensi/santri", [LaporanController::class, "laporan_absensi_santri"]);
+                Route::get("/absensi/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
             });
 
             // Iuran Wali Santri

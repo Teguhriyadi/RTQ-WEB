@@ -19,7 +19,8 @@ class WaliSantriSeeder extends Seeder
             "id" => 10,
             "no_ktp" => "29092002",
             "no_kk" => "12345678910111213",
-            "kode_halaqah" => "HLQSRJ001"
+            "kode_halaqah" => "HLQSRJ001",
+            "pekerjaan" => "Polisi"
         ]);
     }
 }

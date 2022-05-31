@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(WaliSantri::class, 'id', 'id');
     }
+
+    public function getKelasHalaqah()
+    {
+        return $this->hasOne("App\Models\KelasHalaqah", "id_asatidz", "id");
+    }
 }

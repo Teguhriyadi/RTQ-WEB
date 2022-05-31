@@ -1,4 +1,5 @@
 <input type="hidden" name="id" value="{{ $edit->id }}">
+<input type="hidden" name="foto_lama" value="{{ $edit->foto }}">
 <div class="form-group">
     <label for="nama_wali"> Nama Wali </label>
     <input type="text" class="form-control" name="nama_wali" value="{{ $edit->getWali->getUser->nama }}" readonly>
@@ -74,3 +75,29 @@
     <label for="alamat"> Alamat </label>
     <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Data Alamat">{{ $edit->alamat }}</textarea>
 </div>
+<div class="form-group">
+    <label for="foto"> Foto </label>
+    @if (empty($edit->foto))
+    <img class="gambar-lihat" id="tampilGambar">
+    @else
+    <img class="gambar-lihat mb-3" id="tampilGambar" src="{{ url('/storage/'.$edit->foto) }}" width="100%">
+    @endif
+
+    <input type="file" class="form-control" name="foto" id="foto" onchange="imagePreview()">
+</div>
+
+<script>
+    function imagePreview() {
+        const image = document.querySelector("#foto");
+        const imgPreview = document.querySelector(".gambar-lihat");
+        imgPreview.style.display = "block";
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+            $("#tampilGambar").addClass('mb-3');
+            $("#tampilGambar").width("100%");
+            $("#tampilGambar").height("300");
+        }
+    }
+</script>

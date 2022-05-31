@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_nilai_iman_adab', function (Blueprint $table) {
+        Schema::create('tb_kelas_halaqah', function (Blueprint $table) {
             $table->id();
             $table->integer("id_asatidz");
-            $table->integer("id_santri");
-            $table->integer("id_pelajaran_iman_adab");
-            $table->double("nilai");
+            $table->string("kode_halaqah");
+            $table->string("kelas_halaqah");
+            $table->string("status")->enum("1", "0")->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_nilai_iman_adab');
+        Schema::dropIfExists('tb_kelas_halaqah');
     }
 };

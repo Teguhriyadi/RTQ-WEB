@@ -70,7 +70,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/santri/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/santri/simpan') }}" method="POST" enctype="multipart/form-data">
                     @method("PUT")
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">

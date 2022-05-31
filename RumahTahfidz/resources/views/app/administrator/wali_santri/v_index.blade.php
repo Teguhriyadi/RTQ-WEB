@@ -1,4 +1,4 @@
-@extends(".app.layouts.template")
+@extends('.app.layouts.template')
 
 @section('app_title', 'Wali Santri')
 
@@ -6,7 +6,7 @@
 
     <section class="section">
         <h3>
-            @yield("app_title")
+            @yield('app_title')
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -199,8 +199,14 @@
                             <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat"></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="pekerjaan"> Pekerjaan </label>
+                            <input type="text" class="form-control" name="pekerjaan" id="pekerjaan"
+                                placeholder="Masukkan Pekerjaan">
+                        </div>
+                        <div class="form-group">
                             <label for="gambar"> Gambar </label>
-                            <input type="file" class="form-control" name="gambar" id="gambar">
+                            <img class="gambar-preview" id="tampilGambar">
+                            <input type="file" class="form-control" name="gambar" id="gambar" onchange="previewImage()">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -230,7 +236,7 @@
                     </button>
                 </div>
                 <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST">
-                    @method("PUT")
+                    @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
 
@@ -261,7 +267,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/santri/tambah_santri_by_wali') }}" method="POST">
+                <form action="{{ url('/app/sistem/santri/tambah_santri_by_wali') }}" method="POST"
+                    enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-tambah-santri">
 
@@ -323,7 +330,7 @@
 
 @section('app_scripts')
     <script src="{{ url('') }}/vendors/jquery/dist/jquery.form.min.js"></script>
-    <script>
+    <script type="text/javascript">
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");

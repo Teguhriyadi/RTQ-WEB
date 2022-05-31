@@ -46,5 +46,21 @@ class SantriSeeder extends Seeder
             "id_wali" => 10,
             "id_jenjang" => 2
         ]);
+
+        Santri::create([
+            "nis" => "29092004",
+            "nama_lengkap" => "Ahmad Fauzi",
+            "nama_panggilan" => "Fauzi Hendrayatno",
+            "tempat_lahir" => "Cirebon",
+            "tanggal_lahir" => "2003-03-03",
+            "jenis_kelamin" => "L",
+            "alamat" => "Papua",
+            "prestasi_anak" => "Juara 3 Web Technology",
+            "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
+            "id_kelas" => 1,
+            "kode_halaqah" => "HLQSRJ002",
+            "id_wali" => 10,
+            "id_jenjang" => 2
+        ]);
     }
 }
