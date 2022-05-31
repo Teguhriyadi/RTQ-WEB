@@ -187,7 +187,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Kategori Pelajaran
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == "nilai_kategori" }}">
+                                <li class="{{ Request::segment(3) == 'nilai_kategori' }}">
                                     <a href="{{ url('/app/sistem/setting/nilai/kategori') }}">
                                         Nilai Kategori
                                     </a>
@@ -370,6 +370,12 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                     <li class="{{ Request::segment(3) == 'profil' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/profil_user') }}">
                             <i class="fa fa-user"></i>Profil Saya
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::segment(3) == 'hafalan_asatidz' ? 'active' : '' }}">
+                        <a href="">
+                            <i class="fa fa-book"></i> Hafalan Asatidz
                         </a>
                     </li>
 
