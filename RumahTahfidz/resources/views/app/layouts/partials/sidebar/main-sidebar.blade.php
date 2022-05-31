@@ -375,6 +375,12 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                         </a>
                     </li>
 
+                    <li class="{{ Request::segment(3) == 'hafalan_asatidz' ? 'active' : '' }}">
+                        <a href="">
+                            <i class="fa fa-book"></i> Hafalan Asatidz
+                        </a>
+                    </li>
+
                     <li class="{{ Request::segment(3) == 'informasi_login' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/informasi_login') }}">
                             <i class="fa fa-key"></i>Informasi Login
