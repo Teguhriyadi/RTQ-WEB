@@ -28,11 +28,6 @@
                     <h2>
                         @yield('app_title')
                     </h2>
-                    <div class="pull-right">
-                        <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
-                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -60,8 +55,9 @@
                                                 <td class="text-center">{{ $data->no_ktp }}</td>
                                                 <td>{{ $data->getUser->nama }}</td>
                                                 <td class="text-center">
-                                                    <a href="" class="btn btn-warning btn-sm">
-                                                        <i class="fa fa-edit"></i>
+                                                    <a href="{{ url('/app/sistem/hafalan/asatidz/' . $data->id) }}"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="fa fa-edit"></i> Rekam Hafalan
                                                     </a>
                                                 </td>
                                             </tr>
