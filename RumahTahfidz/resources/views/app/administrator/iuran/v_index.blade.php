@@ -149,12 +149,12 @@ use App\Models\SettingIuran;
                                                         {{ $data->tanggal }}
                                                     </td>
                                                     <td class="text-center">
-                                                        @if (Auth::user()->id_role == 1)
+                                                        @if (Auth::user()->getAkses->id_role == 1)
                                                             <span class="badge p-2"
                                                                 style="background-color: orange; font-size: 14px; color: white;">
                                                                 {{ $data->getStatusValidasi->status }}
                                                             </span>
-                                                        @elseif (Auth::user()->id_role == 2)
+                                                        @elseif (Auth::user()->getAkses->id_role == 2)
                                                             <span class="badge bg-secondary p-2"
                                                                 style="font-size: 14px; color: white;">
                                                                 {{ $data->getStatusValidasi->status }}
@@ -174,9 +174,9 @@ use App\Models\SettingIuran;
                                         </tbody>
                                     </table>
                                     <?php
-                                    if (Auth::user()->id_role == 1) {
+                                    if (Auth::user()->getAkses->id_role == 1) {
                                         $id_status = 3;
-                                    } elseif (Auth::user()->id_role == 2) {
+                                    } elseif (Auth::user()->getAkses->id_role == 2) {
                                         $id_status = 2;
                                     }
                                     ?>
@@ -185,13 +185,12 @@ use App\Models\SettingIuran;
                                     @endphp
 
                                     @if (empty($validasi))
-
                                     @else
-                                    <div class="ln_solid"></div>
-                                    <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check All |
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        <i class="fa fa-save"></i> Simpan
-                                    </button>
+                                        <div class="ln_solid"></div>
+                                        <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check All |
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fa fa-save"></i> Simpan
+                                        </button>
                                     @endif
 
                                 </div>

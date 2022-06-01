@@ -1,11 +1,11 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Rekap Iuran')
+@section('app_title', 'Rekap Asatidz')
 
 @section('app_content')
 
     @php
-    use App\Models\Iuran;
+    use App\Models\Asatidz;
     @endphp
 
     <section class="section">
@@ -14,15 +14,19 @@
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    @yield('app_title')
+                </li>
             </ol>
         </nav>
     </section>
 
     <div class="clearfix"></div>
 
-    <form action="{{ url('/app/sistem/generate/iuran/') }}" method="POST">
+    <form action="{{ url('/app/sistem/generate/asatidz/') }}" method="POST">
         @method('PUT')
         @csrf
         <div class="row">
@@ -65,16 +69,17 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">NIS</th>
-                                    <th>Nama Santri</th>
-                                    <th class="text-center">Nominal</th>
+                                    <th class="text-center">Nomor Induk</th>
+                                    <th>Nama</th>
+                                    <th>Pendidikan Terakhir</th>
+                                    <th class="text-center">No. HP</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $no = 0;
                                 @endphp
-                                @if (empty($data_asatidz))
+                                @if (empty($data_iuran))
                                     <tr>
                                         <td colspan="4" class="text-center">
                                             <i>
@@ -83,15 +88,29 @@
                                         </td>
                                     </tr>
                                 @else
-                                    @foreach ($data_asatidz as $data)
+                                    @php
+                                        $jumlah = 0;
+                                        $nama_lengkap = '';
+                                    @endphp
+                                    @foreach ($data_iuran as $data)
                                         @php
-                                            $count = Asatidz::get();
+                                            $total = 0;
+                                            $count = Iuran::where('id_santri', $data->santri_id)->get();
+                                            $jumlah = 0;
+                                            foreach ($count as $c) {
+                                                $nama_lengkap = $c->getSantri->nama_lengkap;
+                                                $nis = $c->getSantri->nis;
+                                                if ($data->santri_id == $c->id_santri) {
+                                                    $jumlah += $c->nominal;
+                                                }
+                                            }
+                                            $total += $jumlah;
                                         @endphp
                                         <tr>
                                             <td class="text-center">{{ ++$no }}.</td>
                                             <td class="text-center">{{ $nis }}</td>
                                             <td>{{ $nama_lengkap }}</td>
-                                            <td class="text-center"></td>
+                                            <td class="text-center">Rp. {{ number_format($jumlah) }}</td>
                                         </tr>
                                     @endforeach
                                 @endif

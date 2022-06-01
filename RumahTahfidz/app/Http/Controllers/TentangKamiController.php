@@ -12,7 +12,7 @@ class TentangKamiController extends Controller
     {
         $profil = TentangKami::select("id", "foto", "deskripsi")->first();
 
-        return view("app.super_admin.tentang_kami.v_index", compact('profil'));
+        return view("app.super_admin.halaman_utama.tentang_kami.v_index", compact('profil'));
     }
 
     public function store(Request $request)

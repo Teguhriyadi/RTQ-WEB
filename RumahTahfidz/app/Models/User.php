@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasOne("App\Models\KelasHalaqah", "id_asatidz", "id");
     }
+
+    public function getAkses()
+    {
+        return $this->belongsTo("App\Models\HakAkses", "id", "id_user");
+    }
 }
