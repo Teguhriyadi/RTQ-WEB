@@ -133,12 +133,14 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li
+                            class="{{ Request::segment(3) == 'users' || Request::segment(3) == 'role' ? 'active' : '' }}">
                             <a>
                                 <i class="fa fa-users"></i> Akun
                                 <span class="fa fa-chevron-down"></span>
                             </a>
-                            <ul class="nav child_menu">
+                            <ul class="nav child_menu"
+                                style="display: {{ Request::segment(3) == 'users' || Request::segment(3) == 'role' ? 'block' : '' }}">
                                 <li class="{{ Request::segment(3) == 'role' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/role') }}">
                                         Role

@@ -1,19 +1,19 @@
-@extends(".app.layouts.template")
+@extends('.app.layouts.template')
 
-@section("app_title", "Halaqah")
+@section('app_title', 'Halaqah')
 
-@section("app_content")
+@section('app_content')
 
-@section("app_css")
+@section('app_css')
 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 @endsection
 
 <section class="section">
     <h3>
-        @yield("app_title")
+        @yield('app_title')
     </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -50,26 +50,31 @@
                                 </thead>
                                 <tbody>
                                     @php $no = 0 @endphp
-                                    @foreach($data_halaqah as $halaqah)
-                                    <tr>
-                                        <td class="text-center">{{ ++$no }}.</td>
-                                        <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
-                                        <td>{{ $halaqah->nama_halaqah }}</td>
-                                        <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
-                                        <td class="text-center">
-                                            <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')" class="btn btn-warning btn-sm" data-target="#modalEdit" data-toggle="modal">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </button>
-                                            <form action="{{ url('/app/sistem/halaqah/'.$halaqah->kode_halaqah) }}" method="POST" style="display: inline;">
-                                                @method("DELETE")
-                                                @csrf
-                                                <input type="hidden" name="kode" value="{{ $halaqah->kode_halaqah }}">
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i> Hapus
+                                    @foreach ($data_halaqah as $halaqah)
+                                        <tr>
+                                            <td class="text-center">{{ ++$no }}.</td>
+                                            <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
+                                            <td>{{ $halaqah->nama_halaqah }}</td>
+                                            <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
+                                            <td class="text-center">
+                                                <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')"
+                                                    class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
+                                                    data-toggle="modal">
+                                                    <i class="fa fa-edit"></i> Edit
                                                 </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                <form
+                                                    action="{{ url('/app/sistem/halaqah/' . $halaqah->kode_halaqah) }}"
+                                                    method="POST" style="display: inline;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <input type="hidden" name="kode"
+                                                        value="{{ $halaqah->kode_halaqah }}">
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> Hapus
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -99,20 +104,22 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="kode_halaqah"> Kode Halaqah </label>
-                        <input type="text" class="form-control" name="kode_halaqah" id="kode_halaqah" placeholder="Masukkan Kode Halaqah">
+                        <input type="text" class="form-control" name="kode_halaqah" id="kode_halaqah"
+                            placeholder="Masukkan Kode Halaqah">
                     </div>
                     <div class="form-group">
                         <label for="nama_halaqah"> Nama Halaqah </label>
-                        <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah" placeholder="Masukkan Nama Halaqah">
+                        <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah"
+                            placeholder="Masukkan Nama Halaqah">
                     </div>
                     <div class="form-group">
                         <label for="kode_rt"> Lokasi RT </label>
                         <select name="kode_rt" class="form-control" id="kode_rt" style="width: 100%">
                             <option value="">- Pilih -</option>
                             @foreach ($data_lokasi_rt as $data)
-                            <option value="{{ $data->kode_rt }}">
-                                {{ $data->lokasi_rt }}
-                            </option>
+                                <option value="{{ $data->kode_rt }}">
+                                    {{ $data->lokasi_rt }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -145,7 +152,7 @@
                 </button>
             </div>
             <form action="{{ url('/app/sistem/halaqah/simpan') }}" method="POST">
-                @method("PUT")
+                @method('PUT')
                 @csrf
                 <div class="modal-body" id="modal-content">
 
@@ -166,28 +173,28 @@
 
 @endsection
 
-@section("app_scripts")
+@section('app_scripts')
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
-
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#kode_rt").select2({
             theme: 'bootstrap4',
             placeholder: "- Pilih -"
         });
     });
-
 </script>
 
 <script>
     function editDataHalaqah(kode_halaqah) {
         $.ajax({
-            url : "{{ url('/app/sistem/halaqah/edit') }}",
-            type : "GET",
-            data : { kode_halaqah : kode_halaqah },
-            success : function(data) {
+            url: "{{ url('/app/sistem/halaqah/edit') }}",
+            type: "GET",
+            data: {
+                kode_halaqah: kode_halaqah
+            },
+            success: function(data) {
                 $("#modal-content").html(data);
                 return true;
             }
@@ -197,7 +204,6 @@
     $(document).ready(function() {
         $("#table-1").dataTable();
     })
-
 </script>
 
 @endsection

@@ -62,11 +62,12 @@
                                                 <td>{{ $data->deskripsi }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editStrukturOrganisasi({{ $data->id }})"
-                                                        class="btn btn-warning btn-sm" data-target="#modalEdit"
+                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form action="{{ url('/app/sistem/struktur_organisasi/'.$data->id) }}" method="POST" style="display: inline;">
+                                                    <form action="{{ url('/app/sistem/struktur_organisasi/' . $data->id) }}"
+                                                        method="POST" style="display: inline;">
                                                         @method('DELETE')
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $data->id }}">

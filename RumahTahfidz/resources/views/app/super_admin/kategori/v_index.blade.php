@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Kelas')
+@section('app_title', 'Kategori')
 
 @section('app_content')
 
@@ -23,17 +23,17 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> Tambah Data Kelas
+                        <i class="fa fa-plus"></i> Tambah Data Kategori
                     </h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/kelas') }}">
+                    <form method="POST" action="{{ url('/app/sistem/kategori') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="nama_kelas"> Nama Kelas </label>
-                            <input type="text" class="form-control" name="nama_kelas" id="nama_kelas"
-                                placeholder="Masukkan Nama Kelas">
+                            <label for="kategori"> Nama Kelas </label>
+                            <input type="text" class="form-control" name="kategori" id="kategori"
+                                placeholder="Masukkan Nama Kategori">
                         </div>
                         <div class="ln_solid"></div>
                         <button class="btn btn-danger btn-sm" type="reset">
@@ -50,7 +50,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-bars"></i> Data Kelas
+                        <i class="fa fa-bars"></i> Data Kategori
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -62,7 +62,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
-                                            <th class="text-center">Nama Kelas</th>
+                                            <th class="text-center">Nama Kategori</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
@@ -70,17 +70,17 @@
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_kelas as $kelas)
+                                        @foreach ($data_kategori as $kategori)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $kelas->nama_kelas }}</td>
+                                                <td class="text-center">{{ $kategori->kategori }}</td>
                                                 <td class="text-center">
-                                                    <button onclick="editDataKelas({{ $kelas->id }})"
-                                                        class="btn btn-warning text-white btn-sm" data-target="#modalEdit"
+                                                    <button onclick="editDataKategori({{ $kategori->id }})"
+                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <button id="deleteKelas" data-id="{{ $kelas->id }}"
+                                                    <button id="deleteKelas" data-id="{{ $kategori->id }}"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> Hapus
                                                     </button>
@@ -110,17 +110,17 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/kelas/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/kategori/simpan') }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>
@@ -135,9 +135,9 @@
 @section('app_scripts')
 
     <script>
-        function editDataKelas(id) {
+        function editDataKategori(id) {
             $.ajax({
-                url: "{{ url('/app/sistem/kelas/edit') }}",
+                url: "{{ url('/app/sistem/kategori/edit') }}",
                 type: "GET",
                 data: {
                     id: id
@@ -166,7 +166,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form_string =
-                            "<form method=\"POST\" action=\"{{ url('/app/sistem/kelas/') }}/" +
+                            "<form method=\"POST\" action=\"{{ url('/app/sistem/kategori/') }}/" +
                             id +
                             "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
 

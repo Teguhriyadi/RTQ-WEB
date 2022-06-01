@@ -20,7 +20,7 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            "keterangan" => "Admin"
+            "keterangan" => "Admin Cabang"
         ]);
 
         Role::create([
@@ -28,7 +28,7 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            "keterangan" => "Santri"
+            "keterangan" => "Wali Santri"
         ]);
     }
 }

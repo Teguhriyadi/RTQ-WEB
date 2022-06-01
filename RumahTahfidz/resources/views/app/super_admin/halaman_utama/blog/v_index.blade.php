@@ -70,8 +70,8 @@
                                                     <td>{{ $data->slug }}</td>
                                                     <td class="text-center">
                                                         <button onclick="editDataBlog({{ $data->id }})"
-                                                            class="btn btn-warning btn-sm" data-target="#modalEdit"
-                                                            data-toggle="modal">
+                                                            class="btn btn-warning btn-sm text-white"
+                                                            data-target="#modalEdit" data-toggle="modal">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </button>
                                                         <form action="{{ url('/app/sistem/blog/' . $data->id) }}"
