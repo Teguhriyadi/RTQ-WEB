@@ -362,8 +362,8 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                         </li>
                     @endcan
 
-                    <li class="{{ Request::segment(3) == 'profil' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/profil_user') }}">
+                    <li class="{{ Request::segment(3) == 'profil/user' ? 'active' : '' }}">
+                        <a href="{{ url('/app/sistem/profil/user') }}">
                             <i class="fa fa-user"></i>Profil Saya
                         </a>
                     </li>

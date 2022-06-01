@@ -19,16 +19,22 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+
+        if ($request->file("gambar")) {
+            $data = $request->file("gambar")->store("users");
+        }
+
         User::create([
-            "id" => time(),
             "nama" => $request->nama,
             "email" => $request->email,
             "password" => bcrypt($request->password),
             "alamat" => $request->alamat,
             "no_hp" => $request->no_hp,
-            "id_role" => 1,
-            "tempat_lahir" => "Cirebon",
-            "tanggal_lahir" => "2020-01-01"
+            "gambar" => $data,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "status" => 1
         ]);
 
         return redirect()->back();
@@ -51,9 +57,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $data = [
+            "edit" => User::where("id", $request->id)->first()
+        ];
+
+        return view("app.super_admin.users.v_edit", $data);
     }
 
     /**

@@ -15,7 +15,7 @@ class ProfilUserController extends Controller
             'user' => User::where('id', Auth::user()->id)->first()
         ];
 
-        return view("app.administrator.profil_user.v_index", $data);
+        return view("app.public.profil.user.v_index", $data);
     }
 
     public function simpan_gambar_profil(Request $request)

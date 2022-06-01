@@ -1,4 +1,4 @@
-@extends(".app.layouts.template")
+@extends('.app.layouts.template')
 
 @section('app_title', 'Blog')
 
@@ -6,7 +6,7 @@
 
     <section class="section">
         <h3>
-            @yield("app_title")
+            @yield('app_title')
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -34,9 +34,14 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
+                        <h2>
+                            <i class="fa fa-book"></i> Data @yield('app_title')
+                        </h2>
+                        <div class="pull-right">
+                            <a href="" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus"></i> Tambah
+                            </a>
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -71,9 +76,10 @@
                                                         </button>
                                                         <form action="{{ url('/app/sistem/blog/' . $data->id) }}"
                                                             method="POST" style="display: inline;">
-                                                            @method("DELETE")
+                                                            @method('DELETE')
                                                             @csrf
-                                                            <input type="hidden" name="hapusGambar" value="{{ $data->foto }}">
+                                                            <input type="hidden" name="hapusGambar"
+                                                                value="{{ $data->foto }}">
                                                             <button type="submit" class="btn btn-danger btn-sm">
                                                                 <i class="fa fa-trash-o"></i> Hapus
                                                             </button>
@@ -168,7 +174,7 @@
                     </button>
                 </div>
                 <form action="{{ url('/app/sistem/blog/simpan') }}" method="POST" enctype="multipart/form-data">
-                    @method("PUT")
+                    @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
 

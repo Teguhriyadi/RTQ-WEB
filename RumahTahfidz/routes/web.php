@@ -170,6 +170,8 @@ Route::prefix("app")->group(function () {
 
                 // Data Users
                 Route::post("/users/non_aktifkan/", [UsersController::class, "non_aktifkan"]);
+                Route::get("/users/edit", [UsersController::class, "edit"]);
+                Route::put("/users/simpan", [UsersController::class, "update"]);
                 Route::resource("/users", UsersController::class);
 
                 Route::prefix("/setting")->group(function () {
@@ -323,9 +325,9 @@ Route::prefix("app")->group(function () {
             Route::get("/informasi_login", [LastLoginController::class, "index"]);
 
             // Data Profil User
-            Route::get("/profil_user", [ProfilUserController::class, "index"]);
-            Route::put("/profil_user/simpan_gambar_profil", [ProfilUserController::class, "simpan_gambar_profil"]);
-            Route::put("/profil_user/ganti_password", [ProfilUserController::class, "ganti_password"]);
+            Route::get("/profil/user", [ProfilUserController::class, "index"]);
+            Route::put("/profil/user/simpan_gambar_profil", [ProfilUserController::class, "simpan_gambar_profil"]);
+            Route::put("/profil/user/ganti_password", [ProfilUserController::class, "ganti_password"]);
 
             // Data Profil Santri
             Route::resource('profil_santri', ProfilSantriController::class);

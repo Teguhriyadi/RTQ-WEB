@@ -10,8 +10,12 @@
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    @yield('app_title')
+                </li>
             </ol>
         </nav>
     </section>
@@ -25,6 +29,12 @@
                     <h2>
                         <i class="fa fa-users"></i> Data Users
                     </h2>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal"
+                            data-target="#modalTambah">
+                            <i class="fa fa-plus"></i> Tambah
+                        </button>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -85,7 +95,9 @@
                                                     <a href="" class="btn btn-primary btn-sm">
                                                         <i class="fa fa-search"></i> Detail
                                                     </a>
-                                                    <button class="btn btn-warning btn-sm text-white">
+                                                    <button onclick="editUsers({{ $user->id }})" type="button"
+                                                        class="btn btn-warning btn-sm" data-toggle="modal"
+                                                        data-target="#modalEdit">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
                                                     @if (Auth::user()->id == $user->id)
@@ -124,7 +136,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/users/') }}" method="POST">
+                <form action="{{ url('/app/sistem/users/') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -147,21 +159,88 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="no_hp"> No. HP </label>
-                            <input type="number" class="form-control" name="no_hp" id="no_hp"
-                                placeholder="Masukkan No. HP">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="no_hp"> No. HP </label>
+                                    <input type="number" class="form-control" name="no_hp" id="no_hp"
+                                        placeholder="Masukkan No. HP">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jenis_kelamin"> Jenis Kelamin </label>
+                                    <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+                                        <option value="">- Pilih -</option>
+                                        <option value="L">Laki - Laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tempat_lahir"> Tempat Lahir </label>
+                                    <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir"
+                                        placeholder="Masukkan Tempat Lahir">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tanggal_lahir"> Tanggal Lahir </label>
+                                    <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="alamat"> Alamat </label>
-                            <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Masukkan Alamat"></textarea>
+                            <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="gambar"> Gambar </label>
+                            <img class="gambar-preview img-fluid" id="tampilGambar">
+                            <input type="file" class="form-control" name="gambar" id="gambar" onchange="previewImage()">
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Tambah
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END -->
+
+    <!-- Edit Data -->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-pencil"></i>
+                        <span>Edit Data</span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/app/sistem/users/simpan') }}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
+                    <div class="modal-body" id="modal-content-edit">
+
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Kembali
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
@@ -176,9 +255,9 @@
 @section('app_scripts')
 
     <script>
-        function editRole(id) {
+        function editUsers(id) {
             $.ajax({
-                url: "{{ url('/app/sistem/role/edit') }}",
+                url: "{{ url('/app/sistem/users/edit') }}",
                 type: "GET",
                 data: {
                     id: id
@@ -188,6 +267,23 @@
                     return true;
                 }
             });
+        }
+
+        function previewImage() {
+            const image = document.querySelector("#gambar");
+            const imgPreview = document.querySelector(".gambar-preview");
+
+            imgPreview.style.display = "block";
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                $("#tampilGambar").addClass('mb-3');
+                $("#tampilGambar").width("100%");
+                $("#tampilGambar").height("300");
+            }
         }
 
         $(document).ready(function() {

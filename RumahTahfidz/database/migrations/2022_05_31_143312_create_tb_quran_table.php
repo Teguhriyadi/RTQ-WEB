@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_quran', function (Blueprint $table) {
             $table->id();
+            $table->integer("id_asatidz");
             $table->string("quran_awal");
             $table->string("quran_akhir");
             $table->text("keterangan");

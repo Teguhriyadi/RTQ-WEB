@@ -40,8 +40,30 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
+                                            <th class="text-center">Nomor Induk</th>
+                                            <th class="text-center">No. KTP</th>
+                                            <th>Nama</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        @php
+                                            $no = 0;
+                                        @endphp
+                                        @foreach ($data_asatidz as $data)
+                                            <tr>
+                                                <td class="text-center">{{ ++$no }}.</td>
+                                                <td class="text-center">{{ $data->nomor_induk }}</td>
+                                                <td class="text-center">{{ $data->no_ktp }}</td>
+                                                <td>{{ $data->getUser->nama }}</td>
+                                                <td class="text-center">
+                                                    <a href="" class="btn btn-warning btn-sm">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
