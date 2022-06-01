@@ -13,7 +13,7 @@ class StatusAbsenController extends Controller
             "data_status" => StatusAbsen::orderBy("keterangan_absen", "DESC")->get()
         ];
 
-        return view("app.super_admin.status_absen.v_index", $data);
+        return view("app.super_admin.data_master.status_absen.v_index", $data);
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class StatusAbsenController extends Controller
             "edit" => StatusAbsen::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.status_absen.v_edit", $data);
+        return view("app.super_admin.data_master.status_absen.v_edit", $data);
     }
 
     public function update(Request $request)

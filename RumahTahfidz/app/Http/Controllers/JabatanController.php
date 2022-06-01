@@ -14,7 +14,7 @@ class JabatanController extends Controller
             "data_jabatan" => Jabatan::get()
         ];
 
-        return view("app.super_admin.jabatan.v_index", $data);
+        return view("app.super_admin.data_master.jabatan.v_index", $data);
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class JabatanController extends Controller
             "edit" => Jabatan::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.jabatan.v_edit", $data);
+        return view("app.super_admin.data_master.jabatan.v_edit", $data);
     }
 
     public function update(Request $request)

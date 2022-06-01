@@ -187,11 +187,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Pelajaran
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/setting/web') }}">
-                                        Profil
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <li>

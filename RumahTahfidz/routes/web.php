@@ -174,9 +174,6 @@ Route::prefix("app")->group(function () {
 
                 Route::prefix("/setting")->group(function () {
 
-                    Route::put("web/{id}", [ProfilWebController::class, "update"]);
-                    Route::resource("/web", ProfilWebController::class);
-
                     // Data Nilai Kategori
                     Route::get("/nilai/kategori/edit", [NilaiKategoriController::class, "edit"]);
                     Route::put("/nilai/kategori/simpan", [NilaiKategoriController::class, "update"]);
