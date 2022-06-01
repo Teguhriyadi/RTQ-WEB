@@ -17,7 +17,7 @@ class KelasHalaqahController extends Controller
             "data_halaqah" => Halaqah::get()
         ];
 
-        return view("app.super_admin.kelas_halaqah.v_index", $data);
+        return view("app.super_admin.data_master.kelas_halaqah.v_index", $data);
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class KelasHalaqahController extends Controller
             "edit" => KelasHalaqah::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.kelas_halaqah.v_edit", $data);
+        return view("app.super_admin.data_master.kelas_halaqah.v_edit", $data);
     }
 
     public function update(Request $request)

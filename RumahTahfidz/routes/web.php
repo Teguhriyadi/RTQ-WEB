@@ -12,7 +12,9 @@ use App\Http\Controllers\CobaController;
 use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\GenerateAsatidzController;
 use App\Http\Controllers\GenerateIuranController;
+use App\Http\Controllers\HafalanAsatidzController;
 use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\IuranController;
@@ -172,9 +174,6 @@ Route::prefix("app")->group(function () {
 
                 Route::prefix("/setting")->group(function () {
 
-                    Route::put("web/{id}", [ProfilWebController::class, "update"]);
-                    Route::resource("/web", ProfilWebController::class);
-
                     // Data Nilai Kategori
                     Route::get("/nilai/kategori/edit", [NilaiKategoriController::class, "edit"]);
                     Route::put("/nilai/kategori/simpan", [NilaiKategoriController::class, "update"]);
@@ -216,11 +215,14 @@ Route::prefix("app")->group(function () {
                     // Iuran
                     Route::put("/iuran", [GenerateIuranController::class, "show"]);
                     Route::resource("/iuran", GenerateIuranController::class);
+
+                    // Asatidz
+                    Route::put("/asatidz", [GenerateAsatidzController::class, "show"]);
+                    Route::resource("/asatidz", GenerateAsatidzController::class);
                 });
 
-                Route::get("/profil", [ProfilController::class, "web_profil"]);
-                Route::post("/profil", [ProfilController::class, "store"]);
-                Route::put("/profil/{id}", [ProfilController::class, "update"]);
+                // Data Profil Web
+                Route::resource("/profil/web", ProfilWebController::class);
 
                 Route::get("/pesan", [PesanController::class, "index"]);
 
@@ -231,6 +233,9 @@ Route::prefix("app")->group(function () {
                 Route::get("/struktur_organisasi/edit", [StrukturOrganisasiController::class, "edit"]);
                 Route::put("/struktur_organisasi/simpan", [StrukturOrganisasiController::class, "update"]);
                 Route::resource("/struktur_organisasi", StrukturOrganisasiController::class);
+
+                // Data Hafalan Asatidz
+                Route::resource("/hafalan/asatidz", HafalanAsatidzController::class);
             });
 
             Route::group(["middleware" => ["can:admin"]], function () {

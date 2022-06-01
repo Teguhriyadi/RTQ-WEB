@@ -13,7 +13,7 @@ class KelasController extends Controller
             "data_kelas" => Kelas::all()
         ];
 
-        return view("app.super_admin.kelas.v_index", $data);
+        return view("app.super_admin.data_master.kelas.v_index", $data);
     }
 
     public function edit(Request $request)
@@ -22,7 +22,7 @@ class KelasController extends Controller
             "edit" => Kelas::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.kelas.v_edit", $data);
+        return view("app.super_admin.data_master.kelas.v_edit", $data);
     }
 
     public function store(Request $request)

@@ -79,12 +79,12 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                         </li>
                         <li>
                             <a>
-                                <i class="fa fa-bars"></i> Landing Page
+                                <i class="fa fa-bars"></i> Halaman Utama
                                 <span class="fa fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
-                                <li class="{{ Request::segment(3) == 'profil' ? 'active' : '' }}">
-                                    <a href="{{ url('/app/sistem/profil') }}">
+                                <li class="{{ Request::segment(3) == 'profil/web' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/profil/web') }}">
                                         Profil WEB
                                     </a>
                                 </li>
@@ -129,16 +129,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 <li>
                                     <a href="{{ url('/app/sistem/iuran') }}">
                                         Iuran
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/data') }}">
-                                        Asatidz
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/data') }}">
-                                        Santri
                                     </a>
                                 </li>
                             </ul>
@@ -199,11 +189,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Pelajaran
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/setting/web') }}">
-                                        Profil
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <li>
@@ -215,6 +200,16 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 <li>
                                     <a href="{{ url('/app/sistem/generate/iuran') }}">
                                         Iuran
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/generate/asatidz') }}">
+                                        Asatidz
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/generate/santri') }}">
+                                        Santri
                                     </a>
                                 </li>
                             </ul>
@@ -376,7 +371,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                     </li>
 
                     <li class="{{ Request::segment(3) == 'hafalan_asatidz' ? 'active' : '' }}">
-                        <a href="">
+                        <a href="{{ url('/app/sistem/hafalan/asatidz') }}">
                             <i class="fa fa-book"></i> Hafalan Asatidz
                         </a>
                     </li>

@@ -12,7 +12,7 @@ class ProfilWebController extends Controller
     {
         $profil = ProfilWeb::select("id", "nama", "singkatan", "email", "no_hp", "alamat", "logo")->first();
 
-        return view("app.super_admin.settings.profil_web.v_index", compact('profil'));
+        return view("app.super_admin.halaman_utama.profil_web.v_index", compact('profil'));
     }
 
     public function store(Request $request)
@@ -39,13 +39,14 @@ class ProfilWebController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = "";
         if ($request->file("logo")) {
             if ($request->logo_lama) {
                 Storage::delete($request->logo_lama);
             }
 
             $data = $request->file("logo")->store("logo");
+        } else {
+            $data = $request->logo_lama;
         }
 
         ProfilWeb::where("id", $id)->update([

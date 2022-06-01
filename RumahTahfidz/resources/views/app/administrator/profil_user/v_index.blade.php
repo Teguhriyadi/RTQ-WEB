@@ -34,7 +34,7 @@
                                     <h3>{{ $user->nama }}</h3>
                                     <div class="text-muted d-inline font-weight-normal">
                                         <div class="slash"></div>
-                                        {{ $user->getRole->keterangan == 'Santri' ? 'Wali Santri' : $user->getRole->keterangan }}
+                                        {{ $user->getAkses->getRole->keterangan }}
                                     </div>
                                 </div>
                                 <div class="row pt-3">

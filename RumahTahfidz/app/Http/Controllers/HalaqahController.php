@@ -15,7 +15,7 @@ class HalaqahController extends Controller
             "data_lokasi_rt" => LokasiRt::get()
         ];
 
-        return view("app.super_admin.halaqah.v_index", $data);
+        return view("app.super_admin.data_master.halaqah.v_index", $data);
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class HalaqahController extends Controller
             "data_lokasi_rt" => LokasiRt::get()
         ];
 
-        return view("app.super_admin.halaqah.v_edit", $data);
+        return view("app.super_admin.data_master.halaqah.v_edit", $data);
     }
 
     public function update(Request $request)

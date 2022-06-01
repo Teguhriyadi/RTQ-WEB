@@ -10,7 +10,6 @@ class GenerateIuranController extends Controller
 {
     public function index()
     {
-
         return view("app.super_admin.generate.iuran.v_index");
     }
 

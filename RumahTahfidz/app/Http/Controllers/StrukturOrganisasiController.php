@@ -16,7 +16,7 @@ class StrukturOrganisasiController extends Controller
             "data_jabatan" => Jabatan::get()
         ];
 
-        return view("app.super_admin.struktur_organisasi.v_index", $data);
+        return view("app.super_admin.halaman_utama.struktur_organisasi.v_index", $data);
     }
 
     public function store(Request $request)
@@ -44,7 +44,7 @@ class StrukturOrganisasiController extends Controller
             "data_jabatan" => Jabatan::get()
         ];
 
-        return view("app.super_admin.struktur_organisasi.v_edit", $data);
+        return view("app.super_admin.halaman_utama.struktur_organisasi.v_edit", $data);
     }
 
     public function update(Request $request)
