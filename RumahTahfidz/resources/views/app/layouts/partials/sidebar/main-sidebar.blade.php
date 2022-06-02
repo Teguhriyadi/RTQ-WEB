@@ -65,14 +65,29 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Jabatan
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(3) == 'halaqah' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/halaqah') }}">
+                                        Halaqah
+                                    </a>
+                                </li>
                                 <li class="{{ Request::segment(3) == 'admin_lokasi_rt' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">
                                         Admin Lokasi RT
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(3) == 'halaqah' ? 'active' : '' }}">
-                                    <a href="{{ url('/app/sistem/halaqah') }}">
-                                        Halaqah
+                                <li class="{{ Request::segment(3) == 'asatidz' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/asatidz') }}">
+                                        Asatidz
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'wali_santri' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/wali_santri') }}">
+                                        Wali Santri
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(3) == 'santri' ? 'active' : '' }}">
+                                    <a href="{{ url('/app/sistem/santri') }}">
+                                        Santri
                                     </a>
                                 </li>
                             </ul>
