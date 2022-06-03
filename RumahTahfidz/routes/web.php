@@ -113,6 +113,11 @@ Route::prefix("app")->group(function () {
             Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
             Route::resource("/wali_santri", WaliSantriController::class);
 
+            // Data Pengajar
+            Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
+            Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
+            Route::resource("/asatidz", AsatidzController::class);
+
             Route::group(["middleware" => ["can:super_admin"]], function () {
 
                 // Data Kelas
@@ -266,12 +271,6 @@ Route::prefix("app")->group(function () {
                 Route::put("/tes/simpan", [TesSantriController::class, "update"]);
                 Route::get("/tes/edit", [TesSantriController::class, "edit"]);
                 Route::put("/tes/simpan_data", [TesSantriController::class, "simpan"]);
-
-
-                // Data Pengajar
-                Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
-                Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
-                Route::resource("/asatidz", AsatidzController::class);
             });
 
             Route::group(["middleware" => ["can:asatidz"]], function () {

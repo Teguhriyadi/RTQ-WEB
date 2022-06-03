@@ -38,7 +38,7 @@
                             <i class="fa fa-book"></i> Data @yield('app_title')
                         </h2>
                         <div class="pull-right">
-                            <a href="" class="btn btn-primary btn-sm">
+                            <a href="{{ url('/app/sistem/blog/create') }}" class="btn btn-primary btn-sm">
                                 <i class="fa fa-plus"></i> Tambah
                             </a>
                         </div>

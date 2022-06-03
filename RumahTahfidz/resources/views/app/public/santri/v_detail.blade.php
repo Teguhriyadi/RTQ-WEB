@@ -31,6 +31,81 @@
                     </h2>
                     <div class="clearfix"></div>
                 </div>
+                <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="profile_img">
+                            <div id="crop-avatar">
+                                @if ($detail->foto == '')
+                                    <img class="img-responsive avatar-view" src="{{ url('/gambar/gambar_user.png') }}"
+                                        alt="">
+                                @else
+                                    <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar"
+                                        title="Change the avatar">
+                                @endif
+                            </div>
+                        </div>
+                        <h3>
+                            {{ $detail->nama_lengkap }}
+                        </h3>
+
+                        <ul class="list-unstyled user_data">
+                            <li>
+                                <i class="fa fa-map-marker user-profile-icon"></i>
+                                {{ $detail->getKelas->nama_kelas }}
+                            </li>
+
+                            <li>
+                                <i class="fa fa-briefcase user-profile-icon"></i>
+                                {{ $detail->getJenjang->jenjang }}
+                            </li>
+
+                            <li class="m-top-xs">
+                                <i class="fa fa-external-link user-profile-icon"></i>
+                                {{ $detail->getHalaqah->nama_halaqah }}
+                            </li>
+                        </ul>
+
+                        <h4>Skills</h4>
+                        <ul class="list-unstyled user_data">
+                            <li>
+                                <p>Web Applications</p>
+                                <div class="progress progress_sm">
+                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Website Design</p>
+                                <div class="progress progress_sm">
+                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Automation & Testing</p>
+                                <div class="progress progress_sm">
+                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>UI / UX</p>
+                                <div class="progress progress_sm">
+                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="profile_title">
+                            <div class="col-md-6">
+                                <h2>
+                                    Absensi Santri
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div id="graph_bar" style="width: 100%; height: 280px"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

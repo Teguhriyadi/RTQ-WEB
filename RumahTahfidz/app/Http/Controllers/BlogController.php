@@ -22,6 +22,15 @@ class BlogController extends Controller
         return view("app.super_admin.halaman_utama.blog.v_index", $data);
     }
 
+    public function create()
+    {
+        $data = [
+            "data_kategori" => Kategori::get()
+        ];
+
+        return view("app.super_admin.halaman_utama.blog.v_create", $data);
+    }
+
     public function store(Request $request)
     {
         if ($request->file("foto")) {
