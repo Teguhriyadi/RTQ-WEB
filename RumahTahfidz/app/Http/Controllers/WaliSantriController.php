@@ -78,7 +78,6 @@ class WaliSantriController extends Controller
             }
 
             $data = $request->file("gambar")->store("wali_santri");
-
         } else {
             $data = $request->gambar_lama;
         }

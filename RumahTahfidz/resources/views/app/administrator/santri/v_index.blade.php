@@ -1,4 +1,4 @@
-@extends(".app.layouts.template")
+@extends('.app.layouts.template')
 
 @section('app_title', 'Data Santri')
 
@@ -6,7 +6,7 @@
 
     <section class="section">
         <h3>
-            @yield("app_title")
+            @yield('app_title')
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -27,9 +27,9 @@
                     </h2>
                     <div class="pull-right">
                         <a href="{{ url('app/sistem/santri/export') }}" class="btn btn-success btn-sm"><i
-                                class="fa fa-download"></i> Export Data</a>
+                                class="fa fa-download"></i> Download</a>
                         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
-                                class="fa fa-upload"></i> Import Data</button>
+                                class="fa fa-upload"></i> Upload</button>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -71,7 +71,7 @@
                     </button>
                 </div>
                 <form action="{{ url('/app/sistem/santri/simpan') }}" method="POST" enctype="multipart/form-data">
-                    @method("PUT")
+                    @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
 

@@ -266,6 +266,7 @@ Route::prefix("app")->group(function () {
                 Route::resource("/asatidz", AsatidzController::class);
 
                 // Data Wali Santri
+                Route::get("/wali_santri/export", [ExcelController::class, "exportWaliSantri"]);
                 Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
                 Route::get("/wali_santri/datatables", [WaliSantriController::class, "datatables"]);
                 Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);

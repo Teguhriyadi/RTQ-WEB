@@ -25,9 +25,12 @@
                         data-target=".bs-example-modal-lg">
                         <i class="fa fa-plus"></i> Tambah Data
                     </button>
-                    <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel">
-                        <i class="fa fa-file-excel-o"></i> Import Excel
-                    </button>
+                    <div class="pull-right">
+                        {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}
+                        {{-- class="fa fa-download"></i> Download</a> --}}
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
+                                class="fa fa-upload"></i> Upload</button>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

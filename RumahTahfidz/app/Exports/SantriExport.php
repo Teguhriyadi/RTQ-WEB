@@ -3,18 +3,20 @@
 namespace App\Exports;
 
 use App\Models\Santri;
-use App\Models\User;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class SantriExport implements FromCollection
+class SantriExport implements FromView
 {
+    use Exportable;
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function collection()
+    public function view(): View
     {
         $santri = Santri::all();
-        foreach ($santri as $s) {
-        }
+
+        return view('app.export.v_santri', compact('santri'));
     }
 }
