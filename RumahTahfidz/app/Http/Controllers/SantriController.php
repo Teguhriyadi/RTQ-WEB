@@ -17,7 +17,7 @@ class SantriController extends Controller
 {
     public function index()
     {
-        return view("app.administrator.santri.v_index");
+        return view("app.public.santri.v_index");
     }
 
     public function store(Request $request)
@@ -39,6 +39,15 @@ class SantriController extends Controller
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
     }
 
+    public function show($id)
+    {
+        $data = [
+            "detail" => Santri::where("id", $id)->first()
+        ];
+
+        return view("app.public.santri.v_detail", $data);
+    }
+
     public function edit(Request $request)
     {
         $data = [
@@ -46,7 +55,7 @@ class SantriController extends Controller
             "data_kelas" => Kelas::all()
         ];
 
-        return view("app.administrator.santri.v_edit", $data);
+        return view("app.public.santri.v_edit", $data);
     }
 
     public function update(Request $request)
@@ -91,7 +100,7 @@ class SantriController extends Controller
             "data_kelas" => Kelas::all()
         ];
 
-        return view("app.administrator.wali_santri.v_tambah_santri", $data);
+        return view("app.public.wali_santri.v_tambah_santri", $data);
     }
 
     public function tambah_santri_by_wali(Request $request)
@@ -120,10 +129,15 @@ class SantriController extends Controller
 
     public function datatables()
     {
-        $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
-        $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
-        $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
-        $santri = Santri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+        if (Auth::user()->getAkses->id_role == 1) {
+            $santri = Santri::get();
+        } else {
+            $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
+            $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
+            $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
+
+            $santri = Santri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+        }
 
         $data = array();
         foreach ($santri as $s) {
@@ -145,12 +159,18 @@ class SantriController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('aksi', function ($row) {
-                $aksiBtn = '<button onclick="editDataSantri(' . $row["id"] . ')" type="button"
+                if (Auth::user()->getAkses->id_role == 1) {
+                    $aksiBtn = '<div class="text-center">
+                    <a href="' . url("/app/sistem/santri/" . $row["id"]) . '" class="btn btn-info btn-sm">
+                        <i class="fa fa-search"></i> Detail
+                    </a></div>';
+                } else {
+                    $aksiBtn = '<button onclick="editDataSantri(' . $row["id"] . ')" type="button"
                     class="btn btn-warning btn-sm text-white" id="btnEdit"
                     data-target="#modalEdit" data-toggle="modal">
                     <i class="fa fa-edit"></i> Edit
                 </button>';
-                $aksiBtn .= '<form action="' . url("app/sistem/santri/" . $row["id"]) . '"
+                    $aksiBtn .= '<form action="' . url("app/sistem/santri/" . $row["id"]) . '"
                 method="POST" style="display: inline">
                 ' . method_field('delete') . '
                 ' . csrf_field() . '
@@ -158,6 +178,7 @@ class SantriController extends Controller
                     <i class="fa fa-trash"></i> Hapus
                 </button>
             </form>';
+                }
                 return $aksiBtn;
             })
             ->rawColumns(['aksi'])

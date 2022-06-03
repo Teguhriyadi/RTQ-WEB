@@ -26,10 +26,23 @@
                         <i class="fa fa-users"></i> Santri
                     </h2>
                     <div class="pull-right">
+<<<<<<< HEAD:RumahTahfidz/resources/views/app/administrator/santri/v_index.blade.php
                         <a href="{{ url('app/sistem/santri/export') }}" class="btn btn-success btn-sm"><i
                                 class="fa fa-download"></i> Download</a>
                         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
                                 class="fa fa-upload"></i> Upload</button>
+=======
+                        <a href="{{ url('app/sistem/santri/export') }}" class="btn btn-success btn-sm">
+                            <i class="fa fa-download"></i> Export Data
+                        </a>
+                        @if (Auth::user()->getAkses->id_role == 1)
+
+                        @else
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel">
+                            <i class="fa fa-upload"></i> Import Data
+                        </button>
+                        @endif
+>>>>>>> 5941792cf9dee9fdb7b5b72d4d3802bd8e496991:RumahTahfidz/resources/views/app/public/santri/v_index.blade.php
                     </div>
                     <div class="clearfix"></div>
                 </div>

@@ -23,7 +23,7 @@ class WaliSantriController extends Controller
             "data_halaqah" => Halaqah::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->get()
         ];
 
-        return view("/app/administrator/wali_santri/v_index", $data);
+        return view("app.public.wali_santri.v_index", $data);
     }
 
     public function store(Request $request)
@@ -67,7 +67,7 @@ class WaliSantriController extends Controller
             "data_halaqah" => Halaqah::get()
         ];
 
-        return view("app.administrator.wali_santri.v_edit", $data);
+        return view("app.public.wali_santri.v_edit", $data);
     }
 
     public function update(Request $request)

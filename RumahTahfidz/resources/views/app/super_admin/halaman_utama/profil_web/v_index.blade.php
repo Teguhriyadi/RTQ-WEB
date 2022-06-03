@@ -27,9 +27,9 @@
         @else
             <form action="{{ url('/app/sistem/profil/web/' . $profil->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
+                <input type="hidden" name="logo_lama" value="{{ $profil->logo }}">
     @endif
     {{ csrf_field() }}
-    <input type="hidden" name="logo_lama" value="{{ $profil->logo }}">
     <div class="row">
         <div class="col-12 col-md-12 col-lg-4 mb-3">
             <div class="x_panel">

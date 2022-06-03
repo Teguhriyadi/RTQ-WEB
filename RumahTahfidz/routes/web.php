@@ -95,6 +95,35 @@ Route::prefix("app")->group(function () {
 
     Route::prefix("sistem")->group(function () {
         Route::group(["middleware" => "autentikasi"], function () {
+
+            // Data Pengajar
+            Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
+            Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
+            Route::resource("/asatidz", AsatidzController::class);
+
+            // Data Siswa
+            Route::get("/santri/edit", [SantriController::class, "edit"]);
+            Route::get("/santri/datatables", [SantriController::class, "datatables"]);
+            Route::put("/santri/simpan", [SantriController::class, "update"]);
+            Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
+            Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
+            Route::get("/santri/export", [ExcelController::class, "exportSantri"]);
+            Route::resource("/santri", SantriController::class);
+            Route::post("/santri/import", [ExcelController::class, "importSantri"]);
+
+            // Data Wali Santri
+            Route::get("/wali_santri/export", [ExcelController::class, "exportWaliSantri"]);
+            Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
+            Route::get("/wali_santri/datatables", [WaliSantriController::class, "datatables"]);
+            Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
+            Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
+            Route::resource("/wali_santri", WaliSantriController::class);
+
+            // Data Pengajar
+            Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
+            Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
+            Route::resource("/asatidz", AsatidzController::class);
+
             Route::group(["middleware" => ["can:super_admin"]], function () {
 
                 // Data Kelas
@@ -248,30 +277,6 @@ Route::prefix("app")->group(function () {
                 Route::put("/tes/simpan", [TesSantriController::class, "update"]);
                 Route::get("/tes/edit", [TesSantriController::class, "edit"]);
                 Route::put("/tes/simpan_data", [TesSantriController::class, "simpan"]);
-
-                // Data Siswa
-                Route::get("/santri/edit", [SantriController::class, "edit"]);
-                Route::get("/santri/datatables", [SantriController::class, "datatables"]);
-                Route::put("/santri/simpan", [SantriController::class, "update"]);
-                Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
-                Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
-                Route::get("/santri/export", [ExcelController::class, "exportSantri"]);
-                Route::resource("/santri", SantriController::class);
-                Route::post("/santri/import", [ExcelController::class, "importSantri"]);
-
-
-                // Data Pengajar
-                Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
-                Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
-                Route::resource("/asatidz", AsatidzController::class);
-
-                // Data Wali Santri
-                Route::get("/wali_santri/export", [ExcelController::class, "exportWaliSantri"]);
-                Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
-                Route::get("/wali_santri/datatables", [WaliSantriController::class, "datatables"]);
-                Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
-                Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
-                Route::resource("/wali_santri", WaliSantriController::class);
             });
 
             Route::group(["middleware" => ["can:asatidz"]], function () {
