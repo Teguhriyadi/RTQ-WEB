@@ -76,7 +76,7 @@
                                                 <td class="text-center">{{ $kategori->kategori }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editDataKategori({{ $kategori->id }})"
-                                                        class="btn btn-warning btn-sm" data-target="#modalEdit"
+                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>

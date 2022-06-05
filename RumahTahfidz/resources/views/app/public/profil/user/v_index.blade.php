@@ -23,8 +23,8 @@
             <div class="x_panel">
                 <div class="x_content">
                     <center>
-                        <img src="{{ url('/storage/' . $user->gambar) }}"
-                            class="rounded-circle profile-widget-picture shadow-lg" height="250" width="250">
+                        <img src="{{ $user->gambar }}" class="rounded-circle profile-widget-picture shadow-lg" height="250"
+                            width="250">
                         <h3>{{ $user->nama }}</h3>
                         <div class="text-muted d-inline font-weight-normal">
                             <div class="slash"></div>
@@ -125,7 +125,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/profil_user/simpan_gambar_profil') }}" method="POST"
+                <form action="{{ url('/app/sistem/profil/user/simpan_gambar_profil') }}" method="POST"
                     enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
@@ -164,7 +164,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/profil_user/ganti_password') }}" method="POST"
+                <form action="{{ url('/app/sistem/profil/user/ganti_password') }}" method="POST"
                     enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}

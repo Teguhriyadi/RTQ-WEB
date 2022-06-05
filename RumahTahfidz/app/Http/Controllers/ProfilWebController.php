@@ -30,7 +30,7 @@ class ProfilWebController extends Controller
         $profil->no_hp = $request->no_hp;
         $profil->email = $request->email;
         $profil->alamat = $request->alamat;
-        $profil->logo = $data;
+        $profil->logo = url('/storage') . '/' . $data;
 
         $profil->save();
 
@@ -55,7 +55,7 @@ class ProfilWebController extends Controller
             "no_hp" => $request->no_hp,
             "email" => $request->email,
             "alamat" => $request->alamat,
-            "logo" => $data
+            "logo" => url('/storage') . '/' . $data
         ]);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
