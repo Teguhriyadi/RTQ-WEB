@@ -99,7 +99,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/halaqah/') }}" method="POST">
+            <form action="{{ url('/app/sistem/halaqah/') }}" method="POST" id="tambahHalaqah">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -151,7 +151,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/app/sistem/halaqah/simpan') }}" method="POST">
+            <form action="{{ url('/app/sistem/halaqah/simpan') }}" method="POST" id="editHalaqah">
                 @method('PUT')
                 @csrf
                 <div class="modal-body" id="modal-content">
@@ -175,14 +175,86 @@
 
 @section('app_scripts')
 
+<script>
+    (function($, W, D) {
+        var JQUERY4U = {};
+        JQUERY4U.UTIL = {
+            setupFormValidation: function() {
+                $("#tambahHalaqah").validate({
+                    lang: "id",
+                    ignore: "",
+                    rules: {
+                        kode_halaqah: {
+                            required: true
+                        },
+                        nama_halaqah: {
+                            required: true
+                        },
+                        kode_rt: {
+                            required: true
+                        },
+                    },
+                    messages: {
+                        kode_halaqah: {
+                            required: "Kode halaqah harap di isi!"
+                        },
+                        nama_halaqah: {
+                            required: "Nama halaqah harap di isi!"
+                        },
+                        kode_rt: {
+                            required: "Kode rumah tahfidz harap di isi!"
+                        },
+                    },
+                    submitHandler: function(form) {
+                        form.submit()
+                    }
+                });
+
+                $("#editHalaqah").validate({
+                    lang: "id",
+                    ignore: "",
+                    rules: {
+                        kode_halaqah: {
+                            required: true
+                        },
+                        nama_halaqah: {
+                            required: true
+                        },
+                        kode_rt: {
+                            required: true
+                        },
+                    },
+                    messages: {
+                        kode_halaqah: {
+                            required: "Kode halaqah harap di isi!"
+                        },
+                        nama_halaqah: {
+                            required: "Nama halaqah harap di isi!"
+                        },
+                        kode_rt: {
+                            required: "Kode rumah tahfidz harap di isi!"
+                        },
+                    },
+                    submitHandler: function(form) {
+                        form.submit()
+                    }
+                })
+            }
+        }
+        $(D).ready(function($) {
+            JQUERY4U.UTIL.setupFormValidation()
+        })
+    })(jQuery, window, document)
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#kode_rt").select2({
-            theme: 'bootstrap4',
-            placeholder: "- Pilih -"
-        });
+        // $("#kode_rt").select2({
+        //     theme: 'bootstrap4',
+        //     placeholder: "- Pilih -"
+        // });
     });
 </script>
 

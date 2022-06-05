@@ -19,7 +19,7 @@
     <div class="clearfix"></div>
 
     <div class="row">
-        <div class="col-md-4 col-sm-8 col-xs-12">
+        <div class="col-md-4 col-sm-5 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
@@ -28,7 +28,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/jenjang') }}">
+                    <form method="POST" action="{{ url('/app/sistem/jenjang') }}" id="tambahJenjang">
                         @csrf
                         <div class="form-group">
                             <label for="jenjang"> Jenjang </label>
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 col-sm-4 col-xs-12">
+        <div class="col-md-8 col-sm-7 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
@@ -114,7 +114,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/jenjang/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/jenjang/simpan') }}" method="POST" id="editJenjang">
                     @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
@@ -137,6 +137,54 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahJenjang").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            jenjang: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            jenjang: {
+                                required: "Jenjang harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editJenjang").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            jenjang: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            jenjang: {
+                                required: "Jenjang harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editJenjang(id) {

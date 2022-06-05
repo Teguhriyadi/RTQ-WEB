@@ -113,14 +113,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Blog
                                     </a>
                                 </li>
-<<<<<<< HEAD
-                                {{-- <li class="{{ Request::segment(3) == 'dokumentasi' ? 'dokumentasi' : '' }}">
-                                    <a href="{{ url('/app/sistem/dokumentasi') }}">
-                                        Dokumentasi
-                                    </a>
-                                </li> --}}
-=======
->>>>>>> 21f0846c5007426ed5cea300d6567007e0fea81f
                                 <li class="{{ Request::segment(3) == 'pesan' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/pesan') }}">
                                         Pesan

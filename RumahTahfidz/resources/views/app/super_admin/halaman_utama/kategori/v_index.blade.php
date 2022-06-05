@@ -28,7 +28,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/kategori') }}">
+                    <form method="POST" action="{{ url('/app/sistem/kategori') }}" id="tambahKategori">
                         @csrf
                         <div class="form-group">
                             <label for="kategori"> Nama Kelas </label>
@@ -110,7 +110,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/kategori/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/kategori/simpan') }}" method="POST" id="editKategori">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -133,6 +133,54 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahKategori").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            kategori: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            kategori: {
+                                required: "Kategori harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editKategori").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            kategori: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            kategori: {
+                                required: "Kategori harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editDataKategori(id) {
