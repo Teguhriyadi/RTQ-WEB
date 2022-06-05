@@ -9,7 +9,6 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
-use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateAsatidzController;
@@ -30,6 +29,7 @@ use App\Http\Controllers\LastLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\NilaiKategoriController;
+use App\Http\Controllers\NominalIuranController;
 use App\Http\Controllers\PelajaranController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PesanController;
@@ -169,9 +169,6 @@ Route::prefix("app")->group(function () {
                 Route::put("/kategori/simpan", [KategoriController::class, "update"]);
                 Route::resource("/kategori", KategoriController::class);
 
-                // Data Dokumentasi
-                Route::resource("dokumentasi", DokumentasiController::class);
-
                 // Data Blog
                 Route::get("/blog/edit", [BlogController::class, "edit"]);
                 Route::put("/blog/simpan", [BlogController::class, "update"]);
@@ -209,6 +206,11 @@ Route::prefix("app")->group(function () {
                     Route::get("/nilai/kategori/edit", [NilaiKategoriController::class, "edit"]);
                     Route::put("/nilai/kategori/simpan", [NilaiKategoriController::class, "update"]);
                     Route::resource("nilai/kategori", NilaiKategoriController::class);
+
+                    // Data Nominal Iuran
+                    Route::get("/nominal/iuran/edit", [NominalIuranController::class, "edit"]);
+                    Route::put("/nominal/iuran/simpan", [NominalIuranController::class, "update"]);
+                    Route::resource("nominal/iuran", NominalIuranController::class);
 
                     Route::prefix("/kategori")->group(function () {
 

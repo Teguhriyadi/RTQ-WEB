@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_dokumentasi', function (Blueprint $table) {
+        Schema::create('tb_nominal_iuran', function (Blueprint $table) {
             $table->id();
-            $table->string("judul");
-            $table->string("gambar");
+            $table->double("nominal");
+            $table->integer("status")->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_dokumentasi');
+        Schema::dropIfExists('tb_nominal_iuran');
     }
 };

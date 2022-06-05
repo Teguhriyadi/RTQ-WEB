@@ -29,8 +29,9 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form action="" method="POST">
+                    <form action="{{ url('/app/sistem/hafalan/asatidz/') }}" method="POST">
                         {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $detail->id }}">
                         <div class="form-group">
                             <label for="quran_awal"> Quran Awal </label>
                             <select name="quran_awal" class="form-control" id="quran_awal">
@@ -56,7 +57,7 @@
                         <button type="reset" class="btn btn-danger btn-sm">
                             <i class="fa fa-times"></i> Batal
                         </button>
-                        <button type="reset" class="btn btn-primary btn-sm">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                     </form>

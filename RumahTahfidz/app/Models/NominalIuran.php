@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dokumentasi extends Model
+class NominalIuran extends Model
 {
     use HasFactory;
 
-    protected $table = "tb_dokumentasi";
+    protected $table = "tb_nominal_iuran";
 
     protected $guarded = [''];
+
+    public $timestamps = false;
 }
