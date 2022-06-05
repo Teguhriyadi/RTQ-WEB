@@ -199,6 +199,11 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Pelajaran
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(3) == 'nominal/iuran' }}">
+                                    <a href="{{ url('/app/sistem/setting/nominal/iuran') }}">
+                                        Nominal Iuran
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -223,6 +228,11 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="{{ Request::segment(3) == 'hafalan_asatidz' ? 'active' : '' }}">
+                            <a href="{{ url('/app/sistem/hafalan/asatidz') }}">
+                                <i class="fa fa-book"></i> Hafalan Asatidz
+                            </a>
                         </li>
                     @endcan
                     @can('admin')
@@ -349,6 +359,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 </li>
                             </ul>
                         </li>
+
                     @endcan
 
                     @can('admin')
@@ -377,12 +388,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                     <li class="{{ Request::segment(3) == 'profil/user' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/profil/user') }}">
                             <i class="fa fa-user"></i>Profil Saya
-                        </a>
-                    </li>
-
-                    <li class="{{ Request::segment(3) == 'hafalan_asatidz' ? 'active' : '' }}">
-                        <a href="{{ url('/app/sistem/hafalan/asatidz') }}">
-                            <i class="fa fa-book"></i> Hafalan Asatidz
                         </a>
                     </li>
 
