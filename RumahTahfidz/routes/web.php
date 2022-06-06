@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsensiSantriController;
+use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\AdminLokasiRtController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JenjangController;
@@ -146,7 +147,6 @@ Route::prefix("app")->group(function () {
                 Route::put("jenjang/simpan", [JenjangController::class, "update"]);
                 Route::resource("/jenjang", JenjangController::class);
 
-
                 // Data Cabang
                 Route::get("/lokasi_rt/edit", [LokasiRtController::class, "edit"]);
                 Route::put("/lokasi_rt/simpan", [LokasiRtController::class, "update"]);
@@ -278,6 +278,15 @@ Route::prefix("app")->group(function () {
                 Route::put("/tes/simpan", [TesSantriController::class, "update"]);
                 Route::get("/tes/edit", [TesSantriController::class, "edit"]);
                 Route::put("/tes/simpan_data", [TesSantriController::class, "simpan"]);
+
+                // Data Administrasi
+                Route::prefix("administrasi")->group(function () {
+
+                    // Belum Lunas
+                    Route::get("/belum_lunas", [AdministrasiController::class, "belum_lunas"]);
+                    // Lunas
+
+                });
             });
 
             Route::group(["middleware" => ["can:asatidz"]], function () {

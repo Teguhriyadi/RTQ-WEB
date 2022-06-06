@@ -30,6 +30,7 @@ return new class extends Migration
             $table->integer("id_jenjang")->nullable();
             $table->enum("status", ["1", "0"])->default(1);
             $table->string("foto")->nullable();
+            $table->integer("id_nominal_iuran")->nullable();
             $table->timestamps();
         });
     }

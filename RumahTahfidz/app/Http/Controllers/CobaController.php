@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AbsensiAsatidz;
 use App\Models\Iuran;
 use App\Models\KategoriPelajaran;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CobaController extends Controller
 {

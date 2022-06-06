@@ -377,6 +377,24 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-bars"></i> Biaya Administrasi
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/administrasi/belum_lunas') }}">
+                                        Belum Lunas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/administrasi/lunas') }}">
+                                        Lunas
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li class="{{ Request::segment(3) == 'absensi' ? 'active' : '' }}">
                             <a href="{{ url('/app/sistem/absensi') }}">
