@@ -23,11 +23,13 @@
     <div class="clearfix"></div>
 
     @if (empty($profil))
-        <form action="{{ url('/app/sistem/profil/web') }}" method="POST" enctype="multipart/form-data">
-        @else
-            <form action="{{ url('/app/sistem/profil/web/' . $profil->id) }}" method="POST" enctype="multipart/form-data">
-                @method('PUT')
-                <input type="hidden" name="logo_lama" value="{{ $profil->logo }}">
+        <form action="{{ url('/app/sistem/profil/web') }}" method="POST" enctype="multipart/form-data"
+            id="tambahProfilWeb"></form>
+    @else
+        <form action="{{ url('/app/sistem/profil/web/' . $profil->id) }}" method="POST" enctype="multipart/form-data"
+            id="editProfilWeb">
+            @method('PUT')
+            <input type="hidden" name="logo_lama" value="{{ $profil->logo }}">
     @endif
     {{ csrf_field() }}
     <div class="row">
@@ -138,6 +140,116 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahProfilWeb").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            logo: {
+                                required: true,
+                                accept: true
+                            },
+                            nama: {
+                                required: true
+                            },
+                            singkatan: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            logo: {
+                                required: "Foto harap di isi!",
+                                accept: "Masukan format gambar yang sesuai!"
+                            },
+                            nama: {
+                                required: "Nama harap di isi!"
+                            },
+                            singkatan: {
+                                required: "Singkatan harap di isi!"
+                            },
+                            no_hp: {
+                                required: "Telepon harap di isi!"
+                            },
+                            email: {
+                                required: "Email harap di isi!"
+                            },
+                            alamat: {
+                                required: "Alamat harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editProfilWeb").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            logo: {
+                                accept: true
+                            },
+                            nama: {
+                                required: true
+                            },
+                            singkatan: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            logo: {
+                                accept: "Masukan format gambar yang sesuai!"
+                            },
+                            nama: {
+                                required: "Nama harap di isi!"
+                            },
+                            singkatan: {
+                                required: "Singkatan harap di isi!"
+                            },
+                            no_hp: {
+                                required: "Telepon harap di isi!"
+                            },
+                            email: {
+                                required: "Email harap di isi!"
+                            },
+                            alamat: {
+                                required: "Alamat harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script type="text/javascript">
         function previewImage() {

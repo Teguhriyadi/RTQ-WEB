@@ -48,7 +48,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        return view('app.super_admin.users.v_detail', compact('user'));
     }
 
     /**
@@ -57,10 +58,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
         $data = [
-            "edit" => User::where("id", $request->id)->first()
+            "edit" => User::where("id", $id)->first()
         ];
 
         return view("app.super_admin.users.v_edit", $data);

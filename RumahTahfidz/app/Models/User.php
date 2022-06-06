@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsTo(HakAkses::class, "id_hak_akses", "id");
     }
 
+    public function getAsatidz()
+    {
+        return $this->hasOne(Asatidz::class, 'id', 'id');
+    }
+
     public function getAdminLokasiRt()
     {
         return $this->hasOne(AdminLokasiRt::class, "id", "id");

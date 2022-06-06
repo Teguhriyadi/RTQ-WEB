@@ -92,7 +92,8 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="" class="btn btn-primary btn-sm">
+                                                    <a href="{{ url('app/sistem/users/' . $user->id) }}"
+                                                        class="btn btn-primary btn-sm">
                                                         <i class="fa fa-search"></i> Detail
                                                     </a>
                                                     <button onclick="editUsers({{ $user->id }})" type="button"

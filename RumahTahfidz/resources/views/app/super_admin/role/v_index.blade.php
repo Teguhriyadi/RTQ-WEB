@@ -85,7 +85,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/role/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/role/simpan') }}" method="POST" id="editRole">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -108,6 +108,36 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#editRole").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            keterangan: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            keterangan: {
+                                required: "Keterangan harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editRole(id) {

@@ -66,7 +66,8 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form action="{{ url('/app/sistem/struktur_organisasi/' . $data->id) }}"
+                                                    <form
+                                                        action="{{ url('/app/sistem/struktur_organisasi/' . $data->id) }}"
                                                         method="POST" style="display: inline;">
                                                         @method('DELETE')
                                                         @csrf
@@ -102,7 +103,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/struktur_organisasi/') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/app/sistem/struktur_organisasi/') }}" method="POST" enctype="multipart/form-data"
+                    id="tambahStrukturOrganisasi">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -157,7 +159,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/struktur_organisasi/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/struktur_organisasi/simpan') }}" method="POST"
+                    id="editStrukturOrganisasi">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -180,6 +183,92 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahStrukturOrganisasi").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            foto: {
+                                required: true,
+                                accept: true
+                            },
+                            nama: {
+                                required: true
+                            },
+                            id_jabatan: {
+                                required: true
+                            },
+                            deskripsi: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            foto: {
+                                required: "Foto harap di isi!",
+                                accept: "Masukan format gambar yang sesuai!"
+                            },
+                            nama: {
+                                required: "Nama harap di isi!"
+                            },
+                            id_jabatan: {
+                                required: "Jabatan harap di isi!"
+                            },
+                            deskripsi: {
+                                required: "Deskripsi harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editStrukturOrganisasi").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            foto: {
+                                accept: true
+                            },
+                            nama: {
+                                required: true
+                            },
+                            id_jabatan: {
+                                required: true
+                            },
+                            deskripsi: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            foto: {
+                                accept: "Masukan format gambar yang sesuai!"
+                            },
+                            nama: {
+                                required: "Nama harap di isi!"
+                            },
+                            id_jabatan: {
+                                required: "Jabatan harap di isi!"
+                            },
+                            deskripsi: {
+                                required: "Deskripsi harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script type="text/javascript">
         function previewImage() {

@@ -196,7 +196,6 @@ Route::prefix("app")->group(function () {
 
                 // Data Users
                 Route::post("/users/non_aktifkan/", [UsersController::class, "non_aktifkan"]);
-                Route::get("/users/edit", [UsersController::class, "edit"]);
                 Route::put("/users/simpan", [UsersController::class, "update"]);
                 Route::resource("/users", UsersController::class);
 
