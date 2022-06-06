@@ -37,4 +37,9 @@ class Santri extends Model
     {
         return $this->hasOne(Halaqah::class, 'kode_halaqah', 'kode_halaqah');
     }
+
+    public function getNominalIuran()
+    {
+        return $this->belongsTo("App\Models\NominalIuran", "id_nominal_iuran", "id");
+    }
 }

@@ -42,5 +42,15 @@ class HakAksesSeeder extends Seeder
             "id_user" => 10,
             "id_role" => 4
         ]);
+
+        HakAkses::create([
+            "id_user" => 9,
+            "id_role" => 3
+        ]);
+
+        HakAkses::create([
+            "id_user" => 7,
+            "id_role" => 2
+        ]);
     }
 }

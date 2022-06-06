@@ -1,5 +1,6 @@
 <input type="hidden" name="id_wali" value="{{ $data_wali->id }}">
 <input type="hidden" name="kode_halaqah" value="{{ $data_wali->kode_halaqah }}">
+<input type="hidden" name="id_nominal" value="{{ $data_nominal_iuran->id }}">
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
@@ -74,6 +75,24 @@
 <div class="form-group">
     <label for="alamat"> Alamat </label>
     <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Data Alamat"></textarea>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="jenis_kelamin"> Jenis Kelamin </label>
+            <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+                <option value="">- Pilih -</option>
+                <option value="L">Laki-laki</option>
+                <option value="P">Perempuan</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="nominal"> Nominal </label>
+            <input type="number" class="form-control" name="nominal" id="nominal" placeholder="Masukkan Nominal">
+        </div>
+    </div>
 </div>
 <div class="form-group">
     <label for="foto"> Foto </label>

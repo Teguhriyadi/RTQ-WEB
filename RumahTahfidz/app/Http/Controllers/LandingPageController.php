@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Asatidz;
 use App\Models\Blog;
-use App\Models\Dokumentasi;
 use App\Models\Kategori;
 use App\Models\KategoriPenilaian;
 use App\Models\LokasiRt;
@@ -30,8 +29,7 @@ class LandingPageController extends Controller
             "jumlah_asatidz" => Asatidz::count(),
             "jumlah_cabang" => LokasiRt::count(),
             "jumlah_program" => KategoriPenilaian::count(),
-            "data_organisasi" => StrukturOrganisasi::get(),
-            "data_dokumentasi" => Dokumentasi::get()
+            "data_organisasi" => StrukturOrganisasi::get()
         ];
 
         return view("app.landing.v_home", $data2, compact('data'));

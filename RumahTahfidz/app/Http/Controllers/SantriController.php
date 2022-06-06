@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administrasi;
 use App\Models\AdminLokasiRt;
 use App\Models\Halaqah;
 use App\Models\Kelas;
 use App\Models\LokasiRt;
+use App\Models\NominalIuran;
 use App\Models\Santri;
 use App\Models\WaliSantri;
 use Illuminate\Http\Request;
@@ -22,19 +24,30 @@ class SantriController extends Controller
 
     public function store(Request $request)
     {
-        Santri::create([
-            "nis" => $request->nis,
-            "nama_lengkap" => $request->nama_lengkap,
-            "nama_panggilan" => $request->nama_panggilan,
-            "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tanggal_lahir,
-            "alamat" => $request->alamat,
-            "prestasi_anak" => $request->prestasi_anak,
-            "sekolah" => $request->sekolah,
-            "id_kelas" => $request->id_kelas,
-            "kode_halaqah" => $request->kode_halaqah,
-            "id_wali" => $request->id_wali
-        ]);
+        $santri = new Santri;
+
+        $santri->nis = $request->nis;
+        $santri->nama_lengkap = $request->nama_lengkap;
+        $santri->nama_panggilan = $request->nama_panggilan;
+        $santri->tempat_lahir = $request->tempat_lahir;
+        $santri->tanggal_lahir = $request->tanggal_lahir;
+        $santri->jenis_kelamin = $request->jenis_kelamin;
+        $santri->alamat = $request->alamat;
+        $santri->prestasi_anak = $request->prestasi_anak;
+        $santri->sekolah = $request->sekolah;
+        $santri->id_kelas = $request->id_kelas;
+        $santri->kode_halaqah = $request->kode_halaqah;
+        $santri->id_wali = $request->id_wali;
+        $santri->id_nominal_iuran = $request->id_nominal;
+
+        $santri->save();
+
+        $administrasi = new Administrasi;
+
+        $administrasi->id_santri = $santri->id;
+        $administrasi->nominal = $request->nominal;
+
+        $administrasi->save();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
     }
@@ -97,7 +110,8 @@ class SantriController extends Controller
     {
         $data = [
             "data_wali" => WaliSantri::where("id", $request->id)->first(),
-            "data_kelas" => Kelas::all()
+            "data_kelas" => Kelas::all(),
+            "data_nominal_iuran" => NominalIuran::where("status", 1)->first()
         ];
 
         return view("app.public.wali_santri.v_tambah_santri", $data);
@@ -108,6 +122,32 @@ class SantriController extends Controller
         if ($request->file("foto")) {
             $data = $request->file("foto")->store("santri");
         }
+
+        $santri = new Santri;
+
+        $santri->nis = $request->nis;
+        $santri->nama_lengkap = $request->nama_lengkap;
+        $santri->nama_panggilan = $request->nama_panggilan;
+        $santri->tempat_lahir = $request->tempat_lahir;
+        $santri->tanggal_lahir = $request->tanggal_lahir;
+        $santri->jenis_kelamin = $request->jenis_kelamin;
+        $santri->alamat = $request->alamat;
+        $santri->prestasi_anak = $request->prestasi_anak;
+        $santri->sekolah = $request->sekolah;
+        $santri->id_kelas = $request->id_kelas;
+        $santri->kode_halaqah = $request->kode_halaqah;
+        $santri->id_wali = $request->id_wali;
+        $santri->id_nominal_iuran = $request->id_nominal;
+        $santri->foto = $data;
+
+        $santri->save();
+
+        $administrasi = new Administrasi;
+
+        $administrasi->id_santri = $santri->id;
+        $administrasi->nominal = $request->nominal;
+
+        $administrasi->save();
 
         Santri::create([
             "nis" => $request->nis,
