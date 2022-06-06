@@ -14,6 +14,7 @@ class AdministrasiController extends Controller
             "data_santri" => Administrasi::selectRaw("id_santri")->distinct()->get()
         ];
 
+        $count = 0;
         foreach ($data["data_santri"] as $d) {
             $count = Administrasi::where("id_santri", $d->id_santri)->sum("nominal");
         }

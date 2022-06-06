@@ -48,7 +48,6 @@ use App\Models\Santri;
                                     <tbody>
                                         @php
                                             $no = 0;
-
                                         @endphp
                                         @foreach ($data_santri as $data)
                                             @php
@@ -64,12 +63,14 @@ use App\Models\Santri;
                                                 $nominal_sekarang = $santri->getNominalIuran->nominal - $data_total;
 
                                             @endphp
-                                            <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $data->getSantri->nis }}</td>
-                                                <td>{{ $data->getSantri->nama_lengkap }}</td>
-                                                <td>Rp. {{ number_format($nominal_sekarang) }}</td>
-                                            </tr>
+                                            @if ($nominal_sekarang != 0)
+                                                <tr>
+                                                    <td class="text-center">{{ ++$no }}.</td>
+                                                    <td class="text-center">{{ $data->getSantri->nis }}</td>
+                                                    <td>{{ $data->getSantri->nama_lengkap }}</td>
+                                                    <td>Rp. {{ number_format($nominal_sekarang) }}</td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>
