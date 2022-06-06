@@ -39,7 +39,7 @@
                             <img src="{{ url('gambar/gambar_user.png') }}"
                                 class="rounded-circle profile-widget-picture gambar-preview img-fluid" id="tampilGambar">
                         @else
-                            <img src="{{ url('storage/' . $profil->logo) }}"
+                            <img src="{{ $profil->logo }}"
                                 class="rounded-circle profile-widget-picture gambar-preview img-fluid" id="tampilGambar">
                         @endif
                     </center>

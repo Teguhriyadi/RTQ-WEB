@@ -96,7 +96,7 @@
                                                         <i class="fa fa-search"></i> Detail
                                                     </a>
                                                     <button onclick="editUsers({{ $user->id }})" type="button"
-                                                        class="btn btn-warning btn-sm" data-toggle="modal"
+                                                        class="btn btn-warning btn-sm text-white" data-toggle="modal"
                                                         data-target="#modalEdit">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>

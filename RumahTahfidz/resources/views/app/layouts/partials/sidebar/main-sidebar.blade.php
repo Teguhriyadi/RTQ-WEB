@@ -11,7 +11,7 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
         <div class="clearfix"></div>
         <div class="profile clearfix">
             <div class="profile_pic">
-                <img src="{{ $user->gambar == null ? 'http://rtq-freelance.my.id/gambar/gambar_user.png' : url('storage/' . $user->gambar) }}"
+                <img src="{{ $user->gambar == null ? 'http://rtq-freelance.my.id/gambar/gambar_user.png' : $user->gambar }}"
                     alt="{{ $user->nama }}" class="img-circle profile_img">
             </div>
             <div class="profile_info">

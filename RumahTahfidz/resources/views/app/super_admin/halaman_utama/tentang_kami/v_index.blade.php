@@ -23,10 +23,10 @@
             <div class="mt-sm-4">
                 @if (empty($profil))
                     <form action="{{ url('app/sistem/tentang_kami') }}" class="row" method="post"
-                        enctype="multipart/form-data">
+                        enctype="multipart/form-data" id="tambahTentang">
                     @else
                         <form action="{{ url('app/sistem/tentang_kami/' . $profil->id) }}" class="row"
-                            method="post" enctype="multipart/form-data">
+                            method="post" enctype="multipart/form-data" id="editTentang">
                             @method('PUT')
                             <input type="hidden" name="foto_lama" value="{{ $profil->foto }}">
                 @endif
@@ -108,6 +108,67 @@
 @endsection
 
 @section('app_scripts')
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahTentang").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            foto: {
+                                required: true,
+                                accept: true
+                            },
+                            deskripsi: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            foto: {
+                                required: "Foto harap di isi!",
+                                accept: "Masukan format gambar yang sesuai!"
+                            },
+                            deskripsi: {
+                                required: "Deskripsi harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editTentang").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            foto: {
+                                accept: true
+                            },
+                            deskripsi: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            foto: {
+                                accept: "Masukan format gambar yang sesuai!"
+                            },
+                            deskripsi: {
+                                required: "Deskripsi harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script type="text/javascript">
         function previewImage() {

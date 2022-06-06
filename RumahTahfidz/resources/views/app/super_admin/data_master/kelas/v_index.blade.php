@@ -19,7 +19,7 @@
     <div class="clearfix"></div>
 
     <div class="row">
-        <div class="col-md-4 col-sm-8 col-xs-12">
+        <div class="col-md-4 col-sm-5 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
@@ -28,7 +28,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/kelas') }}">
+                    <form method="POST" action="{{ url('/app/sistem/kelas') }}" id="tambahKelas">
                         @csrf
                         <div class="form-group">
                             <label for="nama_kelas"> Nama Kelas </label>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 col-sm-4 col-xs-12">
+        <div class="col-md-8 col-sm-7 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
@@ -110,7 +110,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/kelas/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/kelas/simpan') }}" method="POST" id="editKelas">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -133,6 +133,54 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahKelas").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama_kelas: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nama_kelas: {
+                                required: "Kelas harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editKelas").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama_kelas: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nama_kelas: {
+                                required: "Kelas harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editDataKelas(id) {

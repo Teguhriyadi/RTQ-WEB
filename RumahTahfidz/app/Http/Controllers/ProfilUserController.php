@@ -27,11 +27,11 @@ class ProfilUserController extends Controller
                 Storage::delete($request->oldGambarProfil);
             }
 
-            $user["gambar"] = $request->file("gambar")->store("admin_cabang");
+            $user["gambar"] = $request->file("gambar")->store("users");
         }
 
         User::where("id", $user->id)->update([
-            "gambar" => $user["gambar"]
+            "gambar" => url('/storage') . '/' . $user["gambar"]
         ]);
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Gambar Profil Berhasil di ubah!', 'success')</script>");

@@ -28,7 +28,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/jabatan') }}">
+                    <form method="POST" action="{{ url('/app/sistem/jabatan') }}" id="tambahJabatan">
                         @csrf
                         <div class="form-group">
                             <label for="nama_jabatan"> Jabatan </label>
@@ -115,7 +115,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/jabatan/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/jabatan/simpan') }}" method="POST" id="editJabatan">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -138,6 +138,54 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahJabatan").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama_jabatan: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nama_jabatan: {
+                                required: "Jabatan harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editJabatan").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama_jabatan: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nama_jabatan: {
+                                required: "Jabatan harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editJabatan(id) {

@@ -94,7 +94,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/kelas_halaqah/') }}" method="POST">
+                <form action="{{ url('/app/sistem/kelas_halaqah/') }}" method="POST" id="tambahWaliHalaqah">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -152,7 +152,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/kelas_halaqah/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/kelas_halaqah/simpan') }}" method="POST" id="editWaliHalaqah">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -175,6 +175,78 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahWaliHalaqah").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            id_asatidz: {
+                                required: true
+                            },
+                            kode_halaqah: {
+                                required: true
+                            },
+                            kelas_halaqah: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            id_asatidz: {
+                                required: "Asatidz harap diisi!"
+                            },
+                            kode_halaqah: {
+                                required: "Halaqah harap diisi!"
+                            },
+                            kelas_halaqah: {
+                                required: "Kelas harap diisi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editWaliHalaqah").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            id_asatidz: {
+                                required: true
+                            },
+                            kode_halaqah: {
+                                required: true
+                            },
+                            kelas_halaqah: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            id_asatidz: {
+                                required: "Asatidz harap diisi!"
+                            },
+                            kode_halaqah: {
+                                required: "Halaqah harap diisi!"
+                            },
+                            kelas_halaqah: {
+                                required: "Kelas harap diisi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script type="text/javascript">
         function editKelasHalaqah(id) {
