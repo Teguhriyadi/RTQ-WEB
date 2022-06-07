@@ -15,6 +15,6 @@ class AbsensiAsatidz extends Model
 
     public function getAsatidz()
     {
-        return $this->belongsTo("App\Models\Asatidz", 'id', 'id_asatidz');
+        return $this->belongsTo("App\Models\Asatidz", 'id_asatidz', 'id');
     }
 }

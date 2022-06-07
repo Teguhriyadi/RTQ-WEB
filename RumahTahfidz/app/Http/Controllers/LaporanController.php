@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absensi;
+use App\Models\AbsensiAsatidz;
 use App\Models\Asatidz;
 use App\Models\KelasHalaqah;
 use App\Models\Santri;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,6 +35,8 @@ class LaporanController extends Controller
 
     public function detail_laporan_absensi_asatidz($id)
     {
-        echo "Ini Detail Gaes";
+        $data['asatidz'] = User::findOrFail($id);
+        $data['absensi'] = AbsensiAsatidz::where('id_asatidz', $data['asatidz']->id)->latest()->paginate(4);
+        return view('app.public.laporan.absensi.asatidz.v_detail', $data);
     }
 }
