@@ -43,6 +43,7 @@ use App\Models\Santri;
                                             <th class="text-center">NIS</th>
                                             <th>Nama</th>
                                             <th class="text-center">Sisa</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -68,7 +69,15 @@ use App\Models\Santri;
                                                     <td class="text-center">{{ ++$no }}.</td>
                                                     <td class="text-center">{{ $data->getSantri->nis }}</td>
                                                     <td>{{ $data->getSantri->nama_lengkap }}</td>
-                                                    <td>Rp. {{ number_format($nominal_sekarang) }}</td>
+                                                    <td class="text-center">Rp. {{ number_format($nominal_sekarang) }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button onclick="editAdministrasi({{ $data->getSantri->id }})"
+                                                            type="button" class="btn btn-warning btn-sm" id="btnEdit"
+                                                            data-target="#modalEdit" data-toggle="modal">
+                                                            <i class="fa fa-edit"></i> Edit
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -82,11 +91,56 @@ use App\Models\Santri;
         </div>
     </div>
 
+    <!-- Edit Data -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-plus"></i> Tambah Administrasi
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/app/sistem/administrasi/belum_lunas/tambah') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="modal-body" id="modal-content-edit">
+
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Kembali
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-sm" id="btn-edit">
+                            <i class="fa fa-plus"></i> Tambah
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END -->
+
 @endsection
 
 @section('app_scripts')
 
     <script>
+        function editAdministrasi(id) {
+            $.ajax({
+                url: "{{ url('/app/sistem/administrasi/belum_lunas/edit') }}",
+                type: "GET",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $("#modal-content-edit").html(data);
+                    return true;
+                }
+            });
+        }
+
         $(document).ready(function() {
             $("#table-1").dataTable();
         })

@@ -282,7 +282,12 @@ Route::prefix("app")->group(function () {
                 // Data Administrasi
                 Route::prefix("administrasi")->group(function () {
 
+                    // Lunas
+                    Route::get("/lunas", [AdministrasiController::class, "lunas"]);
+
                     // Belum Lunas
+                    Route::get("/belum_lunas/edit", [AdministrasiController::Class, "edit_belum_lunas"]);
+                    Route::post("/belum_lunas/tambah", [AdministrasiController::class, "tambah_belum_lunas"]);
                     Route::get("/belum_lunas", [AdministrasiController::class, "belum_lunas"]);
                     // Lunas
 
