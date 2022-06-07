@@ -23,25 +23,6 @@ use Carbon\Carbon;
     </section>
     <div class="clearfix"></div>
     <div class="row">
-        <div class="col-md-4 col-sm-4  profile_left">
-            <div class="x_panel">
-                <div class="x_title">
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="profile_img">
-                        <div id="crop-avatar">
-
-                            <img class="img-responsive avatar-view" src="{{ $asatidz->gambar }}"
-                                onerror="this.onerror = null; this.src = '{{ url('gambar/no-images.png') }}'" alt="Avatar"
-                                title="Change the avatar" width="100%" height="255">
-                        </div>
-                    </div>
-                    <h3 class="text-center">{{ $asatidz->nama }}</h3>
-                    <br />
-                </div>
-            </div>
-        </div>
         <div class="col-md-8 col-sm-8 ">
             <div class="x_panel">
                 <div class="x_title">
@@ -57,6 +38,25 @@ use Carbon\Carbon;
                     </div>
 
                     <canvas id="graph_bar" style="width:100%; height:280px;"></canvas>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4  profile_left">
+            <div class="x_panel">
+                <div class="x_title">
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="profile_img">
+                        <div id="crop-avatar">
+
+                            <img class="img-responsive avatar-view" src="{{ $asatidz->gambar }}"
+                                onerror="this.onerror = null; this.src = '{{ url('gambar/no-images.png') }}'" alt="Avatar"
+                                title="Change the avatar" width="100%" height="255">
+                        </div>
+                    </div>
+                    <h3 class="text-center">{{ $asatidz->nama }}</h3>
                     <hr>
                     <ul class="messages">
                         @foreach ($absensi as $a)
@@ -88,6 +88,7 @@ use Carbon\Carbon;
                 </div>
             </div>
         </div>
+
     </div>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-lampiran">
