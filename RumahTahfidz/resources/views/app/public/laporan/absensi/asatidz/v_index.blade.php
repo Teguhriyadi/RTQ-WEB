@@ -1,11 +1,9 @@
 @php
-use App\Models\Administrasi;
-use App\Models\Santri;
+use App\Models\AbsensiAsatidz;
 @endphp
-
 @extends('.app.layouts.template')
 
-@section('app_title', 'Administrasi Lunas')
+@section('app_title', 'Laporan Absensi Asatidz')
 
 @section('app_content')
 
@@ -28,7 +26,7 @@ use App\Models\Santri;
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-book"></i> Data @yield('app_title')
+                        <i class="fa fa-book"></i> @yield('app_title')
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -40,41 +38,34 @@ use App\Models\Santri;
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
-                                            <th class="text-center">NIS</th>
                                             <th>Nama</th>
-                                            <th class="text-center">Status</th>
+                                            <th class="text-center">No. HP</th>
+                                            <th class="text-center">Hadir</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_santri as $data)
+                                        @foreach ($data_asatidz as $data)
                                             @php
-                                                $total = Administrasi::where('id_santri', $data->id_santri)->get();
-
-                                                $data_total = 0;
-                                                foreach ($total as $s) {
-                                                    $data_total += $s->nominal;
-                                                }
-
-                                                $santri = Santri::where('id', $data->id_santri)->first();
-
-                                                $nominal_sekarang = $santri->getNominalIuran->nominal - $data_total;
-
+                                                $jumlah_hadir = AbsensiAsatidz::where('id_asatidz', $data->id)->count();
                                             @endphp
-                                            @if ($nominal_sekarang == 0)
-                                                <tr>
-                                                    <td class="text-center">{{ ++$no }}.</td>
-                                                    <td class="text-center">{{ $data->getSantri->nis }}</td>
-                                                    <td>{{ $data->getSantri->nama_lengkap }}</td>
-                                                    <td class="text-center">
-                                                        <span class="badge badge-success p-2" style="font-size: 14px">
-                                                            <i class="fa fa-check"></i> Sudah Lunas
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            @endif
+                                            <tr>
+                                                <td class="text-center">{{ ++$no }}.</td>
+                                                <td>{{ $data->getUser->nama }}</td>
+                                                <td class="text-center">{{ $data->getUser->no_hp }}</td>
+                                                <td class="text-center">
+                                                    {{ $jumlah_hadir }}
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="{{ url('/app/sistem/laporan/absensi/asatidz/' . $data->getUser->id) }}"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="fa fa-search"></i> Detail
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

@@ -125,6 +125,16 @@ Route::prefix("app")->group(function () {
             Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
             Route::resource("/asatidz", AsatidzController::class);
 
+            Route::prefix("laporan")->group(function () {
+                Route::prefix("/absensi")->group(function () {
+                    // Santri
+                    Route::get("/santri", [LaporanController::class, "laporan_absensi_santri"]);
+                    // Asatidz
+                    Route::get("/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
+                    Route::get("/asatidz/{id}", [LaporanController::class, "detail_laporan_absensi_asatidz"]);
+                });
+            });
+
             Route::group(["middleware" => ["can:super_admin"]], function () {
 
                 // Data Kelas
@@ -286,7 +296,7 @@ Route::prefix("app")->group(function () {
                     Route::get("/lunas", [AdministrasiController::class, "lunas"]);
 
                     // Belum Lunas
-                    Route::get("/belum_lunas/edit", [AdministrasiController::Class, "edit_belum_lunas"]);
+                    Route::get("/belum_lunas/edit", [AdministrasiController::class, "edit_belum_lunas"]);
                     Route::post("/belum_lunas/tambah", [AdministrasiController::class, "tambah_belum_lunas"]);
                     Route::get("/belum_lunas", [AdministrasiController::class, "belum_lunas"]);
                     // Lunas
@@ -326,13 +336,6 @@ Route::prefix("app")->group(function () {
                 Route::put("/absensi/santri", [AbsensiSantriController::class, "input_data"]);
                 Route::post("/tambah_absensi", [AbsensiSantriController::class, "tambah_absensi"]);
                 Route::get("/absensi/santri", [AbsensiSantriController::class, "absensi_santri"]);
-            });
-
-            Route::prefix("laporan")->group(function () {
-
-                // Absensi
-                Route::get("/absensi/santri", [LaporanController::class, "laporan_absensi_santri"]);
-                Route::get("/absensi/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
             });
 
             // Iuran Wali Santri

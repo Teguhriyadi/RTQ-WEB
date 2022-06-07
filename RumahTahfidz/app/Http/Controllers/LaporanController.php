@@ -19,7 +19,7 @@ class LaporanController extends Controller
             "data_santri" => Santri::where("kode_halaqah", $halaqah->kode_halaqah)->get()
         ];
 
-        return view("app.administrator.laporan.absensi.v_santri", $data);
+        return view("app.public.laporan.absensi.asatidz.v_index", $data);
     }
 
     public function laporan_absensi_asatidz()
@@ -28,6 +28,11 @@ class LaporanController extends Controller
             "data_asatidz" => Asatidz::paginate(10)
         ];
 
-        return view("app.administrator.laporan.absensi.v_asatidz", $data);
+        return view("app.public.laporan.absensi.asatidz.v_index", $data);
+    }
+
+    public function detail_laporan_absensi_asatidz($id)
+    {
+        echo "Ini Detail Gaes";
     }
 }
