@@ -18,7 +18,7 @@
     </section>
     <div class="clearfix"></div>
     <div class="row">
-        <div class="col-md-3 col-sm-3  profile_left">
+        <div class="col-md-4 col-sm-4  profile_left">
             <div class="x_panel">
                 <div class="x_title">
                     <div class="clearfix"></div>
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9 col-sm-9 ">
+        <div class="col-md-8 col-sm-8 ">
             <div class="x_panel">
                 <div class="x_title">
                     <div class="clearfix"></div>

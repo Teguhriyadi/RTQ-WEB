@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LokasiRt;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -61,7 +62,8 @@ class UsersController extends Controller
     public function edit($id)
     {
         $data = [
-            "edit" => User::where("id", $id)->first()
+            "user" => User::where("id", $id)->first(),
+            "lokasi_rt" => LokasiRt::all()
         ];
 
         return view("app.super_admin.users.v_edit", $data);
@@ -76,7 +78,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
     /**

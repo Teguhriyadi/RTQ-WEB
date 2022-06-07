@@ -96,11 +96,10 @@
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-search"></i> Detail
                                                     </a>
-                                                    <button onclick="editUsers({{ $user->id }})" type="button"
-                                                        class="btn btn-warning btn-sm text-white" data-toggle="modal"
-                                                        data-target="#modalEdit">
+                                                    <a href="{{ url('app/sistem/users/' . $user->id . '/edit') }}"
+                                                        class="btn btn-warning btn-sm text-white">
                                                         <i class="fa fa-edit"></i> Edit
-                                                    </button>
+                                                    </a>
                                                     @if (Auth::user()->id == $user->id)
                                                     @else
                                                         <form action="" method="POST" style="display: inline">
@@ -217,59 +216,11 @@
         </div>
     </div>
     <!-- END -->
-
-    <!-- Edit Data -->
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="fa fa-pencil"></i>
-                        <span>Edit Data</span>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ url('/app/sistem/users/simpan') }}" method="POST" enctype="multipart/form-data">
-                    @method('PUT')
-                    @csrf
-                    <div class="modal-body" id="modal-content-edit">
-
-                    </div>
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- END -->
-
 @endsection
 
 @section('app_scripts')
 
     <script>
-        function editUsers(id) {
-            $.ajax({
-                url: "{{ url('/app/sistem/users/edit') }}",
-                type: "GET",
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    $("#modal-content-edit").html(data);
-                    return true;
-                }
-            });
-        }
-
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");

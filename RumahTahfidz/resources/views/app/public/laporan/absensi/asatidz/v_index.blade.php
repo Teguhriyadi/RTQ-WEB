@@ -14,7 +14,9 @@ use App\Models\AbsensiAsatidz;
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+                <li class="breadcrumb-item active" aria-current="page">Laporan</li>
+                <li class="breadcrumb-item active" aria-current="page">Absensi</li>
+                <li class="breadcrumb-item active" aria-current="page">Asatidz</li>
             </ol>
         </nav>
     </section>
