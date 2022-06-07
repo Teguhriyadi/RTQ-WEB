@@ -8,6 +8,7 @@ use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
+use App\Http\Controllers\BesaranIuranController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExcelController;
@@ -131,11 +132,16 @@ Route::prefix("app")->group(function () {
                     Route::get("/santri", [LaporanController::class, "laporan_absensi_santri"]);
                     // Asatidz
                     Route::get("/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
-                    Route::get("/asatidz/{id}", [LaporanController::class, "detail_laporan_absensi_asatidz"]);
+                    Route::get("/asatidz/{id}", [LaporanController::class, "detail_laporan_absensi"]);
                 });
             });
 
             Route::group(["middleware" => ["can:super_admin"]], function () {
+
+                // Data Besaran Iuran
+                Route::get("/besaran_iuran/edit", [BesaranIuranController::class, "edit"]);
+                Route::put("/besaran_iuran/simpan", [BesaranIuranController::class, "update"]);
+                Route::resource("/besaran_iuran", BesaranIuranController::class);
 
                 // Data Kelas
                 Route::get("/kelas/edit", [KelasController::class, "edit"]);
