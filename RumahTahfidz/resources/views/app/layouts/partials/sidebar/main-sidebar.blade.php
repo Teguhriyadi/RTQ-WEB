@@ -395,12 +395,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 </li>
                             </ul>
                         </li>
-
-                        <li class="{{ Request::segment(3) == 'absensi' ? 'active' : '' }}">
-                            <a href="{{ url('/app/sistem/absensi') }}">
-                                <i class="fa fa-book"></i>Absensi
-                            </a>
-                        </li>
                     @endcan
 
                     <li class="{{ Request::segment(3) == 'profil/user' ? 'active' : '' }}">
