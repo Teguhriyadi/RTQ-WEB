@@ -28,7 +28,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/setting/kategori/nilai/') }}">
+                    <form method="POST" action="{{ url('/app/sistem/setting/kategori/nilai/') }}"
+                        id="tambahKategoriNilai">
                         @csrf
                         <div class="form-group">
                             <label for="kategori_penilaian"> Kategori Penilaian </label>
@@ -62,15 +63,28 @@
                                         <tr>
                                             <th class="text-center">No.</th>
                                             <th>Penilaian</th>
-                                            <th class="text-center">Jenjang</th>
-                                            <th>Pelajaran</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $no = 0;
-                                        @endphp
+                                        @foreach ($data_penilaian as $status)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td>{{ $status->kategori_penilaian }}</td>
+                                                <td class="text-center">
+                                                    <a href="#" onclick="editKategoriPelajaran('{{ $status->id }}')"
+                                                        class="btn btn-warning btn-sm" data-target="#modalEdit"
+                                                        data-toggle="modal">
+                                                        <i class="fa fa-edit"></i> Edit
+                                                    </a>
+                                                    <a href="{{ url('/app/sistem/setting/kategori/nilai/delete/' . $status->id) }}"
+                                                        class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">
+                                                        <i class="fa fa-trash"></i> Hapus
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -94,7 +108,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/setting/kategori/pelajaran/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/setting/kategori/pelajaran/simpan') }}" method="POST"
+                    id="editKategoriNilai">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -117,6 +132,54 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahKategoriNilai").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            kategori_penilaian: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            kategori_penilaian: {
+                                required: "Kategori penilaian harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editKategoriNilai").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            kategori_penilaian: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            kategori_penilaian: {
+                                required: "Kategori penilaian harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editKategoriPelajaran(id) {
