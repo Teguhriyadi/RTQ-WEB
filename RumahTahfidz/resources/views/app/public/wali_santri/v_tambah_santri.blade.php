@@ -50,12 +50,20 @@
     <label for="sekolah"> Sekolah </label>
     <input type="text" class="form-control" name="sekolah" id="sekolah" placeholder="Masukkan Nama Sekolah">
 </div>
+<div class="form-group">
+    <label for="prestasi_anak"> Prestasi Anak </label>
+    <input type="text" class="form-control" name="prestasi_anak" id="prestasi_anak"
+        placeholder="Masukkan Data Prestasi">
+</div>
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="prestasi_anak"> Prestasi Anak </label>
-            <input type="text" class="form-control" name="prestasi_anak" id="prestasi_anak"
-                placeholder="Masukkan Data Prestasi">
+            <label for="jenis_kelamin"> Jenis Kelamin </label>
+            <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+                <option value="">- Pilih -</option>
+                <option value="L">Laki-laki</option>
+                <option value="P">Perempuan</option>
+            </select>
         </div>
     </div>
     <div class="col-md-6">
@@ -79,11 +87,14 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="jenis_kelamin"> Jenis Kelamin </label>
-            <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+            <label for="id_besaran"> Besaran Iuran </label>
+            <select name="id_besaran" class="form-control" id="id_besaran">
                 <option value="">- Pilih -</option>
-                <option value="L">Laki-laki</option>
-                <option value="P">Perempuan</option>
+                @foreach ($data_besaran as $data)
+                    <option value="{{ $data->id }}">
+                        Rp. {{ number_format($data->besaran) }}
+                    </option>
+                @endforeach
             </select>
         </div>
     </div>

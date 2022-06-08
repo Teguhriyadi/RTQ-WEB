@@ -31,6 +31,7 @@ return new class extends Migration
             $table->enum("status", ["1", "0"])->default(1);
             $table->string("foto")->nullable();
             $table->integer("id_nominal_iuran")->nullable();
+            $table->integer("id_besaran")->nullable();
             $table->timestamps();
         });
     }

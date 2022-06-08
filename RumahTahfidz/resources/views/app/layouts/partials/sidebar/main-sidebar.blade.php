@@ -389,6 +389,24 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                         </li>
                         <li>
                             <a>
+                                <i class="fa fa-money"></i> Biaya Iuran
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/validasi/iuran/belum_lunas') }}">
+                                        Iuran Belum Lunas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/validasi/iuran/lunas') }}">
+                                        Iuran Lunas
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>
                                 <i class="fa fa-bars"></i> Biaya Administrasi
                                 <span class="fa fa-chevron-down"></span>
                             </a>
