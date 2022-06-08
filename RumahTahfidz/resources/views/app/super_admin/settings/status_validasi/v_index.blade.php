@@ -28,7 +28,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/setting/validasi/') }}">
+                    <form method="POST" action="{{ url('/app/sistem/setting/validasi/') }}" id="tambahValidasi">
                         @csrf
                         <div class="form-group">
                             <label for="status"> Status Validasi </label>
@@ -112,17 +112,17 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/setting/validasi/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/setting/validasi/simpan') }}" method="POST" id="editValidasi">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>
@@ -135,6 +135,54 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahValidasi").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            status: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            status: {
+                                required: "Status harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editValidasi").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            status: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            status: {
+                                required: "Status harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editStatusValidasi(id) {
