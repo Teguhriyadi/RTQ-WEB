@@ -42,4 +42,9 @@ class Santri extends Model
     {
         return $this->belongsTo("App\Models\NominalIuran", "id_nominal_iuran", "id");
     }
+
+    public function getBesaranIuran()
+    {
+        return $this->belongsTo("App\Models\BesaranIuran", "id_besaran", "id")->withDefault(["besaran" => "NULL"]);
+    }
 }

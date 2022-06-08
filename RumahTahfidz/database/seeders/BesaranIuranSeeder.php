@@ -18,5 +18,9 @@ class BesaranIuranSeeder extends Seeder
         BesaranIuran::create([
             "besaran" => 10000
         ]);
+
+        BesaranIuran::create([
+            "besaran" => 50000  
+        ]);
     }
 }

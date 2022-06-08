@@ -9,7 +9,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\BesaranIuranController;
-use App\Http\Controllers\BesaranIuranSantriController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExcelController;
@@ -53,6 +52,7 @@ use App\Http\Controllers\StatusValidasiController;
 use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\TesSantriController;
+use App\Http\Controllers\ValidasiIuranController;
 use App\Http\Controllers\WaliSantriController;
 use App\Models\Jenjang;
 use App\Models\LastLogin;
@@ -314,6 +314,16 @@ Route::prefix("app")->group(function () {
                     Route::get("/belum_lunas", [AdministrasiController::class, "belum_lunas"]);
                     // Lunas
 
+                });
+
+                Route::prefix("validasi")->group(function () {
+                    Route::prefix("iuran")->group(function () {
+                        // Belum Lunas
+                        Route::get("/belum_lunas", [ValidasiIuranController::class, "v_belum_lunas"]);
+
+                        // Lunas
+                        Route::get("/lunas", [ValidasiIuranController::class, "v_lunas"]);
+                    });
                 });
             });
 

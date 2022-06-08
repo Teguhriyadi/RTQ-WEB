@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Administrasi;
 use App\Models\AdminLokasiRt;
+use App\Models\BesaranIuran;
 use App\Models\Halaqah;
 use App\Models\Kelas;
 use App\Models\LokasiRt;
@@ -65,7 +66,8 @@ class SantriController extends Controller
     {
         $data = [
             "edit" => Santri::where("id", $request->id)->first(),
-            "data_kelas" => Kelas::all()
+            "data_kelas" => Kelas::all(),
+            "data_besaran" => BesaranIuran::get()
         ];
 
         return view("app.public.santri.v_edit", $data);
@@ -93,6 +95,7 @@ class SantriController extends Controller
             "prestasi_anak" => $request->prestasi_anak,
             "sekolah" => $request->sekolah,
             "id_kelas" => $request->id_kelas,
+            "id_besaran" => $request->id_besaran,
             "foto" => $data
         ]);
 
@@ -111,7 +114,8 @@ class SantriController extends Controller
         $data = [
             "data_wali" => WaliSantri::where("id", $request->id)->first(),
             "data_kelas" => Kelas::all(),
-            "data_nominal_iuran" => NominalIuran::where("status", 1)->first()
+            "data_nominal_iuran" => NominalIuran::where("status", 1)->first(),
+            "data_besaran" => BesaranIuran::get()
         ];
 
         return view("app.public.wali_santri.v_tambah_santri", $data);
@@ -138,6 +142,7 @@ class SantriController extends Controller
         $santri->kode_halaqah = $request->kode_halaqah;
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
+        $santri->id_besaran = $request->id_besaran;
         $santri->foto = $data;
 
         $santri->save();
