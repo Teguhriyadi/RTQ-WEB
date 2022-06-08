@@ -66,7 +66,8 @@ class SantriController extends Controller
     {
         $data = [
             "edit" => Santri::where("id", $request->id)->first(),
-            "data_kelas" => Kelas::all()
+            "data_kelas" => Kelas::all(),
+            "data_besaran" => BesaranIuran::get()
         ];
 
         return view("app.public.santri.v_edit", $data);
@@ -94,6 +95,7 @@ class SantriController extends Controller
             "prestasi_anak" => $request->prestasi_anak,
             "sekolah" => $request->sekolah,
             "id_kelas" => $request->id_kelas,
+            "id_besaran" => $request->id_besaran,
             "foto" => $data
         ]);
 

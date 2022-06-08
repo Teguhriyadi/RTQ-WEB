@@ -45,11 +45,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                         Besaran Iuran
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{ url('/app/sistem/besaran_santri') }}">
-                                        Besaran Iuran Santri
-                                    </a>
-                                </li>
                                 <li class="{{ Request::segment(3) == 'kelas' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/kelas') }}">
                                         Kelas

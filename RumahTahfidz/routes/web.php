@@ -9,7 +9,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\BesaranIuranController;
-use App\Http\Controllers\BesaranIuranSantriController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExcelController;
@@ -144,11 +143,6 @@ Route::prefix("app")->group(function () {
                 Route::get("/besaran_iuran/edit", [BesaranIuranController::class, "edit"]);
                 Route::put("/besaran_iuran/simpan", [BesaranIuranController::class, "update"]);
                 Route::resource("/besaran_iuran", BesaranIuranController::class);
-
-                // Data Besaran Iuran Santri
-                Route::get("/besaran_santri/edit", [BesaranIuranSantriController::class, "edit"]);
-                Route::put("/besaran_santri/simpan", [BesaranIuranSantriController::class, "update"]);
-                Route::resource("/besaran_santri/", BesaranIuranSantriController::class);
 
                 // Data Kelas
                 Route::get("/kelas/edit", [KelasController::class, "edit"]);
