@@ -40,6 +40,16 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 <span class="fa fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ url('/app/sistem/besaran_iuran') }}">
+                                        Besaran Iuran
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/app/sistem/besaran_santri') }}">
+                                        Besaran Iuran Santri
+                                    </a>
+                                </li>
                                 <li class="{{ Request::segment(3) == 'kelas' ? 'active' : '' }}">
                                     <a href="{{ url('/app/sistem/kelas') }}">
                                         Kelas
