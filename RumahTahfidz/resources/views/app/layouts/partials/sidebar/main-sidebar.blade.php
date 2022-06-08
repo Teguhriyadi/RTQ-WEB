@@ -338,7 +338,14 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 @endforeach
                             </ul>
                         </li>
+                        <li class="{{ Request::segment(3) == 'rekap' ? 'active' : '' }}">
+                            <a href="{{ url('/app/sistem/rekap/absensi/asatidz/' . auth()->user()->id) }}">
+                                <i class="fa fa-book"></i>Absensi Saya
+                            </a>
+                        </li>
+                    @endcan
 
+                    @can('super_admin')
                         <li id="laporan">
                             <a>
                                 <i class="fa fa-bar-chart"></i> Laporan
@@ -369,7 +376,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                                 </li>
                             </ul>
                         </li>
-
                     @endcan
 
                     @can('admin')

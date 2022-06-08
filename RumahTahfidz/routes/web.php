@@ -13,6 +13,7 @@ use App\Http\Controllers\BesaranIuranSantriController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateAsatidzController;
 use App\Http\Controllers\GenerateIuranController;
@@ -147,7 +148,7 @@ Route::prefix("app")->group(function () {
                 // Data Besaran Iuran Santri
                 Route::get("/besaran_santri/edit", [BesaranIuranSantriController::class, "edit"]);
                 Route::put("/besaran_santri/simpan", [BesaranIuranSantriController::class, "update"]);
-                Route::resource("/besaran_santri/", BesaranIuranSantriController::class);
+                Route::resource("/besaran_santri", BesaranIuranSantriController::class);
 
                 // Data Kelas
                 Route::get("/kelas/edit", [KelasController::class, "edit"]);
@@ -396,6 +397,8 @@ Route::prefix("app")->group(function () {
 Route::get("/v_error", function () {
     return view("errors.503");
 });
+
+Route::resource('firebase', FirebaseController::class);
 
 Route::get("/coba-clockwork", function () {
     $data = [
