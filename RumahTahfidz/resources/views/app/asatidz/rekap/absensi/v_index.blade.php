@@ -53,7 +53,7 @@ use Carbon\Carbon;
                                         @foreach ($asatidz as $a)
                                             <tr>
                                                 <th class="text-center">{{ $loop->iteration }}</th>
-                                                <td class="text-center">{{ $a->getUser->nama }}</td>
+                                                <td class="text-center">{{ $a->getAsatidz->getUser->nama }}</td>
                                                 <td class="text-center">{{ $a->alamat }}</td>
                                                 <td class="text-center">
                                                     {{ Carbon::createFromFormat('Y-m-d H:i:s', $a->created_at)->isoFormat('dddd, D MMMM Y') }}
@@ -62,7 +62,7 @@ use Carbon\Carbon;
                                                     <button class="btn btn-info btn-sm" data-toggle="modal"
                                                         data-target="#exampleModal" data-alamat="{{ $a->alamat }}"
                                                         data-gambar="{{ $a->gambar }}" id="view-image"><i
-                                                            class="fa fa-eye"></i></button>
+                                                            class="fa fa-eye"></i> Lihat Foto</button>
                                                 </td>
                                             </tr>
                                         @endforeach
