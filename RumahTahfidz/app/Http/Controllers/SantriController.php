@@ -154,21 +154,6 @@ class SantriController extends Controller
 
         $administrasi->save();
 
-        Santri::create([
-            "nis" => $request->nis,
-            "nama_lengkap" => $request->nama_lengkap,
-            "nama_panggilan" => $request->nama_panggilan,
-            "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tanggal_lahir,
-            "alamat" => $request->alamat,
-            "prestasi_anak" => $request->prestasi_anak,
-            "sekolah" => $request->sekolah,
-            "id_kelas" => $request->id_kelas,
-            "kode_halaqah" => $request->kode_halaqah,
-            "id_wali" => $request->id_wali,
-            "foto" => $data
-        ]);
-
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>");
     }
 
