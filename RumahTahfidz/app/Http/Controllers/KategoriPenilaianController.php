@@ -19,15 +19,21 @@ class KategoriPenilaianController extends Controller
 
     public function store(Request $request)
     {
-        $validasi = $request->validate([
-            'kategori_penilaian' => 'required',
-        ]);
+        $count = KategoriPenilaian::where("kategori_penilaian", $request->kategori_penilaian)->count();
 
-        $validasi['slug'] = Str::slug($request->kategori_penilaian);
+        if ($count > 0) {
+            return back()->with(["message" => "<script>Swal.fire('Error', 'Gagal di Tambahkan', 'error');</script>"]);
+        } else {
+            $validasi = $request->validate([
+                'kategori_penilaian' => 'required',
+            ]);
 
-        KategoriPenilaian::create($validasi);
+            $validasi['slug'] = Str::slug($request->kategori_penilaian);
 
-        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+            KategoriPenilaian::create($validasi);
+
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+        }
     }
 
     public function edit(Request $request)
