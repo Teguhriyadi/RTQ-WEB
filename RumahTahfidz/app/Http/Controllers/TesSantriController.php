@@ -41,14 +41,12 @@ class TesSantriController extends Controller
     public function update(Request $request)
     {
         foreach ($request->id_santri as $data => $value) {
-            // echo $request->id_santri[$data];
-            // echo "<br>";
             Santri::where("id", $request->id_santri[$data])->update([
                 "id_jenjang" => $request->id_jenjang[$data],
             ]);
         }
 
-        return redirect()->back();
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }
 
     public function simpan(Request $request)

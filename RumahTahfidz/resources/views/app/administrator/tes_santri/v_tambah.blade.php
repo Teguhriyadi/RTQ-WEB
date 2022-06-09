@@ -82,6 +82,7 @@
                         <hr>
                         @if ($jumlah_santri > 0)
                             <div class="form-group">
+                                <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check All |
                                 <button type="submit" class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus"></i> Tambah
                                 </button>
@@ -165,6 +166,23 @@
 @section('app_scripts')
 
     <script>
+        function checkAll(ele) {
+            var checkboxes = document.getElementsByTagName("input");
+            if (ele.checked) {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = true;
+                    }
+                }
+            } else {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == "checkbox") {
+                        checkboxes[i].checked = false;
+                    }
+                }
+            }
+        }
+
         function editDataSantri(id) {
             $.ajax({
                 url: "{{ url('/app/sistem/santri/edit') }}",
