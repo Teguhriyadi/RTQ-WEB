@@ -37,20 +37,4 @@ class CobaController extends Controller
 
         return view("app.coba_rekap", $data);
     }
-
-    public function image(Request $request)
-    {
-        if ($request->hasFile('image')) {
-            $img = $request->file('image');
-            foreach ($img as $key) {
-                $filename = $key->hashName();
-                $key->store("coba");
-                $images = Image::create([
-                    'image' => $filename
-                ]);
-            }
-
-            return back();
-        }
-    }
 }

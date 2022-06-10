@@ -171,6 +171,16 @@ class SantriController extends Controller
 
         $data = array();
         foreach ($santri as $s) {
+            $status = "";
+            if ($s->status == 0) {
+                $status = "Belum di Konfirmasi";
+            } else if ($s->status == 1) {
+                $status = "Sudah di Konfirmasi";
+            } else if ($s->status == 2) {
+                $status = "Sudah Lulus";
+            } else {
+                $status = "Tidak Ada";
+            }
             if ($s->id_jenjang == NULL) {
                 $jenjang = "Belum Ada Jenjang";
             } else {
@@ -183,6 +193,8 @@ class SantriController extends Controller
 
                 'jenjang' => $jenjang,
                 'nama_wali' => $s->getWali->getUser->nama,
+
+                'status' => $status
             ];
         }
 

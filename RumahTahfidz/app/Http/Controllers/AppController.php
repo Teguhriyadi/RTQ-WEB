@@ -6,12 +6,7 @@ use App\Models\User;
 use App\Models\Asatidz;
 use App\Models\Santri;
 use App\Models\AdminLokasiRt;
-use App\Models\Iuran;
-use App\Models\SettingIuran;
 use App\Models\TerakhirLogin;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {

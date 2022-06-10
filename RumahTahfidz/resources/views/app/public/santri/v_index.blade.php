@@ -51,6 +51,7 @@
                                             <th>Nama</th>
                                             <th class="text-center">Jenjang</th>
                                             <th>Nama Wali</th>
+                                            <th class="text-center">Status</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
@@ -203,6 +204,10 @@
                     {
                         data: 'nama_wali',
                         name: 'nama_wali'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'aksi',

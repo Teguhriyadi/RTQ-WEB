@@ -37,7 +37,6 @@ use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\ProfilWebController;
-use App\Http\Controllers\RekapAbsensiController;
 use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\RekapIuranController;
 use App\Http\Controllers\RekapNilaiController;
@@ -67,21 +66,10 @@ use Maatwebsite\Excel\Row;
 |
 */
 
-Route::get("/image", function () {
-    return view("image");
-});
-
-Route::post("/image", [CobaController::class, "image"]);
-
 Route::get("/app/sistem/ambil_data", [CobaController::class, "json"]);
 Route::get("/coba_rekap", [CobaController::class, "coba_rekap"]);
 Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);
 
-Route::get('coba', function () {
-    dd(storage_path());
-});
-
-Route::get("/auto", [AppController::class, "auto"]);
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
