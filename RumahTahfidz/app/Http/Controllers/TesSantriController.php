@@ -11,7 +11,7 @@ class TesSantriController extends Controller
     public function index()
     {
         $data = [
-            "data_santri" => Santri::where("id_jenjang", "!=", NULL)->paginate(10)
+            "data_santri" => Santri::where("status", 0)->where("id_jenjang", "!=", NULL)->paginate(10)
         ];
 
         return view("app.administrator.tes_santri.v_index", $data);
@@ -56,5 +56,14 @@ class TesSantriController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function detail($id)
+    {
+        Santri::where("id", $id)->update([
+            "status" => 1
+        ]);
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success');</script>"]);
     }
 }

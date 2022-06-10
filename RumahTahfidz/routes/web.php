@@ -67,6 +67,12 @@ use Maatwebsite\Excel\Row;
 |
 */
 
+Route::get("/image", function () {
+    return view("image");
+});
+
+Route::post("/image", [CobaController::class, "image"]);
+
 Route::get("/app/sistem/ambil_data", [CobaController::class, "json"]);
 Route::get("/coba_rekap", [CobaController::class, "coba_rekap"]);
 Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);
@@ -294,6 +300,7 @@ Route::prefix("app")->group(function () {
 
                 // Tes Santri
                 Route::get("/tes/data", [TesSantriController::class, "index"]);
+                Route::put("/tes/data/{id}", [TesSantriController::class, "detail"]);
                 Route::get("/tes/input", [TesSantriController::class, "create"]);
                 Route::put("/tes/simpan", [TesSantriController::class, "update"]);
                 Route::get("/tes/edit", [TesSantriController::class, "edit"]);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AbsensiAsatidz;
+use App\Models\Image;
 use App\Models\Iuran;
 use App\Models\KategoriPelajaran;
 use Carbon\Carbon;
@@ -35,5 +36,21 @@ class CobaController extends Controller
         ];
 
         return view("app.coba_rekap", $data);
+    }
+
+    public function image(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            foreach ($img as $key) {
+                $filename = $key->hashName();
+                $key->store("coba");
+                $images = Image::create([
+                    'image' => $filename
+                ]);
+            }
+
+            return back();
+        }
     }
 }
