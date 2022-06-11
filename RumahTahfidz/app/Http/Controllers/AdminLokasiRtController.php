@@ -23,6 +23,13 @@ class AdminLokasiRtController extends Controller
     public function store(Request $request)
     {
 
+        if ($request->inputKodeRt) {
+            LokasiRt::create([
+                "kode_rt" => "500",
+                "lokasi_rt" => $request->inputKodeRt
+            ]);
+        }
+
         if ($request->file("gambar")) {
             $data = $request->file("gambar")->store("admin_cabang");
         }
@@ -33,7 +40,7 @@ class AdminLokasiRtController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt("adminlokasirt");
         $user->alamat = $request->alamat;
-        $user->id_role = 2;
+        $user->id_hak_akses = 2;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
