@@ -146,7 +146,7 @@
                                         placeholder="Masukkan No. HP">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="optionNyala">
                                 <div class="form-group">
                                     <label for="kode_rt"> Kode RT </label>
                                     @if ($lokasi_rt->count() < 1)
@@ -164,8 +164,22 @@
                                             <option value="L">Lainnya</option>
                                         </select>
                                     @endif
-                                    <input type="text" name="inputKodeRt" class="form-control" id="inputKodeRt"
-                                        placeholder="Masukkan Kode RT" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="optionMati" style="display: none;">
+                                <div class="form-group">
+                                    <label for="kode_rt"> Kode RT </label>
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <input type="text" class="form-control" name="kode_rt" id="kode_rt"
+                                                placeholder="Masukkan Kode RT">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -234,6 +248,9 @@
         function jikaKosong(value) {
             if (value == "L") {
                 $('#inputKodeRt').show();
+                $("#optionMati").show();
+                $("#optionMati2").show();
+                $("#optionNyala").hide();
                 $('#kode_rt').hide();
             }
         }
