@@ -4,6 +4,39 @@
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
+        <li class="{{ Request::segment(3) == 'admin_lokasi_rt' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">
+                Admin Cabang
+            </a>
+        </li>
+        <li class="{{ Request::segment(3) == 'asatidz' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/asatidz') }}">
+                Asatidz
+            </a>
+        </li>
+        <li class="{{ Request::segment(3) == 'kelas_halaqah' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/kelas_halaqah') }}">
+                Wali Halaqah
+            </a>
+        </li>
+        <li class="{{ Request::segment(3) == 'wali_santri' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/wali_santri') }}">
+                Wali Santri
+            </a>
+        </li>
+        <li class="{{ Request::segment(3) == 'santri' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/santri') }}">
+                Santri
+            </a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a>
+        <i class="fa fa-file-archive-o"></i> Data Akademik
+        <span class="fa fa-chevron-down"></span>
+    </a>
+    <ul class="nav child_menu">
         <li class="{{ Request::segment(3) == 'kelas' ? 'active' : '' }}">
             <a href="{{ url('/app/sistem/kelas') }}">
                 Kelas
@@ -19,40 +52,46 @@
                 Jenjang
             </a>
         </li>
-        <li class="{{ Request::segment(3) == 'kelas_halaqah' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/kelas_halaqah') }}">
-                Kelas Halaqah
-            </a>
-        </li>
-        <li class="{{ Request::segment(3) == 'jabatan' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/jabatan') }}">
-                Jabatan
-            </a>
-        </li>
         <li class="{{ Request::segment(3) == 'halaqah' ? 'active' : '' }}">
             <a href="{{ url('/app/sistem/halaqah') }}">
                 Halaqah
             </a>
         </li>
-        <li class="{{ Request::segment(3) == 'admin_lokasi_rt' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">
-                Admin Lokasi RT
+        <li>
+            <a>
+                Pelajaran
+                <span class="fa fa-chevron-down"></span>
             </a>
+            <ul class="nav child_menu">
+                <li class="{{ Request::segment(3) == 'kategori_pelajaran' }}">
+                    <a href="{{ url('/app/sistem/setting/kategori/pelajaran') }}">
+                        Kategori Pelajaran
+                    </a>
+                </li>
+                <li class="{{ Request::segment(3) == 'pelajaran' }}">
+                    <a href="{{ url('/app/sistem/pelajaran') }}">
+                        Pelajaran
+                    </a>
+                </li>
+            </ul>
         </li>
-        <li class="{{ Request::segment(3) == 'asatidz' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/asatidz') }}">
-                Asatidz
+        <li>
+            <a>
+                Penilaian
+                <span class="fa fa-chevron-down"></span>
             </a>
-        </li>
-        <li class="{{ Request::segment(3) == 'wali_santri' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/wali_santri') }}">
-                Wali Santri
-            </a>
-        </li>
-        <li class="{{ Request::segment(3) == 'santri' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/santri') }}">
-                Santri
-            </a>
+            <ul class="nav child_menu">
+                <li class="{{ Request::segment(3) == 'kategori_nilai' ? 'active' : '' }}">
+                    <a href="{{ url('/app/sistem/setting/kategori/nilai') }}">
+                        Kategori Penilaian
+                    </a>
+                </li>
+                <li class="{{ Request::segment(3) == 'nilai_kategori' }}">
+                    <a href="{{ url('/app/sistem/setting/nilai/kategori') }}">
+                        Nilai Kategori
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>
@@ -87,16 +126,29 @@
                 Tentang Kami
             </a>
         </li>
-        <li class="{{ Request::segment(3) == 'struktur_organisasi' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/struktur_organisasi') }}">
+        <li>
+            <a>
                 Struktur Organisasi
+                <span class="fa fa-chevron-down"></span>
             </a>
+            <ul class="nav child_menu">
+                <li class="{{ Request::segment(3) == 'jabatan' ? 'active' : '' }}">
+                    <a href="{{ url('/app/sistem/jabatan') }}">
+                        Jabatan
+                    </a>
+                </li>
+                <li class="{{ Request::segment(3) == 'struktur_organisasi' ? 'active' : '' }}">
+                    <a href="{{ url('/app/sistem/struktur_organisasi') }}">
+                        Struktur
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>
 <li>
     <a>
-        <i class="fa fa-money"></i> Iuran
+        <i class="fa fa-money"></i> Administasi Keuangan
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
@@ -113,6 +165,11 @@
         <li>
             <a>Pengaturan <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
+                <li class="{{ Request::segment(3) == 'nominal/iuran' }}">
+                    <a href="{{ url('/app/sistem/setting/nominal/iuran') }}">
+                        Nominal Pendaftaran
+                    </a>
+                </li>
                 <li>
                     <a href="{{ url('/app/sistem/besaran_iuran') }}">
                         Besaran Iuran
@@ -129,7 +186,7 @@
 </li>
 <li class="{{ Request::segment(3) == 'users' || Request::segment(3) == 'role' ? 'active' : '' }}">
     <a>
-        <i class="fa fa-users"></i> Akun
+        <i class="fa fa-users"></i> Data Akun
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu"
@@ -154,64 +211,6 @@
         </li>
     </ul>
 </li>
-<li>
-    <a>
-        <i class="fa fa-gears"></i> Setting
-        <span class="fa fa-chevron-down"></span>
-    </a>
-    <ul class="nav child_menu">
-        {{-- <li class="{{ Request::segment(3) == 'iuran' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/setting/iuran') }}">
-                Iuran
-            </a>
-        </li> --}}
-
-        <li class="{{ Request::segment(3) == 'kategori_nilai' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/setting/kategori/nilai') }}">
-                Kategori Penilaian
-            </a>
-        </li>
-        <li class="{{ Request::segment(3) == 'kategori_pelajaran' }}">
-            <a href="{{ url('/app/sistem/setting/kategori/pelajaran') }}">
-                Kategori Pelajaran
-            </a>
-        </li>
-        <li class="{{ Request::segment(3) == 'nilai_kategori' }}">
-            <a href="{{ url('/app/sistem/setting/nilai/kategori') }}">
-                Nilai Kategori
-            </a>
-        </li>
-        <li class="{{ Request::segment(3) == 'pelajaran' }}">
-            <a href="{{ url('/app/sistem/pelajaran') }}">
-                Pelajaran
-            </a>
-        </li>
-        <li class="{{ Request::segment(3) == 'nominal/iuran' }}">
-            <a href="{{ url('/app/sistem/setting/nominal/iuran') }}">
-                Nominal Iuran
-            </a>
-        </li>
-    </ul>
-</li>
-<li>
-    <a>
-        <i class="fa fa-download"></i> Generate
-        <span class="fa fa-chevron-down"></span>
-    </a>
-    <ul class="nav child_menu">
-
-        <li>
-            <a href="{{ url('/app/sistem/generate/asatidz') }}">
-                Asatidz
-            </a>
-        </li>
-        <li>
-            <a href="{{ url('/app/sistem/generate/santri') }}">
-                Santri
-            </a>
-        </li>
-    </ul>
-</li>
 <li class="{{ Request::segment(3) == 'hafalan_asatidz' ? 'active' : '' }}">
     <a href="{{ url('/app/sistem/hafalan/asatidz') }}">
         <i class="fa fa-book"></i> Hafalan Asatidz
@@ -219,26 +218,19 @@
 </li>
 <li id="laporan">
     <a>
-        <i class="fa fa-bar-chart"></i> Laporan
+        <i class="fa fa-bar-chart"></i> Rekap Absensi
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
         <li>
-            <a>
-                Absensi <span class="fa fa-chevron-down"></span>
+            <a href="{{ url('/app/sistem/laporan/absensi/santri/') }}">
+                Santri
             </a>
-            <ul class="nav child_menu">
-                <li>
-                    <a href="{{ url('/app/sistem/laporan/absensi/santri/') }}">
-                        Santri
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/app/sistem/laporan/absensi/asatidz') }}">
-                        Asatidz
-                    </a>
-                </li>
-            </ul>
+        </li>
+        <li>
+            <a href="{{ url('/app/sistem/laporan/absensi/asatidz') }}">
+                Asatidz
+            </a>
         </li>
     </ul>
 </li>
