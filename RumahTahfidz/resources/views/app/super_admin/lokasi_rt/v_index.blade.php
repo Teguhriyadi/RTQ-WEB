@@ -27,17 +27,22 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> Tambah Data Kategori
+                        <i class="fa fa-plus"></i> Tambah @yield('app_title')
                     </h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/kategori') }}" id="tambahKategori">
+                    <form method="POST" action="{{ url('/app/sistem/lokasi_rt') }}" id="tambahLokasiRt">
                         @csrf
                         <div class="form-group">
-                            <label for="kategori"> Nama Kelas </label>
-                            <input type="text" class="form-control" name="kategori" id="kategori"
-                                placeholder="Masukkan Nama Kategori">
+                            <label for="kode_rt"> Kode RT </label>
+                            <input type="text" class="form-control" name="kode_rt" id="kode_rt"
+                                placeholder="Masukkan Kode RT">
+                        </div>
+                        <div class="form-group">
+                            <label for="lokasi_rt"> Lokasi RT </label>
+                            <input type="text" class="form-control" name="lokasi_rt" id="lokasi_rt"
+                                placeholder="Masukkan Lokasi RT">
                         </div>
                         <div class="ln_solid"></div>
                         <button class="btn btn-danger btn-sm" type="reset">
@@ -205,8 +210,9 @@
             $("#table-1").dataTable();
 
             $('body').on('click', '#deleteKelas', function() {
-                let id = $(this).data('id');
+                let kode_rt = $(this).data('kode_rt');
 
+                console.log(kode_rt);
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -218,8 +224,8 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form_string =
-                            "<form method=\"POST\" action=\"{{ url('/app/sistem/kategori/') }}/" +
-                            id +
+                            "<form method=\"POST\" action=\"{{ url('/app/sistem/lokasi_rt/') }}/" +
+                            kode_rt +
                             "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
 
                         form = $(form_string)
