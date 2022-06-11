@@ -89,7 +89,7 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <button id="deleteKelas" data-id="{{ $data->id }}"
+                                                    <button id="deleteKelas" data-id="{{ $data->kode_rt }}"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> Hapus
                                                     </button>
@@ -210,9 +210,8 @@
             $("#table-1").dataTable();
 
             $('body').on('click', '#deleteKelas', function() {
-                let kode_rt = $(this).data('kode_rt');
+                let kode_rt = $(this).data('id');
 
-                console.log(kode_rt);
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
