@@ -114,7 +114,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/kategori/simpan') }}" method="POST" id="editKategori">
+                <form action="{{ url('/app/sistem/lokasi_rt/simpan') }}" method="POST" id="editKategori">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
