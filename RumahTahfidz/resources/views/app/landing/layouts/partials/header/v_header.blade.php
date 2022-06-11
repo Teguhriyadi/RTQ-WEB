@@ -3,19 +3,20 @@
 
         <a href="index.html" class="logo d-flex align-items-center">
 
-            <img src="{{ url('/gambar') }}/logo_ulil.png" alt="">
-            <span>{{ (empty($data->singkatan)) ? "" : $data->singkatan }}</span>
+            <img src="{{ empty($data->logo) ? url('/gambar/logo_ulil.png') : url('/storage/' . $data->logo) }}"
+                alt="">
+            <span>{{ empty($data->singkatan) ? 'RTQ' : $data->singkatan }}</span>
         </a>
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
-                <li><a class="nav-link scrollto" href="#services">Program</a></li>
-                <li><a class="nav-link scrollto" href="#portfolio">Dokumentasi</a></li>
-                <li><a class="nav-link scrollto" href="#team">Struktur</a></li>
+                <li><a class="nav-link scrollto active" href="{{ url('') }}#hero">Home</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('') }}#about">Tentang Kami</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('') }}#services">Program</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('') }}#portfolio">Dokumentasi</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('') }}#team">Struktur</a></li>
                 <li><a href="{{ url('/blog') }}">Blog</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('') }}#contact">Kontak</a></li>
                 <li class="dropdown">
                     <a href="#">
                         <span>Login</span>

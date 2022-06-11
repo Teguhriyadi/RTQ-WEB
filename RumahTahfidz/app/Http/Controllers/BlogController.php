@@ -19,7 +19,16 @@ class BlogController extends Controller
             "data_blog" => Blog::latest()->get()
         ];
 
-        return view("app.super_admin.blog.v_index", $data);
+        return view("app.super_admin.halaman_utama.blog.v_index", $data);
+    }
+
+    public function create()
+    {
+        $data = [
+            "data_kategori" => Kategori::get()
+        ];
+
+        return view("app.super_admin.halaman_utama.blog.v_create", $data);
     }
 
     public function store(Request $request)
@@ -47,7 +56,7 @@ class BlogController extends Controller
             "edit" => Blog::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.blog.v_edit", $data);
+        return view("app.super_admin.halaman_utama.blog.v_edit", $data);
     }
 
     public function update(Request $request)

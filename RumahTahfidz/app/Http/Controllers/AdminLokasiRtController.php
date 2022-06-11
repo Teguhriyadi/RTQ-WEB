@@ -17,11 +17,18 @@ class AdminLokasiRtController extends Controller
             "lokasi_rt" => LokasiRt::get()
         ];
 
-        return view("app.super_admin.admin_lokasi_rt.v_index", $data);
+        return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
     }
 
     public function store(Request $request)
     {
+
+        if ($request->inputKodeRt) {
+            LokasiRt::create([
+                "kode_rt" => "500",
+                "lokasi_rt" => $request->inputKodeRt
+            ]);
+        }
 
         if ($request->file("gambar")) {
             $data = $request->file("gambar")->store("admin_cabang");
@@ -33,7 +40,7 @@ class AdminLokasiRtController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt("adminlokasirt");
         $user->alamat = $request->alamat;
-        $user->id_role = 2;
+        $user->id_hak_akses = 2;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
@@ -59,7 +66,7 @@ class AdminLokasiRtController extends Controller
             "lokasi_rt" => LokasiRt::get()
         ];
 
-        return view("app.super_admin.admin_lokasi_rt.v_edit", $data);
+        return view("app.super_admin.data_master.admin_lokasi_rt.v_edit", $data);
     }
 
     public function update(Request $request)

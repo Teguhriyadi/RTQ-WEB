@@ -42,7 +42,6 @@ class ProfilSantriController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -71,7 +70,6 @@ class ProfilSantriController extends Controller
     {
         $data = [
             'santri' => Santri::where('id', $id)->first(),
-            'data_kelas' => Kelas::all()
         ];
 
         return view('app.wali_santri.profil.v_edit', $data);
@@ -99,7 +97,7 @@ class ProfilSantriController extends Controller
 
         Santri::where("id", $id)->update($validasi);
 
-        return redirect('app/sistem/profil_santri')->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
+        return redirect('app/sistem/profil_santri/' . $id)->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
     }
 
     /**

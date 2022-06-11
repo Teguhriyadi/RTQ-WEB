@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LokasiRt;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class UsersController extends Controller
     public function index()
     {
         $data = [
-            "data_users" => User::orderBy("id_role", "ASC")->get()
+            "data_users" => User::get()
         ];
 
         return view("app.super_admin.users.v_index", $data);
@@ -19,16 +20,22 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+
+        if ($request->file("gambar")) {
+            $data = $request->file("gambar")->store("users");
+        }
+
         User::create([
-            "id" => time(),
             "nama" => $request->nama,
             "email" => $request->email,
             "password" => bcrypt($request->password),
             "alamat" => $request->alamat,
             "no_hp" => $request->no_hp,
-            "id_role" => 1,
-            "tempat_lahir" => "Cirebon",
-            "tanggal_lahir" => "2020-01-01"
+            "gambar" => $data,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "status" => 1
         ]);
 
         return redirect()->back();
@@ -42,7 +49,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        return view('app.super_admin.users.v_detail', compact('user'));
     }
 
     /**
@@ -53,7 +61,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            "user" => User::where("id", $id)->first(),
+            "lokasi_rt" => LokasiRt::all()
+        ];
+
+        return view("app.super_admin.users.v_edit", $data);
     }
 
     /**
@@ -65,7 +78,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
     /**

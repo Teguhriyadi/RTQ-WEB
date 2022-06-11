@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tb_kategori_penilaian', function (Blueprint $table) {
             $table->id();
             $table->string("kategori_penilaian", 50);
+            $table->string("slug", 50);
         });
     }
 

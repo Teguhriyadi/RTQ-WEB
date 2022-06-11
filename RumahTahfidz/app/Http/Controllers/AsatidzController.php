@@ -14,12 +14,12 @@ class AsatidzController extends Controller
             "data_asatidz" => Asatidz::orderBy("id", "DESC")->get()
         ];
 
-        return view("app.administrator.asatidz.v_index", $data);
+        return view("app.public.asatidz.v_index", $data);
     }
 
     public function create()
     {
-        return view("app.administrator.asatidz.v_tambah");
+        return view("app.public.asatidz.v_tambah");
     }
 
     public function store(Request $request)
@@ -57,7 +57,7 @@ class AsatidzController extends Controller
             "edit" => Asatidz::where("id", $request->id)->first()
         ];
 
-        return view("app.administrator.asatidz.v_edit", $data);
+        return view("app.public.asatidz.v_edit", $data);
     }
 
     public function update(Request $request)

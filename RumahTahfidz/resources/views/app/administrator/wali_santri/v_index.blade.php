@@ -1,4 +1,4 @@
-@extends(".app.layouts.template")
+@extends('.app.layouts.template')
 
 @section('app_title', 'Wali Santri')
 
@@ -6,7 +6,7 @@
 
     <section class="section">
         <h3>
-            @yield("app_title")
+            @yield('app_title')
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -25,9 +25,12 @@
                         data-target=".bs-example-modal-lg">
                         <i class="fa fa-plus"></i> Tambah Data
                     </button>
-                    <button class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#modalExcel">
-                        <i class="fa fa-file-excel-o"></i> Import Excel
-                    </button>
+                    <div class="pull-right">
+                        {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}
+                        {{-- class="fa fa-download"></i> Download</a> --}}
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
+                                class="fa fa-upload"></i> Upload</button>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -199,8 +202,14 @@
                             <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat"></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="pekerjaan"> Pekerjaan </label>
+                            <input type="text" class="form-control" name="pekerjaan" id="pekerjaan"
+                                placeholder="Masukkan Pekerjaan">
+                        </div>
+                        <div class="form-group">
                             <label for="gambar"> Gambar </label>
-                            <input type="file" class="form-control" name="gambar" id="gambar">
+                            <img class="gambar-preview" id="tampilGambar">
+                            <input type="file" class="form-control" name="gambar" id="gambar" onchange="previewImage()">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -230,7 +239,7 @@
                     </button>
                 </div>
                 <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST">
-                    @method("PUT")
+                    @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
 
@@ -261,7 +270,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/santri/tambah_santri_by_wali') }}" method="POST">
+                <form action="{{ url('/app/sistem/santri/tambah_santri_by_wali') }}" method="POST"
+                    enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-tambah-santri">
 
@@ -323,7 +333,7 @@
 
 @section('app_scripts')
     <script src="{{ url('') }}/vendors/jquery/dist/jquery.form.min.js"></script>
-    <script>
+    <script type="text/javascript">
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");

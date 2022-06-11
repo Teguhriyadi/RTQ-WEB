@@ -24,30 +24,30 @@
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-5">
                     <div class="card profile-widget">
-                        <div class="profile-widget-header">
-                            <img src="{{ url('/storage/' . Auth::user()->gambar) }}"
-                                class="rounded-circle profile-widget-picture">
-                            <div class="profile-widget-description">
-                                <div class="profile-widget-name">{{ Auth::user()->nama }}
+                        <div class="profile-widget-header card-body">
+                            <center>
+                                <img src="{{ url('/storage/' . $user->gambar) }}"
+                                    class="rounded-circle profile-widget-picture shadow-lg" height="250" width="250">
+                            </center>
+                            <div class="profile-widget-description mt-3">
+                                <div class="profile-widget-name text-center">
+                                    <h3>{{ $user->nama }}</h3>
                                     <div class="text-muted d-inline font-weight-normal">
-                                        <div class="slash"></div> {{ Auth::user()->getRole->keterangan }}
+                                        <div class="slash"></div>
+                                        {{ $user->getAkses->getRole->keterangan }}
                                     </div>
                                 </div>
-                                Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a
-                                fictional character but an original hero in my family, a hero for his children and for his
-                                wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with
-                                <b>'John Doe'</b>.
                                 <div class="row pt-3">
                                     <div class="col-md-12 pb-2">
-                                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal"
                                             data-target="#modalGambarProfil">
-                                            <i class="far fa-edit"></i> Edit Gambar Profil
+                                            <i class="fa fa-edit"></i> Edit Gambar Profil
                                         </button>
                                     </div>
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal"
+                                        <button type="button" class="btn btn-success btn-sm btn-block" data-toggle="modal"
                                             data-target="#modalGantiPassword">
-                                            <i class="far fa-edit"></i> Edit Password
+                                            <i class="fa fa-edit"></i> Edit Password
                                         </button>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                     <div class="form-group col-md-12 col-12">
                                         <label for="nama">Nama</label>
                                         <input type="text" class="form-control" name="nama" id="nama"
-                                            value="{{ Auth::user()->nama }}">
+                                            value="{{ $user->nama }}">
                                         <div class="invalid-feedback">
                                             Please fill in the first name
                                         </div>
@@ -76,7 +76,7 @@
                                     <div class="form-group col-md-7 col-12">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" name="email" id="email"
-                                            value="{{ Auth::user()->email }}">
+                                            value="{{ $user->email }}">
                                         <div class="invalid-feedback">
                                             Please fill in the email
                                         </div>
@@ -84,34 +84,34 @@
                                     <div class="form-group col-md-5 col-12">
                                         <label for="no_hp"> No. Handphone </label>
                                         <input type="number" class="form-control" name="no_hp" id="no_hp"
-                                            value="{{ Auth::user()->no_hp }}">
+                                            value="{{ $user->no_hp }}">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6 col-12">
                                         <label for="tempat_lahir"> Tempat Lahir </label>
                                         <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir"
-                                            value="{{ Auth::user()->tempat_lahir }}">
+                                            value="{{ $user->tempat_lahir }}">
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label for="tanggal_lahir"> Tanggal Lahir </label>
                                         <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir"
-                                            value="{{ Auth::user()->tanggal_lahir }}">
+                                            value="{{ $user->tanggal_lahir }}">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-12">
                                         <label for="alamat"> Alamat </label>
-                                        <textarea class="form-control summernote-simple">{{ Auth::user()->alamat }}</textarea>
+                                        <textarea class="form-control summernote-simple">{{ $user->alamat }}</textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button type="reset" class="btn btn-danger">
+                                <button type="reset" class="btn btn-sm btn-danger">
                                     <i class="fa fa-times"></i> Batal
                                 </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="far fa-edit"></i> Simpan
+                                <button type="submit" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-edit"></i> Simpan
                                 </button>
                             </div>
                         </form>
@@ -137,8 +137,8 @@
                     enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
-                    <input type="hidden" name="oldGambarProfil" value="{{ Auth::user()->gambar }}">
+                    <input type="hidden" name="id" value="{{ $user->id }}">
+                    <input type="hidden" name="oldGambarProfil" value="{{ $user->gambar }}">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="gambar_profil"> Gambar Profil </label>
@@ -147,10 +147,10 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-primary" id="btn-tambah">
+                        <button type="submit" class="btn btn-sm btn-primary" id="btn-tambah">
                             <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
@@ -176,7 +176,7 @@
                     enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="id" value="{{ $user->id }}">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="password_lama"> Password Lama </label>
@@ -195,10 +195,10 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-sm btn-success">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>

@@ -2,7 +2,7 @@
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 @endphp
-@extends("app.layouts.template")
+@extends('app.layouts.template')
 
 @section('app_title', 'Detail Rekap Iuran')
 
@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 
     <h3>
-        @yield("app_title")
+        @yield('app_title')
     </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -32,7 +32,7 @@ use Illuminate\Support\Str;
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="card-box table-responsive">
-                                <table class="table table-hover table-bordered" style="width: 100%">
+                                <table class="table table-hover table-bordered" style="width: 100%" id="rekap-iuran">
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
@@ -43,22 +43,7 @@ use Illuminate\Support\Str;
                                             <th class="text-center">Status Validasi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($santri as $s)
-                                            <tr>
-                                                <th class="text-center">{{ $loop->iteration }}</th>
-                                                <td>{{ $s->getSantri->nis }}</td>
-                                                <td>{{ $s->getSantri->nama_lengkap }}</td>
-                                                <td>{{ 'Rp. 20.000' }}</td>
-                                                <td>{{ Carbon::createFromFormat('Y-m-d', $s->tanggal)->isoFormat('D MMMM Y') }}
-                                                </td>
-                                                <th class="text-center">
-                                                    <div class="badge badge-success"><i class="fa fa-check"></i> Diterima
-                                                    </div>
-                                                </th>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
+                                    <tbody> </tbody>
                                 </table>
                             </div>
                         </div>
@@ -72,6 +57,41 @@ use Illuminate\Support\Str;
 
 @section('app_scripts')
 
-    <script></script>
+    <script>
+        $(document).ready(function() {
+            $('#rekap-iuran').dataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ url('app/sistem/rekap_iuran/datatables/' . Request::segment(4)) }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'nis',
+                        name: 'nis'
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'nominal',
+                        name: 'nominal'
+                    },
+                    {
+                        data: 'tgl_bayar',
+                        name: 'tgl_bayar'
+                    },
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            })
+        })
+    </script>
 
 @endsection

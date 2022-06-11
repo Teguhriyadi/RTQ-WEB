@@ -21,13 +21,12 @@ class LokasiRtController extends Controller
         $cek = LokasiRt::where("kode_rt", $request->kode_rt)->count();
 
         if ($cek > 0) {
-            return redirect()->back()->with('message', '<script>Swal.fire("Oops", "Tidak Boleh Ada Duplikasi Data", "error")</script>');
+            return redirect()->back()->with('message', '<script>Swal.fire("Gagal", "Tidak Boleh Ada Duplikasi Data", "error")</script>');
         } else {
             LokasiRt::create($request->all());
 
-            return redirect()->back()->with('message', '<script>Swal.fire("Wooww", "Data anda berhasil ditambahkan!", "success")</script>');
+            return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan", "success")</script>');
         }
-
     }
 
     public function edit(Request $request)
@@ -45,13 +44,13 @@ class LokasiRtController extends Controller
             "lokasi_rt" => $request->lokasi_rt
         ]);
 
-        return redirect()->back();
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>"]);
     }
 
     public function destroy($kode_rt)
     {
         LokasiRt::where("kode_rt", $kode_rt)->delete();
 
-        return redirect()->back();
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }

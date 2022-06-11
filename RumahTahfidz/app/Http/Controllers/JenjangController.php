@@ -13,7 +13,7 @@ class JenjangController extends Controller
             "data_jenjang" => Jenjang::orderBy("jenjang", "DESC")->get()
         ];
 
-        return view("app.super_admin.jenjang.v_index", $data);
+        return view("app.super_admin.data_master.jenjang.v_index", $data);
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class JenjangController extends Controller
             "edit" => Jenjang::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.jenjang.v_edit", $data);
+        return view("app.super_admin.data_master.jenjang.v_edit", $data);
     }
 
     public function update(Request $request)
