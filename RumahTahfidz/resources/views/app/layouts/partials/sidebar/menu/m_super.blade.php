@@ -101,14 +101,29 @@
     </a>
     <ul class="nav child_menu">
         <li>
-            <a href="{{ url('/app/sistem/besaran_iuran') }}">
-                Besaran Iuran
+            <a href="{{ url('/app/sistem/generate/iuran') }}">
+                Rekap Iuran
             </a>
         </li>
         <li>
             <a href="{{ url('/app/sistem/iuran') }}">
                 Validasi Iuran
             </a>
+        </li>
+        <li>
+            <a>Pengaturan <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li>
+                    <a href="{{ url('/app/sistem/besaran_iuran') }}">
+                        Besaran Iuran
+                    </a>
+                </li>
+                <li class="{{ Request::segment(3) == 'status' ? 'active' : '' }}">
+                    <a href="{{ url('/app/sistem/setting/validasi') }}">
+                        Status Validasi
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>
@@ -119,15 +134,23 @@
     </a>
     <ul class="nav child_menu"
         style="display: {{ Request::segment(3) == 'users' || Request::segment(3) == 'role' ? 'block' : '' }}">
-        <li class="{{ Request::segment(3) == 'role' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/role') }}">
-                Role
-            </a>
-        </li>
         <li class="{{ Request::segment(3) == 'users' ? 'active' : '' }}">
             <a href="{{ url('/app/sistem/users') }}">
                 Users
             </a>
+        </li>
+        <li>
+            <a>
+                Pengaturan
+                <span class="fa fa-chevron-down"></span>
+            </a>
+            <ul class="nav child_menu">
+                <li class="{{ Request::segment(3) == 'role' ? 'active' : '' }}">
+                    <a href="{{ url('/app/sistem/role') }}">
+                        Role
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>
@@ -142,11 +165,7 @@
                 Iuran
             </a>
         </li> --}}
-        <li class="{{ Request::segment(3) == 'status' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/setting/validasi') }}">
-                Status Validasi
-            </a>
-        </li>
+
         <li class="{{ Request::segment(3) == 'kategori_nilai' ? 'active' : '' }}">
             <a href="{{ url('/app/sistem/setting/kategori/nilai') }}">
                 Kategori Penilaian
@@ -180,11 +199,7 @@
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
-        <li>
-            <a href="{{ url('/app/sistem/generate/iuran') }}">
-                Iuran
-            </a>
-        </li>
+
         <li>
             <a href="{{ url('/app/sistem/generate/asatidz') }}">
                 Asatidz
