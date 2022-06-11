@@ -155,34 +155,34 @@ use App\Models\SettingIuran;
                                                 </span>
                                                 @elseif (Auth::user()->id_role == 2)
                                                 <span class="badge bg-secondary p-2" style="font-size: 14px; color: white;">
-                                                {{ $data->getStatusValidasi->status }}
+                                                    {{ $data->getStatusValidasi->status }}
                                                 </span>
                                                 @endif
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center">
-                                            <i>
-                                                <b>Tidak ada data yang di validasi</b>
-                                            </i>
-                                        </td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            <div class="ln_solid"></div>
-                            <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check All |
-                            <button type="submit" class="btn btn-success btn-sm">
-                                <i class="fa fa-save"></i> Simpan
-                            </button>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="6" class="text-center">
+                                                <i>
+                                                    <b>Tidak ada data yang di validasi</b>
+                                                </i>
+                                            </td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                                <div class="ln_solid"></div>
+                                <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check All |
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="fa fa-save"></i> Simpan
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 @endsection

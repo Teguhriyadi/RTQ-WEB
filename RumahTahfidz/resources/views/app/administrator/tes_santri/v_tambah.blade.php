@@ -76,6 +76,9 @@
                         </div>
                     </div>
                     <hr>
+                    @if (empty($data_santri))
+                    Kosong
+                    @endif
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-plus"></i> Tambah
