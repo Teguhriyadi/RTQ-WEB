@@ -4,6 +4,13 @@
 
 @section('app_content')
 
+    <style>
+        th.dt-center,
+        td.dt-center {
+            text-align: center;
+        }
+    </style>
+
     <section class="section">
         <h3>
             @yield('app_title')
@@ -46,13 +53,12 @@
                                 <table id="datatable-santri" class="table table-striped table-bordered" style="width: 100%">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">No.</th>
+                                            <th>No.</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
-                                            <th class="text-center">Jenjang</th>
+                                            <th>Jenjang</th>
                                             <th>Nama Wali</th>
-                                            <th class="text-center">Status</th>
-                                            <th class="text-center">Aksi</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -185,9 +191,13 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('app/sistem/santri/datatables') }}",
+                columnDefs: [{
+                    "className": "dt-center",
+                    "targets": [0, 1, 3, 5]
+                }],
                 columns: [{
                         data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
+                        name: 'DT_RowIndex',
                     },
                     {
                         data: 'nis',
@@ -204,10 +214,6 @@
                     {
                         data: 'nama_wali',
                         name: 'nama_wali'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
                     },
                     {
                         data: 'aksi',

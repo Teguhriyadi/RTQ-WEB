@@ -166,21 +166,11 @@ class SantriController extends Controller
             $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
             $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
 
-            $santri = Santri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+            $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
         }
 
         $data = array();
         foreach ($santri as $s) {
-            $status = "";
-            if ($s->status == 0) {
-                $status = "Belum di Konfirmasi";
-            } else if ($s->status == 1) {
-                $status = "Sudah di Konfirmasi";
-            } else if ($s->status == 2) {
-                $status = "Sudah Lulus";
-            } else {
-                $status = "Tidak Ada";
-            }
             if ($s->id_jenjang == NULL) {
                 $jenjang = "Belum Ada Jenjang";
             } else {
@@ -190,11 +180,8 @@ class SantriController extends Controller
                 'id' => $s->id,
                 'nis' => $s->nis,
                 'nama_lengkap' => $s->nama_lengkap,
-
                 'jenjang' => $jenjang,
-                'nama_wali' => $s->getWali->getUser->nama,
-
-                'status' => $status
+                'nama_wali' => $s->getWali->getUser->nama
             ];
         }
 

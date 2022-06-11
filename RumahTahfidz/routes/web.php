@@ -125,7 +125,7 @@ Route::prefix("app")->group(function () {
                     Route::get("/santri", [LaporanController::class, "laporan_absensi_santri"]);
                     // Asatidz
                     Route::get("/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
-                    Route::get("/asatidz/{id}", [LaporanController::class, "detail_laporan_absensi"]);
+                    Route::get("/asatidz/{id}", [LaporanController::class, "detail_laporan_absensi_asatidz"]);
                 });
             });
 

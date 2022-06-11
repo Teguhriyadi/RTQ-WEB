@@ -19,7 +19,7 @@ class IuranController extends Controller
 
         $data = [
             "data_santri" => Santri::get(),
-            "data_iuran" => Iuran::where("id_status_validasi", $id_status_validasi)->get()
+            "data_iuran" => Iuran::where("id_status_validasi", $id_status_validasi)->paginate(10)
         ];
 
         return view("app.administrator.iuran.v_index", $data);

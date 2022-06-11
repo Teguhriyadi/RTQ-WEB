@@ -107,8 +107,8 @@
 </div>
 <div class="form-group">
     <label for="foto"> Foto </label>
-    <img class="gambar-lihat" id="tampilGambar">
-    <input type="file" class="form-control" name="foto" id="foto" onchange="imagePreview()">
+    <img class="gambar-lihat img-fluid" id="tampilGambar">
+    <input type="file" class="form-control  " name="foto" id="foto" onchange="imagePreview()">
 </div>
 
 <script>

@@ -4,6 +4,13 @@
 
 @section('app_content')
 
+    <style>
+        th.dt-center,
+        td.dt-center {
+            text-align: center;
+        }
+    </style>
+
     <section class="section">
         <h3>
             @yield('app_title')
@@ -40,61 +47,17 @@
                                 <table id="datatable-walisantri" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">No.</th>
+                                            <th>No.</th>
                                             <th>No. KK</th>
                                             <th>Nama</th>
-                                            <th class="text-center">Jenis Kelamin</th>
-                                            <th class="text-center">No. HP</th>
-                                            <th class="text-center">Jumlah Anak</th>
-                                            <th class="text-center">Aksi</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>No. HP</th>
+                                            <th>Jumlah Anak</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @php $no = 0 @endphp
-                                        @foreach ($data_wali as $wali)
-                                            <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td>{{ $wali->no_kk }}</td>
-                                                <td>{{ $wali->getUser->nama }}</td>
-                                                <td class="text-center">
-                                                    @if ($wali->getUser->jenis_kelamin == 'L')
-                                                        Laki - Laki
-                                                    @elseif($wali->getUser->jenis_kelamin == 'P')
-                                                        Perempuan
-                                                    @else
-                                                        Tidak Ada
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">{{ $wali->getUser->no_hp }}</td>
-                                                <td class="text-center">
-                                                    @php
-                                                        $count = $data_santri->where('id_wali', $wali->id)->count();
-                                                        echo $count;
-                                                    @endphp
-                                                </td>
-                                                <td class="text-center">
-                                                    <button onclick="tambahDataSantri({{ $wali->id }})" type="button"
-                                                        class="btn btn-success btn-sm" id="btnTambahSantri"
-                                                        data-target="#modalTambahSantri" data-toggle="modal">
-                                                        <i class="fa fa-plus"></i>
-                                                    </button>
-                                                    <button onclick="editDataWali({{ $wali->id }})" type="button"
-                                                        class="btn btn-warning btn-sm text-white" id="btnEdit"
-                                                        data-target="#modalEdit" data-toggle="modal">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <form action="{{ url('/app/sistem/wali_santri/' . $wali->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method("DELETE")
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{ $wali->id }}">
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach --}}
+
                                     </tbody>
                                 </table>
                             </div>
@@ -117,7 +80,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('app/sistem/wali_santri') }}" method="post" id="wali_santri"
+                <form action="{{ url('app/sistem/wali_santri') }}" method="post" id="tambahWaliSantri"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
@@ -390,6 +353,10 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('app/sistem/wali_santri/datatables') }}",
+                columnDefs: [{
+                    "className": "dt-center",
+                    "targets": [0, 1, 3, 5, 6]
+                }],
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -469,6 +436,108 @@
                 });
             })
         })
+    </script>
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahWaliSantri").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            no_ktp: {
+                                required: true
+                            },
+                            no_kk: {
+                                required: true
+                            },
+                            nama: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            kode_halaqah: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            jenis_kelamin: {
+                                required: true
+                            },
+                            tempat_lahir: {
+                                required: true
+                            },
+                            tanggal_lahir: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            no_ktp: {
+                                required: "Nomor KTP Harap di Isi!"
+                            },
+                            no_kk: {
+                                required: "Nomor KK Harap di Isi!"
+                            },
+                            nama: {
+                                required: "Nama Harus di Isi!"
+                            },
+                            email: {
+                                required: "Email Harus di Isi!"
+                            },
+                            kode_halaqah: {
+                                required: "Kode Halaqah Harap di Isi!"
+                            },
+                            no_hp: {
+                                required: "Nomor HP Harap di Isi!"
+                            },
+                            jenis_kelamin: {
+                                required: "Jenis Kelamin Harap di Isi!"
+                            },
+                            tempat_lahir: {
+                                required: "Tempat Lahir Harap di Isi!"
+                            },
+                            tanggal_lahir: {
+                                required: "Tanggal Lahir Harap di Isi!"
+                            },
+                            alamat: {
+                                required: "Alamat Harap di Isi!"
+                            }
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editKelas").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama_kelas: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nama_kelas: {
+                                required: "Kelas harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
     </script>
 
 @endsection

@@ -192,7 +192,9 @@ use App\Models\SettingIuran;
                                             <i class="fa fa-save"></i> Simpan
                                         </button>
                                     @endif
-
+                                    <div class="pull-right">
+                                        {{ $data_iuran->links() }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
