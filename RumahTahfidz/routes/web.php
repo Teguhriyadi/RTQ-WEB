@@ -164,7 +164,6 @@ Route::prefix("app")->group(function () {
                 // Data Cabang
                 Route::get("/lokasi_rt/edit", [LokasiRtController::class, "edit"]);
                 Route::put("/lokasi_rt/simpan", [LokasiRtController::class, "update"]);
-                Route::delete("/lokasi_rt/{kode_rt}", [LokasiRtController::class, "destroy"]);
                 Route::resource("/lokasi_rt", LokasiRtController::class);
 
                 // Data Halaqah
