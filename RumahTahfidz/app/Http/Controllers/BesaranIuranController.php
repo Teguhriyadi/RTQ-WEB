@@ -18,9 +18,15 @@ class BesaranIuranController extends Controller
 
     public function store(Request $request)
     {
-        BesaranIuran::create($request->all());
+        $count = BesaranIuran::where("besaran", $request->besaran)->count();
 
-        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+        if ($count > 0) {
+            return back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            BesaranIuran::create($request->all());
+
+            return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+        }
     }
 
     public function edit(Request $request)

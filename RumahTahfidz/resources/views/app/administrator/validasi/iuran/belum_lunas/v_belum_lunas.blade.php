@@ -57,17 +57,20 @@ use App\Models\Iuran;
 
                                                 $santri = Santri::where('id', $data->id_santri)->first();
 
-                                                $nominal_sekarang = $santri->getBesaranIuran->besaran = $data_total;
+                                                $nominal_sekarang = $data_total - $santri->getBesaranIuran->besaran;
 
                                             @endphp
-                                            @if ($nominal_sekarang <= 0)
-                                                <tr>
-                                                    <td class="text-center">{{ ++$no }}.</td>
-                                                    <td class="text-center">{{ $data->getSantri->nis }}</td>
-                                                    <td>{{ $data->getSantri->nama_lengkap }}</td>
-                                                    <td class="text-center">Rp. {{ number_format($nominal_sekarang) }}
-                                                    </td>
-                                                </tr>
+                                            @if ($santri->id_jenjang != 0)
+                                                @if ($nominal_sekarang <= 0)
+                                                    <tr>
+                                                        <td class="text-center">{{ ++$no }}.</td>
+                                                        <td class="text-center">{{ $data->getSantri->nis }}</td>
+                                                        <td>{{ $data->getSantri->nama_lengkap }}</td>
+                                                        <td class="text-center">
+                                                            Rp. {{ number_format(abs($nominal_sekarang)) }}
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                             @endif
                                         @endforeach
                                     </tbody>

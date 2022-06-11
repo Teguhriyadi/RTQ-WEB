@@ -154,21 +154,6 @@ class SantriController extends Controller
 
         $administrasi->save();
 
-        Santri::create([
-            "nis" => $request->nis,
-            "nama_lengkap" => $request->nama_lengkap,
-            "nama_panggilan" => $request->nama_panggilan,
-            "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tanggal_lahir,
-            "alamat" => $request->alamat,
-            "prestasi_anak" => $request->prestasi_anak,
-            "sekolah" => $request->sekolah,
-            "id_kelas" => $request->id_kelas,
-            "kode_halaqah" => $request->kode_halaqah,
-            "id_wali" => $request->id_wali,
-            "foto" => $data
-        ]);
-
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>");
     }
 
@@ -186,6 +171,16 @@ class SantriController extends Controller
 
         $data = array();
         foreach ($santri as $s) {
+            $status = "";
+            if ($s->status == 0) {
+                $status = "Belum di Konfirmasi";
+            } else if ($s->status == 1) {
+                $status = "Sudah di Konfirmasi";
+            } else if ($s->status == 2) {
+                $status = "Sudah Lulus";
+            } else {
+                $status = "Tidak Ada";
+            }
             if ($s->id_jenjang == NULL) {
                 $jenjang = "Belum Ada Jenjang";
             } else {
@@ -198,6 +193,8 @@ class SantriController extends Controller
 
                 'jenjang' => $jenjang,
                 'nama_wali' => $s->getWali->getUser->nama,
+
+                'status' => $status
             ];
         }
 

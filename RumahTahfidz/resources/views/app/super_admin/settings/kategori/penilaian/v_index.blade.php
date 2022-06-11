@@ -33,7 +33,8 @@
                         @csrf
                         <div class="form-group">
                             <label for="kategori_penilaian"> Kategori Penilaian </label>
-                            <input type="text" class="form-control" name="kategori_penilaian" id="kategori_penilaian">
+                            <input type="text" class="form-control" name="kategori_penilaian" id="kategori_penilaian"
+                                placeholder="Masukkan Kategori Penilaian">
                         </div>
                         <div class="ln_solid"></div>
                         <button class="btn btn-danger btn-sm" type="reset">

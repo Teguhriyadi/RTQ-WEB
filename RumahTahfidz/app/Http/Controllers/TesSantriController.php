@@ -11,7 +11,7 @@ class TesSantriController extends Controller
     public function index()
     {
         $data = [
-            "data_santri" => Santri::where("id_jenjang", "!=", NULL)->paginate(10)
+            "data_santri" => Santri::where("status", 0)->where("id_jenjang", "!=", NULL)->paginate(10)
         ];
 
         return view("app.administrator.tes_santri.v_index", $data);
@@ -41,14 +41,12 @@ class TesSantriController extends Controller
     public function update(Request $request)
     {
         foreach ($request->id_santri as $data => $value) {
-            // echo $request->id_santri[$data];
-            // echo "<br>";
             Santri::where("id", $request->id_santri[$data])->update([
                 "id_jenjang" => $request->id_jenjang[$data],
             ]);
         }
 
-        return redirect()->back();
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }
 
     public function simpan(Request $request)
@@ -58,5 +56,14 @@ class TesSantriController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function detail($id)
+    {
+        Santri::where("id", $id)->update([
+            "status" => 1
+        ]);
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success');</script>"]);
     }
 }

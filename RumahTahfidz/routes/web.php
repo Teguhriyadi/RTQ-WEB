@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AbsensiSantriController;
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\AdminLokasiRtController;
 use App\Http\Controllers\UsersController;
@@ -34,13 +33,10 @@ use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\NilaiKategoriController;
 use App\Http\Controllers\NominalIuranController;
 use App\Http\Controllers\PelajaranController;
-use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PesanController;
-use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\ProfilWebController;
-use App\Http\Controllers\RekapAbsensiController;
 use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\RekapIuranController;
 use App\Http\Controllers\RekapNilaiController;
@@ -74,11 +70,6 @@ Route::get("/app/sistem/ambil_data", [CobaController::class, "json"]);
 Route::get("/coba_rekap", [CobaController::class, "coba_rekap"]);
 Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);
 
-Route::get('coba', function () {
-    dd(storage_path());
-});
-
-Route::get("/auto", [AppController::class, "auto"]);
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
@@ -297,6 +288,7 @@ Route::prefix("app")->group(function () {
 
                 // Tes Santri
                 Route::get("/tes/data", [TesSantriController::class, "index"]);
+                Route::put("/tes/data/{id}", [TesSantriController::class, "detail"]);
                 Route::get("/tes/input", [TesSantriController::class, "create"]);
                 Route::put("/tes/simpan", [TesSantriController::class, "update"]);
                 Route::get("/tes/edit", [TesSantriController::class, "edit"]);
@@ -325,40 +317,6 @@ Route::prefix("app")->group(function () {
                         Route::get("/lunas", [ValidasiIuranController::class, "v_lunas"]);
                     });
                 });
-            });
-
-            Route::group(["middleware" => ["can:asatidz"]], function () {
-
-                Route::prefix("penilaian")->group(function () {
-                    // Ini digunain di semua kategori
-                    Route::get("/jenjang/{kategori}/{kode}", function ($kategori, $kode) {
-                        $data = [
-                            'data_jenjang' => Jenjang::all(),
-                            'kategori' => $kategori,
-                            'kode' => $kode,
-                        ];
-
-                        return view('app.asatidz.penilaian.v_jenjang', $data);
-                    });
-
-                    Route::get('{kategori}/', [PenilaianController::class, "index"]);
-                    Route::get('{kategori}/{halaqah}/{id}', [PenilaianController::class, "home"]);
-                    Route::get('{kategori}/{halaqah}/{id_jenjang}/{id_pelajaran}', [PenilaianController::class, "create"]);
-                    Route::post("/{kategori}/{halaqah}/{id}", [PenilaianController::class, "store"]);
-                });
-
-                Route::prefix("rekap")->group(function () {
-                    Route::get("/nilai", [RekapPenilaianController::class, "rekap"]);
-                    Route::get("/nilai/{id}", [RekapPenilaianController::class, "print"]);
-
-                    Route::get("/absensi/asatidz/{id}", [RekapAbsensiController::class, "rekapAsatidz"]);
-                });
-
-                // Data Absensi Santri
-                Route::get("/absensi/santri", [AbsensiSantriController::class, "index"]);
-                Route::put("/absensi/santri", [AbsensiSantriController::class, "input_data"]);
-                Route::post("/tambah_absensi", [AbsensiSantriController::class, "tambah_absensi"]);
-                Route::get("/absensi/santri", [AbsensiSantriController::class, "absensi_santri"]);
             });
 
             // Iuran Wali Santri

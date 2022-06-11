@@ -55,6 +55,14 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
+                                                    <form action="{{ url('/app/sistem/tes/data/' . $data->id) }}"
+                                                        method="POST" style="display: inline">
+                                                        @method('PUT')
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-success btn-sm">
+                                                            <i class="fa fa-check"></i> Konfirmasi
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
