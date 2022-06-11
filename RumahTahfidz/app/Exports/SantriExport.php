@@ -16,6 +16,7 @@ class SantriExport implements FromView
     public function view(): View
     {
         $santri = Santri::all();
+        // dd($santri);
 
         return view('app.export.v_santri', compact('santri'));
     }

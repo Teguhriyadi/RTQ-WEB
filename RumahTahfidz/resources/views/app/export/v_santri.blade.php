@@ -22,7 +22,6 @@ use Carbon\Carbon;
         background-color: yellow;
         color: white;
     }
-
 </style>
 
 <table border="1">
@@ -35,7 +34,10 @@ use Carbon\Carbon;
             <th>Jenis Kelamin</th>
             <th>Tempat Lahir</th>
             <th>Tanggal Lahir</th>
+            <th>No KTP</th>
+            <th>No KK</th>
             <th>Wali Santri</th>
+            <th>Pekerjaan Orang Tua</th>
             <th>Alamat</th>
             <th>Jenjang</th>
             <th>Halaqah</th>
@@ -58,7 +60,10 @@ use Carbon\Carbon;
                 <td>{{ $jk }}</td>
                 <td>{{ $s->tempat_lahir }}</td>
                 <td>{{ Carbon::createFromFormat('Y-m-d', $s->tanggal_lahir)->isoFormat('DD MMMM Y') }}</td>
+                <td>{{ $s->getWali->no_ktp }}</td>
+                <td>{{ $s->getWali->no_kk }}</td>
                 <td>{{ $s->getWali->getUser->nama }}</td>
+                <td>{{ $s->getWali->pekerjaan }}</td>
                 <td>{{ $s->alamat }}</td>
                 <td>{{ $s->getJenjang->jenjang }}</td>
                 <td>{{ $s->getHalaqah->nama_halaqah }}</td>
