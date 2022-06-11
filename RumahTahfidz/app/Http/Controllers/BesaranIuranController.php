@@ -18,13 +18,14 @@ class BesaranIuranController extends Controller
 
     public function store(Request $request)
     {
-        $besaran = str_replace('.', '', $request->besaran);
+        $pecah = substr($request->besaran, 4, 100);
+        $besaran = str_replace('.', '', $pecah);
         $count = BesaranIuran::where("besaran", $besaran)->count();
 
         if ($count > 0) {
             return back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
         } else {
-            BesaranIuran::create($request->all());
+            BesaranIuran::create(['besaran' => $besaran]);
 
             return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
         }
@@ -41,8 +42,9 @@ class BesaranIuranController extends Controller
 
     public function update(Request $request)
     {
+        $pecah = substr($request->besaran, 4, 100);
         BesaranIuran::where("id", $request->id)->update([
-            "besaran" => str_replace('.', '', $request->besaran)
+            "besaran" => str_replace('.', '', $pecah)
         ]);
 
         return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
