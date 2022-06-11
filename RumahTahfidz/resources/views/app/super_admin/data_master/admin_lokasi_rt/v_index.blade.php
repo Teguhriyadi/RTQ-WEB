@@ -18,92 +18,66 @@
 
     <div class="clearfix"></div>
 
-    @if ($data_lokasi_rt)
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                            data-target=".bs-example-modal-lg">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="card-box table-responsive">
-                                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                                        <thead>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                        data-target=".bs-example-modal-lg">
+                        <i class="fa fa-plus"></i> Tambah
+                    </button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-box table-responsive">
+                                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">No.</th>
+                                            <th>Nama</th>
+                                            <th>Lokasi RT</th>
+                                            <th class="text-center">No. HP</th>
+                                            <th>Pendidikan Terakhir</th>
+                                            <th class="text-center">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $no = 0 @endphp
+                                        @foreach ($data_admin_lokasi_rt as $data)
                                             <tr>
-                                                <th class="text-center">No.</th>
-                                                <th>Nama</th>
-                                                <th>Lokasi RT</th>
-                                                <th class="text-center">No. HP</th>
-                                                <th>Pendidikan Terakhir</th>
-                                                <th class="text-center">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php $no = 0 @endphp
-                                            @foreach ($data_admin_lokasi_rt as $data)
-                                                <tr>
-                                                    <td class="text-center">{{ ++$no }}.</td>
-                                                    <td>{{ $data->getUser->nama }}</td>
-                                                    <td>{{ $data->getLokasiRt->lokasi_rt }}</td>
-                                                    <td class="text-center">{{ $data->getUser->no_hp }}</td>
-                                                    <td>{{ $data->pendidikan_terakhir }}</td>
-                                                    <td class="text-center">
-                                                        <button onclick="editAdminLokasiRt({{ $data->id }})"
-                                                            type="button" class="btn btn-warning btn-sm text-white"
-                                                            data-target="#modalEdit" data-toggle="modal">
-                                                            <i class="fa fa-edit"></i> Edit
+                                                <td class="text-center">{{ ++$no }}.</td>
+                                                <td>{{ $data->getUser->nama }}</td>
+                                                <td>{{ $data->getLokasiRt->lokasi_rt }}</td>
+                                                <td class="text-center">{{ $data->getUser->no_hp }}</td>
+                                                <td>{{ $data->pendidikan_terakhir }}</td>
+                                                <td class="text-center">
+                                                    <button onclick="editAdminLokasiRt({{ $data->id }})" type="button"
+                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
+                                                        data-toggle="modal">
+                                                        <i class="fa fa-edit"></i> Edit
+                                                    </button>
+                                                    <form action="{{ url('/app/sistem/admin_lokasi_rt/' . $data->id) }}"
+                                                        method="POST" style="display: inline;">
+                                                        @method('DELETE')
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> Hapus
                                                         </button>
-                                                        <form
-                                                            action="{{ url('/app/sistem/admin_lokasi_rt/' . $data->id) }}"
-                                                            method="POST" style="display: inline;">
-                                                            @method('DELETE')
-                                                            {{ csrf_field() }}
-                                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-trash"></i> Hapus
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @else
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>
-                            Informasi Login
-                        </h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <div class="alert alert-danger alert-dismissible " role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                    aria-hidden="true">×</span>
-                            </button>
-                            <strong>Maaf, Data Admin Lokasi RT Kosong!</strong>. Silahkan ke halaman <strong><a
-                                    href="{{ url('/app/sistem/admin_lokasi_rt') }}">Admin Cabang</a></strong> terlebih
-                            dahulu
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
+    </div>
 
     <!-- Tambah Data -->
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">
@@ -175,14 +149,23 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kode_rt"> Kode RT </label>
-                                    <select name="kode_rt" class="form-control" id="kode_rt">
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($lokasi_rt as $data)
-                                            <option value="{{ $data->kode_rt }}">
-                                                {{ $data->lokasi_rt }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    @if ($lokasi_rt->count() < 1)
+                                        <input type="text" name="kode_rt" class="form-control" id="kode_rt"
+                                            placeholder="Masukkan Kode RT">
+                                    @else
+                                        <select name="kode_rt" class="form-control" id="kode_rt"
+                                            onchange="jikaKosong(this.value)">
+                                            <option value="">- Pilih -</option>
+                                            @foreach ($lokasi_rt as $data)
+                                                <option value="{{ $data->kode_rt }}">
+                                                    {{ $data->lokasi_rt }}
+                                                </option>
+                                            @endforeach
+                                            <option value="L">Lainnya</option>
+                                        </select>
+                                    @endif
+                                    <input type="text" name="inputKodeRt" class="form-control" id="inputKodeRt"
+                                        placeholder="Masukkan Kode RT" style="display: none;">
                                 </div>
                             </div>
                         </div>
@@ -248,6 +231,13 @@
 @section('app_scripts')
 
     <script>
+        function jikaKosong(value) {
+            if (value == "L") {
+                $('#inputKodeRt').show();
+                $('#kode_rt').hide();
+            }
+        }
+
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");
