@@ -20,7 +20,11 @@ class SantriController extends Controller
 {
     public function index()
     {
-        return view("app.public.santri.v_index");
+        $data = [
+            "belum_terkonfimasi" => Santri::where("status", 0)->count()
+        ];
+
+        return view("app.public.santri.v_index", $data);
     }
 
     public function store(Request $request)

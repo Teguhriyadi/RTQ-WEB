@@ -18,10 +18,15 @@ class WaliSantriController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->getAkses->getRole->id == 1) {
+            $data_halaqah = Halaqah::get();
+        } else {
+            $data_halaqah = Halaqah::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->get();
+        }
         $data = [
             "data_wali" => WaliSantri::get(),
             "data_santri" => Santri::get(),
-            "data_halaqah" => Halaqah::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->get()
+            "data_halaqah" => $data_halaqah
         ];
 
         return view("app.public.wali_santri.v_index", $data);
@@ -125,11 +130,16 @@ class WaliSantriController extends Controller
 
     public function datatables()
     {
-        $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
-        $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
-        $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
-        $santri = Santri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
-        $walisantri = WaliSantri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+        if (Auth::user()->getAkses->getRole->id == 1) {
+            $walisantri = WaliSantri::get();
+            $santri = Santri::where("status", 1)->get();
+        } else {
+            $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
+            $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
+            $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
+            $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
+            $walisantri = WaliSantri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+        }
 
         $data = array();
         foreach ($walisantri as $user) {

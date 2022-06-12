@@ -49,7 +49,7 @@ class JenjangController extends Controller
                 "jenjang" => $request->jenjang
             ]);
 
-            return redirect()->back();
+            return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
         }
     }
 
@@ -57,6 +57,6 @@ class JenjangController extends Controller
     {
         Jenjang::where("id", $id)->delete();
 
-        return redirect()->back();
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }
