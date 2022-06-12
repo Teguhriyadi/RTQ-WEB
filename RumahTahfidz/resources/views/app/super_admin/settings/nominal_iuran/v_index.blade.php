@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Nominal Iuran')
+@section('app_title', 'Nominal Pendaftaran')
 
 @section('app_content')
 
