@@ -23,7 +23,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                        data-target=".bs-example-modal-lg">
+                        data-target=".bs-example-modal-lg" title="Tambah Data">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
                     <div class="clearfix"></div>

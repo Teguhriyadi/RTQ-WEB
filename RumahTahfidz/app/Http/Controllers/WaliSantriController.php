@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminLokasiRt;
+use App\Models\HakAkses;
 use App\Models\Halaqah;
 use App\Models\LokasiRt;
 use App\Models\Santri;
@@ -28,6 +29,8 @@ class WaliSantriController extends Controller
 
     public function store(Request $request)
     {
+        $id_otomatis = HakAkses::max("id") + 1;
+
         if ($request->file("gambar")) {
             $data = $request->file("gambar")->store("wali_santri");
         }
@@ -38,7 +41,7 @@ class WaliSantriController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt("walisantri" . $request->no_hp);
         $user->alamat = $request->alamat;
-        $user->id_role = 4;
+        $user->id_hak_akses = $id_otomatis;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
@@ -46,6 +49,14 @@ class WaliSantriController extends Controller
         $user->no_hp = $request->no_hp;
         $user->gambar = $data;
         $user->save();
+
+        $hak_akses = new HakAkses;
+
+        $hak_akses->id = $id_otomatis;
+        $hak_akses->id_user = $user->id;
+        $hak_akses->id_role = 4;
+
+        $hak_akses->save();
 
         $walisantri = new WaliSantri;
 
@@ -164,5 +175,16 @@ class WaliSantriController extends Controller
             })
             ->rawColumns(['aksi'])
             ->make(true);
+    }
+
+    public function kode_otomatis()
+    {
+        $max = Halaqah::max('kode_halaqah');
+        $urutan = (int) substr($max, 2);
+        $urutan++;
+        $huruf = 'HLQ-';
+        $hasil = $huruf . sprintf('%03s', $urutan);
+
+        return $hasil;
     }
 }

@@ -112,17 +112,40 @@
                                         placeholder="Masukkan Email">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="optionNyala">
                                 <div class="form-group">
                                     <label for="kode_halaqah">Halaqah</label>
-                                    <select name="kode_halaqah" class="form-control" id="kode_halaqah">
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($data_halaqah as $data)
-                                            <option value="{{ $data->kode_halaqah }}">
-                                                {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    @if ($data_halaqah->count() < 1)
+                                        <input type="text" name="nama_halaqah" class="form-control" id="kode_halaqah"
+                                            placeholder="Masukkan Nama Halaqah">
+                                    @else
+                                        <select name="kode_halaqah" class="form-control" id="kode_halaqah">
+                                            <option value="">- Pilih -</option>
+                                            @foreach ($data_halaqah as $data)
+                                                <option value="{{ $data->kode_halaqah }}">
+                                                    {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
+                                                </option>
+                                            @endforeach
+                                            <option value="L">Lainnya</option>
+                                        </select>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="optionMati" style="display: none;">
+                                <div class="form-group">
+                                    <label for="kode_halaqah"> Halaqah </label>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" name="nama_halaqah" id="kode_halaqah"
+                                                placeholder="Masukkan Nama Halaqah">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a class="btn btn-danger btn-sm" id="btn-nyalakan-pilihan"
+                                                style="color: white;">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +224,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST" id="editWaliSantri">
                     @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
@@ -297,6 +320,19 @@
 @section('app_scripts')
     <script src="{{ url('') }}/vendors/jquery/dist/jquery.form.min.js"></script>
     <script type="text/javascript">
+        $("#kode_halaqah").change(function() {
+            if ($(this).val() == "L") {
+                $("#optionNyala").hide();
+                $("#optionMati").show();
+            }
+        });
+
+        $("#btn-nyalakan-pilihan").click(function() {
+            $("#optionNyala").show();
+            $("#optionMati").hide();
+            $("#kode_halaqah").show();
+        });
+
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");
@@ -515,23 +551,77 @@
                         }
                     });
 
-                    $("#editKelas").validate({
+                    $("#editWaliSantri").validate({
                         lang: "id",
                         ignore: "",
                         rules: {
-                            nama_kelas: {
+                            no_ktp: {
+                                required: true
+                            },
+                            no_kk: {
+                                required: true
+                            },
+                            nama: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            kode_halaqah: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            jenis_kelamin: {
+                                required: true
+                            },
+                            tempat_lahir: {
+                                required: true
+                            },
+                            tanggal_lahir: {
+                                required: true
+                            },
+                            alamat: {
                                 required: true
                             },
                         },
                         messages: {
-                            nama_kelas: {
-                                required: "Kelas harap di isi!"
+                            no_ktp: {
+                                required: "Nomor KTP Harap di Isi!"
                             },
+                            no_kk: {
+                                required: "Nomor KK Harap di Isi!"
+                            },
+                            nama: {
+                                required: "Nama Harus di Isi!"
+                            },
+                            email: {
+                                required: "Email Harus di Isi!"
+                            },
+                            kode_halaqah: {
+                                required: "Kode Halaqah Harap di Isi!"
+                            },
+                            no_hp: {
+                                required: "Nomor HP Harap di Isi!"
+                            },
+                            jenis_kelamin: {
+                                required: "Jenis Kelamin Harap di Isi!"
+                            },
+                            tempat_lahir: {
+                                required: "Tempat Lahir Harap di Isi!"
+                            },
+                            tanggal_lahir: {
+                                required: "Tanggal Lahir Harap di Isi!"
+                            },
+                            alamat: {
+                                required: "Alamat Harap di Isi!"
+                            }
                         },
                         submitHandler: function(form) {
                             form.submit()
                         }
-                    })
+                    });
                 }
             }
             $(D).ready(function($) {
