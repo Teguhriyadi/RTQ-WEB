@@ -1,3 +1,12 @@
+@php
+use App\Models\LokasiRt;
+$max = LokasiRt::max('kode_rt');
+$urutan = (int) substr($max, 3);
+$urutan++;
+$huruf = 'RT-';
+$hasil = $huruf . sprintf('%03s', $urutan);
+@endphp
+
 @extends('.app.layouts.template')
 
 @section('app_title', 'Lokasi RT')
@@ -37,7 +46,7 @@
                         <div class="form-group">
                             <label for="kode_rt"> Kode RT </label>
                             <input type="text" class="form-control" name="kode_rt" id="kode_rt"
-                                placeholder="Masukkan Kode RT">
+                                placeholder="Masukkan Kode RT" value="{{ $hasil }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="lokasi_rt"> Lokasi RT </label>

@@ -148,13 +148,12 @@
                             </div>
                             <div class="col-md-6" id="optionNyala">
                                 <div class="form-group">
-                                    <label for="kode_rt"> Kode RT </label>
+                                    <label for="kode_rt"> Lokasi RT </label>
                                     @if ($lokasi_rt->count() < 1)
                                         <input type="text" name="kode_rt" class="form-control" id="kode_rt"
-                                            placeholder="Masukkan Kode RT">
+                                            placeholder="Masukkan Lokasi RT">
                                     @else
-                                        <select name="kode_rt" class="form-control" id="kode_rt"
-                                            onchange="jikaKosong(this.value)">
+                                        <select name="kode_rt" class="form-control" id="kode_rt">
                                             <option value="">- Pilih -</option>
                                             @foreach ($lokasi_rt as $data)
                                                 <option value="{{ $data->kode_rt }}">
@@ -168,16 +167,17 @@
                             </div>
                             <div class="col-md-6" id="optionMati" style="display: none;">
                                 <div class="form-group">
-                                    <label for="kode_rt"> Kode RT </label>
+                                    <label for="kode_rt"> Lokasi RT </label>
                                     <div class="row">
-                                        <div class="col-md-11">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" name="kode_rt" id="kode_rt"
-                                                placeholder="Masukkan Kode RT">
+                                                placeholder="Masukkan Lokasi RT">
                                         </div>
-                                        <div class="col-md-1">
-                                            <button class="btn btn-danger btn-sm">
+                                        <div class="col-md-2">
+                                            <a class="btn btn-danger btn-sm" id="btn-nyalakan-pilihan"
+                                                style="color: white;">
                                                 <i class="fa fa-times"></i>
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -245,15 +245,18 @@
 @section('app_scripts')
 
     <script>
-        function jikaKosong(value) {
-            if (value == "L") {
-                $('#inputKodeRt').show();
-                $("#optionMati").show();
-                $("#optionMati2").show();
+        $("#kode_rt").change(function() {
+            if ($(this).val() == "L") {
                 $("#optionNyala").hide();
-                $('#kode_rt').hide();
+                $("#optionMati").show();
             }
-        }
+        });
+
+        $("#btn-nyalakan-pilihan").click(function() {
+            $("#optionNyala").show();
+            $("#optionMati").hide();
+            $("#kode_rt").show();
+        });
 
         function previewImage() {
             const image = document.querySelector("#gambar");

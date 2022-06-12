@@ -10,7 +10,8 @@ class LokasiRtController extends Controller
     public function index()
     {
         $data = [
-            "data_lokasi_rt" => LokasiRt::get()
+            "data_lokasi_rt" => LokasiRt::get(),
+
         ];
 
         return view("app.super_admin.lokasi_rt.v_index", $data);
