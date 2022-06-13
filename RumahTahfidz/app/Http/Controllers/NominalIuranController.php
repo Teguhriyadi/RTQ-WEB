@@ -47,4 +47,28 @@ class NominalIuranController extends Controller
 
         return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
+
+    public function aktifkan()
+    {
+    }
+
+    public function non_aktifkan(Request $request)
+    {
+        $nominal_iuran = NominalIuran::where("status", 1)->first();
+
+        if ($nominal_iuran) {
+
+            NominalIuran::where("id", $request->id)->update([
+                "status" => 1
+            ]);
+
+            NominalIuran::where("status", 1)->update([
+                "status" => 0
+            ]);
+        } else {
+            echo "tidak ada";
+        }
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+    }
 }

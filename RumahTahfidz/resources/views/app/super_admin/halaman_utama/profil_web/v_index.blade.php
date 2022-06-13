@@ -24,12 +24,12 @@
 
     @if (empty($profil))
         <form action="{{ url('/app/sistem/profil/web') }}" method="POST" enctype="multipart/form-data"
-            id="tambahProfilWeb"></form>
-    @else
-        <form action="{{ url('/app/sistem/profil/web/' . $profil->id) }}" method="POST" enctype="multipart/form-data"
-            id="editProfilWeb">
-            @method('PUT')
-            <input type="hidden" name="logo_lama" value="{{ $profil->logo }}">
+            id="tambahProfilWeb">
+        @else
+            <form action="{{ url('/app/sistem/profil/web/' . $profil->id) }}" method="POST" enctype="multipart/form-data"
+                id="editProfilWeb">
+                @method('PUT')
+                <input type="hidden" name="logo_lama" value="{{ $profil->logo }}">
     @endif
     {{ csrf_field() }}
     <div class="row">
@@ -112,8 +112,7 @@
                             <td>:</td>
                             <td>
                                 <div class="row">
-                                    <textarea name="alamat" id="alamat" class="form-control" rows="5"
-                                        placeholder="Masukkan Alamat">{{ empty($profil) ? '' : $profil->alamat }}</textarea>
+                                    <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat">{{ empty($profil) ? '' : $profil->alamat }}</textarea>
                                 </div>
                             </td>
                         </tr>
