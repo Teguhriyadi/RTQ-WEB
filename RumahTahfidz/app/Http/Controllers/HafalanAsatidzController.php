@@ -23,7 +23,7 @@ class HafalanAsatidzController extends Controller
             "id_asatidz" => $request->id,
             "quran_awal" => $request->quran_awal,
             "quran_akhir" => $request->quran_akhir,
-            "keterangan" => "Berhasil"
+            "keterangan" => $request->keterangan
         ]);
 
         return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");

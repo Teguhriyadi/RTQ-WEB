@@ -22,7 +22,6 @@ class AdminLokasiRtController extends Controller
 
     public function store(Request $request)
     {
-
         if ($request->inputKodeRt) {
             LokasiRt::create([
                 "kode_rt" => "500",
