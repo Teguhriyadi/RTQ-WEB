@@ -11,7 +11,8 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
         <div class="clearfix"></div>
         <div class="profile clearfix">
             <div class="profile_pic">
-                <img src="{{ $user->gambar == null ? 'http://rtq-freelance.my.id/gambar/gambar_user.png' : $user->gambar }}"
+                <img src="{{ $user->gambar }}"
+                    onerror="this.onerror=null; this.src='{{ url('gambar/no-images.png') }}'"
                     alt="{{ $user->nama }}" class="img-circle profile_img">
             </div>
             <div class="profile_info">
@@ -39,12 +40,6 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
                     @endcan
                     @can('admin')
                         @include('app.layouts.partials.sidebar.menu.m_admin')
-                    @endcan
-                    @can('santri')
-                        @include('app.layouts.partials.sidebar.menu.m_santri')
-                    @endcan
-                    @can('asatidz')
-                        @include('app.layouts.partials.sidebar.menu.m_asatidz')
                     @endcan
 
                     <li class="{{ Request::segment(3) == 'profil/user' ? 'active' : '' }}">

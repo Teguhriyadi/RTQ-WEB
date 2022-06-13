@@ -27,6 +27,10 @@ class KelasController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nama_kelas" => "required"
+        ]);
+
         $cek = Kelas::where("nama_kelas", $request->nama_kelas)->count();
 
         if ($cek > 0) {
@@ -39,6 +43,10 @@ class KelasController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nama_kelas" => "required"
+        ]);
+
         Kelas::where("id", $request->id)->update([
             "nama_kelas" => $request->nama_kelas
         ]);

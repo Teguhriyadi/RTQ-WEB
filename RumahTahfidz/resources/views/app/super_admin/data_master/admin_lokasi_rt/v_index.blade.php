@@ -18,6 +18,17 @@
 
     <div class="clearfix"></div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    @endif
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -92,7 +103,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/admin_lokasi_rt') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/app/sistem/admin_lokasi_rt') }}" method="POST" enctype="multipart/form-data"
+                    id="tambahAdminCabang">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -220,7 +232,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/admin_lokasi_rt/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/admin_lokasi_rt/simpan') }}" method="POST" id="editAdminCabang">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -243,6 +255,164 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahAdminCabang").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            pendidikan_terakhir: {
+                                required: true
+                            },
+                            jenis_kelamin: {
+                                required: true
+                            },
+                            tempat_lahir: {
+                                required: true
+                            },
+                            tanggal_lahir: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            kode_rt: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                            gambar: {
+                                required: true,
+                                accept: "image/*"
+                            },
+                        },
+                        messages: {
+                            nama: {
+                                required: "Nama harap diisi!"
+                            },
+                            email: {
+                                required: "Email harap diisi!"
+                            },
+                            pendidikan_terakhir: {
+                                required: "Pendidikan harap diisi!"
+                            },
+                            jenis_kelamin: {
+                                required: "Jenis kelamin harap diisi!"
+                            },
+                            tempat_lahir: {
+                                required: "Tempat lahir harap diisi!"
+                            },
+                            tanggal_lahir: {
+                                required: "Tanggal lahir harap diisi!"
+                            },
+                            no_hp: {
+                                required: "No hp harap diisi!"
+                            },
+                            kode_rt: {
+                                required: "Lokasi cabang harap diisi!"
+                            },
+                            alamat: {
+                                required: "Alamat harap diisi!"
+                            },
+                            gambar: {
+                                required: "Gambar harap diisi!",
+                                accept: "Gambar harus berformat jpg/jpeg/png"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editAdminCabang").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            pendidikan_terakhir: {
+                                required: true
+                            },
+                            jenis_kelamin: {
+                                required: true
+                            },
+                            tempat_lahir: {
+                                required: true
+                            },
+                            tanggal_lahir: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            kode_rt: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                            gambar: {
+                                accept: "image/*"
+                            },
+                        },
+                        messages: {
+                            nama: {
+                                required: "Nama harap diisi!"
+                            },
+                            email: {
+                                required: "Email harap diisi!"
+                            },
+                            pendidikan_terakhir: {
+                                required: "Pendidikan harap diisi!"
+                            },
+                            jenis_kelamin: {
+                                required: "Jenis kelamin harap diisi!"
+                            },
+                            tempat_lahir: {
+                                required: "Tempat lahir harap diisi!"
+                            },
+                            tanggal_lahir: {
+                                required: "Tanggal lahir harap diisi!"
+                            },
+                            no_hp: {
+                                required: "No hp harap diisi!"
+                            },
+                            kode_rt: {
+                                required: "Lokasi cabang harap diisi!"
+                            },
+                            alamat: {
+                                required: "Alamat harap diisi!"
+                            },
+                            gambar: {
+                                accept: "Gambar harus berformat jpg/jpeg/png"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         $("#kode_rt").change(function() {

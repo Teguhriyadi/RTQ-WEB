@@ -22,6 +22,17 @@
 
     <div class="clearfix"></div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    @endif
+
     @if (empty($profil))
         <form action="{{ url('/app/sistem/profil/web') }}" method="POST" enctype="multipart/form-data"
             id="tambahProfilWeb">

@@ -18,6 +18,17 @@
 
     <div class="clearfix"></div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    @endif
+
     <div class="row">
         <div class="col-md-4 col-sm-5 col-xs-12">
             <div class="x_panel">
@@ -134,7 +145,7 @@
 
 @section('app_scripts')
 
-    <script>
+    {{-- <script>
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
@@ -180,7 +191,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
+    </script> --}}
 
     <script>
         function editJenjang(id) {

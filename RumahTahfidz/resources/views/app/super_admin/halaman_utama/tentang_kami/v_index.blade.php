@@ -19,6 +19,17 @@
             </ol>
         </nav>
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        @endif
+
         <div class="section-body">
             <div class="mt-sm-4">
                 @if (empty($profil))
@@ -77,8 +88,7 @@
                                     <td>:</td>
                                     <td>
                                         <div class="row">
-                                            <textarea name="deskripsi" id="deskripsi" class="form-control" rows="5"
-                                                placeholder="Masukkan Deskripsi">{{ empty($profil) ? '' : $profil->deskripsi }}</textarea>
+                                            <textarea name="deskripsi" id="deskripsi" class="form-control" rows="5" placeholder="Masukkan Deskripsi">{{ empty($profil) ? '' : $profil->deskripsi }}</textarea>
                                         </div>
                                     </td>
                                 </tr>
@@ -108,7 +118,8 @@
 @endsection
 
 @section('app_scripts')
-    <script>
+
+    {{-- <script>
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
@@ -168,7 +179,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
+    </script> --}}
 
     <script type="text/javascript">
         function previewImage() {

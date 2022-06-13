@@ -18,6 +18,10 @@ class PelajaranController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nama_pelajaran" => "required"
+        ]);
+
         Pelajaran::create($request->all());
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
@@ -34,6 +38,10 @@ class PelajaranController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nama_pelajaran" => "required"
+        ]);
+
         Pelajaran::where("id", $request->id)->update([
             "nama_pelajaran" => $request->nama_pelajaran
         ]);

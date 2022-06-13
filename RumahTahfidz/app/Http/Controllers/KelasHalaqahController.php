@@ -22,6 +22,12 @@ class KelasHalaqahController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "kode_halaqah" => "required",
+            "id_asatidz" => "required",
+            "kelas_kelas" => "required",
+        ]);
+
         KelasHalaqah::create($request->all());
 
         return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Inputkan', 'success')</script>"]);
@@ -40,6 +46,12 @@ class KelasHalaqahController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "kode_halaqah" => "required",
+            "id_asatidz" => "required",
+            "kelas_kelas" => "required",
+        ]);
+
         KelasHalaqah::where("id", $request->id)->update([
             "id_asatidz" => $request->id_asatidz,
             "kode_halaqah" => $request->kode_halaqah,

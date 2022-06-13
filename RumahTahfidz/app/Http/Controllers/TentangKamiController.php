@@ -17,6 +17,11 @@ class TentangKamiController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "foto" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "deskripsi" => "required"
+        ]);
+
         if ($request->file("foto")) {
             $data = $request->file("foto")->store("tentang_kami");
         }
@@ -31,6 +36,11 @@ class TentangKamiController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            "foto" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "deskripsi" => "required"
+        ]);
+
         if ($request->file("foto")) {
             if ($request->foto_lama) {
                 Storage::delete($request->foto_lama);
