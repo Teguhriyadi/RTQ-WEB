@@ -63,6 +63,10 @@
                             <label for="ayat_akhir"> Ayat Akhir </label>
                             <select name="ayat_akhir" class="form-control" id="ayat_akhir"></select>
                         </div>
+                        <div class="form-group">
+                            <label for="keterangan"> Keterangan </label>
+                            <textarea class="form-control" name="keterangan" id="keterangan" rows="5" placeholder="Masukkan Keterangan"></textarea>
+                        </div>
                         <div id="cob"></div>
                         <div class="ln_solid"></div>
                         <button type="reset" class="btn btn-danger btn-sm">

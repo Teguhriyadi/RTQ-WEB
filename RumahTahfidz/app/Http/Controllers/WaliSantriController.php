@@ -164,6 +164,7 @@ class WaliSantriController extends Controller
             ->addIndexColumn()
             ->addColumn('aksi', function ($row) {
                 if (Auth::user()->getAkses->getRole->id == 1) {
+                    $aksiBtn = '<button></button>';
                 } else {
 
                     $aksiBtn = '<button onclick="tambahDataSantri(' . $row["id"] . ')" type="button"
@@ -185,8 +186,8 @@ class WaliSantriController extends Controller
                                     <i class="fa fa-trash"></i> Hapus
                                 </button>
                             </form>';
-                    return $aksiBtn;
                 }
+                return $aksiBtn;
             })
             ->rawColumns(['aksi'])
             ->make(true);

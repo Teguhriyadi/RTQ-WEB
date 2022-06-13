@@ -201,7 +201,7 @@
                         </div>
                         <div class="form-group">
                             <label for="gambar"> Gambar </label>
-                            <img class="gambar-preview img-fluid">
+                            <img class="gambar-preview img-fluid mb-3">
                             <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
                         </div>
                     </div>
