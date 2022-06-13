@@ -158,7 +158,7 @@
                                             <option value="">- Pilih -</option>
                                             @foreach ($lokasi_rt as $data)
                                                 <option value="{{ $data->kode_rt }}">
-                                                    {{ $data->lokasi_rt }}
+                                                    {{ $data->kode_rt }}
                                                 </option>
                                             @endforeach
                                             <option value="L">Lainnya</option>

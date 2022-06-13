@@ -26,7 +26,7 @@ class SantriSeeder extends Seeder
             "prestasi_anak" => "Juara 1 Web Technology",
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
-            "kode_halaqah" => "HLQSRJ001",
+            "kode_halaqah" => "HLQ-001",
             "id_wali" => 10,
             "id_jenjang" => 1
         ]);
@@ -42,7 +42,7 @@ class SantriSeeder extends Seeder
             "prestasi_anak" => "Juara 3 Web Technology",
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
-            "kode_halaqah" => "HLQSRJ001",
+            "kode_halaqah" => "HLQ-002",
             "id_wali" => 10,
             "id_jenjang" => 2
         ]);
@@ -58,7 +58,7 @@ class SantriSeeder extends Seeder
             "prestasi_anak" => "Juara 3 Web Technology",
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
-            "kode_halaqah" => "HLQSRJ002",
+            "kode_halaqah" => "HLQ-003",
             "id_wali" => 10,
             "id_jenjang" => 2
         ]);

@@ -220,9 +220,13 @@ Route::prefix("app")->group(function () {
                     Route::resource("nilai/kategori", NilaiKategoriController::class);
 
                     // Data Nominal Iuran
-                    Route::get("/nominal/iuran/edit", [NominalIuranController::class, "edit"]);
-                    Route::put("/nominal/iuran/simpan", [NominalIuranController::class, "update"]);
-                    Route::resource("nominal/iuran", NominalIuranController::class);
+                    Route::prefix("/nominal/iuran")->group(function () {
+                        Route::get("/edit", [NominalIuranController::class, "edit"]);
+                        Route::put("/simpan", [NominalIuranController::class, "update"]);
+                        Route::post("/aktifkan", [NominalIuranController::class, [NominalIuranController::class, "aktifkan"]]);
+                        Route::post("/non_aktifkan", [NominalIuranController::class, "non_aktifkan"]);
+                        Route::resource("/", NominalIuranController::class);
+                    });
 
                     Route::prefix("/kategori")->group(function () {
 

@@ -18,7 +18,7 @@ class AdminLokasiRtSeeder extends Seeder
         AdminLokasiRt::create([
             "id" => "7",
             "pendidikan_terakhir" => "SMK",
-            "kode_rt" => "RTQ001"
+            "kode_rt" => "RTQ-001"
         ]);
     }
 }

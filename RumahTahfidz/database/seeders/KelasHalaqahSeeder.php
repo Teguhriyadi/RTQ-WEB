@@ -17,14 +17,14 @@ class KelasHalaqahSeeder extends Seeder
     {
         KelasHalaqah::create([
             "id_asatidz" => 9,
-            "kode_halaqah" => "HLQSRJ001",
+            "kode_halaqah" => "HLQ-001",
             "kelas_halaqah" => "D3TI - 2C",
             "status" => "1",
         ]);
 
         KelasHalaqah::create([
             "id_asatidz" => 9,
-            "kode_halaqah" => "HLQSRJ002",
+            "kode_halaqah" => "HLQ-002",
             "kelas_halaqah" => "D3TI - 2C",
             "status" => "0"
         ]);

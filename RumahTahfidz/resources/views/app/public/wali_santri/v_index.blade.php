@@ -28,10 +28,16 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                        data-target=".bs-example-modal-lg">
-                        <i class="fa fa-plus"></i> Tambah Data
-                    </button>
+                    @if (Auth::user()->getAkses->getRole->id == 1)
+                        <h2>
+                            <i class="fa fa-users"></i> Data @yield('app_title')
+                        </h2>
+                    @else
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                            data-target=".bs-example-modal-lg">
+                            <i class="fa fa-plus"></i> Tambah Data
+                        </button>
+                    @endif
                     <div class="pull-right">
                         {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}
                         {{-- class="fa fa-download"></i> Download</a> --}}

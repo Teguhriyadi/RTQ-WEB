@@ -87,7 +87,27 @@
                                                     Rp. {{ number_format($data->nominal) }}
                                                 </td>
                                                 <td class="text-center">
-
+                                                    @if ($data->status == 0)
+                                                        <form
+                                                            action="{{ url('/app/sistem/setting/nominal/iuran/aktifkan') }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value="{{ $data->id }}">
+                                                            <button class="btn btn-success btn-sm">
+                                                                <i class="fa fa-check"></i> Aktifkan
+                                                            </button>
+                                                        </form>
+                                                    @elseif($data->status == 1)
+                                                        <form
+                                                            action="{{ url('/app/sistem/setting/nominal/iuran/non_aktifkan') }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value="{{ $data->id }}">
+                                                            <button class="btn btn-danger btn-sm">
+                                                                <i class="fa fa-times"></i> Non - Aktifkan
+                                                            </button>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                                 <td class="text-center">
                                                     <button onclick="editNominalIuran({{ $data->id }})"

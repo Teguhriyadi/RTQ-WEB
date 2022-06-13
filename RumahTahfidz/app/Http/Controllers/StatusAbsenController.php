@@ -40,16 +40,16 @@ class StatusAbsenController extends Controller
 
     public function update(Request $request)
     {
-        $cek = StatusAbsen::where("keterangan", $request->keterangan)->count();
+        $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
         if ($cek > 0) {
             return redirect()->back();
         } else {
             StatusAbsen::where("id", $request->id)->update([
-                "keterangan" => $request->keterangan
+                "keterangan_absen" => $request->keterangan_absen
             ]);
 
-            return redirect()->back();
+            return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
         }
     }
 
@@ -57,6 +57,6 @@ class StatusAbsenController extends Controller
     {
         StatusAbsen::where("id", $id)->delete();
 
-        return redirect()->back();
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }

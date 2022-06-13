@@ -73,21 +73,17 @@
                                         @foreach ($data_status as $status)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
-                                                <td>{{ $status->keterangan_absen }}</td>
+                                                <td class="text-center">{{ $status->keterangan_absen }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editStatusAbsen({{ $status->id }})"
                                                         class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form action="{{ url('/app/sistem/status_absen/' . $status->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method('DELETE')
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> Haous
-                                                        </button>
-                                                    </form>
+                                                    <button id="deleteStatusAbsen" data-id="{{ $status->id }}"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> Hapus
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -121,10 +117,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>
@@ -203,6 +199,33 @@
 
         $(document).ready(function() {
             $("#table-1").dataTable();
+        })
+
+        $('body').on('click', '#deleteStatusAbsen', function() {
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form_string =
+                        "<form method=\"POST\" action=\"{{ url('/app/sistem/status_absen/') }}/" +
+                        id +
+                        "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                    form = $(form_string)
+                    form.appendTo('body');
+                    form.submit();
+                } else {
+                    Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                }
+            })
         })
     </script>
 
