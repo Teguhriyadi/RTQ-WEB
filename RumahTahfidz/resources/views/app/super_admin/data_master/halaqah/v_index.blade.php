@@ -1,7 +1,7 @@
 @php
 use App\Models\Halaqah;
 $max = Halaqah::max('kode_halaqah');
-$urutan = (int) substr($max, 2);
+$urutan = (int) substr($max, 4, 3);
 $urutan++;
 $huruf = 'HLQ-';
 $hasil = $huruf . sprintf('%03s', $urutan);
