@@ -22,8 +22,6 @@ class AdminLokasiRtController extends Controller
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
-=======
         $this->validate($request, [
             "nama" => "required",
             "email" => "required|email|unique:users",
@@ -37,7 +35,6 @@ class AdminLokasiRtController extends Controller
             "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
->>>>>>> 57b011c73815733d03d504b42f572018ca9cd559
         if ($request->inputKodeRt) {
             LokasiRt::create([
                 "kode_rt" => "500",
