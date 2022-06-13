@@ -1,6 +1,6 @@
 <li>
     <a>
-        <i class="fa fa-bars"></i> Data Master
+        <i class="fa fa-database"></i> Data Master
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">

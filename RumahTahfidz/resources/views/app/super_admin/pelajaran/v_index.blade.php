@@ -28,7 +28,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/pelajaran') }}">
+                    <form method="POST" action="{{ url('/app/sistem/pelajaran') }}" id="tambahPelajaran">
                         @csrf
                         <div class="form-group">
                             <label for="nama_pelajaran"> Nama Pelajaran </label>
@@ -76,7 +76,7 @@
                                                 <td>{{ $data->nama_pelajaran }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editPelajaran({{ $data->id }})"
-                                                        class="btn btn-warning btn-sm" data-target="#modalEdit"
+                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
@@ -114,7 +114,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/pelajaran/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/pelajaran/simpan') }}" method="POST" id="editPelajaran">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -137,6 +137,53 @@
 @endsection
 
 @section('app_scripts')
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahPelajaran").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama_pelajaran: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nama_pelajaran: {
+                                required: "Nama pelajaran harap diisi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editPelajaran").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama_pelajaran: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nama_pelajaran: {
+                                required: "Nama pelajaran harap diisi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editPelajaran(id) {

@@ -1,6 +1,6 @@
 <li>
     <a>
-        <i class="fa fa-bars"></i> Data Master
+        <i class="fa fa-database"></i> Data Master
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
@@ -53,51 +53,59 @@
 </li>
 <li>
     <a>
-        <i class="fa fa-bars"></i> Level Tes Santri
+        <i class="fa fa-tasks"></i> Tes Santri
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
         <li>
-            <a href="{{ url('/app/sistem/tes/input') }}">Input Level Tes Santri</a>
+            <a href="{{ url('/app/sistem/tes/input') }}">Pemilihan Jenjang</a>
         </li>
         <li>
-            <a href="{{ url('/app/sistem/tes/data') }}">Data Level Tes Santri</a>
+            <a href="{{ url('/app/sistem/tes/data') }}">Konfirmasi Penerimaan</a>
         </li>
     </ul>
 </li>
 <li>
     <a>
-        <i class="fa fa-money"></i> Biaya Iuran
+        <i class="fa fa-money"></i> Keuangan
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
         <li>
-            <a href="{{ url('/app/sistem/validasi/iuran/belum_lunas') }}">
-                Iuran Belum Lunas
+            <a>
+                Biaya Iuran
+                <span class="fa fa-chevron-down"></span>
             </a>
+            <ul class="nav child_menu">
+                <li>
+                    <a href="{{ url('/app/sistem/validasi/iuran/belum_lunas') }}">
+                        Iuran Belum Lunas
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/app/sistem/validasi/iuran/lunas') }}">
+                        Iuran Lunas
+                    </a>
+                </li>
+            </ul>
         </li>
         <li>
-            <a href="{{ url('/app/sistem/validasi/iuran/lunas') }}">
-                Iuran Lunas
+            <a>
+                Biaya Administrasi
+                <span class="fa fa-chevron-down"></span>
             </a>
-        </li>
-    </ul>
-</li>
-<li>
-    <a>
-        <i class="fa fa-bars"></i> Biaya Administrasi
-        <span class="fa fa-chevron-down"></span>
-    </a>
-    <ul class="nav child_menu">
-        <li>
-            <a href="{{ url('/app/sistem/administrasi/belum_lunas') }}">
-                Belum Lunas
-            </a>
-        </li>
-        <li>
-            <a href="{{ url('/app/sistem/administrasi/lunas') }}">
-                Lunas
-            </a>
+            <ul class="nav child_menu">
+                <li>
+                    <a href="{{ url('/app/sistem/administrasi/belum_lunas') }}">
+                        Belum Lunas
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/app/sistem/administrasi/lunas') }}">
+                        Lunas
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>

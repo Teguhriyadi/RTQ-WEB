@@ -93,7 +93,7 @@
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}</td>
                                                 <td>{{ $data->quran_awal }}</td>
-                                                <td>{{ $data->quran_awal }}</td>
+                                                <td>{{ $data->quran_akhir }}</td>
                                                 <td>{{ $data->keterangan }}</td>
                                             </tr>
                                         @endforeach
@@ -114,14 +114,14 @@
     <script>
         function searchQuranAwal() {
             $.ajax({
-                url: 'https://api.quran.sutanlab.id/surah',
+                url: 'https://api.npoint.io/99c279bb173a6e28359c/data',
                 success: function(response) {
                     let optionSurat = '';
                     optionSurat += '<option>- Pilih -</option>'
-                    response.data.forEach(surat => {
-                        optionSurat += '<option value="' + surat.number + '">' + surat.name
-                            .transliteration.id + '</option>'
-                    });
+                    for (let index = 0; index < response.length; index++) {
+                        const surat = response[index];
+                        optionSurat += '<option value="' + index + '">' + surat.nama + '</option>'
+                    }
 
                     $('#quran_awal').html(optionSurat);
                 }
@@ -130,14 +130,14 @@
 
         function searchQuranAkhir() {
             $.ajax({
-                url: 'https://api.quran.sutanlab.id/surah',
+                url: 'https://api.npoint.io/99c279bb173a6e28359c/data',
                 success: function(response) {
                     let optionSurat = '';
                     optionSurat += '<option>- Pilih -</option>'
-                    response.data.forEach(surat => {
-                        optionSurat += '<option value="' + surat.number + '">' + surat.name
-                            .transliteration.id + '</option>'
-                    });
+                    for (let index = 0; index < response.length; index++) {
+                        const surat = response[index];
+                        optionSurat += '<option value="' + index + '">' + surat.nama + '</option>'
+                    }
 
                     $('#quran_akhir').html(optionSurat);
                 }
@@ -158,25 +158,21 @@
             $('#div_akhir').hide();
 
             $("#quran_awal").change(function() {
-                if ($(this).val() == 0) {
-                    $('#div_awal').hide();
-                } else {
-                    $.ajax({
-                        url: 'https://api.quran.sutanlab.id/surah/' + $(this).val(),
-                        success: function(response) {
-                            $('#div_awal').show();
-                            console.log(response.data.numberOfVerses);
-                            let optionAyat = '';
-                            for (let i = 1; i <= response.data.numberOfVerses; i++) {
-                                optionAyat += '<option value="' + i +
-                                    '">Ayat ' +
-                                    i + '</option>'
-                            }
-
-                            $('#ayat_awal').html(optionAyat);
+                $.ajax({
+                    url: 'https://api.npoint.io/99c279bb173a6e28359c/data/' + $(this).val(),
+                    success: function(response) {
+                        $('#div_awal').show();
+                        let optionAyat = '';
+                        for (let i = 1; i <= response.ayat; i++) {
+                            optionAyat += '<option value="' + response.nama + ':' +
+                                i +
+                                '">' + response.nama + ':' +
+                                i + '</option>'
                         }
-                    })
-                }
+
+                        $('#ayat_awal').html(optionAyat);
+                    }
+                })
             })
 
             $("#quran_akhir").change(function() {
@@ -184,14 +180,14 @@
                     $('#div_akhir').hide();
                 } else {
                     $.ajax({
-                        url: 'https://api.quran.sutanlab.id/surah/' + $(this).val(),
+                        url: 'https://api.npoint.io/99c279bb173a6e28359c/data/' + $(this).val(),
                         success: function(response) {
                             $('#div_akhir').show();
-                            console.log(response.data.numberOfVerses);
                             let optionAyat = '';
-                            for (let i = 1; i <= response.data.numberOfVerses; i++) {
-                                optionAyat += '<option value="' + i +
-                                    '">Ayat ' +
+                            for (let i = 1; i <= response.ayat; i++) {
+                                optionAyat += '<option value="' + response.nama + ':' +
+                                    i +
+                                    '">' + response.nama + ':' +
                                     i + '</option>'
                             }
 

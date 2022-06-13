@@ -28,7 +28,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form action="{{ url('/app/sistem/setting/nilai/kategori/') }}" method="POST">
+                    <form action="{{ url('/app/sistem/setting/nilai/kategori/') }}" method="POST" id="tambahNilai">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="nilai_awal"> Nilai Awal </label>
@@ -121,7 +121,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/setting/nilai/kategori/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/setting/nilai/kategori/simpan') }}" method="POST" id="editNilai">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -144,7 +144,77 @@
 @endsection
 
 @section('app_scripts')
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahNilai").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nilai_awal: {
+                                required: true
+                            },
+                            nilai_akhir: {
+                                required: true
+                            },
+                            nilai_kategori: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nilai_awal: {
+                                required: "Nilai awal harap diisi!"
+                            },
+                            nilai_akhir: {
+                                required: "Nilai akhir harap diisi!"
+                            },
+                            nilai_kategori: {
+                                required: "Nilai kategori harap diisi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
 
+                    $("#editNilai").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nilai_awal: {
+                                required: true
+                            },
+                            nilai_akhir: {
+                                required: true
+                            },
+                            nilai_kategori: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nilai_awal: {
+                                required: "Kategori penilaian harap diisi!"
+                            },
+                            nilai_akhir: {
+                                required: "Nilai akhir harap diisi!"
+                            },
+                            nilai_kategori: {
+                                required: "Nilai kategori harap diisi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
     <script type="text/javascript">
         function editNilaiKategori(id) {
             $.ajax({

@@ -51,8 +51,8 @@
                                                 <td>{{ $data->getJenjang->jenjang }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editTesSantri({{ $data->id }})" type="button"
-                                                        class="btn btn-warning btn-sm" id="btnEdit" data-target="#modalEdit"
-                                                        data-toggle="modal">
+                                                        class="btn btn-warning btn-sm text-white" id="btnEdit"
+                                                        data-target="#modalEdit" data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
                                                     <form action="{{ url('/app/sistem/tes/data/' . $data->id) }}"

@@ -32,7 +32,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/besaran_iuran') }}" id="tambahJenjang">
+                    <form method="POST" action="{{ url('/app/sistem/besaran_iuran') }}" id="tambahBesaran">
                         @csrf
                         <div class="form-group">
                             <label for="besaran"> Besaran Iuran </label>
@@ -118,7 +118,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/besaran_iuran/simpan') }}" method="POST" id="editJenjang">
+                <form action="{{ url('/app/sistem/besaran_iuran/simpan') }}" method="POST" id="editBesaran">
                     @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
@@ -141,7 +141,53 @@
 @endsection
 
 @section('app_scripts')
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahBesaran").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            besaran: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            besaran: {
+                                required: "Besaran harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
 
+                    $("#editBesaran").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            besaran: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            besaran: {
+                                required: "Besaran harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
     <script>
         function editBesaranIuran(id) {
             $.ajax({

@@ -34,7 +34,8 @@
                 <div class="x_content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="{{ url('/app/sistem/setting/nominal/iuran') }}" method="POST">
+                            <form action="{{ url('/app/sistem/setting/nominal/iuran') }}" method="POST"
+                                id="tambahNominal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="nominal"> Nominal </label>
@@ -129,7 +130,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/setting/nominal/iuran/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/setting/nominal/iuran/simpan') }}" method="POST" id="editNominal">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -152,7 +153,53 @@
 @endsection
 
 @section('app_scripts')
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahNominal").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nominal: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nominal: {
+                                required: "Nominal harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
 
+                    $("#editNominal").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nominal: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nominal: {
+                                required: "Nominal harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
     <script>
         function editNominalIuran(id) {
             $.ajax({

@@ -136,7 +136,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/users/') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/app/sistem/users/') }}" method="POST" enctype="multipart/form-data"
+                    id="tambahUser">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -219,7 +220,79 @@
 @endsection
 
 @section('app_scripts')
-
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahUser").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            jenis_kelamin: {
+                                required: true
+                            },
+                            tempat_lahir: {
+                                required: true
+                            },
+                            tanggal_lahir: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                            gambar: {
+                                required: true,
+                                accept: "image/*"
+                            },
+                        },
+                        messages: {
+                            nama: {
+                                required: "Nama harap diisi!"
+                            },
+                            email: {
+                                required: "Email harap diisi!"
+                            },
+                            no_hp: {
+                                required: "No. HP harap diisi!"
+                            },
+                            jenis_kelamin: {
+                                required: "Jenis Kelamin harap diisi!"
+                            },
+                            tempat_lahir: {
+                                required: "Tempat Lahir harap diisi!"
+                            },
+                            tanggal_lahir: {
+                                required: "Tanggal Lahir harap diisi!"
+                            },
+                            alamat: {
+                                required: "Alamat harap diisi!"
+                            },
+                            gambar: {
+                                required: "Gambar harap diisi!",
+                                accept: "Gambar harus berformat .jpg/.jpeg/.png"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
     <script>
         function previewImage() {
             const image = document.querySelector("#gambar");

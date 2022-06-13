@@ -28,7 +28,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/setting/kategori/pelajaran/') }}">
+                    <form method="POST" action="{{ url('/app/sistem/setting/kategori/pelajaran/') }}"
+                        id="tambahKategoriPelajaran">
                         @csrf
                         <div class="form-group">
                             <label for="id_kategori_penilaian"> Penilaian </label>
@@ -108,7 +109,7 @@
                                                 <td>{{ $data->getPelajaran->nama_pelajaran }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editKategoriPelajaran({{ $data->id }})"
-                                                        class="btn btn-warning btn-sm" data-target="#modalEdit"
+                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
@@ -147,7 +148,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/setting/kategori/pelajaran/simpan') }}" method="POST">
+                <form action="{{ url('/app/sistem/setting/kategori/pelajaran/simpan') }}" method="POST"
+                    id="editKategoriPelajaran">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -170,6 +172,78 @@
 @endsection
 
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahKategoriPelajaran").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            id_kategori_penilaian: {
+                                required: true
+                            },
+                            id_jenjang: {
+                                required: true
+                            },
+                            id_pelajaran: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            id_kategori_penilaian: {
+                                required: "Kategori penilaian harap diisi!"
+                            },
+                            id_jenjang: {
+                                required: "Jenjang harap diisi!"
+                            },
+                            id_pelajaran: {
+                                required: "Pelajaran harap diisi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editKategoriPelajaran").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            id_kategori_penilaian: {
+                                required: true
+                            },
+                            id_jenjang: {
+                                required: true
+                            },
+                            id_pelajaran: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            id_kategori_penilaian: {
+                                required: "Kategori penilaian harap diisi!"
+                            },
+                            id_jenjang: {
+                                required: "Jenjang harap diisi!"
+                            },
+                            id_pelajaran: {
+                                required: "Pelajaran harap diisi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script>
         function editKategoriPelajaran(id) {

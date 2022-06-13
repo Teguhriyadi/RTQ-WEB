@@ -112,8 +112,7 @@
                             <td>:</td>
                             <td>
                                 <div class="row">
-                                    <textarea name="alamat" id="alamat" class="form-control" rows="5"
-                                        placeholder="Masukkan Alamat">{{ empty($profil) ? '' : $profil->alamat }}</textarea>
+                                    <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat">{{ empty($profil) ? '' : $profil->alamat }}</textarea>
                                 </div>
                             </td>
                         </tr>
@@ -141,7 +140,7 @@
 
 @section('app_scripts')
 
-    <script>
+    {{-- <script>
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
@@ -249,7 +248,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
+    </script> --}}
 
     <script type="text/javascript">
         function previewImage() {

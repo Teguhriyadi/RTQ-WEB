@@ -21,8 +21,8 @@ class HafalanAsatidzController extends Controller
     {
         Quran::create([
             "id_asatidz" => $request->id,
-            "quran_awal" => $request->quran_awal,
-            "quran_akhir" => $request->quran_akhir,
+            "quran_awal" => $request->ayat_awal,
+            "quran_akhir" => $request->ayat_akhir,
             "keterangan" => "Berhasil"
         ]);
 
