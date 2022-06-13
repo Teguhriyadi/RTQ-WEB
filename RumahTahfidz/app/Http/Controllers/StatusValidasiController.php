@@ -18,6 +18,10 @@ class StatusValidasiController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "status" => "required"
+        ]);
+
         StatusValidasi::create($request->all());
 
         return redirect()->back();
@@ -34,6 +38,10 @@ class StatusValidasiController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "status" => "required"
+        ]);
+
         StatusValidasi::where("id", $request->id)->update([
             "status" => $request->status
         ]);

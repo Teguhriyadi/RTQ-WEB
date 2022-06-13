@@ -18,7 +18,16 @@ class NominalIuranController extends Controller
 
     public function store(Request $request)
     {
-        NominalIuran::create($request->all());
+        $this->validate($request, [
+            "nominal" => "required"
+        ]);
+
+        $pecah = substr($request->nominal, 4, 100);
+        $nominal = str_replace('.', '', $pecah);
+
+        NominalIuran::create([
+            'nominal' => $nominal
+        ]);
 
         return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }
@@ -34,8 +43,15 @@ class NominalIuranController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nominal" => "required"
+        ]);
+
+        $pecah = substr($request->nominal, 4, 100);
+        $nominal = str_replace('.', '', $pecah);
+
         NominalIuran::where("id", $request->id)->update([
-            "nominal" => $request->nominal
+            "nominal" => $nominal
         ]);
 
         return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Ubah', 'success');</script>"]);
