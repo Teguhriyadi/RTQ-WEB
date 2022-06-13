@@ -18,6 +18,12 @@ class NilaiKategoriController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nilai_awal" => "required",
+            "nilai_akhir" => "required",
+            "nilai_kategori" => "required",
+        ]);
+
         NilaiKategori::create($request->all());
 
         return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
@@ -34,6 +40,12 @@ class NilaiKategoriController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nilai_awal" => "required",
+            "nilai_akhir" => "required",
+            "nilai_kategori" => "required",
+        ]);
+
         NilaiKategori::where("id", $request->id)->update([
             "nilai_awal" => $request->nilai_awal,
             "nilai_akhir" => $request->nilai_akhir,

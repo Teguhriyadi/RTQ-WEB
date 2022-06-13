@@ -19,6 +19,10 @@ class KategoriPenilaianController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "kategori_penilaian" => "required"
+        ]);
+
         $count = KategoriPenilaian::where("kategori_penilaian", $request->kategori_penilaian)->count();
 
         if ($count > 0) {
@@ -47,6 +51,10 @@ class KategoriPenilaianController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "kategori_penilaian" => "required"
+        ]);
+
         KategoriPenilaian::where("id", $request->id)->update([
             "kategori_penilaian" => $request->kategori_penilaian,
             "slug" => Str::slug($request->kategori_penilaian)

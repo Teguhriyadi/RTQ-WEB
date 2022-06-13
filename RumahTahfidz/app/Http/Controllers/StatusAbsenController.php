@@ -18,6 +18,10 @@ class StatusAbsenController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "keterangan_absen" => "required"
+        ]);
+
         $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
         if ($cek > 0) {
@@ -40,6 +44,10 @@ class StatusAbsenController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "keterangan_absen" => "required"
+        ]);
+
         $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
         if ($cek > 0) {

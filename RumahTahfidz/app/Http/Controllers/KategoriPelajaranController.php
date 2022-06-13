@@ -24,6 +24,12 @@ class KategoriPelajaranController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "id_kategori_penilaian" => "required",
+            "id_jenjang" => "required",
+            "id_pelajaran" => "required",
+        ]);
+
         KategoriPelajaran::create($request->all());
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
@@ -43,6 +49,12 @@ class KategoriPelajaranController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "id_kategori_penilaian" => "required",
+            "id_jenjang" => "required",
+            "id_pelajaran" => "required",
+        ]);
+
         KategoriPelajaran::where("id", $request->id)->update([
             "id_jenjang" => $request->id_jenjang,
             "id_pelajaran" => $request->id_pelajaran,

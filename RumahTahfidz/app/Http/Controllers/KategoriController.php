@@ -18,6 +18,10 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "kategori" => "required"
+        ]);
+
         $cek = Kategori::where("kategori", $request->kategori)->count();
 
         if ($cek > 0) {
@@ -40,6 +44,10 @@ class KategoriController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "kategori" => "required"
+        ]);
+
         Kategori::where("id", $request->id)->update([
             "kategori" => $request->kategori
         ]);

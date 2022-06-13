@@ -18,6 +18,10 @@ class JenjangController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "jenjang" => "required"
+        ]);
+
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
         if ($cek > 0) {
@@ -40,6 +44,10 @@ class JenjangController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "jenjang" => "required"
+        ]);
+
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
         if ($cek > 0) {

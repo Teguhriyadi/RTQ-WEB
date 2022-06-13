@@ -17,6 +17,15 @@ class ProfilWebController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "singkatan" => "required",
+            "email" => "required",
+            "no_hp" => "required",
+            "alamat" => "required",
+            "logo" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+        ]);
+
         if ($request->file("logo")) {
             $data = $request->file("logo")->store("logo");
         } else {
@@ -39,6 +48,15 @@ class ProfilWebController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "singkatan" => "required",
+            "email" => "required",
+            "no_hp" => "required",
+            "alamat" => "required",
+            "logo" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+        ]);
+
         if ($request->file("logo")) {
             if ($request->logo_lama) {
                 Storage::delete($request->logo_lama);

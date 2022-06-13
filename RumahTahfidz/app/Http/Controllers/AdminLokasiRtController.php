@@ -22,6 +22,18 @@ class AdminLokasiRtController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "email" => "required|email|unique:users",
+            "no_hp" => "required|numeric|unique:users",
+            "alamat" => "required",
+            "tanggal_lahir" => "required",
+            "tempat_lahir" => "required",
+            "jenis_kelamin" => "required",
+            "pendidikan_terakhir" => "required",
+            "kode_rt" => "required",
+            "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+        ]);
 
         if ($request->inputKodeRt) {
             LokasiRt::create([
@@ -71,6 +83,19 @@ class AdminLokasiRtController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "email" => "required|email",
+            "no_hp" => "required|numeric",
+            "alamat" => "required",
+            "tanggal_lahir" => "required",
+            "tempat_lahir" => "required",
+            "jenis_kelamin" => "required",
+            "pendidikan_terakhir" => "required",
+            "kode_rt" => "required",
+            "gambar" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+        ]);
+
         AdminLokasiRt::where("id", $request->id)->update([
             "pendidikan_terakhir" => $request->pendidikan_terakhir,
             "kode_rt" => $request->kode_rt

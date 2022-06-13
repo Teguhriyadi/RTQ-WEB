@@ -22,6 +22,17 @@
 
     <div class="clearfix"></div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    @endif
+
     @if (empty($profil))
         <form action="{{ url('/app/sistem/profil/web') }}" method="POST" enctype="multipart/form-data"
             id="tambahProfilWeb">
@@ -140,7 +151,7 @@
 
 @section('app_scripts')
 
-    {{-- <script>
+    <script>
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
@@ -248,7 +259,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script> --}}
+    </script>
 
     <script type="text/javascript">
         function previewImage() {

@@ -29,7 +29,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form action="{{ url('/app/sistem/hafalan/asatidz/') }}" method="POST">
+                    <form action="{{ url('/app/sistem/hafalan/asatidz/') }}" method="POST" id="tambahHafalan">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $detail->id }}">
                         <div class="form-group">
@@ -109,6 +109,42 @@
 
 @endsection
 @section('app_scripts')
+
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahHafalan").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            quran_awal: {
+                                required: true
+                            },
+                            quran_akhir: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            quran_awal: {
+                                required: "Al-quran harap di isi!"
+                            },
+                            quran_akhir: {
+                                required: "Al-quran harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
 
     <script src="{{ url('vendors/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
