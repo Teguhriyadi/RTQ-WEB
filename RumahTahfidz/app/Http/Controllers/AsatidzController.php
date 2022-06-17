@@ -24,6 +24,21 @@ class AsatidzController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "email" => "required|email",
+            "alamat" => "required",
+            "no_hp" => "required",
+            "tanggal_lahir" => "required",
+            "jenis_kelamin" => "required",
+            "tempat_lahir" => "required",
+            "no_ktp" => "required",
+            "nomor_induk" => "required",
+            "pendidikan_terakhir" => "required",
+            "aktivitas_utama" => "required",
+            "motivasi_mengajar" => "required",
+        ]);
+
         $user = new User;
 
         $user->nama = $request->nama;
@@ -35,7 +50,6 @@ class AsatidzController extends Controller
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->no_hp = $request->no_hp;
         $user->save();
 
         $asatidz = new Asatidz;
@@ -62,6 +76,21 @@ class AsatidzController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "email" => "required|email",
+            "alamat" => "required",
+            "no_hp" => "required",
+            "tanggal_lahir" => "required",
+            "jenis_kelamin" => "required",
+            "tempat_lahir" => "required",
+            "no_ktp" => "required",
+            "nomor_induk" => "required",
+            "pendidikan_terakhir" => "required",
+            "aktivitas_utama" => "required",
+            "motivasi_mengajar" => "required",
+        ]);
+
         Asatidz::where("id", $request->id)->update([
             "nomor_induk" => $request->nomor_induk,
             "no_ktp" => $request->no_ktp,

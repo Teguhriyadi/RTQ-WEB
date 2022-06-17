@@ -43,20 +43,6 @@ class SantriImport implements ToCollection, withHeadingRow
                 "status" => $col['status'],
                 'foto' => $col['foto']
             ]);
-
-            // User::create([
-            //     'id' => $col['id'],
-            //     'nama' => $col['nama'],
-            //     'email' => $col['email'],
-            //     'password' => bcrypt($col['password']),
-            //     'alamat' => $col['alamat'],
-            //     'id_role' => $role->id,
-            //     'no_hp' => $col['no_hp'],
-            //     'id_cabang' => $cabang->id,
-            //     'gambar' => $col['gambar'],
-            //     'tempat_lahir' => $col['tempat_lahir'],
-            //     'tanggal_lahir' => gmdate("Y-m-d", $unix_date),
-            // ]);
         }
     }
 }

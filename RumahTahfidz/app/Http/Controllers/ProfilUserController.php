@@ -20,6 +20,10 @@ class ProfilUserController extends Controller
 
     public function simpan_gambar_profil(Request $request)
     {
+        $this->validate($request, [
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
         $user = User::where("id", $request->id)->first();
 
         if ($request->file("gambar")) {
@@ -39,6 +43,12 @@ class ProfilUserController extends Controller
 
     public function ganti_password(Request $request)
     {
+        $this->validate($request, [
+            'password_lama' => 'required',
+            'password_baru' => 'required',
+            'konfirmasi_password' => 'required|same:password_baru'
+        ]);
+
         $user = User::findOrFail($request->id);
         if (password_verify($request->password_lama, $user->password)) {
             if ($request->password_baru != $request->konfirmasi_password) {

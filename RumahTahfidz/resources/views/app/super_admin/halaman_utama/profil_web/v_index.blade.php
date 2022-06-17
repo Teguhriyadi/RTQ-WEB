@@ -50,10 +50,12 @@
                     <center class="mt-3">
                         @if (empty($profil))
                             <img src="{{ url('gambar/gambar_user.png') }}"
-                                class="rounded-circle profile-widget-picture gambar-preview img-fluid" id="tampilGambar">
+                                class="rounded-circle profile-widget-picture gambar-preview img-fluid"
+                                style="height: 250px; width: 100%" id="tampilGambar">
                         @else
                             <img src="{{ $profil->logo }}"
-                                class="rounded-circle profile-widget-picture gambar-preview img-fluid" id="tampilGambar">
+                                class="rounded-circle profile-widget-picture gambar-preview img-fluid"
+                                style="height: 250px; width: 100%" id="tampilGambar">
                         @endif
                     </center>
                     <input type="file" onchange="previewImage()" name="logo" id="image" class="form-control mt-3">

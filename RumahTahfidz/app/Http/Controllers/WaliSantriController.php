@@ -34,6 +34,21 @@ class WaliSantriController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "email" => "required|email",
+            "alamat" => "required",
+            "no_hp" => "required",
+            "tanggal_lahir" => "required",
+            "jenis_kelamin" => "required",
+            "tempat_lahir" => "required",
+            "no_ktp" => "required",
+            "no_kk" => "required",
+            "kode_halaqah" => "required",
+            "pekerjaan" => "required",
+            "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+        ]);
+
         $id_otomatis = HakAkses::max("id") + 1;
 
         if ($request->file("gambar")) {
@@ -88,6 +103,21 @@ class WaliSantriController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "email" => "required|email",
+            "alamat" => "required",
+            "no_hp" => "required",
+            "tanggal_lahir" => "required",
+            "jenis_kelamin" => "required",
+            "tempat_lahir" => "required",
+            "no_ktp" => "required",
+            "no_kk" => "required",
+            "kode_halaqah" => "required",
+            "pekerjaan" => "required",
+            "gambar" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+        ]);
+
         if ($request->file("gambar")) {
             if ($request->gambar_lama) {
                 Storage::delete($request->gambar_lama);
