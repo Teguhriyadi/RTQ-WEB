@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Asatidz;
 use App\Models\Santri;
 use App\Models\AdminLokasiRt;
+use App\Models\HakAkses;
 use App\Models\TerakhirLogin;
 
 class AppController extends Controller
@@ -23,7 +24,8 @@ class AppController extends Controller
             "jumlah_santri" => Santri::count(),
             "jumlah_admin_lokasi_rt" => AdminLokasiRT::count(),
             "user_login" => TerakhirLogin::where("id_user", auth()->user()->id)->get(),
-            "data_santri" => Santri::get()
+            "data_santri" => Santri::get(),
+            "hak_akses" => HakAkses::where('id_user', auth()->user()->id)->get(),
         ];
 
         return view("app.administrator.v_home", $data);

@@ -21,7 +21,6 @@ $user = \App\Models\User::where('id', auth()->user()->id)->first();
         label.error {
             color: red;
         }
-
     </style>
 
 </head>
@@ -70,6 +69,28 @@ $user = \App\Models\User::where('id', auth()->user()->id)->first();
             </script>
         @endif
     @endcan
+
+    <script>
+        $(document).ready(function() {
+            $('#hak_akses').change(function() {
+                var id = $(this).val();
+                if (id != "") {
+                    $.ajax({
+                        url: "{{ url('/app/hak_akses/') }}/" + id,
+                        type: "post",
+                        data: {
+                            '_token': "{{ csrf_token() }}",
+                        },
+                        success: function(data) {
+                            if (data == 1) {
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
     <script>
         function logout() {

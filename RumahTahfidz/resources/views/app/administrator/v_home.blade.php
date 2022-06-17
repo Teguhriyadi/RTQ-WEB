@@ -1,3 +1,66 @@
+@if (auth()->user()->id_hak_akses == null)
+    @include('app.layouts.partials.css.style')
+    @include('app.layouts.partials.js.style')
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="modalHakAkses" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-edit"></i> Edit Data
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/app/hak_akses') }}" method="POST">
+                    @method('PUT')
+                    {{ csrf_field() }}
+                    <div class="modal-body" id="modal-content-edit">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        @endif
+                        <div class="form-group">
+                            <label for="id_hak_akses">Hak Akses</label>
+                            <select name="id_hak_akses" id="id_hak_akses" class="form-control">
+                                <option value="">Pilih Hak Akses</option>
+                                @foreach ($hak_akses as $item)
+                                    <option value="{{ $item->id }}">{{ $item->getRole->keterangan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url('app/logout') }}" class="btn btn-danger btn-sm"><i
+                                class="glyphicon glyphicon-off"></i>
+                            Logout</a>
+                        <button type="reset" class="btn btn-warning btn-sm text-white" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Kembali
+                        </button>
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
+                            <i class="fa fa-save"></i> Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#modalHakAkses').modal('show');
+        });
+    </script>
+    @php
+        die();
+    @endphp
+@endif
 @php
 use App\Models\Iuran;
 use App\Models\SettingIuran;

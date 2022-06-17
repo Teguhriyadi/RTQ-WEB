@@ -33,25 +33,14 @@
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <form method="POST" action="{{ url('app/login') }}" onsubmit="return false;" id="form">
                     @csrf
-                    <div class="mb-3">
-                        <label class="block font-medium text-sm text-gray-700" for="hak_akses">
-                            Pilih Hak Akses
-                        </label>
-                        <select name="hak_akses" id="hak_akses"
-                            class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">
-                            @foreach ($role as $r)
-                                <option value="{{ $r->id }}">{{ $r->keterangan }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
                     <div>
                         <label class="block font-medium text-sm text-gray-700" for="no_hp">
                             No Telepon
                         </label>
                         <input
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
-                            id="no_hp" type="text" name="no_hp" autofocus="autofocus" value="{{ old('no_hp') }}">
+                            id="no_hp" type="text" name="no_hp" autofocus="autofocus"
+                            value="{{ old('no_hp') }}">
                     </div>
 
                     <div class="mt-4">
