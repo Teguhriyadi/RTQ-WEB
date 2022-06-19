@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
-        php_flag engine off
+        php_flag engine on
     </IfModule>
 
     RewriteEngine On
