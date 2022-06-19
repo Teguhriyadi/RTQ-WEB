@@ -49,11 +49,11 @@ class BlogController extends Controller
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }
 
-    public function edit(Request $request)
+    public function show($id)
     {
         $data = [
             "data_kategori" => Kategori::get(),
-            "edit" => Blog::where("id", $request->id)->first()
+            "edit" => Blog::where("id", $id)->first()
         ];
 
         return view("app.super_admin.halaman_utama.blog.v_edit", $data);
@@ -67,6 +67,8 @@ class BlogController extends Controller
             }
 
             $data = $request->file("gambar")->store("foto");
+        } else {
+            $data = $request->oldGambar;
         }
 
         Blog::where("id", $request->id)->update([
@@ -74,7 +76,8 @@ class BlogController extends Controller
             "id_user" => Auth::user()->id,
             "judul" => $request->judul,
             "slug" => Str::slug($request->judul),
-            "foto" => $data
+            "foto" => $data,
+            "deskripsi" => $request->deskripsi
         ]);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);

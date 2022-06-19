@@ -30,7 +30,7 @@
                 <div class="x_content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('/app/sistem/blog') }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-4">
@@ -51,7 +51,7 @@
                                                     <select name="id_kategori" class="form-control" id="id_kategori">
                                                         <option value="">- Pilih -</option>
                                                         @foreach ($data_kategori as $data)
-                                                            <option value="">
+                                                            <option value="{{ $data->id }}">
                                                                 {{ $data->kategori }}
                                                             </option>
                                                         @endforeach
@@ -71,6 +71,16 @@
 
                                             <textarea name="deskripsi" id="deskripsi"></textarea>
                                         </div>
+
+                                        <div class="ln_solid"></div>
+
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="fa fa-times"></i> Batal
+                                        </button>
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="fa fa-plus"></i> Tambah
+                                        </button>
+
                                     </div>
                                 </div>
                             </form>
