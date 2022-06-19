@@ -34,11 +34,12 @@ class WaliSantriController extends Controller
 
     public function store(Request $request)
     {
-        $id_otomatis = HakAkses::max("id") + 1;
+        $file = $request->file("gambar");
 
-        if ($request->file("gambar")) {
-            $data = $request->file("gambar")->store("wali_santri");
-        }
+        $namaFile = $file->getClientOriginalName();
+        $file->move("2", $namaFile);
+
+        $id_otomatis = HakAkses::max("id") + 1;
 
         $user = new User;
 
@@ -52,26 +53,26 @@ class WaliSantriController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
-        $user->gambar = $data;
+        $user->gambar = $file;
         $user->save();
 
-        $hak_akses = new HakAkses;
+        // $hak_akses = new HakAkses;
 
-        $hak_akses->id = $id_otomatis;
-        $hak_akses->id_user = $user->id;
-        $hak_akses->id_role = 4;
+        // $hak_akses->id = $id_otomatis;
+        // $hak_akses->id_user = $user->id;
+        // $hak_akses->id_role = 4;
 
-        $hak_akses->save();
+        // $hak_akses->save();
 
-        $walisantri = new WaliSantri;
+        // $walisantri = new WaliSantri;
 
-        $walisantri->id = $user->id;
-        $walisantri->no_ktp = $request->no_ktp;
-        $walisantri->no_kk = $request->no_kk;
-        $walisantri->kode_halaqah = $request->kode_halaqah;
-        $walisantri->pekerjaan = $request->pekerjaan;
+        // $walisantri->id = $user->id;
+        // $walisantri->no_ktp = $request->no_ktp;
+        // $walisantri->no_kk = $request->no_kk;
+        // $walisantri->kode_halaqah = $request->kode_halaqah;
+        // $walisantri->pekerjaan = $request->pekerjaan;
 
-        $walisantri->save();
+        // $walisantri->save();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
     }

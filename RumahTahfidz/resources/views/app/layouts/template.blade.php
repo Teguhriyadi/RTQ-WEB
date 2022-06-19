@@ -17,11 +17,11 @@ $user = \App\Models\User::where('id', auth()->user()->id)->first();
     @include('app.layouts.partials.css.style')
 
     @yield('app_css')
+
     <style>
         label.error {
             color: red;
         }
-
     </style>
 
 </head>

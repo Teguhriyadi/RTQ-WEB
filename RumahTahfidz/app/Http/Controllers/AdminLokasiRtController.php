@@ -31,8 +31,8 @@ class AdminLokasiRtController extends Controller
             "tempat_lahir" => "required",
             "jenis_kelamin" => "required",
             "pendidikan_terakhir" => "required",
-            "kode_rt" => "required",
-            "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "kode_rt" => "required"
+            // "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
         if ($request->inputKodeRt) {

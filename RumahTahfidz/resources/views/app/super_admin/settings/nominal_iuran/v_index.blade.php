@@ -115,15 +115,10 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form
-                                                        action="{{ url('/app/sistem/setting/nominal/iuran/' . $data->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method('DELETE')
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> Hapus
-                                                        </button>
-                                                    </form>
+                                                    <button id="deleteNominalIuran" data-id="{{ $data->id }}"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> Hapus
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -234,6 +229,34 @@
                 }
             });
         }
+
+        $('body').on('click', '#deleteNominalIuran', function() {
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form_string =
+                        "<form method=\"POST\" action=\"{{ url('/app/sistem/setting/nominal/iuran') }}/" +
+                        id +
+                        "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                    form = $(form_string)
+                    form.appendTo('body');
+                    form.submit();
+                } else {
+                    Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                }
+            })
+        })
+
 
         $(document).ready(function() {
             $("#table-1").dataTable();

@@ -63,9 +63,12 @@ class ProfilWebController extends Controller
             }
 
             $data = $request->file("logo")->store("logo");
+
+            $data = url('/storage') . '/' . $data;
         } else {
             $data = $request->logo_lama;
         }
+
 
         ProfilWeb::where("id", $id)->update([
             "nama" => $request->nama,
@@ -73,7 +76,7 @@ class ProfilWebController extends Controller
             "no_hp" => $request->no_hp,
             "email" => $request->email,
             "alamat" => $request->alamat,
-            "logo" => url('/storage') . '/' . $data
+            "logo" => $data
         ]);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);

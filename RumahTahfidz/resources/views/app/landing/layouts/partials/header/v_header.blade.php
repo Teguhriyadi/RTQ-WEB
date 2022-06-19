@@ -17,6 +17,12 @@
                 <li><a class="nav-link scrollto" href="{{ url('') }}#team">Struktur</a></li>
                 <li><a href="{{ url('/blog') }}">Blog</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('') }}#contact">Kontak</a></li>
+                <li>
+                    <a
+                        href="{{ url('https://drive.google.com/u/0/uc?id=1CBC04K_V8xXr77rzEEKKf7PX_aHxI6Wj&export=download&confirm=t') }}">
+                        Download
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="#">
                         <span>Login</span>
