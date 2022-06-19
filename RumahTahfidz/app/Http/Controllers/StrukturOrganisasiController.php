@@ -21,6 +21,13 @@ class StrukturOrganisasiController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "deskripsi" => "required",
+            "id_jabatan" => "required",
+            "foto" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+        ]);
+
         if ($request->file("foto")) {
             $data = $request->file("foto")->store("struktur_organisasi");
         } else {
@@ -49,6 +56,13 @@ class StrukturOrganisasiController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nama" => "required",
+            "deskripsi" => "required",
+            "id_jabatan" => "required",
+            "foto" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+        ]);
+
         if ($request->file("gambar")) {
             if ($request->foto_lama) {
                 Storage::delete($request->foto_lama);

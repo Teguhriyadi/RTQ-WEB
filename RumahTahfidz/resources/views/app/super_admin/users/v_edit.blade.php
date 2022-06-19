@@ -17,7 +17,18 @@
         </nav>
     </section>
     <div class="clearfix"></div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    @endif
     <form action="{{ url('app/sistem/users/' . $user->id) }}" method="post">
+        @csrf
         @method('patch')
         <div class="row">
             <div class="col-md-4 col-sm-4  profile_left">

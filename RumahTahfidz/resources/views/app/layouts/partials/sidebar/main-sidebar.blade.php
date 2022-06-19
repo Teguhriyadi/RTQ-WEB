@@ -1,5 +1,7 @@
 @php
 $kategori_penilaian = \App\Models\KategoriPenilaian::all();
+$user = \App\Models\User::where('id', Auth::user()->id)->first();
+$akses_saya = \App\Models\HakAkses::where('id_user', $user->id)->get();
 @endphp
 <div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
@@ -27,6 +29,17 @@ $kategori_penilaian = \App\Models\KategoriPenilaian::all();
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
+                <h3>Hak Akses</h3>
+                <div class="form-group p-1">
+                    <select class="form-control" id="hak_akses">
+                        <option value="">Pilih Hak Akses</option>
+                        @foreach ($akses_saya as $item)
+                            <option value="{{ $item->id }}"
+                                {{ $user->id_hak_akses == $item->id ? 'selected' : '' }}>
+                                {{ $item->getRole->keterangan }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <h3>Menu</h3>
                 <ul class="nav side-menu">
                     <li class="{{ Request::segment(3) == 'home' ? 'active' : '' }}">

@@ -18,6 +18,10 @@ class BesaranIuranController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "besaran" => "required"
+        ]);
+
         $pecah = substr($request->besaran, 4, 100);
         $besaran = str_replace('.', '', $pecah);
         $count = BesaranIuran::where("besaran", $besaran)->count();

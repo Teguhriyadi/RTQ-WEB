@@ -19,6 +19,10 @@ class JabatanController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "nama_jabatan" => "required"
+        ]);
+
         $cek = Jabatan::where("nama_jabatan", $request->nama_jabatan)->count();
 
         if ($cek > 0) {
@@ -42,6 +46,10 @@ class JabatanController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            "nama_jabatan" => "required"
+        ]);
+
         Jabatan::where("id", $request->id)->update([
             "nama_jabatan" => $request->nama_jabatan
         ]);

@@ -19,6 +19,12 @@ class HafalanAsatidzController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "id_asatidz" => "required",
+            "ayat_awal" => "required",
+            "ayat_akhir" => "required",
+            "keterangan" => "required",
+        ]);
         Quran::create([
             "id_asatidz" => $request->id,
             "quran_awal" => $request->ayat_awal,

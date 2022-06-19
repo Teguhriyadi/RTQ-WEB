@@ -18,6 +18,36 @@ class LoginController extends Controller
         return view("app.auth.v_login", compact('role'));
     }
 
+    public function hakAkses(Request $request)
+    {
+        $request->validate([
+            'id_hak_akses' => 'required',
+        ]);
+
+        $cek = User::where('id', Auth::user()->id)->update([
+            'id_hak_akses' => $request->id_hak_akses,
+        ]);
+
+        if ($cek) {
+            return back();
+        } else {
+            return back()->with('message', "<script>Swal.fire('Ooops!', 'Maaf anda belum mendapatkan akses, harap hubungi Admin Pusat!', 'error');</script>")->withInput();
+        }
+    }
+
+    public function changeHakAkses($id)
+    {
+        $cek = User::where('id', Auth::user()->id)->update([
+            'id_hak_akses' => $id,
+        ]);
+
+        if ($cek) {
+            echo 1;
+        } else {
+            echo 2;
+        }
+    }
+
     public function loginProses(Request $request)
     {
         $validasi = $request->validate([
@@ -29,26 +59,18 @@ class LoginController extends Controller
 
         if ($user) {
             if ($user->status == 1) {
-                $hak_akses = HakAkses::where('id_role', $request->hak_akses)->where('id_user', $user->id)->first();
-                if ($hak_akses) {
-                    if (Auth::attempt($validasi)) {
-                        User::where('id', Auth::user()->id)->update([
-                            'id_hak_akses' => $hak_akses->id
-                        ]);
+                if (Auth::attempt($validasi)) {
 
-                        TerakhirLogin::create([
-                            'nama' => Auth::user()->nama,
-                            'id_user' => Auth::user()->id
-                        ]);
+                    TerakhirLogin::create([
+                        'nama' => Auth::user()->nama,
+                        'id_user' => Auth::user()->id
+                    ]);
 
-                        $request->session()->regenerate();
+                    $request->session()->regenerate();
 
-                        return redirect()->intended('app/sistem/home');
-                    } else {
-                        return back()->with('message', "<script>Swal.fire('Ooops!', 'No telepon dan password tidak cocok, harap periksa kembali!', 'error');</script>")->withInput();
-                    }
+                    return redirect()->intended('app/sistem/home');
                 } else {
-                    return back()->with('message', "<script>Swal.fire('Ooops!', 'Maaf anda belum mendapatkan akses, harap hubungi Admin Pusat!', 'error');</script>")->withInput();
+                    return back()->with('message', "<script>Swal.fire('Ooops!', 'No telepon dan password tidak cocok, harap periksa kembali!', 'error');</script>")->withInput();
                 }
             } else {
                 return back()->with('message', "<script>Swal.fire('Ooops!', 'Maaf anda belum mendapatkan akses, harap hubungi Admin Pusat!', 'error');</script>")->withInput();

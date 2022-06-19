@@ -22,6 +22,17 @@
 
     <div class="clearfix"></div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    @endif
+
     <div class="row">
         <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -230,6 +241,7 @@
             });
         }
 
+<<<<<<< HEAD
         $('body').on('click', '#deleteNominalIuran', function() {
             let id = $(this).data('id');
 
@@ -257,6 +269,28 @@
             })
         })
 
+=======
+        var rupiah = document.getElementById('nominal');
+        rupiah.addEventListener('keyup', function(e) {
+            rupiah.value = formatRupiah(this.value, 'Rp. ');
+        });
+
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+>>>>>>> 0f1ea2ddb11eea2935f2c1bc05a4c93a240b3f69
 
         $(document).ready(function() {
             $("#table-1").dataTable();
