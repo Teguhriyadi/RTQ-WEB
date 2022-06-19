@@ -11,10 +11,12 @@ use App\Models\LokasiRt;
 use App\Models\NominalIuran;
 use App\Models\Santri;
 use App\Models\WaliSantri;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class SantriController extends Controller
 {
@@ -161,6 +163,20 @@ class SantriController extends Controller
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>");
     }
 
+    public function sertifikat($id)
+    {
+        $santri = Santri::where("id", $id)->first();
+        $template = new \PhpOffice\PhpWord\TemplateProcessor(public_path("sertifikat/sertifikat.docx"));
+        $template->setValues([
+            "nama" => $santri->nama_lengkap,
+            "jenjang" => $santri->getJenjang->jenjang,
+            "tanggal_terbit" => Carbon::now()->isoFormat("D MMMM Y")
+        ]);
+
+        $template->saveAs(public_path("arsip/SERTIFIKAT_" . Str::upper($santri->nama_lengkap) . "_" . $santri->nis . ".docx"));
+        return response()->download(public_path("arsip/SERTIFIKAT_" . Str::upper($santri->nama_lengkap) . "_" . $santri->nis . ".docx"));
+    }
+
     public function datatables()
     {
         if (Auth::user()->getAkses->id_role == 1) {
@@ -193,10 +209,14 @@ class SantriController extends Controller
             ->addIndexColumn()
             ->addColumn('aksi', function ($row) {
                 if (Auth::user()->getAkses->id_role == 1) {
-                    $aksiBtn = '<div class="text-center">
+                    $aksiBtn = '
                     <a href="' . url("/app/sistem/santri/" . $row["id"]) . '" class="btn btn-info btn-sm">
                         <i class="fa fa-search"></i> Detail
-                    </a></div>';
+                    </a>';
+                    $aksiBtn .= '
+                    <a href="' . url("/app/sistem/santri/" . $row["id"] . "/sertifikat") . '" class="btn btn-primary btn-sm">
+                        <i class="fa fa-file-pdf-o"></i> Detail
+                    </a>';
                 } else {
                     $aksiBtn = '<button onclick="editDataSantri(' . $row["id"] . ')" type="button"
                     class="btn btn-warning btn-sm text-white" id="btnEdit"

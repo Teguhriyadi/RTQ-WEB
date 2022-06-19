@@ -109,6 +109,7 @@ Route::prefix("app")->group(function () {
             Route::get("/santri/edit", [SantriController::class, "edit"]);
             Route::get("/santri/datatables", [SantriController::class, "datatables"]);
             Route::put("/santri/simpan", [SantriController::class, "update"]);
+            Route::get("/santri/{id}/sertifikat", [SantriController::class, "sertifikat"]);
             Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
             Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
             Route::get("/santri/export", [ExcelController::class, "exportSantri"]);
