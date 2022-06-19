@@ -69,11 +69,10 @@
                                                     <td>{{ $data->judul }}</td>
                                                     <td>{{ $data->slug }}</td>
                                                     <td class="text-center">
-                                                        <button onclick="editDataBlog({{ $data->id }})"
-                                                            class="btn btn-warning btn-sm text-white"
-                                                            data-target="#modalEdit" data-toggle="modal">
-                                                            <i class="fa fa-edit"></i> Edit
-                                                        </button>
+                                                        <a href="{{ url('/app/sistem/blog/' . $data->id) }}"
+                                                            class="btn btn-warning btn-sm">
+                                                            <i class="fa fa-pencil"></i> Edit
+                                                        </a>
                                                         <form action="{{ url('/app/sistem/blog/' . $data->id) }}"
                                                             method="POST" style="display: inline;">
                                                             @method('DELETE')
@@ -139,7 +138,8 @@
                         <div class="form-group">
                             <label for="foto"> Foto </label>
                             <img class="gambar-preview img-fluid">
-                            <input type="file" class="form-control" name="foto" id="foto" onchange="imagePreview()">
+                            <input type="file" class="form-control" name="foto" id="foto"
+                                onchange="imagePreview()">
                         </div>
                         <div class="form-group">
                             <label for="deskripsi"> Deskripsi </label>
