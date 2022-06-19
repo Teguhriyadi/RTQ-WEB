@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="alert alert-danger" role="alert">
-                    Ada {{ $belum_terkonfimasi }} Santri yang A simple primary alert with <a class="alert-link">belum
+                    Ada {{ $belum_terkonfimasi }} Santri yang <a class="alert-link">belum
                         terkonfirmasi</a>. Silahkan Klik <a href="{{ url('/app/sistem/tes/data') }}"
                         class="alert-link">disini</a> untuk ke halaman tujuan.
                 </div>

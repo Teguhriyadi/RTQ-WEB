@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AbsensiAsatidz;
+use App\Models\Data;
 use App\Models\Image;
 use App\Models\Iuran;
 use App\Models\KategoriPelajaran;
@@ -18,6 +19,17 @@ class CobaController extends Controller
 
         $read = array('id' => $data["id"]);
         echo json_encode($read);
+    }
+
+    public function coba(Request $request)
+    {
+        $uploadPath = 
+        $image = $request->image->getClientOriginalName();
+        Data::create([
+            "nama" => $uploadPath . $image
+        ]);
+
+        return back();
     }
 
     public function coba_rekap()

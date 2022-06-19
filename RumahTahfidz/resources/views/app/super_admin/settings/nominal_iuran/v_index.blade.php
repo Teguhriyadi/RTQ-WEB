@@ -126,15 +126,10 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form
-                                                        action="{{ url('/app/sistem/setting/nominal/iuran/' . $data->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method('DELETE')
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> Hapus
-                                                        </button>
-                                                    </form>
+                                                    <button id="deleteNominalIuran" data-id="{{ $data->id }}"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> Hapus
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -246,6 +241,35 @@
             });
         }
 
+<<<<<<< HEAD
+        $('body').on('click', '#deleteNominalIuran', function() {
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form_string =
+                        "<form method=\"POST\" action=\"{{ url('/app/sistem/setting/nominal/iuran') }}/" +
+                        id +
+                        "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                    form = $(form_string)
+                    form.appendTo('body');
+                    form.submit();
+                } else {
+                    Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                }
+            })
+        })
+
+=======
         var rupiah = document.getElementById('nominal');
         rupiah.addEventListener('keyup', function(e) {
             rupiah.value = formatRupiah(this.value, 'Rp. ');
@@ -266,6 +290,7 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
+>>>>>>> 0f1ea2ddb11eea2935f2c1bc05a4c93a240b3f69
 
         $(document).ready(function() {
             $("#table-1").dataTable();

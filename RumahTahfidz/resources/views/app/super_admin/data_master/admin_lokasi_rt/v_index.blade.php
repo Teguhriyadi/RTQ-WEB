@@ -109,11 +109,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nama"> Nama </label>
-                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
+                            <input type="text" class="form-control" name="nama" id="nama"
+                                placeholder="Masukkan Nama">
                         </div>
                         <div class="form-group">
                             <label for="email"> Email </label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="Masukkan Email">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -202,7 +204,8 @@
                         <div class="form-group">
                             <label for="gambar"> Gambar </label>
                             <img class="gambar-preview img-fluid mb-3">
-                            <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
+                            <input onchange="previewImage()" type="file" class="form-control" name="gambar"
+                                id="gambar">
                         </div>
                     </div>
                     <div class="modal-footer">
