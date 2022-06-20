@@ -53,13 +53,41 @@ class LandingPageController extends Controller
         return redirect("/");
     }
 
-    public function blog()
+    public function allBlog()
     {
         $data = [
             "data_blog" => Blog::latest()->paginate(1),
-            "data_kategori" => Kategori::get()
         ];
 
         return view("app.landing.v_blog", $data);
+    }
+
+    public function detailKategori($kategori)
+    {
+        $data = [
+            "data_blog" => Blog::where("id_kategori", $kategori->id)->get(),
+            "kategori" => $kategori
+        ];
+
+        return view("app.landing.v_blog", $data);
+    }
+
+    public function detailBlog($slug)
+    {
+        if ($slug != 'blog') {
+            $kategori = Kategori::where("slug", $slug)->first();
+            if ($kategori) {
+                return $this->detailKategori($kategori);
+            } else {
+                $blog = Blog::where("slug", $slug)->first();
+                if ($blog) {
+                    return view("app.landing.v_detail_blog", compact('blog'));
+                } else {
+                    return $this->allBlog();
+                }
+            }
+        } else {
+            return $this->allBlog();
+        }
     }
 }

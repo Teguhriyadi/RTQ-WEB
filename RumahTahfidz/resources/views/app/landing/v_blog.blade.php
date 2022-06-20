@@ -1,3 +1,6 @@
+@php
+use Illuminate\Support\Str;
+@endphp
 @extends('app.landing.layouts.template')
 
 @section('app_content')
@@ -20,59 +23,51 @@
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
                 <div class="row">
+                    <div class="col-lg-8">
+                        @if (!empty($kategori))
+                            <div class="breadcrumbs mb-4 text-center" style="margin-top: 0">
+                                <h4 class="text-uppercase" style="margin-block: 0">
+                                    {{ $kategori->kategori }}
+                                </h4>
+                            </div>
+                        @endif
 
-                    @forelse ($data_blog as $data)
-                        <div class="col-lg-8 entries">
-                            <article class="entry entry-single">
-                                <div class="entry-img">
-                                    <img src="{{ url('storage/' . $data->foto) }}" alt="" class="img-fluid">
+                        @forelse ($data_blog as $data)
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="{{ url('storage/' . $data->foto) }}" class="card-img-top py-2 px-5"
+                                            alt="{{ $data->judul }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-uppercase"><b>{{ $data->judul }}</b></h5>
+                                            <div class="entry-meta">
+                                                <ul>
+                                                    <li class="d-flex align-items-center">
+                                                        <i class="bi bi-person"></i> &nbsp;
+                                                        <a>
+                                                            {{ $data->getUser->nama }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="d-flex align-items-center">
+                                                        <i class="bi bi-clock"></i> &nbsp;
+                                                        <a>
+                                                            {{ Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->isoFormat('dddd, D MMMM Y') }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="d-flex align-items-center">
+                                                        <i class="bi bi-tags"></i> &nbsp;
+                                                        <a>
+                                                            {{ $data->getKategori->kategori }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="{{ url('/' . $data->slug) }}" class="btn btn-primary">Selanjutnya</a>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <h2 class="entry-title">
-                                    <a href="blog-single.html">
-                                        {{ $data->judul }}
-                                    </a>
-                                </h2>
-
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i>
-                                            <a>
-                                                {{ $data->getUser->nama }}
-                                            </a>
-                                        </li>
-                                        <li class="d-flex align-items-center">
-                                            <i class="bi bi-clock"></i>
-                                            <a href="blog-single.html">
-                                                {{ Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->isoFormat('dddd, D MMMM') }}
-                                            </a>
-                                        </li>
-                                        <li class="d-flex align-items-center">
-                                            <i class="bi bi-tags"></i>
-                                            <a href="blog-single.html">
-                                                {{ $data->getKategori->kategori }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="entry-content">
-                                    <p>
-                                        {!! $data->deskripsi !!}
-                                    </p>
-
-                                    <p>
-                                        Sit repellat hic cupiditate hic ut nemo. Quis nihil sunt non reiciendis. Sequi in
-                                        accusamus harum vel aspernatur. Excepturi numquam nihil cumque odio. Et voluptate
-                                        cupiditate.
-                                    </p>
-                                </div>
-
-                            </article>
-                        </div>
-                    @empty
-                        <div class="col-lg-8 entries">
+                            </div>
+                        @empty
                             <article class="entry entry-single">
                                 <div class="entry-img">
                                     <img src="https://p4m.rtq-freelance.my.id/frontend/img/no-images.png" alt=""
@@ -89,55 +84,12 @@
                                 </div>
 
                             </article>
-                        </div>
-                    @endforelse
+                        @endforelse
+                    </div>
 
                     <div class="col-lg-4">
 
-                        <div class="sidebar">
-
-                            <h3 class="sidebar-title">Cari</h3>
-                            <div class="sidebar-item search-form">
-                                <form action="">
-                                    <input type="text">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
-                                </form>
-                            </div>
-
-                            <h3 class="sidebar-title">Kategori</h3>
-                            <div class="sidebar-item categories">
-                                <ul>
-                                    @forelse ($data_kategori as $data)
-                                        <li>
-                                            <a href="#"> {{ $data->kategori }}
-                                                <span>(25)</span>
-                                            </a>
-                                        </li>
-                                    @empty
-                                        <div class="alert alert-danger">
-                                            Tidak Ada Kategori
-                                        </div>
-                                    @endforelse
-                                </ul>
-                            </div>
-
-                            <h3 class="sidebar-title">Post Terbaru</h3>
-                            <div class="sidebar-item recent-posts">
-                                @forelse ($data_blog as $data)
-                                    <div class="post-item clearfix">
-                                        <img src="assets/img/blog/blog-recent-1.jpg" alt="">
-                                        <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
-                                        <time datetime="2020-01-01">Jan 1, 2020</time>
-                                    </div>
-                                @empty
-                                    <div class="post-item clearfix">
-                                        <div class="alert alert-danger">
-                                            Tidak Ada Post
-                                        </div>
-                                    </div>
-                                @endforelse
-                            </div>
-                        </div>
+                        @include('app.landing.layouts.widgets.w_pencarian')
                     </div>
                 </div>
 

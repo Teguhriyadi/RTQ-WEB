@@ -104,10 +104,14 @@
                         </div>
 
                         <div id="graph_bar" style="width: 100%; height: 280px"></div>
+                        <div id="docPreview"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+@endsection
+
+@section('app_scripts')
 @endsection

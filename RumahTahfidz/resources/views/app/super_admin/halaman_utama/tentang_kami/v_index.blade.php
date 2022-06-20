@@ -36,8 +36,8 @@
                     <form action="{{ url('app/sistem/tentang_kami') }}" class="row" method="post"
                         enctype="multipart/form-data" id="tambahTentang">
                     @else
-                        <form action="{{ url('app/sistem/tentang_kami/' . $profil->id) }}" class="row"
-                            method="post" enctype="multipart/form-data" id="editTentang">
+                        <form action="{{ url('app/sistem/tentang_kami/' . $profil->id) }}" class="row" method="post"
+                            enctype="multipart/form-data" id="editTentang">
                             @method('PUT')
                             <input type="hidden" name="foto_lama" value="{{ $profil->foto }}">
                 @endif
@@ -48,7 +48,8 @@
                             <center class="m-3">
                                 @if (empty($profil))
                                     <img src="{{ url('gambar/gambar_user.png') }}"
-                                        class="rounded-circle profile-widget-picture gambar-preview " id="tampilGambar">
+                                        class="rounded-circle profile-widget-picture gambar-preview img-fluid"
+                                        id="tampilGambar">
                                 @else
                                     <img src="{{ url('/storage/' . $profil->foto) }}"
                                         class="rounded-circle profile-widget-picture gambar-preview img-fluid"
@@ -67,21 +68,20 @@
                 </div>
 
                 <div class="col-12 col-md-12 col-lg-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                @if (empty($profil))
-                                    <h5>
-                                        <i class="fa fa-plus"></i> Tambah @yield('app_title')
-                                    </h5>
-                                @else
-                                    <h5>
-                                        <i class="fa fa-edit"></i> Edit @yield('app_title')
-                                    </h5>
-                                @endif
-                            </div>
+                    <div class="x_panel">
+                        <div class="x_title">
+                            @if (empty($profil))
+                                <h2>
+                                    <i class="fa fa-plus"></i> Tambah @yield('app_title')
+                                </h2>
+                            @else
+                                <h2>
+                                    <i class="fa fa-edit"></i> Edit @yield('app_title')
+                                </h2>
+                            @endif
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="card-body">
+                        <div class="x_content">
                             <table class="table table-hover">
                                 <tr>
                                     <td>Deskripsi</td>
@@ -93,8 +93,7 @@
                                     </td>
                                 </tr>
                             </table>
-                        </div>
-                        <div class="card-footer">
+                            <div class="ln_solid"></div>
                             <button type="reset" class="btn btn-danger btn-sm">
                                 <i class="fa fa-times"></i> Batal
                             </button>
