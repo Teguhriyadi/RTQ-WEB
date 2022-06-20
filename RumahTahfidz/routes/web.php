@@ -78,8 +78,8 @@ Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);
 
 Route::get("/", [LandingPageController::class, "home"]);
 Route::get("/home", [LandingPageController::class, "home"]);
+Route::get("/{slug}", [LandingPageController::class, "detailBlog"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
-Route::get("/blog", [LandingPageController::class, "blog"]);
 Route::post("/pesan", [LandingPageController::class, "pesan"]);
 
 Route::prefix("app")->group(function () {

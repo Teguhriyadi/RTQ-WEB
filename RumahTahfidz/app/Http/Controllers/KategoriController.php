@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class KategoriController extends Controller
 {
@@ -27,7 +28,10 @@ class KategoriController extends Controller
         if ($cek > 0) {
             return redirect()->back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error')</script>"]);
         } else {
-            Kategori::create($request->all());
+            Kategori::create([
+                "kategori" => $request->kategori,
+                "slug" => Str::slug($request->kategori)
+            ]);
 
             return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success')</script>"]);
         }
@@ -49,7 +53,8 @@ class KategoriController extends Controller
         ]);
 
         Kategori::where("id", $request->id)->update([
-            "kategori" => $request->kategori
+            "kategori" => $request->kategori,
+            "slug" => Str::slug($request->kategori),
         ]);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
