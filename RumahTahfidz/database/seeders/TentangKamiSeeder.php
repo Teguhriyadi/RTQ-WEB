@@ -15,6 +15,5 @@ class TentangKamiSeeder extends Seeder
      */
     public function run()
     {
-        
     }
 }

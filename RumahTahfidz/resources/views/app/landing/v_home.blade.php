@@ -43,8 +43,8 @@
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="content">
                             <h2>Profil Singkat {{ empty($data->nama) ? 'RTQ Ulil Albab' : $data->nama }}</h2>
-                            <p>
-                                {{ empty($profil->deskripsi) ? '' : $profil->deskripsi }}
+                            <p style="text-align: justify">
+                                {{ empty($profil->deskripsi) ? 'Lahir dari idealisme untuk menanamkan nilai-nilai Al-Quran, Rumah Tahfidz Ulil Quran Albab menawarkan konsep pendidikan Al-Quran yang bukan hanya menekankan pada kecapakan membaca dan menghafalkan Al-Quran, namun berupaya menanamkan iman dan adab yang mulai terkikis dengan perkembangan teknologi.' : $profil->deskripsi }}
                             </p>
                             <div class="text-center text-lg-start">
                                 {{-- <a href="#"
@@ -57,8 +57,8 @@
                     </div>
 
                     <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                        <img src="{{ empty($profil) ? '' : url('/storage/' . $profil->foto) }}" class="img-fluid"
-                            alt="">
+                        <img src="{{ empty($profil) ? url('/gambar/logo_ulil.png') : url('/storage/' . $profil->foto) }}"
+                            class="img-fluid" alt="">
                     </div>
 
                 </div>
@@ -150,7 +150,8 @@
                             </div>
                         </div>
                     @empty
-                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                            data-aos-delay="400">
                             <div class="member">
                                 <div class="member-img">
                                     <img src="https://p4m.rtq-freelance.my.id/frontend/img/no-images.png"
@@ -237,7 +238,7 @@
                                     <i class="bi bi-geo-alt"></i>
                                     <h3>Alamat</h3>
                                     <p>
-                                        {{ empty($data->alamat) ? '' : $data->alamat }}
+                                        {{ empty($data->alamat) ? 'Indramayu, West Java, Indonesia 45212' : $data->alamat }}
                                     </p>
                                 </div>
                             </div>
@@ -246,7 +247,7 @@
                                     <i class="bi bi-telephone"></i>
                                     <h3>No. Handphone</h3>
                                     <p>
-                                        {{ empty($data->no_hp) ? '' : $data->no_hp }}
+                                        {{ empty($data->no_hp) ? '0821 - 2850 - 4559' : $data->no_hp }}
                                     </p>
                                 </div>
                             </div>
@@ -255,15 +256,15 @@
                                     <i class="bi bi-envelope"></i>
                                     <h3>Email</h3>
                                     <p>
-                                        {{ empty($data->email) ? '' : $data->email }}
+                                        {{ empty($data->email) ? 'rumahtahfidzulilalbab@gmail.com' : $data->email }}
                                     </p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="info-box">
                                     <i class="bi bi-clock"></i>
-                                    <h3>Open Hours</h3>
-                                    <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                                    <h3>Jam Buka</h3>
+                                    <p>Senin - Jum'at<br>9:00AM - 05:00PM</p>
                                 </div>
                             </div>
                         </div>
