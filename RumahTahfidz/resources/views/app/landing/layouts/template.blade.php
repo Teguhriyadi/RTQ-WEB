@@ -8,8 +8,7 @@ $data = ProfilWeb::select('id', 'nama', 'singkatan', 'logo')->first();
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    {{ url('gambar/logo_ulil.png') }}
-    <link rel="icon" href="{{ $data->logo }}">
+    <link rel="icon" href="{{ empty($data->logo) ? url('/gambar/logo_ulil.png') : $data->logo }}">
 
     <title>
         {{ empty($data->nama) ? 'Rumah Tahfidz Quran' : $data->nama }}
