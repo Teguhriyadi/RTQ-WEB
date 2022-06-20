@@ -11,27 +11,39 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="{{ url('') }}#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="{{ url('') }}#about">Tentang Kami</a></li>
-                <li><a class="nav-link scrollto" href="{{ url('') }}#services">Program</a></li>
-                <li><a class="nav-link scrollto" href="{{ url('') }}#portfolio">Dokumentasi</a></li>
-                <li><a class="nav-link scrollto" href="{{ url('') }}#team">Struktur</a></li>
-                <li><a href="{{ url('/blog') }}">Blog</a></li>
+                <li class="dropdown">
+                    <a href="#">
+                        <span>Tentang Ulil Albab</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </a>
+                    <ul>
+                        <li><a class="nav-link scrollto" href="{{ url('') }}#about">Tentang Kami</a></li>
+                        <li><a class="nav-link scrollto" href="{{ url('') }}#services">Program</a></li>
+                        <li><a class="nav-link scrollto" href="{{ url('') }}#team">Struktur</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">
+                        <span>Kegiatan</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </a>
+                    <ul>
+                        <li><a class="nav-link scrollto" href="{{ url('') }}#portfolio">Dokumentasi</a></li>
+                        <li><a href="{{ url('/blog') }}">Blog</a></li>
+                    </ul>
+                </li>
                 <li><a class="nav-link scrollto" href="{{ url('') }}#contact">Kontak</a></li>
                 <li>
                     <a
                         href="{{ url('https://drive.google.com/u/0/uc?id=1CBC04K_V8xXr77rzEEKKf7PX_aHxI6Wj&export=download&confirm=t') }}">
-                        Download
+                        Download Aplikasi
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="#">
-                        <span>Login</span>
-                        <i class="bi bi-chevron-down"></i>
+                <li>
+                    <a href="{{ url('/app/login') }}">
+                        Login
                     </a>
-                    <ul>
-                        <li><a href="{{ url('/app/login') }}">Asatidz</a></li>
-                        <li><a href="{{ url('/app/login') }}">Admin</a></li>
-                    </ul>
                 </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

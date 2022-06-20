@@ -123,8 +123,8 @@
             <div class="container" data-aos="fade-up">
 
                 <header class="section-header">
-                    <h2>Services</h2>
-                    <p>Veritatis et dolores facere numquam et praesentium</p>
+                    <h2>Program</h2>
+                    <p>Beberapa program yang akan diajarkan</p>
                 </header>
 
                 <div class="row gy-4">
@@ -132,60 +132,47 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-box blue">
                             <i class="ri-discuss-line icon"></i>
-                            <h3>Nesciunt Mete</h3>
-                            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure
-                                perferendis tempore et consequatur.</p>
-                            <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+                            <h3>Tadribat Qiro'ah</h3>
+                            <p style="text-align: justify">
+                                Adalah Program inti pembelajaran kompetensi santri dalam Rumah Tahfidz. Tadribat memberikan
+                                pengajar per masing - masing santri sesuai dengan Jenjang Belajar nya di Rumah Tahfidz.
+                            </p>
+                            <a href="#" class="read-more">
+                                <span>Selengkapnya</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-box orange">
                             <i class="ri-discuss-line icon"></i>
-                            <h3>Eosle Commodi</h3>
-                            <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic
-                                non ut nesciunt dolorem.</p>
-                            <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+                            <h3>Hafalan Talaqqi</h3>
+                            <p style="text-align: justify">
+                                Hafalan Talaqqi ialah program hafalan sesuai dengan jenjang belajar Santri di Rumah Tahfidz
+                                Quran Ulil Albab. Hafalan didapatkan dari proses belajar Talaqqi dan belajar Talaqqi Mandiri
+                                Santri.
+                            </p>
+                            <a href="#" class="read-more">
+                                <span>Selengkapnya</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="service-box green">
                             <i class="ri-discuss-line icon"></i>
-                            <h3>Ledo Markt</h3>
-                            <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas
-                                adipisci eos earum corrupti.</p>
-                            <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
+                            <h3>Kitabah</h3>
+                            <p style="text-align: justify">
+                                Selain Tadribat dan Hafalan Talaqqi, Rumah Tahfidz Quran Ulil Albab juga melatih
+                                santri-santrinya untuk bisa menulis tulisan Arab untuk membiasakan santri mengenal lebih
+                                detail setiap tulisan dalam huruf arab.
+                            </p>
 
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                        <div class="service-box red">
-                            <i class="ri-discuss-line icon"></i>
-                            <h3>Asperiores Commodi</h3>
-                            <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit
-                                provident adipisci neque.</p>
-                            <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                        <div class="service-box purple">
-                            <i class="ri-discuss-line icon"></i>
-                            <h3>Velit Doloremque.</h3>
-                            <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi
-                                at autem alias eius labore.</p>
-                            <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
-                        <div class="service-box pink">
-                            <i class="ri-discuss-line icon"></i>
-                            <h3>Dolori Architecto</h3>
-                            <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
-                                Corrupti recusandae ducimus enim.</p>
-                            <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+                            <a href="#" class="read-more">
+                                <span>Selengkapnya</span>
+                                <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
@@ -220,8 +207,8 @@
                     @foreach ($data_blog as $data)
                         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                             <div class="portfolio-wrap">
-                                <img src="{{ url('/landing') }}/assets/img/portfolio/portfolio-1.jpg"
-                                    class="img-fluid" alt="">
+                                <img src="{{ url('/landing') }}/assets/img/portfolio/portfolio-1.jpg" class="img-fluid"
+                                    alt="">
                                 <div class="portfolio-info">
                                     <h4>App 1</h4>
                                     <p>App</p>
@@ -252,7 +239,8 @@
 
                 <div class="row gy-4">
                     @forelse ($data_organisasi as $data)
-                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                            data-aos-delay="400">
                             <div class="member">
                                 <div class="member-img">
                                     <img src="{{ url('/storage/' . $data->foto) }}" class="img-fluid" alt=""
@@ -272,7 +260,8 @@
                             </div>
                         </div>
                     @empty
-                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                            data-aos-delay="400">
                             <div class="member">
                                 <div class="member-img">
                                     <img src="https://p4m.rtq-freelance.my.id/frontend/img/no-images.png"
@@ -396,16 +385,16 @@
                             @csrf
                             <div class="row gy-4">
                                 <div class="col-md-6">
-                                    <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama"
-                                        required>
+                                    <input type="text" name="nama" class="form-control"
+                                        placeholder="Masukkan Nama" required>
                                 </div>
                                 <div class="col-md-6 ">
-                                    <input type="email" class="form-control" name="email" placeholder="Masukkan Email"
-                                        required>
+                                    <input type="email" class="form-control" name="email"
+                                        placeholder="Masukkan Email" required>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul"
-                                        required>
+                                    <input type="text" class="form-control" name="judul"
+                                        placeholder="Masukkan Judul" required>
                                 </div>
                                 <div class="col-md-12">
                                     <textarea class="form-control" name="pesan" rows="6" placeholder="Masukkan Pesan" required></textarea>
