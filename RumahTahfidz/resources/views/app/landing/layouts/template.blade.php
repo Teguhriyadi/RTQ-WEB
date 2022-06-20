@@ -1,12 +1,19 @@
+@php
+use App\Models\ProfilWeb;
+$data = ProfilWeb::select('id', 'nama', 'singkatan', 'logo')->first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}" />
+    {{ url('gambar/logo_ulil.png') }}
+    <link rel="icon" href="{{ $data->logo }}">
 
-    <title>Rumah Tahfidz Quran</title>
+    <title>
+        {{ empty($data->nama) ? 'Rumah Tahfidz Quran' : $data->nama }}
+    </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
