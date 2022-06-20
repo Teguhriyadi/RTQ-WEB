@@ -118,115 +118,6 @@
             </div>
         </section>
 
-        <section id="services" class="services">
-
-            <div class="container" data-aos="fade-up">
-
-                <header class="section-header">
-                    <h2>Program</h2>
-                    <p>Beberapa program yang akan diajarkan</p>
-                </header>
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="service-box blue">
-                            <i class="ri-discuss-line icon"></i>
-                            <h3>Tadribat Qiro'ah</h3>
-                            <p style="text-align: justify">
-                                Adalah Program inti pembelajaran kompetensi santri dalam Rumah Tahfidz. Tadribat memberikan
-                                pengajar per masing - masing santri sesuai dengan Jenjang Belajar nya di Rumah Tahfidz.
-                            </p>
-                            <a href="#" class="read-more">
-                                <span>Selengkapnya</span>
-                                <i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service-box orange">
-                            <i class="ri-discuss-line icon"></i>
-                            <h3>Hafalan Talaqqi</h3>
-                            <p style="text-align: justify">
-                                Hafalan Talaqqi ialah program hafalan sesuai dengan jenjang belajar Santri di Rumah Tahfidz
-                                Quran Ulil Albab. Hafalan didapatkan dari proses belajar Talaqqi dan belajar Talaqqi Mandiri
-                                Santri.
-                            </p>
-                            <a href="#" class="read-more">
-                                <span>Selengkapnya</span>
-                                <i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="service-box green">
-                            <i class="ri-discuss-line icon"></i>
-                            <h3>Kitabah</h3>
-                            <p style="text-align: justify">
-                                Selain Tadribat dan Hafalan Talaqqi, Rumah Tahfidz Quran Ulil Albab juga melatih
-                                santri-santrinya untuk bisa menulis tulisan Arab untuk membiasakan santri mengenal lebih
-                                detail setiap tulisan dalam huruf arab.
-                            </p>
-
-                            <a href="#" class="read-more">
-                                <span>Selengkapnya</span>
-                                <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section id="portfolio" class="portfolio">
-
-            <div class="container" data-aos="fade-up">
-
-                <header class="section-header">
-                    <h2>Portfolio</h2>
-                    <p>Check our latest work</p>
-                </header>
-
-                <div class="row" data-aos="fade-up" data-aos-delay="100">
-                    <div class="col-lg-12 d-flex justify-content-center">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web">Web</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                    @foreach ($data_blog as $data)
-                        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                            <div class="portfolio-wrap">
-                                <img src="{{ url('/landing') }}/assets/img/portfolio/portfolio-1.jpg" class="img-fluid"
-                                    alt="">
-                                <div class="portfolio-info">
-                                    <h4>App 1</h4>
-                                    <p>App</p>
-                                    <div class="portfolio-links">
-                                        <a href="{{ url('/landing') }}/assets/img/portfolio/portfolio-1.jpg"
-                                            data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 1"><i
-                                                class="bi bi-plus"></i></a>
-                                        <a href="portfolio-details.html" title="More Details"><i
-                                                class="bi bi-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-
         <!-- ======= Team Section ======= -->
         <section id="team" class="team">
 
@@ -239,8 +130,7 @@
 
                 <div class="row gy-4">
                     @forelse ($data_organisasi as $data)
-                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
-                            data-aos-delay="400">
+                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                             <div class="member">
                                 <div class="member-img">
                                     <img src="{{ url('/storage/' . $data->foto) }}" class="img-fluid" alt=""
@@ -260,8 +150,7 @@
                             </div>
                         </div>
                     @empty
-                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
-                            data-aos-delay="400">
+                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                             <div class="member">
                                 <div class="member-img">
                                     <img src="https://p4m.rtq-freelance.my.id/frontend/img/no-images.png"

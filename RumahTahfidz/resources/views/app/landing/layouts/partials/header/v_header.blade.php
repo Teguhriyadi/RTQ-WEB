@@ -18,21 +18,10 @@
                     </a>
                     <ul>
                         <li><a class="nav-link scrollto" href="{{ url('') }}#about">Tentang Kami</a></li>
-                        <li><a class="nav-link scrollto" href="{{ url('') }}#services">Program</a></li>
                         <li><a class="nav-link scrollto" href="{{ url('') }}#team">Struktur</a></li>
                     </ul>
                 </li>
-
-                <li class="dropdown">
-                    <a href="#">
-                        <span>Kegiatan</span>
-                        <i class="bi bi-chevron-down"></i>
-                    </a>
-                    <ul>
-                        <li><a class="nav-link scrollto" href="{{ url('') }}#portfolio">Dokumentasi</a></li>
-                        <li><a href="{{ url('/blog') }}">Blog</a></li>
-                    </ul>
-                </li>
+                <li><a href="{{ url('/blog') }}">Blog</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('') }}#contact">Kontak</a></li>
                 <li>
                     <a
