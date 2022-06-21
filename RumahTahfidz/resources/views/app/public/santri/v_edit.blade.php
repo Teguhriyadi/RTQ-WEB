@@ -15,7 +15,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="halaqah"> Halaqah </label>
-            <input type="text" class="form-control" value="{{ $edit->getWali->getHalaqah->nama_halaqah }}" readonly>
+            <input type="text" class="form-control" value="{{ $edit->getWali->getHalaqah->nama_halaqah }}"
+                readonly>
         </div>
     </div>
 </div>
@@ -106,7 +107,7 @@
     @if (empty($edit->foto))
         <img class="gambar-lihat" id="tampilGambar">
     @else
-        <img class="gambar-lihat mb-3" id="tampilGambar" src="{{ url('/storage/' . $edit->foto) }}" width="100%">
+        <img class="gambar-lihat mb-3" id="tampilGambar" src="{{ $edit->foto }}" width="100%">
     @endif
 
     <input type="file" class="form-control" name="foto" id="foto" onchange="imagePreview()">

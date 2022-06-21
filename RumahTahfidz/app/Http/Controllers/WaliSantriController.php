@@ -157,9 +157,15 @@ class WaliSantriController extends Controller
 
         WaliSantri::where("id", $id)->delete();
 
+        $santri = Santri::where('id_wali', $id)->first();
+
         $string = str_replace(url('storage/'), "", $user->gambar);
         Storage::delete($string);
 
+        $string2 = str_replace(url('storage/'), "", $santri->foto);
+        Storage::delete($string2);
+
+        $santri->delete();
         $user->delete();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Hapus", "success");</script>');
