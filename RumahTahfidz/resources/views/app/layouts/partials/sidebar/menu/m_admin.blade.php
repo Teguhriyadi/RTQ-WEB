@@ -9,6 +9,11 @@
                 Santri
             </a>
         </li>
+        <li class="{{ Request::segment(3) == 'jenjang_santri' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/jenjang_santri') }}">
+                Jenjang Santri
+            </a>
+        </li>
         <li class="{{ Request::segment(3) == 'wali_santri' ? 'active' : '' }}">
             <a href="{{ url('/app/sistem/wali_santri') }}">
                 Wali Santri

@@ -9,6 +9,18 @@ use Illuminate\Http\Request;
 
 class AdminLokasiRtController extends Controller
 {
+    public function automatis()
+    {
+        $max = LokasiRt::max('kode_rt');
+        $urutan = (int) substr($max, 4, 3);
+        $urutan++;
+
+        $huruf = 'RTQ-';
+        $hasil = $huruf . sprintf('%03s', $urutan);
+
+        return $hasil;
+    }
+
     public function index()
     {
         $data = [
@@ -31,14 +43,13 @@ class AdminLokasiRtController extends Controller
             "tempat_lahir" => "required",
             "jenis_kelamin" => "required",
             "pendidikan_terakhir" => "required",
-            "kode_rt" => "required"
-            // "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
-        if ($request->inputKodeRt) {
+        if ($request->input_kode_rt) {
             LokasiRt::create([
-                "kode_rt" => "500",
-                "lokasi_rt" => $request->inputKodeRt
+                "kode_rt" => $this->automatis(),
+                "lokasi_rt" => $request->input_kode_rt
             ]);
         }
 

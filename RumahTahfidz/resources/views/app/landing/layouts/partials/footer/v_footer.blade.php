@@ -9,7 +9,16 @@
                             {{ empty($data->singkatan) ? '' : $data->singkatan }}
                         </span>
                     </a>
-                    <p></p>
+                    <p style="text-align: justify">
+                        @if (empty($data->deskripsi))
+                            Lahir dari idealisme untuk menanamkan nilai-nilai Al-Quran, Rumah Tahfidz Ulil Quran Albab
+                            menawarkan konsep pendidikan Al-Quran yang bukan hanya menekankan pada kecapakan membaca dan
+                            menghafalkan Al-Quran, namun berupaya menanamkan iman dan adab yang mulai terkikis dengan
+                            perkembangan teknologi.
+                        @else
+                            {{ $data->deskripsi }}
+                        @endif
+                    </p>
                     <div class="social-links mt-3">
                         <a target="_blank" href="{{ 'https://www.facebook.com/RumahTahfidzUlilAlbab/' }}"
                             class="facebook"><i class="bi bi-facebook"></i></a>
@@ -21,32 +30,41 @@
                 <div class="col-lg-2 col-6 footer-links">
                     <h4>Tautan</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Tentang Kami</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Program</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Dokumentasi</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Struktur</a></li>
+                        <li>
+                            <i class="bi bi-chevron-right"></i>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-chevron-right"></i>
+                            <a href="#">Tentang Ulil Albab</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-chevron-right"></i>
+                            <a href="#">Blog</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-chevron-right"></i>
+                            <a href="#">Kontak</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-chevron-right"></i>
+                            <a href="#">Download Aplikasi</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-chevron-right"></i>
+                            <a href="#">Login</a>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-6 footer-links">
-                    <h4>Layanan Kami</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
                     <h4>Kontak Kami</h4>
                     <p>
-                        {{ empty($data->alamat) ? '' : $data->alamat }}
-                        <br><br>
-                        <strong>Phone:</strong> {{ empty($data->no_hp) ? '' : $data->no_hp }} <br>
-                        <strong>Email:</strong> {{ empty($data->email) ? '' : $data->email }} <br>
+                        {{ empty($data->alamat) ? 'Indramayu, West Java, Indonesia 45212' : $data->alamat }}
+                        <br>
+                        <strong>Phone:</strong> {{ empty($data->no_hp) ? '0821 - 2850 - 4559' : $data->no_hp }} <br>
+                        <strong>Email:</strong>
+                        {{ empty($data->email) ? 'rumahtahfidzulilalbab@gmail.com' : $data->email }} <br>
                     </p>
                 </div>
             </div>

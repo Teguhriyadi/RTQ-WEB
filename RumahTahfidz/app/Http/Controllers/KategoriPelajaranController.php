@@ -24,6 +24,7 @@ class KategoriPelajaranController extends Controller
 
     public function store(Request $request)
     {
+
         $this->validate($request, [
             "id_kategori_penilaian" => "required",
             "id_jenjang" => "required",

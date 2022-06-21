@@ -66,6 +66,10 @@ use Maatwebsite\Excel\Row;
 |
 */
 
+Route::get("/perhitungan", function () {
+    return view("perhitungan");
+});
+
 Route::get("/coba", function () {
     return view("data");
 });
@@ -105,6 +109,9 @@ Route::prefix("app")->group(function () {
             Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
             Route::resource("/asatidz", AsatidzController::class);
 
+            // Data Jenjang Santri
+            Route::get("/jenjang_santri", [SantriController::class, "jenjang_santri"]);
+            Route::put("/jenjang_santri", [SantriController::class, "jenjang_santri_dua"]);
             // Data Siswa
             Route::get("/santri/edit", [SantriController::class, "edit"]);
             Route::get("/santri/datatables", [SantriController::class, "datatables"]);

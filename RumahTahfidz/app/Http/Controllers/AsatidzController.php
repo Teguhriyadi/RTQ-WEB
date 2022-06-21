@@ -45,7 +45,6 @@ class AsatidzController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt("asatidz");
         $user->alamat = $request->alamat;
-        $user->id_role = 3;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;

@@ -18,79 +18,105 @@
 
     <div class="clearfix"></div>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="clearfix"></div>
-    @endif
-
-    <div class="row">
-        <div class="col-md-12 col-xs-12 co-lg-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        Data @yield('app_title')
-                    </h2>
-                    <div class="pull-right">
-                        <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
+    @if (count($data_halaqah) < 1)
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 m-0">
+                <div class="x_content bs-example-popovers">
+                    <div class="alert alert-danger alert-dismissible " role="alert">
+                        <strong>Oops!</strong> Data Halaqah Masih Kosong. Silahkan Klik <a
+                            href="{{ url('/app/sistem/halaqah') }}" style="color: white;">Disini</a>
                     </div>
-                    <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card-box table-responsive">
-                                <table id="table-1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">No.</th>
-                                            <th>Asatidz</th>
-                                            <th class="text-center">Kelas Halaqah</th>
-                                            <th class="text-center">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $no = 0;
-                                        @endphp
-                                        @foreach ($data_kelas_halaqah as $data)
-                                            <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td>{{ $data->getAsatidz->getUser->nama }}</td>
-                                                <td class="text-center">{{ $data->kelas_halaqah }}</td>
-                                                <td class="text-center">
-                                                    <button onclick="editKelasHalaqah({{ $data->id }})"
-                                                        class="btn btn-warning text-white btn-sm" data-target="#modalEdit"
-                                                        data-toggle="modal">
-                                                        <i class="fa fa-edit"></i> Edit
-                                                    </button>
-                                                    <form action="{{ url('/app/sistem/kelas_halaqah/' . $data->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method('DELETE')
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> Hapus
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+            </div>
+        </div>
+    @else
+        @if (count($data_asatidz) < 1)
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 m-0">
+                    <div class="x_content bs-example-popovers">
+                        <div class="alert alert-danger alert-dismissible " role="alert">
+                            <strong>Oops!</strong> Data Asatidz Masih Kosong.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            @endif
+
+            <div class="row">
+                <div class="col-md-12 col-xs-12 co-lg-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>
+                                Data @yield('app_title')
+                            </h2>
+                            <div class="pull-right">
+                                <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
+                                    <i class="fa fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card-box table-responsive">
+                                        <table id="table-1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">No.</th>
+                                                    <th>Asatidz</th>
+                                                    <th class="text-center">Kelas Halaqah</th>
+                                                    <th class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $no = 0;
+                                                @endphp
+                                                @foreach ($data_kelas_halaqah as $data)
+                                                    <tr>
+                                                        <td class="text-center">{{ ++$no }}.</td>
+                                                        <td>{{ $data->getAsatidz->getUser->nama }}</td>
+                                                        <td class="text-center">{{ $data->kelas_halaqah }}</td>
+                                                        <td class="text-center">
+                                                            <button onclick="editKelasHalaqah({{ $data->id }})"
+                                                                class="btn btn-warning text-white btn-sm"
+                                                                data-target="#modalEdit" data-toggle="modal">
+                                                                <i class="fa fa-edit"></i> Edit
+                                                            </button>
+                                                            <form
+                                                                action="{{ url('/app/sistem/kelas_halaqah/' . $data->id) }}"
+                                                                method="POST" style="display: inline;">
+                                                                @method('DELETE')
+                                                                {{ csrf_field() }}
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="fa fa-trash"></i> Hapus
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        @endif
+    @endif
 
     <!-- Tambah Data -->
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">
@@ -98,8 +124,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <i class="fa fa-edit"></i>
-                        <span>Edit Data</span>
+                        <i class="fa fa-plus"></i>
+                        <span>Tambah Data</span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -125,7 +151,7 @@
                                 <option value="">- Pilih -</option>
                                 @foreach ($data_halaqah as $data)
                                     <option value="{{ $data->kode_halaqah }}">
-                                        {{ $data->kode_halaqah }} = {{ $data->nama_halaqah }}
+                                        {{ $data->kode_halaqah }} - {{ $data->nama_halaqah }}
                                     </option>
                                 @endforeach
                             </select>
