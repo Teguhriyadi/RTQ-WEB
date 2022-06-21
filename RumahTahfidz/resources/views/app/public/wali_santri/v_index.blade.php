@@ -119,7 +119,8 @@
                         </div>
                         <div class="form-group">
                             <label for="nama"> Nama </label>
-                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
+                            <input type="text" class="form-control" name="nama" id="nama"
+                                placeholder="Masukkan Nama">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -153,8 +154,8 @@
                                     <label for="kode_halaqah"> Halaqah </label>
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" name="nama_halaqah" id="kode_halaqah"
-                                                placeholder="Masukkan Nama Halaqah">
+                                            <input type="text" class="form-control" name="nama_halaqah"
+                                                id="kode_halaqah" placeholder="Masukkan Nama Halaqah">
                                         </div>
                                         <div class="col-md-2">
                                             <a class="btn btn-danger btn-sm" id="btn-nyalakan-pilihan"
@@ -212,7 +213,8 @@
                         <div class="form-group">
                             <label for="gambar"> Gambar </label>
                             <img class="gambar-preview" id="tampilGambar">
-                            <input type="file" class="form-control" name="gambar" id="gambar" onchange="previewImage()">
+                            <input type="file" class="form-control" name="gambar" id="gambar"
+                                onchange="previewImage()">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -241,7 +243,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST" id="editWaliSantri">
+                <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST" id="editWaliSantri"
+                    enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
@@ -313,8 +316,8 @@
                         </div>
                         <div class="form-group" id="process" style="display: none">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
-                                    aria-valuemax="100" style=""></div>
+                                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                    aria-valuemin="0" aria-valuemax="100" style=""></div>
                             </div>
                         </div>
                     </div>

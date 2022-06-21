@@ -9,9 +9,9 @@ use App\Models\LokasiRt;
 use App\Models\Santri;
 use App\Models\User;
 use App\Models\WaliSantri;
-use Clockwork\Storage\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class WaliSantriController extends Controller
@@ -67,7 +67,7 @@ class WaliSantriController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
-        $user->gambar = "http://rtq-freelance.my.id/storage/" . $file;
+        $user->gambar = url('storage/' . $file);
         $user->save();
 
         // $hak_akses = new HakAkses;
@@ -119,10 +119,13 @@ class WaliSantriController extends Controller
 
         if ($request->file("gambar")) {
             if ($request->gambar_lama) {
-                Storage::delete($request->gambar_lama);
+                $string = str_replace(url('storage/'), "", $request->gambar_lama);
+
+                Storage::delete($string);
             }
 
             $data = $request->file("gambar")->store("wali_santri");
+            $data = url('storage/' . $data);
         } else {
             $data = $request->gambar_lama;
         }

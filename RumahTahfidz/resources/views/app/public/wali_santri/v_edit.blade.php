@@ -94,8 +94,7 @@
 <div class="form-group">
     <label for="gambar"> Gambar </label>
     @if ($edit->getUser->gambar)
-        <img src="{{ url('storage/' . $edit->getUser->gambar) }}" class="gambar-lihat img-fluid mb-3"
-            id="tampilGambar">
+        <img src="{{ $edit->getUser->gambar }}" class="gambar-lihat img-fluid mb-3" id="tampilGambar">
     @else
         <img class="gambar-lihat img-fluid" id="tampilGambar">
     @endif
