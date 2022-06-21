@@ -1,0 +1,142 @@
+[20-Jun-2022 15:06:23 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.4.29. in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/composer/platform_check.php on line 24
+[20-Jun-2022 15:09:58 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.4.29. in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/composer/platform_check.php on line 24
+[20-Jun-2022 15:39:58 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "config" does not exist in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php:875
+Stack trace:
+#0 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(875): ReflectionClass->__construct('config')
+#1 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(756): Illuminate\Container\Container->build('config')
+#2 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(855): Illuminate\Container\Container->resolve('config', Array, true)
+#3 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(692): Illuminate\Foundation\Application->resolve('config', Array)
+#4 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(840): Illuminate\Container\Container->make('config', Array)
+#5 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(1415): Illuminate\Foundation\Application->make('config')
+#6 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(515): Illuminate\Container\Container->offsetGet('config')
+#7 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(566): Illuminate\Log\LogManager->getDefaultDriver()
+#8 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(119): Illuminate\Log\LogManager->parseDriver(NULL)
+#9 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(702): Illuminate\Log\LogManager->driver()
+#10 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(274): Illuminate\Log\LogManager->log('error', 'Call to undefin...', Array)
+#11 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(415): Illuminate\Foundation\Exceptions\Handler->report(Object(Error))
+#12 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(113): Illuminate\Foundation\Http\Kernel->reportException(Object(Error))
+#13 /home/rtqfreel/RTQ-WEB/RumahTahfidz/public/index.php(52): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#14 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [config] does not exist. in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(756): Illuminate\Container\Container->build('config')
+#1 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(855): Illuminate\Container\Container->resolve('config', Array, true)
+#2 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(692): Illuminate\Foundation\Application->resolve('config', Array)
+#3 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(840): Illuminate\Container\Container->make('config', Array)
+#4 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(1415): Illuminate\Foundation\Application->make('config')
+#5 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(515): Illuminate\Container\Container->offsetGet('config')
+#6 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(566): Illuminate\Log\LogManager->getDefaultDriver()
+#7 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(119): Illuminate\Log\LogManager->parseDriver(NULL)
+#8 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(702): Illuminate\Log\LogManager->driver()
+#9 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(274): Illuminate\Log\LogManager->log('error', 'Call to undefin...', Array)
+#10 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(415): Illuminate\Foundation\Exceptions\Handler->report(Object(Error))
+#11 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(113): Illuminate\Foundation\Http\Kernel->reportException(Object(Error))
+#12 /home/rtqfreel/RTQ-WEB/RumahTahfidz/public/index.php(52): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}
+  thrown in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 877
+[20-Jun-2022 15:40:02 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "config" does not exist in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php:875
+Stack trace:
+#0 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(875): ReflectionClass->__construct('config')
+#1 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(756): Illuminate\Container\Container->build('config')
+#2 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(855): Illuminate\Container\Container->resolve('config', Array, true)
+#3 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(692): Illuminate\Foundation\Application->resolve('config', Array)
+#4 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(840): Illuminate\Container\Container->make('config', Array)
+#5 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(1415): Illuminate\Foundation\Application->make('config')
+#6 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(515): Illuminate\Container\Container->offsetGet('config')
+#7 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(566): Illuminate\Log\LogManager->getDefaultDriver()
+#8 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(119): Illuminate\Log\LogManager->parseDriver(NULL)
+#9 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(702): Illuminate\Log\LogManager->driver()
+#10 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(274): Illuminate\Log\LogManager->log('error', 'Call to undefin...', Array)
+#11 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(415): Illuminate\Foundation\Exceptions\Handler->report(Object(Error))
+#12 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(113): Illuminate\Foundation\Http\Kernel->reportException(Object(Error))
+#13 /home/rtqfreel/RTQ-WEB/RumahTahfidz/public/index.php(52): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#14 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [config] does not exist. in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(756): Illuminate\Container\Container->build('config')
+#1 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(855): Illuminate\Container\Container->resolve('config', Array, true)
+#2 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(692): Illuminate\Foundation\Application->resolve('config', Array)
+#3 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(840): Illuminate\Container\Container->make('config', Array)
+#4 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(1415): Illuminate\Foundation\Application->make('config')
+#5 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(515): Illuminate\Container\Container->offsetGet('config')
+#6 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(566): Illuminate\Log\LogManager->getDefaultDriver()
+#7 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(119): Illuminate\Log\LogManager->parseDriver(NULL)
+#8 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(702): Illuminate\Log\LogManager->driver()
+#9 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(274): Illuminate\Log\LogManager->log('error', 'Call to undefin...', Array)
+#10 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(415): Illuminate\Foundation\Exceptions\Handler->report(Object(Error))
+#11 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(113): Illuminate\Foundation\Http\Kernel->reportException(Object(Error))
+#12 /home/rtqfreel/RTQ-WEB/RumahTahfidz/public/index.php(52): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}
+  thrown in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 877
+[20-Jun-2022 15:50:22 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "config" does not exist in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php:875
+Stack trace:
+#0 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(875): ReflectionClass->__construct('config')
+#1 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(756): Illuminate\Container\Container->build('config')
+#2 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(855): Illuminate\Container\Container->resolve('config', Array, true)
+#3 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(692): Illuminate\Foundation\Application->resolve('config', Array)
+#4 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(840): Illuminate\Container\Container->make('config', Array)
+#5 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(1415): Illuminate\Foundation\Application->make('config')
+#6 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(515): Illuminate\Container\Container->offsetGet('config')
+#7 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(566): Illuminate\Log\LogManager->getDefaultDriver()
+#8 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(119): Illuminate\Log\LogManager->parseDriver(NULL)
+#9 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(702): Illuminate\Log\LogManager->driver()
+#10 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(274): Illuminate\Log\LogManager->log('error', 'Call to undefin...', Array)
+#11 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(415): Illuminate\Foundation\Exceptions\Handler->report(Object(Error))
+#12 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(113): Illuminate\Foundation\Http\Kernel->reportException(Object(Error))
+#13 /home/rtqfreel/RTQ-WEB/RumahTahfidz/public/index.php(52): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#14 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [config] does not exist. in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(756): Illuminate\Container\Container->build('config')
+#1 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(855): Illuminate\Container\Container->resolve('config', Array, true)
+#2 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(692): Illuminate\Foundation\Application->resolve('config', Array)
+#3 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(840): Illuminate\Container\Container->make('config', Array)
+#4 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(1415): Illuminate\Foundation\Application->make('config')
+#5 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(515): Illuminate\Container\Container->offsetGet('config')
+#6 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(566): Illuminate\Log\LogManager->getDefaultDriver()
+#7 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(119): Illuminate\Log\LogManager->parseDriver(NULL)
+#8 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(702): Illuminate\Log\LogManager->driver()
+#9 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(274): Illuminate\Log\LogManager->log('error', 'Call to undefin...', Array)
+#10 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(415): Illuminate\Foundation\Exceptions\Handler->report(Object(Error))
+#11 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(113): Illuminate\Foundation\Http\Kernel->reportException(Object(Error))
+#12 /home/rtqfreel/RTQ-WEB/RumahTahfidz/public/index.php(52): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}
+  thrown in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 877
+[20-Jun-2022 15:53:04 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "config" does not exist in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php:875
+Stack trace:
+#0 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(875): ReflectionClass->__construct('config')
+#1 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(756): Illuminate\Container\Container->build('config')
+#2 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(855): Illuminate\Container\Container->resolve('config', Array, true)
+#3 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(692): Illuminate\Foundation\Application->resolve('config', Array)
+#4 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(840): Illuminate\Container\Container->make('config', Array)
+#5 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(1415): Illuminate\Foundation\Application->make('config')
+#6 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(515): Illuminate\Container\Container->offsetGet('config')
+#7 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(566): Illuminate\Log\LogManager->getDefaultDriver()
+#8 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(119): Illuminate\Log\LogManager->parseDriver(NULL)
+#9 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(702): Illuminate\Log\LogManager->driver()
+#10 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(274): Illuminate\Log\LogManager->log('error', 'Call to undefin...', Array)
+#11 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(415): Illuminate\Foundation\Exceptions\Handler->report(Object(Error))
+#12 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(113): Illuminate\Foundation\Http\Kernel->reportException(Object(Error))
+#13 /home/rtqfreel/RTQ-WEB/RumahTahfidz/public/index.php(52): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#14 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [config] does not exist. in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(756): Illuminate\Container\Container->build('config')
+#1 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(855): Illuminate\Container\Container->resolve('config', Array, true)
+#2 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(692): Illuminate\Foundation\Application->resolve('config', Array)
+#3 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(840): Illuminate\Container\Container->make('config', Array)
+#4 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php(1415): Illuminate\Foundation\Application->make('config')
+#5 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(515): Illuminate\Container\Container->offsetGet('config')
+#6 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(566): Illuminate\Log\LogManager->getDefaultDriver()
+#7 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(119): Illuminate\Log\LogManager->parseDriver(NULL)
+#8 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(702): Illuminate\Log\LogManager->driver()
+#9 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(274): Illuminate\Log\LogManager->log('error', 'Call to undefin...', Array)
+#10 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(415): Illuminate\Foundation\Exceptions\Handler->report(Object(Error))
+#11 /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(113): Illuminate\Foundation\Http\Kernel->reportException(Object(Error))
+#12 /home/rtqfreel/RTQ-WEB/RumahTahfidz/public/index.php(52): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}
+  thrown in /home/rtqfreel/RTQ-WEB/RumahTahfidz/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 877
