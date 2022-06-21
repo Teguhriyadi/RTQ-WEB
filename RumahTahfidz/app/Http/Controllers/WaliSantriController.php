@@ -67,7 +67,7 @@ class WaliSantriController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
-        $user->gambar = "http://rtq-freelance.my.id/" . $file;
+        $user->gambar = "http://rtq-freelance.my.id/storage/" . $file;
         $user->save();
 
         // $hak_akses = new HakAkses;
