@@ -114,8 +114,7 @@ class WaliSantriController extends Controller
             "no_ktp" => "required",
             "no_kk" => "required",
             "kode_halaqah" => "required",
-            "pekerjaan" => "required",
-            "gambar" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "pekerjaan" => "required"
         ]);
 
         if ($request->file("gambar")) {
