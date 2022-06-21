@@ -78,15 +78,15 @@ class WaliSantriController extends Controller
 
         // $hak_akses->save();
 
-        // $walisantri = new WaliSantri;
+        $walisantri = new WaliSantri;
 
-        // $walisantri->id = $user->id;
-        // $walisantri->no_ktp = $request->no_ktp;
-        // $walisantri->no_kk = $request->no_kk;
-        // $walisantri->kode_halaqah = $request->kode_halaqah;
-        // $walisantri->pekerjaan = $request->pekerjaan;
+        $walisantri->id = $user->id;
+        $walisantri->no_ktp = $request->no_ktp;
+        $walisantri->no_kk = $request->no_kk;
+        $walisantri->kode_halaqah = $request->kode_halaqah;
+        $walisantri->pekerjaan = $request->pekerjaan;
 
-        // $walisantri->save();
+        $walisantri->save();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
     }
