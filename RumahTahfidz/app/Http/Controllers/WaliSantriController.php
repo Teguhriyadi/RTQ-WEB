@@ -34,7 +34,6 @@ class WaliSantriController extends Controller
 
     public function store(Request $request)
     {
-
         if ($request->file("gambar")) {
             $file = $request->file("gambar")->store("wali_santri");
         }

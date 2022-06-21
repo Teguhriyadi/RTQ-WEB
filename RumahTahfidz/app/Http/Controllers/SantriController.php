@@ -34,6 +34,10 @@ class SantriController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->file("foto")) {
+            $data = $request->file("foto")->store("santri");
+        }
+
         $santri = new Santri;
 
         $santri->nis = $request->nis;
@@ -49,7 +53,7 @@ class SantriController extends Controller
         $santri->kode_halaqah = $request->kode_halaqah;
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
-
+        $santri->foto = "http://rtq-freelance.my.id/storage/" . $data;
         $santri->save();
 
         $administrasi = new Administrasi;
