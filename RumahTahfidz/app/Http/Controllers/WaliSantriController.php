@@ -153,9 +153,14 @@ class WaliSantriController extends Controller
 
     public function destroy($id)
     {
-        User::where("id", $id)->delete();
+        $user = User::where("id", $id)->first();
 
         WaliSantri::where("id", $id)->delete();
+
+        $string = str_replace(url('storage/'), "", $user->gambar);
+        Storage::delete($string);
+
+        $user->delete();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Hapus", "success");</script>');
     }
