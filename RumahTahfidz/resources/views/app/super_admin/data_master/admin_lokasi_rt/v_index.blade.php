@@ -184,8 +184,8 @@
                                     <label for="kode_rt"> Lokasi RT </label>
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" name="kode_rt" id="kode_rt"
-                                                placeholder="Masukkan Lokasi RT">
+                                            <input type="text" class="form-control" name="input_kode_rt"
+                                                id="kode_rt" placeholder="Masukkan Lokasi RT">
                                         </div>
                                         <div class="col-md-2">
                                             <a class="btn btn-danger btn-sm" id="btn-nyalakan-pilihan"

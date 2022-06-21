@@ -6,8 +6,11 @@ use App\Models\Administrasi;
 use App\Models\AdminLokasiRt;
 use App\Models\BesaranIuran;
 use App\Models\Halaqah;
+use App\Models\Jenjang;
+use App\Models\KategoriPelajaran;
 use App\Models\Kelas;
 use App\Models\LokasiRt;
+use App\Models\Nilai;
 use App\Models\NominalIuran;
 use App\Models\Santri;
 use App\Models\WaliSantri;
@@ -236,5 +239,30 @@ class SantriController extends Controller
             })
             ->rawColumns(['aksi'])
             ->make(true);
+    }
+
+    public function jenjang_santri()
+    {
+        $data = [
+            "data_kategori_satu" => KategoriPelajaran::where('id_kategori_penilaian', 1)->get(),
+            "data_kategori_dua" => KategoriPelajaran::where("id_kategori_penilaian", 2)->get(),
+            "data_santri" => Santri::where("status", 1)->get(),
+            "data_jenjang" => Jenjang::get()
+        ];
+
+        return view("app.public.santri.v_jenjang_santri", $data);
+    }
+
+    public function jenjang_santri_dua(Request $request)
+    {
+        $data = [
+            "data_kategori_satu" => KategoriPelajaran::where('id_kategori_penilaian', 1)->get(),
+            "data_kategori_dua" => KategoriPelajaran::where("id_kategori_penilaian", 2)->get(),
+            "data_santri" => Santri::where("status", 1)->where("id_jenjang", $request->jenjang)->get(),
+            "data_jenjang" => Jenjang::get(),
+            "edit" => Jenjang::where("id", $request->jenjang)->first()
+        ];
+
+        return view("app.public.santri.v_jenjang_santri", $data);
     }
 }

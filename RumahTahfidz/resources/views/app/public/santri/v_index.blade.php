@@ -46,9 +46,12 @@
                         <i class="fa fa-users"></i> Santri
                     </h2>
                     <div class="pull-right">
+                        @if (empty($belum_terkonfimasi))
+                        @else
                         <a href="{{ url('app/sistem/santri/export') }}" class="btn btn-success btn-sm">
                             <i class="fa fa-download"></i> Download
                         </a>
+                        @endif
 
                         @if (Auth::user()->getAkses->id_role == 1)
                         @else
