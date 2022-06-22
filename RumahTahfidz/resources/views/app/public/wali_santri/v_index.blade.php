@@ -140,7 +140,6 @@
                                                 {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
                                             </option>
                                         @endforeach
-                                        <option value="L">Lainnya</option>
                                     </select>
                                 </div>
                             </div>
@@ -318,18 +317,6 @@
 @section('app_scripts')
     <script src="{{ url('') }}/vendors/jquery/dist/jquery.form.min.js"></script>
     <script type="text/javascript">
-        $("#kode_halaqah").change(function() {
-            if ($(this).val() == "L") {
-                $("#optionNyala").hide();
-                $("#optionMati").show();
-            }
-        });
-
-        $("#btn-nyalakan-pilihan").click(function() {
-            $("#optionNyala").show();
-            $("#optionMati").hide();
-            $("#kode_halaqah").show();
-        });
 
         function previewImage() {
             const image = document.querySelector("#gambar");

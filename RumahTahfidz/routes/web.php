@@ -230,7 +230,7 @@ Route::prefix("app")->group(function () {
                     Route::prefix("/nominal/iuran")->group(function () {
                         Route::get("/edit", [NominalIuranController::class, "edit"]);
                         Route::put("/simpan", [NominalIuranController::class, "update"]);
-                        Route::post("/aktifkan", [NominalIuranController::class, [NominalIuranController::class, "aktifkan"]]);
+                        Route::post("/aktifkan", [NominalIuranController::class, "aktifkan"]);
                         Route::post("/non_aktifkan", [NominalIuranController::class, "non_aktifkan"]);
                         Route::resource("/", NominalIuranController::class);
                     });

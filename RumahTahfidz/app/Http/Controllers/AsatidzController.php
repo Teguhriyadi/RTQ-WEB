@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asatidz;
+use App\Models\HakAkses;
 use App\Models\User;
+use Clockwork\Storage\Storage;
 use Illuminate\Http\Request;
 
 class AsatidzController extends Controller
@@ -56,6 +58,12 @@ class AsatidzController extends Controller
         $user->gambar = $data;
         $user->save();
 
+        $hak_akses = new HakAkses;
+
+        $hak_akses->id_user = $user->id;
+        $hak_akses->id_role = 3;
+        $hak_akses->save();
+
         $asatidz = new Asatidz;
 
         $asatidz->id = $user->id;
@@ -95,6 +103,18 @@ class AsatidzController extends Controller
             "motivasi_mengajar" => "required",
         ]);
 
+        if ($request->file("gambar")) {
+
+            if ($request->oldGambar) {
+
+                Storage::delete($request->oldGambar);
+            }
+
+            $data = $request->file("gambar")->store("asatidz");
+        } else {
+            $data = $request->oldGambar;
+        }
+
         Asatidz::where("id", $request->id)->update([
             "nomor_induk" => $request->nomor_induk,
             "no_ktp" => $request->no_ktp,
@@ -110,7 +130,8 @@ class AsatidzController extends Controller
             "no_hp" => $request->no_hp,
             "tempat_lahir" => $request->tempat_lahir,
             "tanggal_lahir" => $request->tanggal_lahir,
-            "jenis_kelamin" => $request->jenis_kelamin
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "gambar" => $data
         ]);
 
         return redirect("/app/sistem/asatidz")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
