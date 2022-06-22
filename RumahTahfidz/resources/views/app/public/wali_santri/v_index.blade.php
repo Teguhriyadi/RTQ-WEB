@@ -130,40 +130,18 @@
                                         placeholder="Masukkan Email">
                                 </div>
                             </div>
-                            <div class="col-md-6" id="optionNyala">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kode_halaqah">Halaqah</label>
-                                    @if ($data_halaqah->count() < 1)
-                                        <input type="text" name="nama_halaqah" class="form-control" id="kode_halaqah"
-                                            placeholder="Masukkan Nama Halaqah">
-                                    @else
-                                        <select name="kode_halaqah" class="form-control" id="kode_halaqah">
-                                            <option value="">- Pilih -</option>
-                                            @foreach ($data_halaqah as $data)
-                                                <option value="{{ $data->kode_halaqah }}">
-                                                    {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
-                                                </option>
-                                            @endforeach
-                                            <option value="L">Lainnya</option>
-                                        </select>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6" id="optionMati" style="display: none;">
-                                <div class="form-group">
-                                    <label for="kode_halaqah"> Halaqah </label>
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <input type="text" class="form-control" name="nama_halaqah"
-                                                id="kode_halaqah" placeholder="Masukkan Nama Halaqah">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <a class="btn btn-danger btn-sm" id="btn-nyalakan-pilihan"
-                                                style="color: white;">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <select name="kode_halaqah" class="form-control" id="kode_halaqah">
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($data_halaqah as $data)
+                                            <option value="{{ $data->kode_halaqah }}">
+                                                {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
+                                            </option>
+                                        @endforeach
+                                        <option value="L">Lainnya</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -1,12 +1,3 @@
-@php
-use App\Models\LokasiRt;
-$max = LokasiRt::max('kode_rt');
-$urutan = (int) substr($max, 3);
-$urutan++;
-$huruf = 'RT-';
-$hasil = $huruf . sprintf('%03s', $urutan);
-@endphp
-
 @extends('.app.layouts.template')
 
 @section('app_title', 'Lokasi RT')
@@ -44,11 +35,6 @@ $hasil = $huruf . sprintf('%03s', $urutan);
                     <form method="POST" action="{{ url('/app/sistem/lokasi_rt') }}" id="tambahLokasiRt">
                         @csrf
                         <div class="form-group">
-                            <label for="kode_rt"> Kode RT </label>
-                            <input type="text" class="form-control" name="kode_rt" id="kode_rt"
-                                placeholder="Masukkan Kode RT" value="{{ $hasil }}" readonly>
-                        </div>
-                        <div class="form-group">
                             <label for="lokasi_rt"> Lokasi RT </label>
                             <input type="text" class="form-control" name="lokasi_rt" id="lokasi_rt"
                                 placeholder="Masukkan Lokasi RT">
@@ -80,7 +66,8 @@ $hasil = $huruf . sprintf('%03s', $urutan);
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
-                                            <th class="text-center">Nama Kategori</th>
+                                            <th class="text-center">Kode</th>
+                                            <th>Lokasi</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
@@ -92,6 +79,7 @@ $hasil = $huruf . sprintf('%03s', $urutan);
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $data->kode_rt }}</td>
+                                                <td>{{ $data->lokasi_rt }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editLokasiRt('{{ $data->kode_rt }}')"
                                                         class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
