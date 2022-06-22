@@ -46,12 +46,14 @@ class AdminLokasiRtController extends Controller
             "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
-        if ($request->input_kode_rt) {
+        if ($request->kode_input || $request->input_kode_rt) {
             LokasiRt::create([
                 "kode_rt" => $this->automatis(),
-                "lokasi_rt" => $request->input_kode_rt
+                "lokasi_rt" => $request->kode_input || $request->input_kode_rt
             ]);
         }
+
+        $lokasi = LokasiRt::max("kode_rt");
 
         if ($request->file("gambar")) {
             $data = $request->file("gambar")->store("admin_cabang");
@@ -76,7 +78,7 @@ class AdminLokasiRtController extends Controller
 
         $admin_lokasi_rt->id = $user->id;
         $admin_lokasi_rt->pendidikan_terakhir = $request->pendidikan_terakhir;
-        $admin_lokasi_rt->kode_rt = $request->kode_rt;
+        $admin_lokasi_rt->kode_rt = $lokasi;
         $admin_lokasi_rt->save();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
