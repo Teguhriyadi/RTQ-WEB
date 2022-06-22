@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_nilai', function (Blueprint $table) {
-            $table->id();
-            $table->integer("id_asatidz");
-            $table->integer("id_santri");
-            $table->integer("id_kategori_pelajaran");
+            $table->uuid('id')->primary();
+            $table->uuid("id_asatidz");
+            $table->uuid("id_santri");
+            $table->uuid("id_kategori_pelajaran");
             $table->integer("nilai");
             $table->timestamps();
         });

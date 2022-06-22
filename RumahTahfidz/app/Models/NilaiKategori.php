@@ -12,5 +12,4 @@ class NilaiKategori extends Model
     protected $table = "tb_nilai_kategori";
 
     protected $guarded = [''];
-    
 }

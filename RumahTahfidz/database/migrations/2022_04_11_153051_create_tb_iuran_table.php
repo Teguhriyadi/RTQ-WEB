@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_iuran', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->integer("id_santri");
             $table->double("nominal");
             $table->date("tanggal");

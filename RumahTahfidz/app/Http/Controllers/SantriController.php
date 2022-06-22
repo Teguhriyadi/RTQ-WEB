@@ -53,7 +53,7 @@ class SantriController extends Controller
         $santri->kode_halaqah = $request->kode_halaqah;
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
-        $santri->foto = "http://rtq-freelance.my.id/storage/" . $data;
+        $santri->foto = url('storage/' . $data);
         $santri->save();
 
         $administrasi = new Administrasi;

@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_kategori_pelajaran', function (Blueprint $table) {
-            $table->id();
-            $table->integer("id_jenjang");
-            $table->integer("id_pelajaran");
-            $table->integer("id_kategori_penilaian");
+            $table->uuid('id')->primary();
+            $table->uuid("id_jenjang");
+            $table->uuid("id_pelajaran");
+            $table->uuid("id_kategori_penilaian");
         });
     }
 

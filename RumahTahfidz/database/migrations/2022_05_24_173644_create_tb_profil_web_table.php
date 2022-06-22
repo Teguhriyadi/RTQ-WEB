@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_profil_web', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("nama", 100);
             $table->string("singkatan", 50);
             $table->string("no_hp", 30);

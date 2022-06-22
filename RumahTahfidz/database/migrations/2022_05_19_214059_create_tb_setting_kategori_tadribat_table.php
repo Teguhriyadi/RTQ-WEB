@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_setting_kategori_tadribat', function (Blueprint $table) {
-            $table->id();
-            $table->integer("id_jenjang");
-            $table->integer("id_pelajaran_tadribat");
+            $table->uuid('id')->primary();
+            $table->uuid("id_jenjang");
+            $table->uuid("id_pelajaran_tadribat");
             $table->timestamps();
         });
     }

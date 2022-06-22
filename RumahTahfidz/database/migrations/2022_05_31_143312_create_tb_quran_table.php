@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_quran', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->integer("id_asatidz");
             $table->string("quran_awal");
             $table->string("quran_akhir");

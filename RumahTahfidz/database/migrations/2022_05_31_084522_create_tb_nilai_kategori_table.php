@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_nilai_kategori', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->double("nilai_awal");
             $table->double("nilai_akhir");
             $table->string("nilai_kategori");

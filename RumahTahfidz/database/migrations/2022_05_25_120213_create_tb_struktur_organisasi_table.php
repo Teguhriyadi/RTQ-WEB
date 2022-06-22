@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_struktur_organisasi', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("foto");
             $table->string("nama");
             $table->integer("id_jabatan");

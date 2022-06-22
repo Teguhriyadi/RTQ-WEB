@@ -17,21 +17,25 @@ class KategoriPenilaianSeeder extends Seeder
     public function run()
     {
         KategoriPenilaian::create([
+            "id" => Str::uuid(),
             "kategori_penilaian" => "Tadribat",
             'slug' => Str::slug("Tadribat")
         ]);
 
         KategoriPenilaian::create([
+            "id" => Str::uuid(),
             "kategori_penilaian" => "Hafalan",
             'slug' => Str::slug("Hafalan")
         ]);
 
         KategoriPenilaian::create([
+            "id" => Str::uuid(),
             "kategori_penilaian" => "Imla",
             'slug' => Str::slug("Imla")
         ]);
 
         KategoriPenilaian::create([
+            "id" => Str::uuid(),
             "kategori_penilaian" => "Iman & Adab",
             'slug' => Str::slug("Iman & Adab")
         ]);

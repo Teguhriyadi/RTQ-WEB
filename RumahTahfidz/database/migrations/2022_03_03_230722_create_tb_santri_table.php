@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_santri', function (Blueprint $table) {
-            $table->id("id");
+            $table->uuid("id")->primary();
             $table->string("nis", 50);
             $table->string("nama_lengkap", 100);
             $table->string("nama_panggilan", 50);
@@ -24,14 +24,14 @@ return new class extends Migration
             $table->text("alamat");
             $table->string("prestasi_anak", 100);
             $table->string("sekolah", 50);
-            $table->integer("id_kelas");
+            $table->uuid("id_kelas");
             $table->string("kode_halaqah", 50);
-            $table->integer("id_wali");
-            $table->integer("id_jenjang")->nullable();
+            $table->uuid("id_wali");
+            $table->uuid("id_jenjang")->nullable();
             $table->integer("status")->default(0);
             $table->string("foto")->nullable();
-            $table->integer("id_nominal_iuran")->nullable();
-            $table->integer("id_besaran")->nullable();
+            $table->uuid("id_nominal_iuran")->nullable();
+            $table->uuid("id_besaran")->nullable();
             $table->timestamps();
         });
     }

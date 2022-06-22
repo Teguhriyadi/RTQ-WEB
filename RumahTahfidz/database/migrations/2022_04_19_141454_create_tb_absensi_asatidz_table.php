@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_absensi_asatidz', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("gambar");
             $table->string("alamat");
-            $table->integer("id_asatidz");
+            $table->uuid("id_asatidz");
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class HafalanAsatidzSeeder extends Seeder
     public function run()
     {
         Quran::create([
-            "id_asatidz" => 9,
+            "id_asatidz" => "4cd38d80-397a-4665-9dd3-8fb0e234472f",
             "quran_awal" => "An - Nas",
             "quran_akhir" => "Al - Ikhlas",
             "keterangan" => "Berhasil"

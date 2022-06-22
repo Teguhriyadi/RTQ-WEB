@@ -388,6 +388,10 @@ Route::get("/v_error", function () {
 
 Route::resource('firebase', FirebaseController::class);
 
+Route::get('coba', function () {
+    return view('coba');
+});
+
 Route::get("/coba-clockwork", function () {
     $data = [
         "last_login" => LastLogin::latest()->get()

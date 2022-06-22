@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_last_login', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("nama", 100)->nullable();
-            $table->foreignId("id_user")->nullable();
+            $table->uuid("id_user")->nullable();
             $table->timestamps();
         });
     }

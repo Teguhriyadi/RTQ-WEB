@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_blog', function (Blueprint $table) {
-            $table->id();
-            $table->integer("id_kategori");
-            $table->integer("id_user");
+            $table->uuid('id')->primary();
+            $table->uuid("id_kategori");
+            $table->uuid("id_user");
             $table->string("judul");
             $table->string("slug")->unique();
             $table->string("foto")->nullable();

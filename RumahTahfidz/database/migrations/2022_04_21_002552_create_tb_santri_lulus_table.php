@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_santri_lulus', function (Blueprint $table) {
-            $table->id();
-            $table->integer("id_santri");
+            $table->uuid('id')->primary();
+            $table->uuid("id_santri");
             $table->year("tahun_lulus");
-            $table->integer("id_users");
+            $table->uuid("id_users");
         });
     }
 

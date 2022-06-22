@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_wali_santri', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("no_ktp", 50);
             $table->string("no_kk", 50);
             $table->string("kode_halaqah");

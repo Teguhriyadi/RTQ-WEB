@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_hak_akses', function (Blueprint $table) {
-            $table->id();
-            $table->integer('id_user');
-            $table->integer('id_role');
+            $table->uuid('id')->primary();
+            $table->uuid('id_user');
+            $table->uuid('id_role');
         });
     }
 

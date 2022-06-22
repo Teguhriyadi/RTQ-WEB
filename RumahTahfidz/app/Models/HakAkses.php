@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class HakAkses extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuids;
 
     protected $table = 'tb_hak_akses';
 

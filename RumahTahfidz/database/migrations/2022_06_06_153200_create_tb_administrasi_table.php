@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_administrasi', function (Blueprint $table) {
-            $table->id();
-            $table->integer("id_santri");
+            $table->uuid('id')->primary();
+            $table->uuid("id_santri");
             $table->integer("nominal");
             $table->timestamps();
         });

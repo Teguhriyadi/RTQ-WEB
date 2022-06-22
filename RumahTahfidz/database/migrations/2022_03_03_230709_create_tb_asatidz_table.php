@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_asatidz', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("nomor_induk", 100);
             $table->integer("no_ktp");
             $table->string("pendidikan_terakhir", 100);

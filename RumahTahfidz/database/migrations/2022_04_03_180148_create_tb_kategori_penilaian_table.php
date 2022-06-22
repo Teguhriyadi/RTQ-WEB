@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_kategori_penilaian', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("kategori_penilaian", 50);
             $table->string("slug", 50);
         });
