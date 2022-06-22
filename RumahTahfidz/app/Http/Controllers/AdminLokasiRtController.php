@@ -47,10 +47,15 @@ class AdminLokasiRtController extends Controller
             "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
-        if ($request->kode_input || $request->input_kode_rt) {
+        if ($request->kode_input) {
             LokasiRt::create([
                 "kode_rt" => $this->automatis(),
-                "lokasi_rt" => $request->kode_input || $request->input_kode_rt
+                "lokasi_rt" => $request->kode_input
+            ]);
+        } else if ($request->input_kode_rt) {
+            LokasiRt::create([
+                "kode_rt" => $this->automatis(),
+                "lokasi_rt" => $request->input_kode_rt
             ]);
         }
 

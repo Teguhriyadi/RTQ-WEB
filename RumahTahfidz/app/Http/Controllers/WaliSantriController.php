@@ -176,11 +176,15 @@ class WaliSantriController extends Controller
             $walisantri = WaliSantri::get();
             $santri = Santri::where("status", 1)->get();
         } else {
-            $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
-            $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
-            $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
-            $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
-            $walisantri = WaliSantri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+            if (WaliSantri::count() < 1) {
+                $walisantri = WaliSantri::get();
+            } else {
+                $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
+                $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
+                $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
+                $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
+                $walisantri = WaliSantri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+            }
         }
 
         $data = array();

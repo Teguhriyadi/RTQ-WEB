@@ -4,31 +4,48 @@
 
 @section('app_content')
 
-    <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>
-                    @yield('app_title')
-                </h3>
-            </div>
-        </div>
-    </div>
+    <section class="section">
+        <h3>
+            @yield('app_title')
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('/app/sistem/asatidz') }}">Asatidz</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+            </ol>
+        </nav>
+    </section>
 
     <div class="clearfix"></div>
 
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        <i class="fa fa-plus"></i> Tambah
-                    </h2>
-                    <div class="clearfix"></div>
-                </div>
-                <form action="{{ url('/app/sistem/asatidz') }}" method="POST" id="tambahAsatidz"
-                    enctype="multipart/form-data">
+        <form action="{{ url('/app/sistem/asatidz') }}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="x_panel">
                     <div class="x_content">
-                        @csrf
+                        <center>
+                            <img src="{{ url('/gambar/gambar_user.png') }}" class="gambar-preview mb-3 img-fluid"
+                                id="tampilGambar">
+                        </center>
+                        <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <i class="fa fa-plus"></i> Tambah
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -101,32 +118,26 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="aktivitas_utama"> Aktivitas Utama </label>
-                                    <textarea name="aktivitas_utama" id="aktivitas_utama" class="form-control" rows="5"
-                                        placeholder="Masukkan Aktivitas Utama"></textarea>
+                                    <input type="text" class="form-control" name="aktivitas_utama"
+                                        id="aktivitas_utama" placeholder="Masukkan Aktivitas Utama">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="motivasi_mengajar"> Motivasi Mengajar </label>
-                                    <textarea name="motivasi_mengajar" id="motivasi_mengajar" class="form-control" rows="5"
-                                        placeholder="Masukkan Motivasi Mengajar"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="alamat"> Alamat </label>
-                                    <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat"></textarea>
+                                    <input type="text" class="form-control" name="motivasi_mengajar"
+                                        id="motivasi_mengajar" placeholder="Masukkan Motivasi Mengajar">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="gambar"> Gambar </label>
-                            <img class="gambar-preview img-fluid" id="tampilGambar">
-                            <input onchange="previewImage()" type="file" class="form-control" name="gambar"
-                                id="gambar">
+                            <div class="form-group">
+                                <label for="alamat"> Alamat </label>
+                                <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat"></textarea>
+                            </div>
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
@@ -143,9 +154,9 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
 @endsection
@@ -165,7 +176,7 @@
             oFReader.onload = function(oFREvent) {
                 imgPreview.src = oFREvent.target.result;
                 $("#tampilGambar").addClass('mb-3');
-                $("#tampilGambar").width("50%");
+                $("#tampilGambar").width("100%");
                 $("#tampilGambar").height("300");
             }
         }
