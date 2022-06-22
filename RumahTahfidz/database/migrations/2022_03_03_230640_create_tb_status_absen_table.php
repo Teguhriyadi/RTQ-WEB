@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_status_absen', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("keterangan_absen", 20);
             $table->timestamps();
         });
