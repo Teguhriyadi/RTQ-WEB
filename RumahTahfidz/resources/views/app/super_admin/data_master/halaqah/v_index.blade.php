@@ -1,13 +1,3 @@
-@php
-use App\Models\Halaqah;
-$max = Halaqah::max('kode_halaqah');
-$urutan = (int) substr($max, 4, 3);
-$urutan++;
-$huruf = 'HLQ-';
-$hasil = $huruf . sprintf('%03s', $urutan);
-
-@endphp
-
 @extends('.app.layouts.template')
 
 @section('app_title', 'Halaqah')
@@ -112,11 +102,6 @@ $hasil = $huruf . sprintf('%03s', $urutan);
             <form action="{{ url('/app/sistem/halaqah/') }}" method="POST" id="tambahHalaqah">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="kode_halaqah"> Kode Halaqah </label>
-                        <input type="text" class="form-control" name="kode_halaqah" id="kode_halaqah"
-                            placeholder="Masukkan Kode Halaqah" value="{{ $hasil }}" readonly>
-                    </div>
                     <div class="form-group">
                         <label for="nama_halaqah"> Nama Halaqah </label>
                         <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah"

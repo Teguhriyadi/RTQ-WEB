@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminLokasiRt;
+use App\Models\HakAkses;
 use App\Models\LokasiRt;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -63,9 +64,8 @@ class AdminLokasiRtController extends Controller
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("adminlokasirt");
+        $user->password = bcrypt("adminlokasirt" . $request->no_hp);
         $user->alamat = $request->alamat;
-        $user->id_hak_akses = 2;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
@@ -73,6 +73,13 @@ class AdminLokasiRtController extends Controller
         $user->no_hp = $request->no_hp;
         $user->gambar = $data;
         $user->save();
+
+        $hak_akses = new HakAkses;
+
+        $hak_akses->id_user = $user->id;
+        $hak_akses->id_role = 2;
+
+        $hak_akses->save();
 
         $admin_lokasi_rt = new AdminLokasiRt;
 

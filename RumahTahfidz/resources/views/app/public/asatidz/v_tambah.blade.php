@@ -25,38 +25,23 @@
                     </h2>
                     <div class="clearfix"></div>
                 </div>
-                <form action="{{ url('/app/sistem/asatidz') }}" method="POST" id="tambahAsatidz">
+                <form action="{{ url('/app/sistem/asatidz') }}" method="POST" id="tambahAsatidz"
+                    enctype="multipart/form-data">
                     <div class="x_content">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="nomor_induk"> Nomor Induk </label>
                                     <input type="text" class="form-control" name="nomor_induk" id="nomor_induk"
                                         placeholder="Masukkan Nomor Induk">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="no_ktp"> No. KTP </label>
                                     <input type="text" class="form-control" name="no_ktp" id="no_ktp"
                                         placeholder="Masukkan No. KTP">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="nama"> Nama </label>
-                                    <input type="text" class="form-control" name="nama" id="nama"
-                                        placeholder="Masukkan Nama">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="email"> Email </label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Masukkan Email">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -64,6 +49,22 @@
                                     <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
                                     <input type="text" class="form-control" name="pendidikan_terakhir"
                                         id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nama"> Nama </label>
+                                    <input type="text" class="form-control" name="nama" id="nama"
+                                        placeholder="Masukkan Nama">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email"> Email </label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Masukkan Email">
                                 </div>
                             </div>
                         </div>
@@ -94,7 +95,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="no_hp"> No. Handphone </label>
-                                    <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="0">
+                                    <input type="number" class="form-control" name="no_hp" id="no_hp"
+                                        placeholder="0">
                                 </div>
                             </div>
                         </div>
@@ -119,6 +121,12 @@
                                     <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat"></textarea>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gambar"> Gambar </label>
+                            <img class="gambar-preview img-fluid" id="tampilGambar">
+                            <input onchange="previewImage()" type="file" class="form-control" name="gambar"
+                                id="gambar">
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
@@ -145,6 +153,23 @@
 @section('app_scripts')
 
     <script>
+        function previewImage() {
+            const image = document.querySelector("#gambar");
+            const imgPreview = document.querySelector(".gambar-preview");
+
+            imgPreview.style.display = "block";
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                $("#tampilGambar").addClass('mb-3');
+                $("#tampilGambar").width("50%");
+                $("#tampilGambar").height("300");
+            }
+        }
+
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {

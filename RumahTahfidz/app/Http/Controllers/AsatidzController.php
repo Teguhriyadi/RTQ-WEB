@@ -39,16 +39,21 @@ class AsatidzController extends Controller
             "motivasi_mengajar" => "required",
         ]);
 
+        if ($request->gambar) {
+            $data = $request->file("gambar")->store("asatidz");
+        }
+
         $user = new User;
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("asatidz");
+        $user->password = bcrypt("asatidz" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
+        $user->gambar = $data;
         $user->save();
 
         $asatidz = new Asatidz;
