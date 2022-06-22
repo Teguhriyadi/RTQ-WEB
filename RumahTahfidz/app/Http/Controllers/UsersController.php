@@ -20,7 +20,6 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-
         if ($request->file("gambar")) {
             $data = $request->file("gambar")->store("users");
         }
