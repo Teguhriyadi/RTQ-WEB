@@ -145,7 +145,6 @@ class SantriController extends Controller
     {
         if ($request->file("foto")) {
             $data = $request->file("foto")->store("santri");
-            $data = url('storage/' . $data);
         }
 
         $santri = new Santri;
@@ -164,7 +163,7 @@ class SantriController extends Controller
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
         $santri->id_besaran = $request->id_besaran;
-        $santri->foto = $data;
+        $santri->foto = url("/storage/" . $data);
 
         $santri->save();
 
