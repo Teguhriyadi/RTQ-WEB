@@ -51,6 +51,7 @@ use App\Models\Iuran;
                                                 $total = Iuran::where('id_santri', $data->id_santri)->get();
 
                                                 $data_total = 0;
+
                                                 foreach ($total as $s) {
                                                     $data_total += $s->nominal;
                                                 }

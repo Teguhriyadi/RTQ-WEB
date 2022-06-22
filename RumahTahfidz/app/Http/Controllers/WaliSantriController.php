@@ -69,13 +69,13 @@ class WaliSantriController extends Controller
         $user->gambar = url('storage/' . $file);
         $user->save();
 
-        // $hak_akses = new HakAkses;
+        $hak_akses = new HakAkses;
 
-        // $hak_akses->id = $id_otomatis;
-        // $hak_akses->id_user = $user->id;
-        // $hak_akses->id_role = 4;
+        $hak_akses->id = $id_otomatis;
+        $hak_akses->id_user = $user->id;
+        $hak_akses->id_role = 4;
 
-        // $hak_akses->save();
+        $hak_akses->save();
 
         $walisantri = new WaliSantri;
 
@@ -156,9 +156,15 @@ class WaliSantriController extends Controller
 
         WaliSantri::where("id", $id)->delete();
 
+        $santri = Santri::where('id_wali', $id)->first();
+
         $string = str_replace(url('storage/'), "", $user->gambar);
         Storage::delete($string);
 
+        $string2 = str_replace(url('storage/'), "", $santri->foto);
+        Storage::delete($string2);
+
+        $santri->delete();
         $user->delete();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Hapus", "success");</script>');

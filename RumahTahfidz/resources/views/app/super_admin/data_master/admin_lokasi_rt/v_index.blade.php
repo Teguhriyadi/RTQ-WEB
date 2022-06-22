@@ -164,7 +164,7 @@
                                 <div class="form-group">
                                     <label for="kode_rt"> Lokasi RT </label>
                                     @if ($lokasi_rt->count() < 1)
-                                        <input type="text" name="kode_rt" class="form-control" id="kode_rt"
+                                        <input type="text" name="kode_input" class="form-control" id="input_kode_rt"
                                             placeholder="Masukkan Lokasi RT">
                                     @else
                                         <select name="kode_rt" class="form-control" id="kode_rt">

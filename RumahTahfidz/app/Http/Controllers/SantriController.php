@@ -90,10 +90,12 @@ class SantriController extends Controller
     {
         if ($request->file("foto")) {
             if ($request->foto_lama) {
-                Storage::delete($request->foto_lama);
+                $string = str_replace(url('storage/'), "", $request->foto_lama);
+                Storage::delete($string);
             }
 
             $data = $request->file("foto")->store("santri");
+            $data = url('storage/' . $data);
         } else {
             $data = $request->foto;
         }
@@ -117,7 +119,12 @@ class SantriController extends Controller
 
     public function destroy($id)
     {
-        Santri::where("id", $id)->delete();
+        $santri = Santri::where("id", $id)->first();
+
+        $string = str_replace(url('storage/'), "", $santri->foto);
+        Storage::delete($string);
+
+        $santri->delete();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus!', 'success')</script>");
     }
@@ -156,7 +163,7 @@ class SantriController extends Controller
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
         $santri->id_besaran = $request->id_besaran;
-        $santri->foto = $data;
+        $santri->foto = url("/storage/" . $data);
 
         $santri->save();
 
