@@ -24,7 +24,8 @@ class UserSeeder extends Seeder
             "no_hp" => "001",
             "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
         User::create([
@@ -36,7 +37,8 @@ class UserSeeder extends Seeder
             "no_hp" => "002",
             "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
         User::create([
@@ -48,7 +50,8 @@ class UserSeeder extends Seeder
             "no_hp" => "003",
             "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
         User::create([
@@ -60,7 +63,8 @@ class UserSeeder extends Seeder
             "no_hp" => "004",
             "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
     }
 }
