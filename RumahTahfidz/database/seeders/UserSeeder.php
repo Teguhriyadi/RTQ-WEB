@@ -66,5 +66,31 @@ class UserSeeder extends Seeder
             "jenis_kelamin" => "L",
             "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
+
+        User::create([
+            "id" => 5,
+            "nama" => "Eko Permana",
+            "email" => "ekopermana@gmail.com",
+            "password" => bcrypt("walisantri005"),
+            "alamat" => "Cirebon",
+            "no_hp" => "005",
+            "tempat_lahir" => "Cirebon",
+            "tanggal_lahir" => "2020-02-02",
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
+        ]);
+
+        User::create([
+            "id" => 6,
+            "nama" => "Feby Maulana Hendrayatno",
+            "email" => "feby123@gmail.com",
+            "password" => bcrypt("walisantri006"),
+            "alamat" => "Cirebon",
+            "no_hp" => "006",
+            "tempat_lahir" => "Cirebon",
+            "tanggal_lahir" => "2020-03-03",
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
+        ]);
     }
 }

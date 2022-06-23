@@ -34,5 +34,6 @@ class PelajaranSeeder extends Seeder
         Pelajaran::create([
             "nama_pelajaran" => "Mengaji"
         ]);
+        
     }
 }
