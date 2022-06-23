@@ -27,7 +27,7 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
             "kode_halaqah" => "HLQ-001",
-            "id_wali" => 10,
+            "id_wali" => 4,
             "id_jenjang" => 1
         ]);
 
@@ -43,7 +43,7 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
             "kode_halaqah" => "HLQ-002",
-            "id_wali" => 10,
+            "id_wali" => 4,
             "id_jenjang" => 2
         ]);
 
@@ -59,7 +59,7 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
             "kode_halaqah" => "HLQ-003",
-            "id_wali" => 10,
+            "id_wali" => 4,
             "id_jenjang" => 2
         ]);
     }

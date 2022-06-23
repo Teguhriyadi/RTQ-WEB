@@ -16,7 +16,7 @@ class WaliSantriSeeder extends Seeder
     public function run()
     {
         WaliSantri::create([
-            "id" => 10,
+            "id" => 4,
             "no_ktp" => "29092002",
             "no_kk" => "12345678910111213",
             "kode_halaqah" => "HLQ-001",

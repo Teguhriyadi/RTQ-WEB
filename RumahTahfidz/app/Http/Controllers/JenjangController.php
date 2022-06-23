@@ -29,7 +29,7 @@ class JenjangController extends Controller
         } else {
             Jenjang::create($request->all());
 
-            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'successs');</script>");
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>");
         }
     }
 
