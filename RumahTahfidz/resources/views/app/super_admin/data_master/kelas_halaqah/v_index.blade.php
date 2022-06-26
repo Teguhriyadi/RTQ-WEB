@@ -1,3 +1,6 @@
+@php
+use App\Models\KelasHalaqah;
+@endphp
 @extends('.app.layouts.template')
 
 @section('app_title', 'Wali Halaqah')
@@ -10,8 +13,12 @@
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data @yield('app_title')</li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Data @yield('app_title')
+                </li>
             </ol>
         </nav>
     </section>
@@ -57,7 +64,7 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>
-                                Data @yield('app_title')
+                                <i class="fa fa-bars"></i> Data @yield('app_title')
                             </h2>
                             <div class="pull-right">
                                 <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
@@ -139,9 +146,15 @@
                             <select name="id_asatidz" class="form-control" id="id_asatidz">
                                 <option value="">- Pilih -</option>
                                 @foreach ($data_asatidz as $data)
-                                    <option value="{{ $data->getUser->id }}">
-                                        {{ $data->getUser->nama }}
-                                    </option>
+                                    @php
+                                        $sudah_ada = KelasHalaqah::where('id_asatidz', $data->id)->first();
+                                    @endphp
+                                    @if ($sudah_ada)
+                                    @else
+                                        <option value="{{ $data->getUser->id }}">
+                                            {{ $data->getUser->nama }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Data Asatidz')
+@section('app_title', 'Asatidz')
 
 @section('app_content')
 
