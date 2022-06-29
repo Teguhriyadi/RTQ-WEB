@@ -16,7 +16,7 @@ class AsatidzSeeder extends Seeder
     public function run()
     {
         Asatidz::create([
-            "id" => 9,
+            "id" => 3,
             "nomor_induk" => "12345678",
             "no_ktp" => 123456,
             "pendidikan_terakhir" => "SMA",

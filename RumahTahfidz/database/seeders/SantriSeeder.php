@@ -27,7 +27,7 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
             "kode_halaqah" => "HLQ-001",
-            "id_wali" => 10,
+            "id_wali" => 4,
             "id_jenjang" => 1
         ]);
 
@@ -43,7 +43,7 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
             "kode_halaqah" => "HLQ-002",
-            "id_wali" => 10,
+            "id_wali" => 4,
             "id_jenjang" => 2
         ]);
 
@@ -59,7 +59,39 @@ class SantriSeeder extends Seeder
             "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
             "id_kelas" => 1,
             "kode_halaqah" => "HLQ-003",
-            "id_wali" => 10,
+            "id_wali" => 4,
+            "id_jenjang" => 2
+        ]);
+
+        Santri::create([
+            "nis" => "2003077",
+            "nama_lengkap" => "Nandang Eka",
+            "nama_panggilan" => "Nan Eps",
+            "tempat_lahir" => "Cirebon",
+            "tanggal_lahir" => "2004-03-03",
+            "jenis_kelamin" => "L",
+            "alamat" => "Papua",
+            "prestasi_anak" => "Juara 3 Web Technology",
+            "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
+            "id_kelas" => 1,
+            "kode_halaqah" => "HLQ-002",
+            "id_wali" => 5,
+            "id_jenjang" => 2
+        ]);
+
+        Santri::create([
+            "nis" => "2003078",
+            "nama_lengkap" => "Hakim Asrori",
+            "nama_panggilan" => "Hakim",
+            "tempat_lahir" => "Cirebon",
+            "tanggal_lahir" => "2004-03-03",
+            "jenis_kelamin" => "L",
+            "alamat" => "Papua",
+            "prestasi_anak" => "Juara 2 Web Technology",
+            "sekolah" => "SMK INFORMATIKA AL - IRSYAD AL - ISLAMIYYAH",
+            "id_kelas" => 1,
+            "kode_halaqah" => "HLQ-003",
+            "id_wali" => 6,
             "id_jenjang" => 2
         ]);
     }

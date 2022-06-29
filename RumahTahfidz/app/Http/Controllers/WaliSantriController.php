@@ -9,9 +9,9 @@ use App\Models\LokasiRt;
 use App\Models\Santri;
 use App\Models\User;
 use App\Models\WaliSantri;
-use Clockwork\Storage\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class WaliSantriController extends Controller
@@ -34,7 +34,9 @@ class WaliSantriController extends Controller
 
     public function store(Request $request)
     {
-
+        if ($request->file("gambar")) {
+            $file = $request->file("gambar")->store("wali_santri");
+        }
         $this->validate($request, [
             "nama" => "required",
             "email" => "required|email",
@@ -64,26 +66,26 @@ class WaliSantriController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
-        $user->gambar = $file;
+        $user->gambar = url('storage/' . $file);
         $user->save();
 
-        // $hak_akses = new HakAkses;
+        $hak_akses = new HakAkses;
 
-        // $hak_akses->id = $id_otomatis;
-        // $hak_akses->id_user = $user->id;
-        // $hak_akses->id_role = 4;
+        $hak_akses->id = $id_otomatis;
+        $hak_akses->id_user = $user->id;
+        $hak_akses->id_role = 4;
 
-        // $hak_akses->save();
+        $hak_akses->save();
 
-        // $walisantri = new WaliSantri;
+        $walisantri = new WaliSantri;
 
-        // $walisantri->id = $user->id;
-        // $walisantri->no_ktp = $request->no_ktp;
-        // $walisantri->no_kk = $request->no_kk;
-        // $walisantri->kode_halaqah = $request->kode_halaqah;
-        // $walisantri->pekerjaan = $request->pekerjaan;
+        $walisantri->id = $user->id;
+        $walisantri->no_ktp = $request->no_ktp;
+        $walisantri->no_kk = $request->no_kk;
+        $walisantri->kode_halaqah = $request->kode_halaqah;
+        $walisantri->pekerjaan = $request->pekerjaan;
 
-        // $walisantri->save();
+        $walisantri->save();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
     }
@@ -111,16 +113,18 @@ class WaliSantriController extends Controller
             "no_ktp" => "required",
             "no_kk" => "required",
             "kode_halaqah" => "required",
-            "pekerjaan" => "required",
-            "gambar" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "pekerjaan" => "required"
         ]);
 
         if ($request->file("gambar")) {
             if ($request->gambar_lama) {
-                Storage::delete($request->gambar_lama);
+                $string = str_replace(url('storage/'), "", $request->gambar_lama);
+
+                Storage::delete($string);
             }
 
             $data = $request->file("gambar")->store("wali_santri");
+            $data = url('storage/' . $data);
         } else {
             $data = $request->gambar_lama;
         }
@@ -148,9 +152,20 @@ class WaliSantriController extends Controller
 
     public function destroy($id)
     {
-        User::where("id", $id)->delete();
+        $user = User::where("id", $id)->first();
 
         WaliSantri::where("id", $id)->delete();
+
+        $santri = Santri::where('id_wali', $id)->first();
+
+        $string = str_replace(url('storage/'), "", $user->gambar);
+        Storage::delete($string);
+
+        $string2 = str_replace(url('storage/'), "", $santri->foto);
+        Storage::delete($string2);
+
+        $santri->delete();
+        $user->delete();
 
         return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Hapus", "success");</script>');
     }
@@ -161,11 +176,15 @@ class WaliSantriController extends Controller
             $walisantri = WaliSantri::get();
             $santri = Santri::where("status", 1)->get();
         } else {
-            $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
-            $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
-            $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
-            $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
-            $walisantri = WaliSantri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+            if (WaliSantri::count() < 1) {
+                $walisantri = WaliSantri::get();
+            } else {
+                $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
+                $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
+                $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
+                $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
+                $walisantri = WaliSantri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+            }
         }
 
         $data = array();

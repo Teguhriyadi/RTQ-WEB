@@ -58,8 +58,10 @@
             <label for="jenis_kelamin"> Jenis Kelamin </label>
             <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                 <option value="">- Pilih -</option>
-                <option value="L" {{ $edit->getUser->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki - Laki</option>
-                <option value="P" {{ $edit->getUser->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan</option>
+                <option value="L" {{ $edit->getUser->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki - Laki
+                </option>
+                <option value="P" {{ $edit->getUser->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan
+                </option>
             </select>
         </div>
     </div>
@@ -82,8 +84,7 @@
 </div>
 <div class="form-group">
     <label for="alamat"> Alamat </label>
-    <textarea name="alamat" class="form-control" id="alamat" rows="5"
-        placeholder="Masukkan Alamat">{{ $edit->getUser->alamat }}</textarea>
+    <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat">{{ $edit->getUser->alamat }}</textarea>
 </div>
 <div class="form-group">
     <label for="pekerjaan"> Pekerjaan </label>
@@ -93,15 +94,14 @@
 <div class="form-group">
     <label for="gambar"> Gambar </label>
     @if ($edit->getUser->gambar)
-        <img src="{{ url('storage/' . $edit->getUser->gambar) }}" class="gambar-lihat img-fluid mb-3"
-            id="tampilGambar">
+        <img src="{{ $edit->getUser->gambar }}" class="gambar-lihat img-fluid mb-3" id="tampilGambar">
     @else
-        <img class="gambar-lihat" id="tampilGambar">
+        <img class="gambar-lihat img-fluid" id="tampilGambar">
     @endif
-    <input type="file" class="form-control" name="gambar" id="gambar" onchange="imagePreview()">
+    <input onchange="imagePreview()" type="file" class="form-control" name="gambar" id="gambar">
 </div>
 
-<script type="text/javascript">
+<script>
     function imagePreview() {
         const image = document.querySelector("#gambar");
         const imgPreview = document.querySelector(".gambar-lihat");

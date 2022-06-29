@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Data Asatidz')
+@section('app_title', 'Asatidz')
 
 @section('app_content')
 
@@ -101,23 +101,6 @@
 @section('app_scripts')
 
     <script>
-        function previewImage() {
-            const image = document.querySelector("#gambar");
-            const imgPreview = document.querySelector(".gambar-preview");
-
-            imgPreview.style.display = "block";
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onload = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-                $("#tampilGambar").addClass('mb-3');
-                $("#tampilGambar").width("100%");
-                $("#tampilGambar").height("300");
-            }
-        }
-
         $(document).ready(function() {
             $("#table-1").dataTable();
         })

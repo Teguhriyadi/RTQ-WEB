@@ -33,73 +33,86 @@
         <div class="clearfix"></div>
     @endif
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        <i class="fa fa-bars"></i> Data @yield('app_title')
-                    </h2>
-                    <div class="pull-right">
-                        <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
-                    </div>
-                    <div class="clearfix"></div>
+    @if ($data_jabatan->count() < 1)
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-danger" role="alert">
+                    <strong>Oops!</strong> Data Jabatan Masih Kosong. Silahkan klik
+                    <a href="{{ url('/app/sistem/jabatan') }}" style="color: white;">Disini</a>
                 </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="card-box table-responsive">
-                                <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">No.</th>
-                                            <th>Nama</th>
-                                            <th class="text-center">Jabatan</th>
-                                            <th>Deskripsi</th>
-                                            <th class="text-center">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $no = 0;
-                                        @endphp
-                                        @foreach ($data_struktur_organisasi as $data)
+            </div>
+        </div>
+    @else
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <i class="fa fa-bars"></i> Data @yield('app_title')
+                        </h2>
+                        <div class="pull-right">
+                            <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
+                                <i class="fa fa-plus"></i> Tambah
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="card-box table-responsive">
+                                    <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
+                                        <thead>
                                             <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td>{{ $data->nama }}</td>
-                                                <td class="text-center">{{ $data->getJabatan->nama_jabatan }}</td>
-                                                <td>{{ $data->deskripsi }}</td>
-                                                <td class="text-center">
-                                                    <button onclick="editStrukturOrganisasi({{ $data->id }})"
-                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
-                                                        data-toggle="modal">
-                                                        <i class="fa fa-edit"></i> Edit
-                                                    </button>
-                                                    <form
-                                                        action="{{ url('/app/sistem/struktur_organisasi/' . $data->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{ $data->id }}">
-                                                        <input type="hidden" name="foto" value="{{ $data->foto }}">
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> Hapus
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                <th class="text-center">No.</th>
+                                                <th>Nama</th>
+                                                <th class="text-center">Jabatan</th>
+                                                <th>Deskripsi</th>
+                                                <th class="text-center">Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $no = 0;
+                                            @endphp
+                                            @foreach ($data_struktur_organisasi as $data)
+                                                <tr>
+                                                    <td class="text-center">{{ ++$no }}.</td>
+                                                    <td>{{ $data->nama }}</td>
+                                                    <td class="text-center">{{ $data->getJabatan->nama_jabatan }}</td>
+                                                    <td>{{ $data->deskripsi }}</td>
+                                                    <td class="text-center">
+                                                        <button onclick="editStrukturOrganisasi({{ $data->id }})"
+                                                            class="btn btn-warning btn-sm text-white"
+                                                            data-target="#modalEdit" data-toggle="modal">
+                                                            <i class="fa fa-edit"></i> Edit
+                                                        </button>
+                                                        <form
+                                                            action="{{ url('/app/sistem/struktur_organisasi/' . $data->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <input type="hidden" name="id"
+                                                                value="{{ $data->id }}">
+                                                            <input type="hidden" name="foto"
+                                                                value="{{ $data->foto }}">
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="fa fa-trash"></i> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <!-- Tambah Data -->
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">
@@ -120,7 +133,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nama"> Nama </label>
-                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
+                            <input type="text" class="form-control" name="nama" id="nama"
+                                placeholder="Masukkan Nama">
                         </div>
                         <div class="form-group">
                             <label for="id_jabatan"> Jabatan </label>
@@ -136,7 +150,8 @@
                         <div class="form-group">
                             <label for="foto"> Foto </label>
                             <img class="gambar-preview " id="tampilGambar">
-                            <input type="file" onchange="previewImage()" name="foto" id="foto" class="form-control">
+                            <input type="file" onchange="previewImage()" name="foto" id="foto"
+                                class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="deskripsi"> Deskripsi </label>

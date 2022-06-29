@@ -102,9 +102,10 @@
                                                         <form
                                                             action="{{ url('/app/sistem/setting/nominal/iuran/aktifkan') }}"
                                                             method="POST">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $data->id }}">
-                                                            <button class="btn btn-success btn-sm">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="id"
+                                                                value="{{ $data->id }}">
+                                                            <button type="submit" class="btn btn-success btn-sm">
                                                                 <i class="fa fa-check"></i> Aktifkan
                                                             </button>
                                                         </form>
@@ -113,7 +114,8 @@
                                                             action="{{ url('/app/sistem/setting/nominal/iuran/non_aktifkan') }}"
                                                             method="POST">
                                                             @csrf
-                                                            <input type="hidden" name="id" value="{{ $data->id }}">
+                                                            <input type="hidden" name="id"
+                                                                value="{{ $data->id }}">
                                                             <button class="btn btn-danger btn-sm">
                                                                 <i class="fa fa-times"></i> Non - Aktifkan
                                                             </button>
@@ -241,7 +243,6 @@
             });
         }
 
-<<<<<<< HEAD
         $('body').on('click', '#deleteNominalIuran', function() {
             let id = $(this).data('id');
 
@@ -269,7 +270,6 @@
             })
         })
 
-=======
         var rupiah = document.getElementById('nominal');
         rupiah.addEventListener('keyup', function(e) {
             rupiah.value = formatRupiah(this.value, 'Rp. ');
@@ -290,7 +290,6 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
->>>>>>> 0f1ea2ddb11eea2935f2c1bc05a4c93a240b3f69
 
         $(document).ready(function() {
             $("#table-1").dataTable();

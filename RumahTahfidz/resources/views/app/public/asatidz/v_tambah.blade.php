@@ -4,59 +4,61 @@
 
 @section('app_content')
 
-    <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>
-                    @yield('app_title')
-                </h3>
-            </div>
-        </div>
-    </div>
+    <section class="section">
+        <h3>
+            @yield('app_title')
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('/app/sistem/asatidz') }}">Asatidz</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+            </ol>
+        </nav>
+    </section>
 
     <div class="clearfix"></div>
 
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        <i class="fa fa-plus"></i> Tambah
-                    </h2>
-                    <div class="clearfix"></div>
-                </div>
-                <form action="{{ url('/app/sistem/asatidz') }}" method="POST" id="tambahAsatidz">
+        <form action="{{ url('/app/sistem/asatidz') }}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="x_panel">
                     <div class="x_content">
-                        @csrf
+                        <center>
+                            <img src="{{ url('/gambar/gambar_user.png') }}" class="gambar-preview mb-3 img-fluid"
+                                id="tampilGambar">
+                        </center>
+                        <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <i class="fa fa-plus"></i> Tambah
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="nomor_induk"> Nomor Induk </label>
                                     <input type="text" class="form-control" name="nomor_induk" id="nomor_induk"
                                         placeholder="Masukkan Nomor Induk">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="no_ktp"> No. KTP </label>
                                     <input type="text" class="form-control" name="no_ktp" id="no_ktp"
                                         placeholder="Masukkan No. KTP">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="nama"> Nama </label>
-                                    <input type="text" class="form-control" name="nama" id="nama"
-                                        placeholder="Masukkan Nama">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="email"> Email </label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Masukkan Email">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -64,6 +66,22 @@
                                     <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
                                     <input type="text" class="form-control" name="pendidikan_terakhir"
                                         id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nama"> Nama </label>
+                                    <input type="text" class="form-control" name="nama" id="nama"
+                                        placeholder="Masukkan Nama">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email"> Email </label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Masukkan Email">
                                 </div>
                             </div>
                         </div>
@@ -94,30 +112,31 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="no_hp"> No. Handphone </label>
-                                    <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="0">
+                                    <input type="number" class="form-control" name="no_hp" id="no_hp"
+                                        placeholder="0">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="aktivitas_utama"> Aktivitas Utama </label>
-                                    <textarea name="aktivitas_utama" id="aktivitas_utama" class="form-control" rows="5"
-                                        placeholder="Masukkan Aktivitas Utama"></textarea>
+                                    <input type="text" class="form-control" name="aktivitas_utama"
+                                        id="aktivitas_utama" placeholder="Masukkan Aktivitas Utama">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="motivasi_mengajar"> Motivasi Mengajar </label>
-                                    <textarea name="motivasi_mengajar" id="motivasi_mengajar" class="form-control" rows="5"
-                                        placeholder="Masukkan Motivasi Mengajar"></textarea>
+                                    <input type="text" class="form-control" name="motivasi_mengajar"
+                                        id="motivasi_mengajar" placeholder="Masukkan Motivasi Mengajar">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="alamat"> Alamat </label>
-                                    <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat"></textarea>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="alamat"> Alamat </label>
+                                <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat"></textarea>
                             </div>
                         </div>
                         <div class="ln_solid"></div>
@@ -135,9 +154,9 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
 @endsection
@@ -145,6 +164,23 @@
 @section('app_scripts')
 
     <script>
+        function previewImage() {
+            const image = document.querySelector("#gambar");
+            const imgPreview = document.querySelector(".gambar-preview");
+
+            imgPreview.style.display = "block";
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                $("#tampilGambar").addClass('mb-3');
+                $("#tampilGambar").width("100%");
+                $("#tampilGambar").height("300");
+            }
+        }
+
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {

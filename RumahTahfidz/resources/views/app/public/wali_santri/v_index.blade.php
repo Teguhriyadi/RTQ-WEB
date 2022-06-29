@@ -35,55 +35,68 @@
         <div class="clearfix"></div>
     @endif
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    @if (Auth::user()->getAkses->getRole->id == 1)
-                        <h2>
-                            <i class="fa fa-users"></i> Data @yield('app_title')
-                        </h2>
-                    @else
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                            data-target=".bs-example-modal-lg">
-                            <i class="fa fa-plus"></i> Tambah Data
-                        </button>
-                    @endif
-                    <div class="pull-right">
-                        {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}
-                        {{-- class="fa fa-download"></i> Download</a> --}}
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
-                                class="fa fa-upload"></i> Upload</button>
+    @if ($data_halaqah->count() < 1)
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 m-0">
+                <div class="x_content bs-example-popovers">
+                    <div class="alert alert-danger alert-dismissible " role="alert">
+                        <strong>Oops!</strong> Data Halaqah Masih Kosong.
+                        {{-- Silahkan Klik <a href="{{ url('/app/sistem/lokasi_rt') }}" style="color: white;">Disini</a> --}}
                     </div>
-                    <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="card-box table-responsive">
-                                <table id="datatable-walisantri" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>No. KK</th>
-                                            <th>Nama</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>No. HP</th>
-                                            <th>Jumlah Anak</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+            </div>
+        </div>
+    @else
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        @if (Auth::user()->getAkses->getRole->id == 1)
+                            <h2>
+                                <i class="fa fa-users"></i> Data @yield('app_title')
+                            </h2>
+                        @else
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                data-target=".bs-example-modal-lg">
+                                <i class="fa fa-plus"></i> Tambah Data
+                            </button>
+                        @endif
+                        <div class="pull-right">
+                            {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}
+                            {{-- class="fa fa-download"></i> Download</a> --}}
+                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
+                                    class="fa fa-upload"></i> Upload</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="card-box table-responsive">
+                                    <table id="datatable-walisantri" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>No. KK</th>
+                                                <th>Nama</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>No. HP</th>
+                                                <th>Jumlah Anak</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <!-- Tambah Data -->
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="modalTambah" aria-hidden="true">
@@ -119,7 +132,8 @@
                         </div>
                         <div class="form-group">
                             <label for="nama"> Nama </label>
-                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
+                            <input type="text" class="form-control" name="nama" id="nama"
+                                placeholder="Masukkan Nama">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -129,40 +143,17 @@
                                         placeholder="Masukkan Email">
                                 </div>
                             </div>
-                            <div class="col-md-6" id="optionNyala">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kode_halaqah">Halaqah</label>
-                                    @if ($data_halaqah->count() < 1)
-                                        <input type="text" name="nama_halaqah" class="form-control" id="kode_halaqah"
-                                            placeholder="Masukkan Nama Halaqah">
-                                    @else
-                                        <select name="kode_halaqah" class="form-control" id="kode_halaqah">
-                                            <option value="">- Pilih -</option>
-                                            @foreach ($data_halaqah as $data)
-                                                <option value="{{ $data->kode_halaqah }}">
-                                                    {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
-                                                </option>
-                                            @endforeach
-                                            <option value="L">Lainnya</option>
-                                        </select>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6" id="optionMati" style="display: none;">
-                                <div class="form-group">
-                                    <label for="kode_halaqah"> Halaqah </label>
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <input type="text" class="form-control" name="nama_halaqah" id="kode_halaqah"
-                                                placeholder="Masukkan Nama Halaqah">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <a class="btn btn-danger btn-sm" id="btn-nyalakan-pilihan"
-                                                style="color: white;">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <select name="kode_halaqah" class="form-control" id="kode_halaqah">
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($data_halaqah as $data)
+                                            <option value="{{ $data->kode_halaqah }}">
+                                                {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -211,8 +202,9 @@
                         </div>
                         <div class="form-group">
                             <label for="gambar"> Gambar </label>
-                            <img class="gambar-preview" id="tampilGambar">
-                            <input type="file" class="form-control" name="gambar" id="gambar" onchange="previewImage()">
+                            <img class="gambar-preview img-fluid" id="tampilGambar">
+                            <input type="file" class="form-control" name="gambar" id="gambar"
+                                onchange="previewImage()">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -241,7 +233,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST" id="editWaliSantri">
+                <form action="{{ url('/app/sistem/wali_santri/simpan') }}" method="POST" id="editWaliSantri"
+                    enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
                     <div class="modal-body" id="modal-content-edit">
@@ -313,8 +306,8 @@
                         </div>
                         <div class="form-group" id="process" style="display: none">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
-                                    aria-valuemax="100" style=""></div>
+                                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                    aria-valuemin="0" aria-valuemax="100" style=""></div>
                             </div>
                         </div>
                     </div>
@@ -337,19 +330,6 @@
 @section('app_scripts')
     <script src="{{ url('') }}/vendors/jquery/dist/jquery.form.min.js"></script>
     <script type="text/javascript">
-        $("#kode_halaqah").change(function() {
-            if ($(this).val() == "L") {
-                $("#optionNyala").hide();
-                $("#optionMati").show();
-            }
-        });
-
-        $("#btn-nyalakan-pilihan").click(function() {
-            $("#optionNyala").show();
-            $("#optionMati").hide();
-            $("#kode_halaqah").show();
-        });
-
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");

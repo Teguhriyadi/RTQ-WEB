@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class HalaqahController extends Controller
 {
+    public function automatis()
+    {
+        $max = Halaqah::max("kode_halaqah");
+        $urutan = (int) substr($max, 4, 3);
+        $urutan++;
+
+        $huruf = 'HLQ-';
+        $hasil = $huruf . sprintf('%03s', $urutan);
+
+        return $hasil;
+    }
+
     public function index()
     {
         $data = [
@@ -20,7 +32,11 @@ class HalaqahController extends Controller
 
     public function store(Request $request)
     {
-        Halaqah::create($request->all());
+        Halaqah::create([
+            "kode_halaqah" => $this->automatis(),
+            "nama_halaqah" => $request->nama_halaqah,
+            "kode_rt" => $request->kode_rt
+        ]);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }

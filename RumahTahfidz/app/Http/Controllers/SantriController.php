@@ -34,6 +34,10 @@ class SantriController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->file("foto")) {
+            $data = $request->file("foto")->store("santri");
+        }
+
         $santri = new Santri;
 
         $santri->nis = $request->nis;
@@ -49,7 +53,7 @@ class SantriController extends Controller
         $santri->kode_halaqah = $request->kode_halaqah;
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
-
+        $santri->foto = "http://rtq-freelance.my.id/storage/" . $data;
         $santri->save();
 
         $administrasi = new Administrasi;
@@ -86,10 +90,12 @@ class SantriController extends Controller
     {
         if ($request->file("foto")) {
             if ($request->foto_lama) {
-                Storage::delete($request->foto_lama);
+                $string = str_replace(url('storage/'), "", $request->foto_lama);
+                Storage::delete($string);
             }
 
             $data = $request->file("foto")->store("santri");
+            $data = url('storage/' . $data);
         } else {
             $data = $request->foto;
         }
@@ -113,7 +119,12 @@ class SantriController extends Controller
 
     public function destroy($id)
     {
-        Santri::where("id", $id)->delete();
+        $santri = Santri::where("id", $id)->first();
+
+        $string = str_replace(url('storage/'), "", $santri->foto);
+        Storage::delete($string);
+
+        $santri->delete();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus!', 'success')</script>");
     }
@@ -152,7 +163,7 @@ class SantriController extends Controller
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
         $santri->id_besaran = $request->id_besaran;
-        $santri->foto = $data;
+        $santri->foto = url("/storage/" . $data);
 
         $santri->save();
 
@@ -185,11 +196,15 @@ class SantriController extends Controller
         if (Auth::user()->getAkses->id_role == 1) {
             $santri = Santri::get();
         } else {
-            $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
-            $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
-            $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
+            if (Santri::count() < 1) {
+                $santri = Santri::get();
+            } else {
+                $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
+                $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
+                $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
 
-            $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
+                $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
+            }
         }
 
         $data = array();

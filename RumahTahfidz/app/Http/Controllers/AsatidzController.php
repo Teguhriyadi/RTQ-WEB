@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asatidz;
+use App\Models\HakAkses;
 use App\Models\User;
+use Clockwork\Storage\Storage;
 use Illuminate\Http\Request;
 
 class AsatidzController extends Controller
@@ -39,17 +41,28 @@ class AsatidzController extends Controller
             "motivasi_mengajar" => "required",
         ]);
 
+        if ($request->gambar) {
+            $data = $request->file("gambar")->store("asatidz");
+        }
+
         $user = new User;
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("asatidz");
+        $user->password = bcrypt("asatidz" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
+        $user->gambar = $data;
         $user->save();
+
+        $hak_akses = new HakAkses;
+
+        $hak_akses->id_user = $user->id;
+        $hak_akses->id_role = 3;
+        $hak_akses->save();
 
         $asatidz = new Asatidz;
 
@@ -90,6 +103,18 @@ class AsatidzController extends Controller
             "motivasi_mengajar" => "required",
         ]);
 
+        if ($request->file("gambar")) {
+
+            if ($request->oldGambar) {
+
+                Storage::delete($request->oldGambar);
+            }
+
+            $data = $request->file("gambar")->store("asatidz");
+        } else {
+            $data = $request->oldGambar;
+        }
+
         Asatidz::where("id", $request->id)->update([
             "nomor_induk" => $request->nomor_induk,
             "no_ktp" => $request->no_ktp,
@@ -105,7 +130,8 @@ class AsatidzController extends Controller
             "no_hp" => $request->no_hp,
             "tempat_lahir" => $request->tempat_lahir,
             "tanggal_lahir" => $request->tanggal_lahir,
-            "jenis_kelamin" => $request->jenis_kelamin
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "gambar" => $data
         ]);
 
         return redirect("/app/sistem/asatidz")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");

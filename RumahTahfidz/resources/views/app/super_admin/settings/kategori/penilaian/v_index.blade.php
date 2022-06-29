@@ -41,7 +41,6 @@
                 <div class="x_content">
                     <form method="POST" action="{{ url('/app/sistem/setting/kategori/nilai/') }}"
                         id="tambahKategoriNilai">
-                        @method('PUT')
                         @csrf
                         <div class="form-group">
                             <label for="kategori_penilaian"> Kategori Penilaian </label>

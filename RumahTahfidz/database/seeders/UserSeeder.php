@@ -24,124 +24,73 @@ class UserSeeder extends Seeder
             "no_hp" => "001",
             "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
         User::create([
             "id" => 2,
-            "nama" => "Ahmad Fauzi",
-            "email" => "admin@gmail.com",
-            "password" => bcrypt("administrator"),
+            "nama" => "Teguhriyadi",
+            "email" => "rtq123@gmail.com",
+            "password" => bcrypt("adminlokasirt002"),
             "alamat" => "Bandung",
             "no_hp" => "002",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-            "tempat_lahir" => "Bandung",
+            "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
         User::create([
             "id" => 3,
-            "nama" => "Hamdan",
-            "email" => "asatidz@gmail.com",
-            "password" => bcrypt("hame29092002"),
-            "alamat" => "Bandung",
+            "nama" => "Sigit",
+            "email" => "sigit@gmail.com",
+            "password" => bcrypt("asatidz003"),
+            "alamat" => "Jakarta",
             "no_hp" => "003",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-            "tempat_lahir" => "Bandung",
+            "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
         User::create([
             "id" => 4,
-            "nama" => "Riyadi",
-            "email" => "santri@gmail.com",
-            "password" => bcrypt("hame29092002"),
-            "alamat" => "Bandung",
+            "nama" => "Lukman",
+            "email" => "lukman@gmail.com",
+            "password" => bcrypt("walisantri004"),
+            "alamat" => "Jakarta",
             "no_hp" => "004",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-            "tempat_lahir" => "Bandung",
+            "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
         User::create([
             "id" => 5,
-            "nama" => "Riyadi",
-            "email" => "data@gmail.com",
-            "password" => bcrypt("1234"),
-            "alamat" => "Bandung",
-            "no_hp" => "004",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-            "tempat_lahir" => "Bandung",
-            "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
+            "nama" => "Eko Permana",
+            "email" => "ekopermana@gmail.com",
+            "password" => bcrypt("walisantri005"),
+            "alamat" => "Cirebon",
+            "no_hp" => "005",
+            "tempat_lahir" => "Cirebon",
+            "tanggal_lahir" => "2020-02-02",
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
         User::create([
             "id" => 6,
-            "nama" => "Mohammad",
-            "email" => "mohammad@gmail.com",
-            "password" => bcrypt("admincabang"),
+            "nama" => "Feby Maulana Hendrayatno",
+            "email" => "feby123@gmail.com",
+            "password" => bcrypt("walisantri006"),
             "alamat" => "Cirebon",
-            "no_hp" => "1234",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-            "tempat_lahir" => "Bandung",
-            "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
-        ]);
-
-        User::create([
-            "id" => 7,
-            "nama" => "Hame",
-            "email" => "hame123@gmail.com",
-            "password" => bcrypt("admincabang"),
-            "alamat" => "Cirebon",
-            "no_hp" => "777",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-            "tempat_lahir" => "Bandung",
-            "tanggal_lahir" => "2020-01-01",
-            "jenis_kelamin" => "L"
-        ]);
-
-        User::create([
-            "id" => 8,
-            "nama" => "Rahul",
-            "email" => "rahul@gmail.com",
-            "password" => bcrypt("asatidz"),
-            "alamat" => "Bandung",
-            "no_hp" => "1234567",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
+            "no_hp" => "006",
             "tempat_lahir" => "Cirebon",
-            "tanggal_lahir" => "2020-02-02",
-            "jenis_kelamin" => "L"
-        ]);
-
-        User::create([
-            "id" => 9,
-            "nama" => "Ahmad Fauzi",
-            "email" => "fauzi@gmail.com",
-            "password" => bcrypt("asatidz"),
-            "alamat" => "Bandung",
-            "no_hp" => "123456",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-            "tempat_lahir" => "Jakarta",
             "tanggal_lahir" => "2020-03-03",
-            "jenis_kelamin" => "L"
-        ]);
-
-        User::create([
-            "id" => 10,
-            "nama" => "Arif S",
-            "email" => "arif@gmail.com",
-            "password" => bcrypt("walisantri"),
-            "alamat" => "Bali",
-            "no_hp" => "29092002",
-            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
-            "tempat_lahir" => "Jakarta Raya",
-            "tanggal_lahir" => "2020-04-04",
-            "jenis_kelamin" => "L"
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
     }
 }

@@ -66,16 +66,6 @@ use Maatwebsite\Excel\Row;
 |
 */
 
-Route::get("/perhitungan", function () {
-    return view("perhitungan");
-});
-
-Route::get("/coba", function () {
-    return view("data");
-});
-
-Route::post("/data", [CobaController::class, "coba"]);
-
 Route::get("/app/sistem/ambil_data", [CobaController::class, "json"]);
 Route::get("/coba_rekap", [CobaController::class, "coba_rekap"]);
 Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);
@@ -240,7 +230,7 @@ Route::prefix("app")->group(function () {
                     Route::prefix("/nominal/iuran")->group(function () {
                         Route::get("/edit", [NominalIuranController::class, "edit"]);
                         Route::put("/simpan", [NominalIuranController::class, "update"]);
-                        Route::post("/aktifkan", [NominalIuranController::class, [NominalIuranController::class, "aktifkan"]]);
+                        Route::post("/aktifkan", [NominalIuranController::class, "aktifkan"]);
                         Route::post("/non_aktifkan", [NominalIuranController::class, "non_aktifkan"]);
                         Route::resource("/", NominalIuranController::class);
                     });

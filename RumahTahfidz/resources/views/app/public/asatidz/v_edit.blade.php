@@ -4,72 +4,69 @@
 
 @section('app_content')
 
-    <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>
-                    @yield('app_title')
-                </h3>
-            </div>
-        </div>
-    </div>
+    <section class="section">
+        <h3>
+            @yield('app_title')
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('/app/sistem/asatidz') }}">Asatidz</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+            </ol>
+        </nav>
+    </section>
 
     <div class="clearfix"></div>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="clearfix"></div>
-    @endif
-
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        <i class="fa fa-pencil"></i> Edit
-                    </h2>
-                    <div class="clearfix"></div>
-                </div>
-                <form action="{{ url('/app/sistem/asatidz/simpan') }}" method="POST" id="editAsatidz">
+        <form action="{{ url('/app/sistem/asatidz/simpan') }}" method="POST" enctype="multipart/form-data">
+            @method('PUT')
+            {{ csrf_field() }}
+            <input type="hidden" name="id" value="{{ $edit->getUser->id }}">
+            <input type="hidden" name="oldGambar" value="{{ $edit->getUser->gambar }}">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="x_panel">
                     <div class="x_content">
-                        @method('PUT')
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $edit->id }}">
+                        <center>
+                            @if (empty($edit->getUser->gambar))
+                                <img src="{{ url('/gambar/gambar_user.png') }}" class="gambar-preview mb-3 img-fluid"
+                                    id="tampilGambar">
+                            @else
+                                <img src="{{ url('/storage/' . $edit->getUser->gambar) }}"
+                                    class="gambar-preview mb-3 img-fluid" id="tampilGambar">
+                            @endif
+                        </center>
+                        <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>
+                            <i class="fa fa-edit"></i> Edit
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="nomor_induk"> Nomor Induk </label>
                                     <input type="text" class="form-control" name="nomor_induk" id="nomor_induk"
                                         placeholder="Masukkan Nomor Induk" value="{{ $edit->nomor_induk }}">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="no_ktp"> No. KTP </label>
                                     <input type="text" class="form-control" name="no_ktp" id="no_ktp"
                                         placeholder="Masukkan No. KTP" value="{{ $edit->no_ktp }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="nama"> Nama </label>
-                                    <input type="text" class="form-control" name="nama" id="nama"
-                                        placeholder="Masukkan Nama" value="{{ $edit->getUser->nama }}">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="email"> Email </label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Masukkan Email" value="{{ $edit->getUser->email }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -78,6 +75,22 @@
                                     <input type="text" class="form-control" name="pendidikan_terakhir"
                                         id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir"
                                         value="{{ $edit->pendidikan_terakhir }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nama"> Nama </label>
+                                    <input type="text" class="form-control" name="nama" id="nama"
+                                        placeholder="Masukkan Nama" value="{{ $edit->getUser->nama }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email"> Email </label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Masukkan Email" value="{{ $edit->getUser->email }}">
                                 </div>
                             </div>
                         </div>
@@ -101,41 +114,45 @@
                                     <label for="jenis_kelamin"> Jenis Kelamin </label>
                                     <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                         <option value="">- Pilih -</option>
-                                        <option value="L" {{ $edit->getUser->jenis_kelamin == 'L' ? 'selected' : '' }}>
-                                            Laki - Laki</option>
-                                        <option value="P" {{ $edit->getUser->jenis_kelamin == 'P' ? 'selected' : '' }}>
-                                            Perempuan</option>
+                                        <option value="L"
+                                            {{ $edit->getUser->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki - Laki
+                                        </option>
+                                        <option value="P"
+                                            {{ $edit->getUser->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="no_hp"> No. Handphone </label>
-                                    <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="0"
-                                        value="{{ $edit->getUser->no_hp }}">
+                                    <input type="number" class="form-control" name="no_hp" id="no_hp"
+                                        placeholder="0" value="{{ $edit->getUser->no_hp }}">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="aktivitas_utama"> Aktivitas Utama </label>
-                                    <textarea name="aktivitas_utama" id="aktivitas_utama" class="form-control" rows="5"
-                                        placeholder="Masukkan Aktivitas Utama">{{ $edit->aktivitas_utama }}</textarea>
+                                    <input type="text" class="form-control" name="aktivitas_utama"
+                                        id="aktivitas_utama" placeholder="Masukkan Aktivitas Utama"
+                                        value="{{ $edit->aktivitas_utama }}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="motivasi_mengajar"> Motivasi Mengajar </label>
-                                    <textarea name="motivasi_mengajar" id="motivasi_mengajar" class="form-control" rows="5"
-                                        placeholder="Masukkan Motivasi Mengajar">{{ $edit->motivasi_mengajar }}</textarea>
+                                    <input type="text" class="form-control" name="motivasi_mengajar"
+                                        id="motivasi_mengajar" placeholder="Masukkan Motivasi Mengajar"
+                                        value="{{ $edit->motivasi_mengajar }}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="alamat"> Alamat </label>
-                                    <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat">{{ $edit->getUser->alamat }}</textarea>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="alamat"> Alamat </label>
+                                <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat">{{ $edit->getUser->alamat }}</textarea>
                             </div>
                         </div>
                         <div class="ln_solid"></div>
@@ -153,9 +170,9 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
 @endsection
@@ -163,11 +180,28 @@
 @section('app_scripts')
 
     <script>
+        function previewImage() {
+            const image = document.querySelector("#gambar");
+            const imgPreview = document.querySelector(".gambar-preview");
+
+            imgPreview.style.display = "block";
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                $("#tampilGambar").addClass('mb-3');
+                $("#tampilGambar").width("100%");
+                $("#tampilGambar").height("300");
+            }
+        }
+
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
                 setupFormValidation: function() {
-                    $("#editAsatidz").validate({
+                    $("#tambahAsatidz").validate({
                         lang: "id",
                         ignore: "",
                         rules: {
