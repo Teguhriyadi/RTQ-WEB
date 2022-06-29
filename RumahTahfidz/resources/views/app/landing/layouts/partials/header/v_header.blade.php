@@ -25,7 +25,7 @@
                 <li><a class="nav-link scrollto" href="{{ url('') }}#contact">Kontak</a></li>
                 <li>
                     <a
-                        href="{{ url('https://drive.google.com/u/0/uc?id=1CBC04K_V8xXr77rzEEKKf7PX_aHxI6Wj&export=download&confirm=t') }}">
+                        href="{{ url('https://drive.google.com/drive/u/0/folders/1M4Mpz_8IZLQoerYayQea_3QJg9dB--6Z') }}">
                         Download Aplikasi
                     </a>
                 </li>
