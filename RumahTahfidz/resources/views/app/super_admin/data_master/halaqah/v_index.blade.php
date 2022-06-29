@@ -25,66 +25,79 @@
 
 <div class="clearfix"></div>
 
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
-                    <i class="fa fa-plus"></i> Tambah
-                </button>
-                <div class="clearfix"></div>
+@if ($data_lokasi_rt->count() < 1)
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 m-0">
+            <div class="x_content bs-example-popovers">
+                <div class="alert alert-danger alert-dismissible " role="alert">
+                    <strong>Oops!</strong> Data Lokasi RT Masih Kosong. Silahkan Klik <a
+                        href="{{ url('/app/sistem/lokasi_rt') }}" style="color: white;">Disini</a>
+                </div>
             </div>
-            <div class="x_content">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="card-box table-responsive">
-                            <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">No.</th>
-                                        <th class="text-center">Kode</th>
-                                        <th>Nama</th>
-                                        <th>Lokasi</th>
-                                        <th class="text-center">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $no = 0 @endphp
-                                    @foreach ($data_halaqah as $halaqah)
+        </div>
+    </div>
+@else
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
+                        <i class="fa fa-plus"></i> Tambah
+                    </button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-box table-responsive">
+                                <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
+                                    <thead>
                                         <tr>
-                                            <td class="text-center">{{ ++$no }}.</td>
-                                            <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
-                                            <td>{{ $halaqah->nama_halaqah }}</td>
-                                            <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
-                                            <td class="text-center">
-                                                <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')"
-                                                    class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
-                                                    data-toggle="modal">
-                                                    <i class="fa fa-edit"></i> Edit
-                                                </button>
-                                                <form
-                                                    action="{{ url('/app/sistem/halaqah/' . $halaqah->kode_halaqah) }}"
-                                                    method="POST" style="display: inline;">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <input type="hidden" name="kode"
-                                                        value="{{ $halaqah->kode_halaqah }}">
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i> Hapus
-                                                    </button>
-                                                </form>
-                                            </td>
+                                            <th class="text-center">No.</th>
+                                            <th class="text-center">Kode</th>
+                                            <th>Nama</th>
+                                            <th>Lokasi</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @php $no = 0 @endphp
+                                        @foreach ($data_halaqah as $halaqah)
+                                            <tr>
+                                                <td class="text-center">{{ ++$no }}.</td>
+                                                <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
+                                                <td>{{ $halaqah->nama_halaqah }}</td>
+                                                <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
+                                                <td class="text-center">
+                                                    <button onclick="editDataHalaqah('{{ $halaqah->kode_halaqah }}')"
+                                                        class="btn btn-warning btn-sm text-white"
+                                                        data-target="#modalEdit" data-toggle="modal">
+                                                        <i class="fa fa-edit"></i> Edit
+                                                    </button>
+                                                    <form
+                                                        action="{{ url('/app/sistem/halaqah/' . $halaqah->kode_halaqah) }}"
+                                                        method="POST" style="display: inline;">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <input type="hidden" name="kode"
+                                                            value="{{ $halaqah->kode_halaqah }}">
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> Hapus
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endif
 
 <!-- Tambah Data -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">

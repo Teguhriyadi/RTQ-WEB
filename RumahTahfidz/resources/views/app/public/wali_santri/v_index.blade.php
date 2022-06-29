@@ -35,55 +35,68 @@
         <div class="clearfix"></div>
     @endif
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    @if (Auth::user()->getAkses->getRole->id == 1)
-                        <h2>
-                            <i class="fa fa-users"></i> Data @yield('app_title')
-                        </h2>
-                    @else
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                            data-target=".bs-example-modal-lg">
-                            <i class="fa fa-plus"></i> Tambah Data
-                        </button>
-                    @endif
-                    <div class="pull-right">
-                        {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}
-                        {{-- class="fa fa-download"></i> Download</a> --}}
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
-                                class="fa fa-upload"></i> Upload</button>
+    @if ($data_halaqah->count() < 1)
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 m-0">
+                <div class="x_content bs-example-popovers">
+                    <div class="alert alert-danger alert-dismissible " role="alert">
+                        <strong>Oops!</strong> Data Halaqah Masih Kosong.
+                        {{-- Silahkan Klik <a href="{{ url('/app/sistem/lokasi_rt') }}" style="color: white;">Disini</a> --}}
                     </div>
-                    <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="card-box table-responsive">
-                                <table id="datatable-walisantri" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>No. KK</th>
-                                            <th>Nama</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>No. HP</th>
-                                            <th>Jumlah Anak</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+            </div>
+        </div>
+    @else
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        @if (Auth::user()->getAkses->getRole->id == 1)
+                            <h2>
+                                <i class="fa fa-users"></i> Data @yield('app_title')
+                            </h2>
+                        @else
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                data-target=".bs-example-modal-lg">
+                                <i class="fa fa-plus"></i> Tambah Data
+                            </button>
+                        @endif
+                        <div class="pull-right">
+                            {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}
+                            {{-- class="fa fa-download"></i> Download</a> --}}
+                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
+                                    class="fa fa-upload"></i> Upload</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="card-box table-responsive">
+                                    <table id="datatable-walisantri" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>No. KK</th>
+                                                <th>Nama</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>No. HP</th>
+                                                <th>Jumlah Anak</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <!-- Tambah Data -->
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="modalTambah" aria-hidden="true">
@@ -317,7 +330,6 @@
 @section('app_scripts')
     <script src="{{ url('') }}/vendors/jquery/dist/jquery.form.min.js"></script>
     <script type="text/javascript">
-
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");
