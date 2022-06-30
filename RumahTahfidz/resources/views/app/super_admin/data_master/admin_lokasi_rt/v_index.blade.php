@@ -61,7 +61,13 @@
                                                 <td>{{ $data->getUser->nama }}</td>
                                                 <td>{{ $data->getLokasiRt->lokasi_rt }}</td>
                                                 <td class="text-center">{{ $data->getUser->no_hp }}</td>
-                                                <td>{{ $data->pendidikan_terakhir }}</td>
+                                                <td>
+                                                    @if (empty($data->pendidikan_terakhir))
+                                                        NULL
+                                                    @else
+                                                        {{ $data->pendidikan_terakhir }}
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
                                                     <a href="{{ url('/app/sistem/admin_lokasi_rt/' . $data->id . '/edit') }}"
                                                         class="btn btn-warning btn-sm">

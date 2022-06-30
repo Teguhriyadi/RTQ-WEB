@@ -188,6 +188,13 @@ class WaliSantriController extends Controller
 
         $data = array();
         foreach ($walisantri as $user) {
+
+            if (empty($user->no_kk)) {
+                $no_kk = "NULL";
+            } else {
+                $no_kk = $user->no_kk;
+            }
+
             if ($user->getUser->jenis_kelamin == "L") {
                 $jk = 'Laki-laki';
             } else {
@@ -196,7 +203,7 @@ class WaliSantriController extends Controller
 
             $data[] = [
                 'id' => $user->id,
-                'no_kk' => $user->no_kk,
+                'no_kk' => $no_kk,
                 'nama_lengkap' => $user->getUser->nama,
                 'jenis_kelamin' => $jk,
                 'no_hp' => $user->getUser->no_hp,
@@ -209,7 +216,7 @@ class WaliSantriController extends Controller
             ->addIndexColumn()
             ->addColumn('aksi', function ($row) {
                 if (Auth::user()->getAkses->getRole->id == 1) {
-                    $aksiBtn = '<button></button>';
+                    $aksiBtn = '-';
                 } else {
 
                     $aksiBtn = '<button onclick="tambahDataSantri(' . $row["id"] . ')" type="button"

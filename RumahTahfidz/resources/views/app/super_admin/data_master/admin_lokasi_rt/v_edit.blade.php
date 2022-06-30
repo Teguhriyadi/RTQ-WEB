@@ -38,8 +38,8 @@ y=@extends('.app.layouts.template')
                         @if (empty($edit->getUser->gambar))
                             <img src="{{ url('gambar/gambar_user.png') }}" class="gambar-preview img-fluid mb-3">
                         @else
-                            <img src="{{ url('/storage/' . $edit->getUser->gambar) }}"
-                                class="gambar-preview img-fluid" width="100%">
+                            <img src="{{ $edit->getUser->gambar }}" class="gambar-preview img-fluid" width="100%"
+                                height="300px">
                         @endif
                     </center>
                     <input onchange="previewImage()" type="file" class="form-control mt-3" name="gambar"
