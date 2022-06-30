@@ -20,11 +20,11 @@ class StatusAbsenSeeder extends Seeder
         ]);
 
         StatusAbsen::create([
-            "keterangan_absen" => "Sakit"
+            "keterangan_absen" => "Izin"
         ]);
 
         StatusAbsen::create([
-            "keterangan_absen" => "Izin"
+            "keterangan_absen" => "Sakit"
         ]);
 
         StatusAbsen::create([
