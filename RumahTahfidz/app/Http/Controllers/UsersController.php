@@ -27,7 +27,7 @@ class UsersController extends Controller
         User::create([
             "nama" => $request->nama,
             "email" => $request->email,
-            "password" => bcrypt($request->password),
+            "password" => bcrypt("super".$request->no_hp),
             "alamat" => $request->alamat,
             "no_hp" => $request->no_hp,
             "gambar" => $data,
