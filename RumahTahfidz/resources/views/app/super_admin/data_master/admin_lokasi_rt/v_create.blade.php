@@ -151,6 +151,9 @@
                     <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
+                    <a href="{{ url('/app/sistem/admin_lokasi_rt') }}" class="btn btn-warning btn-sm pull-right">
+                        <i class="fa fa-sign-out"></i> Kembali ke Halaman Sebelumnya
+                    </a>
                 </div>
             </div>
         </div>
