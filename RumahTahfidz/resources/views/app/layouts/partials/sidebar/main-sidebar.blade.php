@@ -2,11 +2,24 @@
 $kategori_penilaian = \App\Models\KategoriPenilaian::all();
 $user = \App\Models\User::where('id', Auth::user()->id)->first();
 $akses_saya = \App\Models\HakAkses::where('id_user', $user->id)->get();
+$profil = \App\Models\ProfilWeb::select('nama')->first();
 @endphp
 <div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="javascript:void(0)" class="site_title"><i class="fa fa-paw"></i> <span>RTQ Ulil Albab</span>
+            <a href="javascript:void(0)" class="site_title">
+                <i class="fa fa-paw"></i>
+                <span>
+                    @if (empty($profil))
+                        RTQ
+                    @else
+                        @if (strlen($profil->nama) > 15)
+                            RTQ ...
+                        @else
+                            {{ $profil->nama }}
+                        @endif
+                    @endif
+                </span>
             </a>
         </div>
 
