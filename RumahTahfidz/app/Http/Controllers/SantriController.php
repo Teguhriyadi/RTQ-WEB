@@ -53,7 +53,7 @@ class SantriController extends Controller
         $santri->kode_halaqah = $request->kode_halaqah;
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
-        $santri->foto = "http://rtq-freelance.my.id/storage/" . $data;
+        $santri->foto = url('storage/' . $data);
         $santri->save();
 
         $administrasi = new Administrasi;
@@ -163,7 +163,7 @@ class SantriController extends Controller
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;
         $santri->id_besaran = $request->id_besaran;
-        $santri->foto = url("/storage/" . $data);
+        $santri->foto = url("storage/" . $data);
 
         $santri->save();
 
@@ -174,7 +174,7 @@ class SantriController extends Controller
 
         $administrasi->save();
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>");
+        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil','Data Berhasil di Tambah', 'success')</script>")->withInput();
     }
 
     public function sertifikat($id)

@@ -87,7 +87,7 @@ class WaliSantriController extends Controller
 
         $walisantri->save();
 
-        return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
+        return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>')->withInput();
     }
 
     public function edit(Request $request)

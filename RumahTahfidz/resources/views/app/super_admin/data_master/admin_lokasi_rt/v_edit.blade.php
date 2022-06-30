@@ -1,4 +1,4 @@
-@extends('.app.layouts.template')
+y=@extends('.app.layouts.template')
 
 @section('app_title', 'Admin Cabang')
 
@@ -273,8 +273,8 @@
     });
 
     function previewImage() {
-        const image = document.querySelector("#gambar");
-        const imgPreview = document.querySelector(".gambar-preview");
+        const image = document.querySelector("#gambar2");
+        const imgPreview = document.querySelector(".gambar-preview2");
 
         imgPreview.style.display = "block";
 
