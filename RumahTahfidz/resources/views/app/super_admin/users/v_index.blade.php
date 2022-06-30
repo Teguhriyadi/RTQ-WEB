@@ -30,10 +30,10 @@
                         <i class="fa fa-users"></i> Data Users
                     </h2>
                     <div class="pull-right">
-                        {{-- <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal"
+                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal"
                             data-target="#modalTambah">
                             <i class="fa fa-plus"></i> Tambah
-                        </button> --}}
+                        </button>
                     </div>
                     <div class="clearfix"></div>
                 </div>
