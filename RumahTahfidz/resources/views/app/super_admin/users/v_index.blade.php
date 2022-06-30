@@ -86,12 +86,9 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    @if (Auth::user()->id == $user->id)
-                                                    @else
-                                                        <a href="{{ url('app/sistem/users/hak_akses/' . $user->id) }}"
-                                                            class="btn btn-secondary btn-sm"><i class="fa fa-key"></i>
-                                                            Kelola Hak Akses</a>
-                                                    @endif
+                                                    <a href="{{ url('app/sistem/users/hak_akses/' . $user->id) }}"
+                                                        class="btn btn-secondary btn-sm"><i class="fa fa-key"></i>
+                                                        Kelola Hak Akses</a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="{{ url('app/sistem/users/' . $user->id) }}"
