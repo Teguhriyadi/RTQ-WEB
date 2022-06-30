@@ -41,7 +41,11 @@
                 <div class="x_content bs-example-popovers">
                     <div class="alert alert-danger alert-dismissible " role="alert">
                         <strong>Oops!</strong> Data Halaqah Masih Kosong.
-                        {{-- Silahkan Klik <a href="{{ url('/app/sistem/lokasi_rt') }}" style="color: white;">Disini</a> --}}
+                        @if (Auth::user()->getAkses->id_role == 1)
+                            Silahkan Klik <a target="_blank" href="{{ url('/app/sistem/lokasi_rt') }}"
+                                style="color: white;">Disini</a>
+                        @else
+                        @endif
                     </div>
                 </div>
             </div>
@@ -64,8 +68,10 @@
                         <div class="pull-right">
                             {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}
                             {{-- class="fa fa-download"></i> Download</a> --}}
-                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
-                                    class="fa fa-upload"></i> Upload</button>
+                            @if (!Auth::user()->getAkses->id == 1)
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalExcel"><i
+                                        class="fa fa-upload"></i> Upload</button>
+                            @endif
                         </div>
                         <div class="clearfix"></div>
                     </div>

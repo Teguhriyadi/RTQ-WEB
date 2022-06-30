@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LokasiRt;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\HakAkses;
 
 class UsersController extends Controller
 {
@@ -24,17 +25,30 @@ class UsersController extends Controller
             $data = $request->file("gambar")->store("users");
         }
 
-        User::create([
-            "nama" => $request->nama,
-            "email" => $request->email,
-            "password" => bcrypt($request->password),
-            "alamat" => $request->alamat,
-            "no_hp" => $request->no_hp,
-            "gambar" => $data,
-            "tempat_lahir" => $request->tempat_lahir,
-            "tanggal_lahir" => $request->tanggal_lahir,
-            "jenis_kelamin" => $request->jenis_kelamin,
-            "status" => 1
+        $user = new User;
+
+        $user->nama = $request->nama;
+        $user->email = $request->email;
+        $user->password = bcrypt("super".$request->no_hp);
+        $user->alamat = $request->alamat;
+        $user->no_hp = $request->no_hp;
+        $user->gambar = $data;
+        $user->tempat_lahir = $request->tempat_lahir;
+        $user->tanggal_lahir = $request->tanggal_lahir;
+        $user->jenis_kelamin = $request->jenis_kelamin;
+        $user->status = 1;
+
+        $user->save();
+
+        $hak_akses = new HakAkses;
+
+        $hak_akses->id_user = $user->id;
+        $hak_akses->id_role = 1;
+
+        $hak_akses->save();
+
+        User::where("id", $user->id)->update([
+            "id_hak_akses" => $hak_akses->id
         ]);
 
         return redirect()->back();

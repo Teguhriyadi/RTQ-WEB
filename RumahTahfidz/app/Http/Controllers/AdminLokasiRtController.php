@@ -25,12 +25,19 @@ class AdminLokasiRtController extends Controller
     public function index()
     {
         $data = [
-            "data_admin_lokasi_rt" => AdminLokasiRt::get(),
-            "data_lokasi_rt" => LokasiRt::count(),
-            "lokasi_rt" => LokasiRt::get()
+            "data_admin_lokasi_rt" => AdminLokasiRt::get()
         ];
 
         return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
+    }
+
+    public function create()
+    {
+        $data = [
+            "data_lokasi_rt" => LokasiRt::get()
+        ];
+
+        return view("app.super_admin.data_master.admin_lokasi_rt.v_create", $data);
     }
 
     public function store(Request $request)
@@ -69,7 +76,7 @@ class AdminLokasiRtController extends Controller
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("adminlokasirt" . $request->no_hp);
+        $user->password = bcrypt("admin" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
@@ -96,10 +103,10 @@ class AdminLokasiRtController extends Controller
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>")->withInput();
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
         $data = [
-            "edit" => AdminLokasiRt::where("id", $request->id)->first(),
+            "edit" => AdminLokasiRt::where("id", $id)->first(),
             "lokasi_rt" => LokasiRt::get()
         ];
 
@@ -136,7 +143,7 @@ class AdminLokasiRtController extends Controller
             "jenis_kelamin" => $request->jenis_kelamin
         ]);
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
+        return redirect("/app/sistem/admin_lokasi_rt")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");
     }
 
     public function destroy($id)

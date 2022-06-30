@@ -33,10 +33,9 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                        data-target=".bs-example-modal-lg" title="Tambah Data">
+                    <a href="{{ url('/app/sistem/admin_lokasi_rt/create') }}" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> Tambah
-                    </button>
+                    </a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -48,7 +47,7 @@
                                         <tr>
                                             <th class="text-center">No.</th>
                                             <th>Nama</th>
-                                            <th>Lokasi RT</th>
+                                            <th>Lokasi Cabang</th>
                                             <th class="text-center">No. HP</th>
                                             <th>Pendidikan Terakhir</th>
                                             <th class="text-center">Aksi</th>
@@ -64,11 +63,10 @@
                                                 <td class="text-center">{{ $data->getUser->no_hp }}</td>
                                                 <td>{{ $data->pendidikan_terakhir }}</td>
                                                 <td class="text-center">
-                                                    <button onclick="editAdminLokasiRt({{ $data->id }})" type="button"
-                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
-                                                        data-toggle="modal">
+                                                    <a href="{{ url('/app/sistem/admin_lokasi_rt/' . $data->id . '/edit') }}"
+                                                        class="btn btn-warning btn-sm">
                                                         <i class="fa fa-edit"></i> Edit
-                                                    </button>
+                                                    </a>
                                                     <form action="{{ url('/app/sistem/admin_lokasi_rt/' . $data->id) }}"
                                                         method="POST" style="display: inline;">
                                                         @method('DELETE')
@@ -265,208 +263,6 @@
 @section('app_scripts')
 
     <script>
-        (function($, W, D) {
-            var JQUERY4U = {};
-            JQUERY4U.UTIL = {
-                setupFormValidation: function() {
-                    $("#tambahAdminCabang").validate({
-                        lang: "id",
-                        ignore: "",
-                        rules: {
-                            nama: {
-                                required: true
-                            },
-                            email: {
-                                required: true
-                            },
-                            pendidikan_terakhir: {
-                                required: true
-                            },
-                            jenis_kelamin: {
-                                required: true
-                            },
-                            tempat_lahir: {
-                                required: true
-                            },
-                            tanggal_lahir: {
-                                required: true
-                            },
-                            no_hp: {
-                                required: true
-                            },
-                            kode_rt: {
-                                required: true
-                            },
-                            alamat: {
-                                required: true
-                            },
-                            gambar: {
-                                required: true,
-                                accept: "image/*"
-                            },
-                        },
-                        messages: {
-                            nama: {
-                                required: "Nama harap diisi!"
-                            },
-                            email: {
-                                required: "Email harap diisi!"
-                            },
-                            pendidikan_terakhir: {
-                                required: "Pendidikan harap diisi!"
-                            },
-                            jenis_kelamin: {
-                                required: "Jenis kelamin harap diisi!"
-                            },
-                            tempat_lahir: {
-                                required: "Tempat lahir harap diisi!"
-                            },
-                            tanggal_lahir: {
-                                required: "Tanggal lahir harap diisi!"
-                            },
-                            no_hp: {
-                                required: "No hp harap diisi!"
-                            },
-                            kode_rt: {
-                                required: "Lokasi cabang harap diisi!"
-                            },
-                            alamat: {
-                                required: "Alamat harap diisi!"
-                            },
-                            gambar: {
-                                required: "Gambar harap diisi!",
-                                accept: "Gambar harus berformat jpg/jpeg/png"
-                            },
-                        },
-                        submitHandler: function(form) {
-                            form.submit()
-                        }
-                    });
-
-                    $("#editAdminCabang").validate({
-                        lang: "id",
-                        ignore: "",
-                        rules: {
-                            nama: {
-                                required: true
-                            },
-                            email: {
-                                required: true
-                            },
-                            pendidikan_terakhir: {
-                                required: true
-                            },
-                            jenis_kelamin: {
-                                required: true
-                            },
-                            tempat_lahir: {
-                                required: true
-                            },
-                            tanggal_lahir: {
-                                required: true
-                            },
-                            no_hp: {
-                                required: true
-                            },
-                            kode_rt: {
-                                required: true
-                            },
-                            alamat: {
-                                required: true
-                            },
-                            gambar: {
-                                accept: "image/*"
-                            },
-                        },
-                        messages: {
-                            nama: {
-                                required: "Nama harap diisi!"
-                            },
-                            email: {
-                                required: "Email harap diisi!"
-                            },
-                            pendidikan_terakhir: {
-                                required: "Pendidikan harap diisi!"
-                            },
-                            jenis_kelamin: {
-                                required: "Jenis kelamin harap diisi!"
-                            },
-                            tempat_lahir: {
-                                required: "Tempat lahir harap diisi!"
-                            },
-                            tanggal_lahir: {
-                                required: "Tanggal lahir harap diisi!"
-                            },
-                            no_hp: {
-                                required: "No hp harap diisi!"
-                            },
-                            kode_rt: {
-                                required: "Lokasi cabang harap diisi!"
-                            },
-                            alamat: {
-                                required: "Alamat harap diisi!"
-                            },
-                            gambar: {
-                                accept: "Gambar harus berformat jpg/jpeg/png"
-                            },
-                        },
-                        submitHandler: function(form) {
-                            form.submit()
-                        }
-                    })
-                }
-            }
-            $(D).ready(function($) {
-                JQUERY4U.UTIL.setupFormValidation()
-            })
-        })(jQuery, window, document)
-    </script>
-
-    <script>
-        $("#kode_rt").change(function() {
-            if ($(this).val() == "L") {
-                $("#optionNyala").hide();
-                $("#optionMati").show();
-            }
-        });
-
-        $("#btn-nyalakan-pilihan").click(function() {
-            $("#optionNyala").show();
-            $("#optionMati").hide();
-            $("#kode_rt").show();
-        });
-
-        function previewImage() {
-            const image = document.querySelector("#gambar");
-            const imgPreview = document.querySelector(".gambar-preview");
-
-            imgPreview.style.display = "block";
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onload = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-                $("#tampilGambar").addClass('mb-3');
-                $("#tampilGambar").width("100%");
-                $("#tampilGambar").height("300");
-            }
-        }
-
-        function editAdminLokasiRt(id) {
-            $.ajax({
-                url: "{{ url('/app/sistem/admin_lokasi_rt/edit') }}",
-                type: "GET",
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    $("#modal-content-edit").html(data);
-                    return true;
-                }
-            });
-        }
-
         $(document).ready(function() {
             $("#table-1").dataTable();
         })

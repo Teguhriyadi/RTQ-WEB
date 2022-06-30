@@ -66,7 +66,8 @@
                                                             <form action="{{ url('/app/sistem/users/non_aktifkan/') }}"
                                                                 method="POST" style="display: inline;">
                                                                 {{ csrf_field() }}
-                                                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $user->id }}">
                                                                 <button type="submit" class="btn btn-danger btn-sm">
                                                                     <i class="fa fa-times"></i> Non - Aktifkan
                                                                 </button>
@@ -75,7 +76,8 @@
                                                             <form action="{{ url('/app/sistem/users/aktifkan/') }}"
                                                                 method="POST" style="display: inline;">
                                                                 {{ csrf_field() }}
-                                                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $user->id }}">
                                                                 <button type="submit" class="btn btn-success btn-sm">
                                                                     <i class="fa fa-arrow-up"></i> Aktifkan
                                                                 </button>
@@ -142,21 +144,15 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nama"> Nama </label>
-                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
+                            <input type="text" class="form-control" name="nama" id="nama"
+                                placeholder="Masukkan Nama">
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="email"> Email </label>
                                     <input type="email" class="form-control" name="email" id="email"
                                         placeholder="Masukkan Email">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="password"> Password </label>
-                                    <input type="password" class="form-control" id="password"
-                                        placeholder="Masukkan Password">
                                 </div>
                             </div>
                         </div>
@@ -201,7 +197,8 @@
                         <div class="form-group">
                             <label for="gambar"> Gambar </label>
                             <img class="gambar-preview img-fluid" id="tampilGambar">
-                            <input type="file" class="form-control" name="gambar" id="gambar" onchange="previewImage()">
+                            <input type="file" class="form-control" name="gambar" id="gambar"
+                                onchange="previewImage()">
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
