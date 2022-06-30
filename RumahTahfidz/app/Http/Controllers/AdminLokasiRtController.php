@@ -44,14 +44,14 @@ class AdminLokasiRtController extends Controller
     {
         $this->validate($request, [
             "nama" => "required",
-            "email" => "required|email|unique:users",
-            "no_hp" => "required|numeric|unique:users",
+            "email" => "required|email",
+            "no_hp" => "required|numeric|unique:users,no_hp",
             "alamat" => "required",
             "tanggal_lahir" => "required",
             "tempat_lahir" => "required",
             "jenis_kelamin" => "required",
             "pendidikan_terakhir" => "required",
-            "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg",
         ]);
 
         if ($request->kode_input) {
@@ -83,7 +83,7 @@ class AdminLokasiRtController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
-        $user->gambar = $data;
+        $user->gambar = url('storage/' . $data);
         $user->save();
 
         $hak_akses = new HakAkses;
