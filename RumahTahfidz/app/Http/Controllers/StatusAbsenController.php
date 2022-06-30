@@ -25,11 +25,11 @@ class StatusAbsenController extends Controller
         $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
         if ($cek > 0) {
-            return redirect()->back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>");
+            return redirect()->back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>")->withInput();
         } else {
             StatusAbsen::create($request->all());
 
-            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>");
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>")->withInput();
         }
     }
 
@@ -50,15 +50,11 @@ class StatusAbsenController extends Controller
 
         $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
-        if ($cek > 0) {
-            return redirect()->back();
-        } else {
-            StatusAbsen::where("id", $request->id)->update([
-                "keterangan_absen" => $request->keterangan_absen
-            ]);
+        StatusAbsen::where("id", $request->id)->update([
+            "keterangan_absen" => $request->keterangan_absen
+        ]);
 
-            return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
-        }
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"])->withInput();
     }
 
     public function destroy($id)

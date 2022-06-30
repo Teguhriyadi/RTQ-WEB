@@ -34,10 +34,10 @@ class KelasController extends Controller
         $cek = Kelas::where("nama_kelas", $request->nama_kelas)->count();
 
         if ($cek > 0) {
-            return redirect()->back()->with("message", "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>");
+            return redirect()->back()->with("message", "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>")->withInput();
         } else {
             Kelas::create($request->all());
-            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success')</script>");
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success')</script>")->withInput();
         }
     }
 
@@ -51,7 +51,7 @@ class KelasController extends Controller
             "nama_kelas" => $request->nama_kelas
         ]);
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Ubah', 'success')</script>");
+        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Ubah', 'success')</script>")->withInput();
     }
 
     public function destroy($id)

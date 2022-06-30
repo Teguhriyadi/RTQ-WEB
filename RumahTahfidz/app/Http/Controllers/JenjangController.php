@@ -25,11 +25,11 @@ class JenjangController extends Controller
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
         if ($cek > 0) {
-            return redirect()->back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>");
+            return redirect()->back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>")->withInput();
         } else {
             Jenjang::create($request->all());
 
-            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>");
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>")->withInput();
         }
     }
 
@@ -50,15 +50,11 @@ class JenjangController extends Controller
 
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
-        if ($cek > 0) {
-            return redirect()->back();
-        } else {
-            Jenjang::where("id", $request->id)->update([
-                "jenjang" => $request->jenjang
-            ]);
+        Jenjang::where("id", $request->id)->update([
+            "jenjang" => $request->jenjang
+        ]);
 
-            return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
-        }
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"])->withInput();
     }
 
     public function destroy($id)
