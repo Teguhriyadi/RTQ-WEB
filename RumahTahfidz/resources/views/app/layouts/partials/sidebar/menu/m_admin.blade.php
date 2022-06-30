@@ -24,10 +24,74 @@
                 Asatidz
             </a>
         </li>
+    </ul>
+</li>
+<li>
+    <a>
+        <i class="fa fa-file-archive-o"></i> Data Akademik
+        <span class="fa fa-chevron-down"></span>
+    </a>
+    <ul class="nav child_menu">
+        <li class="{{ Request::segment(3) == 'kelas' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/kelas') }}">
+                Kelas
+            </a>
+        </li>
+        <li class="{{ Request::segment(3) == 'status_absen' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/status_absen') }}">
+                Status Absen
+            </a>
+        </li>
+        <li class="{{ Request::segment(3) == 'jenjang' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/jenjang') }}">
+                Jenjang
+            </a>
+        </li>
+        <li class="{{ Request::segment(3) == 'lokasi_rt' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/lokasi_rt') }}">
+                Lokasi RT
+            </a>
+        </li>
         <li class="{{ Request::segment(3) == 'halaqah' ? 'active' : '' }}">
             <a href="{{ url('/app/sistem/halaqah') }}">
                 Halaqah
             </a>
+        </li>
+        <li>
+            <a>
+                Pelajaran
+                <span class="fa fa-chevron-down"></span>
+            </a>
+            <ul class="nav child_menu">
+                <li class="{{ Request::segment(3) == 'kategori_pelajaran' }}">
+                    <a href="{{ url('/app/sistem/setting/kategori/pelajaran') }}">
+                        Kategori Pelajaran
+                    </a>
+                </li>
+                <li class="{{ Request::segment(3) == 'pelajaran' }}">
+                    <a href="{{ url('/app/sistem/pelajaran') }}">
+                        Pelajaran
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a>
+                Penilaian
+                <span class="fa fa-chevron-down"></span>
+            </a>
+            <ul class="nav child_menu">
+                <li class="{{ Request::segment(3) == 'kategori_nilai' ? 'active' : '' }}">
+                    <a href="{{ url('/app/sistem/setting/kategori/nilai') }}">
+                        Kategori Penilaian
+                    </a>
+                </li>
+                <li class="{{ Request::segment(3) == 'nilai_kategori' }}">
+                    <a href="{{ url('/app/sistem/setting/nilai/kategori') }}">
+                        Nilai Kategori
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>
