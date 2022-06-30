@@ -47,7 +47,7 @@
                                         <tr>
                                             <th class="text-center">No.</th>
                                             <th>Nama</th>
-                                            <th>Lokasi RT</th>
+                                            <th>Lokasi Cabang</th>
                                             <th class="text-center">No. HP</th>
                                             <th>Pendidikan Terakhir</th>
                                             <th class="text-center">Aksi</th>
