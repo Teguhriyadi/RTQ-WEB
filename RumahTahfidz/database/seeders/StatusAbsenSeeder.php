@@ -16,19 +16,19 @@ class StatusAbsenSeeder extends Seeder
     public function run()
     {
         StatusAbsen::create([
-            "keterangan" => "Hadir"
+            "keterangan_absen" => "Hadir"
         ]);
 
         StatusAbsen::create([
-            "keterangan" => "Sakit"
+            "keterangan_absen" => "Sakit"
         ]);
 
         StatusAbsen::create([
-            "keterangan" => "Izin"
+            "keterangan_absen" => "Izin"
         ]);
 
         StatusAbsen::create([
-            "keterangan" => "Alfa"
+            "keterangan_absen" => "Alfa"
         ]);
     }
 }
