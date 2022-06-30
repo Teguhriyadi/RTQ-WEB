@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Admin Lokasi RT')
+@section('app_title', 'Admin Cabang')
 
 @section('app_content')
 
@@ -110,19 +110,20 @@
                         <div class="form-group">
                             <label for="nama"> Nama </label>
                             <input type="text" class="form-control" name="nama" id="nama"
-                                placeholder="Masukkan Nama">
+                                placeholder="Masukkan Nama" value="{{ old('nama') }}">
                         </div>
                         <div class="form-group">
                             <label for="email"> Email </label>
                             <input type="email" class="form-control" name="email" id="email"
-                                placeholder="Masukkan Email">
+                                placeholder="Masukkan Email" value="{{ old('email') }}">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
                                     <input type="text" class="form-control" name="pendidikan_terakhir"
-                                        id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                                        id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir"
+                                        value="{{ old('pendidikan_terakhir') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -130,8 +131,10 @@
                                     <label for="jenis_kelamin"> Jenis Kelamin </label>
                                     <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                                         <option value="">- Pilih -</option>
-                                        <option value="L">Laki - Laki</option>
-                                        <option value="P">Perempuan</option>
+                                        <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki -
+                                            Laki</option>
+                                        <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>
+                                            Perempuan</option>
                                     </select>
                                 </div>
                             </div>
@@ -142,13 +145,14 @@
                                 <div class="form-group">
                                     <label for="tempat_lahir"> Tempat Lahir </label>
                                     <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir"
-                                        placeholder="Masukkan Tempat Lahir">
+                                        placeholder="Masukkan Tempat Lahir" value="{{ old('tempat_lahir') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="tanggal_lahir"> Tanggal Lahir </label>
-                                    <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
+                                    <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir"
+                                        value="{{ old('tanggal_lahir') }}">
                                 </div>
                             </div>
                         </div>
@@ -157,12 +161,12 @@
                                 <div class="form-group">
                                     <label for="no_hp"> No. HP </label>
                                     <input type="number" class="form-control" name="no_hp" id="no_hp"
-                                        placeholder="Masukkan No. HP">
+                                        placeholder="Masukkan No. HP" value="{{ old('no_hp') }}">
                                 </div>
                             </div>
                             <div class="col-md-6" id="optionNyala">
                                 <div class="form-group">
-                                    <label for="kode_rt"> Lokasi RT </label>
+                                    <label for="kode_rt"> Lokasi Cabang </label>
                                     @if ($lokasi_rt->count() < 1)
                                         <input type="text" name="kode_input" class="form-control" id="input_kode_rt"
                                             placeholder="Masukkan Lokasi RT">
@@ -170,8 +174,9 @@
                                         <select name="kode_rt" class="form-control" id="kode_rt">
                                             <option value="">- Pilih -</option>
                                             @foreach ($lokasi_rt as $data)
-                                                <option value="{{ $data->kode_rt }}">
-                                                    {{ $data->kode_rt }}
+                                                <option value="{{ $data->kode_rt }}"
+                                                    {{ old('kode_rt') == $data->kode_rt ? 'selected' : '' }}>
+                                                    {{ $data->lokasi_rt }}
                                                 </option>
                                             @endforeach
                                             <option value="L">Lainnya</option>
@@ -181,7 +186,7 @@
                             </div>
                             <div class="col-md-6" id="optionMati" style="display: none;">
                                 <div class="form-group">
-                                    <label for="kode_rt"> Lokasi RT </label>
+                                    <label for="kode_rt"> Lokasi Cabang </label>
                                     <div class="row">
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" name="input_kode_rt"
@@ -199,7 +204,7 @@
                         </div>
                         <div class="form-group">
                             <label for="alamat"> Alamat </label>
-                            <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat"></textarea>
+                            <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="gambar"> Gambar </label>

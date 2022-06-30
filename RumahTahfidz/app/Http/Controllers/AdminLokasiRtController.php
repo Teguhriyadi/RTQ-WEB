@@ -76,7 +76,7 @@ class AdminLokasiRtController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
-        $user->gambar = $data;
+        $user->gambar = url('storage/') . $data;
         $user->save();
 
         $hak_akses = new HakAkses;
@@ -93,7 +93,7 @@ class AdminLokasiRtController extends Controller
         $admin_lokasi_rt->kode_rt = $lokasi;
         $admin_lokasi_rt->save();
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
+        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>")->withInput();
     }
 
     public function edit(Request $request)

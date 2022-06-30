@@ -30,7 +30,7 @@
     @endif
 
     <div class="row">
-        <div class="col-md-4 col-sm-8 col-xs-12">
+        {{-- <div class="col-md-4 col-sm-8 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
@@ -57,7 +57,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 col-sm-4 col-xs-12">
+        <div class="col-md-8 col-sm-4 col-xs-12"> --}}
+        <div class="col-md-6">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
@@ -69,7 +70,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="card-box table-responsive">
-                                <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
+                                <table id="datatables" class="table table-striped table-bordered" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
@@ -89,14 +90,14 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form action="{{ url('/app/sistem/setting/validasi/' . $data->id) }}"
+                                                    {{-- <form action="{{ url('/app/sistem/setting/validasi/' . $data->id) }}"
                                                         method="POST" style="display: inline;">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash"></i> Hapus
                                                         </button>
-                                                    </form>
+                                                    </form> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

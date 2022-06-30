@@ -91,7 +91,8 @@
 </div>
 <div class="form-group">
     <label for="gambar"> Gambar </label>
-    <input type="file" class="form-control" name="gambar" id="gambar">
+    <img class="gambar-preview2 img-fluid mb-3" src="{{ $edit->gambar }}">
+    <input type="file" class="form-control" onchange="previewImage()" name="gambar" id="gambar2">
 </div>
 
 <script type="text/javascript">
@@ -107,4 +108,21 @@
         $("#optionMati").hide();
         $("#kode_rt").show();
     });
+
+    function previewImage() {
+        const image = document.querySelector("#gambar2");
+        const imgPreview = document.querySelector(".gambar-preview2");
+
+        imgPreview.style.display = "block";
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+            $("#tampilGambar").addClass('mb-3');
+            $("#tampilGambar").width("100%");
+            $("#tampilGambar").height("300");
+        }
+    }
 </script>
