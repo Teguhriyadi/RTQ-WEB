@@ -76,7 +76,7 @@ class AdminLokasiRtController extends Controller
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt("adminlokasirt" . $request->no_hp);
+        $user->password = bcrypt("admin" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->no_hp = $request->no_hp;
         $user->tanggal_lahir = $request->tanggal_lahir;
