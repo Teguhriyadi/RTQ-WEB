@@ -25,7 +25,7 @@ class AdminLokasiRtController extends Controller
     public function index()
     {
         $data = [
-            "data_admin_lokasi_rt" => AdminLokasiRt::get(),
+            "data_admin_lokasi_rt" => AdminLokasiRt::get()
         ];
 
         return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
@@ -83,7 +83,7 @@ class AdminLokasiRtController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_hp = $request->no_hp;
-        $user->gambar = url('storage/') . $data;
+        $user->gambar = $data;
         $user->save();
 
         $hak_akses = new HakAkses;
@@ -100,7 +100,7 @@ class AdminLokasiRtController extends Controller
         $admin_lokasi_rt->kode_rt = $lokasi;
         $admin_lokasi_rt->save();
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>")->withInput();
+        return redirect("/app/sistem/admin_lokasi_rt")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
     }
 
     public function edit($id)
