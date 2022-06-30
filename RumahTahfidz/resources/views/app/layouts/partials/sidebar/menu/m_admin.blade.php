@@ -24,6 +24,11 @@
                 Asatidz
             </a>
         </li>
+        <li class="{{ Request::segment(3) == 'halaqah' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/halaqah') }}">
+                Halaqah
+            </a>
+        </li>
     </ul>
 </li>
 <li id="laporan">

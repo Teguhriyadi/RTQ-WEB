@@ -173,12 +173,6 @@ Route::prefix("app")->group(function () {
                 Route::put("/lokasi_rt/simpan", [LokasiRtController::class, "update"]);
                 Route::resource("/lokasi_rt", LokasiRtController::class);
 
-                // Data Halaqah
-                Route::get("/halaqah/edit", [HalaqahController::class, "edit"]);
-                Route::put("/halaqah/simpan", [HalaqahController::class, "update"]);
-                Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
-                Route::resource("/halaqah", HalaqahController::class);
-
                 // Data Jabatan
                 Route::get("/jabatan/edit", [JabatanController::class, "edit"]);
                 Route::put("/jabatan/simpan", [JabatanController::class, "update"]);
@@ -330,6 +324,12 @@ Route::prefix("app")->group(function () {
             // Iuran Wali Santri
             Route::get("/iuran", [IuranController::class, "validasi_admin_cabang"]);
             Route::put("/iuran", [IuranController::class, "simpan_validasi"]);
+
+            // Data Halaqah
+            Route::get("/halaqah/edit", [HalaqahController::class, "edit"]);
+            Route::put("/halaqah/simpan", [HalaqahController::class, "update"]);
+            Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
+            Route::resource("/halaqah", HalaqahController::class);
 
             Route::get("/home", [AppController::class, "home"]);
 
