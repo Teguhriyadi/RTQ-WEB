@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LokasiRt;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\HakAkses;
 
 class UsersController extends Controller
 {
@@ -45,6 +46,10 @@ class UsersController extends Controller
         $hak_akses->id_role = 1;
 
         $hak_akses->save();
+
+        User::where("id", $user->id)->update([
+            "id_hak_akses" => $hak_akses->id
+        ]);
 
         return redirect()->back();
     }
