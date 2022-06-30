@@ -17,8 +17,12 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="kode_halaqah"> Halaqah </label>
-                <input type="text" class="form-control" value="{{ $data_wali->getHalaqah->nama_halaqah }}"
-                    readonly>
+                <select name="kode_halaqah" id="kode_halaqah" class="form-control">
+                    <option value="">- Pilih Halaqah -</option>
+                    @foreach ($data_halaqah as $halaqah)
+                        <option value="{{ $halaqah->kode_halaqah }}">{{ $halaqah->nama_halaqah }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>

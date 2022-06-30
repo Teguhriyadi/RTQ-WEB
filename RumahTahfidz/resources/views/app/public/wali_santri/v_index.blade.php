@@ -149,14 +149,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="email"> Email </label>
                                     <input type="email" class="form-control" name="email" id="email"
                                         placeholder="Masukkan Email" value="{{ old('email') }}">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kode_halaqah">Halaqah</label>
                                     <select name="kode_halaqah" class="form-control" id="kode_halaqah">
@@ -169,7 +169,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="row">
                             <div class="col-md-6">

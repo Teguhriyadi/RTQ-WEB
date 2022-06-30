@@ -135,7 +135,8 @@ class SantriController extends Controller
             "data_wali" => WaliSantri::where("id", $request->id)->first(),
             "data_kelas" => Kelas::all(),
             "data_nominal_iuran" => NominalIuran::where("status", 1)->first(),
-            "data_besaran" => BesaranIuran::get()
+            "data_besaran" => BesaranIuran::get(),
+            "data_halaqah" => Halaqah::all()
         ];
 
         return view("app.public.wali_santri.v_tambah_santri", $data);

@@ -47,7 +47,6 @@ class WaliSantriController extends Controller
             "tempat_lahir" => "required",
             "no_ktp" => "required",
             "no_kk" => "required",
-            "kode_halaqah" => "required",
             "pekerjaan" => "required",
             "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
@@ -82,7 +81,7 @@ class WaliSantriController extends Controller
         $walisantri->id = $user->id;
         $walisantri->no_ktp = $request->no_ktp;
         $walisantri->no_kk = $request->no_kk;
-        $walisantri->kode_halaqah = $request->kode_halaqah;
+        $walisantri->kode_halaqah = 'HLQ-001';
         $walisantri->pekerjaan = $request->pekerjaan;
 
         $walisantri->save();
