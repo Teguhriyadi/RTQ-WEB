@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Admin Lokasi RT')
+@section('app_title', 'Admin Cabang')
 
 @section('app_content')
 
