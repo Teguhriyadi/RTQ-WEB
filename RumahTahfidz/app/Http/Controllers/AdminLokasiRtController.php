@@ -25,7 +25,7 @@ class AdminLokasiRtController extends Controller
     public function index()
     {
         $data = [
-            "data_admin_lokasi_rt" => AdminLokasiRt::get()
+            "data_admin_lokasi_rt" => AdminLokasiRt::get(),
         ];
 
         return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
