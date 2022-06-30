@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('tb_wali_santri', function (Blueprint $table) {
             $table->id();
-            $table->string("no_ktp", 50);
-            $table->string("no_kk", 50);
-            $table->string("kode_halaqah");
-            $table->string("pekerjaan");
+            $table->string("no_ktp", 50)->nullable();
+            $table->string("no_kk", 50)->nullable();
+            $table->string("kode_halaqah")->nullable();
+            $table->string("pekerjaan")->nullable();
         });
     }
 

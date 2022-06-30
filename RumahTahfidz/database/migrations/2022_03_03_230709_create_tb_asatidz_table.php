@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('tb_asatidz', function (Blueprint $table) {
             $table->id();
-            $table->string("nomor_induk", 100);
-            $table->integer("no_ktp");
-            $table->string("pendidikan_terakhir", 100);
-            $table->string("aktivitas_utama", 100);
-            $table->text("motivasi_mengajar");
+            $table->string("nomor_induk", 100)->nullable();
+            $table->integer("no_ktp")->nullable()->nullable();
+            $table->string("pendidikan_terakhir", 100)->nullable();
+            $table->string("aktivitas_utama", 100)->nullable();
+            $table->text("motivasi_mengajar")->nullable();
             $table->timestamps();
         });
     }

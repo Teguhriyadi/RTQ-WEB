@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\HakAkses;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\WaliSantri;
+use App\Models\Asatidz;
+use App\Models\AdminLokasiRt;
+
 use Illuminate\Http\Request;
 
 class HakAksesController extends Controller
@@ -30,11 +34,35 @@ class HakAksesController extends Controller
             HakAkses::where('id_role', $request->roleId)->where('id_user', $request->userId)->delete();
 
             return 1;
+
         } else {
-            HakAkses::create([
-                'id_role' => $request->roleId,
-                'id_user' => $request->userId,
-            ]);
+
+            $hak_akses = new HakAkses;
+
+            $hak_akses->id_user = $request->userId;
+            $hak_akses->id_role = $request->roleId;
+
+            $hak_akses->save();
+
+            if ($request->roleId == 2)  {
+
+                AdminLokasiRt::create([
+                    "id" => $request->userId
+                ]);
+
+            } else if ($request->roleId == 3) {
+
+                Asatidz::create([
+                    "id" => $request->userId
+                ]);
+
+            } else if ($request->roleId == 4) {
+
+                WaliSantri::create([
+                    "id" => $request->userId
+                ]);
+
+            }
 
             return 1;
         }

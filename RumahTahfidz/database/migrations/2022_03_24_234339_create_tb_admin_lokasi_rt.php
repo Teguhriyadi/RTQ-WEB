@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tb_admin_lokasi_rt', function (Blueprint $table) {
             $table->id();
-            $table->string("pendidikan_terakhir");
-            $table->string("kode_rt");
+            $table->string("pendidikan_terakhir")->nullable();
+            $table->string("kode_rt")->nullable();
             $table->timestamps();
         });
     }

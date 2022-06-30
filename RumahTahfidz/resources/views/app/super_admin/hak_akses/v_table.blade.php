@@ -17,6 +17,39 @@
             @endif
         </td>
     </tr>
+
+    <!-- Edit Data -->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-edit"></i>
+                        <span>Edit Data</span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/app/sistem/jenjang/simpan') }}" method="POST" id="editJenjang">
+                    @method('PUT')
+                    {{ csrf_field() }}
+                    <div class="modal-body" id="modal-content-edit">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Kembali
+                        </button>
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fa fa-save"></i> Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END -->
 @endforeach
 
 <script>

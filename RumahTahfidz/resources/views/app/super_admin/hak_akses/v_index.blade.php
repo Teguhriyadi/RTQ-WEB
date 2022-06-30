@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ url('app/sistem/users') }}">User</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $user->nama }}</li>
+                {{-- <li class="breadcrumb-item active" aria-current="page">{{ $user->nama }}</li> --}}
             </ol>
         </nav>
     </section>
