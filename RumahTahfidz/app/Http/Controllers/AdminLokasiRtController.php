@@ -28,7 +28,7 @@ class AdminLokasiRtController extends Controller
             "data_admin_lokasi_rt" => AdminLokasiRt::get()
         ];
 
-        return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
+        //return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
     }
 
     public function create()

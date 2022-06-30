@@ -24,7 +24,6 @@ class WaliSantriController extends Controller
             $data_halaqah = Halaqah::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->get();
         }
         $data = [
-            "data_wali" => WaliSantri::get(),
             "data_santri" => Santri::get(),
             "data_halaqah" => $data_halaqah
         ];
