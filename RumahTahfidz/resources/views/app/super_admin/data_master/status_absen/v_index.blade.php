@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="keterangan_absen"> Keterangan </label>
                             <input type="text" class="form-control" name="keterangan_absen" id="keterangan_absen"
-                                placeholder="Masukkan Keterangan Absen">
+                                placeholder="Masukkan Keterangan Absen" value="{{ old('keterangan_absen') }}">
                         </div>
                         <div class="ln_solid"></div>
                         <button class="btn btn-danger btn-sm" type="reset">

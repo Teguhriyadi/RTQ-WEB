@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="jenjang"> Jenjang </label>
                             <input type="text" class="form-control" name="jenjang" id="jenjang"
-                                placeholder="Masukkan Jenjang">
+                                placeholder="Masukkan Jenjang" value="{{ old('jenjang') }}">
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">

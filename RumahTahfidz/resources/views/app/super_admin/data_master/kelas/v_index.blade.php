@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="nama_kelas"> Nama Kelas </label>
                             <input type="text" class="form-control" name="nama_kelas" id="nama_kelas"
-                                placeholder="Masukkan Nama Kelas">
+                                placeholder="Masukkan Nama Kelas" value="{{ old('nama_kelas') }}">
                         </div>
                         <div class="ln_solid"></div>
                         <button class="btn btn-danger btn-sm" type="reset">
@@ -128,10 +128,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-sm btn-danger" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-sm btn-success" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>

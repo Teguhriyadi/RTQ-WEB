@@ -26,6 +26,17 @@
 
 <div class="clearfix"></div>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+@endif
+
 <form action="{{ url('/app/sistem/admin_lokasi_rt') }}" method="POST" enctype="multipart/form-data"
     id="tambahAdminCabang">
     <div class="row">
