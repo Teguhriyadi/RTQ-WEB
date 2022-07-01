@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Edit Wali Santri')
+@section('app_title', 'Tambah Wali Santri')
 
 @section('app_content')
 

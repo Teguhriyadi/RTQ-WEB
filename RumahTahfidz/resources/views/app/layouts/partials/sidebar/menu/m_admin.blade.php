@@ -47,8 +47,8 @@
                 Jenjang
             </a>
         </li>
-        <li class="{{ Request::segment(3) == 'lokasi_rt' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/lokasi_rt') }}">
+        <li class="{{ Request::segment(3) == 'lokasi_cabang' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/lokasi_cabang') }}">
                 Lokasi RT
             </a>
         </li>

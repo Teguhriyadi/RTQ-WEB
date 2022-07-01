@@ -31,6 +31,11 @@ class WaliSantriController extends Controller
         return view("app.public.wali_santri.v_index", $data);
     }
 
+    public function create()
+    {
+        return view("app.public.wali_santri.v_create");
+    }
+
     public function store(Request $request)
     {
         if ($request->file("gambar")) {
@@ -80,12 +85,11 @@ class WaliSantriController extends Controller
         $walisantri->id = $user->id;
         $walisantri->no_ktp = $request->no_ktp;
         $walisantri->no_kk = $request->no_kk;
-        $walisantri->kode_halaqah = 'HLQ-001';
         $walisantri->pekerjaan = $request->pekerjaan;
 
         $walisantri->save();
 
-        return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>')->withInput();
+        return redirect("/app/sistem/wali_santri")->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>')->withInput();
     }
 
     public function edit(Request $request)
@@ -181,7 +185,7 @@ class WaliSantriController extends Controller
                 $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
                 $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
                 $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
-                $walisantri = WaliSantri::where("kode_halaqah", $halaqah->kode_halaqah)->get();
+                $walisantri = WaliSantri::get();
             }
         }
 
@@ -223,11 +227,7 @@ class WaliSantriController extends Controller
                                     data-target="#modalTambahSantri" data-toggle="modal">
                                     <i class="fa fa-plus"></i> Tambah
                                 </button>';
-                    $aksiBtn .= '<button onclick="editDataWali(' . $row["id"] . ')" type="button"
-                                    class="btn btn-warning btn-sm text-white" id="btnEdit"
-                                    data-target="#modalEdit" data-toggle="modal">
-                                    <i class="fa fa-edit"></i> Edit
-                                </button>';
+                    $aksiBtn .= '<a href="' . url("/app/sistem/wali_santri/" . $row["id"]) . '/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit </a>';
                     $aksiBtn .= '<form action="' . url("/app/sistem/wali_santri/" . $row["id"]) . '"
                                 method="POST" style="display: inline;">
                                 ' . method_field('delete') . '
