@@ -1,4 +1,4 @@
-y=@extends('.app.layouts.template')
+@extends('.app.layouts.template')
 
 @section('app_title', 'Admin Cabang')
 
@@ -118,10 +118,10 @@ y=@extends('.app.layouts.template')
                             <div class="form-group">
                                 <label for="kode_rt"> Lokasi RT </label>
                                 @if ($lokasi_rt->count() < 1)
-                                    <input type="text" name="kode_input" class="form-control" id="input_kode_rt"
-                                        placeholder="Masukkan Lokasi RT">
+                                    <input type="text" name="input_kode_rt" class="form-control"
+                                        id="input_kode_rt" placeholder="Masukkan Lokasi RT">
                                 @else
-                                    <select name="kode_rt" class="form-control" id="kode_rt">
+                                    <select name="edit_pilihan" class="form-control" id="edit_pilihan">
                                         <option value="">- Pilih -</option>
                                         @foreach ($lokasi_rt as $data)
                                             <option value="{{ $data->kode_rt }}"
@@ -136,11 +136,11 @@ y=@extends('.app.layouts.template')
                         </div>
                         <div class="col-md-6" id="optionMati" style="display: none;">
                             <div class="form-group">
-                                <label for="kode_rt"> Lokasi RT </label>
+                                <label for="edit_lokasi_rt"> Lokasi RT </label>
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" name="input_kode_rt"
-                                            id="kode_rt" placeholder="Masukkan Lokasi RT">
+                                        <input type="text" class="form-control" name="edit_lokasi_rt"
+                                            id="edit_lokasi_rt" placeholder="Masukkan Lokasi RT">
                                     </div>
                                     <div class="col-md-2">
                                         <a class="btn btn-danger btn-sm" id="btn-nyalakan-pilihan"
@@ -259,7 +259,7 @@ y=@extends('.app.layouts.template')
         })
     })(jQuery, window, document)
 
-    $("#kode_rt").change(function() {
+    $("#edit_pilihan").change(function() {
         if ($(this).val() == "L") {
             $("#optionNyala").hide();
             $("#optionMati").show();
@@ -269,7 +269,7 @@ y=@extends('.app.layouts.template')
     $("#btn-nyalakan-pilihan").click(function() {
         $("#optionNyala").show();
         $("#optionMati").hide();
-        $("#kode_rt").show();
+        $("#input_kode_rt").show();
     });
 
     function previewImage() {

@@ -115,9 +115,7 @@ Route::prefix("app")->group(function () {
 
             // Data Wali Santri
             Route::get("/wali_santri/export", [ExcelController::class, "exportWaliSantri"]);
-            Route::get("/wali_santri/edit", [WaliSantriController::class, "edit"]);
             Route::get("/wali_santri/datatables", [WaliSantriController::class, "datatables"]);
-            Route::put("/wali_santri/simpan", [WaliSantriController::class, "update"]);
             Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
             Route::resource("/wali_santri", WaliSantriController::class);
 
@@ -169,9 +167,9 @@ Route::prefix("app")->group(function () {
                 Route::resource("/jenjang", JenjangController::class);
 
                 // Data Cabang
-                Route::get("/lokasi_rt/edit", [LokasiRtController::class, "edit"]);
-                Route::put("/lokasi_rt/simpan", [LokasiRtController::class, "update"]);
-                Route::resource("/lokasi_rt", LokasiRtController::class);
+                Route::get("/lokasi_cabang/edit", [LokasiRtController::class, "edit"]);
+                Route::put("/lokasi_cabang/simpan", [LokasiRtController::class, "update"]);
+                Route::resource("/lokasi_cabang", LokasiRtController::class);
 
                 // Data Jabatan
                 Route::get("/jabatan/edit", [JabatanController::class, "edit"]);
