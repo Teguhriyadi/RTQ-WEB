@@ -28,7 +28,7 @@ class AdminLokasiRtController extends Controller
             "data_admin_lokasi_rt" => AdminLokasiRt::get()
         ];
 
-        //return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
+        return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
     }
 
     public function create()
@@ -100,7 +100,7 @@ class AdminLokasiRtController extends Controller
         $admin_lokasi_rt->kode_rt = $lokasi;
         $admin_lokasi_rt->save();
 
-        return redirect("/app/sistem/admin_lokasi_rt")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
+        return redirect("/app/sistem/admin_lokasi_rt")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>")->withInput();
     }
 
     public function edit($id)
