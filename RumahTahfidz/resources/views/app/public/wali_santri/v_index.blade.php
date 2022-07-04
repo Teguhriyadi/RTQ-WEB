@@ -41,11 +41,8 @@
                 <div class="x_content bs-example-popovers">
                     <div class="alert alert-danger alert-dismissible " role="alert">
                         <strong>Oops!</strong> Data Halaqah Masih Kosong.
-                        @if (Auth::user()->getAkses->id_role == 1)
-                            Silahkan Klik <a target="_blank" href="{{ url('/app/sistem/lokasi_rt') }}"
-                                style="color: white;">Disini</a>
-                        @else
-                        @endif
+                        Silahkan Klik <a target="_blank" href="{{ url('/app/sistem/halaqah') }}"
+                            style="color: white;">Disini</a>
                     </div>
                 </div>
             </div>

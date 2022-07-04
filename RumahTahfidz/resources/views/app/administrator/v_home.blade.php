@@ -89,16 +89,6 @@ use App\Models\SettingIuran;
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="x_panel">
-                <div class="x_content">
-                    <canvas id="graph_bar" style="width:100%; height:280px;"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-7">
             <div class="row">
                 <div class="animated flipInY col-md-6">
@@ -157,7 +147,7 @@ use App\Models\SettingIuran;
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>
-                                Informasi Login <small>Users</small>
+                                <i class="fa fa-book"></i> Informasi Login <small>Users</small>
                             </h2>
                             <div class="clearfix"></div>
                         </div>
@@ -197,6 +187,17 @@ use App\Models\SettingIuran;
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <canvas id="graph_bar" style="width:100%; height:280px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('app_scripts')

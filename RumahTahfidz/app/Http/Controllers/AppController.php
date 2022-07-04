@@ -23,7 +23,7 @@ class AppController extends Controller
             "jumlah_asatidz" => Asatidz::count(),
             "jumlah_santri" => Santri::count(),
             "jumlah_admin_lokasi_rt" => AdminLokasiRT::count(),
-            "user_login" => TerakhirLogin::where("id_user", auth()->user()->id)->paginate(10),
+            "user_login" => TerakhirLogin::where("id_user", auth()->user()->id)->paginate(3),
             "data_santri" => Santri::get(),
             "hak_akses" => HakAkses::where('id_user', auth()->user()->id)->get(),
         ];

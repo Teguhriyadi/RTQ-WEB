@@ -92,10 +92,10 @@ class WaliSantriController extends Controller
         return redirect("/app/sistem/wali_santri")->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>')->withInput();
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
         $data = [
-            "edit" => WaliSantri::where("id", $request->id)->first(),
+            "edit" => WaliSantri::where("id", $id)->first(),
             "data_halaqah" => Halaqah::get()
         ];
 
@@ -222,11 +222,7 @@ class WaliSantriController extends Controller
                     $aksiBtn = '-';
                 } else {
 
-                    $aksiBtn = '<button onclick="tambahDataSantri(' . $row["id"] . ')" type="button"
-                                    class="btn btn-success btn-sm" id="btnTambahSantri"
-                                    data-target="#modalTambahSantri" data-toggle="modal">
-                                    <i class="fa fa-plus"></i> Tambah
-                                </button>';
+                    $aksiBtn = '<a href="' . url('/app/sistem/wali_santri/create/anak/' . $row["id"]) . '" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah </a>';
                     $aksiBtn .= '<a href="' . url("/app/sistem/wali_santri/" . $row["id"]) . '/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit </a>';
                     $aksiBtn .= '<form action="' . url("/app/sistem/wali_santri/" . $row["id"]) . '"
                                 method="POST" style="display: inline;">
