@@ -8,15 +8,21 @@ use App\Models\Iuran;
 
 @section('app_content')
 
-    <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>
+    <section class="section">
+        <h3>
+            @yield('app_title')
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
                     @yield('app_title')
-                </h3>
-            </div>
-        </div>
-    </div>
+                </li>
+            </ol>
+        </nav>
+    </section>
 
     <div class="clearfix"></div>
 
