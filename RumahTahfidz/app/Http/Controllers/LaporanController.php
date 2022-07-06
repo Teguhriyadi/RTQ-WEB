@@ -16,13 +16,26 @@ class LaporanController extends Controller
 {
     public function laporan_absensi_santri()
     {
-        $halaqah = KelasHalaqah::where("id_asatidz", Auth::user()->id)->where("status", 1)->first();
-
         $data = [
-            "data_santri" => Santri::where("kode_halaqah", $halaqah->kode_halaqah)->get()
+            "data_santri" => Santri::whereYear("created_at", date("Y"))->get()
         ];
 
-        return view("app.public.laporan.absensi.asatidz.v_index", $data);
+        return view("app.public.laporan.absensi.santri.v_index", $data);
+    }
+
+    public function filter_laporan_santri(Request $request)
+    {
+        $tanggal_awal = Carbon::parse($request->tanggal_awal)->toDateString();
+        $tanggal_akhir = Carbon::parse($request->tanggal_akhir)->toDateString();
+
+        $data = [
+            "data_santri" => Santri::whereBetween("created_at", [$tanggal_awal, $tanggal_akhir])->whereYear("created_at", date("Y"))->distinct()->get()
+        ];
+
+        $data["tanggal_awal"] = $tanggal_awal;
+        $data["tanggal_akhir"] = $tanggal_akhir;
+
+        return view("app.public.laporan.absensi.santri.v_index", $data);
     }
 
     public function laporan_absensi_asatidz()

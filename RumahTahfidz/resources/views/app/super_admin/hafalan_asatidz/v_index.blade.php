@@ -23,7 +23,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        @yield('app_title')
+                        <i class="fa fa-book"></i> @yield('app_title')
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -45,7 +45,7 @@
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_asatidz as $data)
+                                        @forelse ($data_asatidz as $data)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $data->nomor_induk }}</td>
@@ -58,7 +58,15 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">
+                                                    <b>
+                                                        <i>Maaf, Data Asatidz Masih Kosong</i>
+                                                    </b>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

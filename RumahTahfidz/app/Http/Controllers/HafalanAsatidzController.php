@@ -11,7 +11,7 @@ class HafalanAsatidzController extends Controller
     public function index()
     {
         $data = [
-            "data_asatidz" => Asatidz::get()
+            "data_asatidz" => Asatidz::paginate(10)
         ];
 
         return view("app.super_admin.hafalan_asatidz.v_index", $data);

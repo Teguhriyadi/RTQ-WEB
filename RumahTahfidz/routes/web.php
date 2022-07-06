@@ -127,6 +127,7 @@ Route::prefix("app")->group(function () {
                 Route::prefix("/absensi")->group(function () {
                     // Santri
                     Route::get("/santri", [LaporanController::class, "laporan_absensi_santri"]);
+                    Route::put("/santri", [LaporanController::class, "filter_laporan_santri"]);
                     // Asatidz
                     Route::get("/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
                     Route::put("/asatidz", [LaporanController::class, "filter_laporan_asatidz"]);
