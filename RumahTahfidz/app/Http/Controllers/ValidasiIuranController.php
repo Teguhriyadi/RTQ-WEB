@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Iuran;
+use App\Models\Santri;
 use Illuminate\Http\Request;
 
 class ValidasiIuranController extends Controller
@@ -10,6 +11,7 @@ class ValidasiIuranController extends Controller
     public function v_belum_lunas()
     {
         $data = [
+            "santri" => Santri::get(),
             "data_santri" => Iuran::selectRaw("id_santri")->distinct()->get()
         ];
 

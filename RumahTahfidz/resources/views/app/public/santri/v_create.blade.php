@@ -63,7 +63,8 @@
                         <div class="x_content bs-example-popovers">
                             <div class="alert alert-danger alert-dismissible " role="alert">
                                 <strong>Oops!</strong> Data Besaran Iuran Masih Kosong. Silahkan Klik
-                                <a target="_blank" href="{{ url('/app/sistem/besaran_iuran') }}" style="color: white;">Disini</a>
+                                <a target="_blank" href="{{ url('/app/sistem/besaran_iuran') }}"
+                                    style="color: white;">Disini</a>
                             </div>
                         </div>
                     </div>
@@ -212,7 +213,8 @@
                                             <div class="form-group">
                                                 <label for="nominal"> Nominal </label>
                                                 <input type="number" class="form-control" name="nominal" id="nominal"
-                                                    placeholder="Masukkan Nominal">
+                                                    placeholder="Masukkan Nominal" min="1000"
+                                                    max="{{ $data_nominal_iuran->nominal }}">
                                             </div>
                                         </div>
                                     </div>

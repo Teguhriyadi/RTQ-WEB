@@ -39,9 +39,9 @@
                     <div class="x_content">
                         <center>
                             @if (empty($edit->getUser->gambar))
-                                <img src="{{ $edit->getUser->gambar }}" alt="">
+                                <img src="{{ url('/gambar/gambar_user.png') }}" alt="">
                             @else
-                                <img src="{{ url('/gambar/gambar_user.png') }}" class="img-fluid gambar-preview"
+                                <img src="{{ $edit->getUser->gambar }}" class="img-fluid gambar-preview"
                                     id="tampilGambar">
                             @endif
                         </center>

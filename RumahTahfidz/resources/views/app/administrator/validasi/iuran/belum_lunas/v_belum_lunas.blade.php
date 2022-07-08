@@ -1,6 +1,7 @@
 @php
 use App\Models\Santri;
 use App\Models\Iuran;
+use Carbon\Carbon;
 @endphp
 @extends('.app.layouts.template')
 
@@ -25,6 +26,50 @@ use App\Models\Iuran;
     </section>
 
     <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        <i class="fa fa-money"></i> Iuran Bulan <b>{{ date('d') }}</b>
+                    </h2>
+                    <form action="" class="pull-right">
+                        <div class="form-group">
+                            <select name="" id="" style="padding: 5px;">
+                                <option value="">- Pilihan Rekap -</option>
+                                <option value="1"> 5 Hari </option>
+                                <option value="2"> 10 Hari </option>
+                                <option value="3"> Lainnya </option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="tanggal_awal"> Tanggal Awal </label>
+                                <input type="date" class="form-control" name="tanggal_awal">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="tanggal_akhir"> Tanggal Akhir </label>
+                                <input type="date" class="form-control" name="tanggal_akhir">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary btn-sm btn-block mt-4 p-2">
+                                <i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
