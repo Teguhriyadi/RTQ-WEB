@@ -34,38 +34,36 @@ use Carbon\Carbon;
                     <h2>
                         <i class="fa fa-money"></i> Iuran Bulan <b>{{ date('d') }}</b>
                     </h2>
-                    <form action="" class="pull-right">
+                    <form id="main" name="main" method="POST" class="pull-right">
+                        @method('PUT')
+                        @csrf
                         <div class="form-group">
-                            <select name="" id="" style="padding: 5px;">
-                                <option value="">- Pilihan Rekap -</option>
-                                <option value="1"> 5 Hari </option>
-                                <option value="2"> 10 Hari </option>
-                                <option value="3"> Lainnya </option>
+                            <select name="rekap_by" id="rekap_by" style="padding: 5px;" onchange="formAction('main')">
+                                @if (empty($select_rekap))
+                                    <option value="">- Pilihan Rekap -</option>
+                                    <option value="1"> 5 Hari </option>
+                                    <option value="2"> 10 Hari </option>
+                                    <option value="3"> Lainnya </option>
+                                @else
+                                    <option value="">- Pilihan Rekap -</option>
+                                    <option value="1" {{ $select_rekap == 1 ? 'selected' : '' }}> 5 Hari </option>
+                                    <option value="2" {{ $select_rekap == 2 ? 'selected' : '' }}> 10 Hari </option>
+                                    <option value="3"{{ $select_rekap == 3 ? 'selected' : '' }}> Lainnya </option>
+                                @endif
                             </select>
                         </div>
                     </form>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="tanggal_awal"> Tanggal Awal </label>
-                                <input type="date" class="form-control" name="tanggal_awal">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="tanggal_akhir"> Tanggal Akhir </label>
-                                <input type="date" class="form-control" name="tanggal_akhir">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary btn-sm btn-block mt-4 p-2">
-                                <i class="fa fa-search"></i> Cari
-                            </button>
-                        </div>
-                    </div>
+                    @if (empty($select_rekap))
+                    @else
+                        @if ($select_rekap == 1 || $select_rekap == 2)
+                            @include('app.administrator.validasi.iuran.v_tanggal_filter')
+                        @elseif($select_rekap == 3)
+                            @include('app.administrator.validasi.iuran.v_tanggal_lainnya')
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>
@@ -143,6 +141,15 @@ use Carbon\Carbon;
         $(document).ready(function() {
             $("#table-1").dataTable();
         })
+
+        function formAction(idForm, action, target = '') {
+            if (target != '') {
+                $('#' + idForm).attr('target', target);
+            }
+            $('#' + idForm).attr('action', action);
+            console.log();
+            $('#' + idForm).submit();
+        }
     </script>
 
 @endsection
