@@ -141,7 +141,7 @@ use App\Models\Absensi;
                                                                     } else {
                                                                         $pembagian = $pembagian_absensi / 10;
                                                                         $hasil_absensi = (($data_absensi / $pembagian) * 40) / 100;
-                                                                        echo $hasil_absensi;
+                                                                        echo $hasil_absensi * 10;
                                                                     }
                                                                 @endphp
                                                             </td>
@@ -254,7 +254,7 @@ use App\Models\Absensi;
                                                                 @if ($total == 0)
                                                                     <span class="badge badge-danger p-2"
                                                                         style="font-size: 14px;">
-                                                                        <i class="fa fa-check"></i> Belum Ada Data
+                                                                        <i class="fa fa-minus"></i> Belum Ada Data
                                                                     </span>
                                                                 @elseif($total <= 100 && $total >= 75)
                                                                     <span class="badge badge-success p-2"
