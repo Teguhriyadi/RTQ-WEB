@@ -10,7 +10,6 @@ use App\Models\Jenjang;
 use App\Models\KategoriPelajaran;
 use App\Models\Kelas;
 use App\Models\LokasiRt;
-use App\Models\Nilai;
 use App\Models\NominalIuran;
 use App\Models\Santri;
 use App\Models\WaliSantri;
@@ -276,7 +275,6 @@ class SantriController extends Controller
         $data = [
             "data_kategori_satu" => KategoriPelajaran::where('id_kategori_penilaian', 1)->get(),
             "data_kategori_dua" => KategoriPelajaran::where("id_kategori_penilaian", 2)->get(),
-            "data_santri" => Santri::where("status", 1)->get(),
             "data_jenjang" => Jenjang::get()
         ];
 
@@ -288,7 +286,8 @@ class SantriController extends Controller
         $data = [
             "data_kategori_satu" => KategoriPelajaran::where('id_kategori_penilaian', 1)->get(),
             "data_kategori_dua" => KategoriPelajaran::where("id_kategori_penilaian", 2)->get(),
-            "data_santri" => Santri::where("status", 1)->where("id_jenjang", $request->jenjang)->get(),
+            "data_santri" => Santri::where("status", 1)->where("id_jenjang", $request->jenjang)->paginate(10),
+            "cek" => Santri::where("status", 1)->where("id_jenjang", $request->jenjang)->count(),
             "data_jenjang" => Jenjang::get(),
             "edit" => Jenjang::where("id", $request->jenjang)->first()
         ];

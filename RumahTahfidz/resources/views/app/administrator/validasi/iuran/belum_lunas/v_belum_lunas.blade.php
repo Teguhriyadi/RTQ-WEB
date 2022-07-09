@@ -58,7 +58,9 @@ use Carbon\Carbon;
                 <div class="x_content">
                     @if (empty($select_rekap))
                     @else
-                        @if ($select_rekap == 1 || $select_rekap == 2)
+                        @if ($select_rekap == 1)
+                            @include('app.administrator.validasi.iuran.v_tanggal_filter')
+                        @elseif($select_rekap == 2)
                             @include('app.administrator.validasi.iuran.v_tanggal_filter')
                         @elseif($select_rekap == 3)
                             @include('app.administrator.validasi.iuran.v_tanggal_lainnya')

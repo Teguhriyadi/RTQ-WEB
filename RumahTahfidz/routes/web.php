@@ -232,6 +232,7 @@ Route::prefix("app")->group(function () {
                         // Belum Lunas
                         Route::get("/belum_lunas", [ValidasiIuranController::class, "v_belum_lunas"]);
                         Route::put("/belum_lunas", [ValidasiIuranController::class, "v_rekap_belum_lunas_by"]);
+                        Route::post("/belum_lunas", [ValidasiIuranController::class, "v_cari_rekap_belum_lunas"]);
                         // Lunas
                         Route::get("/lunas", [ValidasiIuranController::class, "v_lunas"]);
                     });
