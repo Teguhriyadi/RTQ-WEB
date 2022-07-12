@@ -239,3 +239,8 @@
         </li>
     </ul>
 </li>
+<li class="{{ Request::segment(3) == 'pengaturan' ? 'active' : '' }}">
+    <a href="{{ url('/app/sistem/pengaturan') }}">
+        <i class="fa fa-gears"></i> Pengaturan
+    </a>
+</li>

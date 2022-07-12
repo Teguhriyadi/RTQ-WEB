@@ -33,6 +33,7 @@ use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\NilaiKategoriController;
 use App\Http\Controllers\NominalIuranController;
 use App\Http\Controllers\PelajaranController;
+use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilSantriController;
 use App\Http\Controllers\ProfilUserController;
@@ -137,6 +138,10 @@ Route::prefix("app")->group(function () {
 
             Route::group(["middleware" => ["can:super_admin"]], function () {
 
+                // Data Pengaturan
+                Route::get("/pengaturan", [PengaturanController::class, "pengaturan"]);
+                Route::get("/download_database", [PengaturanController::class, "download_database"]);
+
                 // Data Kelas Halaqah
                 Route::get("/kelas_halaqah/edit", [KelasHalaqahController::class, "edit"]);
                 Route::put("/kelas_halaqah/simpan", [KelasHalaqahController::class, "update"]);
@@ -200,6 +205,7 @@ Route::prefix("app")->group(function () {
                 Route::resource("/struktur_organisasi", StrukturOrganisasiController::class);
 
                 // Data Hafalan Asatidz
+                Route::put("/hafalan/asatidz", [HafalanAsatidzController::class, "filter_tanggal"]);
                 Route::resource("/hafalan/asatidz", HafalanAsatidzController::class);
             });
 

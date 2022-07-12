@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asatidz;
 use App\Models\Quran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HafalanAsatidzController extends Controller
@@ -11,7 +12,7 @@ class HafalanAsatidzController extends Controller
     public function index()
     {
         $data = [
-            "data_asatidz" => Asatidz::paginate(10)
+            "data_asatidz" => Asatidz::whereYear("created_at", date("Y"))->get()
         ];
 
         return view("app.super_admin.hafalan_asatidz.v_index", $data);
@@ -43,5 +44,20 @@ class HafalanAsatidzController extends Controller
         ];
 
         return view("app.super_admin.hafalan_asatidz.v_detail", $data);
+    }
+
+    public function filter_tanggal(Request $request)
+    {
+        $tanggal_awal = Carbon::parse($request->tanggal_awal)->toDateString();
+        $tanggal_akhir = Carbon::parse($request->tanggal_akhir)->toDateString();
+
+        $data = [
+            "data_asatidz" => Asatidz::whereBetween("created_at", [$tanggal_awal, $tanggal_akhir])->whereYear("created_at", date("Y"))->get()
+        ];
+
+        $data["tanggal_awal"] = $tanggal_awal;
+        $data["tanggal_akhir"] = $tanggal_akhir;
+
+        return view("app.super_admin.hafalan_asatidz.v_index", $data);
     }
 }

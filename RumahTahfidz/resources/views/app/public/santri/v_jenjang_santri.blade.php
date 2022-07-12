@@ -250,6 +250,7 @@ use App\Models\Absensi;
 
                                                                     $total = 0;
                                                                     $total = $hasil_absensi + $hasil_tadribat + $hasil_hafalan;
+                                                                    echo $total;
                                                                 @endphp
                                                                 @if ($total == 0)
                                                                     <span class="badge badge-danger p-2"
