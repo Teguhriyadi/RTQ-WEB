@@ -11,8 +11,5 @@ class Role extends Model
 
     protected $table = "tb_role";
 
-    public $timestamps = false;
-
     protected $fillable = ["keterangan"];
-
 }

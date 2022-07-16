@@ -42,6 +42,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
+                                            <th class="text-center">NIK</th>
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th class="text-center">No. HP</th>
@@ -57,6 +58,7 @@
                                         @foreach ($data_asatidz as $asatidz)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
+                                                <td class="text-center">{{ $asatidz->nomor_induk }}</td>
                                                 <td>{{ $asatidz->getUser->nama }}</td>
                                                 <td>{{ $asatidz->getUser->email }}</td>
                                                 <td class="text-center">{{ $asatidz->getUser->no_hp }}</td>

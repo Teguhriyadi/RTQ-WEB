@@ -61,6 +61,7 @@
                                                 <td>{{ $user->email }}</td>
                                                 <td class="text-center">
                                                     @if (Auth::user()->id == $user->id)
+                                                        -
                                                     @else
                                                         @if ($user->status == 1)
                                                             <form action="{{ url('/app/sistem/users/non_aktifkan/') }}"
@@ -87,8 +88,10 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="{{ url('app/sistem/users/hak_akses/' . $user->id) }}"
-                                                        class="btn btn-secondary btn-sm"><i class="fa fa-key"></i>
-                                                        Kelola Hak Akses</a>
+                                                        class="btn btn-secondary btn-sm">
+                                                        <i class="fa fa-key"></i>
+                                                        Kelola Hak Akses
+                                                    </a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="{{ url('app/sistem/users/' . $user->id) }}"
@@ -101,13 +104,10 @@
                                                     </a>
                                                     @if (Auth::user()->id == $user->id)
                                                     @else
-                                                        <form action="" method="POST" style="display: inline">
-                                                            @method('DELETE')
-                                                            {{ csrf_field() }}
-                                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-trash"></i> Hapus
-                                                            </button>
-                                                        </form>
+                                                        <button id="deleteUser" data-id="{{ $user->id }}"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> Hapus
+                                                        </button>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -286,8 +286,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
-    <script>
+
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");
@@ -307,6 +306,35 @@
 
         $(document).ready(function() {
             $("#table-1").dataTable();
+        })
+
+        $(document).ready(function() {
+            $('body').on('click', '#deleteUser', function() {
+                let id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form_string =
+                            "<form method=\"POST\" action=\"{{ url('/app/sistem/users/') }}/" +
+                            id +
+                            "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                        form = $(form_string)
+                        form.appendTo('body');
+                        form.submit();
+                    } else {
+                        Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                    }
+                })
+            })
         })
     </script>
 

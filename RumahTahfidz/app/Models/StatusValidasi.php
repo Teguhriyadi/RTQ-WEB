@@ -12,6 +12,4 @@ class StatusValidasi extends Model
     protected $table = "tb_status_validasi";
 
     protected $guarded = [''];
-
-    public $timestamps = false;
 }

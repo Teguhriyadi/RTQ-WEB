@@ -1,6 +1,7 @@
 @php
 use App\Models\Nilai;
 use App\Models\Absensi;
+use App\Models\Santri;
 @endphp
 @extends('.app.layouts.template')
 
@@ -140,8 +141,8 @@ use App\Models\Absensi;
                                                                         echo '0';
                                                                     } else {
                                                                         $pembagian = $pembagian_absensi / 10;
-                                                                        $hasil_absensi = (($data_absensi / $pembagian) * 40) / 100;
-                                                                        echo $hasil_absensi * 10;
+                                                                        $hasil_absensi = (($data_absensi / $pembagian) * 40) / 10;
+                                                                        echo $hasil_absensi;
                                                                     }
                                                                 @endphp
                                                             </td>
@@ -249,7 +250,7 @@ use App\Models\Absensi;
                                                                     }
 
                                                                     $total = 0;
-                                                                    $total = $hasil_absensi + $hasil_tadribat + $hasil_hafalan;
+                                                                    $total = $hasil_absensi * 10 + $hasil_tadribat + $hasil_hafalan;
                                                                     echo $total;
                                                                 @endphp
                                                                 @if ($total == 0)
@@ -313,6 +314,7 @@ use App\Models\Absensi;
                             @if (empty($data_santri))
                             @else
                                 @if (empty($cek) || empty($data_santri))
+                                    2
                                 @else
                                     @if ($total == 0)
                                         -

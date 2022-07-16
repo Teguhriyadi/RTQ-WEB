@@ -13,8 +13,6 @@ class WaliSantri extends Model
 
     protected $guarded = [''];
 
-    public $timestamps = false;
-
     public function getUser()
     {
         return $this->belongsTo("App\Models\User", "id", "id")->withDefault(["nama" => ""]);

@@ -12,6 +12,4 @@ class KategoriPenilaian extends Model
     protected $table = "tb_kategori_penilaian";
 
     protected $guarded = [''];
-
-    public $timestamps = false;
 }

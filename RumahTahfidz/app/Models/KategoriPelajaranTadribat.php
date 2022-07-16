@@ -13,8 +13,6 @@ class KategoriPelajaranTadribat extends Model
 
     protected $guarded = [''];
 
-    public $timestamps = false;
-
     public function getPelajaran()
     {
         return $this->belongsTo("App\Models\PelajaranTadribat", "id_pelajaran", "id");

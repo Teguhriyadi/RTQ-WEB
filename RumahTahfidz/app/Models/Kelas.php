@@ -12,6 +12,4 @@ class Kelas extends Model
     protected $table = "tb_kelas";
 
     protected $guarded = [''];
-
-    public $timestamps = false;
 }

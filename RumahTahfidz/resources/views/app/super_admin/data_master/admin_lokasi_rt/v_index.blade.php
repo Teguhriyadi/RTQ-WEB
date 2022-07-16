@@ -67,7 +67,7 @@
                                                 <td class="text-center">{{ $data->getUser->no_hp }}</td>
                                                 <td>
                                                     @if (empty($data->pendidikan_terakhir))
-                                                        NULL
+                                                        -
                                                     @else
                                                         {{ $data->pendidikan_terakhir }}
                                                     @endif

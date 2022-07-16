@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer("id_jenjang");
             $table->integer("id_pelajaran");
             $table->integer("id_kategori_penilaian");
+            $table->timestamps();
         });
     }
 

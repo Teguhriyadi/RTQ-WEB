@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("no_ktp", 50)->nullable();
             $table->string("no_kk", 50)->nullable();
             $table->string("pekerjaan")->nullable();
+            $table->timestamps();
         });
     }
 

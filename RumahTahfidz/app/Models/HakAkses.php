@@ -13,8 +13,6 @@ class HakAkses extends Model
 
     protected $guarded = [''];
 
-    public $timestamps = false;
-
     public function getRole()
     {
         return $this->belongsTo(Role::class, "id_role", "id")->withDefault(["keterangan" => "<i><b>NULL</b></i>"]);

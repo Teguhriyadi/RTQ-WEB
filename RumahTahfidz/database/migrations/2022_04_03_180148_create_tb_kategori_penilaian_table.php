@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("kategori_penilaian", 50);
             $table->string("slug", 50);
+            $table->timestamps();
         });
     }
 

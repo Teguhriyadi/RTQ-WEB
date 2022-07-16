@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tb_lokasi_rt', function (Blueprint $table) {
             $table->string("kode_rt", 50)->primary();
             $table->string("lokasi_rt");
+            $table->timestamps();
         });
     }
 

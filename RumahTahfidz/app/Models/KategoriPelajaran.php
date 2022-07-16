@@ -13,8 +13,6 @@ class KategoriPelajaran extends Model
 
     protected $guarded = [''];
 
-    public $timestamps = false;
-
     public function getJenjang()
     {
         return $this->belongsTo("App\Models\Jenjang", "id_jenjang", "id");

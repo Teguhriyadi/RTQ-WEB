@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tb_role', function (Blueprint $table) {
             $table->id();
             $table->string("keterangan", 20);
+            $table->timestamps();
         });
     }
 

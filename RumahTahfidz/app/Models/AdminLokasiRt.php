@@ -17,7 +17,7 @@ class AdminLokasiRt extends Model
 
     public function getLokasiRt()
     {
-        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt")->withDefault(["lokasi_rt" => "NULL"]);
+        return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt")->withDefault(["lokasi_rt" => "-"]);
     }
 
     public function getUser()

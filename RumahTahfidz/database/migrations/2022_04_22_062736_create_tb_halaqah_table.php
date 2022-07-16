@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("kode_halaqah")->primary();
             $table->string("nama_halaqah");
             $table->string("kode_rt");
+            $table->timestamps();
         });
     }
 

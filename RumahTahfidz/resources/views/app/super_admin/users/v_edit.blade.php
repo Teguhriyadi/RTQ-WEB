@@ -33,21 +33,13 @@
         <div class="row">
             <div class="col-md-4 col-sm-4  profile_left">
                 <div class="x_panel">
-                    <div class="x_title">
-                        <div class="clearfix"></div>
-                    </div>
                     <div class="x_content">
-                        <div class="profile_img">
-                            <div id="crop-avatar">
-                                <img class="img-responsive avatar-view" src="{{ $user->gambar }}"
-                                    onerror="this.onerror = null; this.src = '{{ url('gambar/no-images.png') }}'"
-                                    alt="Avatar" title="Change the avatar" width="100%" height="255">
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label for="gambar"> Gambar </label>
-                            <img class="gambar-preview img-fluid" id="tampilGambar">
-                            <input type="file" class="form-control" name="gambar" id="gambar" onchange="previewImage()">
+                            <img src="{{ $user->gambar }}" class="gambar-preview img-fluid" id="tampilGambar"
+                                style="width: 100%">
+                            <input type="file" class="form-control mt-3" name="gambar" id="gambar"
+                                onchange="previewImage()">
                         </div>
                     </div>
                 </div>
@@ -55,13 +47,16 @@
             <div class="col-md-8 col-sm-8 ">
                 <div class="x_panel">
                     <div class="x_title">
+                        <h2>
+                            <i class="fa fa-edit"></i> Edit
+                        </h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <div class="form-group">
                             <label for="nama"> Nama </label>
-                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama"
-                                value="{{ $user->nama }}">
+                            <input type="text" class="form-control" name="nama" id="nama"
+                                placeholder="Masukkan Nama" value="{{ $user->nama }}">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -76,9 +71,11 @@
                                     <label for="jenis_kelamin"> Jenis Kelamin </label>
                                     <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                                         <option value="">- Pilih -</option>
-                                        <option value="L" {{ $user->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki - Laki
+                                        <option value="L" {{ $user->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki -
+                                            Laki
                                         </option>
-                                        <option value="P" {{ $user->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan
+                                        <option value="P" {{ $user->jenis_kelamin == 'P' ? 'selected' : '' }}>
+                                            Perempuan
                                         </option>
                                     </select>
                                 </div>
@@ -100,104 +97,109 @@
                                 </div>
                             </div>
                         </div>
-                        @if ($user->getAdminLokasiRt)
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
-                                        <input type="text" class="form-control" name="pendidikan_terakhir"
-                                            id="pendidikan_terakhir" placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->getAdminLokasiRt->pendidikan_terakhir }}">
+                        @if ($user->getAdminLokasiRt->kode_rt == 'NULL')
+                        @else
+                            @if ($user->getAdminLokasiRt)
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
+                                            <input type="text" class="form-control" name="pendidikan_terakhir"
+                                                id="pendidikan_terakhir" placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getAdminLokasiRt->pendidikan_terakhir }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kode_rt"> Rumah Tahfidz Cabang </label>
+                                            <select class="form-control" name="kode_rt" id="kode_rt">
+                                                <option value="">- Pilih Cabang -</option>
+                                                @foreach ($lokasi_rt as $rt)
+                                                    <option value="{{ $rt->kode_rt }}"
+                                                        {{ $rt->kode_rt == $user->getAdminLokasiRt->kode_rt ? 'selected' : '' }}>
+                                                        {{ $rt->lokasi_rt }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="kode_rt"> Rumah Tahfidz Cabang </label>
-                                        <select class="form-control" name="kode_rt" id="kode_rt">
-                                            <option value="">- Pilih Cabang -</option>
-                                            @foreach ($lokasi_rt as $rt)
-                                                <option value="{{ $rt->kode_rt }}"
-                                                    {{ $rt->kode_rt == $user->getAdminLokasiRt->kode_rt ? 'selected' : '' }}>
-                                                    {{ $rt->lokasi_rt }}</option>
-                                            @endforeach
-                                        </select>
+                            @elseif ($user->getAsatidz)
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nomor_induk"> No. NIP </label>
+                                            <input type="text" class="form-control" name="nomor_induk"
+                                                id="nomor_induk" placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getAsatidz->nomor_induk }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="no_ktp"> No. KTP </label>
+                                            <input type="text" class="form-control" name="no_ktp" id="no_ktp"
+                                                placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getAsatidz->no_ktp }}">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @elseif ($user->getAsatidz)
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nomor_induk"> No. NIP </label>
-                                        <input type="text" class="form-control" name="nomor_induk" id="nomor_induk"
-                                            placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->getAsatidz->nomor_induk }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="aktivitas_utama"> Aktivitas Utama </label>
+                                            <input type="text" class="form-control" name="aktivitas_utama"
+                                                id="aktivitas_utama" placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getAsatidz->aktivitas_utama }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="motivasi_mengajar"> Motivasi Mengajar </label>
+                                            <input type="text" class="form-control" name="motivasi_mengajar"
+                                                id="motivasi_mengajar" placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getAsatidz->motivasi_mengajar }}">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="no_ktp"> No. KTP </label>
-                                        <input type="text" class="form-control" name="no_ktp" id="no_ktp"
-                                            placeholder="Masukkan Tempat Lahir" value="{{ $user->getAsatidz->no_ktp }}">
+                            @elseif ($user->getWaliSantri)
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="no_ktp"> No. KTP </label>
+                                            <input type="text" class="form-control" name="no_ktp" id="no_ktp"
+                                                placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getWaliSantri->no_ktp }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="no_kk"> No. KK </label>
+                                            <input type="text" class="form-control" name="no_kk" id="no_kk"
+                                                placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getWaliSantri->no_kk }}">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="aktivitas_utama"> Aktivitas Utama </label>
-                                        <input type="text" class="form-control" name="aktivitas_utama"
-                                            id="aktivitas_utama" placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->getAsatidz->aktivitas_utama }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="pekerjaan"> Pekerjaan </label>
+                                            <input type="text" class="form-control" name="pekerjaan" id="pekerjaan"
+                                                placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getWaliSantri->pekerjaan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="no_kk"> Rumah Tahfidz Cabang </label>
+                                            <input type="text" class="form-control" disabled
+                                                placeholder="Masukkan Tempat Lahir"
+                                                value="{{ $user->getWaliSantri->getHalaqah->getLokasiRt->lokasi_rt }}">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="motivasi_mengajar"> Motivasi Mengajar </label>
-                                        <input type="text" class="form-control" name="motivasi_mengajar"
-                                            id="motivasi_mengajar" placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->getAsatidz->motivasi_mengajar }}">
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($user->getWaliSantri)
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="no_ktp"> No. KTP </label>
-                                        <input type="text" class="form-control" name="no_ktp" id="no_ktp"
-                                            placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->getWaliSantri->no_ktp }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="no_kk"> No. KK </label>
-                                        <input type="text" class="form-control" name="no_kk" id="no_kk"
-                                            placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->getWaliSantri->no_kk }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="pekerjaan"> Pekerjaan </label>
-                                        <input type="text" class="form-control" name="pekerjaan" id="pekerjaan"
-                                            placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->getWaliSantri->pekerjaan }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="no_kk"> Rumah Tahfidz Cabang </label>
-                                        <input type="text" class="form-control" disabled
-                                            placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->getWaliSantri->getHalaqah->getLokasiRt->lokasi_rt }}">
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         @endif
+
                         <div class="form-group">
                             <label for="alamat"> Alamat </label>
                             <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat">{{ $user->alamat }}</textarea>
@@ -227,6 +229,23 @@
 
 @section('app_scripts')
     <script>
+        function previewImage() {
+            const image = document.querySelector("#gambar");
+            const imgPreview = document.querySelector(".gambar-preview");
+
+            imgPreview.style.display = "block";
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                $("#tampilGambar").addClass('mb-3');
+                $("#tampilGambar").width("100%");
+                $("#tampilGambar").height("300");
+            }
+        }
+
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
