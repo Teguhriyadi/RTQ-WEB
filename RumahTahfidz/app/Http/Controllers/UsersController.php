@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminLokasiRt;
 use App\Models\Asatidz;
 use App\Models\LokasiRt;
 use App\Models\User;
@@ -83,11 +84,12 @@ class UsersController extends Controller
 
         if ($user->getWaliSantri) {
             WaliSantri::where("id", $user->id)->delete();
-            HakAkses::where("id_user", $user->id)->delete();
-            $user->delete();
-        } else {
-            $user->delete();
+        } else if ($user->getAdminLokasiRt) {
+            AdminLokasiRt::where("id", $user->id)->delete();
         }
+
+        HakAkses::where("id_user", $user->id)->delete();
+        $user->delete();
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }

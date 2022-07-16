@@ -13,6 +13,8 @@ class KategoriPelajaran extends Model
 
     protected $guarded = [''];
 
+    protected $with = ["getJenjang", "getPelajaran", "getKategoriPenilaian"];
+
     public function getJenjang()
     {
         return $this->belongsTo("App\Models\Jenjang", "id_jenjang", "id");

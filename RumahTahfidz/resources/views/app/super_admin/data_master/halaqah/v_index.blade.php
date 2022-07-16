@@ -17,8 +17,12 @@
     </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+            <li class="breadcrumb-item">
+                <a href="{{ url('app/sistem/home') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Data @yield('app_title')
+            </li>
         </ol>
     </nav>
 </section>
@@ -31,7 +35,7 @@
             <div class="x_content bs-example-popovers">
                 <div class="alert alert-danger alert-dismissible " role="alert">
                     <strong>Oops!</strong> Data Lokasi RT Masih Kosong. Silahkan Klik
-                    <a target="_blank" href="{{ url('/app/sistem/lokasi_rt') }}" style="color: white;">Disini</a>
+                    <a target="_blank" href="{{ url('/app/sistem/lokasi_cabang') }}" style="color: white;">Disini</a>
                 </div>
             </div>
         </div>
@@ -117,7 +121,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama_halaqah"> Nama Halaqah </label>
-                        <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah"
+                        <input type="text" class="form-control input-sm" name="nama_halaqah" id="nama_halaqah"
                             placeholder="Masukkan Nama Halaqah">
                     </div>
                     <div class="form-group">

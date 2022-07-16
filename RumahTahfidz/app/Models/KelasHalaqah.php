@@ -13,8 +13,15 @@ class KelasHalaqah extends Model
 
     protected $guarded = [""];
 
+    protected $with = ["getAsatidz", "getHalaqah"];
+
     public function getAsatidz()
     {
         return $this->belongsTo("App\Models\Asatidz", "id_asatidz", "id");
+    }
+
+    public function getHalaqah()
+    {
+        return $this->belongsTo("App\Models\Halaqah", "kode_halaqah", "kode_halaqah");
     }
 }

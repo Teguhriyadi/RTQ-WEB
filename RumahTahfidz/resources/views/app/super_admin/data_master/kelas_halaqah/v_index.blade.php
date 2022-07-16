@@ -1,5 +1,6 @@
 @php
 use App\Models\KelasHalaqah;
+use App\Models\Asatidz;
 @endphp
 @extends('.app.layouts.template')
 
@@ -30,8 +31,10 @@ use App\Models\KelasHalaqah;
             <div class="col-md-12 col-sm-12 col-xs-12 m-0">
                 <div class="x_content bs-example-popovers">
                     <div class="alert alert-danger alert-dismissible " role="alert">
-                        <strong>Oops!</strong> Data Halaqah Masih Kosong. Silahkan Klik <a
-                            href="{{ url('/app/sistem/halaqah') }}" style="color: white;">Disini</a>
+                        <strong>Oops!</strong> Data Halaqah Masih Kosong. Silahkan Klik
+                        <a target="_blank" href="{{ url('/app/sistem/halaqah') }}" style="color: white;">
+                            Disini
+                        </a>
                     </div>
                 </div>
             </div>
@@ -81,7 +84,9 @@ use App\Models\KelasHalaqah;
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">No.</th>
+                                                    <th class="text-center">Kode Halaqah</th>
                                                     <th>Asatidz</th>
+                                                    <th>Halaqah</th>
                                                     <th class="text-center">Kelas Halaqah</th>
                                                     <th class="text-center">Aksi</th>
                                                 </tr>
@@ -93,7 +98,9 @@ use App\Models\KelasHalaqah;
                                                 @foreach ($data_kelas_halaqah as $data)
                                                     <tr>
                                                         <td class="text-center">{{ ++$no }}.</td>
+                                                        <td class="text-center">{{ $data->getHalaqah->kode_halaqah }}</td>
                                                         <td>{{ $data->getAsatidz->getUser->nama }}</td>
+                                                        <td>{{ $data->getHalaqah->nama_halaqah }}</td>
                                                         <td class="text-center">{{ $data->kelas_halaqah }}</td>
                                                         <td class="text-center">
                                                             <button onclick="editKelasHalaqah({{ $data->id }})"
@@ -140,49 +147,60 @@ use App\Models\KelasHalaqah;
                 </div>
                 <form action="{{ url('/app/sistem/kelas_halaqah/') }}" method="POST" id="tambahWaliHalaqah">
                     @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="id_asatidz"> Asatidz </label>
-                            <select name="id_asatidz" class="form-control" id="id_asatidz">
-                                <option value="">- Pilih -</option>
-                                @foreach ($data_asatidz as $data)
-                                    @php
-                                        $sudah_ada = KelasHalaqah::where('id_asatidz', $data->id)->first();
-                                    @endphp
-                                    @if ($sudah_ada)
-                                    @else
-                                        <option value="{{ $data->getUser->id }}">
-                                            {{ $data->getUser->nama }}
+                    @php
+                        $j_kelas = KelasHalaqah::count();
+                    @endphp
+                    @if ($data_asatidz->count() == $j_kelas)
+                        <div class="modal-body">
+                            <div class="alert alert-danger alert-dismissible " role="alert">
+                                <strong>Oops!</strong> Data Asatidz Masih Kosong.
+                            </div>
+                        </div>
+                    @else
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="id_asatidz"> Asatidz </label>
+                                <select name="id_asatidz" class="form-control" id="id_asatidz">
+                                    <option value="">- Pilih -</option>
+                                    @foreach ($data_asatidz as $data)
+                                        @php
+                                            $sudah_ada = KelasHalaqah::where('id_asatidz', $data->id)->first();
+                                        @endphp
+                                        @if ($sudah_ada)
+                                        @else
+                                            <option value="{{ $data->getUser->id }}">
+                                                {{ $data->getUser->nama }}
+                                            </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="kode_halaqah"> Halaqah </label>
+                                <select name="kode_halaqah" class="form-control" id="kode_halaqah">
+                                    <option value="">- Pilih -</option>
+                                    @foreach ($data_halaqah as $data)
+                                        <option value="{{ $data->kode_halaqah }}">
+                                            {{ $data->kode_halaqah }} - {{ $data->nama_halaqah }}
                                         </option>
-                                    @endif
-                                @endforeach
-                            </select>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="kelas_halaqah"> Kelas Halaqah </label>
+                                <input type="text" class="form-control" name="kelas_halaqah" id="kelas_halaqah"
+                                    placeholder="Masukkan Kelas Halaqah">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="kode_halaqah"> Halaqah </label>
-                            <select name="kode_halaqah" class="form-control" id="kode_halaqah">
-                                <option value="">- Pilih -</option>
-                                @foreach ($data_halaqah as $data)
-                                    <option value="{{ $data->kode_halaqah }}">
-                                        {{ $data->kode_halaqah }} - {{ $data->nama_halaqah }}
-                                    </option>
-                                @endforeach
-                            </select>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Kembali
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fa fa-save"></i> Tambah
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="kelas_halaqah"> Kelas Halaqah </label>
-                            <input type="text" class="form-control" name="kelas_halaqah" id="kelas_halaqah"
-                                placeholder="Masukkan Kelas Halaqah">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="fa fa-save"></i> Tambah
-                        </button>
-                    </div>
+                    @endif
                 </form>
             </div>
         </div>

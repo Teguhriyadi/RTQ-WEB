@@ -166,7 +166,7 @@ use App\Models\SettingIuran;
                                             <tbody>
                                                 @php use Carbon\Carbon; @endphp
                                                 @php $no = 0 @endphp
-                                                @foreach ($user_login as $data)
+                                                @forelse ($user_login as $data)
                                                     @php
                                                         $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at);
                                                     @endphp
@@ -175,9 +175,20 @@ use App\Models\SettingIuran;
                                                         <td>{{ $data->nama }}</td>
                                                         <td class="text-center">{{ $dataTime->diffForHumans() }}</td>
                                                     </tr>
-                                                @endforeach
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="3" class="text-center">
+                                                            <i>
+                                                                <b>
+                                                                    Data Tidak Ada
+                                                                </b>
+                                                            </i>
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
+                                        {{ $user_login->links() }}
                                     </div>
                                 </div>
                             </div>
