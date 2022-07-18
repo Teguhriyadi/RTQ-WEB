@@ -35,7 +35,10 @@ use App\Models\Santri;
             <div class="col-md-12 col-sm-12 col-xs-12 m-0">
                 <div class="x_content bs-example-popovers">
                     <div class="alert alert-danger alert-dismissible " role="alert">
-                        <strong>Oops!</strong> Data Jenjang Masih Kosong.
+                        <strong>Oops!</strong> Data Jenjang Masih Kosong. Silahkan Klik
+                        <a target="_blank" href="{{ url('/app/sistem/jenjang') }}" style="color: white;">
+                            Disini
+                        </a>
                     </div>
                 </div>
             </div>
@@ -131,7 +134,8 @@ use App\Models\Santri;
                                                             <td>{{ $data->nama_lengkap }}</td>
                                                             <td class="text-center">
                                                                 @php
-                                                                    $data_absensi = Absensi::where('id_santri', $data->id)
+                                                                    $data_absensi = Absensi::where('id_jenjang', $data->id_jenjang)
+                                                                        ->where('id_santri', $data->id)
                                                                         ->where('id_status_absen', 1)
                                                                         ->count();
 
@@ -152,11 +156,13 @@ use App\Models\Santri;
                                                                     $jum_pelajaran = 0;
 
                                                                     foreach ($data_kategori_satu as $d) {
-                                                                        $data_nilai += Nilai::where('id_santri', $data->id)
+                                                                        $data_nilai += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
                                                                             ->where('id_kategori_pelajaran', $d->id)
                                                                             ->sum('nilai');
 
-                                                                        $jum_pelajaran += Nilai::where('id_santri', $data->id)
+                                                                        $jum_pelajaran += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
                                                                             ->where('id_kategori_pelajaran', $d->id)
                                                                             ->count();
                                                                     }
@@ -176,11 +182,13 @@ use App\Models\Santri;
                                                                     $data_nilai = 0;
                                                                     $jum_pelajaran = 0;
                                                                     foreach ($data_kategori_dua as $d) {
-                                                                        $data_nilai += Nilai::where('id_santri', $data->id)
+                                                                        $data_nilai += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
                                                                             ->where('id_kategori_pelajaran', $d->id)
                                                                             ->sum('nilai');
 
-                                                                        $jum_pelajaran += Nilai::where('id_santri', $data->id)
+                                                                        $jum_pelajaran += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
                                                                             ->where('id_kategori_pelajaran', $d->id)
                                                                             ->count();
                                                                     }
@@ -195,7 +203,8 @@ use App\Models\Santri;
                                                             </td>
                                                             <td class="text-center">
                                                                 @php
-                                                                    $data_absensi = Absensi::where('id_santri', $data->id)
+                                                                    $data_absensi = Absensi::where('id_jenjang', $data->id_jenjang)
+                                                                        ->where('id_santri', $data->id)
                                                                         ->where('id_status_absen', 1)
                                                                         ->count();
 
@@ -213,11 +222,13 @@ use App\Models\Santri;
                                                                     $jum_pelajaran = 0;
 
                                                                     foreach ($data_kategori_satu as $d) {
-                                                                        $data_nilai += Nilai::where('id_santri', $data->id)
+                                                                        $data_nilai += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
                                                                             ->where('id_kategori_pelajaran', $d->id)
                                                                             ->sum('nilai');
 
-                                                                        $jum_pelajaran += Nilai::where('id_santri', $data->id)
+                                                                        $jum_pelajaran += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
                                                                             ->where('id_kategori_pelajaran', $d->id)
                                                                             ->count();
                                                                     }
@@ -233,7 +244,8 @@ use App\Models\Santri;
                                                                     $data_nilai = 0;
                                                                     $jum_pelajaran = 0;
                                                                     foreach ($data_kategori_dua as $d) {
-                                                                        $data_nilai += Nilai::where('id_santri', $data->id)
+                                                                        $data_nilai += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
                                                                             ->where('id_kategori_pelajaran', $d->id)
                                                                             ->sum('nilai');
 
@@ -251,12 +263,11 @@ use App\Models\Santri;
 
                                                                     $total = 0;
                                                                     $total = $hasil_absensi * 10 + $hasil_tadribat + $hasil_hafalan;
-                                                                    echo $total;
                                                                 @endphp
                                                                 @if ($total == 0)
                                                                     <span class="badge badge-danger p-2"
                                                                         style="font-size: 14px;">
-                                                                        <i class="fa fa-minus"></i> Belum Ada Data
+                                                                        <i class="fa fa-times"></i> Belum Ada Data
                                                                     </span>
                                                                 @elseif($total <= 100 && $total >= 75)
                                                                     <span class="badge badge-success p-2"
@@ -274,14 +285,16 @@ use App\Models\Santri;
                                                                 @if ($total == 0)
                                                                     -
                                                                 @elseif($total <= 100 && $total >= 75)
-                                                                    <select name="jenjang" id="jenjang"
+                                                                    <select name="id_jenjang[]" id="jenjang"
                                                                         class="form-control">
                                                                         <option value="">- Pilih -</option>
                                                                         @foreach ($data_jenjang as $jenjang)
                                                                             @php
-                                                                                $filter = Santri::where('id_jenjang', $jenjang->id)->first();
+                                                                                $filter_jenjang = Santri::where('id', $data->id)
+                                                                                    ->where('id_jenjang', $jenjang->id)
+                                                                                    ->first();
                                                                             @endphp
-                                                                            @if ($filter)
+                                                                            @if ($filter_jenjang)
                                                                             @else
                                                                                 <option value="{{ $jenjang->id }}">
                                                                                     {{ $jenjang->jenjang }}
@@ -311,6 +324,22 @@ use App\Models\Santri;
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check
+                                        All |
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-plus"></i> Tambah
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group pull-right">
+                                        {{-- {{ $data_santri->links() }} --}}
+                                    </div>
+                                </div>
+                            </div>
                             @if (empty($data_santri))
                             @else
                                 @if (empty($cek) || empty($data_santri))
@@ -319,22 +348,6 @@ use App\Models\Santri;
                                     @if ($total == 0)
                                         -
                                     @elseif($total <= 100 && $total >= 75)
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check
-                                                    All |
-                                                    <button type="submit" class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-plus"></i> Tambah
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group pull-right">
-                                                    {{ $data_santri->links() }}
-                                                </div>
-                                            </div>
-                                        </div>
                                     @else
                                     @endif
                                 @endif
@@ -376,6 +389,10 @@ use App\Models\Santri;
                 }
             }
         }
+
+        $(document).ready(function() {
+            $("#table-1").dataTable();
+        })
     </script>
 
 @endsection

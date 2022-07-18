@@ -55,7 +55,6 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -185,6 +184,124 @@
                 $("#tampilGambar").height("300");
             }
         }
+
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahWaliSantri").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nomor_induk: {
+                                required: true
+                            },
+                            no_ktp: {
+                                required: true
+                            },
+                            nama: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            pendidikan_terakhir: {
+                                required: true
+                            },
+                            tempat_lahir: {
+                                required: true
+                            },
+                            tanggal_lahir: {
+                                required: true
+                            },
+                            jenis_kelamin: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            aktivitas_utama: {
+                                required: true
+                            },
+                            motivasi_mengajar: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                            gambar: {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            nomor_induk: {
+                                required: "Nomor Induk Harap di Isi!"
+                            },
+                            no_ktp: {
+                                required: "Nomor KTP Harap di Isi!"
+                            },
+                            nama: {
+                                required: "Nama Harus di Isi!"
+                            },
+                            email: {
+                                required: "Email Harus di Isi!"
+                            },
+                            pendidikan_terakhir: {
+                                required: "Pendidikan Terakhir Harap di Isi!"
+                            },
+                            tempat_lahir: {
+                                required: "Tempat Lahir Harap di Isi!"
+                            },
+                            tanggal_lahir: {
+                                required: "Tanggal Lahir Harap di Isi!"
+                            },
+                            jenis_kelamin: {
+                                required: "Jenis Kelamin Harap di Pilih!"
+                            },
+                            no_hp: {
+                                required: "No HP Harap di Isi!"
+                            },
+                            aktivitas_utama: {
+                                required: "Aktivitas Utama Harap di Isi!"
+                            },
+                            motivasi_mengajar: {
+                                required: "Motivasi Mengajar Harap di Isi!"
+                            },
+                            alamat: {
+                                required: "Alamat Harap di Isi!"
+                            },
+                            gambar: {
+                                required: "Gambar Harap di Isi!"
+                            }
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+
+                    $("#editKelas").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nama_kelas: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            nama_kelas: {
+                                required: "Kelas harap di isi!"
+                            },
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    })
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
     </script>
 
 @endsection

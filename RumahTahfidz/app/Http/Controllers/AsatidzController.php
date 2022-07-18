@@ -64,6 +64,10 @@ class AsatidzController extends Controller
         $hak_akses->id_role = 3;
         $hak_akses->save();
 
+        User::where("id", $user->id)->update([
+            "id_hak_akses" => $hak_akses->id
+        ]);
+
         $asatidz = new Asatidz;
 
         $asatidz->id = $user->id;

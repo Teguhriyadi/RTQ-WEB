@@ -24,7 +24,7 @@
     <div class="clearfix"></div>
 
     <div class="row">
-        <form action="{{ url('/app/sistem/asatidz') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/app/sistem/asatidz') }}" method="POST" enctype="multipart/form-data" id="tambahAsatidz">
             {{ csrf_field() }}
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -224,6 +224,9 @@
                             },
                             alamat: {
                                 required: true
+                            },
+                            gambar: {
+                                required: true
                             }
                         },
                         messages: {
@@ -251,6 +254,9 @@
                             jenis_kelamin: {
                                 required: "Jenis Kelamin Harap di Pilih!"
                             },
+                            no_hp: {
+                                required: "No HP Harap di Isi!"
+                            },
                             aktivitas_utama: {
                                 required: "Aktivitas Utama Harap di Isi!"
                             },
@@ -259,6 +265,9 @@
                             },
                             alamat: {
                                 required: "Alamat Harap di Isi!"
+                            },
+                            gambar: {
+                                required: "Gambar Harap di Isi!"
                             }
                         },
                         submitHandler: function(form) {

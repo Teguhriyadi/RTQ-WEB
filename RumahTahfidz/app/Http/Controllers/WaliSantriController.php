@@ -80,6 +80,10 @@ class WaliSantriController extends Controller
 
         $hak_akses->save();
 
+        User::where("id", $user->id)->update([
+            "id_hak_akses" => $hak_akses->id
+        ]);
+
         $walisantri = new WaliSantri;
 
         $walisantri->id = $user->id;

@@ -1,3 +1,6 @@
+@php
+use App\Models\Santri;
+@endphp
 @extends('.app.layouts.template')
 
 @section('app_title', 'Santri Yang Mendaftar')
@@ -36,6 +39,28 @@
     @else
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
+
+                @php
+                    $j_status_santri = Santri::where('status', 0)->count();
+                    $j_jenjang_santri = Santri::where('id_jenjang', null)->count();
+                @endphp
+                @if (empty($j_status_santri))
+                @else
+                    @if (empty($j_jenjang_santri))
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            Ada <strong style="color: white;">{{ $j_status_santri }}</strong> Santri yang <strong
+                                style="color: white;">BELUM
+                                TERKONFIRMASI</strong>. Silahkan Konfirmasi
+                            <a target="_blank" href="{{ url('/app/sistem/tes/data') }}" style="color: white;">
+                                <b>
+                                    Disini
+                                </b>
+                            </a>
+                        </div>
+                    @else
+                    @endif
+                @endif
+
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>

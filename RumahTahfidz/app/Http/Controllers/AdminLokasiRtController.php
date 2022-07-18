@@ -93,6 +93,10 @@ class AdminLokasiRtController extends Controller
 
         $hak_akses->save();
 
+        User::where("id", $user->id)->update([
+            "id_hak_akses" => $hak_akses->id
+        ]);
+
         $admin_lokasi_rt = new AdminLokasiRt;
 
         $admin_lokasi_rt->id = $user->id;
@@ -125,7 +129,6 @@ class AdminLokasiRtController extends Controller
             $lokasi->save();
 
             $lokasi = LokasiRt::max("kode_rt");
-            
         } else if ($request->edit_pilihan) {
             $lokasi = $request->edit_pilihan;
         }

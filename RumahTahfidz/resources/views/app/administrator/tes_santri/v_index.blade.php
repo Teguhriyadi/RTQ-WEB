@@ -1,6 +1,10 @@
+@php
+use App\Models\Santri;
+@endphp
+
 @extends('.app.layouts.template')
 
-@section('app_title', 'Data Santri')
+@section('app_title', 'Data Konfirmasi Santri')
 
 @section('app_content')
 
@@ -23,6 +27,16 @@
                     <h2>
                         <i class="fa fa-users"></i> Santri
                     </h2>
+                    <div class="pull-right">
+                        @php
+                            $count_santri = Santri::where('status', 0)->count();
+                        @endphp
+                        @if (empty($count_santri))
+                            <a target="_blank" href="{{ url('/app/sistem/santri') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-sign-in"></i> Lihat Data Santri
+                            </a>
+                        @endif
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

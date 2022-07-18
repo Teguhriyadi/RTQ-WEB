@@ -10,6 +10,7 @@ use App\Models\Jenjang;
 use App\Models\KategoriPelajaran;
 use App\Models\Kelas;
 use App\Models\LokasiRt;
+use App\Models\Nilai;
 use App\Models\NominalIuran;
 use App\Models\Santri;
 use App\Models\WaliSantri;
@@ -246,7 +247,7 @@ class SantriController extends Controller
                         <i class="fa fa-search"></i> Detail
                     </a>';
                     $aksiBtn .= '
-                    <a href="' . url("/app/sistem/santri/" . $row["id"] . "/sertifikat") . '" class="btn btn-primary btn-sm">
+                    <a href="' . url("/app/sistem/santri/" . $row["id"] . "/view_sertifikat") . '" class="btn btn-primary btn-sm">
                         <i class="fa fa-file-pdf-o"></i> Detail
                     </a>';
                 } else {
@@ -293,5 +294,28 @@ class SantriController extends Controller
         ];
 
         return view("app.public.santri.v_jenjang_santri", $data);
+    }
+
+    public function post_jenjang_santri(Request $request)
+    {
+        foreach ($request->id_santri as $data => $value) {
+            Santri::where("id", $request->id_santri[$data])->update([
+                "id_jenjang" => $request->id_jenjang[$data],
+            ]);
+        }
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+    }
+
+    public function view_sertifikat($id)
+    {
+        $detail = Santri::where("id", $id)->first();
+
+        $data = [
+            "detail" => Santri::where("id", $id)->first(),
+            "data_nilai" => Nilai::where("id_santri", $detail->id)->selectRaw("id_jenjang")->distinct()->get()
+        ];
+
+        return view("app.public.santri.v_sertifikat", $data);
     }
 }
