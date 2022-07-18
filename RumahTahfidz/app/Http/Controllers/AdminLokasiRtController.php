@@ -59,15 +59,18 @@ class AdminLokasiRtController extends Controller
                 "kode_rt" => $this->automatis(),
                 "lokasi_rt" => $request->kode_input
             ]);
+
+            $lokasi = LokasiRt::max("kode_rt");
         } else if ($request->input_kode_rt) {
             LokasiRt::create([
                 "kode_rt" => $this->automatis(),
                 "lokasi_rt" => $request->input_kode_rt
             ]);
+
+            $lokasi = LokasiRt::max("kode_rt");
+        } else if ($request->kode_rt) {
+            $lokasi = $request->kode_rt;
         }
-
-        $lokasi = LokasiRt::max("kode_rt");
-
         if ($request->file("gambar")) {
             $data = $request->file("gambar")->store("admin_cabang");
         }
