@@ -126,7 +126,7 @@
                                         @foreach ($lokasi_rt as $data)
                                             <option value="{{ $data->kode_rt }}"
                                                 {{ $edit->kode_rt == $data->kode_rt ? 'selected' : '' }}>
-                                                {{ $data->kode_rt }}
+                                                {{ $data->kode_rt }} - {{ $data->lokasi_rt }}
                                             </option>
                                         @endforeach
                                         <option value="L">Lainnya</option>
