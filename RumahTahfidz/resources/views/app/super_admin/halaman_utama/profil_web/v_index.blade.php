@@ -82,7 +82,7 @@
                             <td>
                                 <div class="row">
                                     <input type="text" class="form-control"
-                                        value="{{ empty($profil) ? '' : $profil->nama }}" name="nama"
+                                        value="{{ empty($profil) ? old('nama') : $profil->nama }}" name="nama"
                                         placeholder="Masukkan Nama">
                                 </div>
                             </td>
@@ -93,8 +93,8 @@
                             <td>
                                 <div class="row">
                                     <input type="text" class="form-control"
-                                        value="{{ empty($profil) ? '' : $profil->singkatan }}" name="singkatan"
-                                        placeholder="Masukkan Singkatan Profil">
+                                        value="{{ empty($profil) ? old('singkatan') : $profil->singkatan }}"
+                                        name="singkatan" placeholder="Masukkan Singkatan Profil">
                                 </div>
                             </td>
                         </tr>
@@ -104,7 +104,7 @@
                             <td>
                                 <div class="row">
                                     <input type="email" class="form-control"
-                                        value="{{ empty($profil) ? '' : $profil->email }}" name="email"
+                                        value="{{ empty($profil) ? old('email') : $profil->email }}" name="email"
                                         placeholder="Masukkan Email">
                                 </div>
                             </td>
@@ -115,8 +115,8 @@
                             <td>
                                 <div class="row">
                                     <input type="number" class="form-control"
-                                        value="{{ empty($profil) ? '' : $profil->no_hp }}" name="no_hp" placeholder="0"
-                                        min="1">
+                                        value="{{ empty($profil) ? old('no_hp') : $profil->no_hp }}" name="no_hp"
+                                        placeholder="0" min="1">
                                 </div>
                             </td>
                         </tr>
@@ -125,7 +125,7 @@
                             <td>:</td>
                             <td>
                                 <div class="row">
-                                    <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat">{{ empty($profil) ? '' : $profil->alamat }}</textarea>
+                                    <textarea name="alamat" id="alamat" class="form-control" rows="5" placeholder="Masukkan Alamat">{{ empty($profil) ? old('alamat') : $profil->alamat }}</textarea>
                                 </div>
                             </td>
                         </tr>

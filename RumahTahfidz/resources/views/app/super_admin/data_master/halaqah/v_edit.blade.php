@@ -3,7 +3,7 @@
 <div class="form-group">
     <label for="nama_halaqah"> Nama Halaqah </label>
     <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah" placeholder="Masukkan Nama Halaqah"
-        value="{{ $edit->nama_halaqah }}">
+        value="{{ old('nama_halaqah') ? old('nama_halaqah') : $edit->nama_halaqah }}">
 </div>
 <div class="form-group">
     <label for="kode_rt_new"> Cabang </label>
@@ -20,10 +20,10 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("#kode_rt_new").select2({
-            theme: 'bootstrap4',
-            placeholder: "Please Select"
-        });
-    });
+    // $(document).ready(function() {
+    //     $("#kode_rt_new").select2({
+    //         theme: 'bootstrap4',
+    //         placeholder: "Please Select"
+    //     });
+    // });
 </script>

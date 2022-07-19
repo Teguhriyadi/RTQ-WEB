@@ -32,6 +32,11 @@ class HalaqahController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_halaqah' => 'required',
+            'kode_rt' => 'required'
+        ]);
+
         Halaqah::create([
             "kode_halaqah" => $this->automatis(),
             "nama_halaqah" => $request->nama_halaqah,
@@ -53,6 +58,11 @@ class HalaqahController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'nama_halaqah' => 'required',
+            'kode_rt_new' => 'required'
+        ]);
+
         Halaqah::where("kode_halaqah", $request->kode_halaqah)->update([
             "nama_halaqah" => $request->nama_halaqah,
             "kode_rt" => $request->kode_rt_new

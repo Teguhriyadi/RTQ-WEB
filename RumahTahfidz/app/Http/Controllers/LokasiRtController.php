@@ -30,12 +30,16 @@ class LokasiRtController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'lokasi_rt' => 'required'
+        ]);
+
         LokasiRt::create([
             "kode_rt" => $this->automatis(),
             "lokasi_rt" => $request->lokasi_rt
         ]);
 
-        return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan", "success")</script>');
+        return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan", "success")</script>')->withInput();
     }
 
     public function edit(Request $request)
@@ -49,6 +53,10 @@ class LokasiRtController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'lokasi_rt' => 'required'
+        ]);
+
         LokasiRt::where("kode_rt", $request->kode_rt)->update([
             "lokasi_rt" => $request->lokasi_rt
         ]);

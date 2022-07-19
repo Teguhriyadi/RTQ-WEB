@@ -22,6 +22,17 @@
 
     <div class="clearfix"></div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    @endif
+
     <div class="row">
         <div class="col-md-4 col-sm-8 col-xs-12">
             <div class="x_panel">
@@ -37,7 +48,7 @@
                         <div class="form-group">
                             <label for="lokasi_rt"> Lokasi RT </label>
                             <input type="text" class="form-control" name="lokasi_rt" id="lokasi_rt"
-                                placeholder="Masukkan Lokasi RT">
+                                placeholder="Masukkan Lokasi RT" value="{{ old('lokasi_rt') }}">
                         </div>
                         <div class="ln_solid"></div>
                         <button class="btn btn-danger btn-sm" type="reset">
@@ -66,7 +77,6 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
-                                            <th class="text-center">Kode</th>
                                             <th>Lokasi</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
@@ -78,7 +88,6 @@
                                         @foreach ($data_lokasi_rt as $data)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $data->kode_rt }}</td>
                                                 <td>{{ $data->lokasi_rt }}</td>
                                                 <td class="text-center">
                                                     <button onclick="editLokasiRt('{{ $data->kode_rt }}')"
