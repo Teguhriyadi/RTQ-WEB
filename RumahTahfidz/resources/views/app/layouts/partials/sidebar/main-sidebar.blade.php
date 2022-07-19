@@ -11,7 +11,7 @@ $profil = \App\Models\ProfilWeb::select('nama')->first();
                 <i class="fa fa-paw"></i>
                 <span>
                     @if (empty($profil))
-                        RTQ
+                        RT
                     @else
                         @if (strlen($profil->nama) > 15)
                             RTQ ...
