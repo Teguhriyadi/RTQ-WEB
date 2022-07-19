@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="kategori"> Nama Kelas </label>
                             <input type="text" class="form-control" name="kategori" id="kategori"
-                                placeholder="Masukkan Nama Kategori">
+                                placeholder="Masukkan Nama Kategori" value="{{ old('kategori') }}">
                         </div>
                         <div class="ln_solid"></div>
                         <button class="btn btn-danger btn-sm" type="reset">

@@ -68,14 +68,14 @@
                 <span class="fa fa-chevron-down"></span>
             </a>
             <ul class="nav child_menu">
-                <li class="{{ Request::segment(3) == 'kategori_pelajaran' }}">
-                    <a href="{{ url('/app/sistem/setting/kategori/pelajaran') }}">
-                        Kategori Pelajaran
-                    </a>
-                </li>
                 <li class="{{ Request::segment(3) == 'pelajaran' }}">
                     <a href="{{ url('/app/sistem/pelajaran') }}">
                         Pelajaran
+                    </a>
+                </li>
+                <li class="{{ Request::segment(3) == 'kategori_pelajaran' }}">
+                    <a href="{{ url('/app/sistem/setting/kategori/pelajaran') }}">
+                        Kategori Pelajaran
                     </a>
                 </li>
             </ul>

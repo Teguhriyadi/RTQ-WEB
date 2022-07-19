@@ -30,6 +30,10 @@ class LokasiRtController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'lokasi_rt' => 'required'
+        ]);
+
         $count = LokasiRt::where("lokasi_rt", $request->lokasi_rt)->count();
 
         if ($count > 0) {
@@ -55,6 +59,10 @@ class LokasiRtController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'lokasi_rt' => 'required'
+        ]);
+
         $count = LokasiRt::where("lokasi_rt", $request->lokasi_rt)->count();
 
         if ($count > 0) {

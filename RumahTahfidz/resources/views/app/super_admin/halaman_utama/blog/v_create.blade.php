@@ -18,6 +18,17 @@
 
     <div class="clearfix"></div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    @endif
+
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
@@ -30,7 +41,8 @@
                 <div class="x_content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="{{ url('/app/sistem/blog') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('/app/sistem/blog') }}" method="POST" enctype="multipart/form-data"
+                                id="formTambahBerita">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-4">
@@ -94,6 +106,54 @@
 @endsection
 
 @section('app_scripts')
+    <script>
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#formTambahBerita").validate({
+                        ignore: "",
+                        rules: {
+                            logo: {
+                                required: true,
+                                accept: true
+                            },
+                            id_kategori: {
+                                required: true
+                            },
+                            judul: {
+                                required: true
+                            },
+                            deskripsi: {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            logo: {
+                                required: "Foto harap di isi!",
+                                accept: "Masukan format gambar yang sesuai!"
+                            },
+                            id_kategori: {
+                                required: "Kategori harap di isi!"
+                            },
+                            judul: {
+                                required: "Judul harap di isi!"
+                            },
+                            deskripsi: {
+                                required: "Deskripsi harap di isi!"
+                            }
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
+    </script>
     <script src="{{ url('vendors/tinymce/tinymce.min.js') }}"></script>
     <script>
         var editor_config = {

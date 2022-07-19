@@ -23,7 +23,7 @@ class ProfilWebController extends Controller
             "email" => "required",
             "no_hp" => "required",
             "alamat" => "required",
-            "logo" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+            "logo" => "required|image|mimes:jpeg,png,jpg,gif,svg"
         ]);
 
         if ($request->file("logo")) {

@@ -33,6 +33,13 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'id_kategori' => 'required',
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'foto' => 'required|mimes:png,jpg,jpeg,gif|image'
+        ]);
+
         if ($request->file("foto")) {
             $data = $request->file("foto")->store("foto");
         }
@@ -46,7 +53,7 @@ class BlogController extends Controller
             "deskripsi" => $request->deskripsi
         ]);
 
-        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+        return redirect('app/sistem/blog')->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
     }
 
     public function show($id)

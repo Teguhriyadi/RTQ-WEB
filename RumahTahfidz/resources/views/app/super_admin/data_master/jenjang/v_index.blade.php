@@ -145,7 +145,7 @@
 
 @section('app_scripts')
 
-    {{-- <script>
+    <script>
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
@@ -191,7 +191,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script> --}}
+    </script>
 
     <script>
         function editJenjang(id) {

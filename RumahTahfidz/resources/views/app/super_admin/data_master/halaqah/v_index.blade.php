@@ -29,6 +29,17 @@
 
 <div class="clearfix"></div>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+@endif
+
 @if ($data_lokasi_rt->count() < 1)
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 m-0">
@@ -58,7 +69,6 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.</th>
-                                            <th class="text-center">Kode</th>
                                             <th>Nama</th>
                                             <th>Lokasi</th>
                                             <th class="text-center">Aksi</th>
@@ -69,7 +79,6 @@
                                         @foreach ($data_halaqah as $halaqah)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $halaqah->kode_halaqah }}</td>
                                                 <td>{{ $halaqah->nama_halaqah }}</td>
                                                 <td>{{ $halaqah->getLokasiRt->lokasi_rt }}</td>
                                                 <td class="text-center">
@@ -121,15 +130,16 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama_halaqah"> Nama Halaqah </label>
-                        <input type="text" class="form-control input-sm" name="nama_halaqah" id="nama_halaqah"
-                            placeholder="Masukkan Nama Halaqah">
+                        <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah"
+                            placeholder="Masukkan Nama Halaqah" value="{{ old('nama_halaqah') }}">
                     </div>
                     <div class="form-group">
                         <label for="kode_rt"> Lokasi RT </label>
                         <select name="kode_rt" class="form-control" id="kode_rt" style="width: 100%">
                             <option value="">- Pilih -</option>
                             @foreach ($data_lokasi_rt as $data)
-                                <option value="{{ $data->kode_rt }}">
+                                <option value="{{ $data->kode_rt }}"
+                                    {{ old('kode_rt') == $data->kode_rt ? 'selected' : '' }}>
                                     {{ $data->lokasi_rt }}
                                 </option>
                             @endforeach

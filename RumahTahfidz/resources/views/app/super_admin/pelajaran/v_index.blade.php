@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="nama_pelajaran"> Nama Pelajaran </label>
                             <input type="text" class="form-control" name="nama_pelajaran" id="nama_pelajaran"
-                                placeholder="Masukkan Nama Pelajaran">
+                                placeholder="Masukkan Nama Pelajaran" value="{{ old('nama_pelajaran') }}">
                         </div>
                         <div class="ln_solid"></div>
                         <button class="btn btn-danger btn-sm" type="reset">
