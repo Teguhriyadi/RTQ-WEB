@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\TerakhirLogin;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 
 class LoginController extends Controller
 {
@@ -35,7 +36,7 @@ class LoginController extends Controller
         }
     }
 
-    public function changeHakAkses($id)
+    public function changeHakAkses(Request $request, $id)
     {
         $cek = User::where('id', Auth::user()->id)->update([
             'id_hak_akses' => $id,

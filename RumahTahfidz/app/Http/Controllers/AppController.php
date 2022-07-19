@@ -8,6 +8,7 @@ use App\Models\Santri;
 use App\Models\AdminLokasiRt;
 use App\Models\HakAkses;
 use App\Models\TerakhirLogin;
+use Illuminate\Support\Facades\Session;
 
 class AppController extends Controller
 {

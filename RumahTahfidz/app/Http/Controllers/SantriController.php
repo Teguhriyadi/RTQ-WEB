@@ -246,6 +246,7 @@ class SantriController extends Controller
                     <a href="' . url("/app/sistem/santri/" . $row["id"]) . '" class="btn btn-info btn-sm">
                         <i class="fa fa-search"></i> Detail
                     </a>';
+
                     $aksiBtn .= '
                     <a href="' . url("/app/sistem/santri/" . $row["id"] . "/view_sertifikat") . '" class="btn btn-primary btn-sm">
                         <i class="fa fa-file-pdf-o"></i> Detail

@@ -49,7 +49,8 @@ $profil = \App\Models\ProfilWeb::select('nama')->first();
                         @foreach ($akses_saya as $item)
                             <option value="{{ $item->id }}"
                                 {{ $user->id_hak_akses == $item->id ? 'selected' : '' }}>
-                                {{ $item->getRole->keterangan }}</option>
+                                {{ $item->getRole->keterangan }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
