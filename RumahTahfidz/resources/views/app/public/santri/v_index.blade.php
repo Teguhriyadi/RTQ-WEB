@@ -147,6 +147,7 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
+                        <a href="{{ url('dokumen/CONTOH_FORMAT_SANTRI.xlsx') }}" class="btn btn-sm btn-dark"><i class="fa fa-download"></i> Unduh Format</a>
                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i
                                 class="fa fa-times"></i>
                             Kembali</button>
