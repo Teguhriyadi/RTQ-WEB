@@ -60,12 +60,12 @@ class HalaqahController extends Controller
     {
         $request->validate([
             'nama_halaqah' => 'required',
-            'kode_rt_new' => 'required'
+            'kode_rt' => 'required'
         ]);
 
         Halaqah::where("kode_halaqah", $request->kode_halaqah)->update([
             "nama_halaqah" => $request->nama_halaqah,
-            "kode_rt" => $request->kode_rt_new
+            "kode_rt" => $request->kode_rt
         ]);
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
@@ -75,6 +75,6 @@ class HalaqahController extends Controller
     {
         Halaqah::where("kode_halaqah", $kode_halaqah)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }

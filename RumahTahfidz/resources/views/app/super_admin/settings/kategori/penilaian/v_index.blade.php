@@ -160,7 +160,7 @@
                         },
                         messages: {
                             kategori_penilaian: {
-                                required: "Kategori penilaian harap di isi!"
+                                required: "Kolom Kategori Penilaian harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -178,7 +178,7 @@
                         },
                         messages: {
                             kategori_penilaian: {
-                                required: "Kategori penilaian harap di isi!"
+                                required: "Kolom Kategori Penilaian harap di isi!"
                             },
                         },
                         submitHandler: function(form) {

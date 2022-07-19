@@ -43,7 +43,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/lokasi_cabang') }}" id="tambahLokasiRt">
+                    <form method="POST" action="{{ url('/app/sistem/lokasi_cabang') }}" id="tambahLokasiCabang">
                         @csrf
                         <div class="form-group">
                             <label for="lokasi_rt"> Lokasi RT </label>
@@ -125,7 +125,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/lokasi_cabang/simpan') }}" method="POST" id="editKategori">
+                <form action="{{ url('/app/sistem/lokasi_cabang/simpan') }}" method="POST" id="editLokasiCabang">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -154,17 +154,17 @@
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
                 setupFormValidation: function() {
-                    $("#tambahKategori").validate({
+                    $("#tambahLokasiCabang").validate({
                         lang: "id",
                         ignore: "",
                         rules: {
-                            kategori: {
+                            lokasi_rt: {
                                 required: true
                             },
                         },
                         messages: {
-                            kategori: {
-                                required: "Kategori harap di isi!"
+                            lokasi_rt: {
+                                required: "Kolom Lokasi Cabang harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -172,17 +172,17 @@
                         }
                     });
 
-                    $("#editKategori").validate({
+                    $("#editLokasiCabang").validate({
                         lang: "id",
                         ignore: "",
                         rules: {
-                            kategori: {
+                            lokasi_rt: {
                                 required: true
                             },
                         },
                         messages: {
-                            kategori: {
-                                required: "Kategori harap di isi!"
+                            lokasi_rt: {
+                                required: "Kolom Lokasi Cabang harap di isi!"
                             },
                         },
                         submitHandler: function(form) {

@@ -160,7 +160,7 @@
                         },
                         messages: {
                             jenjang: {
-                                required: "Jenjang harap di isi!"
+                                required: "Kolom Jenjang harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -178,7 +178,7 @@
                         },
                         messages: {
                             jenjang: {
-                                required: "Jenjang harap di isi!"
+                                required: "Kolom Jenjang harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
