@@ -160,7 +160,7 @@
                         },
                         messages: {
                             nama_kelas: {
-                                required: "Kelas harap di isi!"
+                                required: "Kolom Nama Kelas harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -178,7 +178,7 @@
                         },
                         messages: {
                             nama_kelas: {
-                                required: "Kelas harap di isi!"
+                                required: "Kolom Nama Kelas harap di isi!"
                             },
                         },
                         submitHandler: function(form) {

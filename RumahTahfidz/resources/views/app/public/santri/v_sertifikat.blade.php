@@ -83,13 +83,23 @@
                                     <td class="text-center">:</td>
                                     <td>
                                         <ol>
-                                            @foreach ($data_nilai as $data)
+                                            @forelse ($data_nilai as $data)
                                                 <li>{{ $data->getJenjang->jenjang }}</li>
-                                            @endforeach
+                                            @empty
+                                                <i>
+                                                    <b>
+                                                        Kosong
+                                                    </b>
+                                                </i>
+                                            @endforelse
                                         </ol>
                                     </td>
                                 </tr>
                             </table>
+                            <a target="_blank" href="{{ url('/app/sistem/santri') }}"
+                                class="btn btn-warning btn-block btn-sm">
+                                <i class="fa fa-sign-out"></i> Kembali
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -118,7 +128,7 @@
                                     @php
                                         $no = 0;
                                     @endphp
-                                    @foreach ($data_nilai as $data)
+                                    @forelse ($data_nilai as $data)
                                         <tr>
                                             <td>{{ ++$no }}.</td>
                                             <td>{{ $data->getJenjang->jenjang }}</td>
@@ -128,7 +138,17 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="3" class="text-center">
+                                                <i>
+                                                    <b>
+                                                        Belum Ada Rekam Jenjang
+                                                    </b>
+                                                </i>
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

@@ -6,8 +6,8 @@
         value="{{ old('nama_halaqah') ? old('nama_halaqah') : $edit->nama_halaqah }}">
 </div>
 <div class="form-group">
-    <label for="kode_rt_new"> Cabang </label>
-    <select name="kode_rt_new" class="form-control" id="kode_rt_new" style="width: 100%">
+    <label for="kode_rt"> Lokasi Cabang </label>
+    <select name="kode_rt" class="form-control" id="kode_rt" style="width: 100%">
         <option value="">- Pilih -</option>
         @foreach ($data_lokasi_rt as $data)
             <option value="{{ $data->kode_rt }}" {{ $edit->kode_rt == $data->kode_rt ? 'selected' : '' }}>

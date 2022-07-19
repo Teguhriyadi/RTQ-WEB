@@ -160,7 +160,7 @@
                         },
                         messages: {
                             keterangan_absen: {
-                                required: "Keterangan harap di isi!"
+                                required: "Kolom Keterangan Absen harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -172,13 +172,13 @@
                         lang: "id",
                         ignore: "",
                         rules: {
-                            keterangan: {
+                            keterangan_absen: {
                                 required: true
                             },
                         },
                         messages: {
-                            keterangan: {
-                                required: "Keterangan harap di isi!"
+                            keterangan_absen: {
+                                required: "Kolom Keterangan Absen harap di isi!"
                             },
                         },
                         submitHandler: function(form) {

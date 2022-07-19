@@ -206,9 +206,6 @@
                     lang: "id",
                     ignore: "",
                     rules: {
-                        kode_halaqah: {
-                            required: true
-                        },
                         nama_halaqah: {
                             required: true
                         },
@@ -217,14 +214,11 @@
                         },
                     },
                     messages: {
-                        kode_halaqah: {
-                            required: "Kode halaqah harap di isi!"
-                        },
                         nama_halaqah: {
-                            required: "Nama halaqah harap di isi!"
+                            required: "Kolom Nama Halaqah harap di isi!"
                         },
                         kode_rt: {
-                            required: "Kode rumah tahfidz harap di isi!"
+                            required: "Kolom Lokasi Cabang harap di isi!"
                         },
                     },
                     submitHandler: function(form) {
@@ -236,9 +230,6 @@
                     lang: "id",
                     ignore: "",
                     rules: {
-                        kode_halaqah: {
-                            required: true
-                        },
                         nama_halaqah: {
                             required: true
                         },
@@ -247,14 +238,11 @@
                         },
                     },
                     messages: {
-                        kode_halaqah: {
-                            required: "Kode halaqah harap di isi!"
-                        },
                         nama_halaqah: {
-                            required: "Nama halaqah harap di isi!"
+                            required: "Kolom Nama Halaqah harap di isi!"
                         },
                         kode_rt: {
-                            required: "Kode rumah tahfidz harap di isi!"
+                            required: "Kolom Kode Cabang harap di isi!"
                         },
                     },
                     submitHandler: function(form) {

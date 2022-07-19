@@ -132,10 +132,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>
@@ -164,7 +164,7 @@
                         },
                         messages: {
                             nama_pelajaran: {
-                                required: "Nama pelajaran harap diisi!"
+                                required: "Kolom Nama Pelajaran harap diisi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -182,7 +182,7 @@
                         },
                         messages: {
                             nama_pelajaran: {
-                                required: "Nama pelajaran harap diisi!"
+                                required: "Kolom Nama Pelajaran harap diisi!"
                             },
                         },
                         submitHandler: function(form) {

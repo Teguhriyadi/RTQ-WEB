@@ -83,7 +83,9 @@ use App\Models\SettingIuran;
         <div class="col-sm-12">
             <div class="alert bg-success text-white">
                 <p style="font-size: 20px; margin-bottom: 0">Selamat Datang <b>{{ auth()->user()->nama }}</b> <br> Anda
-                    login sebagai <b>{{ auth()->user()->getHakAkses->getRole->keterangan }}</b></p>
+                    login sebagai {{ Auth::user()->getAkses->id_role }}
+                    <b>{{ auth()->user()->getHakAkses->getRole->keterangan }}</b>
+                </p>
             </div>
         </div>
     </div>
