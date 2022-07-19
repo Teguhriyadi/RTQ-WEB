@@ -12,6 +12,4 @@ class Kategori extends Model
     protected $table = "tb_kategori";
 
     protected $guarded = [''];
-
-    public $timestamps = false;
 }

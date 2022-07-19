@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jenjang;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KelasController extends Controller
 {
@@ -47,11 +49,17 @@ class KelasController extends Controller
             "nama_kelas" => "required"
         ]);
 
-        Kelas::where("id", $request->id)->update([
-            "nama_kelas" => $request->nama_kelas
-        ]);
+        $count = Kelas::where("nama_kelas", $request->nama_kelas)->count();
 
-        return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Ubah', 'success')</script>")->withInput();
+        if ($count > 0) {
+            return redirect()->back()->with("message", "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error')</script>");
+        } else {
+            Kelas::where("id", $request->id)->update([
+                "nama_kelas" => $request->nama_kelas
+            ]);
+
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Ubah!', 'success')</script>")->withInput();
+        }
     }
 
     public function destroy($id)

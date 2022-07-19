@@ -12,6 +12,4 @@ class NominalIuran extends Model
     protected $table = "tb_nominal_iuran";
 
     protected $guarded = [''];
-
-    public $timestamps = false;
 }

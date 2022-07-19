@@ -10,8 +10,12 @@
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">@yield('app_title')</li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    @yield('app_title')
+                </li>
             </ol>
         </nav>
     </section>
@@ -73,7 +77,8 @@
                     <div class="row">
                         <div class="form-group col-md-12 col-12">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" name="nama" id="nama" value="{{ $user->nama }}">
+                            <input type="text" class="form-control" name="nama" id="nama"
+                                value="{{ $user->nama }}">
                             <div class="invalid-feedback">
                                 Please fill in the first name
                             </div>
@@ -82,7 +87,8 @@
                     <div class="row">
                         <div class="form-group col-md-7 col-12">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}">
+                            <input type="email" class="form-control" name="email" id="email"
+                                value="{{ $user->email }}">
                             <div class="invalid-feedback">
                                 Please fill in the email
                             </div>
@@ -108,7 +114,7 @@
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="alamat"> Alamat </label>
-                            <textarea class="form-control summernote-simple">{{ $user->alamat }}</textarea>
+                            <textarea class="form-control" rows="5">{{ $user->alamat }}</textarea>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
@@ -147,7 +153,8 @@
                         <div class="form-group">
                             <label for="gambar_profil"> Gambar Profil </label>
                             <img class="gambar-preview img-fluid" id="tampilGambar">
-                            <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
+                            <input onchange="previewImage()" type="file" class="form-control" name="gambar"
+                                id="gambar">
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">

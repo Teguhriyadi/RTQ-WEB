@@ -60,7 +60,7 @@ class User extends Authenticatable
 
     public function getAdminLokasiRt()
     {
-        return $this->hasOne(AdminLokasiRt::class, "id", "id")->withDefault(["kode_rt" => "NULL"]);
+        return $this->hasOne("App\Models\AdminLokasiRt", "id", "id")->withDefault(["kode_rt" => "NULL"]);
     }
 
     public function getWaliSantri()

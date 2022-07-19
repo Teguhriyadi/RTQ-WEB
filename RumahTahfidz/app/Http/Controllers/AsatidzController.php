@@ -55,7 +55,7 @@ class AsatidzController extends Controller
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->tempat_lahir = $request->tempat_lahir;
         $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->gambar = $data;
+        $user->gambar = url("storage/" . $data);
         $user->save();
 
         $hak_akses = new HakAkses;
@@ -63,6 +63,10 @@ class AsatidzController extends Controller
         $hak_akses->id_user = $user->id;
         $hak_akses->id_role = 3;
         $hak_akses->save();
+
+        User::where("id", $user->id)->update([
+            "id_hak_akses" => $hak_akses->id
+        ]);
 
         $asatidz = new Asatidz;
 

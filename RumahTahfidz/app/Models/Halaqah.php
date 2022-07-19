@@ -15,8 +15,6 @@ class Halaqah extends Model
 
     protected $with = ["getLokasiRt"];
 
-    public $timestamps = false;
-
     public function getLokasiRt()
     {
         return $this->belongsTo("App\Models\LokasiRt", "kode_rt", "kode_rt")->withDefault(["lokasi_rt" => "NULL"]);

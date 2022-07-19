@@ -34,7 +34,6 @@ class HakAksesController extends Controller
             HakAkses::where('id_role', $request->roleId)->where('id_user', $request->userId)->delete();
 
             return 1;
-
         } else {
 
             $hak_akses = new HakAkses;
@@ -44,24 +43,21 @@ class HakAksesController extends Controller
 
             $hak_akses->save();
 
-            if ($request->roleId == 2)  {
+            if ($request->roleId == 2) {
 
                 AdminLokasiRt::create([
                     "id" => $request->userId
                 ]);
-
             } else if ($request->roleId == 3) {
 
                 Asatidz::create([
                     "id" => $request->userId
                 ]);
-
             } else if ($request->roleId == 4) {
 
                 WaliSantri::create([
                     "id" => $request->userId
                 ]);
-
             }
 
             return 1;

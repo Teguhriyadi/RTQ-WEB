@@ -13,7 +13,7 @@ class KategoriPelajaran extends Model
 
     protected $guarded = [''];
 
-    public $timestamps = false;
+    protected $with = ["getJenjang", "getPelajaran", "getKategoriPenilaian"];
 
     public function getJenjang()
     {

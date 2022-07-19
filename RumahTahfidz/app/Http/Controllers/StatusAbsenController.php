@@ -48,13 +48,17 @@ class StatusAbsenController extends Controller
             "keterangan_absen" => "required"
         ]);
 
-        $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
+        $count = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
-        StatusAbsen::where("id", $request->id)->update([
-            "keterangan_absen" => $request->keterangan_absen
-        ]);
+        if ($count > 0) {
+            return back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            StatusAbsen::where("id", $request->id)->update([
+                "keterangan_absen" => $request->keterangan_absen
+            ]);
 
-        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"])->withInput();
+            return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"])->withInput();
+        }
     }
 
     public function destroy($id)

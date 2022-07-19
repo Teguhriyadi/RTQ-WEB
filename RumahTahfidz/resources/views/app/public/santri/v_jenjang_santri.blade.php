@@ -1,6 +1,7 @@
 @php
 use App\Models\Nilai;
 use App\Models\Absensi;
+use App\Models\Santri;
 @endphp
 @extends('.app.layouts.template')
 
@@ -34,7 +35,10 @@ use App\Models\Absensi;
             <div class="col-md-12 col-sm-12 col-xs-12 m-0">
                 <div class="x_content bs-example-popovers">
                     <div class="alert alert-danger alert-dismissible " role="alert">
-                        <strong>Oops!</strong> Data Jenjang Masih Kosong.
+                        <strong>Oops!</strong> Data Jenjang Masih Kosong. Silahkan Klik
+                        <a target="_blank" href="{{ url('/app/sistem/jenjang') }}" style="color: white;">
+                            Disini
+                        </a>
                     </div>
                 </div>
             </div>
@@ -92,164 +96,263 @@ use App\Models\Absensi;
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card-box table-responsive">
-                                    <table id="table-1" class="table table-bordered table-striped" style="width: 100%">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">No.</th>
-                                                <th>Santri</th>
-                                                <th class="text-center">Absensi</th>
-                                                <th class="text-center">Tadribat</th>
-                                                <th class="text-center">Hafalan</th>
-                                                <th class="text-center">Kriteria</th>
-                                                <th class="text-center">Jenjang</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $no = 0;
-                                            @endphp
-                                            @foreach ($data_santri as $data)
+                        <form action="{{ url('/app/sistem/jenjang_santri') }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card-box table-responsive">
+                                        <table class="table table-bordered table-striped" style="width: 100%">
+                                            <thead>
                                                 <tr>
-                                                    <td class="text-center">{{ ++$no }}.</td>
-                                                    <td>{{ $data->nama_lengkap }}</td>
-                                                    <td class="text-center">
-                                                        @php
-                                                            $data_absensi = Absensi::where('id_santri', $data->id)
-                                                                ->where('id_status_absen', 1)
-                                                                ->count();
-
-                                                            if ($data_absensi == 0) {
-                                                                echo '0';
-                                                            } else {
-                                                                $hasil_absensi = ((270 / $data_absensi) * 40) / 100;
-                                                                echo $hasil_absensi;
-                                                            }
-                                                        @endphp
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @php
-                                                            $data_nilai = 0;
-                                                            $jum_pelajaran = 0;
-
-                                                            foreach ($data_kategori_satu as $d) {
-                                                                $data_nilai += Nilai::where('id_santri', $data->id)
-                                                                    ->where('id_kategori_pelajaran', $d->id)
-                                                                    ->sum('nilai');
-
-                                                                $jum_pelajaran += Nilai::where('id_santri', $data->id)
-                                                                    ->where('id_kategori_pelajaran', $d->id)
-                                                                    ->count();
-                                                            }
-
-                                                            if ($data_nilai == 0 && $jum_pelajaran == 0) {
-                                                                echo '0';
-                                                            } else {
-                                                                $hasil_tadribat = (($data_nilai / $jum_pelajaran) * 30) / 100;
-
-                                                                echo $hasil_tadribat;
-                                                            }
-
-                                                        @endphp
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @php
-                                                            $data_nilai = 0;
-                                                            $jum_pelajaran = 0;
-                                                            foreach ($data_kategori_dua as $d) {
-                                                                $data_nilai += Nilai::where('id_santri', $data->id)
-                                                                    ->where('id_kategori_pelajaran', $d->id)
-                                                                    ->sum('nilai');
-
-                                                                $jum_pelajaran += Nilai::where('id_santri', $data->id)
-                                                                    ->where('id_kategori_pelajaran', $d->id)
-                                                                    ->count();
-                                                            }
-
-                                                            if ($data_nilai == 0 && $jum_pelajaran == 0) {
-                                                                echo '0';
-                                                            } else {
-                                                                $hasil_hafalan = (($data_nilai / $jum_pelajaran) * 30) / 100;
-                                                                echo $hasil_hafalan;
-                                                            }
-                                                        @endphp
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @php
-                                                            $data_absensi = Absensi::where('id_santri', $data->id)
-                                                                ->where('id_status_absen', 1)
-                                                                ->count();
-
-                                                            if ($data_absensi == 0) {
-                                                                $hasil_absensi = 0;
-                                                            } else {
-                                                                $hasil_absensi = ((270 / $data_absensi) * 40) / 100;
-                                                                $hasil_absensi;
-                                                            }
-
-                                                            $data_nilai = 0;
-                                                            $jum_pelajaran = 0;
-
-                                                            foreach ($data_kategori_satu as $d) {
-                                                                $data_nilai += Nilai::where('id_santri', $data->id)
-                                                                    ->where('id_kategori_pelajaran', $d->id)
-                                                                    ->sum('nilai');
-
-                                                                $jum_pelajaran += Nilai::where('id_santri', $data->id)
-                                                                    ->where('id_kategori_pelajaran', $d->id)
-                                                                    ->count();
-                                                            }
-
-                                                            if ($data_nilai == 0 && $jum_pelajaran == 0) {
-                                                                $hasil_tadribat = 0;
-                                                            } else {
-                                                                $hasil_tadribat = (($data_nilai / $jum_pelajaran) * 30) / 100;
-
-                                                                $hasil_tadribat;
-                                                            }
-
-                                                            $data_nilai = 0;
-                                                            $jum_pelajaran = 0;
-                                                            foreach ($data_kategori_dua as $d) {
-                                                                $data_nilai += Nilai::where('id_santri', $data->id)
-                                                                    ->where('id_kategori_pelajaran', $d->id)
-                                                                    ->sum('nilai');
-
-                                                                $jum_pelajaran += Nilai::where('id_santri', $data->id)
-                                                                    ->where('id_kategori_pelajaran', $d->id)
-                                                                    ->count();
-                                                            }
-
-                                                            if ($data_nilai == 0 && $jum_pelajaran == 0) {
-                                                                $hasil_hafalan = 0;
-                                                            } else {
-                                                                $hasil_hafalan = (($data_nilai / $jum_pelajaran) * 30) / 100;
-                                                                $hasil_hafalan;
-                                                            }
-
-                                                            $total = 0;
-                                                            $total = $hasil_absensi + $hasil_tadribat + $hasil_hafalan;
-                                                        @endphp
-                                                        @if ($total == 0)
-                                                            <span class="badge badge-danger p-2" style="font-size: 14px;">
-                                                                <i class="fa fa-check"></i> Belum Ada Data
-                                                            </span>
-                                                        @elseif($total <= 100 && $total >= 75)
-                                                            <span class="badge badge-success p-2" style="font-size: 14px;">
-                                                                <i class="fa fa-check"></i> Lulus
-                                                            </span>
-                                                        @endif
-                                                    </td>
-                                                    <td class="text-center"></td>
+                                                    <th class="text-center">#</th>
+                                                    <th>Santri</th>
+                                                    <th class="text-center">Absensi</th>
+                                                    <th class="text-center">Tadribat</th>
+                                                    <th class="text-center">Hafalan</th>
+                                                    <th class="text-center">Kriteria</th>
+                                                    <th class="text-center">Naik Ke</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @if (empty($data_santri))
+                                                    <tr class="text-center">
+                                                        <td colspan="7">
+                                                            <b>
+                                                                <i>
+                                                                    Pilih Jenjang Terlebih Dahulu
+                                                                </i>
+                                                            </b>
+                                                        </td>
+                                                    </tr>
+                                                @else
+                                                    @forelse ($data_santri as $data)
+                                                        <tr>
+                                                            <td class="text-center">
+                                                                <input type="checkbox" name="id_santri[]"
+                                                                    value="{{ $data->id }}">
+                                                            </td>
+                                                            <td>{{ $data->nama_lengkap }}</td>
+                                                            <td class="text-center">
+                                                                @php
+                                                                    $data_absensi = Absensi::where('id_jenjang', $data->id_jenjang)
+                                                                        ->where('id_santri', $data->id)
+                                                                        ->where('id_status_absen', 1)
+                                                                        ->count();
+
+                                                                    $pembagian_absensi = Absensi::where('id_santri', $data->id)->count();
+
+                                                                    if ($data_absensi == 0) {
+                                                                        echo '0';
+                                                                    } else {
+                                                                        $pembagian = $pembagian_absensi / 10;
+                                                                        $hasil_absensi = (($data_absensi / $pembagian) * 40) / 10;
+                                                                        echo $hasil_absensi;
+                                                                    }
+                                                                @endphp
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @php
+                                                                    $data_nilai = 0;
+                                                                    $jum_pelajaran = 0;
+
+                                                                    foreach ($data_kategori_satu as $d) {
+                                                                        $data_nilai += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
+                                                                            ->where('id_kategori_pelajaran', $d->id)
+                                                                            ->sum('nilai');
+
+                                                                        $jum_pelajaran += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
+                                                                            ->where('id_kategori_pelajaran', $d->id)
+                                                                            ->count();
+                                                                    }
+
+                                                                    if ($data_nilai == 0 && $jum_pelajaran == 0) {
+                                                                        echo '0';
+                                                                    } else {
+                                                                        $hasil_tadribat = (($data_nilai / $jum_pelajaran) * 30) / 100;
+
+                                                                        echo $hasil_tadribat;
+                                                                    }
+
+                                                                @endphp
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @php
+                                                                    $data_nilai = 0;
+                                                                    $jum_pelajaran = 0;
+                                                                    foreach ($data_kategori_dua as $d) {
+                                                                        $data_nilai += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
+                                                                            ->where('id_kategori_pelajaran', $d->id)
+                                                                            ->sum('nilai');
+
+                                                                        $jum_pelajaran += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
+                                                                            ->where('id_kategori_pelajaran', $d->id)
+                                                                            ->count();
+                                                                    }
+
+                                                                    if ($data_nilai == 0 && $jum_pelajaran == 0) {
+                                                                        echo '0';
+                                                                    } else {
+                                                                        $hasil_hafalan = (($data_nilai / $jum_pelajaran) * 30) / 100;
+                                                                        echo $hasil_hafalan;
+                                                                    }
+                                                                @endphp
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @php
+                                                                    $data_absensi = Absensi::where('id_jenjang', $data->id_jenjang)
+                                                                        ->where('id_santri', $data->id)
+                                                                        ->where('id_status_absen', 1)
+                                                                        ->count();
+
+                                                                    $pembagian_absensi = Absensi::where('id_santri', $data->id)->count();
+
+                                                                    if ($data_absensi == 0) {
+                                                                        $hasil_absensi = 0;
+                                                                    } else {
+                                                                        $pembagian = $pembagian_absensi / 10;
+                                                                        $hasil_absensi = (($data_absensi / $pembagian) * 40) / 100;
+                                                                        $hasil_absensi;
+                                                                    }
+
+                                                                    $data_nilai = 0;
+                                                                    $jum_pelajaran = 0;
+
+                                                                    foreach ($data_kategori_satu as $d) {
+                                                                        $data_nilai += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
+                                                                            ->where('id_kategori_pelajaran', $d->id)
+                                                                            ->sum('nilai');
+
+                                                                        $jum_pelajaran += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
+                                                                            ->where('id_kategori_pelajaran', $d->id)
+                                                                            ->count();
+                                                                    }
+
+                                                                    if ($data_nilai == 0 && $jum_pelajaran == 0) {
+                                                                        $hasil_tadribat = 0;
+                                                                    } else {
+                                                                        $hasil_tadribat = (($data_nilai / $jum_pelajaran) * 30) / 100;
+
+                                                                        $hasil_tadribat;
+                                                                    }
+
+                                                                    $data_nilai = 0;
+                                                                    $jum_pelajaran = 0;
+                                                                    foreach ($data_kategori_dua as $d) {
+                                                                        $data_nilai += Nilai::where('id_jenjang', $data->id_jenjang)
+                                                                            ->where('id_santri', $data->id)
+                                                                            ->where('id_kategori_pelajaran', $d->id)
+                                                                            ->sum('nilai');
+
+                                                                        $jum_pelajaran += Nilai::where('id_santri', $data->id)
+                                                                            ->where('id_kategori_pelajaran', $d->id)
+                                                                            ->count();
+                                                                    }
+
+                                                                    if ($data_nilai == 0 && $jum_pelajaran == 0) {
+                                                                        $hasil_hafalan = 0;
+                                                                    } else {
+                                                                        $hasil_hafalan = (($data_nilai / $jum_pelajaran) * 30) / 100;
+                                                                        $hasil_hafalan;
+                                                                    }
+
+                                                                    $total = 0;
+                                                                    $total = $hasil_absensi * 10 + $hasil_tadribat + $hasil_hafalan;
+                                                                @endphp
+                                                                @if ($total == 0)
+                                                                    <span class="badge badge-danger p-2"
+                                                                        style="font-size: 14px;">
+                                                                        <i class="fa fa-times"></i> Belum Ada Data
+                                                                    </span>
+                                                                @elseif($total <= 100 && $total >= 75)
+                                                                    <span class="badge badge-success p-2"
+                                                                        style="font-size: 14px;">
+                                                                        <i class="fa fa-check"></i> Lulus
+                                                                    </span>
+                                                                @else
+                                                                    <span class="badge badge-warning p-2"
+                                                                        style="font-size: 14px;">
+                                                                        <i class="fa fa-times"></i> Belum Ada Kriteria
+                                                                    </span>
+                                                                @endif
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($total == 0)
+                                                                    -
+                                                                @elseif($total <= 100 && $total >= 75)
+                                                                    <select name="id_jenjang[]" id="jenjang"
+                                                                        class="form-control">
+                                                                        <option value="">- Pilih -</option>
+                                                                        @foreach ($data_jenjang as $jenjang)
+                                                                            @php
+                                                                                $filter_jenjang = Santri::where('id', $data->id)
+                                                                                    ->where('id_jenjang', $jenjang->id)
+                                                                                    ->first();
+                                                                            @endphp
+                                                                            @if ($filter_jenjang)
+                                                                            @else
+                                                                                <option value="{{ $jenjang->id }}">
+                                                                                    {{ $jenjang->jenjang }}
+                                                                                </option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </select>
+                                                                @else
+                                                                    -
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @empty
+                                                        <tr class="text-center">
+                                                            <td colspan="7">
+                                                                <i>
+                                                                    <b>
+                                                                        Maaf, Data Santri Pada Jenjang Tersebut Kosong
+                                                                    </b>
+                                                                </i>
+                                                            </td>
+                                                        </tr>
+                                                    @endforelse
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check
+                                        All |
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-plus"></i> Tambah
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group pull-right">
+                                        {{-- {{ $data_santri->links() }} --}}
+                                    </div>
+                                </div>
+                            </div>
+                            @if (empty($data_santri))
+                            @else
+                                @if (empty($cek) || empty($data_santri))
+                                    2
+                                @else
+                                    @if ($total == 0)
+                                        -
+                                    @elseif($total <= 100 && $total >= 75)
+                                    @else
+                                    @endif
+                                @endif
+                            @endif
+                        </form>
                     </div>
                 </div>
             </div>
@@ -268,6 +371,23 @@ use App\Models\Absensi;
             $('#' + idForm).attr('action', action);
             console.log();
             $('#' + idForm).submit();
+        }
+
+        function checkAll(ele) {
+            var checkboxes = document.getElementsByTagName("input");
+            if (ele.checked) {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = true;
+                    }
+                }
+            } else {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == "checkbox") {
+                        checkboxes[i].checked = false;
+                    }
+                }
+            }
         }
 
         $(document).ready(function() {

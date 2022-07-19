@@ -89,16 +89,6 @@ use App\Models\SettingIuran;
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="x_panel">
-                <div class="x_content">
-                    <canvas id="graph_bar" style="width:100%; height:280px;"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-7">
             <div class="row">
                 <div class="animated flipInY col-md-6">
@@ -157,7 +147,7 @@ use App\Models\SettingIuran;
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>
-                                Informasi Login <small>Users</small>
+                                <i class="fa fa-book"></i> Informasi Login <small>Users</small>
                             </h2>
                             <div class="clearfix"></div>
                         </div>
@@ -176,7 +166,7 @@ use App\Models\SettingIuran;
                                             <tbody>
                                                 @php use Carbon\Carbon; @endphp
                                                 @php $no = 0 @endphp
-                                                @foreach ($user_login as $data)
+                                                @forelse ($user_login as $data)
                                                     @php
                                                         $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at);
                                                     @endphp
@@ -185,9 +175,20 @@ use App\Models\SettingIuran;
                                                         <td>{{ $data->nama }}</td>
                                                         <td class="text-center">{{ $dataTime->diffForHumans() }}</td>
                                                     </tr>
-                                                @endforeach
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="3" class="text-center">
+                                                            <i>
+                                                                <b>
+                                                                    Data Tidak Ada
+                                                                </b>
+                                                            </i>
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
+                                        {{ $user_login->links() }}
                                     </div>
                                 </div>
                             </div>
@@ -197,6 +198,17 @@ use App\Models\SettingIuran;
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <canvas id="graph_bar" style="width:100%; height:280px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('app_scripts')

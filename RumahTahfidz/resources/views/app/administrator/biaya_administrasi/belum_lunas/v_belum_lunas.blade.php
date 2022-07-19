@@ -59,9 +59,15 @@ use App\Models\Santri;
                                                     $data_total += $s->nominal;
                                                 }
 
-                                                $santri = Santri::where('id', $data->id_santri)->first();
+                                                $santri = Santri::where('id', $data->id_santri)
+                                                    ->where('status', 1)
+                                                    ->first();
 
-                                                $nominal_sekarang = $santri->getNominalIuran->nominal - $data_total;
+                                                if ($santri) {
+                                                    $nominal_sekarang = $santri->getNominalIuran->nominal - $data_total;
+                                                } else {
+                                                    $nominal_sekarang = 0;
+                                                }
 
                                             @endphp
                                             @if ($nominal_sekarang != 0)

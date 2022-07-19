@@ -34,12 +34,18 @@ class LokasiRtController extends Controller
             'lokasi_rt' => 'required'
         ]);
 
-        LokasiRt::create([
-            "kode_rt" => $this->automatis(),
-            "lokasi_rt" => $request->lokasi_rt
-        ]);
+        $count = LokasiRt::where("lokasi_rt", $request->lokasi_rt)->count();
 
-        return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan", "success")</script>')->withInput();
+        if ($count > 0) {
+            return redirect()->back()->with('message', '<script>Swal.fire("Gagal", "Tidak Boleh Duplikasi Data", "error")</script>');
+        } else {
+            LokasiRt::create([
+                "kode_rt" => $this->automatis(),
+                "lokasi_rt" => $request->lokasi_rt
+            ]);
+
+            return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan", "success")</script>');
+        }
     }
 
     public function edit(Request $request)
@@ -57,11 +63,17 @@ class LokasiRtController extends Controller
             'lokasi_rt' => 'required'
         ]);
 
-        LokasiRt::where("kode_rt", $request->kode_rt)->update([
-            "lokasi_rt" => $request->lokasi_rt
-        ]);
+        $count = LokasiRt::where("lokasi_rt", $request->lokasi_rt)->count();
 
-        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>"]);
+        if ($count > 0) {
+            return back()->with(["message" => "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            LokasiRt::where("kode_rt", $request->kode_rt)->update([
+                "lokasi_rt" => $request->lokasi_rt
+            ]);
+
+            return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>"]);
+        }
     }
 
     public function destroy($kode_rt)

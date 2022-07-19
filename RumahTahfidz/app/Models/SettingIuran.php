@@ -12,6 +12,4 @@ class SettingIuran extends Model
     protected $table = "tb_setting_iuran";
 
     protected $guarded  = [''];
-
-    public $timestamps = false;
 }

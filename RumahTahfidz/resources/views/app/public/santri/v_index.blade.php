@@ -29,9 +29,9 @@
     @else
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-warning" role="alert">
                     Ada {{ $belum_terkonfimasi }} Santri yang <a class="alert-link">belum
-                        terkonfirmasi</a>. Silahkan Klik <a href="{{ url('/app/sistem/tes/data') }}"
+                        terkonfirmasi</a>. Silahkan Klik <a target="_blank" href="{{ url('/app/sistem/tes/input') }}"
                         class="alert-link">disini</a> untuk ke halaman tujuan.
                 </div>
             </div>
@@ -48,9 +48,9 @@
                     <div class="pull-right">
                         @if (empty($belum_terkonfimasi))
                         @else
-                        <a href="{{ url('app/sistem/santri/export') }}" class="btn btn-success btn-sm">
-                            <i class="fa fa-download"></i> Download
-                        </a>
+                            <a href="{{ url('app/sistem/santri/export') }}" class="btn btn-success btn-sm">
+                                <i class="fa fa-download"></i> Download
+                            </a>
                         @endif
 
                         @if (Auth::user()->getAkses->id_role == 1)

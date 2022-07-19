@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 @section("app_content")
 
-
 <h3>
     @yield("app_title")
 </h3>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administrasi;
+use App\Models\NominalIuran;
 use App\Models\Santri;
 use Illuminate\Http\Request;
 
@@ -34,8 +35,13 @@ class AdministrasiController extends Controller
 
     public function edit_belum_lunas(Request $request)
     {
+        $santri = Santri::where("id", $request->id)->first();
+
+        $nominal = NominalIuran::where("id", $santri->id_nominal_iuran)->first();
 
         $data = [
+            "iuran" => $nominal->nominal,
+            "edit" => Santri::where("id", $request->id)->first(),
             "total_nominal" => Administrasi::where("id_santri", $request->id)->sum("nominal"),
             "detail_administrasi" => Administrasi::where("id_santri", $request->id)->first()
         ];

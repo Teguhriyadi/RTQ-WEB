@@ -59,15 +59,18 @@ class AdminLokasiRtController extends Controller
                 "kode_rt" => $this->automatis(),
                 "lokasi_rt" => $request->kode_input
             ]);
+
+            $lokasi = LokasiRt::max("kode_rt");
         } else if ($request->input_kode_rt) {
             LokasiRt::create([
                 "kode_rt" => $this->automatis(),
                 "lokasi_rt" => $request->input_kode_rt
             ]);
+
+            $lokasi = LokasiRt::max("kode_rt");
+        } else if ($request->kode_rt) {
+            $lokasi = $request->kode_rt;
         }
-
-        $lokasi = LokasiRt::max("kode_rt");
-
         if ($request->file("gambar")) {
             $data = $request->file("gambar")->store("admin_cabang");
         }
@@ -93,6 +96,10 @@ class AdminLokasiRtController extends Controller
 
         $hak_akses->save();
 
+        User::where("id", $user->id)->update([
+            "id_hak_akses" => $hak_akses->id
+        ]);
+
         $admin_lokasi_rt = new AdminLokasiRt;
 
         $admin_lokasi_rt->id = $user->id;
@@ -113,8 +120,22 @@ class AdminLokasiRtController extends Controller
         return view("app.super_admin.data_master.admin_lokasi_rt.v_edit", $data);
     }
 
-    public function update(Request $request)
+    public function update($id, Request $request)
     {
+        if ($request->edit_lokasi_rt) {
+
+            $lokasi = new LokasiRt;
+
+            $lokasi->kode_rt = $this->automatis();
+            $lokasi->lokasi_rt = $request->edit_lokasi_rt;
+
+            $lokasi->save();
+
+            $lokasi = LokasiRt::max("kode_rt");
+        } else if ($request->edit_pilihan) {
+            $lokasi = $request->edit_pilihan;
+        }
+
         $this->validate($request, [
             "nama" => "required",
             "email" => "required|email",
@@ -124,16 +145,15 @@ class AdminLokasiRtController extends Controller
             "tempat_lahir" => "required",
             "jenis_kelamin" => "required",
             "pendidikan_terakhir" => "required",
-            "kode_rt" => "required",
             "gambar" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
-        AdminLokasiRt::where("id", $request->id)->update([
+        AdminLokasiRt::where("id", $id)->update([
             "pendidikan_terakhir" => $request->pendidikan_terakhir,
-            "kode_rt" => $request->kode_rt
+            "kode_rt" => $lokasi
         ]);
 
-        User::where("id", $request->id)->update([
+        User::where("id", $id)->update([
             "nama" => $request->nama,
             "email" => $request->email,
             "alamat" => $request->alamat,

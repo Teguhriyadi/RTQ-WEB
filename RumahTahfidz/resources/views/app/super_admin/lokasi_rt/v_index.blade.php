@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Lokasi RT')
+@section('app_title', 'Lokasi Cabang')
 
 @section('app_content')
 
@@ -43,7 +43,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/lokasi_rt') }}" id="tambahLokasiRt">
+                    <form method="POST" action="{{ url('/app/sistem/lokasi_cabang') }}" id="tambahLokasiRt">
                         @csrf
                         <div class="form-group">
                             <label for="lokasi_rt"> Lokasi RT </label>
@@ -125,7 +125,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/lokasi_rt/simpan') }}" method="POST" id="editKategori">
+                <form action="{{ url('/app/sistem/lokasi_cabang/simpan') }}" method="POST" id="editKategori">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -195,12 +195,10 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
 
-    <script>
         function editLokasiRt(kode_rt) {
             $.ajax({
-                url: "{{ url('/app/sistem/lokasi_rt/edit') }}",
+                url: "{{ url('/app/sistem/lokasi_cabang/edit') }}",
                 type: "GET",
                 data: {
                     kode_rt: kode_rt
@@ -219,17 +217,17 @@
                 let kode_rt = $(this).data('id');
 
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Apakah Anda Yakin?',
+                    text: "Untuk Menghapus Data Ini",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Iyaa, Saya Yakin'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form_string =
-                            "<form method=\"POST\" action=\"{{ url('/app/sistem/lokasi_rt/') }}/" +
+                            "<form method=\"POST\" action=\"{{ url('/app/sistem/lokasi_cabang/') }}/" +
                             kode_rt +
                             "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
 

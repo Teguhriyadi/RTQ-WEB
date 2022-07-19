@@ -52,9 +52,9 @@
                 Jenjang
             </a>
         </li>
-        <li class="{{ Request::segment(3) == 'lokasi_rt' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/lokasi_rt') }}">
-                Lokasi RT
+        <li class="{{ Request::segment(3) == 'lokasi_cabang' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/lokasi_cabang') }}">
+                Lokasi Cabang
             </a>
         </li>
         <li class="{{ Request::segment(3) == 'halaqah' ? 'active' : '' }}">
@@ -227,15 +227,20 @@
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
-        <li>
+        <li class="{{ Request::segment(3) == 'laporan/absensi/santri' ? 'active' : '' }}">
             <a href="{{ url('/app/sistem/laporan/absensi/santri/') }}">
                 Santri
             </a>
         </li>
-        <li>
+        <li class="{{ Request::segment(3) == 'laporan/absensi/asatidz' ? 'active' : '' }}">
             <a href="{{ url('/app/sistem/laporan/absensi/asatidz') }}">
                 Asatidz
             </a>
         </li>
     </ul>
+</li>
+<li class="{{ Request::segment(3) == 'pengaturan' ? 'active' : '' }}">
+    <a href="{{ url('/app/sistem/pengaturan') }}">
+        <i class="fa fa-gears"></i> Pengaturan
+    </a>
 </li>

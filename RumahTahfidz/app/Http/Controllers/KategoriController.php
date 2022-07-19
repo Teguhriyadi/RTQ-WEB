@@ -52,12 +52,18 @@ class KategoriController extends Controller
             "kategori" => "required"
         ]);
 
-        Kategori::where("id", $request->id)->update([
-            "kategori" => $request->kategori,
-            "slug" => Str::slug($request->kategori),
-        ]);
+        $count = Kategori::where("kategori", $request->kategori)->count();
 
-        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+        if ($count > 0) {
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            Kategori::where("id", $request->id)->update([
+                "kategori" => $request->kategori,
+                "slug" => Str::slug($request->kategori),
+            ]);
+
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+        }
     }
 
     public function destroy($id)

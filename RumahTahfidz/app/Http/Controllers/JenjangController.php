@@ -50,11 +50,15 @@ class JenjangController extends Controller
 
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
-        Jenjang::where("id", $request->id)->update([
-            "jenjang" => $request->jenjang
-        ]);
+        if ($cek > 0) {
+            return back()->with(["message" => "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            Jenjang::where("id", $request->id)->update([
+                "jenjang" => $request->jenjang
+            ]);
 
-        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"])->withInput();
+            return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success');</script>"])->withInput();
+        }
     }
 
     public function destroy($id)

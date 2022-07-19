@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("mulai")->nullable();
             $table->string("akhir")->nullable();
+            $table->timestamps();
         });
     }
 

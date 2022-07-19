@@ -22,4 +22,9 @@ class Nilai extends Model
     {
         return $this->belongsTo("App\Models\Santri", "id_santri", "id");
     }
+
+    public function getJenjang()
+    {
+        return $this->belongsTo("App\Models\Jenjang", "id_jenjang", "id");
+    }
 }

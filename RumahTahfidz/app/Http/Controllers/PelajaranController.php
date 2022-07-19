@@ -22,9 +22,15 @@ class PelajaranController extends Controller
             "nama_pelajaran" => "required"
         ]);
 
-        Pelajaran::create($request->all());
+        $count = Pelajaran::where("nama_pelajaran", $request->nama_pelajaran)->count();
 
-        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+        if ($count > 0) {
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            Pelajaran::create($request->all());
+
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+        }
     }
 
     public function edit(Request $request)
@@ -42,11 +48,17 @@ class PelajaranController extends Controller
             "nama_pelajaran" => "required"
         ]);
 
-        Pelajaran::where("id", $request->id)->update([
-            "nama_pelajaran" => $request->nama_pelajaran
-        ]);
+        $count = Pelajaran::where("nama_pelajaran", $request->nama_pelajaran)->count();
 
-        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+        if ($count > 0) {
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            Pelajaran::where("id", $request->id)->update([
+                "nama_pelajaran" => $request->nama_pelajaran
+            ]);
+
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Ubah', 'success');</script>"]);
+        }
     }
 
     public function destroy($id)

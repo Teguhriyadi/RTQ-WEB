@@ -26,7 +26,7 @@ class KategoriPenilaianController extends Controller
         $count = KategoriPenilaian::where("kategori_penilaian", $request->kategori_penilaian)->count();
 
         if ($count > 0) {
-            return back()->with(["message" => "<script>Swal.fire('Error', 'Gagal di Tambahkan', 'error');</script>"]);
+            return back()->with(["message" => "<script>Swal.fire('Gagal', 'Gagal di Tambahkan', 'error');</script>"]);
         } else {
             $validasi = $request->validate([
                 'kategori_penilaian' => 'required',
@@ -55,12 +55,18 @@ class KategoriPenilaianController extends Controller
             "kategori_penilaian" => "required"
         ]);
 
-        KategoriPenilaian::where("id", $request->id)->update([
-            "kategori_penilaian" => $request->kategori_penilaian,
-            "slug" => Str::slug($request->kategori_penilaian)
-        ]);
+        $count = KategoriPenilaian::where("kategori_penilaian", $request->kategori_penilaian)->count();
 
-        return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
+        if ($count > 0) {
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
+        } else {
+            KategoriPenilaian::where("id", $request->id)->update([
+                "kategori_penilaian" => $request->kategori_penilaian,
+                "slug" => Str::slug($request->kategori_penilaian)
+            ]);
+
+            return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Ubah', 'success');</script>"]);
+        }
     }
 
     public function destroy($id)

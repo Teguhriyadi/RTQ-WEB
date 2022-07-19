@@ -49,7 +49,7 @@ class KelasHalaqahController extends Controller
         $this->validate($request, [
             "kode_halaqah" => "required",
             "id_asatidz" => "required",
-            "kelas_kelas" => "required",
+            "kelas_halaqah" => "required",
         ]);
 
         KelasHalaqah::where("id", $request->id)->update([

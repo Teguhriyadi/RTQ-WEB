@@ -34,7 +34,9 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="alert alert-danger" role="alert">
                     <strong>Oops!</strong> Data Kategori Penilaian Masih Kosong. Silahkan klik
-                    <a href="{{ url('/app/sistem/setting/kategori/nilai') }}" style="color: white;">Disini</a>
+                    <a target="_blank" href="{{ url('/app/sistem/setting/kategori/nilai') }}" style="color: white;">
+                        Disini
+                    </a>
                 </div>
             </div>
         </div>
@@ -44,7 +46,9 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="alert alert-danger" role="alert">
                         <strong>Oops!</strong> Data Jenjang Masih Kosong. Silahkan klik
-                        <a href="{{ url('/app/sistem/jenjang') }}" style="color: white;">Disini</a>
+                        <a target="_blank" href="{{ url('/app/sistem/jenjang') }}" style="color: white;">
+                            Disini
+                        </a>
                     </div>
                 </div>
             </div>
@@ -54,7 +58,9 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="alert alert-danger" role="alert">
                             <strong>Oops!</strong> Data Pelajaran Masih Kosong. Silahkan klik
-                            <a href="{{ url('/app/sistem/pelajaran') }}" style="color: white;">Disini</a>
+                            <a target="_blank" href="{{ url('/app/sistem/pelajaran') }}" style="color: white;">
+                                Disini
+                            </a>
                         </div>
                     </div>
                 </div>

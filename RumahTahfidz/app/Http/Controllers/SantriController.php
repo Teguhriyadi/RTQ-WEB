@@ -32,6 +32,19 @@ class SantriController extends Controller
         return view("app.public.santri.v_index", $data);
     }
 
+    public function create($id)
+    {
+        $data = [
+            "data_kelas" => Kelas::get(),
+            "data_besaran" => BesaranIuran::get(),
+            "data_halaqah" => Halaqah::get(),
+            "data_wali" => WaliSantri::where("id", $id)->first(),
+            "data_nominal_iuran" => NominalIuran::where("status", 1)->first()
+        ];
+
+        return view("app.public.santri.v_create", $data);
+    }
+
     public function store(Request $request)
     {
         if ($request->file("foto")) {
@@ -52,7 +65,8 @@ class SantriController extends Controller
         $santri->id_kelas = $request->id_kelas;
         $santri->kode_halaqah = $request->kode_halaqah;
         $santri->id_wali = $request->id_wali;
-        $santri->id_nominal_iuran = $request->id_nominal;
+        $santri->id_nominal_iuran = $request->id_nominal_iuran;
+        $santri->id_besaran = $request->id_besaran;
         $santri->foto = url('storage/' . $data);
         $santri->save();
 
@@ -63,7 +77,7 @@ class SantriController extends Controller
 
         $administrasi->save();
 
-        return redirect()->back()->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
+        return redirect("/app/sistem/santri")->with('message', '<script>Swal.fire("Berhasil", "Data Berhasil di Tambahkan!", "success");</script>');
     }
 
     public function show($id)
@@ -233,7 +247,7 @@ class SantriController extends Controller
                         <i class="fa fa-search"></i> Detail
                     </a>';
                     $aksiBtn .= '
-                    <a href="' . url("/app/sistem/santri/" . $row["id"] . "/sertifikat") . '" class="btn btn-primary btn-sm">
+                    <a href="' . url("/app/sistem/santri/" . $row["id"] . "/view_sertifikat") . '" class="btn btn-primary btn-sm">
                         <i class="fa fa-file-pdf-o"></i> Detail
                     </a>';
                 } else {
@@ -262,7 +276,6 @@ class SantriController extends Controller
         $data = [
             "data_kategori_satu" => KategoriPelajaran::where('id_kategori_penilaian', 1)->get(),
             "data_kategori_dua" => KategoriPelajaran::where("id_kategori_penilaian", 2)->get(),
-            "data_santri" => Santri::where("status", 1)->get(),
             "data_jenjang" => Jenjang::get()
         ];
 
@@ -274,11 +287,35 @@ class SantriController extends Controller
         $data = [
             "data_kategori_satu" => KategoriPelajaran::where('id_kategori_penilaian', 1)->get(),
             "data_kategori_dua" => KategoriPelajaran::where("id_kategori_penilaian", 2)->get(),
-            "data_santri" => Santri::where("status", 1)->where("id_jenjang", $request->jenjang)->get(),
+            "data_santri" => Santri::where("status", 1)->where("id_jenjang", $request->jenjang)->paginate(10),
+            "cek" => Santri::where("status", 1)->where("id_jenjang", $request->jenjang)->count(),
             "data_jenjang" => Jenjang::get(),
             "edit" => Jenjang::where("id", $request->jenjang)->first()
         ];
 
         return view("app.public.santri.v_jenjang_santri", $data);
+    }
+
+    public function post_jenjang_santri(Request $request)
+    {
+        foreach ($request->id_santri as $data => $value) {
+            Santri::where("id", $request->id_santri[$data])->update([
+                "id_jenjang" => $request->id_jenjang[$data],
+            ]);
+        }
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
+    }
+
+    public function view_sertifikat($id)
+    {
+        $detail = Santri::where("id", $id)->first();
+
+        $data = [
+            "detail" => Santri::where("id", $id)->first(),
+            "data_nilai" => Nilai::where("id_santri", $detail->id)->selectRaw("id_jenjang")->distinct()->get()
+        ];
+
+        return view("app.public.santri.v_sertifikat", $data);
     }
 }

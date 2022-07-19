@@ -39,8 +39,8 @@
                                     <img class="img-responsive avatar-view" src="{{ url('/gambar/gambar_user.png') }}"
                                         alt="">
                                 @else
-                                    <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar"
-                                        title="Change the avatar">
+                                    <img class="img-responsive img-fluid avatar-view" src="{{ $detail->foto }}"
+                                        width="100%">
                                 @endif
                             </div>
                         </div>
