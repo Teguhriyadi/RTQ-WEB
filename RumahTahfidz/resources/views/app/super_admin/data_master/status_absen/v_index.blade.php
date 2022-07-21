@@ -216,8 +216,8 @@
             let id = $(this).data('id');
 
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -234,7 +234,7 @@
                     form.appendTo('body');
                     form.submit();
                 } else {
-                    Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                    Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
                 }
             })
         })
