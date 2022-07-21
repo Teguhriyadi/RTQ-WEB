@@ -14,7 +14,11 @@
                     <a href="{{ url('app/sistem/home') }}">Home</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Data @yield('app_title')
+                    @if (empty($profil))
+                        Tambah @yield('app_title')
+                    @else
+                        Edit @yield('app_title')
+                    @endif
                 </li>
             </ol>
         </nav>
@@ -51,7 +55,7 @@
                         @if (empty($profil))
                             <img src="{{ url('gambar/gambar_user.png') }}"
                                 class="rounded-circle profile-widget-picture gambar-preview img-fluid"
-                                style="height: 250px; width: 100%" id="tampilGambar">
+                                style="height: 300px; width: 100%" id="tampilGambar">
                         @else
                             <img src="{{ $profil->logo }}"
                                 class="rounded-circle profile-widget-picture gambar-preview img-fluid"
@@ -67,9 +71,9 @@
                 <div class="x_title">
                     <h2>
                         @if (empty($profil))
-                            <i class="fa fa-plus"></i> Tambah @yield('app_title')
+                            <i class="fa fa-plus"></i> Tambah Data
                         @else
-                            <i class="fa fa-edit"></i> Edit @yield('app_title')
+                            <i class="fa fa-edit"></i> Edit Data
                         @endif
                     </h2>
                     <div class="clearfix"></div>
@@ -81,7 +85,7 @@
                             <td>:</td>
                             <td>
                                 <div class="row">
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control input-sm"
                                         value="{{ empty($profil) ? old('nama') : $profil->nama }}" name="nama"
                                         placeholder="Masukkan Nama">
                                 </div>
@@ -184,23 +188,23 @@
                         },
                         messages: {
                             logo: {
-                                required: "Foto harap di isi!",
+                                required: "Kolom Foto harap di isi!",
                                 accept: "Masukan format gambar yang sesuai!"
                             },
                             nama: {
-                                required: "Nama harap di isi!"
+                                required: "Kolom Nama harap di isi!"
                             },
                             singkatan: {
-                                required: "Singkatan harap di isi!"
+                                required: "Kolom Singkatan harap di isi!"
                             },
                             no_hp: {
-                                required: "Telepon harap di isi!"
+                                required: "Kolom Telepon harap di isi!"
                             },
                             email: {
-                                required: "Email harap di isi!"
+                                required: "Kolom Email harap di isi!"
                             },
                             alamat: {
-                                required: "Alamat harap di isi!"
+                                required: "Kolom Alamat harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -236,19 +240,19 @@
                                 accept: "Masukan format gambar yang sesuai!"
                             },
                             nama: {
-                                required: "Nama harap di isi!"
+                                required: "Kolom Nama harap di isi!"
                             },
                             singkatan: {
-                                required: "Singkatan harap di isi!"
+                                required: "Kolom Singkatan harap di isi!"
                             },
                             no_hp: {
-                                required: "Telepon harap di isi!"
+                                required: "Kolom Telepon harap di isi!"
                             },
                             email: {
-                                required: "Email harap di isi!"
+                                required: "Kolom Email harap di isi!"
                             },
                             alamat: {
-                                required: "Alamat harap di isi!"
+                                required: "Kolom Alamat harap di isi!"
                             },
                         },
                         submitHandler: function(form) {

@@ -34,7 +34,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> Tambah Data Kategori
+                        <i class="fa fa-plus"></i> Tambah Data
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -42,7 +42,7 @@
                     <form method="POST" action="{{ url('/app/sistem/kategori') }}" id="tambahKategori">
                         @csrf
                         <div class="form-group">
-                            <label for="kategori"> Nama Kelas </label>
+                            <label for="kategori"> Nama Kategori </label>
                             <input type="text" class="form-control" name="kategori" id="kategori"
                                 placeholder="Masukkan Nama Kategori" value="{{ old('kategori') }}">
                         </div>
@@ -160,7 +160,7 @@
                         },
                         messages: {
                             kategori: {
-                                required: "Kategori harap di isi!"
+                                required: "Kolom Kategori harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -191,9 +191,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
 
-    <script>
         function editDataKategori(id) {
             $.ajax({
                 url: "{{ url('/app/sistem/kategori/edit') }}",
@@ -215,8 +213,8 @@
                 let id = $(this).data('id');
 
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Apakah Anda Yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -233,7 +231,7 @@
                         form.appendTo('body');
                         form.submit();
                     } else {
-                        Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                        Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
                     }
                 })
             })

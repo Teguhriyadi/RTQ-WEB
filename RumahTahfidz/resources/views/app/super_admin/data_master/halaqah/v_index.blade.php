@@ -56,9 +56,14 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
+                    <h2>
+                        <i class="fa fa-tags"></i> Data Halaqah
+                    </h2>
+                    <div class="pull-right">
+                        <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
+                            <i class="fa fa-plus"></i> Tambah
+                        </button>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -140,7 +145,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+                    <button type="reset" class="btn btn-danger btn-sm">
                         <i class="fa fa-times"></i> Kembali
                     </button>
                     <button type="submit" class="btn btn-primary btn-sm">

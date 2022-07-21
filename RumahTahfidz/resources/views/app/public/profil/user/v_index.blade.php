@@ -78,7 +78,7 @@
                         <div class="form-group col-md-12 col-12">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control" name="nama" id="nama"
-                                value="{{ $user->nama }}">
+                                value="{{ $user->nama }}" placeholder="Masukkan Nama">
                             <div class="invalid-feedback">
                                 Please fill in the first name
                             </div>
@@ -88,7 +88,7 @@
                         <div class="form-group col-md-7 col-12">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" name="email" id="email"
-                                value="{{ $user->email }}">
+                                value="{{ $user->email }}" placeholder="Masukkan Email">
                             <div class="invalid-feedback">
                                 Please fill in the email
                             </div>
@@ -96,14 +96,14 @@
                         <div class="form-group col-md-5 col-12">
                             <label for="no_hp"> No. Handphone </label>
                             <input type="number" class="form-control" name="no_hp" id="no_hp"
-                                value="{{ $user->no_hp }}">
+                                value="{{ $user->no_hp }}" placeholder="0">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 col-12">
                             <label for="tempat_lahir"> Tempat Lahir </label>
                             <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir"
-                                value="{{ $user->tempat_lahir }}">
+                                value="{{ $user->tempat_lahir }}" placeholder="Masukkan Tempat Lahir">
                         </div>
                         <div class="form-group col-md-6 col-12">
                             <label for="tanggal_lahir"> Tanggal Lahir </label>
@@ -114,7 +114,7 @@
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="alamat"> Alamat </label>
-                            <textarea class="form-control" rows="5">{{ $user->alamat }}</textarea>
+                            <textarea class="form-control" rows="5" placeholder="Masukkan Alamat">{{ $user->alamat }}</textarea>
                         </div>
                     </div>
                     <div class="ln_solid"></div>

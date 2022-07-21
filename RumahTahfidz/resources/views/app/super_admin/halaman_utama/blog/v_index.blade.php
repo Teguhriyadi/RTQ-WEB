@@ -23,8 +23,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12 m-0">
                 <div class="x_content bs-example-popovers">
                     <div class="alert alert-danger alert-dismissible " role="alert">
-                        <strong>Oops!</strong> Data Kategori Masih Kosong. Silahkan Klik <a
-                            href="{{ url('/app/sistem/kategori') }}" style="color: white;">Disini</a>
+                        <strong>Oops!</strong> Data Kategori Masih Kosong. Silahkan Klik
+                        <a target="_blank" href="{{ url('/app/sistem/kategori') }}" style="color: white;">Disini</a>
                     </div>
                 </div>
             </div>

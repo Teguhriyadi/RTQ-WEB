@@ -8,7 +8,6 @@ $profil = \App\Models\ProfilWeb::select('nama')->first();
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
             <a href="javascript:void(0)" class="site_title">
-                <i class="fa fa-paw"></i>
                 <span>
                     @if (empty($profil))
                         RTQ
@@ -26,8 +25,7 @@ $profil = \App\Models\ProfilWeb::select('nama')->first();
         <div class="clearfix"></div>
         <div class="profile clearfix">
             <div class="profile_pic">
-                <img src="{{ $user->gambar }}"
-                    onerror="this.onerror=null; this.src='{{ url('gambar/no-images.png') }}'"
+                <img src="{{ $user->gambar }}" onerror="this.onerror=null; this.src='{{ url('gambar/no-images.png') }}'"
                     alt="{{ $user->nama }}" class="img-circle profile_img">
             </div>
             <div class="profile_info">
