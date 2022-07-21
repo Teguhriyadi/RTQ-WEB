@@ -87,17 +87,10 @@
                                                         data-target="#modalEdit" data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form
-                                                        action="{{ url('/app/sistem/halaqah/' . $halaqah->kode_halaqah) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <input type="hidden" name="kode"
-                                                            value="{{ $halaqah->kode_halaqah }}">
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> Hapus
-                                                        </button>
-                                                    </form>
+                                                    <button id="deleteHalaqah" data-id="{{ $halaqah->kode_halaqah }}"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> Hapus
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -259,15 +252,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        // $("#kode_rt").select2({
-        //     theme: 'bootstrap4',
-        //     placeholder: "- Pilih -"
-        // });
-    });
-</script>
-
 <script>
     function editDataHalaqah(kode_halaqah) {
         $.ajax({
@@ -285,6 +269,35 @@
 
     $(document).ready(function() {
         $("#table-1").dataTable();
+    })
+
+    $(document).ready(function() {
+        $('body').on('click', '#deleteHalaqah', function() {
+            let kode_halaqah = $(this).data('kode_halaqah');
+
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iyaa, Saya Yakin'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form_string =
+                        "<form method=\"POST\" action=\"{{ url('/app/sistem/halaqah/') }}/" +
+                        kode_halaqah +
+                        "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                    form = $(form_string)
+                    form.appendTo('body');
+                    form.submit();
+                } else {
+                    Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
+                }
+            })
+        })
     })
 </script>
 

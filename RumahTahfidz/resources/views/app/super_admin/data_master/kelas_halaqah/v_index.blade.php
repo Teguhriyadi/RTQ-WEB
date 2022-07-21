@@ -45,7 +45,10 @@ use App\Models\Asatidz;
                 <div class="col-md-12 col-sm-12 col-xs-12 m-0">
                     <div class="x_content bs-example-popovers">
                         <div class="alert alert-danger alert-dismissible " role="alert">
-                            <strong>Oops!</strong> Data Asatidz Masih Kosong.
+                            <strong>Oops!</strong> Data Asatidz Masih Kosong. Silahkan Klik
+                            <a target="_blank" href="{{ url('/app/sistem/asatidz') }}" style="color: white;">
+                                Disini
+                            </a>
                         </div>
                     </div>
                 </div>

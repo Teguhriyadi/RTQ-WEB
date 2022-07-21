@@ -38,7 +38,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> Tambah @yield('app_title')
+                        <i class="fa fa-plus"></i> Tambah Data
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -218,7 +218,7 @@
 
                 Swal.fire({
                     title: 'Apakah Anda Yakin?',
-                    text: "Untuk Menghapus Data Ini",
+                    text: "Anda tidak akan dapat mengembalikan ini!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -235,7 +235,7 @@
                         form.appendTo('body');
                         form.submit();
                     } else {
-                        Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                        Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
                     }
                 })
             })

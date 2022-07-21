@@ -37,9 +37,15 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <a href="{{ url('/app/sistem/admin_lokasi_rt/create') }}" class="btn btn-primary btn-sm">
-                        <i class="fa fa-plus"></i> Tambah
-                    </a>
+                    <h2>
+                        <i class="fa fa-users"></i> Data @yield('app_title')
+                    </h2>
+                    <div class="pull-right">
+                        <a href="{{ url('/app/sistem/admin_lokasi_rt/create') }}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Tambah
+                        </a>
+
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

@@ -1,6 +1,6 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Data Santri')
+@section('app_title', 'Santri')
 
 @section('app_content')
 
@@ -43,7 +43,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-users"></i> Santri
+                        <i class="fa fa-users"></i> Data @yield('app_title')
                     </h2>
                     <div class="pull-right">
                         @if (empty($belum_terkonfimasi))
@@ -147,7 +147,8 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <a href="{{ url('dokumen/CONTOH_FORMAT_SANTRI.xlsx') }}" class="btn btn-sm btn-dark"><i class="fa fa-download"></i> Unduh Format</a>
+                        <a href="{{ url('dokumen/CONTOH_FORMAT_SANTRI.xlsx') }}" class="btn btn-sm btn-dark"><i
+                                class="fa fa-download"></i> Unduh Format</a>
                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i
                                 class="fa fa-times"></i>
                             Kembali</button>

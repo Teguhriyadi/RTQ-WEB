@@ -24,7 +24,7 @@
                 <div class="x_title">
                     @if (Auth::user()->getAkses->id_role == 1)
                         <h2>
-                            <i class="fa fa-users"></i> @yield('app_title')
+                            <i class="fa fa-users"></i> Data @yield('app_title')
                         </h2>
                     @else
                         <a href="{{ url('/app/sistem/asatidz/create') }}" class="btn btn-primary btn-sm">
@@ -82,14 +82,10 @@
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </a>
-                                                        <form action="{{ url('/app/sistem/asatidz/' . $asatidz->id) }}"
-                                                            method="POST" style="display: inline;">
-                                                            @method('DELETE')
-                                                            {{ csrf_field() }}
-                                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-trash"></i> Hapus
-                                                            </button>
-                                                        </form>
+                                                        <button id="deleteAsatidz" data-id="{{ $asatidz->id }}"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> Hapus
+                                                        </button>
                                                     </td>
                                                 @endif
                                             </tr>
@@ -111,6 +107,33 @@
     <script>
         $(document).ready(function() {
             $("#table-1").dataTable();
+        })
+
+        $('body').on('click', '#deleteAsatidz', function() {
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form_string =
+                        "<form method=\"POST\" action=\"{{ url('/app/sistem/asatidz/') }}/" +
+                        id +
+                        "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                    form = $(form_string)
+                    form.appendTo('body');
+                    form.submit();
+                } else {
+                    Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
+                }
+            })
         })
     </script>
 

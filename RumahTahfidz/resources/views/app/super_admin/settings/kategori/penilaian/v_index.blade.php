@@ -39,8 +39,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form method="POST" action="{{ url('/app/sistem/setting/kategori/nilai/') }}"
-                        id="tambahKategoriNilai">
+                    <form method="POST" action="{{ url('/app/sistem/setting/kategori/nilai/') }}" id="tambahKategoriNilai">
                         @csrf
                         <div class="form-group">
                             <label for="kategori_penilaian"> Kategori Penilaian </label>
@@ -89,11 +88,10 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </a>
-                                                    <a href="{{ url('/app/sistem/setting/kategori/nilai/delete/' . $status->id) }}"
-                                                        class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">
+                                                    <button id="deleteKategoriPenilaian" data-id="{{ $status->id }}"
+                                                        class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> Hapus
-                                                    </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -120,8 +118,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/app/sistem/setting/kategori/nilai/simpan') }}" method="POST"
-                    id="editKategoriNilai">
+                <form action="{{ url('/app/sistem/setting/kategori/nilai/simpan') }}" method="POST" id="editKategoriNilai">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -191,9 +188,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
 
-    <script>
         function editKategoriPelajaran(id) {
             $.ajax({
                 url: "{{ url('/app/sistem/setting/kategori/nilai/edit') }}",
@@ -210,6 +205,33 @@
 
         $(document).ready(function() {
             $("#table-1").dataTable();
+        })
+
+        $('body').on('click', '#deleteKategoriPenilaian', function() {
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iyaa, Saya Yakin'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form_string =
+                        "<form method=\"POST\" action=\"{{ url('/app/sistem/setting/kategori/nilai/') }}/" +
+                        id +
+                        "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                    form = $(form_string)
+                    form.appendTo('body');
+                    form.submit();
+                } else {
+                    Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
+                }
+            })
         })
     </script>
 
