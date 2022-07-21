@@ -22,9 +22,9 @@ return new class extends Migration
             $table->date("tanggal_lahir");
             $table->enum("jenis_kelamin", ["L", "P"]);
             $table->text("alamat");
-            $table->string("prestasi_anak", 100);
+            $table->string("prestasi_anak", 100)->nullable();
             $table->string("sekolah", 50);
-            $table->integer("id_kelas");
+            $table->integer("id_kelas")->nullable();
             $table->string("kode_halaqah", 50);
             $table->integer("id_wali");
             $table->integer("id_jenjang")->nullable();

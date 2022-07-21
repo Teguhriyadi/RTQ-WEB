@@ -69,7 +69,7 @@ use App\Models\Santri;
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form action="{{ url('/app/sistem/tes/simpan') }}" method="POST">
+                        <form action="{{ url('/app/sistem/tes/simpan') }}" method="POST" id="tambahTesSantri">
                             @method('PUT')
                             @csrf
                             <div class="row">
@@ -79,6 +79,7 @@ use App\Models\Santri;
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">#</th>
+                                                    <th class="text-center">NIS</th>
                                                     <th>Nama</th>
                                                     <th>Sekolah</th>
                                                     <th class="text-center">Kelas</th>
@@ -93,6 +94,7 @@ use App\Models\Santri;
                                                             <input type="checkbox" name="id_santri[]"
                                                                 value="{{ $data->id }}">
                                                         </td>
+                                                        <td class="text-center">{{ $data->nis }}</td>
                                                         <td>{{ $data->nama_lengkap }}</td>
                                                         <td>{{ $data->sekolah }}</td>
                                                         <td class="text-center">{{ $data->getKelas->nama_kelas }}</td>
@@ -111,7 +113,7 @@ use App\Models\Santri;
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="6" class="text-center">
+                                                        <td colspan="7" class="text-center">
                                                             <b>
                                                                 <i>Maaf, Data Santri Yang Mendaftar Saat Ini Kosong</i>
                                                             </b>
@@ -245,6 +247,34 @@ use App\Models\Santri;
         $(document).ready(function() {
             $("#table-1").dataTable();
         })
+
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahTesSantri").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            id_jenjang[]: {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            id_jenjang[]: {
+                                required: "Kolom Jenjang Harap di Isi!"
+                            }
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
     </script>
 
 @endsection

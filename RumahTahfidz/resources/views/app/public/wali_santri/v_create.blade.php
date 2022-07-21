@@ -31,7 +31,8 @@
     </section>
     <div class="clearfix"></div>
 
-    <form action="{{ url('/app/sistem/wali_santri') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('/app/sistem/wali_santri') }}" method="POST" enctype="multipart/form-data"
+        id="tambahWaliSantri">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-md-4 col-sm-12 col-xs-12">
@@ -199,6 +200,12 @@
                             no_ktp: {
                                 required: true
                             },
+                            no_kk: {
+                                required: true
+                            },
+                            pekerjaan: {
+                                required: true
+                            },
                             nama: {
                                 required: true
                             },
@@ -235,67 +242,55 @@
                         },
                         messages: {
                             nomor_induk: {
-                                required: "Nomor Induk Harap di Isi!"
+                                required: "Kolom Nomor Induk Harap di Isi!"
                             },
                             no_ktp: {
-                                required: "Nomor KTP Harap di Isi!"
+                                required: "Kolom Nomor KTP Harap di Isi!"
+                            },
+                            no_kk: {
+                                required: "Kolom No. KK Harap di Isi!"
+                            },
+                            pekerjaan: {
+                                required: "Kolom Pekerjaan Harap di Isi!"
                             },
                             nama: {
-                                required: "Nama Harus di Isi!"
+                                required: "Kolom Nama Harus di Isi!"
                             },
                             email: {
-                                required: "Email Harus di Isi!"
+                                required: "Kolom Email Harus di Isi!"
                             },
                             pendidikan_terakhir: {
-                                required: "Pendidikan Terakhir Harap di Isi!"
+                                required: "Kolom Pendidikan Terakhir Harap di Isi!"
                             },
                             tempat_lahir: {
-                                required: "Tempat Lahir Harap di Isi!"
+                                required: "Kolom Tempat Lahir Harap di Isi!"
                             },
                             tanggal_lahir: {
-                                required: "Tanggal Lahir Harap di Isi!"
+                                required: "Kolom Tanggal Lahir Harap di Isi!"
                             },
                             jenis_kelamin: {
-                                required: "Jenis Kelamin Harap di Pilih!"
+                                required: "Kolom Jenis Kelamin Harap di Pilih!"
                             },
                             no_hp: {
-                                required: "No HP Harap di Isi!"
+                                required: "Kolom No HP Harap di Isi!"
                             },
                             aktivitas_utama: {
-                                required: "Aktivitas Utama Harap di Isi!"
+                                required: "Kolom Aktivitas Utama Harap di Isi!"
                             },
                             motivasi_mengajar: {
-                                required: "Motivasi Mengajar Harap di Isi!"
+                                required: "Kolom Motivasi Mengajar Harap di Isi!"
                             },
                             alamat: {
-                                required: "Alamat Harap di Isi!"
+                                required: "Kolom Alamat Harap di Isi!"
                             },
                             gambar: {
-                                required: "Gambar Harap di Isi!"
+                                required: "Kolom Gambar Harap di Isi!"
                             }
                         },
                         submitHandler: function(form) {
                             form.submit()
                         }
                     });
-
-                    $("#editKelas").validate({
-                        lang: "id",
-                        ignore: "",
-                        rules: {
-                            nama_kelas: {
-                                required: true
-                            },
-                        },
-                        messages: {
-                            nama_kelas: {
-                                required: "Kelas harap di isi!"
-                            },
-                        },
-                        submitHandler: function(form) {
-                            form.submit()
-                        }
-                    })
                 }
             }
             $(D).ready(function($) {

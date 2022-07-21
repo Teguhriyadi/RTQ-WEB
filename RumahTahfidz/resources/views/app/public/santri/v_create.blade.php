@@ -71,7 +71,7 @@
                 </div>
             @else
                 <form action="{{ url('/app/sistem/wali_santri/create/anak/') }}" method="POST"
-                    enctype="multipart/form-data">
+                    enctype="multipart/form-data" id="tambahSantri">
                     {{ csrf_field() }}
                     <input type="hidden" name="id_wali" value="{{ $data_wali->id }}">
                     <input type="hidden" name="id_nominal_iuran" value="{{ $data_nominal_iuran->id }}">
@@ -84,7 +84,7 @@
                                             class="w-100 gambar-lihat img-fluid" id="tampilGambar">
                                     </center>
                                     <img class="gambar-lihat img-fluid" id="tampilGambar">
-                                    <input type="file" class="form-control  " name="foto" id="foto"
+                                    <input type="file" class="form-control" name="foto" id="foto"
                                         onchange="imagePreview()">
                                 </div>
                             </div>
@@ -161,7 +161,8 @@
                                             placeholder="Masukkan Nama Sekolah" value="{{ old('sekolah') }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="prestasi_anak"> Prestasi Anak </label>
+                                        <label for="prestasi_anak"> Prestasi Anak <small class="text-danger"><i>Tidak
+                                                    Wajib di Isi!</i></small> </label>
                                         <input type="text" class="form-control" name="prestasi_anak"
                                             id="prestasi_anak" placeholder="Masukkan Data Prestasi"
                                             value="{{ old('prestasi_anak') }}">
@@ -179,7 +180,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="id_kelas"> Kelas </label>
+                                                <label for="id_kelas"> Kelas <small class="text-danger"><i>Tidak Wajib di
+                                                            Isi!</i></small> </label>
                                                 <select class="form-control" name="id_kelas" id="id_kelas">
                                                     <option value="">- Pilih -</option>
                                                     @foreach ($data_kelas as $kelas)
@@ -255,5 +257,99 @@
                 $("#tampilGambar").height("300");
             }
         }
+
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#tambahSantri").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nis: {
+                                required: true
+                            },
+                            kode_halaqah: {
+                                required: true
+                            },
+                            nama_lengkap: {
+                                required: true
+                            },
+                            nama_panggilan: {
+                                required: true
+                            },
+                            tempat_lahir: {
+                                required: true
+                            },
+                            tanggal_lahir: {
+                                required: true
+                            },
+                            sekolah: {
+                                required: true
+                            },
+                            jenis_kelamin: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                            foto: {
+                                required: true
+                            },
+                            id_besaran: {
+                                required: true
+                            },
+                            nominal: {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            nis: {
+                                required: "Kolom NIS Harap di Isi!"
+                            },
+                            kode_halaqah: {
+                                required: "Kolom Kode Halaqah Harap di Isi!"
+                            },
+                            nama_lengkap: {
+                                required: "Kolom Nama Lengkap Harap di Isi!"
+                            },
+                            nama_panggilan: {
+                                required: "Kolom Nama Panggilan Harap di Isi!"
+                            },
+                            tempat_lahir: {
+                                required: "Kolom Tempat Lahir Harap di Isi!"
+                            },
+                            tanggal_lahir: {
+                                required: "Kolom Tanggal Lahir Harap di Isi!"
+                            },
+                            sekolah: {
+                                required: "Kolom Sekolah Harap di Isi!"
+                            },
+                            jenis_kelamin: {
+                                required: "Kolom Jenis Kelamin Harap di Isi!"
+                            },
+                            alamat: {
+                                required: "Kolom Alamat Harap di Isi!"
+                            },
+                            foto: {
+                                required: "Kolom Foto Harap di Isi!"
+                            },
+                            id_besaran: {
+                                required: "Kolom Besaran Iuran Harap di Isi!"
+                            },
+                            nominal: {
+                                required: "Kolom Nominal Harap di Isi!"
+                            }
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
     </script>
 @endsection

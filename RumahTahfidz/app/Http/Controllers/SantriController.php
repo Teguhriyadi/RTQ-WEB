@@ -171,9 +171,23 @@ class SantriController extends Controller
         $santri->tanggal_lahir = $request->tanggal_lahir;
         $santri->jenis_kelamin = $request->jenis_kelamin;
         $santri->alamat = $request->alamat;
-        $santri->prestasi_anak = $request->prestasi_anak;
+
+        if (empty($request->prestasi_anak)) {
+            $prestasi_anak = NULL;
+        } else {
+            $prestasi_anak = $request->prestasi_anak;
+        }
+
+        $santri->prestasi_anak = $prestasi_anak;
         $santri->sekolah = $request->sekolah;
-        $santri->id_kelas = $request->id_kelas;
+
+        if (empty($request->id_kelas)) {
+            $id_kelas = 0;
+        } else {
+            $id_kelas = $request->id_kelas;
+        }
+
+        $santri->id_kelas = $id_kelas;
         $santri->kode_halaqah = $request->kode_halaqah;
         $santri->id_wali = $request->id_wali;
         $santri->id_nominal_iuran = $request->id_nominal;

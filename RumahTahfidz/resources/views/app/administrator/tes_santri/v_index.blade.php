@@ -109,10 +109,10 @@ use App\Models\Santri;
 
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>

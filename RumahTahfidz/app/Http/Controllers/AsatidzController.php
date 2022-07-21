@@ -28,17 +28,12 @@ class AsatidzController extends Controller
     {
         $this->validate($request, [
             "nama" => "required",
-            "email" => "required|email",
             "alamat" => "required",
             "no_hp" => "required",
             "tanggal_lahir" => "required",
             "jenis_kelamin" => "required",
             "tempat_lahir" => "required",
-            "no_ktp" => "required",
             "nomor_induk" => "required",
-            "pendidikan_terakhir" => "required",
-            "aktivitas_utama" => "required",
-            "motivasi_mengajar" => "required",
         ]);
 
         if ($request->gambar) {
@@ -48,7 +43,13 @@ class AsatidzController extends Controller
         $user = new User;
 
         $user->nama = $request->nama;
-        $user->email = $request->email;
+
+        if (empty($request->email)) {
+            $email = NULL;
+        } else {
+            $email = $request->email;
+        }
+        $user->email = $email;
         $user->password = bcrypt("asatidz" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->no_hp = $request->no_hp;
@@ -72,10 +73,37 @@ class AsatidzController extends Controller
 
         $asatidz->id = $user->id;
         $asatidz->nomor_induk = $request->nomor_induk;
-        $asatidz->no_ktp = $request->no_ktp;
-        $asatidz->pendidikan_terakhir = $request->pendidikan_terakhir;
-        $asatidz->aktivitas_utama = $request->aktivitas_utama;
-        $asatidz->motivasi_mengajar = $request->motivasi_mengajar;
+
+        if (empty($request->no_ktp)) {
+            $no_ktp = NULL;
+        } else {
+            $no_ktp = $request->no_ktp;
+        }
+        $asatidz->no_ktp = $no_ktp;
+
+        if (empty($request->pendidikan_terakhir)) {
+            $pendidikan_terakhir = NULL;
+        } else {
+            $pendidikan_terakhir = $request->pendidikan_terakhir;
+        }
+
+        $asatidz->pendidikan_terakhir = $pendidikan_terakhir;
+
+        if (empty($request->aktivitas_utama)) {
+            $aktivitas_utama = NULL;
+        } else {
+            $aktivitas_utama = $request->aktivitas_utama;
+        }
+        $asatidz->aktivitas_utama = $aktivitas_utama;
+
+        if (empty($request->motivasi_mengajar)) {
+            $motivasi_mengajar = NULL;
+        } else {
+            $motivasi_mengajar = $request->motivasi_mengajar;
+        }
+
+        $asatidz->motivasi_mengajar = $motivasi_mengajar;
+
         $asatidz->save();
 
         return redirect("/app/sistem/asatidz")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");

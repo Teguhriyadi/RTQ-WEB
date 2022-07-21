@@ -13,6 +13,8 @@ class Santri extends Model
 
     protected $guarded = [''];
 
+    protected $with = ["getWali", "getJenjang"];
+
     public function getWali()
     {
         return $this->belongsTo("App\Models\WaliSantri", "id_wali", "id")->withDefault(["getUser" => ""]);
@@ -20,7 +22,7 @@ class Santri extends Model
 
     public function getKelas()
     {
-        return $this->belongsTo("App\Models\Kelas", "id_kelas", "id")->withDefault(["nama_kelas" => "<i><b>NULL</b></i>"]);
+        return $this->belongsTo("App\Models\Kelas", "id_kelas", "id")->withDefault(["nama_kelas" => "-"]);
     }
 
     public function getJenjang()

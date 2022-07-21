@@ -17,8 +17,12 @@
     </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-            <li class="breadcrumb-item" aria-current="page">@yield('app_title')</li>
+            <li class="breadcrumb-item">
+                <a href="{{ url('app/sistem/home') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">@yield('app_title')</a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">Tambah @yield('app_title')</li>
         </ol>
     </nav>
@@ -67,14 +71,16 @@
                             placeholder="Masukkan Nama">
                     </div>
                     <div class="form-group">
-                        <label for="email"> Email </label>
+                        <label for="email"> Email <small class="text-danger"><i>Tidak Wajib di Isi</i></small>
+                        </label>
                         <input type="email" class="form-control" name="email" id="email"
                             placeholder="Masukkan Email">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
+                                <label for="pendidikan_terakhir"> Pendidikan Terakhir <small
+                                        class="text-danger"><i>Tidak Wajib di Isi</i></small> </label>
                                 <input type="text" class="form-control" name="pendidikan_terakhir"
                                     id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
                             </div>
@@ -118,7 +124,7 @@
                             <div class="form-group">
                                 <label for="kode_rt"> Lokasi RT </label>
                                 @if ($data_lokasi_rt->count() < 1)
-                                    <input type="text" name="kode_input" class="form-control" id="input_kode_rt"
+                                    <input type="text" name="kode_input" class="form-control" id="kode_rt"
                                         placeholder="Masukkan Lokasi RT">
                                 @else
                                     <select name="kode_rt" class="form-control" id="kode_rt">
@@ -187,12 +193,6 @@
                         nama: {
                             required: true
                         },
-                        email: {
-                            required: true
-                        },
-                        pendidikan_terakhir: {
-                            required: true
-                        },
                         jenis_kelamin: {
                             required: true
                         },
@@ -205,7 +205,13 @@
                         no_hp: {
                             required: true
                         },
+                        kode_input: {
+                            required: true
+                        },
                         kode_rt: {
+                            required: true
+                        },
+                        input_kode_rt: {
                             required: true
                         },
                         alamat: {
@@ -218,34 +224,34 @@
                     },
                     messages: {
                         nama: {
-                            required: "Nama harap diisi!"
-                        },
-                        email: {
-                            required: "Email harap diisi!"
-                        },
-                        pendidikan_terakhir: {
-                            required: "Pendidikan harap diisi!"
+                            required: "Kolom Nama harap di isi!"
                         },
                         jenis_kelamin: {
-                            required: "Jenis kelamin harap diisi!"
+                            required: "Kolom Jenis Kelamin harap di isi!"
                         },
                         tempat_lahir: {
-                            required: "Tempat lahir harap diisi!"
+                            required: "Kolom Tempat Lahir harap di isi!"
                         },
                         tanggal_lahir: {
-                            required: "Tanggal lahir harap diisi!"
+                            required: "Kolom Tanggal Lahir harap di isi!"
                         },
                         no_hp: {
-                            required: "No hp harap diisi!"
+                            required: "Kolom No HP harap di isi!"
+                        },
+                        kode_input: {
+                            required: "Kolom Lokasi Cabang harap di isi!"
                         },
                         kode_rt: {
-                            required: "Lokasi cabang harap diisi!"
+                            required: "Kolom Lokasi Cabang harap di isi!"
+                        },
+                        input_kode_rt: {
+                            required: "Kolom Lokasi Cabang harap di isi!"
                         },
                         alamat: {
-                            required: "Alamat harap diisi!"
+                            required: "Kolom Alamat harap di isi!"
                         },
                         gambar: {
-                            required: "Gambar harap diisi!",
+                            required: "Kolom Gambar harap di isi!",
                             accept: "Gambar harus berformat jpg/jpeg/png"
                         },
                     },

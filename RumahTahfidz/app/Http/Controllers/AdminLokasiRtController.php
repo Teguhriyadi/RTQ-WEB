@@ -44,13 +44,11 @@ class AdminLokasiRtController extends Controller
     {
         $this->validate($request, [
             "nama" => "required",
-            "email" => "required|email",
             "no_hp" => "required|numeric|unique:users,no_hp",
             "alamat" => "required",
             "tanggal_lahir" => "required",
             "tempat_lahir" => "required",
             "jenis_kelamin" => "required",
-            "pendidikan_terakhir" => "required",
             "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg",
         ]);
 
@@ -78,7 +76,14 @@ class AdminLokasiRtController extends Controller
         $user = new User;
 
         $user->nama = $request->nama;
-        $user->email = $request->email;
+
+        if (empty($request->email)) {
+            $email = NULL;
+        } else {
+            $email = $request->email;
+        }
+
+        $user->email = $email;
         $user->password = bcrypt("admin" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->no_hp = $request->no_hp;
@@ -103,7 +108,14 @@ class AdminLokasiRtController extends Controller
         $admin_lokasi_rt = new AdminLokasiRt;
 
         $admin_lokasi_rt->id = $user->id;
-        $admin_lokasi_rt->pendidikan_terakhir = $request->pendidikan_terakhir;
+
+        if (empty($request->pendidikan_terakhir)) {
+            $pendidikan_terakhir = NULL;
+        } else {
+            $pendidikan_terakhir = $request->pendidikan_terakhir;
+        }
+
+        $admin_lokasi_rt->pendidikan_terakhir = $pendidikan_terakhir;
         $admin_lokasi_rt->kode_rt = $lokasi;
         $admin_lokasi_rt->save();
 
@@ -138,13 +150,11 @@ class AdminLokasiRtController extends Controller
 
         $this->validate($request, [
             "nama" => "required",
-            "email" => "required|email",
             "no_hp" => "required|numeric",
             "alamat" => "required",
             "tanggal_lahir" => "required",
             "tempat_lahir" => "required",
             "jenis_kelamin" => "required",
-            "pendidikan_terakhir" => "required",
             "gambar" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
@@ -153,9 +163,15 @@ class AdminLokasiRtController extends Controller
             "kode_rt" => $lokasi
         ]);
 
+        if (empty($request->email)) {
+            $email = NULL;
+        } else {
+            $email = $request->email;
+        }
+
         User::where("id", $id)->update([
             "nama" => $request->nama,
-            "email" => $request->email,
+            "email" => $email,
             "alamat" => $request->alamat,
             "no_hp" => $request->no_hp,
             "tempat_lahir" => $request->tempat_lahir,

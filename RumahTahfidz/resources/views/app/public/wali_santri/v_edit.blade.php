@@ -31,7 +31,7 @@
     </section>
     <div class="clearfix"></div>
 
-    <form action="{{ url('/app/sistem/wali_santri') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('/app/sistem/wali_santri') }}" method="POST" enctype="multipart/form-data" id="editWaliSantri">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-md-4 col-sm-12 col-xs-12">
@@ -197,6 +197,118 @@
                 $("#tampilGambar").height("300");
             }
         }
+
+        (function($, W, D) {
+            var JQUERY4U = {};
+            JQUERY4U.UTIL = {
+                setupFormValidation: function() {
+                    $("#editWaliSantri").validate({
+                        lang: "id",
+                        ignore: "",
+                        rules: {
+                            nomor_induk: {
+                                required: true
+                            },
+                            no_ktp: {
+                                required: true
+                            },
+                            no_kk: {
+                                required: true
+                            },
+                            pekerjaan: {
+                                required: true
+                            },
+                            nama: {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            pendidikan_terakhir: {
+                                required: true
+                            },
+                            tempat_lahir: {
+                                required: true
+                            },
+                            tanggal_lahir: {
+                                required: true
+                            },
+                            jenis_kelamin: {
+                                required: true
+                            },
+                            no_hp: {
+                                required: true
+                            },
+                            aktivitas_utama: {
+                                required: true
+                            },
+                            motivasi_mengajar: {
+                                required: true
+                            },
+                            alamat: {
+                                required: true
+                            },
+                            gambar: {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            nomor_induk: {
+                                required: "Kolom Nomor Induk Harap di Isi!"
+                            },
+                            no_ktp: {
+                                required: "Kolom Nomor KTP Harap di Isi!"
+                            },
+                            no_kk: {
+                                required: "Kolom No. KK Harap di Isi!"
+                            },
+                            pekerjaan: {
+                                required: "Kolom Pekerjaan Harap di Isi!"
+                            },
+                            nama: {
+                                required: "Kolom Nama Harus di Isi!"
+                            },
+                            email: {
+                                required: "Kolom Email Harus di Isi!"
+                            },
+                            pendidikan_terakhir: {
+                                required: "Kolom Pendidikan Terakhir Harap di Isi!"
+                            },
+                            tempat_lahir: {
+                                required: "Kolom Tempat Lahir Harap di Isi!"
+                            },
+                            tanggal_lahir: {
+                                required: "Kolom Tanggal Lahir Harap di Isi!"
+                            },
+                            jenis_kelamin: {
+                                required: "Kolom Jenis Kelamin Harap di Pilih!"
+                            },
+                            no_hp: {
+                                required: "Kolom No HP Harap di Isi!"
+                            },
+                            aktivitas_utama: {
+                                required: "Kolom Aktivitas Utama Harap di Isi!"
+                            },
+                            motivasi_mengajar: {
+                                required: "Kolom Motivasi Mengajar Harap di Isi!"
+                            },
+                            alamat: {
+                                required: "Kolom Alamat Harap di Isi!"
+                            },
+                            gambar: {
+                                required: "Kolom Gambar Harap di Isi!"
+                            }
+                        },
+                        submitHandler: function(form) {
+                            form.submit()
+                        }
+                    });
+                }
+            }
+            $(D).ready(function($) {
+                JQUERY4U.UTIL.setupFormValidation()
+            })
+        })(jQuery, window, document)
     </script>
 
 @endsection

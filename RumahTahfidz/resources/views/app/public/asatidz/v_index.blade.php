@@ -60,7 +60,13 @@
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $asatidz->nomor_induk }}</td>
                                                 <td>{{ $asatidz->getUser->nama }}</td>
-                                                <td>{{ $asatidz->getUser->email }}</td>
+                                                <td>
+                                                    @if (empty($asatidz->getUser->email))
+                                                        -
+                                                    @else
+                                                        {{ $asatidz->getUser->email }}
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">{{ $asatidz->getUser->no_hp }}</td>
                                                 <td class="text-center">
                                                     @if ($asatidz->getUser->jenis_kelamin == 'L')
