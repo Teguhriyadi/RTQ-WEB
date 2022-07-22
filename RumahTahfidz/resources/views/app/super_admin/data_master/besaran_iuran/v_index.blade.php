@@ -38,7 +38,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> Tambah Data @yield('app_title')
+                        <i class="fa fa-plus"></i> Tambah Data
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -67,7 +67,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-bars"></i> Data @yield('app_title')
+                        <i class="fa fa-money"></i> Data @yield('app_title')
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -95,14 +95,10 @@
                                                         data-toggle="modal">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </button>
-                                                    <form action="{{ url('/app/sistem/besaran_iuran/' . $data->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method('DELETE')
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> Hapus
-                                                        </button>
-                                                    </form>
+                                                    <button id="deleteBesaranIuran" data-id="{{ $data->id }}"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> Hapus
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -167,7 +163,7 @@
                         },
                         messages: {
                             besaran: {
-                                required: "Besaran harap di isi!"
+                                required: "Kolom Besaran Iuran harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -198,8 +194,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
-    <script>
+
         function editBesaranIuran(id) {
             $.ajax({
                 url: "{{ url('/app/sistem/besaran_iuran/edit') }}",
@@ -238,6 +233,33 @@
         $(document).ready(function() {
             $("#table-1").dataTable();
 
+        })
+
+        $('body').on('click', '#deleteBesaranIuran', function() {
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iyaa, Saya Yakin'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form_string =
+                        "<form method=\"POST\" action=\"{{ url('/app/sistem/besaran_iuran/') }}/" +
+                        id +
+                        "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                    form = $(form_string)
+                    form.appendTo('body');
+                    form.submit();
+                } else {
+                    Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
+                }
+            })
         })
     </script>
 

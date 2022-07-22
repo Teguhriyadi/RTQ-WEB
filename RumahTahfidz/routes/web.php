@@ -311,6 +311,7 @@ Route::prefix("app")->group(function () {
                     Route::put("/simpan", [NominalIuranController::class, "update"]);
                     Route::post("/aktifkan", [NominalIuranController::class, "aktifkan"]);
                     Route::post("/non_aktifkan", [NominalIuranController::class, "non_aktifkan"]);
+                    Route::delete("/{id}", [NominalIuranController::class, "destroy"]);
                     Route::resource("/", NominalIuranController::class);
                 });
 

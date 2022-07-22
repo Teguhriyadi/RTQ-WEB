@@ -68,12 +68,12 @@ class BlogController extends Controller
 
     public function update(Request $request)
     {
-        if ($request->file("gambar")) {
+        if ($request->file("foto")) {
             if ($request->oldGambar) {
                 Storage::delete($request->oldGambar);
             }
 
-            $data = $request->file("gambar")->store("foto");
+            $data = $request->file("foto")->store("foto");
         } else {
             $data = $request->oldGambar;
         }

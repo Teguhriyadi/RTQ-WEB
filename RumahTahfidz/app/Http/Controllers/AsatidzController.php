@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asatidz;
 use App\Models\HakAkses;
 use App\Models\User;
-use Clockwork\Storage\Storage;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class AsatidzController extends Controller
@@ -122,42 +122,67 @@ class AsatidzController extends Controller
     {
         $this->validate($request, [
             "nama" => "required",
-            "email" => "required|email",
             "alamat" => "required",
             "no_hp" => "required",
             "tanggal_lahir" => "required",
             "jenis_kelamin" => "required",
             "tempat_lahir" => "required",
-            "no_ktp" => "required",
             "nomor_induk" => "required",
-            "pendidikan_terakhir" => "required",
-            "aktivitas_utama" => "required",
-            "motivasi_mengajar" => "required",
         ]);
 
         if ($request->file("gambar")) {
-
-            if ($request->oldGambar) {
-
-                Storage::delete($request->oldGambar);
+            if ($request->gambarLama) {
+                Storage::delete($request->gambarLama);
             }
 
-            $data = $request->file("gambar")->store("asatidz");
+            $nama_gambar = $request->file("gambar")->store("asatidz");
+
+            $data = url('/storage/' . $nama_gambar);
         } else {
-            $data = $request->oldGambar;
+            $data = url('') . "/" . $request->gambarLama;
+        }
+
+        if (empty($request->no_ktp)) {
+            $no_ktp = NULL;
+        } else {
+            $no_ktp = $request->no_ktp;
+        }
+
+        if (empty($request->pendidikan_terakhir)) {
+            $pendidikan_terakhir = NULL;
+        } else {
+            $pendidikan_terakhir = $request->pendidikan_terakhir;
+        }
+
+        if (empty($request->aktivitas_utama)) {
+            $aktivitas_utama = NULL;
+        } else {
+            $aktivitas_utama = $request->aktivitas_utama;
+        }
+
+        if (empty($request->motivasi_mengajar)) {
+            $motivasi_mengajar = NULL;
+        } else {
+            $motivasi_mengajar = $request->motivasi_mengajar;
         }
 
         Asatidz::where("id", $request->id)->update([
             "nomor_induk" => $request->nomor_induk,
-            "no_ktp" => $request->no_ktp,
-            "pendidikan_terakhir" => $request->pendidikan_terakhir,
-            "aktivitas_utama" => $request->aktivitas_utama,
-            "motivasi_mengajar" => $request->motivasi_mengajar
+            "no_ktp" => $no_ktp,
+            "pendidikan_terakhir" => $pendidikan_terakhir,
+            "aktivitas_utama" => $aktivitas_utama,
+            "motivasi_mengajar" => $motivasi_mengajar
         ]);
+
+        if (empty($request->email)) {
+            $email = NULL;
+        } else {
+            $email = $request->email;
+        }
 
         User::where("id", $request->id)->update([
             "nama" => $request->nama,
-            "email" => $request->email,
+            "email" => $email,
             "alamat" => $request->alamat,
             "no_hp" => $request->no_hp,
             "tempat_lahir" => $request->tempat_lahir,

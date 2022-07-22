@@ -38,15 +38,14 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> Tambah @yield('app_title')
+                        <i class="fa fa-plus"></i> Tambah Data
                     </h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="{{ url('/app/sistem/setting/nominal/iuran') }}" method="POST"
-                                id="tambahNominal">
+                            <form action="{{ url('/app/sistem/setting/nominal/iuran') }}" method="POST" id="tambahNominal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="nominal"> Nominal </label>
@@ -165,10 +164,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>
@@ -196,7 +195,7 @@
                         },
                         messages: {
                             nominal: {
-                                required: "Nominal harap di isi!"
+                                required: "Kolom Nominal harap di isi!"
                             },
                         },
                         submitHandler: function(form) {
@@ -227,8 +226,7 @@
                 JQUERY4U.UTIL.setupFormValidation()
             })
         })(jQuery, window, document)
-    </script>
-    <script>
+
         function editNominalIuran(id) {
             $.ajax({
                 url: "{{ url('/app/sistem/setting/nominal/iuran/edit') }}",
@@ -247,13 +245,13 @@
             let id = $(this).data('id');
 
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Iyaa, Saya Yakin'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form_string =
@@ -265,7 +263,7 @@
                     form.appendTo('body');
                     form.submit();
                 } else {
-                    Swal.fire('Selamat!', 'Data anda tidak jadi dihapus', 'error');
+                    Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
                 }
             })
         })

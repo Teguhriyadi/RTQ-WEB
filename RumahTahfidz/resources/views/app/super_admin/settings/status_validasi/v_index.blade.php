@@ -79,27 +79,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php $no = 0 @endphp
+                                        @php
+                                            $no = 0;
+                                        @endphp
                                         @foreach ($data_status as $data)
-                                            <tr>
-                                                <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $data->status }}</td>
-                                                <td class="text-center">
-                                                    <button onclick="editStatusValidasi({{ $data->id }})"
-                                                        class="btn btn-warning btn-sm text-white" data-target="#modalEdit"
-                                                        data-toggle="modal">
-                                                        <i class="fa fa-edit"></i> Edit
-                                                    </button>
-                                                    {{-- <form action="{{ url('/app/sistem/setting/validasi/' . $data->id) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> Hapus
-                                                        </button>
-                                                    </form> --}}
-                                                </td>
-                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

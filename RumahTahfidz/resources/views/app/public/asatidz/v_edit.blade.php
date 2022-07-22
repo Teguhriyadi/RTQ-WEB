@@ -24,11 +24,18 @@
     <div class="clearfix"></div>
 
     <div class="row">
-        <form action="{{ url('/app/sistem/asatidz/simpan') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/app/sistem/asatidz/simpan') }}" method="POST" enctype="multipart/form-data"
+            id="editAsatidz">
             @method('PUT')
             {{ csrf_field() }}
             <input type="hidden" name="id" value="{{ $edit->getUser->id }}">
-            <input type="hidden" name="oldGambar" value="{{ $edit->getUser->gambar }}">
+            @php
+                $str = $edit->getUser->gambar;
+                $hasil = trim($str, url('/'));
+
+                $print = substr($hasil, 8);
+            @endphp
+            <input type="hidden" name="gambarLama" value="{{ $print }}">
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
@@ -37,8 +44,8 @@
                                 <img src="{{ url('/gambar/gambar_user.png') }}" class="gambar-preview mb-3 img-fluid"
                                     id="tampilGambar">
                             @else
-                                <img src="{{ url('/storage/' . $edit->getUser->gambar) }}"
-                                    class="gambar-preview mb-3 img-fluid" id="tampilGambar">
+                                <img src="{{ $edit->getUser->gambar }}" class="gambar-preview mb-3 img-fluid"
+                                    id="tampilGambar">
                             @endif
                         </center>
                         <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
@@ -64,14 +71,16 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="no_ktp"> No. KTP </label>
+                                    <label for="no_ktp"> No. KTP <small class="text-danger"><i>Tidak Wajib di
+                                                Isi!</i></small> </label>
                                     <input type="text" class="form-control" name="no_ktp" id="no_ktp"
                                         placeholder="Masukkan No. KTP" value="{{ $edit->no_ktp }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="pendidikan_terakhir"> Pendidikan Terakhir </label>
+                                    <label for="pendidikan_terakhir"> Pendidikan Terakhir <small
+                                            class="text-danger"><i>Tidak Wajib di Isi!</i></small> </label>
                                     <input type="text" class="form-control" name="pendidikan_terakhir"
                                         id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir"
                                         value="{{ $edit->pendidikan_terakhir }}">
@@ -88,7 +97,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email"> Email </label>
+                                    <label for="email"> Email <small class="text-danger"><i>Tidak Wajib di
+                                                Isi!</i></small> </label>
                                     <input type="email" class="form-control" name="email" id="email"
                                         placeholder="Masukkan Email" value="{{ $edit->getUser->email }}">
                                 </div>
@@ -134,7 +144,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="aktivitas_utama"> Aktivitas Utama </label>
+                                    <label for="aktivitas_utama"> Aktivitas Utama <small class="text-danger"><i>Tidak
+                                                Wajib di Isi!</i></small> </label>
                                     <input type="text" class="form-control" name="aktivitas_utama"
                                         id="aktivitas_utama" placeholder="Masukkan Aktivitas Utama"
                                         value="{{ $edit->aktivitas_utama }}">
@@ -142,7 +153,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="motivasi_mengajar"> Motivasi Mengajar </label>
+                                    <label for="motivasi_mengajar"> Motivasi Mengajar <small class="text-danger"><i>Tidak
+                                                Wajib di Isi!</i></small> </label>
                                     <input type="text" class="form-control" name="motivasi_mengajar"
                                         id="motivasi_mengajar" placeholder="Masukkan Motivasi Mengajar"
                                         value="{{ $edit->motivasi_mengajar }}">
@@ -201,23 +213,14 @@
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
                 setupFormValidation: function() {
-                    $("#tambahAsatidz").validate({
+                    $("#editAsatidz").validate({
                         lang: "id",
                         ignore: "",
                         rules: {
                             nomor_induk: {
                                 required: true
                             },
-                            no_ktp: {
-                                required: true
-                            },
                             nama: {
-                                required: true
-                            },
-                            email: {
-                                required: true
-                            },
-                            pendidikan_terakhir: {
                                 required: true
                             },
                             tempat_lahir: {
@@ -232,12 +235,6 @@
                             no_hp: {
                                 required: true
                             },
-                            aktivitas_utama: {
-                                required: true
-                            },
-                            motivasi_mengajar: {
-                                required: true
-                            },
                             alamat: {
                                 required: true
                             }
@@ -246,17 +243,8 @@
                             nomor_induk: {
                                 required: "Nomor Induk Harap di Isi!"
                             },
-                            no_ktp: {
-                                required: "Nomor KTP Harap di Isi!"
-                            },
                             nama: {
                                 required: "Nama Harus di Isi!"
-                            },
-                            email: {
-                                required: "Email Harus di Isi!"
-                            },
-                            pendidikan_terakhir: {
-                                required: "Pendidikan Terakhir Harap di Isi!"
                             },
                             tempat_lahir: {
                                 required: "Tempat Lahir Harap di Isi!"
@@ -266,12 +254,6 @@
                             },
                             jenis_kelamin: {
                                 required: "Jenis Kelamin Harap di Pilih!"
-                            },
-                            aktivitas_utama: {
-                                required: "Aktivitas Utama Harap di Isi!"
-                            },
-                            motivasi_mengajar: {
-                                required: "Motivasi Mengajar Harap di Isi!"
                             },
                             alamat: {
                                 required: "Alamat Harap di Isi!"
