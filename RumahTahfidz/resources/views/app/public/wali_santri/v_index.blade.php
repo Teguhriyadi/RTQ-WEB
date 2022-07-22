@@ -52,14 +52,16 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
+                        <h2>
+                            <i class="fa fa-users"></i> Data @yield('app_title')
+                        </h2>
                         @if (Auth::user()->getAkses->getRole->id == 1)
-                            <h2>
-                                <i class="fa fa-users"></i> Data @yield('app_title')
-                            </h2>
                         @else
-                            <a href="{{ url('/app/sistem/wali_santri/create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus"></i> Tambah Data
-                            </a>
+                            <div class="pull-right">
+                                <a href="{{ url('/app/sistem/wali_santri/create') }}" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-plus"></i> Tambah
+                                </a>
+                            </div>
                         @endif
                         <div class="pull-right">
                             {{-- <a href="{{ url('app/sistem/wali_santri/export') }}" class="btn btn-success btn-sm"><i --}}

@@ -7,6 +7,7 @@ use App\Models\HakAkses;
 use App\Models\LokasiRt;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminLokasiRtController extends Controller
 {
@@ -169,6 +170,18 @@ class AdminLokasiRtController extends Controller
             $email = $request->email;
         }
 
+        if ($request->file("gambar")) {
+            if ($request->gambarLama) {
+                Storage::delete($request->gambarLama);
+            }
+
+            $nama_gambar = $request->file("gambar")->store("admin_cabang");
+
+            $data = url('/storage/' . $nama_gambar);
+        } else {
+            $data = url('') . "/storage/" . $request->gambarLama;
+        }
+
         User::where("id", $id)->update([
             "nama" => $request->nama,
             "email" => $email,
@@ -176,7 +189,8 @@ class AdminLokasiRtController extends Controller
             "no_hp" => $request->no_hp,
             "tempat_lahir" => $request->tempat_lahir,
             "tanggal_lahir" => $request->tanggal_lahir,
-            "jenis_kelamin" => $request->jenis_kelamin
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "gambar" => $data
         ]);
 
         return redirect("/app/sistem/admin_lokasi_rt")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success')</script>");

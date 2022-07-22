@@ -229,6 +229,7 @@ class SantriController extends Controller
                 $santri = Santri::get();
             } else {
                 $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
+
                 $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
                 $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
 

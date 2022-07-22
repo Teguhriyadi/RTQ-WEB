@@ -139,7 +139,7 @@ class AsatidzController extends Controller
 
             $data = url('/storage/' . $nama_gambar);
         } else {
-            $data = url('') . "/" . $request->gambarLama;
+            $data = url('') . "/storage/" . $request->gambarLama;
         }
 
         if (empty($request->no_ktp)) {

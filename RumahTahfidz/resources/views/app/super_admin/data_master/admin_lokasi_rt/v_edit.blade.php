@@ -31,6 +31,13 @@
     <div class="row">
         @method('PUT')
         {{ csrf_field() }}
+        @php
+            $str = $edit->getUser->gambar;
+            $hasil = trim($str, url('/'));
+
+            $print = substr($hasil, 8);
+        @endphp
+        <input type="hidden" name="gambarLama" value="{{ $print }}">
         <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_content">
@@ -38,8 +45,8 @@
                         @if (empty($edit->getUser->gambar))
                             <img src="{{ url('gambar/gambar_user.png') }}" class="gambar-preview img-fluid mb-3">
                         @else
-                            <img src="{{ $edit->getUser->gambar }}" class="gambar-preview img-fluid" width="100%"
-                                height="300px">
+                            <img src="{{ $edit->getUser->gambar }}" class="gambar-preview img-fluid" id="tampilGambar"
+                                width="100%" height="300px">
                         @endif
                     </center>
                     <input onchange="previewImage()" type="file" class="form-control mt-3" name="gambar"
@@ -82,7 +89,8 @@
                                 <label for="jenis_kelamin"> Jenis Kelamin </label>
                                 <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                                     <option value="">- Pilih -</option>
-                                    <option value="L" {{ $edit->getUser->jenis_kelamin == 'L' ? 'selected' : '' }}>
+                                    <option value="L"
+                                        {{ $edit->getUser->jenis_kelamin == 'L' ? 'selected' : '' }}>
                                         Laki - Laki
                                     </option>
                                     <option value="P"
@@ -270,8 +278,8 @@
     });
 
     function previewImage() {
-        const image = document.querySelector("#gambar2");
-        const imgPreview = document.querySelector(".gambar-preview2");
+        const image = document.querySelector("#gambar");
+        const imgPreview = document.querySelector(".gambar-preview");
 
         imgPreview.style.display = "block";
 

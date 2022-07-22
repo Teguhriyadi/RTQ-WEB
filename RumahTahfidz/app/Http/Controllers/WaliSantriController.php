@@ -43,14 +43,11 @@ class WaliSantriController extends Controller
         }
         $this->validate($request, [
             "nama" => "required",
-            "email" => "required|email",
             "alamat" => "required",
             "no_hp" => "required",
             "tanggal_lahir" => "required",
             "jenis_kelamin" => "required",
             "tempat_lahir" => "required",
-            "no_ktp" => "required",
-            "no_kk" => "required",
             "pekerjaan" => "required",
             "gambar" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
@@ -60,7 +57,14 @@ class WaliSantriController extends Controller
         $user = new User;
 
         $user->nama = $request->nama;
-        $user->email = $request->email;
+
+        if (empty($request->email)) {
+            $email = NULL;
+        } else {
+            $email = $request->email;
+        }
+
+        $user->email = $email;
         $user->password = bcrypt("walisantri" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->id_hak_akses = $id_otomatis;
@@ -87,8 +91,22 @@ class WaliSantriController extends Controller
         $walisantri = new WaliSantri;
 
         $walisantri->id = $user->id;
-        $walisantri->no_ktp = $request->no_ktp;
-        $walisantri->no_kk = $request->no_kk;
+
+        if (empty($request->no_ktp)) {
+            $no_ktp = NULL;
+        } else {
+            $no_ktp = $request->no_ktp;
+        }
+
+        $walisantri->no_ktp = $no_ktp;
+
+        if (empty($request->no_kk)) {
+            $no_kk = NULL;
+        } else {
+            $no_kk = $request->no_kk;
+        }
+
+        $walisantri->no_kk = $no_kk;
         $walisantri->pekerjaan = $request->pekerjaan;
 
         $walisantri->save();
@@ -185,10 +203,11 @@ class WaliSantriController extends Controller
             if (WaliSantri::count() < 1) {
                 $walisantri = WaliSantri::get();
             } else {
+                $count = WaliSantri::get();
+
+                $santri = Santri::where("id_jenjang", "!=", NULL)->where("status", 1)->get();
                 $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
-                $lokasi = LokasiRt::where("kode_rt", $user->kode_rt)->first();
-                $halaqah = Halaqah::where("kode_rt", $lokasi->kode_rt)->first();
-                $santri = Santri::where("status", 1)->where("kode_halaqah", $halaqah->kode_halaqah)->get();
+
                 $walisantri = WaliSantri::get();
             }
         }
@@ -197,7 +216,7 @@ class WaliSantriController extends Controller
         foreach ($walisantri as $user) {
 
             if (empty($user->no_kk)) {
-                $no_kk = "NULL";
+                $no_kk = "-";
             } else {
                 $no_kk = $user->no_kk;
             }
