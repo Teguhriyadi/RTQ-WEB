@@ -22,14 +22,16 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
+                    <h2>
+                        <i class="fa fa-users"></i> Data @yield('app_title')
+                    </h2>
                     @if (Auth::user()->getAkses->id_role == 1)
-                        <h2>
-                            <i class="fa fa-users"></i> Data @yield('app_title')
-                        </h2>
                     @else
-                        <a href="{{ url('/app/sistem/asatidz/create') }}" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> Tambah
-                        </a>
+                        <div class="pull-right">
+                            <a href="{{ url('/app/sistem/asatidz/create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus"></i> Tambah
+                            </a>
+                        </div>
                     @endif
 
                     <div class="clearfix"></div>
