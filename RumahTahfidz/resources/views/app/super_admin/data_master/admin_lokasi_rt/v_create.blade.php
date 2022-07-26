@@ -271,7 +271,7 @@
             $("#optionNyala").hide();
             $("#optionMati").show();
         } else {
-            $("#kode_rt").show();
+            // $("#kode_rt").show();
         }
     });
 
