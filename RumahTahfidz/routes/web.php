@@ -170,7 +170,7 @@ Route::prefix("app")->group(function () {
                 Route::resource("/blog", BlogController::class);
 
                 // Data Admin Cabang
-                Route::resource("/admin_lokasi_rt", AdminLokasiRtController::class);
+                Route::resource("/admin_cabang", AdminLokasiRtController::class);
 
                 // Hak Akses Users
                 Route::get("/users/hak_akses/{id}", [HakAksesController::class, "index"]);

@@ -41,7 +41,7 @@
     <div class="clearfix"></div>
 @endif
 
-<form action="{{ url('/app/sistem/admin_lokasi_rt') }}" method="POST" enctype="multipart/form-data"
+<form action="{{ url('/app/sistem/admin_cabang') }}" method="POST" enctype="multipart/form-data"
     id="tambahAdminCabang">
     <div class="row">
         {{ csrf_field() }}
@@ -122,7 +122,7 @@
                         </div>
                         <div class="col-md-6" id="optionNyala">
                             <div class="form-group">
-                                <label for="kode_rt"> Lokasi RT </label>
+                                <label for="kode_rt"> Lokasi Cabang </label>
                                 @if ($data_lokasi_rt->count() < 1)
                                     <input type="text" name="kode_input" class="form-control" id="kode_rt"
                                         placeholder="Masukkan Lokasi RT">
@@ -239,13 +239,13 @@
                             required: "Kolom No HP harap di isi!"
                         },
                         kode_input: {
-                            required: "Kolom Lokasi Cabang harap di isi!"
+                            required: "Kolom Lokasi Cabang Input harap di isi!"
                         },
                         kode_rt: {
-                            required: "Kolom Lokasi Cabang harap di isi!"
+                            required: "Kolom Lokasi Cabang RT harap di isi!"
                         },
                         input_kode_rt: {
-                            required: "Kolom Lokasi Cabang harap di isi!"
+                            required: "Kolom Lokasi Cabang Input Kode harap di isi!"
                         },
                         alamat: {
                             required: "Kolom Alamat harap di isi!"
@@ -270,6 +270,8 @@
         if ($(this).val() == "L") {
             $("#optionNyala").hide();
             $("#optionMati").show();
+        } else {
+            $("#kode_rt").show();
         }
     });
 

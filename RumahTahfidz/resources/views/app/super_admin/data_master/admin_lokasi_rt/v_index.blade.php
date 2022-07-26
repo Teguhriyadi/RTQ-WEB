@@ -41,7 +41,7 @@
                         <i class="fa fa-users"></i> Data @yield('app_title')
                     </h2>
                     <div class="pull-right">
-                        <a href="{{ url('/app/sistem/admin_lokasi_rt/create') }}" class="btn btn-primary btn-sm">
+                        <a href="{{ url('/app/sistem/admin_cabang/create') }}" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus"></i> Tambah
                         </a>
 

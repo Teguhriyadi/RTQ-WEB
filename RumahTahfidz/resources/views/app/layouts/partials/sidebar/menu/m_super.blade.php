@@ -4,8 +4,8 @@
         <span class="fa fa-chevron-down"></span>
     </a>
     <ul class="nav child_menu">
-        <li class="{{ Request::segment(3) == 'admin_lokasi_rt' ? 'active' : '' }}">
-            <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">
+        <li class="{{ Request::segment(3) == 'admin_cabang' ? 'active' : '' }}">
+            <a href="{{ url('/app/sistem/admin_cabang') }}">
                 Admin Cabang
             </a>
         </li>
