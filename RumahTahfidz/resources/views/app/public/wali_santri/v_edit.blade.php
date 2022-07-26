@@ -41,8 +41,7 @@
                             @if (empty($edit->getUser->gambar))
                                 <img src="{{ url('/gambar/gambar_user.png') }}" alt="">
                             @else
-                                <img src="{{ $edit->getUser->gambar }}" class="img-fluid gambar-preview"
-                                    id="tampilGambar">
+                                <img src="{{ $edit->getUser->gambar }}" class="img-fluid gambar-preview" id="tampilGambar">
                             @endif
                         </center>
                         <input onchange="previewImage()" type="file" class="form-control mt-3" name="gambar"
@@ -63,14 +62,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="no_ktp"> No. KTP </label>
+                                    <label for="no_ktp"> No. KTP <small class="text-danger"><i>Tidak Wajib di
+                                                Isi!</i></small> </label>
                                     <input type="text" class="form-control" name="no_ktp" id="no_ktp"
                                         placeholder="Masukkan No. KTP" value="{{ $edit->no_ktp }} {{ old('no_ktp') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="nama"> No. KK </label>
+                                    <label for="nama"> No. KK <small class="text-danger"><i>Tidak Wajib di
+                                                Isi!</i></small> </label>
                                     <input type="text" class="form-control" name="no_kk" id="no_kk"
                                         placeholder="Masukkan No. KK" value="{{ $edit->no_kk }} {{ old('no_kk') }}">
                                 </div>
@@ -92,26 +93,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="email"> Email </label>
+                                    <label for="email"> Email <small class="text-danger"><i>Tidak Wajib di
+                                                Isi!</i></small> </label>
                                     <input type="email" class="form-control" name="email" id="email"
                                         placeholder="Masukkan Email"
                                         value="{{ old('email') ? old('email') : $edit->getUser->email }}">
                                 </div>
                             </div>
-                            {{-- <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="kode_halaqah">Halaqah</label>
-                                    <select name="kode_halaqah" class="form-control" id="kode_halaqah">
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($data_halaqah as $data)
-                                            <option value="{{ $data->kode_halaqah }}"
-                                                {{ $data->kode_halaqah == old('kode_halaqah') ? 'selected' : '' }}>
-                                                {{ $data->nama_halaqah }} - {{ $data->kode_rt }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -127,8 +115,7 @@
                                     <label for="jenis_kelamin"> Jenis Kelamin </label>
                                     <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                                         <option value="">- Pilih -</option>
-                                        <option
-                                            value="L"{{ $edit->getUser->jenis_kelamin == 'L' ? 'selected' : '' }}
+                                        <option value="L"{{ $edit->getUser->jenis_kelamin == 'L' ? 'selected' : '' }}
                                             {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki
                                             - Laki</option>
                                         <option value="P"
@@ -206,25 +193,10 @@
                         lang: "id",
                         ignore: "",
                         rules: {
-                            nomor_induk: {
-                                required: true
-                            },
-                            no_ktp: {
-                                required: true
-                            },
-                            no_kk: {
-                                required: true
-                            },
                             pekerjaan: {
                                 required: true
                             },
                             nama: {
-                                required: true
-                            },
-                            email: {
-                                required: true
-                            },
-                            pendidikan_terakhir: {
                                 required: true
                             },
                             tempat_lahir: {
@@ -239,12 +211,6 @@
                             no_hp: {
                                 required: true
                             },
-                            aktivitas_utama: {
-                                required: true
-                            },
-                            motivasi_mengajar: {
-                                required: true
-                            },
                             alamat: {
                                 required: true
                             },
@@ -253,26 +219,11 @@
                             }
                         },
                         messages: {
-                            nomor_induk: {
-                                required: "Kolom Nomor Induk Harap di Isi!"
-                            },
-                            no_ktp: {
-                                required: "Kolom Nomor KTP Harap di Isi!"
-                            },
-                            no_kk: {
-                                required: "Kolom No. KK Harap di Isi!"
-                            },
                             pekerjaan: {
                                 required: "Kolom Pekerjaan Harap di Isi!"
                             },
                             nama: {
                                 required: "Kolom Nama Harus di Isi!"
-                            },
-                            email: {
-                                required: "Kolom Email Harus di Isi!"
-                            },
-                            pendidikan_terakhir: {
-                                required: "Kolom Pendidikan Terakhir Harap di Isi!"
                             },
                             tempat_lahir: {
                                 required: "Kolom Tempat Lahir Harap di Isi!"
@@ -285,12 +236,6 @@
                             },
                             no_hp: {
                                 required: "Kolom No HP Harap di Isi!"
-                            },
-                            aktivitas_utama: {
-                                required: "Kolom Aktivitas Utama Harap di Isi!"
-                            },
-                            motivasi_mengajar: {
-                                required: "Kolom Motivasi Mengajar Harap di Isi!"
                             },
                             alamat: {
                                 required: "Kolom Alamat Harap di Isi!"
