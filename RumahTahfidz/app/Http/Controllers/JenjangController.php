@@ -53,7 +53,7 @@ class JenjangController extends Controller
         if ($cek > 0) {
             return back()->with(["message" => "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
         } else {
-            Jenjang::where("id", $request->id)->update([
+            Jenjang::where("id", decrypt($request->id))->update([
                 "jenjang" => $request->jenjang
             ]);
 

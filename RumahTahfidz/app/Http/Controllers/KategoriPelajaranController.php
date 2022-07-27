@@ -56,7 +56,7 @@ class KategoriPelajaranController extends Controller
             "id_pelajaran" => "required",
         ]);
 
-        KategoriPelajaran::where("id", $request->id)->update([
+        KategoriPelajaran::where("id", decrypt($request->id))->update([
             "id_jenjang" => $request->id_jenjang,
             "id_pelajaran" => $request->id_pelajaran,
             "id_kategori_penilaian" => $request->id_kategori_penilaian

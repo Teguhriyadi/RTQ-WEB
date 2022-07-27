@@ -63,7 +63,7 @@ class HalaqahController extends Controller
             'kode_rt' => 'required'
         ]);
 
-        Halaqah::where("kode_halaqah", $request->kode_halaqah)->update([
+        Halaqah::where("kode_halaqah", decrypt($request->kode_halaqah))->update([
             "nama_halaqah" => $request->nama_halaqah,
             "kode_rt" => $request->kode_rt
         ]);

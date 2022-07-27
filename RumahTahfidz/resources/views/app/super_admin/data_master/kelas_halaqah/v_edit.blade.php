@@ -1,7 +1,7 @@
 @php
 use App\Models\KelasHalaqah;
 @endphp
-<input type="hidden" name="id" value="{{ $edit->id }}">
+<input type="hidden" name="id" value="{{ encrypt($edit->id) }}">
 <div class="form-group">
     <label for="id_asatidz"> Asatidz </label>
     <select name="id_asatidz" class="form-control" id="id_asatidz">

@@ -53,7 +53,7 @@ class PelajaranController extends Controller
         if ($count > 0) {
             return redirect()->back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
         } else {
-            Pelajaran::where("id", $request->id)->update([
+            Pelajaran::where("id", decrypt($request->id))->update([
                 "nama_pelajaran" => $request->nama_pelajaran
             ]);
 

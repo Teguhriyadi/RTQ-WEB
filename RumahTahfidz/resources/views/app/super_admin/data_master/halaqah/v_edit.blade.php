@@ -1,5 +1,5 @@
 <input type="hidden" class="form-control" name="kode_halaqah" id="kode_halaqah" placeholder="Masukkan Kode Halaqah"
-    value="{{ $edit->kode_halaqah }}">
+    value="{{ encrypt($edit->kode_halaqah) }}">
 <div class="form-group">
     <label for="nama_halaqah"> Nama Halaqah </label>
     <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah" placeholder="Masukkan Nama Halaqah"

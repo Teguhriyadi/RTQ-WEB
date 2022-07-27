@@ -52,7 +52,7 @@ class KelasHalaqahController extends Controller
             "kelas_halaqah" => "required",
         ]);
 
-        KelasHalaqah::where("id", $request->id)->update([
+        KelasHalaqah::where("id", decrypt($request->id))->update([
             "id_asatidz" => $request->id_asatidz,
             "kode_halaqah" => $request->kode_halaqah,
             "kelas_halaqah" => $request->kelas_halaqah

@@ -60,7 +60,7 @@ class KategoriPenilaianController extends Controller
         if ($count > 0) {
             return redirect()->back()->with(["message" => "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
         } else {
-            KategoriPenilaian::where("id", $request->id)->update([
+            KategoriPenilaian::where("id", decrypt($request->id))->update([
                 "kategori_penilaian" => $request->kategori_penilaian,
                 "slug" => Str::slug($request->kategori_penilaian)
             ]);

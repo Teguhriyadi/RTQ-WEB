@@ -68,7 +68,7 @@ class LokasiRtController extends Controller
         if ($count > 0) {
             return back()->with(["message" => "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
         } else {
-            LokasiRt::where("kode_rt", $request->kode_rt)->update([
+            LokasiRt::where("kode_rt", decrypt($request->kode_rt))->update([
                 "lokasi_rt" => $request->lokasi_rt
             ]);
 

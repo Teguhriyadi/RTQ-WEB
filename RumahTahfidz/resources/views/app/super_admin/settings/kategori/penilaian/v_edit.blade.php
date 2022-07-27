@@ -1,4 +1,4 @@
-<input type="hidden" name="id" value="{{ $edit->id }}">
+<input type="hidden" name="id" value="{{ encrypt($edit->id) }}">
 <div class="form-group">
     <label for="kategori_penilaian"> Kategori Penilaian </label>
     <input type="text" class="form-control" name="kategori_penilaian" id="kategori_penilaian"
