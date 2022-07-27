@@ -211,9 +211,6 @@
                         kode_rt: {
                             required: true
                         },
-                        input_kode_rt: {
-                            required: true
-                        },
                         alamat: {
                             required: true
                         },
@@ -244,9 +241,6 @@
                         kode_rt: {
                             required: "Kolom Lokasi Cabang RT harap di isi!"
                         },
-                        input_kode_rt: {
-                            required: "Kolom Lokasi Cabang Input Kode harap di isi!"
-                        },
                         alamat: {
                             required: "Kolom Alamat harap di isi!"
                         },
@@ -270,8 +264,6 @@
         if ($(this).val() == "L") {
             $("#optionNyala").hide();
             $("#optionMati").show();
-        } else {
-            // $("#kode_rt").show();
         }
     });
 
