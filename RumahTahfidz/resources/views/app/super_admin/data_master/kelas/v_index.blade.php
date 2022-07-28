@@ -128,7 +128,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-sm btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-sm btn-danger">
                             <i class="fa fa-times"></i> Kembali
                         </button>
                         <button type="submit" class="btn btn-sm btn-success" id="btn-edit">

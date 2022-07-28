@@ -196,8 +196,9 @@ use App\Models\Asatidz;
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
-                                <i class="fa fa-times"></i> Kembali
+                            <button type="reset" class="btn btn-danger btn-sm">
+                                <i class="fa fa-times"></i>
+                                Kembali
                             </button>
                             <button type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-save"></i> Tambah
@@ -230,7 +231,7 @@ use App\Models\Asatidz;
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm">
                             <i class="fa fa-times"></i> Kembali
                         </button>
                         <button type="submit" class="btn btn-success btn-sm">

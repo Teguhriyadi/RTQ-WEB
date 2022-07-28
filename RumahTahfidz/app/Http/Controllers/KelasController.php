@@ -54,7 +54,7 @@ class KelasController extends Controller
         if ($count > 0) {
             return redirect()->back()->with("message", "<script>Swal.fire('Gagal', 'Tidak Boleh Duplikasi Data', 'error')</script>");
         } else {
-            Kelas::where("id", $request->id)->update([
+            Kelas::where("id", decrypt($request->id))->update([
                 "nama_kelas" => $request->nama_kelas
             ]);
 

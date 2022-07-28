@@ -79,7 +79,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="{{ url('/app/sistem/admin_lokasi_rt/' . $data->id . '/edit') }}"
+                                                    <a href="{{ url('/app/sistem/admin_cabang/' . encrypt($data->id) . '/edit') }}"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </a>

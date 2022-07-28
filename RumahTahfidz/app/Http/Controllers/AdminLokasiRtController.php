@@ -126,7 +126,7 @@ class AdminLokasiRtController extends Controller
     public function edit($id)
     {
         $data = [
-            "edit" => AdminLokasiRt::where("id", $id)->first(),
+            "edit" => AdminLokasiRt::where("id", decrypt($id))->first(),
             "lokasi_rt" => LokasiRt::get()
         ];
 
@@ -159,7 +159,7 @@ class AdminLokasiRtController extends Controller
             "gambar" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
-        AdminLokasiRt::where("id", $id)->update([
+        AdminLokasiRt::where("id", decrypt($id))->update([
             "pendidikan_terakhir" => $request->pendidikan_terakhir,
             "kode_rt" => $lokasi
         ]);
@@ -182,7 +182,7 @@ class AdminLokasiRtController extends Controller
             $data = url('') . "/storage/" . $request->gambarLama;
         }
 
-        User::where("id", $id)->update([
+        User::where("id", decrypt($id))->update([
             "nama" => $request->nama,
             "email" => $email,
             "alamat" => $request->alamat,
