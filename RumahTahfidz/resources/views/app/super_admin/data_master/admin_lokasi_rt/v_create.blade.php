@@ -59,7 +59,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> Tambah @yield('app_title')
+                        <i class="fa fa-plus"></i> Tambah Data
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -68,13 +68,13 @@
                     <div class="form-group">
                         <label for="nama"> Nama </label>
                         <input type="text" class="form-control" name="nama" id="nama"
-                            placeholder="Masukkan Nama">
+                            placeholder="Masukkan Nama" value="{{ old('nama') }}">
                     </div>
                     <div class="form-group">
                         <label for="email"> Email <small class="text-danger"><i>Tidak Wajib di Isi</i></small>
                         </label>
                         <input type="email" class="form-control" name="email" id="email"
-                            placeholder="Masukkan Email">
+                            placeholder="Masukkan Email" value="{{ old('email') }}">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -82,7 +82,8 @@
                                 <label for="pendidikan_terakhir"> Pendidikan Terakhir <small
                                         class="text-danger"><i>Tidak Wajib di Isi</i></small> </label>
                                 <input type="text" class="form-control" name="pendidikan_terakhir"
-                                    id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                                    id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir"
+                                    value="{{ old('pendidikan_terakhir') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -90,8 +91,12 @@
                                 <label for="jenis_kelamin"> Jenis Kelamin </label>
                                 <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                                     <option value="">- Pilih -</option>
-                                    <option value="L">Laki - Laki</option>
-                                    <option value="P">Perempuan</option>
+                                    <option value="L">
+                                        Laki - Laki
+                                    </option>
+                                    <option value="P">
+                                        Perempuan
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -102,13 +107,14 @@
                             <div class="form-group">
                                 <label for="tempat_lahir"> Tempat Lahir </label>
                                 <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir"
-                                    placeholder="Masukkan Tempat Lahir">
+                                    placeholder="Masukkan Tempat Lahir" value="{{ old('tempat_lahir') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="tanggal_lahir"> Tanggal Lahir </label>
-                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
+                                <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir"
+                                    value="{{ old('tanggal_lahir') }}">
                             </div>
                         </div>
                     </div>
@@ -117,7 +123,7 @@
                             <div class="form-group">
                                 <label for="no_hp"> No. HP </label>
                                 <input type="number" class="form-control" name="no_hp" id="no_hp"
-                                    placeholder="Masukkan No. HP">
+                                    placeholder="Masukkan No. HP" value="{{ old('no_hp') }}">
                             </div>
                         </div>
                         <div class="col-md-6" id="optionNyala">
@@ -159,7 +165,7 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat"> Alamat </label>
-                        <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat"></textarea>
+                        <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
                     </div>
                     <div class="ln_solid"></div>
                     <button type="reset" class="btn btn-danger btn-sm">
@@ -168,7 +174,7 @@
                     <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> Tambah
                     </button>
-                    <a href="{{ url('/app/sistem/admin_lokasi_rt') }}" class="btn btn-warning btn-sm pull-right">
+                    <a href="{{ url('/app/sistem/admin_cabang') }}" class="btn btn-warning btn-sm pull-right">
                         <i class="fa fa-sign-out"></i> Kembali ke Halaman Sebelumnya
                     </a>
                 </div>

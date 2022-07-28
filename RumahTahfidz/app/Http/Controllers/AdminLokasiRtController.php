@@ -78,13 +78,7 @@ class AdminLokasiRtController extends Controller
 
         $user->nama = $request->nama;
 
-        if (empty($request->email)) {
-            $email = NULL;
-        } else {
-            $email = $request->email;
-        }
-
-        $user->email = $email;
+        $user->email = $request->email;
         $user->password = bcrypt("admin" . $request->no_hp);
         $user->alamat = $request->alamat;
         $user->no_hp = $request->no_hp;
@@ -110,13 +104,7 @@ class AdminLokasiRtController extends Controller
 
         $admin_lokasi_rt->id = $user->id;
 
-        if (empty($request->pendidikan_terakhir)) {
-            $pendidikan_terakhir = NULL;
-        } else {
-            $pendidikan_terakhir = $request->pendidikan_terakhir;
-        }
-
-        $admin_lokasi_rt->pendidikan_terakhir = $pendidikan_terakhir;
+        $admin_lokasi_rt->pendidikan_terakhir = $request->pendidikan_terakhir;
         $admin_lokasi_rt->kode_rt = $lokasi;
         $admin_lokasi_rt->save();
 

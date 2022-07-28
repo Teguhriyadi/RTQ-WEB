@@ -70,7 +70,7 @@
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>
-                                    <i class="fa fa-plus"></i> Tambah Data @yield('app_title')
+                                    <i class="fa fa-plus"></i> Tambah Data
                                 </h2>
                                 <div class="clearfix"></div>
                             </div>
@@ -210,7 +210,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm">
                             <i class="fa fa-times"></i> Kembali
                         </button>
                         <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
