@@ -1,6 +1,12 @@
 @extends('.app.layouts.template')
 
-@section('app_title', 'Tambah Blog')
+@section('app_title', 'Blog')
+
+@section('app_css')
+
+    <link rel="stylesheet" href="{{ url('vendors/select2/dist/css/select2.min.css') }}" />
+
+@endsection
 
 @section('app_content')
 
@@ -10,8 +16,14 @@
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data @yield('app_title')</li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('/app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('/app/sistem/blog') }}">@yield('app_title')
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah @yield('app_title')</li>
             </ol>
         </nav>
     </section>
@@ -34,7 +46,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> @yield('app_title')
+                        <i class="fa fa-plus"></i> Tambah Data
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -107,6 +119,10 @@
 
 @section('app_scripts')
     <script>
+        $(document).ready(function() {
+            $('#id_kategori').select2();
+        })
+
         (function($, W, D) {
             var JQUERY4U = {};
             JQUERY4U.UTIL = {
@@ -114,7 +130,7 @@
                     $("#formTambahBerita").validate({
                         ignore: "",
                         rules: {
-                            logo: {
+                            foto: {
                                 required: true,
                                 accept: true
                             },
@@ -129,18 +145,18 @@
                             }
                         },
                         messages: {
-                            logo: {
-                                required: "Foto harap di isi!",
+                            foto: {
+                                required: "Kolom Foto harap di isi!",
                                 accept: "Masukan format gambar yang sesuai!"
                             },
                             id_kategori: {
-                                required: "Kategori harap di isi!"
+                                required: "Kolom Kategori harap di isi!"
                             },
                             judul: {
-                                required: "Judul harap di isi!"
+                                required: "Kolom Judul harap di isi!"
                             },
                             deskripsi: {
-                                required: "Deskripsi harap di isi!"
+                                required: "Kolom Deskripsi harap di isi!"
                             }
                         },
                         submitHandler: function(form) {
@@ -155,6 +171,7 @@
         })(jQuery, window, document)
     </script>
     <script src="{{ url('vendors/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ url('vendors/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
         var editor_config = {
             path_absolute: '/',

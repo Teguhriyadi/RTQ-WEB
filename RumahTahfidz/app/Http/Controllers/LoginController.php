@@ -43,6 +43,7 @@ class LoginController extends Controller
         ]);
 
         if ($cek) {
+
             echo 1;
         } else {
             echo 2;

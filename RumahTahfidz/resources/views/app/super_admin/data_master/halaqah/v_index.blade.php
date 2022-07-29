@@ -6,9 +6,8 @@
 
 @section('app_css')
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ url('vendors/select2/dist/css/select2.min.css') }}" />
+
 @endsection
 
 <section class="section">
@@ -53,17 +52,51 @@
     </div>
 @else
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        <i class="fa fa-plus"></i> Tambah Data
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form action="{{ url('/app/sistem/halaqah') }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="nama_halaqah"> Nama Halaqah </label>
+                            <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah"
+                                placeholder="Masukkan Nama Halaqah" value="{{ old('nama_halaqah') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kode_rt"> Lokasi RT </label>
+                            <select name="kode_rt" class="form-control" id="kode_rt" style="width: 100%">
+                                <option value="">- Pilih -</option>
+                                @foreach ($data_lokasi_rt as $data)
+                                    <option value="{{ $data->kode_rt }}"
+                                        {{ old('kode_rt') == $data->kode_rt ? 'selected' : '' }}>
+                                        {{ $data->lokasi_rt }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <button type="reset" class="btn btn-danger btn-sm">
+                            <i class="fa fa-times"></i> Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Tambah
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
                         <i class="fa fa-tags"></i> Data Halaqah
                     </h2>
-                    <div class="pull-right">
-                        <button class="btn btn-primary btn-sm" data-target="#modalTambah" data-toggle="modal">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
-                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -110,54 +143,6 @@
     </div>
 @endif
 
-<!-- Tambah Data -->
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalTambah">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="fa fa-plus"></i>
-                    <span>Tambah Data</span>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ url('/app/sistem/halaqah/') }}" method="POST" id="tambahHalaqah">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="nama_halaqah"> Nama Halaqah </label>
-                        <input type="text" class="form-control" name="nama_halaqah" id="nama_halaqah"
-                            placeholder="Masukkan Nama Halaqah" value="{{ old('nama_halaqah') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="kode_rt"> Lokasi RT </label>
-                        <select name="kode_rt" class="form-control" id="kode_rt" style="width: 100%">
-                            <option value="">- Pilih -</option>
-                            @foreach ($data_lokasi_rt as $data)
-                                <option value="{{ $data->kode_rt }}"
-                                    {{ old('kode_rt') == $data->kode_rt ? 'selected' : '' }}>
-                                    {{ $data->lokasi_rt }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-times"></i> Kembali
-                    </button>
-                    <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- END -->
-
 <!-- Edit Data -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalEdit">
     <div class="modal-dialog" role="document">
@@ -195,7 +180,13 @@
 
 @section('app_scripts')
 
+<script src="{{ url('vendors/select2/dist/js/select2.full.min.js') }}"></script>
+
 <script>
+    $(document).ready(function() {
+        $('#kode_rt').select2();
+    })
+
     (function($, W, D) {
         var JQUERY4U = {};
         JQUERY4U.UTIL = {

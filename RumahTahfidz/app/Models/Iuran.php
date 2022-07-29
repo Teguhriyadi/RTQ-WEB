@@ -13,6 +13,8 @@ class Iuran extends Model
 
     protected $guarded = [''];
 
+    protected $with = ['getSantri', 'getStatusValidasi'];
+
     public function getSantri()
     {
         return $this->belongsTo("App\Models\Santri", "id_santri", "id");

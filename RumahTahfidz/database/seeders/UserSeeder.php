@@ -28,6 +28,19 @@ class UserSeeder extends Seeder
             "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
         ]);
 
+        User::create([
+            "id" => 2,
+            "nama" => "Teguhriyadi",
+            "email" => "admin@gmail.com",
+            "password" => bcrypt("admin"),
+            "alamat" => "Jakarta",
+            "no_hp" => "29092002",
+            "tempat_lahir" => "Bandung",
+            "tanggal_lahir" => "2020-01-01",
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
+        ]);
+
         // User::create([
         //     "id" => 2,
         //     "nama" => "Teguhriyadi",

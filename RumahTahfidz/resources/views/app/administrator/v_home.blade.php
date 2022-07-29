@@ -142,6 +142,20 @@ use App\Models\SettingIuran;
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="animated flipInY col-md-12">
+                    <div class="tile-stats">
+                        <div class="icon">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="count">Rp. {{ number_format($jumlah_iuran) }}</div>
+                        <h3>Iuran Keseluruhan</h3>
+                        <a href="{{ url('/app/sistem/users') }}" style="padding: 10px;">
+                            <i class="fa fa-sign-out"></i> Selengkapnya
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-5">
             <div class="row">
@@ -201,15 +215,21 @@ use App\Models\SettingIuran;
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="x_panel">
-                <div class="x_content">
-                    <canvas id="graph_bar" style="width:100%; height:280px;"></canvas>
+    @if (Auth::user()->getAkses->id_role == 1)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <canvas id="graph_bar" style="width:100%; height:280px;"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @else
+        <a href="https://api.whatsapp.com/send?phone=6281214707143&text=Nama:%20Mohammad" target="_blank">
+            Send
+        </a>
+    @endif
 
 @endsection
 

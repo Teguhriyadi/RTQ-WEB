@@ -57,7 +57,7 @@ class KategoriController extends Controller
         if ($count > 0) {
             return redirect()->back()->with(["message" => "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>"]);
         } else {
-            Kategori::where("id", $request->id)->update([
+            Kategori::where("id", decrypt($request->id))->update([
                 "kategori" => $request->kategori,
                 "slug" => Str::slug($request->kategori),
             ]);

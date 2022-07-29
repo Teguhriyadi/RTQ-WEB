@@ -26,7 +26,7 @@
 
 <div class="clearfix"></div>
 
-<form action="{{ url('/app/sistem/admin_lokasi_rt/' . encrypt($edit->getUser->id)) }}" method="POST"
+<form action="{{ url('/app/sistem/admin_cabang/' . encrypt($edit->getUser->id)) }}" method="POST"
     enctype="multipart/form-data" id="editAdminCabang">
     <div class="row">
         @method('PUT')
