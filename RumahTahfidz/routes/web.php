@@ -43,6 +43,7 @@ use App\Http\Controllers\RekapIuranController;
 use App\Http\Controllers\RekapNilaiController;
 use App\Http\Controllers\RekapPenilaianController;
 use App\Http\Controllers\SantriController;
+use App\Http\Controllers\Setting\SettingLaporanNilaiController;
 use App\Http\Controllers\SettingIuranController;
 use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\StatusValidasiController;
@@ -141,8 +142,11 @@ Route::prefix("app")->group(function () {
             Route::group(["middleware" => ["can:super_admin"]], function () {
 
                 // Data Pengaturan
-                Route::get("/pengaturan", [PengaturanController::class, "pengaturan"]);
-                Route::get("/download_database", [PengaturanController::class, "download_database"]);
+                Route::prefix("pengaturan")->group(function () {
+                    Route::get("/", [PengaturanController::class, "pengaturan"]);
+
+                    Route::resource("setting_laporan_nilai", SettingLaporanNilaiController::class);
+                });
 
                 // Data Kelas Halaqah
                 Route::get("/kelas_halaqah/edit", [KelasHalaqahController::class, "edit"]);

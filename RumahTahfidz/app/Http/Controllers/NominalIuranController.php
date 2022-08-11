@@ -50,7 +50,7 @@ class NominalIuranController extends Controller
         $pecah = substr($request->nominal, 4, 100);
         $nominal = str_replace('.', '', $pecah);
 
-        NominalIuran::where("id", $request->id)->update([
+        NominalIuran::where("id", decrypt($request->id))->update([
             "nominal" => $nominal
         ]);
 

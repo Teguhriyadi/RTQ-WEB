@@ -46,7 +46,7 @@ class NilaiKategoriController extends Controller
             "nilai_kategori" => "required",
         ]);
 
-        NilaiKategori::where("id", $request->id)->update([
+        NilaiKategori::where("id", decrypt($request->id))->update([
             "nilai_awal" => $request->nilai_awal,
             "nilai_akhir" => $request->nilai_akhir,
             "nilai_kategori" => $request->nilai_kategori

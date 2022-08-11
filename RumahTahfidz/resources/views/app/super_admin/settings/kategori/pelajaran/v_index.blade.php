@@ -2,6 +2,13 @@
 
 @section('app_title', 'Kategori Pelajaran')
 
+@section('app_css')
+
+    <link rel="stylesheet" href="{{ url('vendors/select2/dist/css/select2.min.css') }}" />
+
+@endsection
+
+
 @section('app_content')
 
     <section class="section">
@@ -227,6 +234,8 @@
 
 @section('app_scripts')
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         (function($, W, D) {
             var JQUERY4U = {};
@@ -316,6 +325,9 @@
 
         $(document).ready(function() {
             $("#table-1").dataTable();
+            $('#id_kategori_penilaian').select2();
+            $('#id_jenjang').select2();
+            $('#id_pelajaran').select2();
         })
     </script>
 

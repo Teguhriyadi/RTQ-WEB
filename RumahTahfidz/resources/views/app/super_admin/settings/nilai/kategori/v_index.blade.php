@@ -34,7 +34,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        <i class="fa fa-plus"></i> Tambah @yield('app_title')
+                        <i class="fa fa-plus"></i> Tambah Data
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -44,12 +44,12 @@
                         <div class="form-group">
                             <label for="nilai_awal"> Nilai Awal </label>
                             <input type="number" class="form-control" name="nilai_awal" id="nilai_awal" placeholder="0"
-                                value="{{ old('nilai_awal') }}">
+                                value="{{ old('nilai_awal') }}" min="1" max="100">
                         </div>
                         <div class="form-group">
                             <label for="nilai_akhir"> Nilai Akhir </label>
                             <input type="number" class="form-control" name="nilai_akhir" id="nilai_akhir" placeholder="0"
-                                value="{{ old('nilai_akhir') }}">
+                                value="{{ old('nilai_akhir') }}" min="1" max="100">
                         </div>
                         <div class="form-group">
                             <label for="nilai_kategori"> Nilai Kategori </label>
@@ -141,10 +141,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-sm">
                             <i class="fa fa-times"></i> Kembali
                         </button>
-                        <button type="submit" class="btn btn-success" id="btn-edit">
+                        <button type="submit" class="btn btn-success btn-sm">
                             <i class="fa fa-save"></i> Simpan
                         </button>
                     </div>

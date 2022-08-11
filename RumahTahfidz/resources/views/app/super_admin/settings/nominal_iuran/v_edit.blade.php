@@ -1,4 +1,4 @@
-<input type="hidden" name="id" value="{{ $edit->id }}">
+<input type="hidden" name="id" value="{{ encrypt($edit->id) }}">
 <div class="form-group">
     <label for="nominal"> Nominal </label>
     <input type="text" class="form-control" name="nominal" id="nominal2" placeholder="Masukkan Nominal"

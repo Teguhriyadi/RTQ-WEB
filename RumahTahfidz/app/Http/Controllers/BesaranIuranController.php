@@ -47,7 +47,7 @@ class BesaranIuranController extends Controller
     public function update(Request $request)
     {
         $pecah = substr($request->besaran, 4, 100);
-        BesaranIuran::where("id", $request->id)->update([
+        BesaranIuran::where("id", decrypt($request->id))->update([
             "besaran" => str_replace('.', '', $pecah)
         ]);
 

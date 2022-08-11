@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting\SettingLaporanNilai;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PengaturanController extends Controller
 {
     public function pengaturan()
     {
-        return view("app.super_admin.pengaturan.v_database");
+        $data = [
+            "data_setting_laporan_nilai" => SettingLaporanNilai::get()
+        ];
+
+        return view("app.super_admin.pengaturan.v_setting", $data);
     }
 
     public function download_database()

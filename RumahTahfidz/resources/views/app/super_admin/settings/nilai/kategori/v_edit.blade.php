@@ -1,11 +1,13 @@
-<input type="hidden" name="id" value="{{ $edit->id }}">
+<input type="hidden" name="id" value="{{ encrypt($edit->id) }}">
 <div class="form-group">
     <label for="nilai_awal"> Nilai Awal </label>
-    <input type="number" class="form-control" name="nilai_awal" id="nilai_awal" placeholder="0" value="{{ $edit->nilai_awal }}">
+    <input type="number" class="form-control" name="nilai_awal" id="nilai_awal" placeholder="0"
+        value="{{ $edit->nilai_awal }}" min="1" max="100">
 </div>
 <div class="form-group">
     <label for="nilai_akhir"> Nilai Akhir </label>
-    <input type="number" class="form-control" name="nilai_akhir" id="nilai_akhir" placeholder="0" value="{{ $edit->nilai_akhir }}">
+    <input type="number" class="form-control" name="nilai_akhir" id="nilai_akhir" placeholder="0"
+        value="{{ $edit->nilai_akhir }}" min="1" max="100">
 </div>
 <div class="form-group">
     <label for="nilai_kategori"> Nilai Kategori </label>
