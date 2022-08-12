@@ -25,7 +25,9 @@ class UserSeeder extends Seeder
             "tempat_lahir" => "Cirebon",
             "tanggal_lahir" => "2020-01-01",
             "jenis_kelamin" => "L",
-            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png",
+            "id_hak_akses" => 1,
+            "status" => 1
         ]);
 
         User::create([
@@ -38,7 +40,9 @@ class UserSeeder extends Seeder
             "tempat_lahir" => "Bandung",
             "tanggal_lahir" => "2020-01-01",
             "jenis_kelamin" => "L",
-            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png"
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png",
+            "id_hak_akses" => 2,
+            "status" => 1
         ]);
 
         // User::create([

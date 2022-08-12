@@ -197,6 +197,9 @@
                             nomor_induk: {
                                 required: true
                             },
+                            no_ktp: {
+                                minlength: 16
+                            },
                             nama: {
                                 required: true
                             },
@@ -222,6 +225,9 @@
                         messages: {
                             nomor_induk: {
                                 required: "Nomor Induk Harap di Isi!"
+                            },
+                            no_ktp: {
+                                minlength: "Nomor KTP Minimal 16 Angka"
                             },
                             nama: {
                                 required: "Nama Harus di Isi!"

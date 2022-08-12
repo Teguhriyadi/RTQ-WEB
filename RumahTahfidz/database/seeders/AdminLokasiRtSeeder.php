@@ -16,7 +16,7 @@ class AdminLokasiRtSeeder extends Seeder
     public function run()
     {
         AdminLokasiRt::create([
-            "id" => "2",
+            "id" => 2,
             "pendidikan_terakhir" => "SMK",
             "kode_rt" => "RTQ-001"
         ]);
