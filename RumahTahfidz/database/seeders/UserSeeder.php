@@ -45,6 +45,36 @@ class UserSeeder extends Seeder
             "status" => 1
         ]);
 
+        User::create([
+            "id" => 3,
+            "nama" => "Ahmad Fauzi",
+            "email" => "ahmad@gmail.com",
+            "password" => bcrypt("asatidz"),
+            "alamat" => "Jakarta",
+            "no_hp" => "1918",
+            "tempat_lahir" => "Bandung",
+            "tanggal_lahir" => "2020-01-01",
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png",
+            "id_hak_akses" => 3,
+            "status" => 1
+        ]);
+
+        User::create([
+            "id" => 4,
+            "nama" => "Mohammad",
+            "email" => "mohammad@gmail.com",
+            "password" => bcrypt("walisantri"),
+            "alamat" => "Jakarta",
+            "no_hp" => "29092002",
+            "tempat_lahir" => "Bandung",
+            "tanggal_lahir" => "2020-01-01",
+            "jenis_kelamin" => "L",
+            "gambar" => "https://rtq-freelance.my.id/gambar/gambar_user.png",
+            "id_hak_akses" => 2,
+            "status" => 1
+        ]);
+
         // User::create([
         //     "id" => 2,
         //     "nama" => "Teguhriyadi",
