@@ -61,7 +61,13 @@
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $asatidz->nomor_induk }}</td>
-                                                <td>{{ $asatidz->getUser->nama }}</td>
+                                                <td>
+                                                    @if (empty($asatidz->getUser->nama))
+                                                        -
+                                                    @else
+                                                        {{ $asatidz->getUser->nama }}
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @if (empty($asatidz->getUser->email))
                                                         -
@@ -69,7 +75,13 @@
                                                         {{ $asatidz->getUser->email }}
                                                     @endif
                                                 </td>
-                                                <td class="text-center">{{ $asatidz->getUser->no_hp }}</td>
+                                                <td class="text-center">
+                                                    @if (empty($asatidz->getUser->no_hp))
+                                                        -
+                                                    @else
+                                                        {{ $asatidz->getUser->no_hp }}
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
                                                     @if ($asatidz->getUser->jenis_kelamin == 'L')
                                                         Laki - Laki
