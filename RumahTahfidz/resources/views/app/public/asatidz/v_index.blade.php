@@ -83,10 +83,14 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    @if ($asatidz->getUser->jenis_kelamin == 'L')
-                                                        Laki - Laki
-                                                    @elseif ($asatidz->getUser->jenis_kelamin == 'P')
-                                                        Perempuan
+                                                    @if (empty($asatidz->getUser->jenis_kelamin))
+                                                        -
+                                                    @else
+                                                        @if ($asatidz->getUser->jenis_kelamin == 'L')
+                                                            Laki - Laki
+                                                        @elseif ($asatidz->getUser->jenis_kelamin == 'P')
+                                                            Perempuan
+                                                        @endif
                                                     @endif
                                                 </td>
                                                 @if (Auth::user()->getAkses->id_role == 1)
