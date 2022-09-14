@@ -45,7 +45,7 @@ class AdminLokasiRtController extends Controller
     {
         $this->validate($request, [
             "nama" => "required",
-            "no_hp" => "required|numeric|unique:users,no_hp",
+            "no_hp" => "required|numeric",
             "alamat" => "required",
             "tanggal_lahir" => "required",
             "tempat_lahir" => "required",
@@ -70,43 +70,67 @@ class AdminLokasiRtController extends Controller
         } else if ($request->kode_rt) {
             $lokasi = $request->kode_rt;
         }
-        if ($request->file("gambar")) {
-            $data = $request->file("gambar")->store("admin_cabang");
+
+        $cek = User::where("no_hp", $request->no_hp)->count();
+
+        if ($cek > 0) {
+            $detail = User::where("no_hp", $request->no_hp)->first();
+
+            $cek_admin = AdminLokasiRt::where("id", $detail->id)->count();
+
+            if ($cek_admin > 0) {
+                return back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error')</script>")->withInput();
+            } else {
+                AdminLokasiRt::create([
+                    "id" => $detail->id,
+                    "kode_rt" => $lokasi
+                ]);
+
+                HakAkses::create([
+                    "id_user" => $detail->id,
+                    "id_role" => 2
+                ]);
+            }
+
+        } else {
+            if ($request->file("gambar")) {
+                $data = $request->file("gambar")->store("admin_cabang");
+            }
+
+            $user = new User;
+
+            $user->nama = $request->nama;
+
+            $user->email = $request->email;
+            $user->password = bcrypt("admin" . $request->no_hp);
+            $user->alamat = $request->alamat;
+            $user->no_hp = $request->no_hp;
+            $user->tanggal_lahir = $request->tanggal_lahir;
+            $user->tempat_lahir = $request->tempat_lahir;
+            $user->jenis_kelamin = $request->jenis_kelamin;
+            $user->no_hp = $request->no_hp;
+            $user->gambar = url('storage/' . $data);
+            $user->save();
+
+            $hak_akses = new HakAkses;
+
+            $hak_akses->id_user = $user->id;
+            $hak_akses->id_role = 2;
+
+            $hak_akses->save();
+
+            User::where("id", $user->id)->update([
+                "id_hak_akses" => $hak_akses->id
+            ]);
+
+            $admin_lokasi_rt = new AdminLokasiRt;
+
+            $admin_lokasi_rt->id = $user->id;
+
+            $admin_lokasi_rt->pendidikan_terakhir = $request->pendidikan_terakhir;
+            $admin_lokasi_rt->kode_rt = $lokasi;
+            $admin_lokasi_rt->save();
         }
-
-        $user = new User;
-
-        $user->nama = $request->nama;
-
-        $user->email = $request->email;
-        $user->password = bcrypt("admin" . $request->no_hp);
-        $user->alamat = $request->alamat;
-        $user->no_hp = $request->no_hp;
-        $user->tanggal_lahir = $request->tanggal_lahir;
-        $user->tempat_lahir = $request->tempat_lahir;
-        $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->no_hp = $request->no_hp;
-        $user->gambar = url('storage/' . $data);
-        $user->save();
-
-        $hak_akses = new HakAkses;
-
-        $hak_akses->id_user = $user->id;
-        $hak_akses->id_role = 2;
-
-        $hak_akses->save();
-
-        User::where("id", $user->id)->update([
-            "id_hak_akses" => $hak_akses->id
-        ]);
-
-        $admin_lokasi_rt = new AdminLokasiRt;
-
-        $admin_lokasi_rt->id = $user->id;
-
-        $admin_lokasi_rt->pendidikan_terakhir = $request->pendidikan_terakhir;
-        $admin_lokasi_rt->kode_rt = $lokasi;
-        $admin_lokasi_rt->save();
 
         return redirect("/app/sistem/admin_cabang")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>")->withInput();
     }
