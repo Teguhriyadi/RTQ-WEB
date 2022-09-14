@@ -19,9 +19,14 @@ class AsatidzController extends Controller
         return view("app.public.asatidz.v_index", $data);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view("app.public.asatidz.v_tambah");
+        $data = [
+            "detail" => User::where("id", $request->id_user)->first(),
+            "data_user" => User::where("status", 1)->get()
+        ];
+
+        return view("app.public.asatidz.v_tambah", $data);
     }
 
     public function store(Request $request)
@@ -36,75 +41,90 @@ class AsatidzController extends Controller
             "nomor_induk" => "required",
         ]);
 
-        if ($request->gambar) {
-            $data = $request->file("gambar")->store("asatidz");
-        }
+        $cek = User::where("no_hp", $request->no_hp)->count();
 
-        $user = new User;
+        if ($cek > 0) {
+            $detail = User::where("no_hp", $request->no_hp)->first();
 
-        $user->nama = $request->nama;
+            if (empty($detail)) {
+                Asatidz::create([
+                    "id" => $detail->id,
+                    "nomor_induk" => $request->nomor_induk
+                ]);
 
-        if (empty($request->email)) {
-            $email = NULL;
+                HakAkses::create([
+                    "id_user" => $detail->id,
+                    "id_role" => 3
+                ]);
+            } else {
+                return back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>");
+            }
+
         } else {
-            $email = $request->email;
+            if ($request->gambar) {
+                $data = $request->file("gambar")->store("asatidz");
+            }
+
+            $user = new User;
+
+            $user->nama = $request->nama;
+
+            $user->password = bcrypt("asatidz" . $request->no_hp);
+            $user->alamat = $request->alamat;
+            $user->no_hp = $request->no_hp;
+            $user->tanggal_lahir = $request->tanggal_lahir;
+            $user->tempat_lahir = $request->tempat_lahir;
+            $user->jenis_kelamin = $request->jenis_kelamin;
+            $user->gambar = url("storage/" . $data);
+            $user->save();
+
+            $hak_akses = new HakAkses;
+
+            $hak_akses->id_user = $user->id;
+            $hak_akses->id_role = 3;
+            $hak_akses->save();
+
+            User::where("id", $user->id)->update([
+                "id_hak_akses" => $hak_akses->id
+            ]);
+
+            $asatidz = new Asatidz;
+
+            $asatidz->id = $user->id;
+            $asatidz->nomor_induk = $request->nomor_induk;
+
+            if (empty($request->no_ktp)) {
+                $no_ktp = NULL;
+            } else {
+                $no_ktp = $request->no_ktp;
+            }
+            $asatidz->no_ktp = $no_ktp;
+
+            if (empty($request->pendidikan_terakhir)) {
+                $pendidikan_terakhir = NULL;
+            } else {
+                $pendidikan_terakhir = $request->pendidikan_terakhir;
+            }
+
+            $asatidz->pendidikan_terakhir = $pendidikan_terakhir;
+
+            if (empty($request->aktivitas_utama)) {
+                $aktivitas_utama = NULL;
+            } else {
+                $aktivitas_utama = $request->aktivitas_utama;
+            }
+            $asatidz->aktivitas_utama = $aktivitas_utama;
+
+            if (empty($request->motivasi_mengajar)) {
+                $motivasi_mengajar = NULL;
+            } else {
+                $motivasi_mengajar = $request->motivasi_mengajar;
+            }
+
+            $asatidz->motivasi_mengajar = $motivasi_mengajar;
+
+            $asatidz->save();
         }
-        $user->email = $email;
-        $user->password = bcrypt("asatidz" . $request->no_hp);
-        $user->alamat = $request->alamat;
-        $user->no_hp = $request->no_hp;
-        $user->tanggal_lahir = $request->tanggal_lahir;
-        $user->tempat_lahir = $request->tempat_lahir;
-        $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->gambar = url("storage/" . $data);
-        $user->save();
-
-        $hak_akses = new HakAkses;
-
-        $hak_akses->id_user = $user->id;
-        $hak_akses->id_role = 3;
-        $hak_akses->save();
-
-        User::where("id", $user->id)->update([
-            "id_hak_akses" => $hak_akses->id
-        ]);
-
-        $asatidz = new Asatidz;
-
-        $asatidz->id = $user->id;
-        $asatidz->nomor_induk = $request->nomor_induk;
-
-        if (empty($request->no_ktp)) {
-            $no_ktp = NULL;
-        } else {
-            $no_ktp = $request->no_ktp;
-        }
-        $asatidz->no_ktp = $no_ktp;
-
-        if (empty($request->pendidikan_terakhir)) {
-            $pendidikan_terakhir = NULL;
-        } else {
-            $pendidikan_terakhir = $request->pendidikan_terakhir;
-        }
-
-        $asatidz->pendidikan_terakhir = $pendidikan_terakhir;
-
-        if (empty($request->aktivitas_utama)) {
-            $aktivitas_utama = NULL;
-        } else {
-            $aktivitas_utama = $request->aktivitas_utama;
-        }
-        $asatidz->aktivitas_utama = $aktivitas_utama;
-
-        if (empty($request->motivasi_mengajar)) {
-            $motivasi_mengajar = NULL;
-        } else {
-            $motivasi_mengajar = $request->motivasi_mengajar;
-        }
-
-        $asatidz->motivasi_mengajar = $motivasi_mengajar;
-
-        $asatidz->save();
 
         return redirect("/app/sistem/asatidz")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
     }

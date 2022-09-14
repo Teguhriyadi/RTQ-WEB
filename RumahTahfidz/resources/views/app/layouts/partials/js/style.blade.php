@@ -44,7 +44,9 @@
 <!-- DataTables -->
 <script src="{{ url('') }}/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ url('') }}/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="{{ url('') }}/vendors/switchery/dist/switchery.min.js"></script>
 <!-- END -->
 <script src="{{ url('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('build/js/jquery.validate.min.js') }}"></script>
 <script src="{{ url('build/js/additional-methods.min.js') }}"></script>
+

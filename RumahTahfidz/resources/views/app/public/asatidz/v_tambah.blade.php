@@ -24,6 +24,31 @@
     <div class="clearfix"></div>
 
     <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        <i class="fa fa-plus"></i> Ambil Data
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div id="gender" class="btn-group" data-toggle="buttons">
+                          <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                            <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                          </label>
+                          <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                            <input type="radio" name="gender" value="female"> Female
+                          </label>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <form action="{{ url('/app/sistem/asatidz') }}" method="POST" enctype="multipart/form-data" id="tambahAsatidz">
             {{ csrf_field() }}
             <div class="col-md-4 col-sm-12 col-xs-12">
@@ -169,6 +194,7 @@
 @section('app_scripts')
 
     <script>
+
         function previewImage() {
             const image = document.querySelector("#gambar");
             const imgPreview = document.querySelector(".gambar-preview");

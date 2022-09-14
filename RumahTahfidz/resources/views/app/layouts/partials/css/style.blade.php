@@ -23,3 +23,4 @@
 <!-- DataTables -->
 <link href="{{ url('') }}/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <!-- END -->
+
