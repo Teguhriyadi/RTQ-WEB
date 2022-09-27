@@ -27,4 +27,9 @@ class Absensi extends Model
     {
         return $this->hasOne(StatusAbsen::class, "id", "status_absen");
     }
+
+    public function getStatusAbsenSantri()
+    {
+        return $this->hasOne(StatusAbsen::class, "id", "id_status_absen");
+    }
 }

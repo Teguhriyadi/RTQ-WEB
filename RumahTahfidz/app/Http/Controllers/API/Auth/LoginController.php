@@ -47,7 +47,6 @@ class LoginController extends Controller
         }
 
         $role = Role::where('id', $hakAkses->id_role)->first();
-        $role = str_replace(' ', '_', strtolower($role->keterangan));
 
         $token = $user->createToken('api', [$role]);
         $user->update([
@@ -57,6 +56,9 @@ class LoginController extends Controller
         Auth::login($user);
 
         $user['token'] = $token->plainTextToken;
+        $user['id_role'] = $role->id;
+
+        $role = str_replace(' ', '_', strtolower($role->keterangan));
 
         return response()->json($user);
     }

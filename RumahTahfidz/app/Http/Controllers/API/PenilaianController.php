@@ -28,7 +28,7 @@ class PenilaianController extends Controller
         return response()->json($data, 200);
     }
 
-    public function store_nilai($id_pelajaran, $id_santri, $id_asatidz, Request $request)
+    public function store_nilai($id_pelajaran, $id_santri, $id_kategori, $id_asatidz, Request $request)
     {
         $store = Nilai::create([
             'id_asatidz' => $id_asatidz,
