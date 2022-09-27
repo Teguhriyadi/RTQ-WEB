@@ -96,7 +96,9 @@ Route::prefix("app")->group(function () {
             // Data Pengajar
             Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
             Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
-            Route::resource("/asatidz", AsatidzController::class);
+            Route::resource("/asatidz", AsatidzController::class,  [
+                'asatidz' => 'prefix'
+            ]);
 
             // Data Jenjang Santri
             Route::get("/jenjang_santri", [SantriController::class, "jenjang_santri"]);
@@ -111,7 +113,9 @@ Route::prefix("app")->group(function () {
             Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
             Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
             Route::get("/santri/export", [ExcelController::class, "exportSantri"]);
-            Route::resource("/santri", SantriController::class);
+            Route::resource("/santri", SantriController::class,  [
+                'santri' => 'prefix'
+            ]);
             Route::post("/santri/import", [ExcelController::class, "importSantri"]);
 
             // Data Wali Santri
@@ -194,7 +198,9 @@ Route::prefix("app")->group(function () {
 
                     // Asatidz
                     Route::put("/asatidz", [GenerateAsatidzController::class, "show"]);
-                    Route::resource("/asatidz", GenerateAsatidzController::class);
+                    Route::resource("/asatidz", GenerateAsatidzController::class,  [
+                        'as' => 'asatidz2'
+                    ]);
                 });
 
                 // Data Profil Web
@@ -212,7 +218,9 @@ Route::prefix("app")->group(function () {
 
                 // Data Hafalan Asatidz
                 Route::put("/hafalan/asatidz", [HafalanAsatidzController::class, "filter_tanggal"]);
-                Route::resource("/hafalan/asatidz", HafalanAsatidzController::class);
+                Route::resource("/hafalan/asatidz", HafalanAsatidzController::class, [
+                    'as' => "hafalan.asatidz"
+                ]);
             });
 
             Route::group(["middleware" => ["can:admin"]], function () {
@@ -307,7 +315,9 @@ Route::prefix("app")->group(function () {
                 // Data Nilai Kategori
                 Route::get("/nilai/kategori/edit", [NilaiKategoriController::class, "edit"]);
                 Route::put("/nilai/kategori/simpan", [NilaiKategoriController::class, "update"]);
-                Route::resource("nilai/kategori", NilaiKategoriController::class);
+                Route::resource("nilai/kategori", NilaiKategoriController::class, [
+                    'as' => "nilai.kategori"
+                ]);
 
                 // Data Nominal Iuran
                 Route::prefix("/nominal/iuran")->group(function () {
@@ -322,7 +332,9 @@ Route::prefix("app")->group(function () {
                 // Iuran
                 Route::prefix("/iuran")->group(function () {
                     Route::put("/{id}", [SettingIuranController::class, "update"]);
-                    Route::resource("/", SettingIuranController::class);
+                    Route::resource("/", SettingIuranController::class, [
+                        'as' => "iuran.setting"
+                    ]);
                 });
 
                 // Status Validasi
@@ -330,7 +342,9 @@ Route::prefix("app")->group(function () {
                     Route::get("/edit", [StatusValidasiController::class, "edit"]);
                     Route::put("/simpan", [StatusValidasiController::class, "update"]);
                     Route::delete("/{id}", [StatusValidasiController::class, "destroy"]);
-                    Route::resource("/", StatusValidasiController::class);
+                    Route::resource("/", StatusValidasiController::class, [
+                        'as' => "validasi.setting"
+                    ]);
                 });
 
                 // Kategori Pelajaran
@@ -342,7 +356,9 @@ Route::prefix("app")->group(function () {
             // Data Pelajaran
             Route::get("/pelajaran/edit", [PelajaranController::class, "edit"]);
             Route::put("/pelajaran/simpan", [PelajaranController::class, "update"]);
-            Route::resource("/pelajaran", PelajaranController::class);
+            Route::resource("/pelajaran", PelajaranController::class, [
+                'as' => "iuran.pel"
+            ]);
 
             Route::get("/home", [AppController::class, "home"]);
 
