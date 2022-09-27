@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\RoleController;
-use App\Http\Controllers\API\SiswaController;
-use App\Http\Controllers\API\PengajarController;
-use App\Http\Controllers\API\AbsensiController;
+use App\Http\Controllers\API\AbsensiAsatidzController;
+use App\Http\Controllers\API\AbsensiSantriController;
+use App\Http\Controllers\API\Auth\AuthenticatedController;
+use App\Http\Controllers\API\Auth\LoginController;
+use App\Http\Controllers\API\Auth\LogoutController;
 use App\Http\Controllers\API\CabangController;
-use App\Http\Controllers\API\UsersController;
-use App\Http\Controllers\API\StatusAbsenController;
-use App\Http\Controllers\API\ProfilController;
+use App\Http\Controllers\API\IuranController;
 use App\Http\Controllers\API\JenjangController;
-use App\Http\Controllers\API\MenuController;
+use App\Http\Controllers\API\KategoriPelajaranController;
+use App\Http\Controllers\API\KategoriPenilaianController;
+use App\Http\Controllers\API\PenilaianController;
+use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\SantriController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,45 +30,67 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route Percobaan
-// Route::middleware('auth:admin_api')->get('/user', function (Request $request) {
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return Auth::user();
 // });
 
-// // Authentication
-// Route::controller(AuthController::class)->group(function () {
-//     Route::post('login', 'login');
-//     Route::post('login_admin', 'loginAdmin');
-//     Route::post('register', 'register');
-// });
+// Login
+Route::post('login', LoginController::class);
 
-// Route::group(['middleware' => ['auth:sanctum']], function () {
-//     Route::post('logout', [AuthController::class, 'logout']);
-// });
+// Role
+Route::get('role/view', [RoleController::class, 'view']);
 
-// // Role
-// Route::resource('role', RoleController::class);
+Route::middleware(['auth:sanctum'])->group(function () {
+    // Logout
+    Route::post('logout/{no_hp}', LogoutController::class);
 
-// // Siswa
-// Route::get("siswa/{no_hp}", [SiswaController::class, "destroy"]);
-// Route::resource('siswa', SiswaController::class);
+    // Detail User
+    Route::get('profil/user/detail', AuthenticatedController::class);
 
-// // Pengajar
-// Route::resource('pengajar', PengajarController::class);
+    // Kategori Pelajaran
+    Route::prefix('kategori/pelajaran/view')->group(function () {
+        Route::get('/all', [KategoriPenilaianController::class, 'all']);
+        Route::get('/{id_jenjang}/{id_katagori}', [KategoriPenilaianController::class, 'show']);
+    });
 
-// // Absensi
-// Route::resource('absensi', AbsensiController::class);
+    Route::prefix('pelajaran/view')->group(function () {
+        Route::get('/all', [KategoriPelajaranController::class, 'all']);
+        Route::get('/{id_kategori_penilaian}/{id_jenjang}', [KategoriPelajaranController::class, 'show']);
+    });
 
-// // Status Absen
-// Route::resource('status_absen', StatusAbsenController::class);
+    // Kategori Penilaian
+    Route::prefix('penilaian')->group(function () {
+        Route::get('view/{id_pelajaran}/{id_santri}', [PenilaianController::class, 'get_nilai']);
+        Route::get('view/{id_pelajaran}/{id_santri}/{id_kategori}/{id_asatidz}', [PenilaianController::class, 'store_nilai']);
+        Route::post('store/{id_pelajaran}/{id_santri}/{id_kategori}/{id_asatidz}', [PenilaianController::class, 'store_nilai']);
+        Route::put('put/{id}/{id_asatidz}', [PenilaianController::class, 'update_nilai']);
+        Route::get('view/{id_santri}', [PenilaianController::class, 'viewNilaiByWali']);
+    });
 
-// Route::resource('users', UsersController::class);
+    // List Jenjang
+    Route::get('jenjang/view/all', [JenjangController::class, 'view']);
 
-// Route::get('info_profil/{no_hp}', [ProfilController::class, 'info_profil']);
+    // List Cabang
+    Route::get('cabang/view/all', [CabangController::class, 'view']);
 
-// Route::resource("/profil", ProfilController::class);
+    // List Santri
+    Route::get('santri/view/all', [SantriController::class, 'view']);
+    Route::get('santri/view/all/wali-santri', [SantriController::class, 'viewByWaliSantri']);
+    Route::get('santri/view/{kode_halaqah}/{id_jenjang}', [SantriController::class, 'viewByHalaqahNJenjang']);
 
-// Route::resource("/cabang", CabangController::class);
+    // Absensi Santri
+    Route::get("absensi/santri/{id_jenjang}/{kode_halaqah}", [AbsensiSantriController::class, 'index']);
+    Route::post("absensi/santri/{id_jenjang}/{kode_halaqah}", [AbsensiSantriController::class, 'create']);
+    Route::put("absensi/santri/{id}", [AbsensiSantriController::class, 'edit']);
+    Route::get("absensi/santri/{id}", [AbsensiSantriController::class, 'get_status']);
 
-// Route::resource("/jenjang", JenjangController::class);
+    // Abesensi Asatidz
+    Route::get('absensi/asatidz', [AbsensiAsatidzController::class, 'index']);
+    Route::get('absensi/asatidz/rekap', [AbsensiAsatidzController::class, 'rekap']);
+    Route::post('absensi/asatidz', [AbsensiAsatidzController::class, 'create']);
 
-// Route::resource("/menu", MenuController::class);
+    // List Detail Iuran
+    Route::get('iuran/detail/{id}', [IuranController::class, 'detail']);
+    Route::get('iuran/cek/nominal/{id_santri}', [IuranController::class, 'cekNominal']);
+    Route::post('iuran/store', [IuranController::class, 'store']);
+});
