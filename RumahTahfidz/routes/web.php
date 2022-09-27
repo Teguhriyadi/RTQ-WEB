@@ -265,9 +265,9 @@ Route::prefix("app")->group(function () {
             Route::resource("/besaran_iuran", BesaranIuranController::class);
 
             // Data Besaran Iuran Santri
-            Route::get("/besaran_santri/edit", [BesaranIuranSantriController::class, "edit"]);
-            Route::put("/besaran_santri/simpan", [BesaranIuranSantriController::class, "update"]);
-            Route::resource("/besaran_santri", BesaranIuranSantriController::class);
+            // Route::get("/besaran_santri/edit", [BesaranIuranSantriController::class, "edit"]);
+            // Route::put("/besaran_santri/simpan", [BesaranIuranSantriController::class, "update"]);
+            // Route::resource("/besaran_santri", BesaranIuranSantriController::class);
 
             // Data Kelas
             Route::get("/kelas/edit", [KelasController::class, "edit"]);
