@@ -79,7 +79,7 @@ class AbsensiSantriController extends Controller
 
         $absen = Absensi::where("id_santri", $id)->whereDate("created_at", $date)->first();
 
-        if ($absen) {
+        if (!$absen) {
             return null;
         } else {
             $data = [
