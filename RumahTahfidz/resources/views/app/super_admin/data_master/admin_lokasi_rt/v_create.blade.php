@@ -6,9 +6,9 @@
 
 @section('app_css')
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 @endsection
 
 <section class="section">
@@ -31,59 +31,59 @@
 <div class="clearfix"></div>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    <div class="clearfix"></div>
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+<div class="clearfix"></div>
 @endif
 
 <form action="{{ url('/app/sistem/admin_cabang') }}" method="POST" enctype="multipart/form-data"
-    id="tambahAdminCabang">
-    <div class="row">
-        {{ csrf_field() }}
-        <div class="col-md-4 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_content">
-                    <center>
-                        <img src="{{ url('gambar/gambar_user.png') }}" class="gambar-preview img-fluid mb-3">
-                    </center>
-                    <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
-                </div>
+id="tambahAdminCabang">
+<div class="row">
+    {{ csrf_field() }}
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <center>
+                    <img src="{{ url('gambar/gambar_user.png') }}" class="gambar-preview img-fluid mb-3">
+                </center>
+                <input onchange="previewImage()" type="file" class="form-control" name="gambar" id="gambar">
             </div>
         </div>
-        <div class="col-md-8 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        <i class="fa fa-plus"></i> Tambah Data
-                    </h2>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
+    </div>
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-plus"></i> Tambah Data
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
 
-                    <div class="form-group">
-                        <label for="nama"> Nama </label>
-                        <input type="text" class="form-control" name="nama" id="nama"
-                            placeholder="Masukkan Nama" value="{{ old('nama') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="email"> Email <small class="text-danger"><i>Tidak Wajib di Isi</i></small>
-                        </label>
-                        <input type="email" class="form-control" name="email" id="email"
-                            placeholder="Masukkan Email" value="{{ old('email') }}">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="pendidikan_terakhir"> Pendidikan Terakhir <small
-                                        class="text-danger"><i>Tidak Wajib di Isi</i></small> </label>
+                <div class="form-group">
+                    <label for="nama"> Nama </label>
+                    <input type="text" class="form-control" name="nama" id="nama"
+                    placeholder="Masukkan Nama" value="{{ old('nama') }}">
+                </div>
+                <div class="form-group">
+                    <label for="email"> Email <small class="text-danger"><i>Tidak Wajib di Isi</i></small>
+                    </label>
+                    <input type="email" class="form-control" name="email" id="email"
+                    placeholder="Masukkan Email" value="{{ old('email') }}">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="pendidikan_terakhir"> Pendidikan Terakhir <small
+                                class="text-danger"><i>Tidak Wajib di Isi</i></small> </label>
                                 <input type="text" class="form-control" name="pendidikan_terakhir"
-                                    id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir"
-                                    value="{{ old('pendidikan_terakhir') }}">
+                                id="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir"
+                                value="{{ old('pendidikan_terakhir') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -107,14 +107,14 @@
                             <div class="form-group">
                                 <label for="tempat_lahir"> Tempat Lahir </label>
                                 <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir"
-                                    placeholder="Masukkan Tempat Lahir" value="{{ old('tempat_lahir') }}">
+                                placeholder="Masukkan Tempat Lahir" value="{{ old('tempat_lahir') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="tanggal_lahir"> Tanggal Lahir </label>
                                 <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir"
-                                    value="{{ old('tanggal_lahir') }}">
+                                value="{{ old('tanggal_lahir') }}">
                             </div>
                         </div>
                     </div>
@@ -123,25 +123,25 @@
                             <div class="form-group">
                                 <label for="no_hp"> No. HP </label>
                                 <input type="number" class="form-control" name="no_hp" id="no_hp"
-                                    placeholder="Masukkan No. HP" value="{{ old('no_hp') }}">
+                                placeholder="Masukkan No. HP" value="{{ old('no_hp') }}">
                             </div>
                         </div>
                         <div class="col-md-6" id="optionNyala">
                             <div class="form-group">
                                 <label for="kode_rt"> Lokasi Cabang </label>
                                 @if ($data_lokasi_rt->count() < 1)
-                                    <input type="text" name="kode_input" class="form-control" id="kode_rt"
-                                        placeholder="Masukkan Lokasi RT">
+                                <input type="text" name="kode_input" class="form-control" id="kode_rt"
+                                placeholder="Masukkan Lokasi RT">
                                 @else
-                                    <select name="kode_rt" class="form-control" id="kode_rt">
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($data_lokasi_rt as $data)
-                                            <option value="{{ $data->kode_rt }}">
-                                                {{ $data->kode_rt }} - {{ $data->lokasi_rt }}
-                                            </option>
-                                        @endforeach
-                                        <option value="L">Lainnya</option>
-                                    </select>
+                                <select name="kode_rt" class="form-control" id="kode_rt">
+                                    <option value="">- Pilih -</option>
+                                    @foreach ($data_lokasi_rt as $data)
+                                    <option value="{{ $data->kode_rt }}">
+                                        {{ $data->kode_rt }} - {{ $data->lokasi_rt }}
+                                    </option>
+                                    @endforeach
+                                    <option value="L">Lainnya</option>
+                                </select>
                                 @endif
                             </div>
                         </div>
@@ -151,36 +151,36 @@
                                 <div class="row">
                                     <div class="col-md-10">
                                         <input type="text" class="form-control" name="input_kode_rt"
-                                            id="kode_rt" placeholder="Masukkan Lokasi RT">
+                                        id="kode_rt" placeholder="Masukkan Lokasi RT">
                                     </div>
                                     <div class="col-md-2">
                                         <a class="btn btn-danger btn-sm" id="btn-nyalakan-pilihan"
-                                            style="color: white;">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
+                                        style="color: white;">
+                                        <i class="fa fa-times"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="alamat"> Alamat </label>
-                        <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
-                    </div>
-                    <div class="ln_solid"></div>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-times"></i> Batal
-                    </button>
-                    <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-plus"></i> Tambah
-                    </button>
-                    <a href="{{ url('/app/sistem/admin_cabang') }}" class="btn btn-warning btn-sm pull-right">
-                        <i class="fa fa-sign-out"></i> Kembali ke Halaman Sebelumnya
-                    </a>
                 </div>
+                <div class="form-group">
+                    <label for="alamat"> Alamat </label>
+                    <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
+                </div>
+                <div class="ln_solid"></div>
+                <button type="reset" class="btn btn-danger btn-sm">
+                    <i class="fa fa-times"></i> Batal
+                </button>
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-plus"></i> Tambah
+                </button>
+                <a href="{{ url('/app/sistem/admin_cabang') }}" class="btn btn-warning btn-sm pull-right">
+                    <i class="fa fa-sign-out"></i> Kembali ke Halaman Sebelumnya
+                </a>
             </div>
         </div>
     </div>
+</div>
 </form>
 
 @endsection
