@@ -24,6 +24,11 @@
                 <li><a href="{{ url('/blog') }}">Blog</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('') }}#contact">Kontak</a></li>
                 <li>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScRclacuowu2SAiSInfVdwN5XNt81l5M9cRNHNb6D3YJ0D2Gg/viewform">
+                        Form Keluhan
+                    </a>
+                </li>
+                <li>
                     <a
                         href="{{ url('https://drive.google.com/drive/u/0/folders/1M4Mpz_8IZLQoerYayQea_3QJg9dB--6Z') }}">
                         Download Aplikasi
