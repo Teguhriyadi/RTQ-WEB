@@ -10,6 +10,8 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <!-- Google Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url('build/css/laravel.css') }}">
@@ -64,6 +66,15 @@
                             Login
                         </button>
                     </div>
+                    <br>
+                    <hr>
+                    <div class="flex items-center justify mt-4">
+                        <label class="block font-medium text-sm text-gray-700" >
+                            <a href="https://rtqulilalbab.com/android/rtq-v1.1.apk"> <span class="material-symbols-outlined">apk_install</span> Download APK Android</a>
+                        </label>
+                        
+                    </div>
+                    
                 </form>
             </div>
         </div>
