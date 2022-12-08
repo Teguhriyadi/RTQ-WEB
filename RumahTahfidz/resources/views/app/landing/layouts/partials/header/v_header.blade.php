@@ -30,7 +30,7 @@
                 </li>
                 <li>
                     <a
-                        href="{{ url('https://drive.google.com/drive/u/0/folders/1M4Mpz_8IZLQoerYayQea_3QJg9dB--6Z') }}">
+                        href="https://rtqulilalbab.com/android/rtq-v1.1.apk">
                         Download Aplikasi
                     </a>
                 </li>
