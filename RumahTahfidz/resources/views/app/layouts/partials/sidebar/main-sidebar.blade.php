@@ -62,7 +62,7 @@ $profil = \App\Models\ProfilWeb::select('nama')->first();
 
                     <li>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLScRclacuowu2SAiSInfVdwN5XNt81l5M9cRNHNb6D3YJ0D2Gg/viewform" target="_blank">
-                            <i class="fa fa-edit"></i> Form Keluhan
+                            <i class="fa fa-bug"></i> Form Keluhan
                         </a>
                     </li>
 
