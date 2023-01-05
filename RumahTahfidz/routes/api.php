@@ -74,9 +74,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('cabang', [CabangController::class, 'index']);
 
     // List Santri
-    // Route::get('santri/view/all', [SantriController::class, 'view']);
-    // Route::get('santri/view/all/wali-santri', [SantriController::class, 'viewByWaliSantri']);
-    // Route::get('santri/view/{kode_halaqah}/{id_jenjang}', [SantriController::class, 'viewByHalaqahNJenjang']);
+    Route::get('santri', [SantriController::class, 'index']);
+    Route::get('santri/show-by-wali-santri', [SantriController::class, 'showByWaliSantri']);
+    Route::get('santri/{halaqah}/{jenjang}', [SantriController::class, 'showHalaqahJenjang']);
 
     // Absensi Santri
     // Route::get("absensi/santri/{id_jenjang}/{kode_halaqah}", [AbsensiSantriController::class, 'index']);
