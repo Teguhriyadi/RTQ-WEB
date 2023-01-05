@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AdminCabang\Akun;
 
+use App\Http\Controllers\Controller;
 use App\Models\Asatidz;
 use App\Models\HakAkses;
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AsatidzController extends Controller
 {
     public function index()
     {
         $data = [
-            "data_asatidz" => Asatidz::orderBy("id", "DESC")->get()
+            "data_asatidz" => Asatidz::orderBy("created_at", "DESC")->get()
         ];
 
         return view("app.public.asatidz.v_index", $data);
@@ -31,16 +32,6 @@ class AsatidzController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "nama" => "required",
-            "alamat" => "required",
-            "no_hp" => "required",
-            "tanggal_lahir" => "required",
-            "jenis_kelamin" => "required",
-            "tempat_lahir" => "required",
-            "nomor_induk" => "required",
-        ]);
-
         $cek = User::where("no_hp", $request->no_hp)->count();
 
         if ($cek > 0) {
@@ -93,13 +84,6 @@ class AsatidzController extends Controller
             $asatidz->id = $user->id;
             $asatidz->nomor_induk = $request->nomor_induk;
 
-            if (empty($request->no_ktp)) {
-                $no_ktp = NULL;
-            } else {
-                $no_ktp = $request->no_ktp;
-            }
-            $asatidz->no_ktp = $no_ktp;
-
             if (empty($request->pendidikan_terakhir)) {
                 $pendidikan_terakhir = NULL;
             } else {
@@ -127,6 +111,13 @@ class AsatidzController extends Controller
         }
 
         return redirect("/app/sistem/asatidz")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>");
+    }
+
+    public function show($id)
+    {
+        $data["detail"] = Asatidz::where("id", decrypt($id))->first();
+
+        return view("app.public.asatidz.v_detail", $data);
     }
 
     public function edit(Request $request)

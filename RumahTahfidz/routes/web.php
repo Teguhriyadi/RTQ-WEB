@@ -94,11 +94,7 @@ Route::prefix("app")->group(function () {
         Route::group(["middleware" => "autentikasi"], function () {
 
             // Data Pengajar
-            Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
-            Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
-            Route::resource("/asatidz", AsatidzController::class,  [
-                'asatidz' => 'prefix'
-            ]);
+            require __DIR__ . '/admin_cabang/akun/asatidz.php';
 
             // Data Jenjang Santri
             Route::get("/jenjang_santri", [SantriController::class, "jenjang_santri"]);
@@ -125,11 +121,6 @@ Route::prefix("app")->group(function () {
             Route::get("/wali_santri/create/anak/{id}", [SantriController::class, "create"]);
             Route::post("/wali_santri/create/anak/", [SantriController::class, "store"]);
             Route::resource("/wali_santri", WaliSantriController::class);
-
-            // Data Pengajar
-            Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
-            Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
-            Route::resource("/asatidz", AsatidzController::class);
 
             Route::prefix("laporan")->group(function () {
                 Route::prefix("/absensi")->group(function () {
