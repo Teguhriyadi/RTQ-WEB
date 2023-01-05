@@ -208,7 +208,7 @@ class WaliSantriController extends Controller
                 $santri = Santri::where("id_jenjang", "!=", NULL)->where("status", 1)->get();
                 $user = AdminLokasiRt::where("kode_rt", Auth::user()->getAdminLokasiRt->kode_rt)->first();
 
-                $walisantri = WaliSantri::get();
+                $walisantri = WaliSantri::orderBy("created_at", "DESC")->get();
             }
         }
 

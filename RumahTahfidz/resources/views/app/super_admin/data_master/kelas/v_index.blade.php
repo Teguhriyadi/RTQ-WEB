@@ -10,8 +10,12 @@
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('app/sistem/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data @yield('app_title')</li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('app/sistem/home') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Data @yield('app_title')
+                </li>
             </ol>
         </nav>
     </section>
@@ -47,12 +51,7 @@
                                 placeholder="Masukkan Nama Kelas" value="{{ old('nama_kelas') }}">
                         </div>
                         <div class="ln_solid"></div>
-                        <button class="btn btn-danger btn-sm" type="reset">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
+                        @include("app.layouts.partials.button.btn-tambah")
                     </form>
                 </div>
             </div>
@@ -128,12 +127,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-sm btn-danger">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-sm btn-success" id="btn-edit">
-                            <i class="fa fa-save"></i> Simpan
-                        </button>
+                        @include("app.layouts.partials.button.btn-edit")
                     </div>
                 </form>
             </div>

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministrasiController;
-use App\Http\Controllers\AdminLokasiRtController;
+use App\Http\Controllers\Akun\AdminLokasiRtController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\RoleController;
@@ -178,7 +178,7 @@ Route::prefix("app")->group(function () {
                 Route::resource("/blog", BlogController::class);
 
                 // Data Admin Cabang
-                Route::resource("/admin_cabang", AdminLokasiRtController::class);
+                require __DIR__ . '/super_admin/akun/admin_cabang.php';
 
                 // Hak Akses Users
                 Route::get("/users/hak_akses/{id}", [HakAksesController::class, "index"]);

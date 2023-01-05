@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jenjang;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class KelasController extends Controller
 {
     public function index()
     {
         $data = [
-            "data_kelas" => Kelas::all()
+            "data_kelas" => Kelas::orderBy("created_at", "DESC")->get()
         ];
 
         return view("app.super_admin.data_master.kelas.v_index", $data);
