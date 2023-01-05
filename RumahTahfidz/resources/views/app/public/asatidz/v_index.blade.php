@@ -99,7 +99,7 @@
                                                         <a href="{{ url('/app/sistem/asatidz/'.encrypt($asatidz->id)) }}" class="btn btn-info btn-sm">
                                                             <i class="fa fa-search"></i> Detail
                                                         </a>
-                                                        <a href="{{ url('/app/sistem/asatidz/edit/' . $asatidz->id) }}"
+                                                        <a href="{{ url('/app/sistem/asatidz/' . encrypt($asatidz->id) . '/edit') }}"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </a>
