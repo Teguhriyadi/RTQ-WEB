@@ -78,13 +78,25 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('santri/show-by-wali-santri', [SantriController::class, 'showByWaliSantri']);
     Route::get('santri/{halaqah}/{jenjang}', [SantriController::class, 'showHalaqahJenjang']);
 
-    // Absensi Santri
+    Route::prefix('absensi')->group(function () {
+        // Absensi Santri
+        Route::prefix('santri')->group(function () {
+        });
+
+
+        // Abesensi Asatidz
+        Route::prefix('asatidz')->group(function () {
+            Route::get('/', [AbsensiAsatidzController::class, 'index']);
+            Route::post('/', [AbsensiAsatidzController::class, 'create']);
+            Route::get('rekap', [AbsensiAsatidzController::class, 'recap']);
+        });
+    });
+
     // Route::get("absensi/santri/{id_jenjang}/{kode_halaqah}", [AbsensiSantriController::class, 'index']);
     // Route::post("absensi/santri/{id_jenjang}/{kode_halaqah}", [AbsensiSantriController::class, 'create']);
     // Route::put("absensi/santri/{id}", [AbsensiSantriController::class, 'edit']);
     // Route::get("absensi/santri/{id}", [AbsensiSantriController::class, 'get_status']);
 
-    // Abesensi Asatidz
     // Route::get('absensi/asatidz', [AbsensiAsatidzController::class, 'index']);
     // Route::get('absensi/asatidz/rekap', [AbsensiAsatidzController::class, 'rekap']);
     // Route::post('absensi/asatidz', [AbsensiAsatidzController::class, 'create']);
