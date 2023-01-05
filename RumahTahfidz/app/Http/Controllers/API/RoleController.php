@@ -3,27 +3,22 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Resources\Role\RoleCollection;
 use App\Models\Role;
 
 class RoleController extends Controller
 {
-    public function view()
-    {
-        $role = Role::all();
+    protected $role;
 
-        if ($role->count() > 0) {
-            $d = [];
-            foreach ($role as $c) {
-                $d[] = [
-                    "id" => $c->id,
-                    "keterangan" => $c->keterangan
-                ];
-            }
-            return response()->json($d, 200);
-        } else {
-            $d2 = 'null';
-            return response()->json($d2, 200);
-        }
+    public function __construct(Role $role)
+    {
+        $this->role = $role;
+    }
+
+    public function index()
+    {
+        $roles = $this->role->whereIn('id', [3, 4])->get();
+
+        return new RoleCollection($roles);
     }
 }

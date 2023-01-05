@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Jenjang\JenjangCollection;
 use App\Models\User;
 use App\Models\Jenjang;
 
@@ -11,16 +12,17 @@ use Illuminate\Support\Facades\Hash;
 
 class JenjangController extends Controller
 {
-    public function view()
+    protected $jenjang;
+
+    public function __construct(Jenjang $jenjang)
     {
-        $cek = Jenjang::get();
+        $this->jenjang = $jenjang;
+    }
 
-        if ($cek->count() < 1) {
-            $data = "Data tidak ada.";
-        } else {
-            $data = $cek;
-        }
+    public function index()
+    {
+        $jenjangs = $this->jenjang->all();
 
-        return response()->json($data, 200);
+        return new JenjangCollection($jenjangs);
     }
 }
