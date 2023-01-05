@@ -18,7 +18,6 @@ class AsatidzSeeder extends Seeder
         Asatidz::create([
             "id" => 3,
             "nomor_induk" => "12345678",
-            "no_ktp" => 123456,
             "pendidikan_terakhir" => "SMA",
             "aktivitas_utama" => "Mengajar",
             "motivasi_mengajar" => "Mau Mengajar"

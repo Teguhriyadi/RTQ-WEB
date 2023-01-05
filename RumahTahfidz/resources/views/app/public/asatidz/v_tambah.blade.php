@@ -24,31 +24,6 @@
     <div class="clearfix"></div>
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        <i class="fa fa-plus"></i> Ambil Data
-                    </h2>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div id="gender" class="btn-group" data-toggle="buttons">
-                          <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                            <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                          </label>
-                          <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                            <input type="radio" name="gender" value="female"> Female
-                          </label>
-                        </div>
-                      </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
         <form action="{{ url('/app/sistem/asatidz') }}" method="POST" enctype="multipart/form-data" id="tambahAsatidz">
             {{ csrf_field() }}
             <div class="col-md-4 col-sm-12 col-xs-12">
@@ -72,19 +47,10 @@
                     </div>
                     <div class="x_content">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="nomor_induk"> Nomor Induk </label>
-                                    <input type="text" class="form-control" name="nomor_induk" id="nomor_induk"
-                                        placeholder="Masukkan Nomor Induk">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="no_ktp"> No. KTP <small class="text-danger"><i>Tidak Wajib di
-                                                Isi!</i></small> </label>
-                                    <input type="text" class="form-control" name="no_ktp" id="no_ktp"
-                                        placeholder="Masukkan No. KTP">
+                                    <input type="text" class="form-control" name="nomor_induk" id="nomor_induk" placeholder="Masukkan Nomor Induk">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -220,11 +186,12 @@
                         lang: "id",
                         ignore: "",
                         rules: {
-                            nomor_induk: {
-                                required: true
-                            },
-                            no_ktp: {
-                                minlength: 16
+                            nomor_induk:
+                            {
+                                required: true,
+                                number: true,
+                                minlength: 16,
+                                maxlength: 16
                             },
                             nama: {
                                 required: true
@@ -249,11 +216,12 @@
                             }
                         },
                         messages: {
-                            nomor_induk: {
-                                required: "Nomor Induk Harap di Isi!"
-                            },
-                            no_ktp: {
-                                minlength: "Nomor KTP Minimal 16 Angka"
+                            nomor_induk:
+                            {
+                                required: "Nomor Induk Harap di Isi!",
+                                number: "Nomor Induk Harus Angka",
+                                minlength: "Nomor Induk Minimal 16 Angka",
+                                maxlength: "Nomor Induk Maximal 16 Angka"
                             },
                             nama: {
                                 required: "Nama Harus di Isi!"

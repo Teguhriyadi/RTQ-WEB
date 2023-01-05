@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SuperAdmin\Akun;
 
+use App\Http\Controllers\Controller;
 use App\Models\AdminLokasiRt;
 use App\Models\HakAkses;
 use App\Models\LokasiRt;
@@ -26,7 +27,7 @@ class AdminLokasiRtController extends Controller
     public function index()
     {
         $data = [
-            "data_admin_lokasi_rt" => AdminLokasiRt::get()
+            "data_admin_lokasi_rt" => AdminLokasiRt::orderBy("created_at", "DESC")->get()
         ];
 
         return view("app.super_admin.data_master.admin_lokasi_rt.v_index", $data);
@@ -135,6 +136,13 @@ class AdminLokasiRtController extends Controller
         return redirect("/app/sistem/admin_cabang")->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success')</script>")->withInput();
     }
 
+    public function show($id)
+    {
+        $data["detail"] = AdminLokasiRt::where("id", decrypt($id))->first();
+
+        return view("app.super_admin.data_master.admin_lokasi_rt.v_detail", $data);
+    }
+
     public function edit($id)
     {
         $data = [
@@ -210,9 +218,18 @@ class AdminLokasiRtController extends Controller
 
     public function destroy($id)
     {
+        $user = User::where("id", $id)->first();
+
+        $str = $user->gambar;
+        $hasil = trim($str, url('/'));
+
+        $print = substr($hasil, 8);
+
+        Storage::delete($print);
+
         AdminLokasiRt::where("id", $id)->delete();
 
-        User::where("id", $id)->delete();
+        $user->delete();
 
         return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus!', 'success')</script>");
     }

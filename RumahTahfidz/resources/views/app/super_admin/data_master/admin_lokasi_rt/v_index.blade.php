@@ -79,6 +79,9 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
+                                                    <a href="{{ url('/app/sistem/admin_cabang/' . encrypt($data->id)) }}" class="btn btn-info btn-sm">
+                                                        <i class="fa fa-search"></i> Detail
+                                                    </a>
                                                     <a href="{{ url('/app/sistem/admin_cabang/' . encrypt($data->id) . '/edit') }}"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fa fa-edit"></i> Edit
@@ -123,7 +126,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     form_string =
-                        "<form method=\"POST\" action=\"{{ url('/app/sistem/admin_lokasi_rt/') }}/" +
+                        "<form method=\"POST\" action=\"{{ url('/app/sistem/admin_cabang/') }}/" +
                         id +
                         "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
 

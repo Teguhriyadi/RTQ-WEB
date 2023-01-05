@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministrasiController;
-use App\Http\Controllers\AdminLokasiRtController;
+use App\Http\Controllers\Akun\AdminLokasiRtController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\RoleController;
@@ -93,30 +93,26 @@ use Illuminate\Support\Facades\Route;
 //     Route::prefix("sistem")->group(function () {
 //         Route::group(["middleware" => "autentikasi"], function () {
 
-            // Data Pengajar
-            // Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
-            // Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
-            // Route::resource("/asatidz", AsatidzController::class,  [
-            //     'asatidz' => 'prefix'
-            // ]);
+// Data Pengajar
+require __DIR__ . '/admin_cabang/akun/asatidz.php';
 
-            // Data Jenjang Santri
-            // Route::get("/jenjang_santri", [SantriController::class, "jenjang_santri"]);
-            // Route::put("/jenjang_santri", [SantriController::class, "jenjang_santri_dua"]);
-            // Route::post("/jenjang_santri", [SantriController::class, "post_jenjang_santri"]);
-            // Data Siswa
-            // Route::get("/santri/edit", [SantriController::class, "edit"]);
-            // Route::get("/santri/datatables", [SantriController::class, "datatables"]);
-            // Route::put("/santri/simpan", [SantriController::class, "update"]);
-            // Route::get("/santri/{id}/sertifikat", [SantriController::class, "sertifikat"]);
-            // Route::get("/santri/{id}/view_sertifikat", [SantriController::class, "view_sertifikat"]);
-            // Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
-            // Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
-            // Route::get("/santri/export", [ExcelController::class, "exportSantri"]);
-            // Route::resource("/santri", SantriController::class,  [
-            //     'santri' => 'prefix'
-            // ]);
-            // Route::post("/santri/import", [ExcelController::class, "importSantri"]);
+// Data Jenjang Santri
+// Route::get("/jenjang_santri", [SantriController::class, "jenjang_santri"]);
+// Route::put("/jenjang_santri", [SantriController::class, "jenjang_santri_dua"]);
+// Route::post("/jenjang_santri", [SantriController::class, "post_jenjang_santri"]);
+// Data Siswa
+// Route::get("/santri/edit", [SantriController::class, "edit"]);
+// Route::get("/santri/datatables", [SantriController::class, "datatables"]);
+// Route::put("/santri/simpan", [SantriController::class, "update"]);
+// Route::get("/santri/{id}/sertifikat", [SantriController::class, "sertifikat"]);
+// Route::get("/santri/{id}/view_sertifikat", [SantriController::class, "view_sertifikat"]);
+// Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
+// Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
+// Route::get("/santri/export", [ExcelController::class, "exportSantri"]);
+// Route::resource("/santri", SantriController::class,  [
+//     'santri' => 'prefix'
+// ]);
+// Route::post("/santri/import", [ExcelController::class, "importSantri"]);
 
 //             // Data Wali Santri
 //             Route::get("/wali_santri/export", [ExcelController::class, "exportWaliSantri"]);
@@ -126,22 +122,17 @@ use Illuminate\Support\Facades\Route;
 //             Route::post("/wali_santri/create/anak/", [SantriController::class, "store"]);
 //             Route::resource("/wali_santri", WaliSantriController::class);
 
-//             // Data Pengajar
-//             Route::get("/asatidz/edit/{id}", [AsatidzController::class, "edit"]);
-//             Route::put("/asatidz/simpan", [AsatidzController::class, "update"]);
-//             Route::resource("/asatidz", AsatidzController::class);
-
-//             Route::prefix("laporan")->group(function () {
-//                 Route::prefix("/absensi")->group(function () {
-//                     // Santri
-//                     Route::get("/santri", [LaporanController::class, "laporan_absensi_santri"]);
-//                     Route::put("/santri", [LaporanController::class, "filter_laporan_santri"]);
-//                     // Asatidz
-//                     Route::get("/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
-//                     Route::put("/asatidz", [LaporanController::class, "filter_laporan_asatidz"]);
-//                     Route::get("/asatidz/{id}", [LaporanController::class, "detail_laporan_absensi_asatidz"]);
-//                 });
-//             });
+Route::prefix("laporan")->group(function () {
+    Route::prefix("/absensi")->group(function () {
+        // Santri
+        Route::get("/santri", [LaporanController::class, "laporan_absensi_santri"]);
+        Route::put("/santri", [LaporanController::class, "filter_laporan_santri"]);
+        // Asatidz
+        Route::get("/asatidz", [LaporanController::class, "laporan_absensi_asatidz"]);
+        Route::put("/asatidz", [LaporanController::class, "filter_laporan_asatidz"]);
+        Route::get("/asatidz/{id}", [LaporanController::class, "detail_laporan_absensi_asatidz"]);
+    });
+});
 
 //             Route::group(["middleware" => ["can:super_admin"]], function () {
 
@@ -177,8 +168,8 @@ use Illuminate\Support\Facades\Route;
 //                 Route::put("/blog/simpan", [BlogController::class, "update"]);
 //                 Route::resource("/blog", BlogController::class);
 
-//                 // Data Admin Cabang
-//                 Route::resource("/admin_cabang", AdminLokasiRtController::class);
+// Data Admin Cabang
+require __DIR__ . '/super_admin/akun/admin_cabang.php';
 
 //                 // Hak Akses Users
 //                 Route::get("/users/hak_akses/{id}", [HakAksesController::class, "index"]);
