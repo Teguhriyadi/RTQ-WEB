@@ -71,7 +71,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('jenjang', [JenjangController::class, 'index']);
 
     // List Cabang
-    // Route::get('cabang/view/all', [CabangController::class, 'view']);
+    Route::get('cabang', [CabangController::class, 'index']);
 
     // List Santri
     // Route::get('santri/view/all', [SantriController::class, 'view']);
