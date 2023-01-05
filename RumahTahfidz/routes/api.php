@@ -45,7 +45,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', LogoutController::class);
 
     // Detail User
-    // Route::get('profil/user/detail', AuthenticatedController::class);
+    Route::get('user/profil', AuthenticatedController::class);
 
     // Kategori Pelajaran
     // Route::prefix('kategori/pelajaran/view')->group(function () {
