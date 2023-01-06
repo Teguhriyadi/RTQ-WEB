@@ -16,16 +16,18 @@ use Illuminate\Support\Str;
 
 use App\Models\Santri;
 use App\Models\Absensi;
+use Carbon\Carbon;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Auth;
 
 class AbsensiSantriController extends Controller
 {
-    protected $absensi;
+    protected $absensi, $santri;
 
-    public function __construct(Absensi $absensi)
+    public function __construct(Absensi $absensi, Santri $santri)
     {
         $this->absensi = $absensi;
+        $this->santri = $santri;
     }
 
     public function index(SantriIndexRequest $request)
@@ -41,27 +43,34 @@ class AbsensiSantriController extends Controller
         return new SantriCollection($santri);
     }
 
-    public function create(Request $request, $id_jenjang, $kode_halaqah)
+    public function store(SantriIndexRequest $request)
     {
-        $date = date('Y-m-d');
-        $santri = Santri::where("id_jenjang", $id_jenjang)->where("kode_halaqah", $kode_halaqah)->get();
+        $date = Carbon::now();
+        $data = '';
+
+        $santri = $this->santri
+            ->where("id_jenjang", $request->id_jenjang)
+            ->where("kode_halaqah", $request->kode_halaqah)
+            ->get();
 
         foreach ($santri as $s) {
-            $absensi = Absensi::where("id_santri", $s->id)->whereDate("created_at", $date)->first();
+            $absensi = $this->absensi
+                ->where("id_santri", $s->id)
+                ->whereDate("created_at", $date)
+                ->first();
 
             if ($absensi == null) {
                 $absensi = new Absensi;
                 $absensi->id_santri = $s->id;
                 $absensi->id_status_absen = 1;
                 $absensi->keterangan = "-";
+                $absensi->id_jenjang = $request->id_jenjang;
                 $absensi->id_asatidz = Auth::user()->id;
-                $absensi->save();
-
-                return response()->json('Data berhasil disimpan', 200);
+                $data = $absensi->save();
             }
         }
 
-        return null;
+        return $data;
     }
 
     public function update($id, SantriRequest $request)

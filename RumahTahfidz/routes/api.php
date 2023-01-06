@@ -82,6 +82,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         // Absensi Santri
         Route::prefix('santri')->group(function () {
             Route::get("/", [AbsensiSantriController::class, 'index']);
+            Route::post("/", [AbsensiSantriController::class, 'store']);
             Route::get("/{id}", [AbsensiSantriController::class, 'show']);
             Route::put("/{id}", [AbsensiSantriController::class, 'update']);
         });
@@ -95,7 +96,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         });
     });
 
-    // Route::post("absensi/santri/{id_jenjang}/{kode_halaqah}", [AbsensiSantriController::class, 'create']);
 
     // List Detail Iuran
     // Route::get('iuran/detail/{id}', [IuranController::class, 'detail']);
