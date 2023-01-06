@@ -19,6 +19,7 @@ use App\Models\Absensi;
 use Carbon\Carbon;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AbsensiSantriController extends Controller
 {
@@ -45,40 +46,44 @@ class AbsensiSantriController extends Controller
 
     public function store(SantriIndexRequest $request)
     {
-        $date = Carbon::now();
-        $data = '';
+        return DB::transaction(function () use ($request) {
+            $date = Carbon::now();
+            $data = '';
 
-        $santri = $this->santri
-            ->where("id_jenjang", $request->id_jenjang)
-            ->where("kode_halaqah", $request->kode_halaqah)
-            ->get();
+            $santri = $this->santri
+                ->where("id_jenjang", $request->id_jenjang)
+                ->where("kode_halaqah", $request->kode_halaqah)
+                ->get();
 
-        foreach ($santri as $s) {
-            $absensi = $this->absensi
-                ->where("id_santri", $s->id)
-                ->whereDate("created_at", $date)
-                ->first();
+            foreach ($santri as $s) {
+                $absensi = $this->absensi
+                    ->where("id_santri", $s->id)
+                    ->whereDate("created_at", $date)
+                    ->first();
 
-            if ($absensi == null) {
-                $absensi = new Absensi;
-                $absensi->id_santri = $s->id;
-                $absensi->id_status_absen = 1;
-                $absensi->keterangan = "-";
-                $absensi->id_jenjang = $request->id_jenjang;
-                $absensi->id_asatidz = Auth::user()->id;
-                $data = $absensi->save();
+                if ($absensi == null) {
+                    $absensi = new Absensi;
+                    $absensi->id_santri = $s->id;
+                    $absensi->id_status_absen = 1;
+                    $absensi->keterangan = "-";
+                    $absensi->id_jenjang = $request->id_jenjang;
+                    $absensi->id_asatidz = Auth::user()->id;
+                    $data = $absensi->save();
+                }
             }
-        }
 
-        return $data;
+            return $data;
+        });
     }
 
     public function update($id, SantriRequest $request)
     {
-        return $this->absensi->where("id", $id)->update([
-            "id_status_absen" => $request->id_status_absen,
-            "keterangan" => $request->keterangan,
-        ]);
+        return DB::transaction(function () use ($request) {
+            return $this->absensi->where("id", $id)->update([
+                "id_status_absen" => $request->id_status_absen,
+                "keterangan" => $request->keterangan,
+            ]);
+        });
     }
 
     public function show($id)

@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use App\Models\Absensi;
 use App\Models\AbsensiAsatidz;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AbsensiAsatidzController extends Controller
 {
@@ -34,16 +35,16 @@ class AbsensiAsatidzController extends Controller
 
     public function create(AsatidzRequest $request)
     {
-        $asatidz = Str::random(32);
+        return DB::transaction(function () use ($request) {
+            $asatidz = Str::random(32);
 
-        $request->file('gambar')->move('assets/absensi/asatidz/' . date('Y_m_d'), $asatidz);
-        $absensiAsatidz = $this->absensiAsatidz->create([
-            'gambar' => url('') . '/assets/absensi/asatidz/' . date('Y_m_d') . '/' . $asatidz,
-            'alamat' => $request->alamat,
-            'id_asatidz' => Auth::user()->id,
-        ]);
-
-        return $absensiAsatidz;
+            $request->file('gambar')->move('assets/absensi/asatidz/' . date('Y_m_d'), $asatidz);
+            return $this->absensiAsatidz->create([
+                'gambar' => url('') . '/assets/absensi/asatidz/' . date('Y_m_d') . '/' . $asatidz,
+                'alamat' => $request->alamat,
+                'id_asatidz' => Auth::user()->id,
+            ]);
+        });
     }
 
     public function recap()

@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class IuranController extends Controller
 {
@@ -49,13 +50,15 @@ class IuranController extends Controller
 
     public function store(CreateRequest $request)
     {
-        return $this->iuran->create([
-            'nominal' => $request->nominal,
-            'id_santri' => $request->id_santri,
-            'id_users' => Auth::user()->id,
-            'bukti' => '-',
-            'id_status_validasi' => 2,
-            'tanggal' => Carbon::now(),
-        ]);
+        return DB::transaction(function () use ($request) {
+            return $this->iuran->create([
+                'nominal' => $request->nominal,
+                'id_santri' => $request->id_santri,
+                'id_users' => Auth::user()->id,
+                'bukti' => '-',
+                'id_status_validasi' => 2,
+                'tanggal' => Carbon::now(),
+            ]);
+        });
     }
 }

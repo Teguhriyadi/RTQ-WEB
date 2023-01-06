@@ -12,6 +12,7 @@ use App\Models\Nilai;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PenilaianController extends Controller
 {
@@ -33,17 +34,6 @@ class PenilaianController extends Controller
             ->get();
 
         return new NilaiCollection($nilai);
-        // $nilai_santri = Nilai::where("id_santri", $id_santri)->get();
-
-        // foreach ($nilai_santri as $nilai) {
-        //     $data_kategori = KategoriPelajaran::where("id", $nilai->id_kategori_pelajaran)->first();
-        //     $data[] = [
-        //         "nilai" => $nilai->nilai,
-        //         "pelajaran" => $data_kategori->getPelajaran->nama_pelajaran
-        //     ];
-        // }
-
-        // return response()->json($nilai_santri);
     }
 
     public function show($id_pelajaran, $id_santri)
@@ -55,20 +45,24 @@ class PenilaianController extends Controller
 
     public function store(CreateRequest $request)
     {
-        return $this->nilai->create([
-            'id_asatidz' => Auth::user()->id,
-            'id_santri' => $request->id_santri,
-            'id_jenjang' => $request->id_jenjang,
-            'id_kategori_pelajaran' => $request->id_kategori_pelajaran,
-            'nilai' => $request->nilai,
-        ]);
+        return DB::transaction(function() use ($request) {
+            return $this->nilai->create([
+                'id_asatidz' => Auth::user()->id,
+                'id_santri' => $request->id_santri,
+                'id_jenjang' => $request->id_jenjang,
+                'id_kategori_pelajaran' => $request->id_kategori_pelajaran,
+                'nilai' => $request->nilai,
+            ]);
+        });
     }
 
     public function update($id, Request $request)
     {
-        return $this->nilai->where('id', $id)->update([
-            'id_asatidz' => Auth::user()->id,
-            'nilai' => $request->nilai,
-        ]);
+        return DB::transaction(function() use ($request) {
+            return $this->nilai->where('id', $id)->update([
+                'id_asatidz' => Auth::user()->id,
+                'nilai' => $request->nilai,
+            ]);
+        })
     }
 }

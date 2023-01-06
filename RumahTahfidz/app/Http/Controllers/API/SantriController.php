@@ -38,29 +38,4 @@ class SantriController extends Controller
 
         return new SantriCollection($santri);
     }
-
-    public function showByWaliSantri(Request $request)
-    {
-        $santri = $this->santri->where('id_wali', $request->user()->id)->get();
-
-        return new SantriCollection($santri);
-    }
-
-    public function showHalaqahJenjang($kode_halaqah = null, $id_jenjang = null)
-    {
-        if (!$kode_halaqah) {
-            return response()->json(['message' => 'parameter kode halaqah null'], 400);
-        }
-
-        if (!$id_jenjang) {
-            return response()->json(['message' => 'parameter id jenjang null'], 400);
-        }
-
-        $santri = $this->santri->where([
-            ['kode_halaqah', $kode_halaqah],
-            ['id_jenjang', $id_jenjang]
-        ])->with(['getHalaqah'])->get();
-
-        return new SantriCollection($santri);
-    }
 }
