@@ -90,7 +90,7 @@
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_nominal_iuran as $data)
+                                        @foreach ($nominal as $data)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">

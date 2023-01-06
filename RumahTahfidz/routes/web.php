@@ -302,14 +302,7 @@ Route::prefix("app")->group(function () {
                 ]);
 
                 // Data Nominal Iuran
-                Route::prefix("/nominal/iuran")->group(function () {
-                    Route::get("/edit", [NominalIuranController::class, "edit"]);
-                    Route::put("/simpan", [NominalIuranController::class, "update"]);
-                    Route::post("/aktifkan", [NominalIuranController::class, "aktifkan"]);
-                    Route::post("/non_aktifkan", [NominalIuranController::class, "non_aktifkan"]);
-                    Route::delete("/{id}", [NominalIuranController::class, "destroy"]);
-                    Route::resource("/", NominalIuranController::class);
-                });
+                require __DIR__ . '/public/master/nominal_iuran.php';
 
                 // Iuran
                 Route::prefix("/iuran")->group(function () {

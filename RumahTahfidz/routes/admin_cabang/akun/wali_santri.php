@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminCabang\Akun\WaliSantriController;
+use App\Http\Controllers\Public\Akun\SantriController;
+use App\Http\Controllers\Public\Akun\WaliSantriController;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/wali_santri/export", [ExcelController::class, "exportWaliSantri"]);

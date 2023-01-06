@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AdminCabang\Akun;
+namespace App\Http\Controllers\Public\Akun;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdminLokasiRt;

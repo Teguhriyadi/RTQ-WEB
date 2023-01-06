@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Master;
 
+use App\Http\Controllers\Controller;
 use App\Models\NominalIuran;
 use Illuminate\Http\Request;
 
@@ -9,19 +10,13 @@ class NominalIuranController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_nominal_iuran" => NominalIuran::get()
-        ];
+        $data["nominal"] = NominalIuran::orderBy("created_at", "DESC")->get();
 
         return view("app.super_admin.settings.nominal_iuran.v_index", $data);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "nominal" => "required"
-        ]);
-
         $pecah = substr($request->nominal, 4, 100);
         $nominal = str_replace('.', '', $pecah);
 
@@ -34,19 +29,13 @@ class NominalIuranController extends Controller
 
     public function edit(Request $request)
     {
-        $data = [
-            "edit" => NominalIuran::where("id", $request->id)->first()
-        ];
+        $data["edit"] = NominalIuran::where("id", $request->id)->first();
 
         return view("app.super_admin.settings.nominal_iuran.v_edit", $data);
     }
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            "nominal" => "required"
-        ]);
-
         $pecah = substr($request->nominal, 4, 100);
         $nominal = str_replace('.', '', $pecah);
 
