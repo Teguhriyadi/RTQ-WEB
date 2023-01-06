@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Filters\Absensi\Santri\Halaqoh;
+use App\Http\Filters\Absensi\Santri\InDay;
 use App\Http\Filters\Absensi\Santri\Jenjang;
+use App\Http\Requests\API\Absensi\SantriIndexRequest;
 use App\Http\Requests\API\Absensi\SantriRequest;
+use App\Http\Resources\Absensi\Santri\SantriCollection;
 use App\Http\Resources\Absensi\Santri\SantriDetail;
-use App\Http\Resources\Santri\SantriCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -26,33 +28,12 @@ class AbsensiSantriController extends Controller
         $this->absensi = $absensi;
     }
 
-    public function index()
+    public function index(SantriIndexRequest $request)
     {
-        // $date = date('Y-m-d');
-        // $santri = Santri::where("id_jenjang", $id_jenjang)->where("kode_halaqah", $kode_halaqah)->get();
-
-        // $data = [];
-
-        // foreach ($santri as $s) {
-
-        //     $absen = Absensi::whereDate("created_at", $date)->where("id_santri", $s->id)->get();
-
-        //     if ($absen->count() < 1) {
-        //         return null;
-        //     } else {
-        //         foreach ($absen as $d) {
-        //             $data[] = [
-        //                 'id_absensi' => $d->id,
-        //                 'keterangan_absensi' => $d->keterangan,
-        //             ];
-        //         }
-        //     }
-        // }
         $santri = app(Pipeline::class)
             ->send(Absensi::with(['getStatusAbsen']))
             ->through([
-                Jenjang::class,
-                Halaqoh::class
+                InDay::class
             ])
             ->thenReturn()
             ->get();
