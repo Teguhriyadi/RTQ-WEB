@@ -85,7 +85,7 @@
                                     </thead>
                                     <tbody>
                                         @php $no = 0 @endphp
-                                        @foreach ($data_besaran_iuran as $data)
+                                        @foreach ($besaran_iuran as $data)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">Rp. {{ number_format($data->besaran) }}</td>

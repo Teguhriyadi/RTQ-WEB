@@ -242,14 +242,7 @@ Route::prefix("app")->group(function () {
             });
 
             // Data Besaran Iuran
-            Route::get("/besaran_iuran/edit", [BesaranIuranController::class, "edit"]);
-            Route::put("/besaran_iuran/simpan", [BesaranIuranController::class, "update"]);
-            Route::resource("/besaran_iuran", BesaranIuranController::class);
-
-            // Data Besaran Iuran Santri
-            // Route::get("/besaran_santri/edit", [BesaranIuranSantriController::class, "edit"]);
-            // Route::put("/besaran_santri/simpan", [BesaranIuranSantriController::class, "update"]);
-            // Route::resource("/besaran_santri", BesaranIuranSantriController::class);
+            require __DIR__ . '/public/master/besaran_iuran.php';
 
             // Data Kelas
             Route::get("/kelas/edit", [KelasController::class, "edit"]);
