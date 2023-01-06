@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\Santri\Halaqah as SantriHalaqah;
+use App\Http\Filters\Santri\Jenjang as SantriJenjang;
+use App\Http\Filters\Santri\WaliSantri;
 use App\Http\Resources\Santri\SantriCollection;
 use App\Models\Cabang;
 use App\Models\Halaqah;
@@ -10,6 +13,7 @@ use App\Models\Jenjang;
 use App\Models\LokasiRt;
 use App\Models\Santri;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
 
 class SantriController extends Controller
 {
@@ -22,7 +26,15 @@ class SantriController extends Controller
 
     public function index()
     {
-        $santri = $this->santri->with(['getHalaqah'])->get();
+        $santri = app(Pipeline::class)
+            ->send(Santri::with(['getHalaqah']))
+            ->through([
+                SantriHalaqah::class,
+                SantriJenjang::class,
+                WaliSantri::class
+            ])
+            ->thenReturn()
+            ->get();
 
         return new SantriCollection($santri);
     }

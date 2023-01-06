@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Filters\Absensi\Santri;
+namespace App\Http\Filters\Santri;
 
 use Closure;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,9 +13,7 @@ class Jenjang
             return $next($query);
         }
 
-        $query->whereHas('getSantri', function ($query) {
-            $query->where('id_jenjang', request('id_jenjang'));
-        });
+        $query->where('id_jenjang', request('id_jenjang'));
 
         return $next($query);
     }

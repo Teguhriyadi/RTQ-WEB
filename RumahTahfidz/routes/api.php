@@ -29,11 +29,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route Percobaan
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return Auth::user();
-// });
-
 // Login
 Route::post('login', LoginController::class);
 
@@ -75,8 +70,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // List Santri
     Route::get('santri', [SantriController::class, 'index']);
-    Route::get('santri/show-by-wali-santri', [SantriController::class, 'showByWaliSantri']);
-    Route::get('santri/{halaqah}/{jenjang}', [SantriController::class, 'showHalaqahJenjang']);
 
     Route::prefix('absensi')->group(function () {
         // Absensi Santri
