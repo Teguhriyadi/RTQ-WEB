@@ -47,18 +47,19 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Detail User
     Route::get('user/profil', AuthenticatedController::class);
 
-    // Kategori Pelajaran
-    // Route::prefix('kategori/pelajaran/view')->group(function () {
-    //     Route::get('/all', [KategoriPenilaianController::class, 'all']);
-    //     Route::get('/{id_jenjang}/{id_katagori}', [KategoriPenilaianController::class, 'show']);
-    // });
+    Route::prefix('kategori')->group(function () {
+        // Kategori Pelajaran
+        Route::prefix('pelajaran')->group(function () {
+            Route::get('/', [KategoriPelajaranController::class, 'index']);
+        });
 
-    // Route::prefix('pelajaran/view')->group(function () {
-    //     Route::get('/all', [KategoriPelajaranController::class, 'all']);
-    //     Route::get('/{id_kategori_penilaian}/{id_jenjang}', [KategoriPelajaranController::class, 'show']);
-    // });
+        // Kategori Penilaian
+        Route::prefix('penilaian')->group(function () {
+            Route::get('/', [KategoriPenilaianController::class, 'index']);
+        });
+    });
 
-    // Kategori Penilaian
+
     // Route::prefix('penilaian')->group(function () {
     //     Route::get('view/{id_pelajaran}/{id_santri}', [PenilaianController::class, 'get_nilai']);
     //     Route::get('view/{id_pelajaran}/{id_santri}/{id_kategori}/{id_asatidz}', [PenilaianController::class, 'store_nilai']);
