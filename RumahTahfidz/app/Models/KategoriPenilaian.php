@@ -12,4 +12,9 @@ class KategoriPenilaian extends Model
     protected $table = "tb_kategori_penilaian";
 
     protected $guarded = [''];
+
+    public function getKategoriPelajaran()
+    {
+        return $this->hasMany(KategoriPelajaran::class, 'id_kategori_penilaian', 'id');
+    }
 }

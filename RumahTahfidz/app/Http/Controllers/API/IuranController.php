@@ -3,53 +3,62 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Filters\Iuran\Santri as IuranSantri;
+use App\Http\Requests\API\Iuran\CreateRequest;
+use App\Http\Resources\Iuran\IuranCollection;
+use App\Http\Resources\Iuran\IuranDetail;
 use App\Models\Iuran;
 use App\Models\Santri;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class IuranController extends Controller
 {
+    protected $iuran;
 
-    public function detail($id)
+    public function __construct(Iuran $iuran)
     {
-        $iuran = Iuran::where('id_santri', $id)->get();
-
-        $data = [];
-
-        foreach ($iuran as $i) {
-            $data[] = [
-                'tanggal_pembayaran' => $i->tanggal,
-                'nominal_pembayaran' => $i->nominal,
-                'status_pembayaran' => $i->getStatusValidasi->status
-            ];
-        }
-
-        return response()->json($data, 200);
+        $this->iuran = $iuran;
     }
 
-    public function cekNominal($id_santri)
+    public function index()
     {
-        $santri = Iuran::where('id_santri', $id_santri)->first();
+        $iuran = app(Pipeline::class)
+            ->send(Iuran::query())
+            ->through([
+                IuranSantri::class,
+            ])
+            ->thenReturn()
+            ->get();
 
-        return response()->json(['nominal' => $santri->nominal], 200);
+        return new IuranCollection($iuran);
     }
 
-    public function store(Request $request)
+    public function show($id_santri)
     {
-        $cek = Iuran::create([
-            'nominal' => $request->nominal,
-            'id_santri' => $request->id_santri,
-            'id_users' => $request->id_asatidz,
-            'bukti' => 'http://rtq-freelance.my.id/gambar/gambar_user.png',
-            'id_status_validasi' => 2,
-            'tanggal' => date('Y-m-d'),
-        ]);
+        $date = Carbon::now();
+        $santri = $this->iuran
+            ->where('id_santri', $id_santri)
+            ->whereDate('created_at', $date)
+            ->first();
 
-        if ($cek) {
-            return response()->json('Data berhasil disimpan', 200);
-        } else {
-            return response()->json('Data gagal disimpan', 404);
-        }
+        return new IuranDetail($santri);
+    }
+
+    public function store(CreateRequest $request)
+    {
+        return DB::transaction(function () use ($request) {
+            return $this->iuran->create([
+                'nominal' => $request->nominal,
+                'id_santri' => $request->id_santri,
+                'id_users' => Auth::user()->id,
+                'bukti' => '-',
+                'id_status_validasi' => 2,
+                'tanggal' => Carbon::now(),
+            ]);
+        });
     }
 }

@@ -3,90 +3,98 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Filters\Absensi\Santri\Halaqoh;
+use App\Http\Filters\Absensi\Santri\InDay;
+use App\Http\Filters\Absensi\Santri\Jenjang;
+use App\Http\Requests\API\Absensi\SantriIndexRequest;
+use App\Http\Requests\API\Absensi\SantriRequest;
+use App\Http\Resources\Absensi\Santri\SantriCollection;
+use App\Http\Resources\Absensi\Santri\SantriDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 use App\Models\Santri;
 use App\Models\Absensi;
+use Carbon\Carbon;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AbsensiSantriController extends Controller
 {
-    public function index($id_jenjang, $kode_halaqah)
+    protected $absensi, $santri;
+
+    public function __construct(Absensi $absensi, Santri $santri)
     {
-        $date = date('Y-m-d');
-        $santri = Santri::where("id_jenjang", $id_jenjang)->where("kode_halaqah", $kode_halaqah)->get();
+        $this->absensi = $absensi;
+        $this->santri = $santri;
+    }
 
-        $data = [];
+    public function index(SantriIndexRequest $request)
+    {
+        $santri = app(Pipeline::class)
+            ->send(Absensi::with(['getStatusAbsen']))
+            ->through([
+                InDay::class
+            ])
+            ->thenReturn()
+            ->get();
 
-        foreach ($santri as $s) {
+        return new SantriCollection($santri);
+    }
 
-            $absen = Absensi::whereDate("created_at", $date)->where("id_santri", $s->id)->get();
+    public function store(SantriIndexRequest $request)
+    {
+        return DB::transaction(function () use ($request) {
+            $date = Carbon::now();
+            $data = '';
 
-            if ($absen->count() < 1) {
-                return null;
-            } else {
-                foreach ($absen as $d) {
-                    $data[] = [
-                        'id_absensi' => $d->id,
-                        'keterangan_absensi' => $d->keterangan,
-                    ];
+            $santri = $this->santri
+                ->where("id_jenjang", $request->id_jenjang)
+                ->where("kode_halaqah", $request->kode_halaqah)
+                ->get();
+
+            foreach ($santri as $s) {
+                $absensi = $this->absensi
+                    ->where("id_santri", $s->id)
+                    ->whereDate("created_at", $date)
+                    ->first();
+
+                if ($absensi == null) {
+                    $absensi = new Absensi;
+                    $absensi->id_santri = $s->id;
+                    $absensi->id_status_absen = 1;
+                    $absensi->keterangan = "-";
+                    $absensi->id_jenjang = $request->id_jenjang;
+                    $absensi->id_asatidz = Auth::user()->id;
+                    $data = $absensi->save();
                 }
             }
-        }
 
-        return response()->json($data);
+            return $data;
+        });
     }
 
-    public function create(Request $request, $id_jenjang, $kode_halaqah)
+    public function update($id, SantriRequest $request)
     {
-        $date = date('Y-m-d');
-        $santri = Santri::where("id_jenjang", $id_jenjang)->where("kode_halaqah", $kode_halaqah)->get();
-
-        foreach ($santri as $s) {
-            $absensi = Absensi::where("id_santri", $s->id)->whereDate("created_at", $date)->first();
-
-            if ($absensi == null) {
-                $absensi = new Absensi;
-                $absensi->id_santri = $s->id;
-                $absensi->id_status_absen = 1;
-                $absensi->keterangan = "Hadir";
-                $absensi->id_asatidz = Auth::user()->id;
-                $absensi->save();
-
-                return response()->json('Data berhasil disimpan', 200);
-            }
-        }
-
-        return null;
+        return DB::transaction(function () use ($request) {
+            return $this->absensi->where("id", $id)->update([
+                "id_status_absen" => $request->id_status_absen,
+                "keterangan" => $request->keterangan,
+            ]);
+        });
     }
 
-    public function edit($id, Request $request)
-    {
-        Absensi::where("id", $id)->update([
-            "id_status_absen" => $request->id_status_absen,
-            "keterangan" => "ok",
-        ]);
-
-        return response()->json('Data berhasil disimpan', 200);
-    }
-
-    public function get_status($id)
+    public function show($id)
     {
         $date = date("Y-m-d");
 
-        $absen = Absensi::where("id_santri", $id)->whereDate("created_at", $date)->first();
+        $absen = $this->absensi->with(['getStatusAbsen'])
+            ->where("id_santri", $id)
+            ->whereDate("created_at", $date)
+            ->first();
 
-        if (!$absen) {
-            return null;
-        } else {
-            $data = [
-                "id_absensi" => $absen->id,
-                "keterangan" => $absen->getStatusAbsenSantri->keterangan_absen
-            ];
-        }
-        return response()->json($data);
+        return new SantriDetail($absen);
     }
 }

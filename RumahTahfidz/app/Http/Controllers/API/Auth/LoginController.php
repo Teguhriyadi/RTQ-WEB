@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\Auth\LoginRequest;
 use App\Models\HakAkses;
 use App\Models\Role;
 use App\Models\User;
@@ -17,13 +18,8 @@ class LoginController extends Controller
         $this->middleware(['guest']);
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(LoginRequest $request)
     {
-        $this->validate($request, [
-            'no_hp' => 'required',
-            'password' => 'required',
-        ]);
-
         $user = User::where('no_hp', $request->no_hp)->first();
 
         if (!$user) {
@@ -47,8 +43,10 @@ class LoginController extends Controller
         }
 
         $role = Role::where('id', $hakAkses->id_role)->first();
+        $roleName = str_replace(' ', '_', strtolower($role->keterangan));
 
-        $token = $user->createToken('api', [$role]);
+        $token = $user->createToken('api', [$roleName]);
+
         $user->update([
             'id_hak_akses' => $hakAkses->id
         ]);
@@ -57,8 +55,6 @@ class LoginController extends Controller
 
         $user['token'] = $token->plainTextToken;
         $user['id_role'] = $role->id;
-
-        $role = str_replace(' ', '_', strtolower($role->keterangan));
 
         return response()->json($user);
     }

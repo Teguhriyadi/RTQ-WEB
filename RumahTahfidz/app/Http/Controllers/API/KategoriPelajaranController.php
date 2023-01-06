@@ -3,29 +3,34 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\KategoriPelajaran\Jenjang;
+use App\Http\Filters\KategoriPelajaran\Penilaian;
+use App\Http\Resources\Pelajaran\PelajaranCollection;
 use App\Models\KategoriPelajaran;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
 
 class KategoriPelajaranController extends Controller
 {
-    public function all()
+    protected $kategoriPelajaran;
+
+    public function __construct(KategoriPelajaran $kategoriPelajaran)
     {
-        $cek = KategoriPelajaran::all();
+        $this->kategoriPelajaran = $kategoriPelajaran;
+    }
 
-        if ($cek->count() < 1) {
-            $data = "Data tidak ada.";
-        } else {
-            $data = [];
-            foreach ($cek as $c) {
-                $data[] = [
-                    "id" => $c->id,
-                    "id_jenjang" => $c->id_jenjang,
-                    "nama_pelajaran" => $c->getPelajaran->nama_pelajaran
-                ];
-            }
-        }
+    public function index()
+    {
+        $kategoriPelajaran = app(Pipeline::class)
+            ->send(KategoriPelajaran::query())
+            ->through([
+                Jenjang::class,
+                Penilaian::class
+            ])
+            ->thenReturn()
+            ->get();
 
-        return response()->json($data, 200);
+        return new PelajaranCollection($kategoriPelajaran);
     }
 
     public function show($id_jenjang, $id_kategori_penilaian)
