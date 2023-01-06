@@ -1,17 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdministrasiController;
-use App\Http\Controllers\Akun\AdminLokasiRtController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
-use App\Http\Controllers\AsatidzController;
 use App\Http\Controllers\BesaranIuranController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExcelController;
-use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateAsatidzController;
 use App\Http\Controllers\GenerateIuranController;
@@ -51,7 +48,6 @@ use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\ValidasiIuranController;
-use App\Http\Controllers\WaliSantriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -115,12 +111,7 @@ Route::prefix("app")->group(function () {
             Route::post("/santri/import", [ExcelController::class, "importSantri"]);
 
             // Data Wali Santri
-            Route::get("/wali_santri/export", [ExcelController::class, "exportWaliSantri"]);
-            Route::get("/wali_santri/datatables", [WaliSantriController::class, "datatables"]);
-            Route::post("/wali_santri/import", [ExcelController::class, "importWaliSantri"]);
-            Route::get("/wali_santri/create/anak/{id}", [SantriController::class, "create"]);
-            Route::post("/wali_santri/create/anak/", [SantriController::class, "store"]);
-            Route::resource("/wali_santri", WaliSantriController::class);
+            require __DIR__ . '/admin_cabang/akun/wali_santri.php';
 
             Route::prefix("laporan")->group(function () {
                 Route::prefix("/absensi")->group(function () {
