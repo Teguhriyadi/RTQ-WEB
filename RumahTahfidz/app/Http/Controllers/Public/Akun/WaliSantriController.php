@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Akun;
 
+use App\Http\Controllers\Controller;
 use App\Models\AdminLokasiRt;
 use App\Models\HakAkses;
 use App\Models\Halaqah;
-use App\Models\LokasiRt;
 use App\Models\Santri;
 use App\Models\User;
 use App\Models\WaliSantri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class WaliSantriController extends Controller
 {

@@ -120,10 +120,10 @@ class AsatidzController extends Controller
         return view("app.public.asatidz.v_detail", $data);
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
         $data = [
-            "edit" => Asatidz::where("id", $request->id)->first()
+            "edit" => Asatidz::where("id", decrypt($id))->first()
         ];
 
         return view("app.public.asatidz.v_edit", $data);
@@ -131,16 +131,6 @@ class AsatidzController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            "nama" => "required",
-            "alamat" => "required",
-            "no_hp" => "required",
-            "tanggal_lahir" => "required",
-            "jenis_kelamin" => "required",
-            "tempat_lahir" => "required",
-            "nomor_induk" => "required",
-        ]);
-
         if ($request->file("gambar")) {
             if ($request->gambarLama) {
                 Storage::delete($request->gambarLama);
@@ -151,12 +141,6 @@ class AsatidzController extends Controller
             $data = url('/storage/' . $nama_gambar);
         } else {
             $data = url('') . "/storage/" . $request->gambarLama;
-        }
-
-        if (empty($request->no_ktp)) {
-            $no_ktp = NULL;
-        } else {
-            $no_ktp = $request->no_ktp;
         }
 
         if (empty($request->pendidikan_terakhir)) {
@@ -179,7 +163,6 @@ class AsatidzController extends Controller
 
         Asatidz::where("id", $request->id)->update([
             "nomor_induk" => $request->nomor_induk,
-            "no_ktp" => $no_ktp,
             "pendidikan_terakhir" => $pendidikan_terakhir,
             "aktivitas_utama" => $aktivitas_utama,
             "motivasi_mengajar" => $motivasi_mengajar

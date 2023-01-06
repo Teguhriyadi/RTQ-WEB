@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Akun;
 
+use App\Http\Controllers\Controller;
 use App\Models\Administrasi;
 use App\Models\AdminLokasiRt;
 use App\Models\BesaranIuran;

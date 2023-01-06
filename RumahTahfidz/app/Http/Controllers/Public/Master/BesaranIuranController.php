@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Master;
 
+use App\Http\Controllers\Controller;
 use App\Models\BesaranIuran;
 use Illuminate\Http\Request;
 
@@ -9,9 +10,7 @@ class BesaranIuranController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_besaran_iuran" => BesaranIuran::orderBy("id", "DESC")->get()
-        ];
+        $data["besaran_iuran"] = BesaranIuran::orderBy("created_at", "DESC")->get();
 
         return view("app.super_admin.data_master.besaran_iuran.v_index", $data);
     }

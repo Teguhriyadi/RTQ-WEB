@@ -249,24 +249,6 @@
                             form.submit()
                         }
                     });
-
-                    $("#editKelas").validate({
-                        lang: "id",
-                        ignore: "",
-                        rules: {
-                            nama_kelas: {
-                                required: true
-                            },
-                        },
-                        messages: {
-                            nama_kelas: {
-                                required: "Kelas harap di isi!"
-                            },
-                        },
-                        submitHandler: function(form) {
-                            form.submit()
-                        }
-                    })
                 }
             }
             $(D).ready(function($) {
