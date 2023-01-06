@@ -97,8 +97,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
 
-    // List Detail Iuran
-    // Route::get('iuran/detail/{id}', [IuranController::class, 'detail']);
-    // Route::get('iuran/cek/nominal/{id_santri}', [IuranController::class, 'cekNominal']);
-    // Route::post('iuran/store', [IuranController::class, 'store']);
+    // Iuran
+    Route::prefix('iuran')->group(function () {
+        Route::get('/', [IuranController::class, 'index']);
+        Route::post('/', [IuranController::class, 'store']);
+        Route::get('/{id_santri}', [IuranController::class, 'show']);
+    });
 });
