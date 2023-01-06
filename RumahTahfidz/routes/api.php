@@ -60,13 +60,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
 
-    // Route::prefix('penilaian')->group(function () {
-    //     Route::get('view/{id_pelajaran}/{id_santri}', [PenilaianController::class, 'get_nilai']);
-    //     Route::get('view/{id_pelajaran}/{id_santri}/{id_kategori}/{id_asatidz}', [PenilaianController::class, 'store_nilai']);
-    //     Route::post('store/{id_pelajaran}/{id_santri}/{id_kategori}/{id_asatidz}', [PenilaianController::class, 'store_nilai']);
-    //     Route::put('put/{id}/{id_asatidz}', [PenilaianController::class, 'update_nilai']);
-    //     Route::get('view/{id_santri}', [PenilaianController::class, 'viewNilaiByWali']);
-    // });
+    Route::prefix('penilaian')->group(function () {
+        Route::get('/', [PenilaianController::class, 'index']);
+        Route::post('/', [PenilaianController::class, 'store']);
+        Route::get('/{id_pelajaran}/{id_santri}', [PenilaianController::class, 'show']);
+        Route::put('/{id}', [PenilaianController::class, 'update']);
+    });
 
     // List Jenjang
     Route::get('jenjang', [JenjangController::class, 'index']);
