@@ -29,68 +29,71 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route Percobaan
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return Auth::user();
-// });
-
 // Login
 Route::post('login', LoginController::class);
 
 // Role
-Route::get('role/view', [RoleController::class, 'view']);
+Route::get('role', [RoleController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     // Logout
-    Route::post('logout/{no_hp}', LogoutController::class);
+    Route::post('logout', LogoutController::class);
 
     // Detail User
-    Route::get('profil/user/detail', AuthenticatedController::class);
+    Route::get('user/profil', AuthenticatedController::class);
 
-    // Kategori Pelajaran
-    Route::prefix('kategori/pelajaran/view')->group(function () {
-        Route::get('/all', [KategoriPenilaianController::class, 'all']);
-        Route::get('/{id_jenjang}/{id_katagori}', [KategoriPenilaianController::class, 'show']);
+    Route::prefix('kategori')->group(function () {
+        // Kategori Pelajaran
+        Route::prefix('pelajaran')->group(function () {
+            Route::get('/', [KategoriPelajaranController::class, 'index']);
+        });
+
+        // Kategori Penilaian
+        Route::prefix('penilaian')->group(function () {
+            Route::get('/', [KategoriPenilaianController::class, 'index']);
+        });
     });
 
-    Route::prefix('pelajaran/view')->group(function () {
-        Route::get('/all', [KategoriPelajaranController::class, 'all']);
-        Route::get('/{id_kategori_penilaian}/{id_jenjang}', [KategoriPelajaranController::class, 'show']);
-    });
 
-    // Kategori Penilaian
     Route::prefix('penilaian')->group(function () {
-        Route::get('view/{id_pelajaran}/{id_santri}', [PenilaianController::class, 'get_nilai']);
-        Route::get('view/{id_pelajaran}/{id_santri}/{id_kategori}/{id_asatidz}', [PenilaianController::class, 'store_nilai']);
-        Route::post('store/{id_pelajaran}/{id_santri}/{id_kategori}/{id_asatidz}', [PenilaianController::class, 'store_nilai']);
-        Route::put('put/{id}/{id_asatidz}', [PenilaianController::class, 'update_nilai']);
-        Route::get('view/{id_santri}', [PenilaianController::class, 'viewNilaiByWali']);
+        Route::get('/', [PenilaianController::class, 'index']);
+        Route::post('/', [PenilaianController::class, 'store']);
+        Route::get('/{id_pelajaran}/{id_santri}', [PenilaianController::class, 'show']);
+        Route::put('/{id}', [PenilaianController::class, 'update']);
     });
 
     // List Jenjang
-    Route::get('jenjang/view/all', [JenjangController::class, 'view']);
+    Route::get('jenjang', [JenjangController::class, 'index']);
 
     // List Cabang
-    Route::get('cabang/view/all', [CabangController::class, 'view']);
+    Route::get('cabang', [CabangController::class, 'index']);
 
     // List Santri
-    Route::get('santri/view/all', [SantriController::class, 'view']);
-    Route::get('santri/view/all/wali-santri', [SantriController::class, 'viewByWaliSantri']);
-    Route::get('santri/view/{kode_halaqah}/{id_jenjang}', [SantriController::class, 'viewByHalaqahNJenjang']);
+    Route::get('santri', [SantriController::class, 'index']);
 
-    // Absensi Santri
-    Route::get("absensi/santri/{id_jenjang}/{kode_halaqah}", [AbsensiSantriController::class, 'index']);
-    Route::post("absensi/santri/{id_jenjang}/{kode_halaqah}", [AbsensiSantriController::class, 'create']);
-    Route::put("absensi/santri/{id}", [AbsensiSantriController::class, 'edit']);
-    Route::get("absensi/santri/{id}", [AbsensiSantriController::class, 'get_status']);
+    Route::prefix('absensi')->group(function () {
+        // Absensi Santri
+        Route::prefix('santri')->group(function () {
+            Route::get("/", [AbsensiSantriController::class, 'index']);
+            Route::post("/", [AbsensiSantriController::class, 'store']);
+            Route::get("/{id}", [AbsensiSantriController::class, 'show']);
+            Route::put("/{id}", [AbsensiSantriController::class, 'update']);
+        });
 
-    // Abesensi Asatidz
-    Route::get('absensi/asatidz', [AbsensiAsatidzController::class, 'index']);
-    Route::get('absensi/asatidz/rekap', [AbsensiAsatidzController::class, 'rekap']);
-    Route::post('absensi/asatidz', [AbsensiAsatidzController::class, 'create']);
 
-    // List Detail Iuran
-    Route::get('iuran/detail/{id}', [IuranController::class, 'detail']);
-    Route::get('iuran/cek/nominal/{id_santri}', [IuranController::class, 'cekNominal']);
-    Route::post('iuran/store', [IuranController::class, 'store']);
+        // Abesensi Asatidz
+        Route::prefix('asatidz')->group(function () {
+            Route::get('/', [AbsensiAsatidzController::class, 'index']);
+            Route::post('/', [AbsensiAsatidzController::class, 'create']);
+            Route::get('rekap', [AbsensiAsatidzController::class, 'recap']);
+        });
+    });
+
+
+    // Iuran
+    Route::prefix('iuran')->group(function () {
+        Route::get('/', [IuranController::class, 'index']);
+        Route::post('/', [IuranController::class, 'store']);
+        Route::get('/{id_santri}', [IuranController::class, 'show']);
+    });
 });

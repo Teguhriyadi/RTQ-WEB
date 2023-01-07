@@ -49,4 +49,9 @@ class Santri extends Model
     {
         return $this->belongsTo("App\Models\BesaranIuran", "id_besaran", "id")->withDefault(["besaran" => "NULL"]);
     }
+
+    public function getAbsensi()
+    {
+        return $this->hasMany("App\Models\Absensi", "id_santri", "id");
+    }
 }

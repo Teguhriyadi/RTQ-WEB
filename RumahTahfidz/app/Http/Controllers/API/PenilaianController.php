@@ -3,75 +3,66 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\Nilai\Santri;
+use App\Http\Requests\API\Nilai\CreateRequest;
+use App\Http\Resources\Nilai\NilaiCollection;
+use App\Http\Resources\Nilai\NilaiDetail;
 use App\Models\KategoriPelajaran;
 use App\Models\Nilai;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PenilaianController extends Controller
 {
-    public function get_nilai($id_pelajaran, $id_santri)
+    protected $nilai;
+
+    public function __construct(Nilai $nilai)
     {
-        $get_nilai = Nilai::where('id_kategori_pelajaran', $id_pelajaran)->where('id_santri', $id_santri)->first();
-
-        if ($get_nilai) {
-            $data = [
-                'id' => $get_nilai->id,
-                'id_kategori_pelajaran' => $get_nilai->id_kategori_pelajaran,
-                'id_santri' => $get_nilai->id_santri,
-                'id_asatidz' => $get_nilai->id_asatidz,
-                'nilai' => $get_nilai->nilai,
-            ];
-        } else {
-            $data = "null";
-        }
-
-        return response()->json($data, 200);
+        $this->nilai = $nilai;
     }
 
-    public function store_nilai($id_pelajaran, $id_santri, $id_kategori, $id_asatidz, Request $request)
+    public function index()
     {
-        $store = Nilai::create([
-            'id_asatidz' => $id_asatidz,
-            'id_santri' => $id_santri,
-            'id_kategori_pelajaran' => $id_pelajaran,
-            'nilai' => $request->nilai,
-        ]);
+        $nilai = app(Pipeline::class)
+            ->send(Nilai::query())
+            ->through([
+                Santri::class
+            ])
+            ->thenReturn()
+            ->get();
 
-        if ($store) {
-            return response()->json('Data berhasil disimpan', 200);
-        } else {
-            return response()->json('Data gagal disimpan', 404);
-        }
+        return new NilaiCollection($nilai);
     }
 
-    public function update_nilai($id, $id_asatidz, Request $request)
+    public function show($id_pelajaran, $id_santri)
     {
-        $update = Nilai::where('id', $id)->update([
-            'id' => $id,
-            'id_asatidz' => $id_asatidz,
-            'nilai' => $request->nilai,
-        ]);
+        $nilai = $this->nilai->where('id_kategori_pelajaran', $id_pelajaran)->where('id_santri', $id_santri)->first();
 
-        if ($update) {
-            return response()->json('Data berhasil disimpan', 200);
-        } else {
-            return response()->json('Data gagal disimpan', 404);
-        }
+        return new NilaiDetail($nilai);
     }
 
-    public function viewNilaiByWali($id_santri)
+    public function store(CreateRequest $request)
     {
-        $nilai_santri = Nilai::where("id_santri", $id_santri)->get();
+        return DB::transaction(function() use ($request) {
+            return $this->nilai->create([
+                'id_asatidz' => Auth::user()->id,
+                'id_santri' => $request->id_santri,
+                'id_jenjang' => $request->id_jenjang,
+                'id_kategori_pelajaran' => $request->id_kategori_pelajaran,
+                'nilai' => $request->nilai,
+            ]);
+        });
+    }
 
-        foreach ($nilai_santri as $nilai) {
-            $data_kategori = KategoriPelajaran::where("id", $nilai->id_kategori_pelajaran)->first();
-            $data[] = [
-                "nilai" => $nilai->nilai,
-                "pelajaran" => $data_kategori->getPelajaran->nama_pelajaran
-            ];
-        }
-
-
-        return response()->json($data);
+    public function update($id, Request $request)
+    {
+        return DB::transaction(function() use ($request) {
+            return $this->nilai->where('id', $id)->update([
+                'id_asatidz' => Auth::user()->id,
+                'nilai' => $request->nilai,
+            ]);
+        })
     }
 }
