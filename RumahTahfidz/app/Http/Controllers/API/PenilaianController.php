@@ -63,6 +63,6 @@ class PenilaianController extends Controller
                 'id_asatidz' => Auth::user()->id,
                 'nilai' => $request->nilai,
             ]);
-        })
+        });
     }
 }
