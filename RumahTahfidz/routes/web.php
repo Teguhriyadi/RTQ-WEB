@@ -318,9 +318,7 @@ Route::prefix("app")->group(function () {
                 Route::get("/informasi_login", [LastLoginController::class, "index"]);
 
                 // Data Profil User
-                Route::get("/profil/user", [ProfilUserController::class, "index"]);
-                Route::put("/profil/user/simpan_gambar_profil", [ProfilUserController::class, "simpan_gambar_profil"]);
-                Route::put("/profil/user/ganti_password", [ProfilUserController::class, "ganti_password"]);
+                require __DIR__ . '/public/profil/profil_saya.php';
 
                 // Data Profil Santri
                 Route::resource('profil_santri', ProfilSantriController::class);
