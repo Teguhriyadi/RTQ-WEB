@@ -41,7 +41,7 @@ class TesSantriController extends Controller
     {
         foreach ($request->id_santri as $data => $value) {
             Santri::where("id", $request->id_santri[$data])->update([
-                "id_jenjang" => $request->id_jenjang[$data],
+                "id_jenjang" => $request->id_jenjang[$data]
             ]);
         }
 
