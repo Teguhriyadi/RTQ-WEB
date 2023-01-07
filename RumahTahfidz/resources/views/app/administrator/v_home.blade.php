@@ -92,6 +92,7 @@ use App\Models\SettingIuran;
 
     <div class="row">
         <div class="col-md-7">
+            {{ Auth::user()->getAkses->id_role }}
             <div class="row">
                 <div class="animated flipInY col-md-6">
                     <div class="tile-stats">
