@@ -128,7 +128,7 @@ use App\Models\Santri;
                             <hr>
                             @if ($jumlah_santri > 0)
                                 <div class="form-group">
-                                    <input type="checkbox" onchange="checkAll(this)" name="chk[]"> Check All |
+                                    <input type="checkbox" onchange="cekData(this)" name="cek_data[]"> Check All |
                                     <button type="submit" class="btn btn-primary btn-sm">
                                         <i class="fa fa-plus"></i> Tambah
                                     </button>
@@ -175,7 +175,7 @@ use App\Models\Santri;
     <!-- END -->
 
     <!-- Excel Data -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="modalExcel">
+    {{-- <div class="modal fade" tabindex="-1" role="dialog" id="modalExcel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -205,76 +205,76 @@ use App\Models\Santri;
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- END -->
 
 @endsection
 
 @section('app_scripts')
 
-    <script>
-        function checkAll(ele) {
-            var checkboxes = document.getElementsByTagName("input");
-            if (ele.checked) {
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].type == 'checkbox') {
-                        checkboxes[i].checked = true;
-                    }
+<script type="text/javascript">
+    function cekData(ele) {
+        let checkboxes = document.getElementsByTagName("input");
+        if (ele.checked) {
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].type == 'checkbox') {
+                    checkboxes[i].checked = true;
                 }
-            } else {
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].type == "checkbox") {
-                        checkboxes[i].checked = false;
-                    }
+            }
+        } else {
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].type == "checkbox") {
+                    checkboxes[i].checked = false;
                 }
             }
         }
+    }
 
-        function editDataSantri(id) {
-            $.ajax({
-                url: "{{ url('/app/sistem/santri/edit') }}",
-                type: "GET",
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    $("#modal-content-edit").html(data);
-                    return true;
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            $("#table-1").dataTable();
-        })
-
-        (function($, W, D) {
-            var JQUERY4U = {};
-            JQUERY4U.UTIL = {
-                setupFormValidation: function() {
-                    $("#tambahTesSantri").validate({
-                        lang: "id",
-                        ignore: "",
-                        rules: {
-                            id_jenjang[]: {
-                                required: true
-                            }
-                        },
-                        messages: {
-                            id_jenjang[]: {
-                                required: "Kolom Jenjang Harap di Isi!"
-                            }
-                        },
-                        submitHandler: function(form) {
-                            form.submit()
-                        }
-                    });
-                }
+    function editDataSantri(id) {
+        $.ajax({
+            url: "{{ url('/app/sistem/santri/edit') }}",
+            type: "GET",
+            data: {
+                id: id
+            },
+            success: function(data) {
+                $("#modal-content-edit").html(data);
+                return true;
             }
-            $(D).ready(function($) {
-                JQUERY4U.UTIL.setupFormValidation()
-            })
-        })(jQuery, window, document)
-    </script>
+        });
+    }
+
+    $(document).ready(function() {
+        $("#table-1").dataTable();
+    })
+
+    // (function($, W, D) {
+    //     var JQUERY4U = {};
+    //     JQUERY4U.UTIL = {
+    //         setupFormValidation: function() {
+    //             $("#tambahTesSantri").validate({
+    //                 lang: "id",
+    //                 ignore: "",
+    //                 rules: {
+    //                     id_jenjang: {
+    //                         required: true
+    //                     }
+    //                 },
+    //                 messages: {
+    //                     id_jenjang: {
+    //                         required: "Kolom Jenjang Harap di Isi!"
+    //                     }
+    //                 },
+    //                 submitHandler: function(form) {
+    //                     form.submit()
+    //                 }
+    //             });
+    //         }
+    //     }
+    //     $(D).ready(function($) {
+    //         JQUERY4U.UTIL.setupFormValidation()
+    //     })
+    // })(jQuery, window, document)
+</script>
 
 @endsection

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AdminCabang\Tes;
 
+use App\Http\Controllers\Controller;
 use App\Models\Jenjang;
 use App\Models\Santri;
 use Illuminate\Http\Request;
@@ -10,9 +11,7 @@ class TesSantriController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_santri" => Santri::where("status", 0)->where("id_jenjang", "!=", NULL)->paginate(10)
-        ];
+        $data["santri"] = Santri::where("status", 0)->where("id_jenjang", "!=", NULL)->orderBy("nis", "ASC")->paginate(10);
 
         return view("app.administrator.tes_santri.v_index", $data);
     }

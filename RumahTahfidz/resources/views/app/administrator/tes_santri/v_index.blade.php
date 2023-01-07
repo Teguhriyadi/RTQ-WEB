@@ -56,7 +56,7 @@ use App\Models\Santri;
                                     </thead>
                                     <tbody>
                                         @php $no = 0 @endphp
-                                        @foreach ($data_santri as $data)
+                                        @foreach ($santri as $data)
                                             <tr>
                                                 <td class="text-center">{{ $data->nis }}.</td>
                                                 <td>{{ $data->nama_lengkap }}</td>

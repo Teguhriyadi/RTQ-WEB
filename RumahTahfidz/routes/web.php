@@ -92,23 +92,8 @@ Route::prefix("app")->group(function () {
             // Data Pengajar
             require __DIR__ . '/admin_cabang/akun/asatidz.php';
 
-            // Data Jenjang Santri
-            Route::get("/jenjang_santri", [SantriController::class, "jenjang_santri"]);
-            Route::put("/jenjang_santri", [SantriController::class, "jenjang_santri_dua"]);
-            Route::post("/jenjang_santri", [SantriController::class, "post_jenjang_santri"]);
             // Data Siswa
-            Route::get("/santri/edit", [SantriController::class, "edit"]);
-            Route::get("/santri/datatables", [SantriController::class, "datatables"]);
-            Route::put("/santri/simpan", [SantriController::class, "update"]);
-            Route::get("/santri/{id}/sertifikat", [SantriController::class, "sertifikat"]);
-            Route::get("/santri/{id}/view_sertifikat", [SantriController::class, "view_sertifikat"]);
-            Route::get("/santri/tambah_data_santri", [SantriController::class, "tambah_data_santri"]);
-            Route::post("/santri/tambah_santri_by_wali", [SantriController::class, "tambah_santri_by_wali"]);
-            Route::get("/santri/export", [ExcelController::class, "exportSantri"]);
-            Route::resource("/santri", SantriController::class,  [
-                'santri' => 'prefix'
-            ]);
-            Route::post("/santri/import", [ExcelController::class, "importSantri"]);
+            require __DIR__ . '/public/master/santri.php';
 
             // Data Wali Santri
             require __DIR__ . '/admin_cabang/akun/wali_santri.php';
@@ -208,12 +193,10 @@ Route::prefix("app")->group(function () {
             Route::group(["middleware" => ["can:admin"]], function () {
 
                 // Tes Santri
-                Route::get("/tes/data", [TesSantriController::class, "index"]);
-                Route::put("/tes/data/{id}", [TesSantriController::class, "detail"]);
-                Route::get("/tes/input", [TesSantriController::class, "create"]);
-                Route::put("/tes/simpan", [TesSantriController::class, "update"]);
-                Route::get("/tes/edit", [TesSantriController::class, "edit"]);
-                Route::put("/tes/simpan_data", [TesSantriController::class, "simpan"]);
+                require __DIR__ . '/admin_cabang/tes/tes_santri.php';
+
+                // Jenjang Santri
+                require __DIR__ . '/admin_cabang/jenjang/jenjang_santri.php';
 
                 // Data Administrasi
                 Route::prefix("administrasi")->group(function () {

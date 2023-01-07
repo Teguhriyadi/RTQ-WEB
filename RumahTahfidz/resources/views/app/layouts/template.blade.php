@@ -45,9 +45,11 @@ $user = \App\Models\User::where('id', auth()->user()->id)->first();
     </div>
 
     @include('app.layouts.partials.js.style')
+
     @if (session('message'))
         {!! session('message') !!}
     @endif
+
     @yield('app_scripts')
 
     @can('super_admin')
