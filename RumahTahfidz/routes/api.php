@@ -54,7 +54,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         });
     });
 
-
+    // Penilaian
     Route::prefix('penilaian')->group(function () {
         Route::get('/', [PenilaianController::class, 'index']);
         Route::post('/', [PenilaianController::class, 'store']);
