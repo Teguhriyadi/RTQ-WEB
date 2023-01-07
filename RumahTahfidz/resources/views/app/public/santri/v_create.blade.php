@@ -113,7 +113,7 @@
                                                     <option value="">- Pilih Halaqah -</option>
                                                     @foreach ($data_halaqah as $halaqah)
                                                         <option value="{{ $halaqah->kode_halaqah }}">
-                                                            {{ $halaqah->nama_halaqah }}
+                                                            {{ $halaqah->nama_halaqah }} - {{ $halaqah->getLokasiRt->lokasi_rt }}
                                                         </option>
                                                     @endforeach
                                                 </select>

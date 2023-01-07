@@ -92,20 +92,35 @@ use App\Models\SettingIuran;
 
     <div class="row">
         <div class="col-md-7">
-            {{ Auth::user()->getAkses->id_role }}
             <div class="row">
-                <div class="animated flipInY col-md-6">
-                    <div class="tile-stats">
-                        <div class="icon">
-                            <i class="fa fa-caret-square-o-right"></i>
-                        </div>
-                        <div class="count">{{ $jumlah_user }}</div>
-                        <h3>User</h3>
-                        <a href="{{ url('/app/sistem/users') }}" style="padding: 10px;">
-                            <i class="fa fa-sign-out"></i> Selengkapnya
-                        </a>
+            @if (Auth::user()->getAkses->id_role == 1)
+            <div class="animated flipInY col-md-6">
+                <div class="tile-stats">
+                    <div class="icon">
+                        <i class="fa fa-caret-square-o-right"></i>
                     </div>
+                    <div class="count">{{ $jumlah_user }}</div>
+                    <h3>User</h3>
+                    <a href="{{ url('/app/sistem/users') }}" style="padding: 10px;">
+                        <i class="fa fa-sign-out"></i> Selengkapnya
+                    </a>
                 </div>
+            </div>
+            <div class="animated flipInY col-md-6">
+                <div class="tile-stats">
+                    <div class="icon">
+                        <i class="fa fa-caret-square-o-right"></i>
+                    </div>
+                    <div class="count">{{ $jumlah_admin_lokasi_rt }}</div>
+                    <h3>Admin Cabang</h3>
+                    <a href="{{ url('/app/sistem/admin_lokasi_rt') }}" style="padding: 10px;">
+                        <i class="fa fa-sign-out"></i> Selengkapnya
+                    </a>
+                </div>
+            </div>
+            @elseif(Auth::user()->getAkses->id_role == 2)
+
+            @endif
                 <div class="animated flipInY col-md-6">
                     <div class="tile-stats">
                         <div class="icon">
@@ -126,18 +141,6 @@ use App\Models\SettingIuran;
                         <div class="count">{{ $jumlah_santri }}</div>
                         <h3>Santri</h3>
                         <a href="{{ url('/app/sistem/santri') }}" style="padding: 10px;">
-                            <i class="fa fa-sign-out"></i> Selengkapnya
-                        </a>
-                    </div>
-                </div>
-                <div class="animated flipInY col-md-6">
-                    <div class="tile-stats">
-                        <div class="icon">
-                            <i class="fa fa-caret-square-o-right"></i>
-                        </div>
-                        <div class="count">{{ $jumlah_admin_lokasi_rt }}</div>
-                        <h3>Admin Cabang</h3>
-                        <a href="{{ url('/app/sistem/admin_lokasi_rt') }}" style="padding: 10px;">
                             <i class="fa fa-sign-out"></i> Selengkapnya
                         </a>
                     </div>
@@ -227,9 +230,6 @@ use App\Models\SettingIuran;
             </div>
         </div>
     @else
-        <a href="https://api.whatsapp.com/send?phone=6281214707143&text=Nama:%20Mohammad" target="_blank">
-            Send
-        </a>
     @endif
 
 @endsection
