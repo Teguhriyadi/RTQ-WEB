@@ -113,9 +113,7 @@ Route::prefix("app")->group(function () {
                 });
 
                 // Data Kelas Halaqah
-                Route::get("/kelas_halaqah/edit", [KelasHalaqahController::class, "edit"]);
-                Route::put("/kelas_halaqah/simpan", [KelasHalaqahController::class, "update"]);
-                Route::resource("/kelas_halaqah", KelasHalaqahController::class);
+                require __DIR__ . '/super_admin/master/kelas_halaqah.php';
 
                 // Data Role
                 Route::get("/role/edit", [RoleController::class, "edit"]);
