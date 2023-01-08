@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Setting\Kategori;
 
+use App\Http\Controllers\Controller;
 use App\Models\Jenjang;
 use App\Models\KategoriPelajaran;
 use App\Models\KategoriPenilaian;
 use App\Models\Pelajaran;
 use Illuminate\Http\Request;
 
-class KategoriPelajaranController extends Controller
+class PelajaranKategoriController extends Controller
 {
     public function index()
     {
@@ -24,13 +25,6 @@ class KategoriPelajaranController extends Controller
 
     public function store(Request $request)
     {
-
-        $this->validate($request, [
-            "id_kategori_penilaian" => "required",
-            "id_jenjang" => "required",
-            "id_pelajaran" => "required",
-        ]);
-
         KategoriPelajaran::create($request->all());
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>"]);
@@ -50,12 +44,6 @@ class KategoriPelajaranController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            "id_kategori_penilaian" => "required",
-            "id_jenjang" => "required",
-            "id_pelajaran" => "required",
-        ]);
-
         KategoriPelajaran::where("id", decrypt($request->id))->update([
             "id_jenjang" => $request->id_jenjang,
             "id_pelajaran" => $request->id_pelajaran,

@@ -246,9 +246,8 @@ Route::prefix("app")->group(function () {
 
                 Route::prefix("/kategori")->group(function () {
 
-                    Route::get("/pelajaran/edit", [KategoriPelajaranController::class, "edit"]);
-                    Route::put("/pelajaran/simpan", [KategoriPelajaranController::class, "update"]);
-                    Route::resource("/pelajaran", KategoriPelajaranController::class);
+                    // Kategori Pelajaran
+                    require __DIR__ . '/public/setting/kategori/pelajaran.php';
 
                     Route::get("/nilai/edit", [KategoriPenilaianController::class, "edit"]);
                     Route::put("/nilai/simpan", [KategoriPenilaianController::class, "update"]);
