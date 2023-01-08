@@ -286,11 +286,7 @@ Route::prefix("app")->group(function () {
             });
 
             // Data Pelajaran
-            Route::get("/pelajaran/edit", [PelajaranController::class, "edit"]);
-            Route::put("/pelajaran/simpan", [PelajaranController::class, "update"]);
-            Route::resource("/pelajaran", PelajaranController::class, [
-                'as' => "iuran.pel"
-            ]);
+            require __DIR__ . '/public/master/pelajaran.php';
 
             Route::get("/home", [AppController::class, "home"]);
 

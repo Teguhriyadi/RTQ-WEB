@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Master;
 
+use App\Http\Controllers\Controller;
 use App\Models\Pelajaran;
 use Illuminate\Http\Request;
 
@@ -9,19 +10,13 @@ class PelajaranController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_pelajaran" => Pelajaran::get()
-        ];
+        $data["pelajaran"] = Pelajaran::get();
 
-        return view("app.super_admin.pelajaran.v_index", $data);
+        return view("app.public.master.pelajaran.v_index", $data);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "nama_pelajaran" => "required"
-        ]);
-
         $count = Pelajaran::where("nama_pelajaran", $request->nama_pelajaran)->count();
 
         if ($count > 0) {
@@ -35,19 +30,13 @@ class PelajaranController extends Controller
 
     public function edit(Request $request)
     {
-        $data = [
-            "edit" => Pelajaran::where("id", $request->id)->first()
-        ];
+        $data["edit"] = Pelajaran::where("id", $request->id)->first();
 
-        return view("app.super_admin.pelajaran.v_edit", $data);
+        return view("app.public.master.pelajaran.v_edit", $data);
     }
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            "nama_pelajaran" => "required"
-        ]);
-
         $count = Pelajaran::where("nama_pelajaran", $request->nama_pelajaran)->count();
 
         if ($count > 0) {

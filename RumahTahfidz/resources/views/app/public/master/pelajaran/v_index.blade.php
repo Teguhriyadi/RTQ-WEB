@@ -83,7 +83,7 @@
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_pelajaran as $data)
+                                        @foreach ($pelajaran as $data)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td>{{ $data->nama_pelajaran }}</td>
