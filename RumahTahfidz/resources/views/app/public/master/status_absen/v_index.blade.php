@@ -81,7 +81,7 @@
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_status as $status)
+                                        @foreach ($status as $status)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $status->keterangan_absen }}</td>

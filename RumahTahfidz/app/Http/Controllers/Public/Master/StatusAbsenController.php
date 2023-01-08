@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Master;
 
+use App\Http\Controllers\Controller;
 use App\Models\StatusAbsen;
 use Illuminate\Http\Request;
 
@@ -9,19 +10,13 @@ class StatusAbsenController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_status" => StatusAbsen::orderBy("keterangan_absen", "DESC")->get()
-        ];
+        $data["status"] = StatusAbsen::orderBy("keterangan_absen", "DESC")->get();
 
-        return view("app.super_admin.data_master.status_absen.v_index", $data);
+        return view("app.public.master.status_absen.v_index", $data);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "keterangan_absen" => "required"
-        ]);
-
         $cek = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
         if ($cek > 0) {
@@ -29,25 +24,19 @@ class StatusAbsenController extends Controller
         } else {
             StatusAbsen::create($request->all());
 
-            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>")->withInput();
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>");
         }
     }
 
     public function edit(Request $request)
     {
-        $data = [
-            "edit" => StatusAbsen::where("id", $request->id)->first()
-        ];
+        $data["edit"] = StatusAbsen::where("id", $request->id)->first();
 
-        return view("app.super_admin.data_master.status_absen.v_edit", $data);
+        return view("app.public.master.status_absen.v_edit", $data);
     }
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            "keterangan_absen" => "required"
-        ]);
-
         $count = StatusAbsen::where("keterangan_absen", $request->keterangan_absen)->count();
 
         if ($count > 0) {
