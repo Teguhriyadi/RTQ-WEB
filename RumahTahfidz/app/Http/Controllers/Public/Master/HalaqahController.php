@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Master;
 
+use App\Http\Controllers\Controller;
 use App\Models\Halaqah;
 use App\Models\LokasiRt;
 use Illuminate\Http\Request;

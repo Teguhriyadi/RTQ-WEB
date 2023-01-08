@@ -232,10 +232,7 @@ Route::prefix("app")->group(function () {
             Route::put("/iuran", [IuranController::class, "simpan_validasi"]);
 
             // Data Halaqah
-            Route::get("/halaqah/edit", [HalaqahController::class, "edit"]);
-            Route::put("/halaqah/simpan", [HalaqahController::class, "update"]);
-            Route::delete("/halaqah/{kode_halaqah}", [HalaqahController::class, "destroy"]);
-            Route::resource("/halaqah", HalaqahController::class);
+            require __DIR__ . '/public/master/halaqah.php';
 
             // Data Jenjang
             Route::get("/jenjang/edit", [JenjangController::class, "edit"]);
