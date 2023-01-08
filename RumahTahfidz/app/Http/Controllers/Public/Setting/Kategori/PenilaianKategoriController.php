@@ -1,28 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Setting\Kategori;
 
+use App\Http\Controllers\Controller;
 use App\Models\KategoriPenilaian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class KategoriPenilaianController extends Controller
+class PenilaianKategoriController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_penilaian" => KategoriPenilaian::get()
-        ];
+        $data["penilaian"] = KategoriPenilaian::get();
 
-        return view("app.super_admin.settings.kategori.penilaian.v_index", $data);
+        return view("app.public.master.kategori.penilaian.v_index", $data);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "kategori_penilaian" => "required"
-        ]);
-
         $count = KategoriPenilaian::where("kategori_penilaian", $request->kategori_penilaian)->count();
 
         if ($count > 0) {
@@ -42,19 +37,13 @@ class KategoriPenilaianController extends Controller
 
     public function edit(Request $request)
     {
-        $data = [
-            "edit" => KategoriPenilaian::where("id", $request->id)->first()
-        ];
+        $data["edit"] = KategoriPenilaian::where("id", $request->id)->first();
 
-        return view("app.super_admin.settings.kategori.penilaian.v_edit", $data);
+        return view("app.public.master.kategori.penilaian.v_edit", $data);
     }
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            "kategori_penilaian" => "required"
-        ]);
-
         $count = KategoriPenilaian::where("kategori_penilaian", $request->kategori_penilaian)->count();
 
         if ($count > 0) {

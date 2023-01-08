@@ -78,7 +78,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data_penilaian as $status)
+                                        @foreach ($penilaian as $status)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td>{{ $status->kategori_penilaian }}</td>
