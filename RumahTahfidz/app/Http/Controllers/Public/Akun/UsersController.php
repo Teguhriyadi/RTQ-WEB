@@ -1,23 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Akun;
 
+use App\Http\Controllers\Controller;
 use App\Models\AdminLokasiRt;
-use App\Models\Asatidz;
+use App\Models\HakAkses;
 use App\Models\LokasiRt;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\HakAkses;
 use App\Models\WaliSantri;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-
     public function index()
     {
-        $data = [
-            "data_users" => User::get()
-        ];
+        $data["users"] = User::get();
 
         return view("app.super_admin.users.v_index", $data);
     }

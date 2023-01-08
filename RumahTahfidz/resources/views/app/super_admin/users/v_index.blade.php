@@ -54,7 +54,7 @@
                                     </thead>
                                     <tbody>
                                         @php $no = 0 @endphp
-                                        @foreach ($data_users as $user)
+                                        @foreach ($users as $user)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td>{{ $user->nama }}</td>

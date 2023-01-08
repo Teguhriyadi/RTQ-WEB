@@ -146,9 +146,7 @@ Route::prefix("app")->group(function () {
                 Route::get("/users/hak_akses/{id}/table", [HakAksesController::class, "table"]);
 
                 // Data Users
-                Route::post("/users/non_aktifkan/", [UsersController::class, "non_aktifkan"]);
-                Route::put("/users/simpan", [UsersController::class, "update"]);
-                Route::resource("/users", UsersController::class);
+                require __DIR__ . '/super_admin/akun/users.php';
 
                 Route::prefix("generate")->group(function () {
 
