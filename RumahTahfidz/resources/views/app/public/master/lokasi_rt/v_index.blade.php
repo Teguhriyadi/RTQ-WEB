@@ -46,7 +46,7 @@
                     <form method="POST" action="{{ url('/app/sistem/lokasi_cabang') }}" id="tambahLokasiCabang">
                         @csrf
                         <div class="form-group">
-                            <label for="lokasi_rt"> Lokasi RT </label>
+                            <label for="lokasi_rt"> Lokasi Cabang </label>
                             <input type="text" class="form-control" name="lokasi_rt" id="lokasi_rt"
                                 placeholder="Masukkan Lokasi RT" value="{{ old('lokasi_rt') }}">
                         </div>
@@ -85,7 +85,7 @@
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_lokasi_rt as $data)
+                                        @foreach ($lokasi_cabang as $data)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td>{{ $data->lokasi_rt }}</td>

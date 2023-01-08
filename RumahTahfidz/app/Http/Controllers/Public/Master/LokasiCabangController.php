@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Master;
 
+use App\Http\Controllers\Controller;
 use App\Models\LokasiRt;
 use Illuminate\Http\Request;
 
-class LokasiRtController extends Controller
+class LokasiCabangController extends Controller
 {
     public function automatis()
     {
@@ -21,19 +22,13 @@ class LokasiRtController extends Controller
 
     public function index()
     {
-        $data = [
-            "data_lokasi_rt" => LokasiRt::get(),
-        ];
+        $data["lokasi_cabang"] = LokasiRt::get();
 
-        return view("app.super_admin.lokasi_rt.v_index", $data);
+        return view("app.public.master.lokasi_rt.v_index", $data);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'lokasi_rt' => 'required'
-        ]);
-
         $count = LokasiRt::where("lokasi_rt", $request->lokasi_rt)->count();
 
         if ($count > 0) {
@@ -50,11 +45,9 @@ class LokasiRtController extends Controller
 
     public function edit(Request $request)
     {
-        $data = [
-            "edit" => LokasiRt::where("kode_rt", $request->kode_rt)->first()
-        ];
+        $data["edit"] = LokasiRt::where("kode_rt", $request->kode_rt)->first();
 
-        return view("app.super_admin.lokasi_rt.v_edit", $data);
+        return view("app.public.master.lokasi_rt.v_edit", $data);
     }
 
     public function update(Request $request)

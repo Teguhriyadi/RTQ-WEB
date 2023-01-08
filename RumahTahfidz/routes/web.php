@@ -223,9 +223,7 @@ Route::prefix("app")->group(function () {
             require __DIR__ . '/public/master/status_absen.php';
 
             // Data Cabang
-            Route::get("/lokasi_cabang/edit", [LokasiRtController::class, "edit"]);
-            Route::put("/lokasi_cabang/simpan", [LokasiRtController::class, "update"]);
-            Route::resource("/lokasi_cabang", LokasiRtController::class);
+            require __DIR__ . '/public/master/lokasi_cabang.php';
 
             // Iuran Wali Santri
             Route::get("/iuran", [IuranController::class, "validasi_admin_cabang"]);
