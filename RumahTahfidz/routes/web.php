@@ -228,9 +228,7 @@ Route::prefix("app")->group(function () {
             require __DIR__ . '/public/master/besaran_iuran.php';
 
             // Data Kelas
-            Route::get("/kelas/edit", [KelasController::class, "edit"]);
-            Route::put("/kelas/simpan", [KelasController::class, "update"]);
-            Route::resource("/kelas", KelasController::class);
+            require __DIR__ . '/public/master/kelas.php';
 
             // Data Status Absen
             Route::get("/status_absen/edit", [StatusAbsenController::class, "edit"]);
