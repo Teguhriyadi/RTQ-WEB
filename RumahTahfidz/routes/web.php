@@ -246,14 +246,7 @@ Route::prefix("app")->group(function () {
                 });
 
                 // Status Validasi
-                Route::prefix("/validasi")->group(function () {
-                    Route::get("/edit", [StatusValidasiController::class, "edit"]);
-                    Route::put("/simpan", [StatusValidasiController::class, "update"]);
-                    Route::delete("/{id}", [StatusValidasiController::class, "destroy"]);
-                    Route::resource("/", StatusValidasiController::class, [
-                        'as' => "validasi.setting"
-                    ]);
-                });
+                require __DIR__ . '/public/pengaturan/status_validasi.php';
 
                 // Kategori Pelajaran
                 Route::prefix("/kategori")->group(function () {

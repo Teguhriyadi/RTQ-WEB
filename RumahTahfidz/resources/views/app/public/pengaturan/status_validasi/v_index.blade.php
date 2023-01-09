@@ -75,14 +75,17 @@
                                         <tr>
                                             <th class="text-center">No.</th>
                                             <th class="text-center">Status Validasi</th>
-                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_status as $data)
+                                        @foreach ($status as $data)
+                                        <tr>
+                                            <td class="text-center">{{ ++$no }}.</td>
+                                            <td class="text-center">{{ $data->status }}</td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Setting\Pengaturan;
 
+use App\Http\Controllers\Controller;
 use App\Models\StatusValidasi;
 use Illuminate\Http\Request;
 
@@ -9,19 +10,13 @@ class StatusValidasiController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_status" => StatusValidasi::get()
-        ];
+        $data["status"] = StatusValidasi::get();
 
-        return view("app.super_admin.settings.status_validasi.v_index", $data);
+        return view("app.public.pengaturan.status_validasi.v_index", $data);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "status" => "required"
-        ]);
-
         StatusValidasi::create($request->all());
 
         return redirect()->back();
@@ -29,11 +24,9 @@ class StatusValidasiController extends Controller
 
     public function edit(Request $request)
     {
-        $data = [
-            "edit" => StatusValidasi::where("id", $request->id)->first()
-        ];
+        $data["edit"] = StatusValidasi::where("id", $request->id)->first();
 
-        return view("app.super_admin.settings.status_validasi.v_edit", $data);
+        return view("app.public.pengaturan.status_validasi.v_edit", $data);
     }
 
     public function update(Request $request)
