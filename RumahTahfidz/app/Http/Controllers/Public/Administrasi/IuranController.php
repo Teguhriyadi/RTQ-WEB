@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Administrasi;
 
+use App\Http\Controllers\Controller;
 use App\Models\Iuran;
 use App\Models\Santri;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class IuranController extends Controller
             "data_iuran" => Iuran::where("id_status_validasi", $id_status_validasi)->paginate(10)
         ];
 
-        return view("app.administrator.iuran.v_index", $data);
+        return view("app.public.administrasi.iuran.v_index", $data);
     }
 
     public function simpan_validasi(Request $request)

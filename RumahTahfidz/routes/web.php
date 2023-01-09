@@ -209,8 +209,7 @@ Route::prefix("app")->group(function () {
             require __DIR__ . '/public/master/lokasi_cabang.php';
 
             // Iuran Wali Santri
-            Route::get("/iuran", [IuranController::class, "validasi_admin_cabang"]);
-            Route::put("/iuran", [IuranController::class, "simpan_validasi"]);
+            require __DIR__ . '/public/administrasi/iuran.php';
 
             // Data Halaqah
             require __DIR__ . '/public/master/halaqah.php';
