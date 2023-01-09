@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\Autentikasi\LoginController as AutentikasiLoginController;
 use App\Http\Controllers\BesaranIuranController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
@@ -317,6 +318,6 @@ Route::prefix("app")->group(function () {
     });
 
     Route::group(["middleware" => "autentikasi"], function () {
-        Route::get("/logout", [LoginController::class, "logout"]);
+        Route::get("/logout", [AutentikasiLoginController::class, "logout"]);
     });
 });
