@@ -81,7 +81,7 @@
                                         @php
                                             $no = 0;
                                         @endphp
-                                        @foreach ($data_jabatan as $jabatan)
+                                        @foreach ($jabatan as $jabatan)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $jabatan->nama_jabatan }}</td>

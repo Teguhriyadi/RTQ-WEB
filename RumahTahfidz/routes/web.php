@@ -106,9 +106,7 @@ Route::prefix("app")->group(function () {
                 Route::resource("/role", RoleController::class);
 
                 // Data Jabatan
-                Route::get("/jabatan/edit", [JabatanController::class, "edit"]);
-                Route::put("/jabatan/simpan", [JabatanController::class, "update"]);
-                Route::resource("jabatan", JabatanController::class);
+                require __DIR__ . '/public/master/jabatan.php';
 
                 // Data Kategori
                 Route::get("/kategori/edit", [KategoriController::class, "edit"]);
