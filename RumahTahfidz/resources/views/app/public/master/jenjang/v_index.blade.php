@@ -80,7 +80,7 @@
                                     </thead>
                                     <tbody>
                                         @php $no = 0 @endphp
-                                        @foreach ($data_jenjang as $jenjang)
+                                        @foreach ($jenjang as $jenjang)
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td>{{ $jenjang->jenjang }}</td>

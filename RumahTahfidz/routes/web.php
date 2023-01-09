@@ -1,53 +1,37 @@
 <?php
 
 use App\Http\Controllers\AdministrasiController;
-use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Autentikasi\LoginController as AutentikasiLoginController;
-use App\Http\Controllers\BesaranIuranController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CobaController;
-use App\Http\Controllers\ExcelController;
-use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateAsatidzController;
 use App\Http\Controllers\GenerateIuranController;
 use App\Http\Controllers\HafalanAsatidzController;
 use App\Http\Controllers\HakAksesController;
-use App\Http\Controllers\HalaqahController;
 use App\Http\Controllers\IuranController;
 use App\Http\Controllers\JabatanController;
-use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KategoriPelajaranController;
-use App\Http\Controllers\KategoriPenilaianController;
-use App\Http\Controllers\KelasHalaqahController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LastLoginController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LokasiRtController;
 use App\Http\Controllers\NilaiKategoriController;
-use App\Http\Controllers\NominalIuranController;
-use App\Http\Controllers\PelajaranController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfilSantriController;
-use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\ProfilWebController;
 use App\Http\Controllers\RekapAbsensiSantriController;
 use App\Http\Controllers\RekapIuranController;
 use App\Http\Controllers\RekapNilaiController;
 use App\Http\Controllers\RekapPenilaianController;
-use App\Http\Controllers\SantriController;
 use App\Http\Controllers\Setting\SettingLaporanNilaiController;
 use App\Http\Controllers\SettingIuranController;
-use App\Http\Controllers\StatusAbsenController;
 use App\Http\Controllers\StatusValidasiController;
 use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\TentangKamiController;
-use App\Http\Controllers\TesSantriController;
 use App\Http\Controllers\ValidasiIuranController;
 use Illuminate\Support\Facades\Route;
 
@@ -234,9 +218,7 @@ Route::prefix("app")->group(function () {
             require __DIR__ . '/public/master/halaqah.php';
 
             // Data Jenjang
-            Route::get("/jenjang/edit", [JenjangController::class, "edit"]);
-            Route::put("jenjang/simpan", [JenjangController::class, "update"]);
-            Route::resource("/jenjang", JenjangController::class);
+            require __DIR__ . '/public/master/jenjang.php';
 
             Route::prefix("/setting")->group(function () {
 

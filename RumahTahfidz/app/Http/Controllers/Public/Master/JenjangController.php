@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public\Master;
 
+use App\Http\Controllers\Controller;
 use App\Models\Jenjang;
 use Illuminate\Http\Request;
 
@@ -9,19 +10,13 @@ class JenjangController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_jenjang" => Jenjang::orderBy("jenjang", "DESC")->get()
-        ];
+        $data["jenjang"] = Jenjang::orderBy("jenjang", "DESC")->get();
 
-        return view("app.super_admin.data_master.jenjang.v_index", $data);
+        return view("app.public.master.jenjang.v_index", $data);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "jenjang" => "required"
-        ]);
-
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
         if ($cek > 0) {
@@ -29,7 +24,7 @@ class JenjangController extends Controller
         } else {
             Jenjang::create($request->all());
 
-            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>")->withInput();
+            return redirect()->back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambah', 'success');</script>");
         }
     }
 
@@ -39,15 +34,11 @@ class JenjangController extends Controller
             "edit" => Jenjang::where("id", $request->id)->first()
         ];
 
-        return view("app.super_admin.data_master.jenjang.v_edit", $data);
+        return view("app.public.master.jenjang.v_edit", $data);
     }
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            "jenjang" => "required"
-        ]);
-
         $cek = Jenjang::where("jenjang", $request->jenjang)->count();
 
         if ($cek > 0) {
