@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\Nilai\Santri;
 use App\Http\Requests\API\Nilai\CreateRequest;
+use App\Http\Requests\API\Nilai\UpdateRequest;
 use App\Http\Resources\Nilai\NilaiCollection;
 use App\Http\Resources\Nilai\NilaiDetail;
 use App\Models\KategoriPelajaran;
@@ -17,10 +18,12 @@ use Illuminate\Support\Facades\DB;
 class PenilaianController extends Controller
 {
     protected $nilai;
+    protected $id;
 
     public function __construct(Nilai $nilai)
     {
         $this->nilai = $nilai;
+        $this->id;
     }
 
     public function index()
@@ -56,10 +59,11 @@ class PenilaianController extends Controller
         });
     }
 
-    public function update($id, Request $request)
+    public function update(UpdateRequest $request, $id)
     {
+        $this->id = $id;
         return DB::transaction(function() use ($request) {
-            return $this->nilai->where('id', $id)->update([
+            return $this->nilai->where('id', $this->id)->update([
                 'id_asatidz' => Auth::user()->id,
                 'nilai' => $request->nilai,
             ]);
