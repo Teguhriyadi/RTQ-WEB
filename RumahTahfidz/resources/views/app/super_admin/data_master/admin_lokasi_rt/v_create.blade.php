@@ -21,7 +21,7 @@ href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/s
                 <a href="{{ url('app/sistem/home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">@yield('app_title')</a>
+                <a href="{{ url('/app/sistem/admin_cabang') }}">@yield('app_title')</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Tambah @yield('app_title')</li>
         </ol>

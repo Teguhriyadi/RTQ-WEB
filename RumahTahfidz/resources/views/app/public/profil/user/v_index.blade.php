@@ -191,18 +191,15 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="password_lama"> Password Lama </label>
-                            <input type="password" class="form-control" name="password_lama" id="password_lama"
-                                placeholder="Masukkan Password Lama">
+                            <input type="password" class="form-control" name="password_lama" id="password_lama" placeholder="Masukkan Password Lama">
                         </div>
                         <div class="form-group">
                             <label for="password_baru"> Password Baru </label>
-                            <input type="password" class="form-control" name="password_baru" id="password_baru"
-                                placeholder="Masukkan Password Baru">
+                            <input type="password" class="form-control" name="password_baru" id="password_baru" placeholder="Masukkan Password Baru">
                         </div>
                         <div class="form-group">
                             <label for="konfirmasi_password"> Konfirmasi Password </label>
-                            <input type="password" class="form-control" name="konfirmasi_password"
-                                id="konfirmasi_password" placeholder="Masukkan Konfirmasi Password">
+                            <input type="password" class="form-control" name="konfirmasi_password" id="konfirmasi_password" placeholder="Masukkan Konfirmasi Password">
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">

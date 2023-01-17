@@ -14,7 +14,7 @@
                 <a href="{{ url('app/sistem/home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('/app/sistem/admin_lokasi_rt') }}">@yield('app_title')</a>
+                <a href="{{ url('/app/sistem/admin_cabang') }}">@yield('app_title')</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Detail @yield('app_title')</li>
         </ol>

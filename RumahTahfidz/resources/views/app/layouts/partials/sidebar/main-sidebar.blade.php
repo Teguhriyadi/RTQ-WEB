@@ -60,12 +60,6 @@ $profil = \App\Models\ProfilWeb::select('nama')->first();
                         </a>
                     </li>
 
-                    <li>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScRclacuowu2SAiSInfVdwN5XNt81l5M9cRNHNb6D3YJ0D2Gg/viewform" target="_blank">
-                            <i class="fa fa-bug"></i> Form Keluhan
-                        </a>
-                    </li>
-
                     @can('super_admin')
                         @include('app.layouts.partials.sidebar.menu.m_super')
                     @endcan
@@ -82,6 +76,12 @@ $profil = \App\Models\ProfilWeb::select('nama')->first();
                     <li class="{{ Request::segment(3) == 'informasi_login' ? 'active' : '' }}">
                         <a href="{{ url('/app/sistem/informasi_login') }}">
                             <i class="fa fa-key"></i>Informasi Login
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScRclacuowu2SAiSInfVdwN5XNt81l5M9cRNHNb6D3YJ0D2Gg/viewform" target="_blank">
+                            <i class="fa fa-bug"></i> Form Keluhan
                         </a>
                     </li>
                 </ul>

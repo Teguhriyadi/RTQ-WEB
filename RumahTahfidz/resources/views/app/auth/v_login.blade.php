@@ -11,7 +11,8 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <!-- Google Icon -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url('build/css/laravel.css') }}">
@@ -42,7 +43,7 @@
                         <input
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
                             id="no_hp" type="number" name="no_hp" autofocus="autofocus"
-                            value="{{ old('no_hp') }}" min="1">
+                            value="{{ old('no_hp') }}" min="1" autocomplete>
                     </div>
 
                     <div class="mt-4">
@@ -69,12 +70,13 @@
                     <br>
                     <hr>
                     <div class="flex items-center justify mt-4">
-                        <label class="block font-medium text-sm text-gray-700" >
-                            <a href="https://rtqulilalbab.com/android/rtq-v1.1.apk"> <span class="material-symbols-outlined">apk_install</span> Download APK Android</a>
+                        <label class="block font-medium text-sm text-gray-700">
+                            <a href="https://rtqulilalbab.com/android/rtq-v1.1.apk"> <span
+                                    class="material-symbols-outlined">apk_install</span> Download APK Android</a>
                         </label>
-                        
+
                     </div>
-                    
+
                 </form>
             </div>
         </div>

@@ -45,7 +45,6 @@ class LandingPageController extends Controller
         Pesan::create([
             "id_pesan" => time(),
             "nama" => $request->nama,
-            "email" => $request->email,
             "judul" => $request->judul,
             "pesan" => $request->pesan
         ]);

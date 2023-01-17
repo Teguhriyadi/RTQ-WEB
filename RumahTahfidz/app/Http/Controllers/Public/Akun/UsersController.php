@@ -14,7 +14,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $data["users"] = User::get();
+        $data["users"] = User::orderBy("created_at", "DESC")->get();
 
         return view("app.super_admin.users.v_index", $data);
     }

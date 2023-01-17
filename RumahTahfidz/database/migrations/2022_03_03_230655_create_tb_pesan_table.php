@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('tb_pesan', function (Blueprint $table) {
             $table->integer("id_pesan")->primary();
             $table->string("nama", 100);
-            $table->string("email", 100)->unique();
             $table->string("judul", 100);
             $table->text("pesan");
             $table->timestamps();
