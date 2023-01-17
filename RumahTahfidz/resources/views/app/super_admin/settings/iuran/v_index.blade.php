@@ -54,8 +54,8 @@
                             <i class="fa fa-times"></i> Batal
                         </button>
                         @if (empty($data))
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> Tambah
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fa fa-save"></i> Simpan
                         </button>
                         @else
                         <button type="submit" class="btn btn-success btn-sm">

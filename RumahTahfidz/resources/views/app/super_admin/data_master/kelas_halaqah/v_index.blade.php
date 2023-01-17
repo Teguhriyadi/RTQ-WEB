@@ -191,13 +191,7 @@ use App\Models\Asatidz;
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="reset" class="btn btn-danger btn-sm">
-                                <i class="fa fa-times"></i>
-                                Kembali
-                            </button>
-                            <button type="submit" class="btn btn-primary btn-sm">
-                                <i class="fa fa-save"></i> Tambah
-                            </button>
+                            @include("app.layouts.partials.button.btn")
                         </div>
                     @endif
                 </form>
@@ -226,12 +220,7 @@ use App\Models\Asatidz;
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger btn-sm">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fa fa-save"></i> Simpan
-                        </button>
+                        @include("app.layouts.partials.button.btn")
                     </div>
                 </form>
             </div>

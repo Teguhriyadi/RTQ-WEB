@@ -53,12 +53,7 @@
                                         placeholder="Masukkan Nominal">
                                 </div>
                                 <div class="ln_solid"></div>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-times"></i> Batal
-                                </button>
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-plus"></i> Tambah
-                                </button>
+                                @include("app.layouts.partials.button.btn")
                             </form>
                         </div>
                     </div>
@@ -164,12 +159,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger btn-sm">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
-                            <i class="fa fa-save"></i> Simpan
-                        </button>
+                        @include("app.layouts.partials.button.btn")
                     </div>
                 </form>
             </div>

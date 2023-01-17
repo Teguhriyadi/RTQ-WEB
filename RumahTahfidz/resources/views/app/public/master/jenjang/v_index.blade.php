@@ -52,7 +52,7 @@
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
-                            @include("app.layouts.partials.button.btn-tambah")
+                            @include("app.layouts.partials.button.btn")
                         </div>
                     </form>
                 </div>
@@ -127,7 +127,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        @include("app.layouts.partials.button.btn-edit")
+                        @include("app.layouts.partials.button.btn")
                     </div>
                 </form>
             </div>

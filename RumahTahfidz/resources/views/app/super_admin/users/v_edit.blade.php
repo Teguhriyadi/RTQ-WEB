@@ -211,12 +211,13 @@
                         <div class="form-group">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <a href="{{ url('app/sistem/users') }}" class="btn btn-sm btn-warning"><i
-                                            class="fa fa-sign-out"></i> Kembali</a>
+                                    <a href="{{ url('app/sistem/users') }}" class="btn btn-sm btn-warning">
+                                        <i class="fa fa-sign-out"></i>
+                                        Kembali
+                                    </a>
                                 </div>
                                 <div>
-                                    <button class="btn btn-sm btn-danger"><i class="fa fa-refresh"></i> Batal</button>
-                                    <button class="btn btn-sm btn-success"><i class="fa fa-save"></i> Simpan</button>
+                                    @include("app.layouts.partials.button.btn")
                                 </div>
                             </div>
                         </div>

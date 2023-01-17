@@ -52,12 +52,7 @@
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
-                            <button class="btn btn-danger btn-sm" type="reset">
-                                <i class="fa fa-times"></i> Kembali
-                            </button>
-                            <button class="btn btn-primary btn-sm" type="submit">
-                                <i class="fa fa-plus"></i> Tambah
-                            </button>
+                            @include("app.layouts.partials.button.btn")
                         </div>
                     </form>
                 </div>
@@ -132,12 +127,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger btn-sm">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fa fa-save"></i> Simpan
-                        </button>
+                        @include("app.layouts.partials.button.btn")
                     </div>
                 </form>
             </div>

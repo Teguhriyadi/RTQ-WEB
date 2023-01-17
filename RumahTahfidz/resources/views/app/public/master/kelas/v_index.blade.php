@@ -51,7 +51,7 @@
                                 placeholder="Masukkan Nama Kelas" value="{{ old('nama_kelas') }}">
                         </div>
                         <div class="ln_solid"></div>
-                        @include("app.layouts.partials.button.btn-tambah")
+                        @include("app.layouts.partials.button.btn")
                     </form>
                 </div>
             </div>
@@ -127,7 +127,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        @include("app.layouts.partials.button.btn-edit")
+                        @include("app.layouts.partials.button.btn")
                     </div>
                 </form>
             </div>

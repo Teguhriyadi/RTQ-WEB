@@ -199,12 +199,7 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
-                            <i class="fa fa-times"></i> Kembali
-                        </button>
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
+                        @include("app.layouts.partials.button.btn")
                     </div>
                 </form>
             </div>

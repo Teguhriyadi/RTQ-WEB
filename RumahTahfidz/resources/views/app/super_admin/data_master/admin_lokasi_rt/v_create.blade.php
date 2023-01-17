@@ -168,12 +168,7 @@ id="tambahAdminCabang">
                     <textarea name="alamat" class="form-control" id="alamat" rows="5" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
                 </div>
                 <div class="ln_solid"></div>
-                <button type="reset" class="btn btn-danger btn-sm">
-                    <i class="fa fa-times"></i> Batal
-                </button>
-                <button type="submit" class="btn btn-primary btn-sm">
-                    <i class="fa fa-plus"></i> Tambah
-                </button>
+                @include("app.layouts.partials.button.btn")
                 <a href="{{ url('/app/sistem/admin_cabang') }}" class="btn btn-warning btn-sm pull-right">
                     <i class="fa fa-sign-out"></i> Kembali ke Halaman Sebelumnya
                 </a>
