@@ -9,8 +9,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up">Selamat Datang di
-                        {{ empty($data->nama) ? 'Rumah Tahfidz Quran Ulil Albab' : $data->nama }}
+                    <h1 data-aos="fade-up">
+                        Selamat Datang di Rumah Tahfidz Quran Ulil Albab
                     </h1>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ url('/landing') }}/assets/img/hero-img.png" class="img-fluid" alt="">
+                    <img src="{{ url('/gambar/kegiatan-rtq.jpg') }}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
