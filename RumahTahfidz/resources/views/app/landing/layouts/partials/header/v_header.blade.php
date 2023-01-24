@@ -30,7 +30,7 @@
                 </li>
                 <li>
                     <a
-                        href="https://rtqulilalbab.com/android/rtq-v1.1.apk">
+                        href="https://rtqulilalbab.com/android/rtq-v1.2.apk">
                         Download Aplikasi
                     </a>
                 </li>
