@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Login | RTQ Ulil Albab</title>
+    <title>Login | RTQ Ulil Albab 2</title>
     <link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}" />
 
     <!-- Fonts -->
@@ -71,7 +71,7 @@
                     <hr>
                     <div class="flex items-center justify mt-4">
                         <label class="block font-medium text-sm text-gray-700">
-                            <a href="https://rtqulilalbab.com/android/rtq-v1.1.apk"> <span
+                            <a href="https://rtqulilalbab.com/android/rtq-v1.2.apk"> <span
                                     class="material-symbols-outlined">apk_install</span> Download APK Android</a>
                         </label>
 
