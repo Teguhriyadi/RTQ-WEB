@@ -71,8 +71,12 @@
                     <hr>
                     <div class="flex items-center justify mt-4">
                         <label class="block font-medium text-sm text-gray-700">
-                            <a href="https://rtqulilalbab.com/android/rtq-v1.2.apk"> <span
-                                    class="material-symbols-outlined">apk_install</span> Download APK Android</a>
+                            <a href="{{ empty($profil) ? '' : $profil->url_aplikasi }}">
+                                <span class="material-symbols-outlined">
+                                    apk_install
+                                </span>
+                                    Download APK Android
+                            </a>
                         </label>
 
                     </div>

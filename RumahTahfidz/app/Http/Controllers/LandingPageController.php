@@ -22,7 +22,10 @@ class LandingPageController extends Controller
 
     public function home()
     {
-        $data = ProfilWeb::select("id", "nama", "email", "logo", "singkatan", "no_hp", "alamat")->first();
+        $data = ProfilWeb::select("nama", "singkatan", "no_hp", "email", "alamat", "logo", "url_aplikasi")->first();
+
+        $tampung = $data["url_aplikasi"];
+
         $data2 = [
             "data_blog" => Blog::get(),
             "jumlah_santri" => Santri::where("status", 1)->count(),
@@ -32,7 +35,7 @@ class LandingPageController extends Controller
             "data_organisasi" => StrukturOrganisasi::get()
         ];
 
-        return view("app.landing.v_home", $data2, compact('data'));
+        return view("app.landing.v_home", $data2, compact('data', 'tampung'));
     }
 
     public function kontak()

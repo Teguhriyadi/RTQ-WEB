@@ -91,10 +91,14 @@ class ProfilWebController extends Controller
 
     public function upload_link(Request $request)
     {
+        if ($request->file("url_link")) {
+            $data = $request->file("url_link")->store("aplikasi");
+        }
+
         $profil = ProfilWeb::first();
 
         ProfilWeb::where("id", $profil->id)->update([
-            "url_aplikasi" => $request->url_link
+            "url_aplikasi" => url('/storage/' . $data)
         ]);
 
         return back();

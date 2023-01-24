@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Autentikasi;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProfilWeb;
 use App\Models\Role;
 use App\Models\TerakhirLogin;
 use App\Models\User;
@@ -14,7 +15,9 @@ class LoginController extends Controller
     public function login()
     {
         $role = Role::orderBy('id', 'DESC')->get();
-        return view("app.auth.v_login", compact('role'));
+        $profil = ProfilWeb::first();
+
+        return view("app.auth.v_login", compact('role', 'profil'));
     }
 
     public function hakAkses(Request $request)

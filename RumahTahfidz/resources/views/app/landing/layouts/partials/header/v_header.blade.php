@@ -10,7 +10,11 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="{{ url('') }}#hero">Home</a></li>
+                <li>
+                    <a class="nav-link scrollto active" href="{{ url('') }}#hero">
+                        Home
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="#">
                         <span>Tentang Ulil Albab</span>
@@ -24,15 +28,21 @@
                 <li><a href="{{ url('/blog') }}">Blog</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('') }}#contact">Kontak</a></li>
                 <li>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScRclacuowu2SAiSInfVdwN5XNt81l5M9cRNHNb6D3YJ0D2Gg/viewform">
+                    <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLScRclacuowu2SAiSInfVdwN5XNt81l5M9cRNHNb6D3YJ0D2Gg/viewform">
                         Form Keluhan
                     </a>
                 </li>
                 <li>
-                    <a
-                        href="https://rtqulilalbab.com/android/rtq-v1.2.apk">
+                    <?php if (empty($tampung)) : ?>
+                    <a href="">
                         Download Aplikasi
                     </a>
+                    <?php else : ?>
+                    <a href="{{ $tampung }}" target="_blank">
+                        Download
+                    </a>
+                    <?php endif ?>
                 </li>
                 <li>
                     <a href="{{ url('/app/login') }}">

@@ -8,14 +8,14 @@
 </head>
 <body>
 
-    <form action="{{ url('/url_aplikasi') }}" method="POST">
+    <form action="{{ url('/url_aplikasi') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <table>
             <tr>
                 <td>URL Link</td>
                 <td>:</td>
                 <td>
-                    <input type="url" name="url_link" placeholder="Masukkan URL Link Aplikasi" style="width: 300%; padding: 10px; border-radius: 5px;" value="{{ empty($profil) ? '' : $profil->url_aplikasi }}">
+                    <input type="file" name="url_link" placeholder="Masukkan URL Link Aplikasi" style="width: 300%; padding: 10px; border-radius: 5px;">
                 </td>
             </tr>
             <tr>
