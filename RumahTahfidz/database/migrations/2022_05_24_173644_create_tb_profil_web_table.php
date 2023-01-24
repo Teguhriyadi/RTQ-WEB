@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("email", 100);
             $table->text("alamat");
             $table->string("logo");
+            $table->string("url_aplikasi")->nullable();
             $table->timestamps();
         });
     }

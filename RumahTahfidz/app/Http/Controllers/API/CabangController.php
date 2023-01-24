@@ -35,4 +35,26 @@ class CabangController extends Controller
 
         return new CabangCollection($halaqah);
     }
+
+    public function filter_cabang($kode_rt)
+    {
+        $halaqah = Halaqah::where("kode_rt", $kode_rt)->first();
+
+        $lokasi = LokasiRt::where("kode_rt", $halaqah->kode_rt)->get();
+
+        if ($lokasi->count() < 0) {
+            $data = "Data Tidak Ada";
+        } else {
+            $data = [];
+
+            foreach ($lokasi as $l) {
+                $data[] = [
+                    "kode_rt" => $l->kode_rt,
+                    "lokasi_rt" => $l->lokasi_rt
+                ];
+            }
+        }
+
+        return response()->json($data, 200);
+    }
 }

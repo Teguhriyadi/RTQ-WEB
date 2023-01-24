@@ -46,6 +46,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("/url_aplikasi", [ProfilWebController::class, "url_link"]);
+Route::post("/url_aplikasi", [ProfilWebController::class, "upload_link"]);
+
 Route::get("/app/sistem/ambil_data", [CobaController::class, "json"]);
 Route::get("/coba_rekap", [CobaController::class, "coba_rekap"]);
 Route::put("/coba_rekap", [CobaController::class, "post_rekap"]);

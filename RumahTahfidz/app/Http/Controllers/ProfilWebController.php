@@ -81,4 +81,22 @@ class ProfilWebController extends Controller
 
         return redirect()->back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>"]);
     }
+
+    public function url_Link()
+    {
+        $data["profil"] = ProfilWeb::first();
+
+        return view("url_link", $data);
+    }
+
+    public function upload_link(Request $request)
+    {
+        $profil = ProfilWeb::first();
+
+        ProfilWeb::where("id", $profil->id)->update([
+            "url_aplikasi" => $request->url_link
+        ]);
+
+        return back();
+    }
 }

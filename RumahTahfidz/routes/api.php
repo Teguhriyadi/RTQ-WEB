@@ -68,6 +68,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // List Cabang
     Route::get('cabang', [CabangController::class, 'index']);
 
+    Route::get('cabang/{kode_rt}', [CabangController::class, 'filter_cabang']);
+
     // List Santri
     Route::get('santri', [SantriController::class, 'index']);
 
