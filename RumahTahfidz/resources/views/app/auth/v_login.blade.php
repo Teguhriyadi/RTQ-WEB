@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Login | RTQ Ulil Albab</title>
+    <title>Login | RTQ Ulil Albab 2</title>
     <link rel="icon" type="image/png" href="{{ url('gambar/logo_ulil.png') }}" />
 
     <!-- Fonts -->
