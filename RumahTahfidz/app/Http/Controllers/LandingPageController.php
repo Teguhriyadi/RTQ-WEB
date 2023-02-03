@@ -24,7 +24,12 @@ class LandingPageController extends Controller
     {
         $data = ProfilWeb::select("nama", "singkatan", "no_hp", "email", "alamat", "logo", "url_aplikasi")->first();
 
-        $tampung = $data["url_aplikasi"];
+        if (empty($data)) {
+            $tampung = "#";
+        } else {
+            $tampung = $data["url_aplikasi"];
+        }
+
 
         $data2 = [
             "data_blog" => Blog::get(),
